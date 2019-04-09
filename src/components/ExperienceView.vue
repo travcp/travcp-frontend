@@ -206,7 +206,7 @@
     .cover_image {
         width: 100%;
     }
-
+    
     .nagoya {
         background: url('../assets/nagoya.png');
         background-position: center;
@@ -427,5 +427,14 @@
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
+    }
+    @media only screen and (max-width: 576px) {
+        .project_area {
+            margin: 121px 10px 42px 10px;
+        }
+        .digital_feature.blog_part {
+            margin: 0px 10px 42px 10px;
+            color: #555 !important;
+        }
     }
 </style>

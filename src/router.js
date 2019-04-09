@@ -7,7 +7,7 @@ import ExperienceView from './components/ExperienceView.vue';
 import RestaurantsView from '@/components/RestaurantView';
 import ExperiencesSearchResults from '@/components/ExperiencesSearchResults';
 import RestaurantsSearchResults from '@/components/RestaurantsSearchResults';
-
+import Registration from '@/view/Registration.vue'
 // 09082984610
 Vue.use(Router)
 

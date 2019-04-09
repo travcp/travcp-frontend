@@ -13,7 +13,12 @@ export default new Vuex.Store({
     experiences: [],
     experience: {},
     restaurants: [],
-    restaurant: {}
+    restaurant: {},
+    user_registration_details: {},
+    success: null,
+    user_token: null,
+    user_data: null,
+    login_err: null
   },
   mutations: {
     ALL_EXPERIENCE: (state, payload) => {
@@ -33,6 +38,27 @@ export default new Vuex.Store({
     }, 
     FILTER_EXPERIENCE: (state, payload) => {
       state.experiences = payload;
+    },
+    GET_USER_DATA: (state, payload) => {
+      state.user_registration_details = payload;
+    },
+    REGISTRATION: (payload) => {
+      
+    },
+    REGISTRATION_SUCCESS: (state) => {
+      state.success = true;
+    },
+    REGISTRATION_ERROR: (state) => {
+      state.success = false;
+    },
+    LOGIN_SUCCESS: (state) => {
+      state.success = true;
+      state.user_token = payload.access_token;
+      state.user_data = payload.data
+    },
+    LOGIN_FAILURE: (state, payload) => {
+      state.success = false;
+      state.login_err = payload;
     }
   },
   actions: {
@@ -59,7 +85,7 @@ export default new Vuex.Store({
     filterRestaurantSearch: ({commit}, data) => {
       // console.log(data);
       // console.log(`https://travvapi.herokuapp.com/api/restaurants?location=${data.search}&min_price=${data.min_price}&max_price=${data.max_price}`)
-      axios.get(`https://travvapi.herokuapp.com/api/restaurants?location=${data.search}&min_price=${data.min_price}&max_price=${data.max_price}`).then(response => {
+      axios.get(`${API_BASE}/restaurants?location=${data.search}&min_price=${data.min_price}&max_price=${data.max_price}`).then(response => {
           console.log(response.data);
           commit('FILTER_RESTAURANTS', response.data);
       }).catch(({err}) => {
@@ -67,12 +93,39 @@ export default new Vuex.Store({
       });
     },
     filterExperiencesSearch: ({commit}, data) => {
-      axios.get(`https://travvapi.herokuapp.com/api/restaurants?location=${data.search}&min_price=${data.min_price}&max_price=${data.max_price}`).then(response => {
+      axios.get(`${API_BASE}/restaurants?location=${data.search}&min_price=${data.min_price}&max_price=${data.max_price}`).then(response => {
           console.log(response.data);
           commit('FILTER_RESTAURANTS', response.data);
       }).catch(({err}) => {
           console.log(err);
       });
+    },
+    userRegistration: ({commit}, data) => {
+      axios.post(`${API_BASE}/auth/register`, 
+      {
+        "email" : email,
+        "password" : password,
+        "first_name" : first_name,
+        "surname" : surname
+      }).then(res => {
+        commit('REGISTRATION_SUCCESS');
+        console.log(res.data);
+      }).catch(err => {
+        commit('REGISTRATION_ERROR');
+        console.log(err);
+      });
+    },
+    userLogin: ({commit}, data) => {
+      axios.post(`${API_BASE}/auth/login`, {
+        "email" : email,
+	      "password" : password
+      }).then(res => {
+        commit('LOGIN_SUCCESS')
+        console.log(res.data);
+      }).catch(err => {
+        commit('LOGIN_FAILURE', err.data);
+        console.log(err);
+      })
     }
   },
   getters: {
