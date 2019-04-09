@@ -103,10 +103,10 @@ export default new Vuex.Store({
     userRegistration: ({commit}, data) => {
       axios.post(`${API_BASE}/auth/register`, 
       {
-        "email" : email,
-        "password" : password,
-        "first_name" : first_name,
-        "surname" : surname
+        "email" : data.email,
+        "password" : data.password,
+        "first_name" : data.first_name,
+        "surname" : data.surname
       }).then(res => {
         commit('REGISTRATION_SUCCESS');
         console.log(res.data);
@@ -117,12 +117,12 @@ export default new Vuex.Store({
     },
     userLogin: ({commit}, data) => {
       axios.post(`${API_BASE}/auth/login`, {
-        "email" : email,
-	      "password" : password
+        "email" : data.email,
+	      "password" : data.password
       }).then(res => {
         commit('LOGIN_SUCCESS')
         console.log(res.data);
-      }).catch(err => {
+      }).catch(({err}) => {
         commit('LOGIN_FAILURE', err.data);
         console.log(err);
       })

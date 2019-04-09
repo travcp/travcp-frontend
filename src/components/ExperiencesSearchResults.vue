@@ -446,9 +446,6 @@
 
     .search_items {
         height: 393px;
-        /* 318 
-         75
-          3 */
         width: 100%;
         display: flex;
         flex-direction: column;
