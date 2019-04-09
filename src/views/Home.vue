@@ -1,18 +1,840 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HomeNavbar />
+    <Sliderarea class="toggle-sec-nav" />
+
+    <section class="creative_feature_area">
+      <SecondNav />
+      <div>
+        <div class="c_feature_box">
+          <h2 class="text-lg">Get Prepare for your trip/experience</h2>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-4 no-pad-l" style="padding-left: 180px">
+                <div class="c_box_item">
+                  <img src="../assets/Icons/add-listing.svg" />
+                </div>
+                <div>
+                  <p class="title">Add Listing</p>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="c_box_item">
+                  <img src="../assets/Icons/compass.svg" />
+                  <!-- <p class="title">Explore Places</p> -->
+                </div>
+
+                <div>
+                  <p class="title">Explore Places</p>
+                </div>
+              </div>
+              <div class="col-lg-4 no-pad-r" style="padding-right: 180px">
+                <div class="c_box_item">
+                  <img src="../assets/Icons/security.svg" />
+                  <!-- <p class="title">Get Security Updates</p> -->
+                </div>
+                <div>
+                  <p class="title">Get Security Updates</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="digital_feature p_100">
+          <div class="row">
+            <div class="col-lg-8">
+              <div class="d_feature_text">
+                <div class="main_title">
+                  <h2>Recommended for you</h2>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <button type="button" class="btn view_all_btn">VIEW ALL</button>
+            </div>
+            <div class="col-lg-12">
+
+              <div id="carousel-2" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active" data-interval="10000">
+                    <div class="recom4uimages-up mount_fuji">
+                      <p>Mount Fuji</p>
+                    </div>
+                  </div>
+                  <div class="carousel-item" data-interval="20000">
+                    <div class="recom4uimages-up kyoto">
+                      <p>Kyoto</p>
+                    </div>
+                  </div>
+                  <div class="carousel-item" data-interval="20000">
+                    <div class="recom4uimages-up tokyo">
+                      <p>Tokyo</p>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div class="recom4uimages-up niigata">
+                      <p>Niigata</p>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div class="recom4uimages-up saporo">
+                      <p>Saporo</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12 toggleCarousel">
+              <div class="row">
+                <div class="col-md-6" style="padding-right: 5px;">
+                  <div class="recom4uimages-up mount_fuji">
+                    <p>Mount Fuji</p>
+                  </div>
+                </div>
+                <div class="col-md-6" style="padding-left: 5px;">
+                  <div class="recom4uimages-up kyoto">
+                    <p>Kyoto</p>
+                  </div>
+                </div>
+                <div class="col-md-4" style="padding-right: 5px;">
+                  <div class="recom4uimages-dwn tokyo">
+                    <p>Tokyo</p>
+                  </div>
+                </div>
+                <div class="col-md-4" style="padding-left: 5px;padding-right: 5px;">
+                  <div class="recom4uimages-dwn niigata">
+                    <p>Niigata</p>
+                  </div>
+                </div>
+                <div class="col-md-4" style="padding-left: 5px;">
+                  <div class="recom4uimages-dwn saporo">
+                    <p>Saporo</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <FeaturedPlaces />
+        <FeaturedRest :restaurants="featuredrest" />
+        <TopRatedExp :experiences="experiences.slice(0, 3)" />
+        <FeaturedVideo />
+        <LatestPosts />
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
-export default {
-  name: 'home',
-  components: {
-    HelloWorld
+  // @ is an alias to /src
+  import FeaturedPlaces from '@/components/FeaturedPlaces.vue';
+  import FeaturedRest from '@/components/FeaturedRest.vue';
+  import TopRatedExp from '@/components/TopRatedExp.vue';
+  import FeaturedVideo from '@/components/FeaturedVideo.vue';
+  import LatestPosts from '@/components/LatestPosts.vue';
+  import HomeNavbar from '@/components/HomeNavbar.vue';
+  import Sliderarea from '@/components/Sliderarea.vue'
+  import SecondNav from '@/components/SecondNav.vue';
+  import { mapState, mapGetters, mapActions } from 'vuex';
+  export default {
+    name: 'home',
+    components: {
+      HomeNavbar,
+      Sliderarea,
+      FeaturedPlaces,
+      FeaturedRest,
+      TopRatedExp,
+      FeaturedVideo,
+      LatestPosts,
+      SecondNav
+    },
+    data: function(){return{
+      // experiences: []
+    }},
+    methods: {
+      ...mapActions(['getExperiences']),
+      ...mapActions(['getRestaurants'])
+    },
+    computed: {
+      ...mapState(['experiences']),
+      ...mapGetters(['allExperiences']),
+      ...mapState(['restaurants']),
+      topRatedExp: function(){
+        // let exp = this.allExperiences;
+        return this.experiences.slice(0, 3);
+      },
+      featuredrest: function(){
+        return this.restaurants.slice(0, 3);
+      }
+    },
+    created: function(){
+      this.getExperiences();
+      this.getRestaurants();
+      // this.experiences = this.allExperiences;
+      // console.log(this.experiences)
+    }
   }
-}
 </script>
+
+<style>
+  .creative_feature_area {
+    margin-left: 89px;
+    margin-right: 89px;
+    background: #FFF;
+  }
+
+  header.main_menu_area {
+    z-index: 12213;
+  }
+  .toggleFirstNav{
+    display: none;
+  }
+  .main_menu_area .navbar .navbar-nav li a {
+        color: #FFF !important;
+    }
+    .navbar-brand {
+        color: #FFF !important;
+    }
+  .carousel1 {
+    display: none;
+  }
+
+  .carousel {
+    display: none;
+  }
+
+  .secondNav {
+    width: 100%;
+    height: 124px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px 0 rgba(190, 190, 190, 0.5);
+    background-color: #FFF;
+    padding: 30px 41.8px 19px 29px;
+  }
+
+  .secondNav-img {
+    width: 43px;
+    margin-bottom: 8px;
+  }
+
+  .secondNav-txt {
+    font-family: MuseoSans500 !important;
+    font-size: 12px;
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  .tab {
+    padding-left: 25px;
+    padding-right: 25px;
+    text-align: center;
+  }
+  .secondNavTitle{
+    width: 100%;
+    text-align: center;
+  }
+  .secondNavTitle h3, .secondNavTitle h3 span {
+    font-family: MuseoSans700 !important;
+    font-size: 23px;
+    font-weight: bolder;
+    font-style: normal;
+    font-stretch: normal;
+  }
+  .navbar-brand {
+    color: #FFF !important;
+  }
+  .vertical-divider{
+    width: 1px;
+    height: 21px;
+    background: #f81894;
+    position: relative;
+    top: -40px;
+    float: right;
+    left: 100px;
+  }
+  .main_menu_area .navbar .navbar-nav li a {
+    color: #FFF !important;
+  }
+
+  .title {
+    font-family: MuseoSans900;
+    font-size: 24px;
+    font-weight: bolder;
+    text-align: center;
+    color: #000000;
+    margin-top: 38px;
+    margin-right: -35px;
+  }
+
+  .c_feature_box {
+    margin-top: -70px;
+    padding-top: 93px;
+    padding-bottom: 142px;
+    padding-right: 0px;
+  }
+
+  .toggle-display-sm {
+    display: none;
+  }
+
+  @media only screen and (max-height: 622px) {
+    .c_feature_box {
+      margin-top: 20px !important;
+    }
+
+    .main_slider_text_bg {
+      font-family: MuseoSans700 !important;
+      color: #FFF;
+      font-size: 40px;
+      margin-bottom: 0px;
+    }
+  }
+
+  @media only screen and (max-width: 1007px) {
+    .main_slider_container {
+      padding-top: 25vh !important;
+      padding-left: 85px !important;
+    }
+
+    .btn-travv {
+      font-family: MuseoSans500 !important;
+      padding: 16px;
+      height: 54px;
+      border-radius: 8px;
+      background-color: #ffffff;
+      font-size: 16px;
+      font-weight: 500;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #555555;
+      /* box-sizing: border-box; */
+    }
+
+    .cont-btn {
+      background: #F81894;
+      border: none;
+      /* padding: 44px 29px 39px 25px; */
+      font-family: MuseoSans700;
+      font-size: 21px;
+      width: 120px;
+      height: 54px;
+      border-radius: 8px;
+      background-color: #f81894;
+      color: #FFF;
+      margin-top: -20px;
+    }
+
+    .no-pad-l {
+      padding-left: 0px !important;
+      margin-bottom: 10px;
+      padding: 0;
+    }
+
+    .no-pad-r {
+      padding-right: 0px !important;
+      margin-top: 10px;
+      padding: 0;
+    }
+
+    .left_feature_place {
+      padding-right: 5px;
+      padding-left: 0px;
+    }
+
+    .middle_feature_place {
+      padding-right: 5px;
+      padding-left: 5px;
+    }
+
+    .right_feature_place {
+      padding-left: 5px;
+      padding-right: 0px;
+    }
+
+    .recom4uimages-dwn {
+      margin-bottom: 10px;
+    }
+  }
+
+  @media only screen and (max-width: 576px) {
+    .toggle-sec-nav{
+      display: none;
+    }
+    .toggleFirstNav{
+      display: block;
+    }
+    header.main_menu_area {
+      padding-left: 8px !important;
+      padding-right: 8px !important;
+    }
+
+    .main_slider_container {
+      padding-top: 15vh !important;
+      padding-left: 25px !important;
+    }
+
+    .toggle-display {
+      display: none;
+    }
+
+    .main_slider_text_bg {
+      margin-bottom: 17px;
+    }
+
+    .btn-group.btn-group-toggle {
+      margin-bottom: 10px;
+    }
+
+    .creative_feature_area {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+    .c_feature_box {
+      margin-top: -1px;
+    }
+
+    .toggle-display-sm {
+      display: block;
+      margin-bottom: -20px;
+    }
+
+    .right_feature_place {
+      padding-right: 0 !important;
+      padding-left: 0 !important;
+      margin-bottom: 10px;
+    }
+
+    .middle_feature_place {
+      padding-right: 0 !important;
+      padding-left: 0 !important;
+      margin-bottom: 10px;
+    }
+
+    .left_feature_place {
+      padding-right: 0 !important;
+      padding-left: 0 !important;
+      margin-bottom: 10px;
+    }
+
+    .latest_post_1,
+    .latest_post_2 {
+      height: 120px
+    }
+
+    .app-store {
+      margin-bottom: 0px !important;
+    }
+
+    .c_feature_box {
+      display: none;
+    }
+
+    .carousel {
+      display: block !important;
+    }
+
+    .toggleCarousel {
+      display: none;
+    }
+
+    .carousel {
+      display: block;
+    }
+
+    /* .col-md-4.featured_places{
+      display: none;
+    } */
+  }
+
+  @media only screen and (max-width: 375px) {
+    .main_slider_container {
+      padding-top: 10vh !important;
+      padding-left: 25px !important;
+    }
+  }
+
+  @media only screen and (max-width: 1070px) {
+    .main_slider_container {
+      padding-left: 121px;
+    }
+  }
+
+  .c_box_item:before {
+    background: none;
+  }
+
+  .text-lg {
+    /* font-family: MuseoSans900 !important;
+    color: #555555; */
+    height: 42px;
+    font-family: MuseoSans500 !important;
+    font-size: 35px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #555555;
+    margin-bottom: 92px;
+  }
+
+  .c_box_item a h4 img {
+    height: 80px;
+  }
+
+  .c_box_item a h4 {
+    font-family: MuseoSans300;
+    font-weight: bolder;
+  }
+
+  .c_box_item {
+    text-align: center;
+    left: 18px;
+    /* font-family: MuseoSans900 !important; */
+    /* font-weight: bolder; */
+  }
+
+  .c_box_item button {
+    font-family: MuseoSans900 !important;
+    color: #F81894;
+    font-weight: bolder;
+    font-size: 1.2em;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .c_box_item button:focus {
+    box-shadow: none;
+  }
+
+  .main_title h2 {
+    font-family: MuseoSans500 !important;
+    font-size: 35px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #555555;
+    margin-bottom: 49px;
+    padding-bottom: 0;
+  }
+
+  .view_all_btn {
+    font-family: MuseoSans700 !important;
+    background: transparent;
+    cursor: pointer;
+    float: right;
+    font-size: 16px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    color: #f81894;
+  }
+
+  /* .img-round {
+    position: relative;
+    height: 0;
+    padding-bottom: 100%;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+
+  .img-round>img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+  } */
+
+  .stories_background {
+    background: url('../assets/image_5.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .more_stories_content {
+    padding-top: 70px;
+    padding-bottom: 12px;
+    padding-left: 15px;
+  }
+
+  .more_stories_content h4 {
+    font-family: MuseoSans500 !important;
+    font-weight: bolder;
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  .more_stories_content h6 {
+    font-family: MuseoSans500 !important;
+    margin-top: 12px;
+    margin-bottom: 31px;
+    /* font-weight: bolder; */
+    font-size: 12px;
+    color: #F81894;
+
+    /* font-size: 14px;
+    font-weight: 500; */
+  }
+
+  .col-lg-6.col-md-6.latest-post {
+    position: relative;
+    height: 398px;
+    box-shadow: 0 2px 13px 0 rgba(204, 204, 204, 0.5);
+    background-color: #ffffff;
+    background: #FFF;
+  }
+
+  /* .col-lg-6.col-md-6.latest-post:first-child{
+    margin-right: 1px;
+  } */
+  .pl-0 {
+    padding-left: 0;
+  }
+
+  .top_rated_image {
+    height: 120px;
+    width: 100%;
+    border: 1px solid #000;
+  }
+
+
+  .recom4uimages-up {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 354px;
+    width: 100%;
+    color: #FFF;
+    padding: 0 0 30px 29px;
+    margin-bottom: 10px;
+  }
+
+  .recom4uimages-up p {
+    font-family: MuseoSans500;
+    font-size: 40px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #FFF;
+  }
+
+  .recom4uimages-dwn {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 238px;
+    width: 100%;
+    padding: 0 0 30px 29px;
+  }
+
+  .recom4uimages-dwn p {
+    font-family: MuseoSans500;
+    font-size: 40px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #FFF;
+  }
+
+  .featured_places {
+    height: 357px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .featured_places_overlay {
+    width: 100%;
+    height: 55px;
+    background-color: rgba(21, 24, 36, 0.6);
+  }
+
+  .featured_places_overlay_active {
+    background: rgba(248, 24, 148, 0.71) !important;
+  }
+
+  .ftr_places_title {
+    height: 24px;
+    font-family: Lato;
+    font-size: 18px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.33;
+    letter-spacing: normal;
+    color: #ffffff;
+    padding: 16px 0 15px 25px;
+  }
+
+  .feature_video_lg {
+    width: 100%;
+    height: 510px;
+  }
+
+  .feature_video_sm {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
+    height: 201px;
+    /* background-color: rgba(248, 24, 148, 0.4); */
+    margin-bottom: 10px;
+  }
+
+  /* @media(max-width: ) */
+  .mount_fuji {
+    background: url('../assets/mount_fuji.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .kyoto {
+    background: url('../assets/Kyoto.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .tokyo {
+    background: url('../assets/Tokyo.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .niigata {
+    background: url('../assets/Niigata.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .niigata2 {
+    background: url('../assets/niigata2.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .saporo {
+    background: url('../assets/Saporo.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .nagoya {
+    background: url('../assets/nagoya.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .osaka {
+    background: url('../assets/osaka.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .shibuya {
+    background: url('../assets/shibuya.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .saitama {
+    background: url('../assets/saitama.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .ueno {
+    background: url('../assets/ueno.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .feature_video_lg {
+    background: url('../assets/feature_video_lg.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .feature_video_lg {
+    background: url('../assets/feature_video_lg.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .ft_video_sm_1 {
+    background: url('../assets/ft_video_sm_1.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .ft_video_sm_2 {
+    background: url('../assets/ft_video_sm_2.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .ft_video_sm_3 {
+    background: url('../assets/ft_video_sm_3.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .ft_video_sm_4 {
+    background: url('../assets/ft_video_sm_4.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .latest_post_1 {
+    background: url('../assets/latest_post_1.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .latest_post_2 {
+    background: url('../assets/latest_post_2.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .c_box_item img {
+    height: 120px;
+    width: 120px;
+  }
+
+  /* feature_video_lg.png  ft_video_sm_2*/
+</style>
