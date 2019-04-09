@@ -7,7 +7,8 @@ import ExperienceView from './components/ExperienceView.vue';
 import RestaurantsView from '@/components/RestaurantView';
 import ExperiencesSearchResults from '@/components/ExperiencesSearchResults';
 import RestaurantsSearchResults from '@/components/RestaurantsSearchResults';
-import Registration from '@/view/Registration.vue'
+import Registration from '@/view/Registration.vue';
+import Login from '@/view/Login.vue';
 // 09082984610
 Vue.use(Router)
 
@@ -65,6 +66,16 @@ export default new Router({
       path: '/restaurants/:id/:name',
       name: 'RestaurantsView',
       component: RestaurantsView
+    },
+    {
+      path: '/registration',
+      name: 'Registration',
+      component: Registration
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
     },
     // {
     //   path: '/result-details/:id',
