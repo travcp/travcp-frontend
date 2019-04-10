@@ -16,6 +16,8 @@
                     <li class="nav-item"><a class="nav-link" href="#">Bookings</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Help</a></li>                    
                     <li class="nav-item"><a class="nav-link" href="#">Sign in</a></li>
+                    <!-- <li class="nav-item"><a class="nav-link" href="#">Hi {{ username }}</a></li>
+                    <li class="nav-item" @click="logout"><a class="nav-link" href="#">Log out</a></li> -->
                 </ul>
             </div>
         </nav>
@@ -23,8 +25,21 @@
 </template>
 
 <script>
+import { mapActions, mapState, mapMutations } from 'vuex';
 export default {
-  name: 'Navbar',
+//   name: 'Navbar',
+//   methods: {
+//       logout(){
+//           localStorage.removeItem('auth');
+//           this.$router.push('/');
+//       }
+//   },
+//   computed: {
+//       ...mapState(['auth']),
+//       username(){
+//           return this.auth.user.first_name;
+//       }
+//   }
 }
 </script>
 

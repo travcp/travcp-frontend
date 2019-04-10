@@ -6,7 +6,7 @@
             <h1>Registration</h1>
             {{ user_errors }}
             <form @submit.prevent="formSubmit">
-                <input v-validate="'required|min:6'" type="text" placeholder="First Name *" v-model="first_name" name="first_name" class="form-control form-control-lg"> <br>
+                <input v-validate="'required'" type="text" placeholder="First Name *" v-model="first_name" name="first_name" class="form-control form-control-lg"> <br>
                 <span>{{ errors.first('first_name') }}</span>
 
                 <input type="text" placeholder="Surn Name" v-model="surname" name="surname" class="form-control form-control-lg"> <br>
@@ -29,6 +29,12 @@
 
     export default {
         name: 'Registration',
+        beforeRouteEnter(to, from, next){
+            if(localStorage.getItem('auth')) {
+                return next({ path: '/' })
+            }
+            next();
+        },
         data (){return{
             first_name: null,
             surname: null,
@@ -51,12 +57,14 @@
                             password: this.password,
                             first_name: this.first_name,
                             surname: this.surname
-                        })
+                        });
+                        this.$noty.success("Registration sucessfull")
+                        // this.$
                     }
                     else{
-
+                        this.$noty.error("Oops, something went wrong!")
                     }
-                })
+                });
                 
             }
         },

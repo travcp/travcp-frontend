@@ -3,8 +3,9 @@ import Vuex from 'vuex';
 import axios from 'axios';
 import VueNoty from 'vuejs-noty'
 import 'vuejs-noty/dist/vuejs-noty.css'
+import router from '@/router';
 Vue.use(Vuex);
-
+Vue.use(router)
 Vue.use(VueNoty);
 // let experienceData;
 // axios.get('https://travvapi.herokuapp.com/api/experiences').then(res => {
@@ -22,8 +23,10 @@ export default new Vuex.Store({
     success: null,
     user_token: null,
     user_data: null,
-    login_err: null,
-    user_registration_errors: null
+    login_errors: null,
+    user_registration_errors: null,
+    isLoading: false,
+    auth: localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')) : null
   },
   mutations: {
     ALL_EXPERIENCE: (state, payload) => {
@@ -50,21 +53,28 @@ export default new Vuex.Store({
     REGISTRATION: (payload) => {
       
     },
-    REGISTRATION_SUCCESS: (state) => {
+    REGISTRATION_SUCCESS: (state, payload) => {
       state.success = true;
+      state.auth = payload;
+      localStorage.setItem("auth", JSON.stringify(payload));
     },
     REGISTRATION_ERROR: (state, payload) => {
       state.success = false;
-      state.user_registration_errors = payload
+      state.user_registration_errors = payload;
     },
-    LOGIN_SUCCESS: (state) => {
+    LOGIN_SUCCESS: (state, payload) => {
       state.success = true;
-      state.user_token = payload.access_token;
-      state.user_data = payload.data
+      state.auth = payload;
+      localStorage.setItem("auth", JSON.stringify(payload));
     },
     LOGIN_FAILURE: (state, payload) => {
       state.success = false;
-      state.login_err = payload;
+      state.login_errors = payload.error.message;
+    },
+    USER_LOGOUT: (state) => {
+      localStorage.removeItem('auth');
+      state.auth = null;
+      router.push('/login');
     }
   },
   actions: {
@@ -92,18 +102,18 @@ export default new Vuex.Store({
       // console.log(data);
       // console.log(`https://travvapi.herokuapp.com/api/restaurants?location=${data.search}&min_price=${data.min_price}&max_price=${data.max_price}`)
       axios.get(`${API_BASE}/restaurants?location=${data.search}&min_price=${data.min_price}&max_price=${data.max_price}`).then(response => {
-          console.log(response.data);
+          // console.log(response.data);
           commit('FILTER_RESTAURANTS', response.data);
       }).catch(({err}) => {
-          console.log(err);
+          // console.log(err);
       });
     },
     filterExperiencesSearch: ({commit}, data) => {
       axios.get(`${API_BASE}/restaurants?location=${data.search}&min_price=${data.min_price}&max_price=${data.max_price}`).then(response => {
-          console.log(response.data);
+          // console.log(response.data);
           commit('FILTER_RESTAURANTS', response.data);
       }).catch(({err}) => {
-          console.log(err);
+          // console.log(err);
       });
     },
     userRegistration: ({commit}, data) => {
@@ -114,12 +124,13 @@ export default new Vuex.Store({
         "first_name" : data.first_name,
         "surname" : data.surname
       }).then(res => {
-        commit('REGISTRATION_SUCCESS');
-        console.log(res.data);
+        commit('REGISTRATION_SUCCESS', res.data);
+        router.push("/");
+        // console.log(res.data);
       }).catch(err => {
         commit('REGISTRATION_ERROR', err.response.data);
         // this.$noty.error("Oops, something went wrong!")
-        console.log(err.response.data)
+        // console.log(err.response.data)
         // console.log(err);
       });
     },
@@ -128,12 +139,17 @@ export default new Vuex.Store({
         "email" : data.email,
 	      "password" : data.password
       }).then(res => {
-        commit('LOGIN_SUCCESS')
-        console.log(res.data);
-      }).catch(({err}) => {
-        commit('LOGIN_FAILURE', err.data);
-        console.log(err);
+        commit('LOGIN_SUCCESS', res.data)
+        router.push("/");
+
+        // console.log(res.data);
+      }).catch(err => {
+        commit('LOGIN_FAILURE', err.response.data);
+        // console.log(err);
       })
+    },
+    userLogout: ({ commit }) => {
+      commit('USER_LOGOUT');
     }
   },
   getters: {
