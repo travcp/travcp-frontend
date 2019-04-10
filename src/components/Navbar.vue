@@ -15,9 +15,10 @@
                     <li class="nav-item"><a  href="static.html">Videos</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Bookings</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Help</a></li>                    
-                    <li class="nav-item"><a class="nav-link" href="#">Sign in</a></li>
-                    <!-- <li class="nav-item"><a class="nav-link" href="#">Hi {{ username }}</a></li>
-                    <li class="nav-item" @click="logout"><a class="nav-link" href="#">Log out</a></li> -->
+                    <li class="nav-item" v-if="!checkUser"><router-link style="color: #fff !important;" class="nav-link" to="/login">Sign in</router-link></li>                    
+                    <li class="nav-item" v-if="!checkUser"><router-link style="color: #fff !important;" class="nav-link" to="/register">Sign up</router-link></li>
+                    <li class="nav-item" v-if="checkUser"><button style="color: #fff !important;background:none;border: none;" class="nav-link">Hi {{ username }}</button></li>
+                    <li class="nav-item" @click="logout" v-if="checkUser"><a style="color: #fff !important;" class="nav-link" href="#">Log out</a></li>
                 </ul>
             </div>
         </nav>
@@ -27,19 +28,29 @@
 <script>
 import { mapActions, mapState, mapMutations } from 'vuex';
 export default {
-//   name: 'Navbar',
-//   methods: {
-//       logout(){
-//           localStorage.removeItem('auth');
-//           this.$router.push('/');
-//       }
-//   },
-//   computed: {
-//       ...mapState(['auth']),
-//       username(){
-//           return this.auth.user.first_name;
-//       }
-//   }
+  name: 'Navbar',
+  methods: {
+      ...mapActions(['userLogout']),
+      logout(){
+          this.userLogout();
+      },
+    //   get_user_name(){
+    //       if(this.checkUser){
+    //         return this.auth.user.first_name;
+    //       }
+    //   }
+  },
+  computed: {
+      ...mapState(['auth']),
+      checkUser() {
+          return this.auth != null ? true : false
+      },
+      username() {
+          if(this.checkUser){
+            return this.auth.user.first_name;
+          }
+      }
+  }
 }
 </script>
 

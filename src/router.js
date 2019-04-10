@@ -68,7 +68,7 @@ export default new Router({
       component: RestaurantsView
     },
     {
-      path: '/registration',
+      path: '/register',
       name: 'Registration',
       component: Registration
     },
