@@ -1,7 +1,11 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+import VueNoty from 'vuejs-noty'
+import 'vuejs-noty/dist/vuejs-noty.css'
 Vue.use(Vuex);
+
+Vue.use(VueNoty);
 // let experienceData;
 // axios.get('https://travvapi.herokuapp.com/api/experiences').then(res => {
 //   experienceData = res.data.data
@@ -18,7 +22,8 @@ export default new Vuex.Store({
     success: null,
     user_token: null,
     user_data: null,
-    login_err: null
+    login_err: null,
+    user_registration_errors: null
   },
   mutations: {
     ALL_EXPERIENCE: (state, payload) => {
@@ -48,8 +53,9 @@ export default new Vuex.Store({
     REGISTRATION_SUCCESS: (state) => {
       state.success = true;
     },
-    REGISTRATION_ERROR: (state) => {
+    REGISTRATION_ERROR: (state, payload) => {
       state.success = false;
+      state.user_registration_errors = payload
     },
     LOGIN_SUCCESS: (state) => {
       state.success = true;
@@ -111,8 +117,10 @@ export default new Vuex.Store({
         commit('REGISTRATION_SUCCESS');
         console.log(res.data);
       }).catch(err => {
-        commit('REGISTRATION_ERROR');
-        console.log(err);
+        commit('REGISTRATION_ERROR', err.response.data);
+        // this.$noty.error("Oops, something went wrong!")
+        console.log(err.response.data)
+        // console.log(err);
       });
     },
     userLogin: ({commit}, data) => {

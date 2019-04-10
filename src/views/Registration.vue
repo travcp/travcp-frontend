@@ -4,11 +4,19 @@
         </Navbar>
         <div class="form_section">
             <h1>Registration</h1>
+            {{ user_errors }}
             <form @submit.prevent="formSubmit">
-                <input type="text" :model="first_name" name="first_name" class="form-control form-control-lg"> <br>
-                <input type="text" :model="surname" name="surname" class="form-control form-control-lg"> <br>
-                <input type="text" :model="email" name="email" class="form-control form-control-lg"> <br>
-                <input type="text" :model="password" name="password" class="form-control form-control-lg"> <br>
+                <input v-validate="'required|min:6'" type="text" placeholder="First Name *" v-model="first_name" name="first_name" class="form-control form-control-lg"> <br>
+                <span>{{ errors.first('first_name') }}</span>
+
+                <input type="text" placeholder="Surn Name" v-model="surname" name="surname" class="form-control form-control-lg"> <br>
+                
+                <input v-validate="'required|email'" type="email" placeholder="Email *" v-model="email" name="email" class="form-control form-control-lg"> <br>
+                <span>{{ errors.first('email') }}</span>
+
+                <input v-validate="'required|min:6'"  type="password" placeholder="Password *" v-model="password" name="password" class="form-control form-control-lg"> <br>
+                <span>{{ errors.first('password') }}</span>
+                <br>
                 <button type="submit">Submit</button> <br>
             </form>
         </div>
@@ -17,7 +25,7 @@
 
 <script>
     import Navbar from '@/components/Navbar.vue';
-    import { mapState, mapActions, mapGetters } from 'vuex';
+    import { mapState, mapActions, mapGetters, mapMutations } from 'vuex';
 
     export default {
         name: 'Registration',
@@ -36,12 +44,26 @@
                 let data = {
 
                 };
-                this.userRegistration({
-                    email : this.email,
-                    password: this.password,
-                    first_name: this.first_name,
-                    surname: this.surname
+                this.$validator.validateAll().then(result => {
+                    if (result){
+                        this.userRegistration({
+                            email : this.email,
+                            password: this.password,
+                            first_name: this.first_name,
+                            surname: this.surname
+                        })
+                    }
+                    else{
+
+                    }
                 })
+                
+            }
+        },
+        computed: {
+            ...mapState(['user_registration_errors']),
+            user_errors() {
+                return this.user_registration_errors;
             }
         }
     }
