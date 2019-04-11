@@ -250,7 +250,7 @@
                 value_1_max: 5000,
                 value_2_min: 1,
                 value_2_max: 30,
-                value_1: [0, 100],
+                value_1: [10, 5000],
                 marks1: {
                     '0': {
                         label: '$10',
@@ -273,7 +273,7 @@
                         },
                     },
                 },
-                value_2: [0, 100],
+                value_2: [1, 30],
                 marks2: {
                     '0': {
                         label: '1 day',

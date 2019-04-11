@@ -320,8 +320,13 @@
                     min_price: this.value_1[0],
                     max_price: this.value_1[1]
                 }
-                
-                return this.filterRestaurantSearch(data);
+                let API_BASE = 'https://travvapi.herokuapp.com/api';
+                let url = `${API_BASE}/restaurants?location=${data.search}&min_price=${data.min_price}&max_price=${data.max_price}`;
+                if(data.search == ''){
+                    return this.filterRestaurantSearch();
+                } else {
+                    return this.filterRestaurantSearch(url);
+                }
             }
         },
         created: function () {

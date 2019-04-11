@@ -98,10 +98,10 @@ export default new Vuex.Store({
         commit('RESTAURANTS_BY_ID', response.data);
       });
     },
-    filterRestaurantSearch: ({commit}, data) => {
+    filterRestaurantSearch: ({commit}, data = `${API_BASE}/restaurants`) => {
       // console.log(data);
       // console.log(`https://travvapi.herokuapp.com/api/restaurants?location=${data.search}&min_price=${data.min_price}&max_price=${data.max_price}`)
-      axios.get(`${API_BASE}/restaurants?location=${data.search}&min_price=${data.min_price}&max_price=${data.max_price}`).then(response => {
+      axios.get(data).then(response => {
           // console.log(response.data);
           commit('FILTER_RESTAURANTS', response.data);
       }).catch(({err}) => {
