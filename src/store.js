@@ -49,7 +49,11 @@ export default new Vuex.Store({
       state.isLoading = true;
     },
     FILTER_EXPERIENCE: (state, payload) => {
-      state.experiences = payload;
+      state.experiences = payload.data;
+      state.isLoading = false;
+    },
+    FILTER_EXPERIENCE_LOADING: (state, payload) => {
+      state.isLoading = true;
     },
     GET_USER_DATA: (state, payload) => {
       state.user_registration_details = payload;
@@ -105,18 +109,21 @@ export default new Vuex.Store({
     filterRestaurantSearch: ({commit}, data = `${API_BASE}/restaurants`) => {
       // console.log(data);
       // console.log(`https://travvapi.herokuapp.com/api/restaurants?location=${data.search}&min_price=${data.min_price}&max_price=${data.max_price}`)
+      commit('FILTER_RESTAURANTS_LOADING');
       axios.get(data).then(response => {
           // console.log(response.data);
-          commit('FILTER_RESTAURANTS_LOADING');
+        // setTimeout(() => {
           commit('FILTER_RESTAURANTS', response.data);
+        // }, 5000)
       }).catch(({err}) => {
           // console.log(err);
       });
     },
     filterExperiencesSearch: ({commit}, data = `${API_BASE}/experiences`) => {
+      commit('FILTER_EXPERIENCE_LOADING')
       axios.get(data).then(response => {
           // console.log(response.data);
-          commit('FILTER_RESTAURANTS', response.data);
+          commit('FILTER_EXPERIENCE', response.data);
       }).catch(({err}) => {
           // console.log(err);
       });

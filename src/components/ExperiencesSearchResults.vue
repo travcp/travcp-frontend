@@ -13,7 +13,7 @@
                                     style="margin-left: -39px;margin-right: 13px;" />
                                 Filter
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <div class="dropdown-menu" v-on:click="dntTogle" aria-labelledby="dropdownMenuButton">
                                 <div class="container">
                                         <div class="row">
                                             <div class="col-md-4">
@@ -93,7 +93,7 @@
                                 <button type="submit" class="filter_search_icon">
                                     <!-- <i class="material-icons">add</i> -->
                                     <img v-if="!isLoading" src="../assets/icons8-search.svg" />
-                                    <img v-if="isLoading" src="../assets/loader_rolling.gif" />
+                                    <img v-if="isLoading" style="height: 20px;" src="../assets/loader_rolling.gif" />
 
                                     <!-- <font-awesome-icon icon="user" /> -->
                                 </button>
@@ -109,7 +109,7 @@
                 <div class="col-lg-12">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-4" v-for="experience in allExperiences" :key="experience.id" style="padding-right: 24px; padding-left: 0px;">
+                            <div class="col-md-4 experience" v-for="experience in allExperiences" :key="experience.id" style="padding-right: 24px; padding-left: 0px;">
                                 <router-link :to="'/experiences/'+ experience.id + '/' + experience.city">
                                     <div class="search_items">
                                         <div class="search_items_back_img nagoya"></div>
@@ -123,103 +123,6 @@
                                     </div>
                                 </router-link>
                             </div>
-                            <!-- <div class="col-md-4"
-                                style="padding-right: 24px;padding-left: 24px;border-left-width: 24px;">
-                                <div class="search_items">
-                                    <div class="search_items_back_img niigata2"></div>
-                                    <div class="search_items_item">
-                                        <div class="fetr_places_overlay">
-                                            <p>GUIDED RIDE | MOSCOW</p>
-                                            <h3>Niigata Snow Houses</h3>
-                                            <p><b>5.00 *</b> (224)</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4" style="padding-right: 24px;padding-left: 24px;">
-                                <div class="search_items">
-                                    <div class="search_items_back_img osaka"></div>
-                                    <div class="search_items_item">
-                                        <div class="fetr_places_overlay">
-                                            <p>CONCERT | VEGAS</p>
-                                            <h3>Osaka London</h3>
-                                            <p><b>5.00 *</b> (224)</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4" style="padding-right: 24px; padding-left: 0px;">
-                                <div class="search_items">
-                                    <div class="search_items_back_img nagoya"></div>
-                                    <div class="search_items_item">
-                                        <div class="fetr_places_overlay">
-                                            <p>DAY TRIP TOKYO</p>
-                                            <h3>Nagoya Street</h3>
-                                            <p><b>4.75 *</b> (224)</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4" style="padding-right: 24px;padding-left: 24px;">
-                                <div class="search_items">
-                                    <div class="search_items_back_img niigata2"></div>
-                                    <div class="search_items_item">
-                                        <div class="fetr_places_overlay">
-                                            <p>GUIDED RIDE | MOSCOW</p>
-                                            <h3>Niigata Snow Houses</h3>
-                                            <p><b>5.00 *</b> (224)</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4" style="padding-right: 24px;padding-left: 24px;">
-                                <div class="search_items">
-                                    <div class="search_items_back_img osaka"></div>
-                                    <div class="search_items_item">
-                                        <div class="fetr_places_overlay">
-                                            <p>CONCERT | VEGAS</p>
-                                            <h3>Osaka London</h3>
-                                            <p><b>5.00 *</b> (224)</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4" style="padding-right: 24px; padding-left: 0px;">
-                                <div class="search_items">
-                                    <div class="search_items_back_img nagoya"></div>
-                                    <div class="search_items_item">
-                                        <div class="fetr_places_overlay">
-                                            <p>DAY TRIP TOKYO</p>
-                                            <h3>Nagoya Street</h3>
-                                            <p><b>4.75 *</b> (224)</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4" style="padding-right: 24px;padding-left: 24px;">
-                                <div class="search_items">
-                                    <div class="search_items_back_img niigata2"></div>
-                                    <div class="search_items_item">
-                                        <div class="fetr_places_overlay">
-                                            <p>GUIDED RIDE | MOSCOW</p>
-                                            <h3>Niigata Snow Houses</h3>
-                                            <p><b>5.00 *</b> (224)</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4" style="padding-right: 24px;padding-left: 24px;">
-                                <div class="search_items">
-                                    <div class="search_items_back_img osaka"></div>
-                                    <div class="search_items_item">
-                                        <div class="fetr_places_overlay">
-                                            <p>CONCERT | VEGAS</p>
-                                            <h3>Osaka London</h3>
-                                            <p><b>5.00 *</b> (224)</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -317,11 +220,15 @@
                     max_price: this.value_1[1]
                 }
                 if(data.search == ''){
-                    return this.filterExperiencesSearch(data);
+                    return this.filterExperiencesSearch();
                 } else {
                     return this.filterExperiencesSearch(data);
                 }
                 // return this.filterExperiencesSearch(data);
+            },
+            dntTogle: function(){
+                // preventDefault()
+                return true;
             }
         },
         created: function(){
@@ -331,7 +238,7 @@
 </script>
 
 <style scoped>
-    a{
+    a {
         color: inherit;
     }
     header.main_menu_area{
@@ -381,7 +288,7 @@
     .filter_area {
         background: #000;
         margin-top: 121px;
-        height: 146px;
+        min-height: 146px;
         padding: 36px 0 36px 89px;
         margin-bottom: 57px;
     }
@@ -536,5 +443,24 @@
     button#dropdownMenuButton:focus {
         background: #FFF;
         color: #f81894;
+    }
+    @media only screen and (max-width: 576px) { 
+        .experience {
+            padding-right: 15px !important;
+            padding-left: 15px !important;
+        }
+        .filter_area {
+            padding: 10px 0 36px 1px !important;
+        }
+        .filter_searchbar[data-v-350f5dd6] {
+            height: 60px;
+        }
+        .filter_search_input, 
+        .filter_searchbar>.filter_search_input {
+            width: 55%;
+        }
+        .main_menu_area .navbar .navbar-toggler span {
+            background: #555;
+        }
     }
 </style>

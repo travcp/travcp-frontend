@@ -92,7 +92,8 @@
                                 <img src="../assets/Icons/Calendar.svg" style="margin-top: -8px;margin-left: 31px;" />
                                 <button type="submit" class="filter_search_icon">
                                     <!-- <i class="material-icons">add</i> -->
-                                    <img src="../assets/icons8-search.svg" />
+                                    <img v-if="!isLoading" src="../assets/icons8-search.svg" />
+                                    <img v-if="isLoading" style="height: 20px;" src="../assets/loader_rolling.gif" />
                                     <!-- <font-awesome-icon icon="user" /> -->
                                 </button>
                             </div>
@@ -308,7 +309,11 @@
             Navbar
         },
         computed: {
+            ...mapState(['isLoading']),
             ...mapGetters(['allRestaurants']),
+            // loading: function(){
+            //     // return this.isLoading
+            // }
         },
         methods: {
             // ...mapActions(['getExperiences']),
@@ -454,7 +459,8 @@
         justify-content: center;
         align-items: center;
         border-radius: 8px;
-        text-decoration: none
+        text-decoration: none;
+        outline: none;
     }
 
     .search_items {
@@ -545,5 +551,24 @@
     button#dropdownMenuButton:focus {
         background: #FFF;
         color: #f81894;
+    }
+    @media only screen and (max-width: 576px) { 
+        .experience {
+            padding-right: 15px !important;
+            padding-left: 15px !important;
+        }
+        .filter_area {
+            padding: 10px 0 36px 1px !important;
+        }
+        .filter_searchbar[data-v-350f5dd6] {
+            height: 60px;
+        }
+        .filter_search_input, 
+        .filter_searchbar>.filter_search_input {
+            width: 55%;
+        }
+        .main_menu_area .navbar .navbar-toggler span {
+            background: #555;
+        }
     }
 </style>
