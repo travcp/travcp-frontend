@@ -59,6 +59,12 @@
                                 <h3>Language</h3>
                                 <h5>English</h5>
                             </div>
+                            <div class="col-md-12">
+                                <h3>Book</h3>
+                                <p>Start Date <input id="datepicker" type="date" width="276" /></p>
+                                <button>Book Now</button>
+                            </div>
+
                         </div>
                     </div>
                 </div>

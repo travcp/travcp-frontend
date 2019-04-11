@@ -26,7 +26,8 @@ export default new Vuex.Store({
     login_errors: null,
     user_registration_errors: null,
     isLoading: false,
-    auth: localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')) : null
+    auth: localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')) : null,
+    // user_token: 
   },
   mutations: {
     ALL_EXPERIENCE: (state, payload) => {
@@ -83,6 +84,15 @@ export default new Vuex.Store({
       localStorage.removeItem('auth');
       state.auth = null;
       router.push('/login');
+    },
+    BOOKING_EXPERIENCE: (state, payload) => {
+      state.isLoading = false;
+    },
+    BOOKING_EXPERIENCE_LOADING: (state) => {
+      state.isLoading = true;
+    },
+    BOOKING_EXPERIENCE_FAILURE: (state) => {
+      
     }
   },
   actions: {
@@ -129,6 +139,9 @@ export default new Vuex.Store({
       });
     },
     userRegistration: ({commit}, data) => {
+      // let requestHeaders = {
+      //   Authorization: "Bearer TOKEN"
+      // }
       axios.post(`${API_BASE}/auth/register`, 
       {
         "email" : data.email,
@@ -162,6 +175,24 @@ export default new Vuex.Store({
     },
     userLogout: ({ commit }) => {
       commit('USER_LOGOUT');
+    },
+    bookingExperience: ({ commit, state }, data) => {
+      let requestHeaders = {
+        Authorization: "Bearer " + state.auth.access_token
+      };
+      commit('BOOKING_EXPERIENCE_LOADING')
+      axios.post(`${API_BASE}/bookings/experiences/${date.experience_id}`, {
+        "start_date": data.start_date,
+	      "end_date": data.end_date
+      }).then(res => {
+        commit('BOOKING_EXPERIENCE', res.data)
+        router.push("/");
+
+        // console.log(res.data);
+      }).catch(err => {
+        commit('BOOKING_EXPERIENCE_FAILURE', err.response.data);
+        // console.log(err);
+      })
     }
   },
   getters: {
