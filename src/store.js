@@ -108,8 +108,8 @@ export default new Vuex.Store({
           // console.log(err);
       });
     },
-    filterExperiencesSearch: ({commit}, data) => {
-      axios.get(`${API_BASE}/restaurants?location=${data.search}&min_price=${data.min_price}&max_price=${data.max_price}`).then(response => {
+    filterExperiencesSearch: ({commit}, data = `${API_BASE}/experiences`) => {
+      axios.get(data).then(response => {
           // console.log(response.data);
           commit('FILTER_RESTAURANTS', response.data);
       }).catch(({err}) => {

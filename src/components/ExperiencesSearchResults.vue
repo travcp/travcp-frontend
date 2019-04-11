@@ -313,8 +313,12 @@
                     min_price: this.value_1[0],
                     max_price: this.value_1[1]
                 }
-                
-                return this.filterExperiencesSearch(data);
+                if(data.search == ''){
+                    return this.filterExperiencesSearch(data);
+                } else {
+                    return this.filterExperiencesSearch(data);
+                }
+                // return this.filterExperiencesSearch(data);
             }
         },
         created: function(){
