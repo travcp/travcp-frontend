@@ -92,7 +92,9 @@
                                 <img src="../assets/Icons/Calendar.svg" style="margin-top: -8px;margin-left: 31px;" />
                                 <button type="submit" class="filter_search_icon">
                                     <!-- <i class="material-icons">add</i> -->
-                                    <img src="../assets/icons8-search.svg" />
+                                    <img v-if="!isLoading" src="../assets/icons8-search.svg" />
+                                    <img v-if="isLoading" src="../assets/loader_rolling.gif" />
+
                                     <!-- <font-awesome-icon icon="user" /> -->
                                 </button>
                             </div>
@@ -252,7 +254,7 @@
                 value_2_max: 30,
                 value_1: [10, 5000],
                 marks1: {
-                    '0': {
+                    '10': {
                         label: '$10',
                         style: {
                             width: '8px',
@@ -262,7 +264,7 @@
                             transform: 'translate(-2px, -2px)'
                         },
                     },
-                    '100': {
+                    '5000': {
                         label: '$5000',
                         style: {
                             width: '8px',
@@ -275,7 +277,7 @@
                 },
                 value_2: [1, 30],
                 marks2: {
-                    '0': {
+                    '1': {
                         label: '1 day',
                         style: {
                             width: '8px',
@@ -285,7 +287,7 @@
                             transform: 'translate(-2px, -2px)'
                         },
                     },
-                    '100': {
+                    '30': {
                         label: '30 days',
                         style: {
                             width: '8px',
@@ -302,6 +304,7 @@
             Navbar
         },
         computed: {
+            ...mapState(['isLoading']),
             ...mapGetters(['allExperiences']),
         },
         methods: {

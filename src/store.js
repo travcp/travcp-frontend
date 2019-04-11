@@ -43,7 +43,11 @@ export default new Vuex.Store({
     },
     FILTER_RESTAURANTS: (state, payload) => {
       state.restaurants = payload.data;
-    }, 
+      state.isLoading = false;
+    },
+    FILTER_RESTAURANTS_LOADING: (state) => {
+      state.isLoading = true;
+    },
     FILTER_EXPERIENCE: (state, payload) => {
       state.experiences = payload;
     },
@@ -103,6 +107,7 @@ export default new Vuex.Store({
       // console.log(`https://travvapi.herokuapp.com/api/restaurants?location=${data.search}&min_price=${data.min_price}&max_price=${data.max_price}`)
       axios.get(data).then(response => {
           // console.log(response.data);
+          commit('FILTER_RESTAURANTS_LOADING');
           commit('FILTER_RESTAURANTS', response.data);
       }).catch(({err}) => {
           // console.log(err);
