@@ -2,7 +2,7 @@
     <div class="home">
         <Navbar>
             <div class="searchbar" slot="search">
-                 <span class="searchbar" style="color: #f81894;">
+                <span class="searchbar" style="color: #f81894;">
                     <input class="search_input" type="text" placeholder="Search" />
                     <a href="javascript:void(0)" class="search_icon">
                         <img src="../assets/icons8-search.svg" />
@@ -61,8 +61,24 @@
                             </div>
                             <div class="col-md-12">
                                 <h3>Book</h3>
-                                <p>Start Date <input id="datepicker" type="date" width="276" /></p>
-                                <button>Book Now</button>
+                                <div class="datepicker-trigger">
+                                    <!-- <input type="text" id="datepicker-trigger" placeholder="Select dates"
+                                        :value="formatDates(dateOne, dateTwo)">
+
+                                    <AirbnbStyleDatepicker :trigger-element-id="'datepicker-trigger'" :mode="'range'"
+                                        :fullscreen-mobile="true" :date-one="dateOne" :date-two="dateTwo"
+                                        @date-one-selected="val => { dateOne = val }"
+                                        @date-two-selected="val => { dateTwo = val }" /> -->
+                                </div>
+                                <p v-if="isLoading">isLoading</p>
+                                <p v-else>Not Loading</p>
+                                <form @submit.prevent="bookExperience">
+                                    <p>Start Date <input id="datepicker" v-model="start_date" type="date" width="276" />
+                                    <input type="text" name="datetimes" />
+                                    </p>
+                                    <p>End Date <input id="datepicker2" v-model="end_date" type="date" width="276" /></p>
+                                    <button type="submit">Book Now</button>
+                                </form>
                             </div>
 
                         </div>
@@ -168,20 +184,60 @@
 
 <script>
     import Navbar from '@/components/Navbar.vue';
-    import { mapState, mapActions, mapGetters } from 'vuex';
+    import {
+        mapState,
+        mapActions,
+        mapGetters
+    } from 'vuex';
+    // import Datepicker from 'vuejs-datepicker';
+    // import format from 'date-fns/format'
 
     export default {
         name: 'ExperienceView',
+        data() {
+            return {
+                start_date: '4/12/2019',
+                end_date: '6/12/2019',
+                dateFormat: 'D MMM',
+                dateOne: '',
+                dateTwo: ''
+            }
+        },
         components: {
-            Navbar
+            Navbar,
+            // vuejsDatepicker
         },
         methods: {
             ...mapActions(['getExperienceById']),
+            ...mapActions(['bookingExperience']),
+            bookExperience: function () {
+                let data = {
+                    experience_id: this.$route.params.id,
+                    start_date: this.start_date,
+                    end_date: this.end_date
+                };
+                this.bookingExperience(data);
+                this.$noty.success("Experience is Booked Succesfully")
+            },
+            formatDates(dateOne, dateTwo) {
+                let formattedDates = '';
+                if (dateOne) {
+                    formattedDates = format(dateOne, this.dateFormat)
+                }
+                if (dateTwo) {
+                    formattedDates += ' - ' + format(dateTwo, this.dateFormat)
+                }
+                return formattedDates
+            }
         },
         computed: {
             ...mapState(['experience']),
+            ...mapState(['isLoading']),
+            loading() {
+                // return
+            }
         },
-        created: function(){
+        created: function () {
             this.getExperienceById(this.$route.params['id']);
         }
     }
@@ -191,9 +247,11 @@
     .navbar-brand {
         color: #555 !important;
     }
+
     .main_menu_area .navbar .navbar-nav li a {
         color: #555 !important;
     }
+
     .navbar-brand {
         color: #555 !important;
     }
@@ -212,7 +270,7 @@
     .cover_image {
         width: 100%;
     }
-    
+
     .nagoya {
         background: url('../assets/nagoya.png');
         background-position: center;
@@ -228,7 +286,8 @@
         margin: 0px 88px 42px 88px;
         color: #555 !important;
     }
-    .blog_content h1{
+
+    .blog_content h1 {
         font-family: MuseoSans700 !important;
         font-size: 60px;
         /* font-weight: bold; */
@@ -240,6 +299,7 @@
         margin-top: 5px;
         margin-bottom: 47px;
     }
+
     .blog_content h3 {
         font-family: MuseoSans700 !important;
         font-size: 22px;
@@ -250,6 +310,7 @@
         letter-spacing: normal;
         color: #555555;
     }
+
     .blog_content h5 {
         font-family: MuseoSans500 !important;
         font-size: 25px;
@@ -262,6 +323,7 @@
         color: #555555;
         margin-bottom: 40px;
     }
+
     .blog_content p {
         /* font-family: MuseoSans700 !important; */
         font-size: 20px;
@@ -273,14 +335,17 @@
         color: #555555;
         margin-bottom: 40px;
     }
-    .sidebar{
+
+    .sidebar {
         background: #000;
         widows: 100%;
         width: 100%;
-        height: 475px;
+        /* height: 475px; */
+        height: 490px;
         padding: 61px 0 0 50px;
     }
-    .sidebar_text h3{
+
+    .sidebar_text h3 {
         font-family: MuseoSans500 !important;
         font-size: 20px;
         /* font-weight: bolder; */
@@ -290,6 +355,7 @@
         letter-spacing: normal;
         color: #f81894;
     }
+
     .sidebar_text h5 {
         font-family: MuseoSans500 !important;
         font-size: 20px;
@@ -301,6 +367,7 @@
         color: #ffffff;
         margin-bottom: 24px;
     }
+
     .searchbar {
         height: 100%;
         border-radius: 8px;
@@ -309,7 +376,7 @@
 
     .search_input,
     .searchbar>.search_input {
-        width: 300px;
+        width: 255px;
         height: 100%;
         color: #000;
         padding: 11px 0 11px 29px;
@@ -358,6 +425,7 @@
         border-radius: 8px;
         text-decoration: none
     }
+
     .review_content h4 {
         font-family: MuseoSans500 !important;
         font-size: 45px;
@@ -369,11 +437,13 @@
         color: #555555;
         margin-bottom: 49px;
     }
-    .guest_review{
+
+    .guest_review {
         border-top: 2px solid #eee;
         height: 150px;
         padding-top: 20px;
     }
+
     .guest_review_cont h4 {
         font-family: MuseoSans500 !important;
         font-size: 18px;
@@ -385,6 +455,7 @@
         color: #555555;
         margin-bottom: 30px;
     }
+
     .guest_review_cont p {
         font-family: MuseoSans !important;
         font-size: 13px;
@@ -395,7 +466,8 @@
         letter-spacing: normal;
         color: #555555;
     }
-    .review_name{
+
+    .review_name {
         font-family: MuseoSans900 !important;
         font-size: 12px;
         font-weight: bolder;
@@ -405,7 +477,8 @@
         letter-spacing: normal;
         margin-bottom: 15px;
     }
-    .review_date{
+
+    .review_date {
         font-family: MuseoSans500 !important;
         font-size: 12px;
         /* font-weight: bolder; */
@@ -416,7 +489,8 @@
         color: #555;
         margin-bottom: 15px;
     }
-    .review_rev{
+
+    .review_rev {
         font-family: MuseoSans500 !important;
         font-size: 12px;
         /* font-weight: bolder; */

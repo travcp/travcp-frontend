@@ -10,7 +10,7 @@
           <h2 class="text-lg">Get Prepare for your trip/experience</h2>
           <div class="container">
             <div class="row">
-              <div class="col-lg-4 no-pad-l" style="padding-left: 180px">
+              <div class="col-lg-4 no-pad-l" style="/* padding-left: 180px */">
                 <div class="c_box_item">
                   <img src="../assets/Icons/add-listing.svg" />
                 </div>
@@ -28,7 +28,7 @@
                   <p class="title">Explore Places</p>
                 </div>
               </div>
-              <div class="col-lg-4 no-pad-r" style="padding-right: 180px">
+              <div class="col-lg-4 no-pad-r" style="/* padding-right: 180px */">
                 <div class="c_box_item">
                   <img src="../assets/Icons/security.svg" />
                   <!-- <p class="title">Get Security Updates</p> -->
@@ -210,7 +210,7 @@
     border-radius: 4px;
     box-shadow: 0 2px 4px 0 rgba(190, 190, 190, 0.5);
     background-color: #FFF;
-    padding: 30px 41.8px 19px 29px;
+    padding: 30px 29px 19px 29px;
   }
 
   .secondNav-img {
@@ -226,8 +226,8 @@
   }
 
   .tab {
-    padding-left: 25px;
-    padding-right: 25px;
+    padding-left: 18px;
+    padding-right: 18px;
     text-align: center;
   }
   .secondNavTitle{

@@ -13,7 +13,7 @@
                                     style="margin-left: -39px;margin-right: 13px;" />
                                 Filter
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <div class="dropdown-menu" @click="stopProp" aria-labelledby="dropdownMenuButton">
                                 <div class="container">
                                         <div class="row">
                                             <div class="col-md-4">
@@ -332,6 +332,9 @@
                 } else {
                     return this.filterRestaurantSearch(url);
                 }
+            },
+            stopProp() {
+                e.stopPropagation()
             }
         },
         created: function () {

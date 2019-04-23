@@ -303,13 +303,13 @@
 
     .search_input,
     .searchbar>.search_input {
-        width: 300px;
+        width: 170px;
         height: 100%;
         color: #000;
         padding: 11px 0 11px 29px;
         transition: width .4s linear;
         font-size: 20px;
-        margin-left: 25px;
+        margin-left: 5px;
         border-radius: 8px;
         border: solid 1px #979797;
         border-radius: 8px 0 0 8px;

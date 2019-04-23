@@ -7,7 +7,14 @@ import 'vue-slider-component/theme/default.css';
 import VeeValidate from 'vee-validate';
 import VueNoty from 'vuejs-noty'
 import 'vuejs-noty/dist/vuejs-noty.css'
+// import AirbnbStyleDatepicker from 'vue-airbnb-style-datepicker'
+// import 'vue-airbnb-style-datepicker/dist/vue-airbnb-style-datepicker.min.css'
 
+// see docs for available options
+const datepickerOptions = {}
+
+// make sure we can use it in our components
+// Vue.use(AirbnbStyleDatepicker, datepickerOptions)
 Vue.use(VueNoty);
 Vue.use(VeeValidate);
 // import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'

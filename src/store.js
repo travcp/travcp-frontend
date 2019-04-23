@@ -27,6 +27,7 @@ export default new Vuex.Store({
     user_registration_errors: null,
     isLoading: false,
     auth: localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')) : null,
+    booking_data: null
     // user_token: 
   },
   mutations: {
@@ -86,12 +87,13 @@ export default new Vuex.Store({
       router.push('/login');
     },
     BOOKING_EXPERIENCE: (state, payload) => {
+      state.booking_data = payload;
       state.isLoading = false;
     },
     BOOKING_EXPERIENCE_LOADING: (state) => {
       state.isLoading = true;
     },
-    BOOKING_EXPERIENCE_FAILURE: (state) => {
+    BOOKING_EXPERIENCE_FAILURE: (state, payload) => {
       
     }
   },
@@ -178,16 +180,20 @@ export default new Vuex.Store({
     },
     bookingExperience: ({ commit, state }, data) => {
       let requestHeaders = {
-        Authorization: "Bearer " + state.auth.access_token
+        headers: {'Authorization': "bearer " + state.auth.access_token}
       };
+      // var config = {
+      //     headers: {'Authorization': "bearer " + token}
+      // };
       commit('BOOKING_EXPERIENCE_LOADING')
-      axios.post(`${API_BASE}/bookings/experiences/${date.experience_id}`, {
+      axios.post(`${API_BASE}/bookings/experiences/${data.experience_id}`, 
+      {
         "start_date": data.start_date,
 	      "end_date": data.end_date
-      }).then(res => {
+      }, requestHeaders).then(res => {
         commit('BOOKING_EXPERIENCE', res.data)
         router.push("/");
-
+        console.log(res.data)
         // console.log(res.data);
       }).catch(err => {
         commit('BOOKING_EXPERIENCE_FAILURE', err.response.data);

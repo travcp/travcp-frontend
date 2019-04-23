@@ -13,7 +13,7 @@
                                     style="margin-left: -39px;margin-right: 13px;" />
                                 Filter
                             </button>
-                            <div class="dropdown-menu" v-on:click="dntTogle" aria-labelledby="dropdownMenuButton">
+                            <div class="dropdown-menu" @click="stopProp" aria-labelledby="dropdownMenuButton">
                                 <div class="container">
                                         <div class="row">
                                             <div class="col-md-4">
@@ -229,6 +229,9 @@
             dntTogle: function(){
                 // preventDefault()
                 return true;
+            },
+            stopProp: function(e){
+                e.stopPropagation()
             }
         },
         created: function(){

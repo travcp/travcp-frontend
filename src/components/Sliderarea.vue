@@ -3,7 +3,7 @@
         <div id="main_slider" class="rev_slider">
             <div class="main_slider_container">
                 <div>
-                    <div class="row">
+                    <div class="row" style="margin-right: 0px;">
                         <div class="col-md-12">
                             <h1 class="main_slider_text_bg">Discover Places and <br> Experience the Culture</h1> <br>
                             <button type="button" class="btn btn-travv toggle-display-sm">
@@ -80,7 +80,7 @@
         line-height: normal;
         letter-spacing: normal;
         color: #ffffff;
-        margin-bottom: 27px;
+        margin-bottom: 5px;
     }
 
     .active {
