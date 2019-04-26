@@ -8155,6 +8155,13 @@ uuid@^3.0.1, uuid@^3.3.2:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
   integrity sha512-yXJmeNaw3DnnKAOKJE51sL/ZaYfWJRl1pK9dr19YFCu0ObS231AB1/LbqTKRAQ5kw8A90rA6fr4riOUpTZvQZA==
 
+v-calendar@^0.9.7:
+  version "0.9.7"
+  resolved "https://registry.yarnpkg.com/v-calendar/-/v-calendar-0.9.7.tgz#a0c770d9132ada9dea1684f18f7a35c0da7f9838"
+  integrity sha512-xwSS7i81WGKkQfbNQ0SFdjPBKuXVK4F4y2rT1SGI8oiQbYyoI0PgT1NT0RZ+8FaFeEog6pms6ZMUAswrUe8QHg==
+  dependencies:
+    vue "^2.5.0"
+
 v-click-outside@^2.0.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/v-click-outside/-/v-click-outside-2.1.1.tgz#5af80b68a1c82eac89c597890434fa3994b42ed1"
@@ -8297,6 +8304,11 @@ vue2-datepicker@^2.11.0:
   integrity sha512-EW8M4PPDJG2c2cZXZCYLVregx4dhlJ+GC7rDGuGex0MlnhM8SHegL+/xFxrnUBD9NLvwrgWEEub5i7Ic/EG/+w==
   dependencies:
     fecha "^2.3.3"
+
+vue@^2.5.0:
+  version "2.6.10"
+  resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
+  integrity sha512-ImThpeNU9HbdZL3utgMCq0oiMzAkt1mcgy3/E6zWC/G6AaQoeuFdsl9nDhTDU3X1R6FK7nsIUuRACVcjI+A2GQ==
 
 vue@^2.6.6:
   version "2.6.9"

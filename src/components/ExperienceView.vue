@@ -74,10 +74,10 @@
                                 <p v-else>Not Loading</p>
                                 <form @submit.prevent="bookExperience">
                                     <p>Start Date <input id="datepicker" v-model="start_date" type="date" width="276" />
-                                    <input type="text" name="datetimes" />
-                                    </p>
+                                    <date-picker v-model="time3" range :shortcuts="shortcuts" :lang="lang"></date-picker>
                                     <p>End Date <input id="datepicker2" v-model="end_date" type="date" width="276" /></p>
                                     <button type="submit">Book Now</button>
+                                    <!-- <date-picker v-model="time1" :first-day-of-week="1"></date-picker> -->
                                 </form>
                             </div>
 
@@ -184,6 +184,8 @@
 
 <script>
     import Navbar from '@/components/Navbar.vue';
+    import DatePicker from 'vue2-datepicker';
+
     import {
         mapState,
         mapActions,
@@ -200,11 +202,37 @@
                 end_date: '6/12/2019',
                 dateFormat: 'D MMM',
                 dateOne: '',
-                dateTwo: ''
+                dateTwo: '',
+                time3: '',
+                // custom lang
+                lang: {
+                    days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                    months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    pickers: ['next 7 days', 'next 30 days', 'previous 7 days', 'previous 30 days'],
+                    placeholder: {
+                    date: 'Select Date',
+                    dateRange: 'Select Date Range'
+                    }
+                },
+                // custom range shortcuts
+                shortcuts: [
+                    {
+                        text: 'Today',
+                        onClick: () => {
+                            this.time3 = [ new Date(), new Date() ]
+                        }
+                    }
+                ],
+                timePickerOptions:{
+                    start: '00:00',
+                    step: '00:30',
+                    end: '23:30'
+                }
             }
         },
         components: {
             Navbar,
+            DatePicker
             // vuejsDatepicker
         },
         methods: {
@@ -340,8 +368,7 @@
         background: #000;
         widows: 100%;
         width: 100%;
-        /* height: 475px; */
-        height: 490px;
+        height: 675px;
         padding: 61px 0 0 50px;
     }
 
