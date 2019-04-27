@@ -70,12 +70,12 @@
                                         @date-one-selected="val => { dateOne = val }"
                                         @date-two-selected="val => { dateTwo = val }" /> -->
                                 </div>
-                                <p v-if="isLoading">isLoading</p>
-                                <p v-else>Not Loading</p>
+                                <!-- <p v-if="isLoading">isLoading</p> -->
+                                <!-- <p v-else>Not Loading</p> -->
                                 <form @submit.prevent="bookExperience">
-                                    <p>Start Date <input id="datepicker" v-model="start_date" type="date" width="276" />
-                                    <date-picker v-model="time3" range :shortcuts="shortcuts" :lang="lang"></date-picker>
-                                    <p>End Date <input id="datepicker2" v-model="end_date" type="date" width="276" /></p>
+                                    <!-- <p>Start Date <input id="datepicker" v-model="start_date" type="date" width="276" /> -->
+                                    <date-picker v-model="time" range :shortcuts="shortcuts" :lang="lang"></date-picker>
+                                    <!-- <p>End Date <input id="datepicker2" v-model="end_date" type="date" width="276" /></p> -->
                                     <button type="submit">Book Now</button>
                                     <!-- <date-picker v-model="time1" :first-day-of-week="1"></date-picker> -->
                                 </form>
@@ -203,7 +203,7 @@
                 dateFormat: 'D MMM',
                 dateOne: '',
                 dateTwo: '',
-                time3: '',
+                time: '',
                 // custom lang
                 lang: {
                     days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
@@ -241,21 +241,23 @@
             bookExperience: function () {
                 let data = {
                     experience_id: this.$route.params.id,
-                    start_date: this.start_date,
-                    end_date: this.end_date
+                    start_date: this.formatDate(this.time[0]),
+                    end_date: this.formatDate(this.time[1])
                 };
+                // console.log(this.formatDate(this.time[0]));
                 this.bookingExperience(data);
                 this.$noty.success("Experience is Booked Succesfully")
             },
-            formatDates(dateOne, dateTwo) {
-                let formattedDates = '';
-                if (dateOne) {
-                    formattedDates = format(dateOne, this.dateFormat)
-                }
-                if (dateTwo) {
-                    formattedDates += ' - ' + format(dateTwo, this.dateFormat)
-                }
-                return formattedDates
+            formatDate (date) {
+                var d = new Date(date),
+                    month = '' + (d.getMonth() + 1),
+                    day = '' + d.getDate(),
+                    year = d.getFullYear();
+
+                if (month.length < 2) month = '0' + month;
+                if (day.length < 2) day = '0' + day;
+
+                return [year, month, day].join('-');
             }
         },
         computed: {
@@ -368,7 +370,7 @@
         background: #000;
         widows: 100%;
         width: 100%;
-        height: 675px;
+        height: 675px !important;
         padding: 61px 0 0 50px;
     }
 
