@@ -16,7 +16,13 @@ const datepickerOptions = {}
 // make sure we can use it in our components
 // Vue.use(AirbnbStyleDatepicker, datepickerOptions)
 Vue.use(VueNoty);
-Vue.use(VeeValidate);
+Vue.use(VeeValidate, {
+  classes: true,
+  classNames: {
+    valid: 'is-valid',
+    invalid: 'is-invalid'
+  }
+});
 // import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 Vue.component('VueSlider', VueSlider);

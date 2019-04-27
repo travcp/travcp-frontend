@@ -27,7 +27,8 @@ export default new Vuex.Store({
     user_registration_errors: null,
     isLoading: false,
     auth: localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')) : null,
-    booking_data: null
+    booking_data: null,
+    events: []
     // user_token: 
   },
   mutations: {
@@ -95,7 +96,11 @@ export default new Vuex.Store({
     },
     BOOKING_EXPERIENCE_FAILURE: (state, payload) => {
       
-    }
+    },
+    GET_EVENTS: (state, payload) => {
+      state.events = payload;
+      state.isLoading = false;
+    },
   },
   actions: {
     getExperiences: ({ commit }) => {
@@ -140,11 +145,11 @@ export default new Vuex.Store({
           // console.log(err);
       });
     },
-    userRegistration: ({commit}, data) => {
+    async userRegistration ({commit}, data) {
       // let requestHeaders = {
       //   Authorization: "Bearer TOKEN"
       // }
-      axios.post(`${API_BASE}/auth/register`, 
+      await axios.post(`${API_BASE}/auth/register`, 
       {
         "email" : data.email,
         "password" : data.password,
@@ -198,6 +203,15 @@ export default new Vuex.Store({
       }).catch(err => {
         commit('BOOKING_EXPERIENCE_FAILURE', err.response.data);
         // console.log(err);
+      })
+    },
+    getEvents: ({commit}, data) => {
+      axios.get(`/events`)
+      .then(res => {
+        commit('GET_EVENTS', res.data)
+      })
+      .catch(err => {
+        console.log(err);
       })
     }
   },

@@ -1,0 +1,165 @@
+<template>
+	
+		<div class="wrapper">
+			<div class="image-holder">
+				<img src="../assets/shibuya.png" alt="Sign up image">
+				<div class="image-holder-inner-text">
+					<h2>Find a Unique Spot</h2> <br>
+					<p>With TravvApp, you get to book unique <br> spots, Experineces and also order <br> Souvernirs straight from your home.</p>	
+				</div>
+			</div>
+			<div class="form-inner login-form-inner login-form">
+					<div class="col-md-12 signin-form">
+						<div class="row">
+							<div class="col-md-12" style="text-align: right;">
+								<div class="btn-group toggle-user btn-group-toggle" data-toggle="buttons">
+								  <label class="btn" style="background: grey;color: #FFF;">
+								    <input type="radio" name="options" id="option1" autocomplete="off" checked> Merchant
+								  </label>
+								  <label class="btn active" style="background: #F81894;color: #FFF;">
+								    <input type="radio" name="options" id="option2" autocomplete="off"> User
+								  </label>
+								</div>
+							</div>
+										<br>
+							<div class="col-md-12">
+								<form  @submit.prevent="formSubmit">
+									<div class="form-header">
+										<h3>Sign in</h3>
+										<p style="color: red" v-if="loginerrors">{{ loginerrors }}</p>
+									</div>
+									
+									<div class="row">
+										<div class="col-md-2"></div>
+										<div class="form-group col-md-8" style="text-align: center;">
+											<input type="email" v-validate="'required|email'" v-model="email" class="form-control login-form-control" name="email" placeholder="Email">
+										</div>
+										<div class="col-md-2"></div>
+									</div>
+									
+									<div class="row">
+										<div class="col-md-2"></div>
+										<div class="form-group col-md-8">
+											<input type="password" class="form-control login-form-control" placeholder="Password" v-model="password" name="password">
+										</div>
+										<div class="col-md-2"></div>
+									</div>
+									
+									<div class="row">
+										<div class="col-md-3"></div>
+										<div class="col-md-6" style="text-align: center;">
+											<button type="submit" class="btn btn-lg login-btn">Sign in</button>
+										</div>
+									</div>
+								</form>
+								<div class="row">
+									<div class="col-md-12">
+										<p class="not-a-mem">
+											Not a Member yet? <a href="#">Sign up</a>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+			</div>
+			
+		</div>
+
+</template>
+
+<script>
+    import {
+        mapState,
+        mapActions,
+        mapGetters
+    } from 'vuex';
+
+    export default {
+        name: 'Signin',
+        beforeRouteEnter(to, from, next){
+            if(localStorage.getItem('auth')) {
+                return next({ path: '/' })
+            }
+            next();
+        },
+        data: function () {
+            return {
+                email: null,
+                password: null
+            }
+        },
+        methods: {
+            ...mapActions(['userLogin']),
+            formSubmit: function () {
+                let data = {
+                    email: this.email,
+                    password: this.password
+                }
+                this.$validator.validateAll().then(result => {
+                    if (result) {
+                        this.userLogin({
+                            email: this.email,
+                            password: this.password
+                        });
+                        // this.$noty.success("Login sucessfull")
+                    } 
+                    if (this.login_errors === null) {
+                    	this.$noty.success("Login sucessfull")
+                    } else {
+                    	this.$noty.error("Oops, something went wrong!")
+                    }
+                });
+            }
+        },
+        computed: {
+            ...mapState(['login_errors']),
+            loginerrors(){
+                // return Object.keys(this.login_errors).length >= 2;
+                return this.login_errors;
+            },
+            errormessage(){
+                if(this.loginerrors) {
+                    return this.loginerrors.error.message
+                }
+            }
+        }
+    }
+</script>
+<style>
+	.login-form-inner {
+		background: #C0C2C4;
+	}
+	.signin-form {
+		background: #FFF;
+		border-radius: 15px;
+		height: auto;
+		width: 750px;
+		padding: 10px 10px 10px 10px;
+	}
+	.login-btn{
+	    background: #F81894;
+	    border: none;
+	    /* padding: 44px 29px 39px 25px; */
+	    font-family: MuseoSans700;
+	    font-size: 16px;
+	    width: 120px;
+	    height: 50px;
+	    border-radius: 8px;
+	    background-color: #f81894;
+	    color: #FFF;
+	    margin-top: -10px;
+	}
+	.login-form-control{
+		/*width: 200px;*/
+		background: #D8D8D8;
+		color: #000;
+		border-bottom: none;
+		border-radius: 20px;
+	}
+	.not-a-mem {
+		text-align: right;
+		color: #D8D8D8;
+		font-weight: bold;
+	}
+</style>

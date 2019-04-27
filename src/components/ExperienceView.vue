@@ -370,7 +370,7 @@
         background: #000;
         widows: 100%;
         width: 100%;
-        height: 675px !important;
+        height: 475px;
         padding: 61px 0 0 50px;
     }
 

@@ -9,7 +9,10 @@ import ExperiencesSearchResults from '@/components/ExperiencesSearchResults';
 import RestaurantsSearchResults from '@/components/RestaurantsSearchResults';
 import Registration from '@/views/Registration.vue';
 import Login from '@/views/Login.vue';
-// 09082984610
+import Signup from '@/views/Signup.vue';
+import NotFound from '@/views/NotFound.vue';
+import Signin from '@/views/Signin.vue';
+
 Vue.use(Router)
 
 export default new Router({
@@ -22,6 +25,11 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '*',
+      name: 'NotFound',
+      component: NotFound
     },
     {
       path: '/search-results',
@@ -82,12 +90,14 @@ export default new Router({
     //   name: 'ResultDetails'
     // },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      path: '/signup',
+      name: 'Signup',
+      component: Signup
+    },
+    {
+      path: '/signin',
+      name: 'Signin',
+      component: Signin
     }
   ]
 });

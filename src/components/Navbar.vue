@@ -15,8 +15,8 @@
                     <li class="nav-item"><a  href="static.html">Videos</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Bookings</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Help</a></li>                    
-                    <li class="nav-item" v-if="!checkUser"><router-link style="color: #000 !important;" class="nav-link" to="/login">Sign in</router-link></li>                    
-                    <li class="nav-item" v-if="!checkUser"><router-link style="color: #000 !important;" class="nav-link" to="/register">Sign up</router-link></li>
+                    <li class="nav-item" v-if="!checkUser"><router-link style="color: #000 !important;" class="nav-link" to="/signin">Sign in</router-link></li>                    
+                    <li class="nav-item" v-if="!checkUser"><router-link style="color: #000 !important;" class="nav-link" to="/signup">Sign up</router-link></li>
                     <li class="nav-item" v-if="checkUser"><button style="color: #000 !important;background:none;border: none;" class="nav-link">Hi {{ username }}</button></li>
                     <li class="nav-item" @click="logout" v-if="checkUser"><a style="color: #000 !important;" class="nav-link" href="#">Log out</a></li>
                 </ul>
