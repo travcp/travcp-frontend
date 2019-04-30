@@ -4,8 +4,49 @@
 			<div class="image-holder">
 				<img src="../assets/shibuya.png" alt="Sign up image">
 				<div class="image-holder-inner-text">
-					<h2>Find a Unique Spot</h2> <br>
-					<p>With TravvApp, you get to book unique <br> spots, Experineces and also order <br> Souvernirs straight from your home.</p>	
+					<!-- <h2>Find a Unique Spot</h2> <br>
+					<p>With TravvApp, you get to book unique <br> spots, Experineces and also order <br> Souvernirs straight from your home.</p> -->
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="display: block">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+      <!-- Slide One - Set the background image for this slide in the line below -->
+      <div class="carousel-item active">
+      	<h2>Find a Unique Spot</h2> <br>
+      	<p>With TravvApp, you get to book unique <br> spots, Experineces and also order <br> Souvernirs straight from your home.</p>
+        <div class="carousel-caption d-none d-md-block">
+          <!-- <h2 class="display-4">First Slide</h2> -->
+        </div>
+      </div>
+      <!-- Slide Two - Set the background image for this slide in the line below -->
+      <div class="carousel-item">
+      	<h2>Find a Unique Spot</h2> <br>
+      	<p>With TravvApp, you get to book unique <br> spots, Experineces and also order <br> Souvernirs straight from your home.</p>
+        <div class="carousel-caption d-none d-md-block">
+          <!-- <h2 class="display-4">Second Slide</h2> -->
+        </div>
+      </div>
+      <!-- Slide Three - Set the background image for this slide in the line below -->
+      <div class="carousel-item">
+      	<h2>Find a Unique Spot</h2> <br>
+      	<p>With TravvApp, you get to book unique <br> spots, Experineces and also order <br> Souvernirs straight from your home.</p>
+        <div class="carousel-caption d-none d-md-block">
+          <!-- <h2 class="display-4">Third Slide</h2> -->
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span> -->
+			<button class="btn btn-primary" style="background-color: grey;border-color: grey;border-radius: 100px;">
+				-->
+			</button>
+          <span class="sr-only">
+          </span>
+        </a>
+</div>
 				</div>
 			</div>
 			<div class="form-inner">
@@ -24,6 +65,8 @@
 						<form @submit.prevent="formSubmit">
 							<div class="form-header">
 								<h3>Sign up</h3>
+
+
 								<div class="alert alert-danger" role="alert" v-if="user_errors">
 								  {{ user_errors.errors.email[0] }}
 								</div>
@@ -31,32 +74,32 @@
 							<div class="row">
 								<div class="form-group col-md-5">
 									<label for="">First Name</label>
-									<input  v-validate="'required'" v-model="first_name" type="text" name="first_name" class="form-control" placeholder="Micheal">
+									<input  v-validate="'required'" v-model="first_name" type="text" name="first_name" class="form-control signin-input" placeholder="Micheal">
 								</div>
 								<div class="form-group col-md-5">
 									<label for="">Last Name</label>
-									<input v-model="surname" type="text" class="form-control" placeholder="Jackson">
+									<input v-model="surname" type="text" class="form-control signin-input" placeholder="Jackson">
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="form-group col-md-9">
 									<label for="">Choose your Username</label>
-									<input type="text" class="form-control" placeholder="JohnXYZ.">
+									<input type="text" class="form-control signin-input" placeholder="JohnXYZ.">
 								</div>
 							</div>
 							
 							<div class="row">
 								<div class="form-group col-md-9">
 									<label for="">Email</label>
-									<input v-validate="'required|email'" v-model="email" type="email" name="email" class="form-control" placeholder="Enter a valid email address">
+									<input v-validate="'required|email'" v-model="email" type="email" name="email" class="form-control signin-input" placeholder="Enter a valid email address">
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="form-group col-md-9">
 									<label for="">Password</label>
-									<input v-validate="'required|min:6'" type="password" v-model="password" name="password"  class="form-control" placeholder="********">
+									<input v-validate="'required|min:6'" type="password" v-model="password" name="password"  class="form-control signin-input" placeholder="********">
 								</div>
 							</div>
 							
@@ -169,11 +212,6 @@
 }
 .form-header h3 {
 	text-transform: capitalize;
-	text-shadow:
-    -2px -2px white,
-    -2px 2px white,
-    2px -2px white,
-    2px 2px white;
     background-size: 1px 1em;
   	box-shadow:
     inset 0 -0.175em white,
@@ -184,9 +222,10 @@
 	height: 35px !important;
 }
 .image-holder-inner-text{
-	padding: 180px 0 0 80px;
+	padding: 180px 30px 0 80px;
 }
 .image-holder-inner-text h2{
+	color: #FFF;
 	font-size: 42px;
 	font-weight: bolder;
 }
@@ -198,4 +237,38 @@
 label {
 	margin-bottom: 0;
 }
+.signin-input {
+	border-top: none;
+	border-right: none;
+	border-left: none;
+}
+.carousel-item {
+  height: 100%;
+  min-height: 350px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.carousel-indicators li {
+    position: relative;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    width: 12px;
+    height: 12px;
+    margin-right: 3px;
+    margin-left: 3px;
+    text-indent: -999px;
+    background-color: rgba(255,255,255,.5);
+    border-radius: 100px;
+}
+.carousel-control-next, .carousel-control-prev {
+     top: 380px; 
+ }
+ .carousel-item {
+    height: 100%;
+    min-height: 450px;
+ }
 </style>

@@ -10,31 +10,31 @@
           <h2 class="text-lg">Get Prepare for your trip/experience</h2>
           <div class="container">
             <div class="row">
-              <div class="col-lg-4 no-pad-l" style="/* padding-left: 180px */">
-                <div class="c_box_item">
-                  <img src="../assets/Icons/add-listing.svg" />
-                </div>
+              <div class="col-lg-4" style="text-align: center;">
+                <img src="../assets/Icons/add-listing.svg" />
+                <p class="title">Add Listing</p>  
+                <!-- <div class="c_box_item">
+                </div> -->
                 <div>
-                  <p class="title">Add Listing</p>
                 </div>
               </div>
-              <div class="col-lg-4">
-                <div class="c_box_item">
-                  <img src="../assets/Icons/compass.svg" />
-                  <!-- <p class="title">Explore Places</p> -->
-                </div>
+              <div class="col-lg-4" style="text-align: center;">
+                  <img src="../assets/Icons/compass.svg" style="height: 131px;" />
+                  <p class="title">Explore Places</p>
+                <!-- <div class="c_box_item">
+                  <p class="title">Explore Places</p>
+                </div> -->
 
                 <div>
-                  <p class="title">Explore Places</p>
                 </div>
               </div>
-              <div class="col-lg-4 no-pad-r" style="/* padding-right: 180px */">
-                <div class="c_box_item">
+              <div class="col-lg-4 no-pad-r" style="text-align: center;">
                   <img src="../assets/Icons/security.svg" />
-                  <!-- <p class="title">Get Security Updates</p> -->
-                </div>
-                <div>
                   <p class="title">Get Security Updates</p>
+                <!-- <div class="c_box_item">
+                  <p class="title">Get Security Updates</p>
+                </div> -->
+                <div>
                 </div>
               </div>
             </div>
@@ -264,14 +264,15 @@
     text-align: center;
     color: #000000;
     margin-top: 38px;
-    margin-right: -35px;
+    /*margin-right: -35px;*/
   }
 
   .c_feature_box {
     margin-top: -70px;
-    padding-top: 93px;
-    padding-bottom: 142px;
-    padding-right: 0px;
+    padding-top: 63px;
+    padding-bottom: 82px;
+    padding-right: 15px;
+    padding-left: 15px;
   }
 
   .toggle-display-sm {

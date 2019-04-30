@@ -134,6 +134,7 @@
 <script>
     import Navbar from '@/components/Navbar.vue';
     import { mapState, mapGetters, mapActions } from 'vuex';
+    import DatePicker from 'vue2-datepicker'
     export default {
         name: 'SearchResults',
         data: function () {

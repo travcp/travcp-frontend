@@ -4,8 +4,47 @@
 			<div class="image-holder">
 				<img src="../assets/shibuya.png" alt="Sign up image">
 				<div class="image-holder-inner-text">
-					<h2>Find a Unique Spot</h2> <br>
-					<p>With TravvApp, you get to book unique <br> spots, Experineces and also order <br> Souvernirs straight from your home.</p>	
+					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="display: block">
+					    <ol class="carousel-indicators">
+					      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+					      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+					      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+					    </ol>
+					    <div class="carousel-inner" role="listbox">
+					      <!-- Slide One - Set the background image for this slide in the line below -->
+					      <div class="carousel-item active">
+					      	<h2>Find a Unique Spot</h2> <br>
+					      	<p>With TravvApp, you get to book unique <br> spots, Experineces and also order <br> Souvernirs straight from your home.</p>
+					        <div class="carousel-caption d-none d-md-block">
+					          <!-- <h2 class="display-4">First Slide</h2> -->
+					        </div>
+					      </div>
+					      <!-- Slide Two - Set the background image for this slide in the line below -->
+					      <div class="carousel-item">
+					      	<h2>Find a Unique Spot</h2> <br>
+					      	<p>With TravvApp, you get to book unique <br> spots, Experineces and also order <br> Souvernirs straight from your home.</p>
+					        <div class="carousel-caption d-none d-md-block">
+					          <!-- <h2 class="display-4">Second Slide</h2> -->
+					        </div>
+					      </div>
+					      <!-- Slide Three - Set the background image for this slide in the line below -->
+					      <div class="carousel-item">
+					      	<h2>Find a Unique Spot</h2> <br>
+					      	<p>With TravvApp, you get to book unique <br> spots, Experineces and also order <br> Souvernirs straight from your home.</p>
+					        <div class="carousel-caption d-none d-md-block">
+					          <!-- <h2 class="display-4">Third Slide</h2> -->
+					        </div>
+					      </div>
+					    </div>
+					    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+					          <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span> -->
+								<button class="btn btn-primary" style="background-color: grey;border-color: grey;border-radius: 100px;">
+									-->
+								</button>
+					          <span class="sr-only">
+					          </span>
+					        </a>
+					</div>	
 				</div>
 			</div>
 			<div class="form-inner login-form-inner login-form">
