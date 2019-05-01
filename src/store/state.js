@@ -12,6 +12,8 @@ export default {
     isLoading: false,
     auth: localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')) : null,
     booking_data: null,
-    events: []
+    events: [],
+    check_in: null,
+    check_out: null
     // user_token: 
 }

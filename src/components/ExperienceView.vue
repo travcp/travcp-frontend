@@ -37,7 +37,7 @@
                     </p>
                 </div>
                 <div class="col-lg-5" style="padding-left: 80px;">
-                    <div class="sidebar">
+                    <div class="sidebar" style="height: 575px;">
                         <div class="row sidebar_text">
                             <div class="col-md-12">
                                 <h3>Location</h3>
@@ -76,6 +76,7 @@
                                     <!-- <p>Start Date <input id="datepicker" v-model="start_date" type="date" width="276" /> -->
                                     <date-picker v-model="time" range :shortcuts="shortcuts" :lang="lang"></date-picker>
                                     <!-- <p>End Date <input id="datepicker2" v-model="end_date" type="date" width="276" /></p> -->
+                                    <br>
                                     <button type="submit">Book Now</button>
                                     <!-- <date-picker v-model="time1" :first-day-of-week="1"></date-picker> -->
                                 </form>
@@ -191,6 +192,7 @@
         mapActions,
         mapGetters
     } from 'vuex';
+
     // import Datepicker from 'vuejs-datepicker';
     // import format from 'date-fns/format'
 
@@ -239,14 +241,18 @@
             ...mapActions(['getExperienceById']),
             ...mapActions(['bookingExperience']),
             bookExperience: function () {
-                let data = {
-                    experience_id: this.$route.params.id,
-                    start_date: this.formatDate(this.time[0]),
-                    end_date: this.formatDate(this.time[1])
-                };
-                // console.log(this.formatDate(this.time[0]));
-                this.bookingExperience(data);
-                this.$noty.success("Experience is Booked Succesfully")
+                if(this.auth) {
+                    let data = {
+                        experience_id: this.$route.params.id,
+                        start_date: this.formatDate(this.time[0]),
+                        end_date: this.formatDate(this.time[1])
+                    };
+                    // console.log(this.formatDate(this.time[0]));
+                    this.bookingExperience(data);
+                    this.$noty.success("Experience is Booked Succesfully")
+                } else {
+                    this.$noty.error("Oops, You need to Login to Book and Experience");
+                }
             },
             formatDate (date) {
                 var d = new Date(date),
@@ -263,6 +269,7 @@
         computed: {
             ...mapState(['experience']),
             ...mapState(['isLoading']),
+            ...mapState(['auth']),
             loading() {
                 // return
             }

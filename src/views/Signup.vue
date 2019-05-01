@@ -2,7 +2,7 @@
 	
 		<div class="wrapper">
 			<div class="image-holder">
-				<img src="../assets/shibuya.png" alt="Sign up image">
+				<!-- <img src="../assets/shibuya.png" alt="Sign up image"> -->
 				<div class="image-holder-inner-text">
 					<!-- <h2>Find a Unique Spot</h2> <br>
 					<p>With TravvApp, you get to book unique <br> spots, Experineces and also order <br> Souvernirs straight from your home.</p> -->
@@ -128,18 +128,17 @@
 </template>
 
 <script>
-    import { mapState, mapActions, mapGetters, mapMutations } from 'vuex';
+  import { mapState, mapActions, mapGetters, mapMutations } from 'vuex';
 
 	export default {
 		name: 'Signup',
-		
         beforeRouteEnter(to, from, next){
             if(localStorage.getItem('auth')) {
                 return next({ path: '/' })
             }
             next();
         },
-        data () {return{
+        data() {return{
             first_name: null,
             surname: null,
             email: null,
@@ -275,5 +274,14 @@ label {
  }
  label.btn.br-update {
     border-radius: 1.2rem;
+  }
+  @media (max-width: 767px) {
+    .wrapper .image-holder {
+      width: 100%;
+      height: 100vh;
+    }
+    .wrapper .form-inner {
+        width: 100%;
+    }
   }
 </style>

@@ -2,7 +2,7 @@
 	
 		<div class="wrapper">
 			<div class="image-holder">
-				<img src="../assets/shibuya.png" alt="Sign up image">
+				<!-- <img src="../assets/shibuya.png" alt="Sign up image"> -->
 				<div class="image-holder-inner-text">
 					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="display: block">
 					    <ol class="carousel-indicators">
