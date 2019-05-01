@@ -141,13 +141,16 @@
                             email: this.email,
                             password: this.password
                         });
-                        // this.$noty.success("Login sucessfull")
-                    } 
-                    if (this.login_errors === null) {
-                    	this.$noty.success("Login sucessfull")
+                        this.$noty.success("Login sucessfull")
                     } else {
                     	this.$noty.error("Oops, something went wrong!")
                     }
+                    // if (this.login_errors != null) {
+                    // 	this.$noty.error("Oops, something went wrong!")
+                    // 	this.$noty.success("Login sucessfull")
+                    // } else {
+                    // 	this.$noty.success("Login sucessfull")
+                    // }
                 });
             }
         },
@@ -172,9 +175,9 @@
 	.signin-form {
 		background: #FFF;
 		border-radius: 15px;
-		height: auto;
+		height: 100%;
 		width: 750px;
-		padding: 10px 10px 10px 10px;
+		padding: 40px 10px 10px 10px;
 	}
 	.login-btn{
 	    background: #F81894;
@@ -198,7 +201,12 @@
 	}
 	.not-a-mem {
 		text-align: right;
-		color: #D8D8D8;
+		color: #231f1f;
 		font-weight: bold;
+	}
+	.btn-group.toggle-user.btn-group-toggle {
+	    position: relative;
+	    /* top: -80px; */
+	    margin-bottom: 100px;
 	}
 </style>

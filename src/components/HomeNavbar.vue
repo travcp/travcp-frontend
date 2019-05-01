@@ -3,7 +3,7 @@
         <nav class="container navbar navbar-expand-lg navbar-light bg-light">
             <router-link class="navbar-brand" to="/" style="color: #fff !important;"><h2>TravvApp</h2></router-link>
             <slot name="search"></slot>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="display: inline;width: 50px;">
                 <span></span>
                 <span></span>
                 <span></span>

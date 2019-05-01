@@ -38,50 +38,47 @@
                 </div>
                 <div class="col-lg-5" style="padding-left: 80px;">
                     <div class="sidebar" style="height: 575px;">
-                        <div class="row sidebar_text">
-                            <div class="col-md-12">
-                                <h3>Location</h3>
-                                <h5>{{ experience.state }}</h5>
-                            </div>
-                            <div class="col-md-12">
-                                <h3>Duration</h3>
-                                <h5>36 hours</h5>
-                            </div>
-                            <div class="col-md-12">
-                                <h3>Cost</h3>
-                                <h5>$ {{ experience.dollar_price }}</h5>
-                            </div>
-                            <div class="col-md-12">
-                                <h3>Payment Covers</h3>
-                                <h5>Transportation and Feeding</h5>
-                            </div>
-                            <div class="col-md-12">
-                                <h3>Language</h3>
-                                <h5>English</h5>
-                            </div>
-                            <div class="col-md-12">
-                                <h3>Book</h3>
-                                <div class="datepicker-trigger">
-                                    <!-- <input type="text" id="datepicker-trigger" placeholder="Select dates"
-                                        :value="formatDates(dateOne, dateTwo)">
-
-                                    <AirbnbStyleDatepicker :trigger-element-id="'datepicker-trigger'" :mode="'range'"
-                                        :fullscreen-mobile="true" :date-one="dateOne" :date-two="dateTwo"
-                                        @date-one-selected="val => { dateOne = val }"
-                                        @date-two-selected="val => { dateTwo = val }" /> -->
+                        <div class="container">
+                            <div class="row sidebar_text">
+                                <div class="col-md-12">
+                                    <h3>Location</h3>
+                                    <h5>{{ experience.state }}</h5>
                                 </div>
-                                <!-- <p v-if="isLoading">isLoading</p> -->
-                                <!-- <p v-else>Not Loading</p> -->
-                                <form @submit.prevent="bookExperience">
-                                    <!-- <p>Start Date <input id="datepicker" v-model="start_date" type="date" width="276" /> -->
-                                    <date-picker v-model="time" range :shortcuts="shortcuts" :lang="lang"></date-picker>
-                                    <!-- <p>End Date <input id="datepicker2" v-model="end_date" type="date" width="276" /></p> -->
-                                    <br>
-                                    <button type="submit">Book Now</button>
-                                    <!-- <date-picker v-model="time1" :first-day-of-week="1"></date-picker> -->
-                                </form>
-                            </div>
+                                <div class="col-md-12">
+                                    <h3>Duration</h3>
+                                    <h5>36 hours</h5>
+                                </div>
+                                <div class="col-md-12">
+                                    <h3>Cost</h3>
+                                    <h5>$ {{ experience.dollar_price }}</h5>
+                                </div>
+                                <div class="col-md-12">
+                                    <h3>Payment Covers</h3>
+                                    <h5>Transportation and Feeding</h5>
+                                </div>
+                                <div class="col-md-12">
+                                    <h3>Language</h3>
+                                    <h5>English</h5>
+                                </div>
+                                <div class="col-md-12">
+                                    <h3 style="margin-bottom: 10px;">Book</h3>
+                                    
+                                    <form @submit.prevent="bookExperience">
+                                        <!-- <p>Start Date <input id="datepicker" v-model="start_date" type="date" width="276" /> -->
+                                        <date-picker v-model="time" range :shortcuts="shortcuts" :lang="lang"></date-picker>
+                                        <!-- <p>End Date <input id="datepicker2" v-model="end_date" type="date" width="276" /></p> -->
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-10" style="text-align: center;">
+                                                <button type="submit" class="book_btn">Book Now</button>
+                                            </div>
+                                        </div>
+                                        <!-- <date-picker v-model="time1" :first-day-of-week="1"></date-picker> -->
+                                    </form>
+                                </div>
 
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -326,7 +323,7 @@
 
     .blog_content h1 {
         font-family: MuseoSans700 !important;
-        font-size: 60px;
+        font-size: 40px;
         /* font-weight: bold; */
         font-style: normal;
         font-stretch: normal;
@@ -339,7 +336,7 @@
 
     .blog_content h3 {
         font-family: MuseoSans700 !important;
-        font-size: 22px;
+        font-size: 18px;
         /* font-weight: bold; */
         font-style: normal;
         font-stretch: normal;
@@ -350,7 +347,7 @@
 
     .blog_content h5 {
         font-family: MuseoSans500 !important;
-        font-size: 25px;
+        font-size: 24px;
         /* font-weight: 500; */
         /* font-weight: bold; */
         font-style: normal;
@@ -378,12 +375,12 @@
         widows: 100%;
         width: 100%;
         height: 475px;
-        padding: 61px 0 0 50px;
+        padding: 61px 0 0 25px;
     }
 
     .sidebar_text h3 {
         font-family: MuseoSans500 !important;
-        font-size: 20px;
+        font-size: 18px;
         /* font-weight: bolder; */
         font-style: normal;
         font-stretch: normal;
@@ -394,7 +391,7 @@
 
     .sidebar_text h5 {
         font-family: MuseoSans500 !important;
-        font-size: 20px;
+        font-size: 16px;
         /* font-weight: bolder; */
         font-style: normal;
         font-stretch: normal;
@@ -464,7 +461,7 @@
 
     .review_content h4 {
         font-family: MuseoSans500 !important;
-        font-size: 45px;
+        font-size: 35px;
         font-weight: 500;
         font-style: normal;
         font-stretch: normal;
@@ -552,5 +549,21 @@
             margin: 0px 10px 42px 10px;
             color: #555 !important;
         }
+    }
+    .mx-datepicker.mx-datepicker-range {
+        width: 250px;
+    }
+    .book_btn {
+        margin-top: 24px;
+        background: #F81894;
+        border: none;        
+        font-family: MuseoSans700;
+        font-size: 16px;
+        width: 130px;
+        height: 45px;
+        border-radius: 8px;
+        background-color: #f81894;
+        color: #FFF;
+        cursor: pointer;
     }
 </style>

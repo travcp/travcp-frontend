@@ -280,6 +280,9 @@
   }
 
   @media only screen and (max-height: 622px) {
+    .navbar-toggler{
+      width: 45px;
+    }
     .c_feature_box {
       margin-top: 20px !important;
     }
@@ -362,10 +365,10 @@
 
   @media only screen and (max-width: 576px) {
     .toggle-sec-nav{
-      display: none;
+      display: block;
     }
     .toggleFirstNav{
-      display: block;
+      display: none;
     }
     header.main_menu_area {
       padding-left: 8px !important;
@@ -382,7 +385,7 @@
     }
 
     .main_slider_text_bg {
-      margin-bottom: 17px;
+      margin-bottom: 2px;
     }
 
     .btn-group.btn-group-toggle {
@@ -431,7 +434,7 @@
     }
 
     .c_feature_box {
-      display: none;
+      display: block;
     }
 
     .carousel {
@@ -682,7 +685,10 @@
     color: #ffffff;
     padding: 16px 0 15px 25px;
   }
-
+  button.btn.btn-travv.toggle-display-sm {
+    margin-bottom: 4px;
+    width: 100%;
+  }
   .feature_video_lg {
     width: 100%;
     height: 510px;

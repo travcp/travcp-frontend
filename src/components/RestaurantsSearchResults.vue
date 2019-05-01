@@ -409,7 +409,7 @@
         color: #FFF;
         background: transparent;
         font-family: MuseoSans;
-        font-size: 21px;
+        font-size: 18px;
         font-weight: bold;
     }
 
@@ -426,7 +426,7 @@
         color: #000;
         padding: 0 10px;
         transition: width .4s linear;
-        font-size: 20px;
+        font-size: 18px;
         padding-left: 48px;
     }
 
@@ -492,7 +492,7 @@
 
     .search_items_item h3 {
         font-family: MuseoSans;
-        font-size: 30px;
+        font-size: 24px;
         font-weight: bold;
         font-style: normal;
     }
