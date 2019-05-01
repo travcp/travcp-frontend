@@ -105,13 +105,13 @@
 							
 							<div class="container">
 								<div class="row">
-									<div class="col-md-10" style="text-align: center">
+									<div class="col-md-10">
 										<div class="form-check form-check-inline">
 										  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
 										  <label class="form-check-label" for="inlineCheckbox1">I agree to the following <a href="#">Terms and Conditions</a> </label>
 										</div>
 									</div>
-									<div class="col-md-6">
+									<div class="col-md-10" style="text-align: center">
 										<button type="submit" class="btn btn-lg signup-btn">Sign up</button>
 									</div>
 								</div>

@@ -66,19 +66,16 @@ export default {
       });
     },
     async userLogin ({commit}, data) {
-    	return new Promise((resolve, reject) => {
-		      axios.post(`${API_BASE}/auth/login`, {
+		      await axios.post(`${API_BASE}/auth/login`, {
         		"email" : data.email,
-			    "password" : data.password
+			     "password" : data.password
 		      }).then(res => {
-		        commit('LOGIN_SUCCESS', res.data)
-		        resol
+		        resolve(commit('LOGIN_SUCCESS', res.data))
 		        router.push("/");
 		      }).catch(err => {
 		        commit('LOGIN_FAILURE', err.response.data);
+            // reject(commit('LOGIN_FAILURE', err.response.data);)
 		      })
-    	});
-
     },
     userLogout: ({ commit }) => {
       commit('USER_LOGOUT');
