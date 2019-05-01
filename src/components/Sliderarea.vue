@@ -8,10 +8,10 @@
                             <h1 class="main_slider_text_bg">Discover Places and <br> Experience the Culture</h1> <br>
                             <button type="button" class="btn btn-travv toggle-display-sm">
                                 <img src="../assets/Icons/tours-experiences.svg" /> Tours & Experiences
-                            </button> <br>
+                            </button>
                             <button type="button" class="btn btn-travv toggle-display-sm">
                                 <img src="../assets/Icons/restaurants.svg" style="margin-top: -8px;" /> Restaurants
-                            </button> <br>
+                            </button>
                             <button type="button" class="btn btn-travv toggle-display-sm">
                                 <img src="../assets/Icons/places.svg" style="margin-top: -8px;" /> Places / Destination
                             </button>
@@ -100,7 +100,7 @@
         height: 74px;
         border-radius: 8px;
         background-color: #ffffff;
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 500;
         font-style: normal;
         font-stretch: normal;
@@ -130,7 +130,7 @@
 
         
         font-family: MuseoSans700;
-        font-size: 21px;
+        font-size: 18px;
         width: 175px;
         height: 74px;
         border-radius: 8px;

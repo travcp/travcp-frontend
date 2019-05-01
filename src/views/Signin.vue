@@ -47,15 +47,15 @@
 					</div>	
 				</div>
 			</div>
-			<div class="form-inner login-form-inner login-form">
+			<div class="form-inner">
 					<div class="col-md-12 signin-form">
 						<div class="row">
 							<div class="col-md-12" style="text-align: right;">
 								<div class="btn-group toggle-user btn-group-toggle" data-toggle="buttons">
-								  <label class="btn" style="background: grey;color: #FFF;">
+								  <label class="btn br-update" style="background: grey;color: #FFF;">
 								    <input type="radio" name="options" id="option1" autocomplete="off" checked> Merchant
 								  </label>
-								  <label class="btn active" style="background: #F81894;color: #FFF;">
+								  <label class="btn active br-update" style="background: #F81894;color: #FFF;">
 								    <input type="radio" name="options" id="option2" autocomplete="off"> User
 								  </label>
 								</div>
@@ -71,7 +71,7 @@
 									<div class="row">
 										<div class="col-md-2"></div>
 										<div class="form-group col-md-8" style="text-align: center;">
-											<input type="email" v-validate="'required|email'" v-model="email" class="form-control login-form-control" name="email" placeholder="Email">
+											<input type="email" v-validate="'required|email'" v-model="email" class="form-control signin-input" name="email" placeholder="Email">
 										</div>
 										<div class="col-md-2"></div>
 									</div>
@@ -79,7 +79,7 @@
 									<div class="row">
 										<div class="col-md-2"></div>
 										<div class="form-group col-md-8">
-											<input type="password" class="form-control login-form-control" placeholder="Password" v-model="password" name="password">
+											<input type="password" class="form-control signin-input" placeholder="Password" v-model="password" name="password">
 										</div>
 										<div class="col-md-2"></div>
 									</div>
@@ -94,7 +94,7 @@
 								<div class="row">
 									<div class="col-md-12">
 										<p class="not-a-mem">
-											Not a Member yet? <a href="#">Sign up</a>
+											Not a Member yet? <router-link to="/signup">Sign up</router-link>
 										</p>
 									</div>
 								</div>

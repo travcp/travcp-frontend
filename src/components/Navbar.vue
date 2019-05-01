@@ -16,7 +16,7 @@
                     <li class="nav-item"><a class="nav-link" href="#">Bookings</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Help</a></li>                    
                     <li class="nav-item" v-if="!checkUser"><router-link style="color: #000 !important;" class="nav-link" to="/signin">Sign in</router-link></li>                    
-                    <li class="nav-item" v-if="!checkUser"><router-link style="color: #000 !important;" class="nav-link" to="/signup">Sign up</router-link></li>
+                    <!-- <li class="nav-item" v-if="!checkUser"><router-link style="color: #000 !important;" class="nav-link" to="/signup">Sign up</router-link></li> -->
                     <li class="nav-item" v-if="checkUser"><button style="color: #000 !important;background:none;border: none;" class="nav-link">Hi {{ username }}</button></li>
                     <li class="nav-item" @click="logout" v-if="checkUser"><a style="color: #000 !important;" class="nav-link" href="#">Log out</a></li>
                 </ul>
@@ -69,8 +69,8 @@ export default {
    border-bottom: none;
 }
 .main_menu_area .navbar .navbar-nav li a{
-    font-size: 18px;
-    font-weight: 0;
+    font-size: 14px;
+    font-weight: bold;
 }
 header.main_menu_area{
     padding-left: 88px;

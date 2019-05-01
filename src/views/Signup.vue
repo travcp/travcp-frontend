@@ -6,57 +6,57 @@
 				<div class="image-holder-inner-text">
 					<!-- <h2>Find a Unique Spot</h2> <br>
 					<p>With TravvApp, you get to book unique <br> spots, Experineces and also order <br> Souvernirs straight from your home.</p> -->
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="display: block">
-    <ol class="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-      <!-- Slide One - Set the background image for this slide in the line below -->
-      <div class="carousel-item active">
-      	<h2>Find a Unique Spot</h2> <br>
-      	<p>With TravvApp, you get to book unique <br> spots, Experineces and also order <br> Souvernirs straight from your home.</p>
-        <div class="carousel-caption d-none d-md-block">
-          <!-- <h2 class="display-4">First Slide</h2> -->
-        </div>
-      </div>
-      <!-- Slide Two - Set the background image for this slide in the line below -->
-      <div class="carousel-item">
-      	<h2>Find a Unique Spot</h2> <br>
-      	<p>With TravvApp, you get to book unique <br> spots, Experineces and also order <br> Souvernirs straight from your home.</p>
-        <div class="carousel-caption d-none d-md-block">
-          <!-- <h2 class="display-4">Second Slide</h2> -->
-        </div>
-      </div>
-      <!-- Slide Three - Set the background image for this slide in the line below -->
-      <div class="carousel-item">
-      	<h2>Find a Unique Spot</h2> <br>
-      	<p>With TravvApp, you get to book unique <br> spots, Experineces and also order <br> Souvernirs straight from your home.</p>
-        <div class="carousel-caption d-none d-md-block">
-          <!-- <h2 class="display-4">Third Slide</h2> -->
-        </div>
-      </div>
-    </div>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-          <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span> -->
-			<button class="btn btn-primary" style="background-color: grey;border-color: grey;border-radius: 100px;">
-				-->
-			</button>
-          <span class="sr-only">
-          </span>
-        </a>
-</div>
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="display: block">
+              <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+              </ol>
+              <div class="carousel-inner" role="listbox">
+                <!-- Slide One - Set the background image for this slide in the line below -->
+                <div class="carousel-item active">
+                	<h2>Find a Unique Spot</h2> <br>
+                	<p>With TravvApp, you get to book unique <br> spots, Experineces and also order <br> Souvernirs straight from your home.</p>
+                  <div class="carousel-caption d-none d-md-block">
+                    <!-- <h2 class="display-4">First Slide</h2> -->
+                  </div>
+                </div>
+                <!-- Slide Two - Set the background image for this slide in the line below -->
+                <div class="carousel-item">
+                	<h2>Find a Unique Spot</h2> <br>
+                	<p>With TravvApp, you get to book unique <br> spots, Experineces and also order <br> Souvernirs straight from your home.</p>
+                  <div class="carousel-caption d-none d-md-block">
+                    <!-- <h2 class="display-4">Second Slide</h2> -->
+                  </div>
+                </div>
+                <!-- Slide Three - Set the background image for this slide in the line below -->
+                <div class="carousel-item">
+                	<h2>Find a Unique Spot</h2> <br>
+                	<p>With TravvApp, you get to book unique <br> spots, Experineces and also order <br> Souvernirs straight from your home.</p>
+                  <div class="carousel-caption d-none d-md-block">
+                    <!-- <h2 class="display-4">Third Slide</h2> -->
+                  </div>
+                </div>
+              </div>
+              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span> -->
+          			<button class="btn btn-primary" style="background-color: grey;border-color: grey;border-radius: 100px;">
+          				-->
+          			</button>
+                    <span class="sr-only">
+                    </span>
+                  </a>
+          </div>
 				</div>
 			</div>
 			<div class="form-inner">
 				<div class="row">
 					<div class="col-md-12" style="text-align: right;">
 						<div class="btn-group toggle-user btn-group-toggle" data-toggle="buttons">
-						  <label class="btn" style="background: grey;color: #FFF;">
+						  <label class="btn br-update" style="background: grey;color: #FFF;">
 						    <input type="radio" name="options" id="option1" autocomplete="off" checked> Merchant
 						  </label>
-						  <label class="btn active" style="background: #F81894;color: #FFF;">
+						  <label class="btn active br-update" style="background: #F81894;color: #FFF;">
 						    <input type="radio" name="options" id="option2" autocomplete="off"> User
 						  </label>
 						</div>
@@ -83,21 +83,21 @@
 							</div>
 
 							<div class="row">
-								<div class="form-group col-md-9">
+								<div class="form-group col-md-10">
 									<label for="">Choose your Username</label>
 									<input type="text" class="form-control signin-input" placeholder="JohnXYZ.">
 								</div>
 							</div>
 							
 							<div class="row">
-								<div class="form-group col-md-9">
+								<div class="form-group col-md-10">
 									<label for="">Email</label>
 									<input v-validate="'required|email'" v-model="email" type="email" name="email" class="form-control signin-input" placeholder="Enter a valid email address">
 								</div>
 							</div>
 
 							<div class="row">
-								<div class="form-group col-md-9">
+								<div class="form-group col-md-10">
 									<label for="">Password</label>
 									<input v-validate="'required|min:6'" type="password" v-model="password" name="password"  class="form-control signin-input" placeholder="********">
 								</div>
@@ -105,7 +105,7 @@
 							
 							<div class="container">
 								<div class="row">
-									<div class="col-md-12">
+									<div class="col-md-10" style="text-align: center">
 										<div class="form-check form-check-inline">
 										  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
 										  <label class="form-check-label" for="inlineCheckbox1">I agree to the following <a href="#">Terms and Conditions</a> </label>
@@ -212,11 +212,12 @@
 }
 .form-header h3 {
 	text-transform: capitalize;
-    background-size: 1px 1em;
-  	box-shadow:
+  background-size: 1px 1em;
+  box-shadow:
     inset 0 -0.175em white,
     inset 0 -0.2em red;
   	display: inline;
+  font-weight: bold;
 }
 .toggle-user{
 	height: 35px !important;
@@ -265,10 +266,14 @@ label {
     border-radius: 100px;
 }
 .carousel-control-next, .carousel-control-prev {
-     top: 380px; 
+    top: 380px; 
  }
  .carousel-item {
     height: 100%;
     min-height: 450px;
+    font-size: 0.8rem;
  }
+ label.btn.br-update {
+    border-radius: 1.2rem;
+  }
 </style>

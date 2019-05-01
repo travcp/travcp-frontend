@@ -259,7 +259,7 @@
 
   .title {
     font-family: MuseoSans900;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bolder;
     text-align: center;
     color: #000000;
@@ -269,8 +269,8 @@
 
   .c_feature_box {
     margin-top: -70px;
-    padding-top: 63px;
-    padding-bottom: 82px;
+    padding-top: 50px;
+    padding-bottom: 60px;
     padding-right: 15px;
     padding-left: 15px;
   }
@@ -473,7 +473,7 @@
     color: #555555; */
     height: 42px;
     font-family: MuseoSans500 !important;
-    font-size: 35px;
+    font-size: 30px;
     font-weight: 500;
     font-style: normal;
     font-stretch: normal;
@@ -481,7 +481,7 @@
     letter-spacing: normal;
     text-align: center;
     color: #555555;
-    margin-bottom: 92px;
+    margin-bottom: 60px;
   }
 
   .c_box_item a h4 img {
@@ -515,7 +515,7 @@
 
   .main_title h2 {
     font-family: MuseoSans500 !important;
-    font-size: 35px;
+    font-size: 30px;
     font-weight: 500;
     font-style: normal;
     font-stretch: normal;
@@ -531,7 +531,7 @@
     background: transparent;
     cursor: pointer;
     float: right;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     font-style: normal;
     font-stretch: normal;
@@ -623,7 +623,7 @@
 
   .recom4uimages-up p {
     font-family: MuseoSans500;
-    font-size: 40px;
+    font-size: 36px;
     font-weight: 500;
     font-style: normal;
     font-stretch: normal;
@@ -643,7 +643,7 @@
 
   .recom4uimages-dwn p {
     font-family: MuseoSans500;
-    font-size: 40px;
+    font-size: 36px;
     font-weight: 500;
     font-style: normal;
     font-stretch: normal;

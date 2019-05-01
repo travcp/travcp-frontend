@@ -2,6 +2,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
+
 import VueSlider from 'vue-slider-component';
 import 'vue-slider-component/theme/default.css';
 import VeeValidate from 'vee-validate';
