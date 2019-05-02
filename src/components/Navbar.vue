@@ -3,11 +3,11 @@
         <nav class="container navbar navbar-expand-lg navbar-light bg-light">
             <!-- <router-link :to="'/result-details/'+ experience.id"> -->
             <router-link class="navbar-brand" to="/"><h2>TravvApp</h2></router-link>
-            <slot name="search"></slot>
+            <!-- <slot name="search"></slot> -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span style="background: grey;"></span>
+                <span style="background: grey;"></span>
+                <span style="background: grey;"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
@@ -18,7 +18,32 @@
                     <li class="nav-item" v-if="!checkUser"><router-link style="color: #000 !important;" class="nav-link" to="/signin">Sign in</router-link></li>                    
                     <!-- <li class="nav-item" v-if="!checkUser"><router-link style="color: #000 !important;" class="nav-link" to="/signup">Sign up</router-link></li> -->
                     <li class="nav-item" v-if="checkUser"><button style="color: #000 !important;background:none;border: none;" class="nav-link">Hi {{ username }}</button></li>
-                    <li class="nav-item" @click="logout" v-if="checkUser"><a style="color: #000 !important;" class="nav-link" href="#">Log out</a></li>
+                    <li class="nav-item" @click="logout" v-if="checkUser">
+                      <a style="color: #000 !important;" class="nav-link" href="#">Log out</a>
+                    </li>
+                    <li class="nav-item" v-if="!checkUser">
+                      <router-link style="color: #fff !important;" class="nav-link" to="/signin">
+                        <img src="../assets/envelope-2.png" style="height: 24px;" alt="">
+                      </router-link>
+                    </li>
+                    <li class="nav-item" v-if="!checkUser">
+                      <router-link style="color: #fff !important;" class="nav-link" to="/signin">
+                        <img src="../assets/bell-icon-2.png" style="height: 24px;" alt="">
+                      </router-link>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" style="color: #fff !important;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="../assets/profile_2.png" class="rounded-circle" style="height: 50px;">
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Dashboard</a>
+                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" href="#">Experiences</a>
+                        <a class="dropdown-item" href="#">Payment</a>
+                        <a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" href="#">Sign out</a>
+                      </div>
+                    </li>
                 </ul>
             </div>
         </nav>

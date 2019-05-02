@@ -6,15 +6,19 @@ Vue.use(router)
 export default {
     ALL_EXPERIENCE: (state, payload) => {
       state.experiences = payload.data;
+      state.isLoading = false;
     },
     EXPERIENCE_BY_ID: (state, payload) => {
       state.experience = payload.data;      
+      state.isLoading = false;
     },
     ALL_RESTAURANTS: (state, payload) => {
       state.restaurants = payload.data;
+      state.isLoading = false;
     },
     RESTAURANTS_BY_ID: (state, payload) => {
       state.restaurant = payload.data;
+      state.isLoading = false;
     },
     FILTER_RESTAURANTS: (state, payload) => {
       state.restaurants = payload.data;
@@ -79,6 +83,12 @@ export default {
     },
     GET_EVENTS: (state, payload) => {
       state.events = payload;
+      state.isLoading = false;
+    },
+    IS_LOADING: (state) => {
+      state.isLoading = true;
+    },
+    NOT_LOADING: (state) => {
       state.isLoading = false;
     }
 }

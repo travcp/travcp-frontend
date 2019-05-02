@@ -32,8 +32,8 @@
                                 <label class="btn btn-travv">
                                     <img src="../assets/Icons/places.svg" style="margin-top: -8px;" /> Places / Destination
                                 </label>
-                            </div> <br> <br>
-                            <div class="btn-group btn-group-toggle" style="margin-right: 31px;">
+                            </div> <br>
+                            <div class="btn-group btn-group-toggle" style="margin-right: 31px;margin-top: 20px;">
                                 <label class="btn btn-travv">
                                     Where would you like to go?
                                 </label>

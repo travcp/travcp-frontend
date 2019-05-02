@@ -190,6 +190,9 @@
   .toggleFirstNav{
     display: none;
   }
+  .main_menu_area .navbar .navbar-nav{
+    width: 100%;
+  }
   .main_menu_area .navbar .navbar-nav li a {
         color: #FFF !important;
     }

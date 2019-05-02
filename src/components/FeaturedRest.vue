@@ -12,68 +12,35 @@
         <router-link to="/restaurants"><button type="button" class="btn view_all_btn">SHOW ALL RESTAURANTS</button></router-link>
       </div>
       <div class="col-lg-12">
+  
+        <flickity ref="flickity" :options="flickityOptions" class="carousel" v-if="!isLoading">
+               <div class="carousel-cell" v-for="restaurant in restaurants" :key="restaurant.id">
+                  <div class="featured_places saitama">
+                    <div class="featured_places_item">
+                      <div class="featured_places_overlay">
+                        <div class="row">
+                          <div class="col-6">
+                            <p class="ftr_places_title">{{ restaurant.location }}</p>
+                          </div>
+                          <div class="col-3">
+                            <p class="ftr_places_title">221</p>
+                          </div>
+                          <div class="col-3">
+                            <p class="ftr_places_title">50</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
 
-        <div class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active" data-interval="10000">
-              <div class="featured_places saitama">
-                <div class="featured_places_item">
-                  <div class="featured_places_overlay">
-                    <div class="row">
-                      <div class="col-md-7">
-                        <p class="ftr_places_title">SAITAMA</p>
-                      </div>
-                      <div class="col-md-2">
-                        <p class="ftr_places_title">221</p>
-                      </div>
-                      <div class="col-md-2">
-                        <p class="ftr_places_title">50</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item" data-interval="20000">
-              <div class="featured_places ueno">
-                <div class="featured_places_item">
-                  <div class="featured_places_overlay">
-                    <div class="row">
-                      <div class="col-md-7">
-                        <p class="ftr_places_title">UENO</p>
-                      </div>
-                      <div class="col-md-2">
-                        <p class="ftr_places_title">221</p>
-                      </div>
-                      <div class="col-md-2">
-                        <p class="ftr_places_title">50</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="featured_places shibuya">
-                <div class="featured_places_item">
-                  <div class="featured_places_overlay">
-                    <div class="row">
-                      <div class="col-md-7">
-                        <p class="ftr_places_title">SHIBUYA</p>
-                      </div>
-                      <div class="col-md-2">
-                        <p class="ftr_places_title">221</p>
-                      </div>
-                      <div class="col-md-2">
-                        <p class="ftr_places_title">50</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        </flickity>
+
+        <!-- if you don't want to use the buttons Flickity provides -->
+        <!-- <button @click="previous()">Custom Previous Button</button>
+        <button @click="next()">Custom Next Button</button> -->
+
+
         <div class="container toggleCarousel">
           <div class="row">
             <div class="col-md-4 left_feature_place" v-for="restaurant in restaurants" :key="restaurant.id"
@@ -145,11 +112,46 @@
 </template>
 
 <script>
+  import Flickity from 'vue-flickity';
+  import { mapState, mapActions } from 'vuex';
   export default {
-    props: ['restaurants']
+    props: ['restaurants'],
+    components: {
+            Flickity
+        },
+    data () {
+        return {
+            flickityOptions: {
+                initialIndex: 3,
+                prevNextButtons: false,
+                pageDots: false,
+                wrapAround: true,
+                autoPlay: 5000,
+                resize: true
+                // any options from Flickity can be used
+            },
+            items: [{name: 'Tolu'}, {name: 'Dara'},{name: 'Taiwo'}]
+        }
+    },
+    methods: {
+        next() {
+            this.$refs.flickity.next();
+        },
+
+        previous() {
+            this.$refs.flickity.previous();
+        }
+    },
+    computed: {
+      ...mapState(['isLoading'])
+    }
   }
 </script>
 
 <style>
-
+.carousel-cell {
+  height: 360px;
+  width: 100%;
+  border: 1px solid #000;
+}
 </style>

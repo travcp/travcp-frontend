@@ -37,7 +37,7 @@
                     </p>
                 </div>
                 <div class="col-lg-5" style="padding-left: 80px;">
-                    <div class="sidebar">
+                    <div class="travv-sidebar">
                         <div class="row sidebar_text">
                             <div class="col-md-12">
                                 <h3>Location</h3>
@@ -222,59 +222,14 @@
         margin: 0px 88px 42px 88px;
         color: #555 !important;
     }
-    .blog_content h1{
-        font-family: MuseoSans700 !important;
-        font-size: 60px;
-        /* font-weight: bold; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.09;
-        letter-spacing: normal;
-        color: #555555;
-        margin-top: 5px;
-        margin-bottom: 47px;
-    }
-    .blog_content h3 {
-        font-family: MuseoSans700 !important;
-        font-size: 22px;
-        /* font-weight: bold; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.09;
-        letter-spacing: normal;
-        color: #555555;
-    }
-    .blog_content h5 {
-        font-family: MuseoSans500 !important;
-        font-size: 25px;
-        /* font-weight: 500; */
-        /* font-weight: bold; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #555555;
-        margin-bottom: 40px;
-    }
-    .blog_content p {
-        /* font-family: MuseoSans700 !important; */
-        font-size: 20px;
-        /* font-weight: 500; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #555555;
-        margin-bottom: 40px;
-    }
-    .sidebar{
+    .travv-sidebar{
         background: #000;
         widows: 100%;
         width: 100%;
         height: 475px;
         padding: 61px 0 0 50px;
     }
-    .sidebar_text h3{
+    .travv-sidebar_text h3{
         font-family: MuseoSans500 !important;
         font-size: 20px;
         /* font-weight: bolder; */
@@ -284,7 +239,7 @@
         letter-spacing: normal;
         color: #f81894;
     }
-    .sidebar_text h5 {
+    .travv-sidebar_text h5 {
         font-family: MuseoSans500 !important;
         font-size: 20px;
         /* font-weight: bolder; */

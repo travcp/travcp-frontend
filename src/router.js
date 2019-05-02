@@ -12,6 +12,8 @@ import Login from '@/views/Login.vue';
 import Signup from '@/views/Signup.vue';
 import NotFound from '@/views/NotFound.vue';
 import Signin from '@/views/Signin.vue';
+import Review from '@/views/Review.vue';
+
 
 Vue.use(Router)
 
@@ -98,6 +100,11 @@ export default new Router({
       path: '/signin',
       name: 'Signin',
       component: Signin
+    },
+    {
+      path: '/dashbaord/review',
+      name: 'Review',
+      component: Review
     }
   ]
 });

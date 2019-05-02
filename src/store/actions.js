@@ -7,23 +7,25 @@ let API_BASE = 'https://travvapi.herokuapp.com/api';
 Vue.use(router);
 
 export default {
-	getExperiences: ({ commit }) => {
-      axios.get(`${API_BASE}/experiences`).then(response => {
+	 async getExperiences({ commit }) {
+      commit('IS_LOADING');
+      await axios.get(`${API_BASE}/experiences`).then(response => {
         commit('ALL_EXPERIENCE', response.data);
       });
     },
-    getExperienceById: ({commit}, id) =>{
-      axios.get(`${API_BASE}/experiences/${id}`).then(response => {
+    async getExperienceById ({commit}, id) {
+      commit('IS_LOADING');
+      await axios.get(`${API_BASE}/experiences/${id}`).then(response => {
         commit('EXPERIENCE_BY_ID', response.data);
       });
     },
-    getRestaurants: ({commit}) => {
-      axios.get(`${API_BASE}/restaurants`).then(response => {
+    async getRestaurants ({commit}) {
+      await axios.get(`${API_BASE}/restaurants`).then(response => {
         commit('ALL_RESTAURANTS', response.data);
       });
     },
-    getRestaurantById: ({commit}, id) => {
-      axios.get(`${API_BASE}/restaurants/${id}`).then(response => {
+    async getRestaurantById ({commit}, id)  {
+      await axios.get(`${API_BASE}/restaurants/${id}`).then(response => {
         commit('RESTAURANTS_BY_ID', response.data);
       });
     },

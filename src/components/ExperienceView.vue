@@ -36,8 +36,8 @@
                         accident, sometimes on purpose (injected humour and the like).
                     </p>
                 </div>
-                <div class="col-lg-5" style="padding-left: 80px;">
-                    <div class="sidebar" style="height: 575px;">
+                <div class="col-lg-5 sidebar-pd">
+                    <div class="travv-sidebar" style="height: 575px;">
                         <div class="container">
                             <div class="row sidebar_text">
                                 <div class="col-md-12">
@@ -83,15 +83,109 @@
                     </div>
                 </div>
             </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="average_review_section">
+                            <h2>Average Rating</h2>
+                            <h5>Based on 450 ratings</h5>
+                            <br>
+                            <div class="row">
+                                <div class="col-2"><p class="star_range">5-star</p></div>
+                                <div class="col-8">
+                                    <div class="progress">
+                                      <div class="progress-bar" role="progressbar" style="width: 55%;background-color: #f81894;" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <p class="star_range">456</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2"><p class="star_range">4-star</p></div>
+                                <div class="col-8">
+                                    <div class="progress">
+                                      <div class="progress-bar" role="progressbar" style="width: 75%;background-color: #f81894;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <p class="star_range">621</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2"><p class="star_range">3-star</p></div>
+                                <div class="col-8">
+                                    <div class="progress">
+                                      <div class="progress-bar" role="progressbar" style="width: 35%;background-color: #f81894;" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <p class="star_range">159</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2"><p class="star_range">2-star</p></div>
+                                <div class="col-8">
+                                    <div class="progress">
+                                      <div class="progress-bar" role="progressbar" style="width: 25%;background-color: #f81894;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <p class="star_range">84</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2"><p class="star_range">1-star</p></div>
+                                <div class="col-8">
+                                    <div class="progress">
+                                      <div class="progress-bar" role="progressbar" style="width: 15%;background-color: #f81894;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <p class="star_range">21</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="gst_review_content">
+                            <h2>Reviews</h2>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="guest_review_">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <div class="guest_review_pic"></div>
+                                            </div>
+                                            <div class="col-6">
+                                                <p class="review_name">Barbara Cox</p>
+                                                <p class="review_rev">* * * * * *</p>
+                                                <p class="review_date">It is a long established fact that a reader will be distracted by the readable content</p>
+                                            </div>
+                                            <!-- <div class="col-4">
+                                                <div class="guest_review_cont">
+                                                    <h4>Great</h4>
+                                                    <p>good quality stickers</p>
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="digital_feature blog_part">
+        <!-- <div class="digital_feature blog_part">
             <div class="row">
-                <div class="col-lg-12 review_content">
+                <div class="col-md-12 review_content">
                     <h4>
                         Guest Reviews
                     </h4>
                 </div>
-                <div class="col-lg-12">
+                <div class="col-md-12">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
@@ -175,8 +269,28 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-12">
+                    <div class="guest_review_for_mobile">
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="guest_review_pic"></div>
+                            </div>
+                            <div class="col-3">
+                                <p class="review_name">Christopher Acebo</p>
+                                <p class="review_date">Jan 31, 2016</p>
+                                <p class="review_rev">* 1 Review</p>
+                            </div>
+                            <div class="col-4">
+                                <div class="guest_review_cont">
+                                    <h4>Great</h4>
+                                    <p>good quality stickers</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -278,6 +392,46 @@
 </script>
 
 <style>
+  @media only screen and (max-width: 576px) {
+    .project_area {
+        margin: 121px 10px 42px 10px !important;
+    }
+    .digital_feature.blog_part {
+        margin: 0px 10px 42px 10px !important;
+        color: #555 !important;
+    }
+    .sidebar-pd{
+        padding-left: 0 !important;
+    }
+    .guest_review {
+        display: none;
+    }
+    .guest_review_for_mobile {
+        display: block !important;
+        border-top: 2px solid #eee;
+        height: 150px;
+        padding-top: 20px;
+    }
+  }
+    .average_review_section h2 {
+        font-weight: bolder;
+    }
+    .average_review_section h5 {
+        color: #776d6d;
+        font-weight: bolder;
+    }
+    .gst_review_content h2 {
+        font-weight: bolder;
+    }
+    .progress {
+        height: 1.5rem;
+    }
+    .guest_review_for_mobile{
+        display: none;
+    }
+    .sidebar-pd{
+        padding-left: 80px;
+    }
     .navbar-brand {
         color: #555 !important;
     }
@@ -370,7 +524,7 @@
         margin-bottom: 40px;
     }
 
-    .sidebar {
+    .travv-sidebar {
         background: #000;
         widows: 100%;
         width: 100%;
@@ -378,7 +532,7 @@
         padding: 61px 0 0 25px;
     }
 
-    .sidebar_text h3 {
+    .travv-sidebar_text h3 {
         font-family: MuseoSans500 !important;
         font-size: 18px;
         /* font-weight: bolder; */
@@ -389,7 +543,7 @@
         color: #f81894;
     }
 
-    .sidebar_text h5 {
+    .travv-sidebar_text h5 {
         font-family: MuseoSans500 !important;
         font-size: 16px;
         /* font-weight: bolder; */
@@ -501,9 +655,8 @@
     }
 
     .review_name {
-        font-family: MuseoSans900 !important;
-        font-size: 12px;
-        font-weight: bolder;
+        font-size: 16px !important;
+        font-weight: bold;
         font-style: normal;
         font-stretch: normal;
         line-height: normal;
