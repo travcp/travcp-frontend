@@ -14,7 +14,18 @@
                     <li class="nav-item"><a style="color: #fff !important;"  href="static.html">Videos</a></li>
                     <li class="nav-item"><a style="color: #fff !important;" class="nav-link" href="#">Bookings</a></li>
                     <li class="nav-item"><a style="color: #fff !important;" class="nav-link" href="#">Help</a></li>                    
-                    <li class="nav-item" v-if="!checkUser"><router-link style="color: #fff !important;" class="nav-link" to="/signin">Sign in</router-link></li>                    
+                    <li class="nav-item" v-if="!checkUser"><router-link style="color: #fff !important;" class="nav-link" to="/signin">Sign in</router-link></li>
+                    <li class="nav-item" v-if="!checkUser">
+                      <router-link style="color: #fff !important;" class="nav-link" to="/signin">
+                        <img src="../assets/message-icon.png" style="height: 34px;" alt="">
+                      </router-link>
+                    </li>
+                    <li class="nav-item" v-if="!checkUser">
+                      <router-link style="color: #fff !important;" class="nav-link" to="/signin">
+                        <img src="../assets/bell-icon.png" style="height: 24px;" alt="">
+                      </router-link>
+                    </li>
+
                    <!--  <li class="nav-item" v-if="!checkUser"><router-link style="color: #fff !important;" class="nav-link" to="/signup">Sign up</router-link></li> -->
                     <li class="nav-item" v-if="checkUser"><button style="color: #fff !important;background:none;border: none;" class="nav-link">Hi {{ username }}</button></li>
                     <li class="nav-item" @click="logout" v-if="checkUser"><a style="color: #fff !important;" class="nav-link" href="#">Log out</a></li>
@@ -67,6 +78,10 @@ export default {
 </script>
 
 <style>
+.main_menu_area .navbar .navbar-nav {
+    display: inline-block;
+    margin-top: 10px;
+}
 .navbar-brand{
     font-family: MuseoSans700 !important;
     font-size: 30px;
