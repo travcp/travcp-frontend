@@ -1,5 +1,10 @@
+import Vue from 'vue';
+import router from '@/router';
+
 import axios from 'axios';
 let API_BASE = 'https://travvapi.herokuapp.com/api';
+
+Vue.use(router);
 
 export default {
 	getExperiences: ({ commit }) => {
@@ -43,6 +48,7 @@ export default {
       });
     },
     async userRegistration ({commit}, data) {
+      commit('REGISTRATION_LOADING');
       await axios.post(`${API_BASE}/auth/register`, 
       {
         "email" : data.email,
@@ -53,11 +59,12 @@ export default {
         commit('REGISTRATION_SUCCESS', res.data);
         router.push("/");
       }).catch(err => {
+        console.log(err);
         commit('REGISTRATION_ERROR', err.response.data);
-        // this.$noty.error("Oops, something went wrong!")
       });
     },
     async userLogin ({commit}, data) {
+      commit('LOGIN_LOADING');
 		      await axios.post(`${API_BASE}/auth/login`, {
         		"email" : data.email,
 			     "password" : data.password

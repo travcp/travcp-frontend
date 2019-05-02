@@ -18,6 +18,19 @@
                    <!--  <li class="nav-item" v-if="!checkUser"><router-link style="color: #fff !important;" class="nav-link" to="/signup">Sign up</router-link></li> -->
                     <li class="nav-item" v-if="checkUser"><button style="color: #fff !important;background:none;border: none;" class="nav-link">Hi {{ username }}</button></li>
                     <li class="nav-item" @click="logout" v-if="checkUser"><a style="color: #fff !important;" class="nav-link" href="#">Log out</a></li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" style="color: #fff !important;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="../assets/profile_2.png" class="rounded-circle" style="height: 50px;">
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Dashboard</a>
+                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" href="#">Experiences</a>
+                        <a class="dropdown-item" href="#">Payment</a>
+                        <a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" href="#">Sign out</a>
+                      </div>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -74,5 +87,31 @@ export default {
 header.main_menu_area{
     padding-left: 88px;
     padding-right: 88px;
+}
+.dropdown-menu {
+  line-height: 50px;
+  left: -105px;
+  border-radius: .9rem;
+  width: 14em;
+  padding: 20px 0 20px 45px;
+  margin: .9rem 0 0;
+}
+.dropdown-menu:before {
+    display: inline-block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    vertical-align: middle;
+    content: "";
+    top: -8px;
+    left: 170px;
+    right: auto;
+    color: #FFFFFF;
+    border-bottom: .6em solid;
+    border-right: .6em solid transparent;
+    border-left: .6em solid transparent;
+}
+.main_menu_area .navbar .navbar-nav li a {
+  line-height: 50px;
 }
 </style>

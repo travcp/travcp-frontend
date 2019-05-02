@@ -87,7 +87,14 @@
 									<div class="row">
 										<div class="col-md-3"></div>
 										<div class="col-md-6" style="text-align: center;">
-											<button type="submit" class="btn btn-lg login-btn">Sign in</button>
+											<button type="submit" class="btn btn-lg login-btn">
+												<span v-if="isLoading">
+													<img style="height: 20px;" src="../assets/loader_rolling.gif" />
+												</span>
+												 <span v-else>
+												 	Sign in
+												 </span>
+											</button>
 										</div>
 									</div>
 								</form>
@@ -141,21 +148,26 @@
                             email: this.email,
                             password: this.password
                         });
-                        this.$noty.success("Login sucessfull")
-                    } else {
-                    	this.$noty.error("Oops, something went wrong!")
-                    }
-                    // if (this.login_errors != null) {
+                        // this.$noty.success("Login sucessfull")
+                    } 
+                    // else {
                     // 	this.$noty.error("Oops, something went wrong!")
-                    // 	this.$noty.success("Login sucessfull")
-                    // } else {
-                    // 	this.$noty.success("Login sucessfull")
                     // }
+                    if (this.login_errors != null) {
+                    	this.$noty.error("Oops, something went wrong!")
+                    	// this.$noty.success("Login sucessfull")
+                    } else {
+                    	// this.$noty.success("Login sucessfull")
+                    }
                 });
             }
         },
         computed: {
             ...mapState(['login_errors']),
+            ...mapState(['isLoading']),
+            loading(){
+            	return this.isLoading;
+            },
             loginerrors(){
                 // return Object.keys(this.login_errors).length >= 2;
                 return this.login_errors;

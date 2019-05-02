@@ -693,7 +693,6 @@
     width: 100%;
     height: 510px;
   }
-
   .feature_video_sm {
     display: flex;
     flex-direction: column;

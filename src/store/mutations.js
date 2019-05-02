@@ -1,3 +1,8 @@
+import Vue from 'vue';
+import router from '@/router';
+
+Vue.use(router)
+
 export default {
     ALL_EXPERIENCE: (state, payload) => {
       state.experiences = payload.data;
@@ -28,31 +33,39 @@ export default {
     GET_USER_DATA: (state, payload) => {
       state.user_registration_details = payload;
     },
-    REGISTRATION: (payload) => {
-      
-    },
+    REGISTRATION: (payload) => {},
     REGISTRATION_SUCCESS: (state, payload) => {
       state.success = true;
       state.auth = payload;
       localStorage.setItem("auth", JSON.stringify(payload));
+      state.isLoading = false;
     },
     REGISTRATION_ERROR: (state, payload) => {
       state.success = false;
       state.user_registration_errors = payload;
+      state.isLoading= false;
+    },
+    REGISTRATION_LOADING: (state) => {
+      state.isLoading = true;
     },
     LOGIN_SUCCESS: (state, payload) => {
       state.success = true;
       state.auth = payload;
       localStorage.setItem("auth", JSON.stringify(payload));
+      state.isLoading = false;
+    },
+    LOGIN_LOADING: (state) => {
+      state.isLoading = true;
     },
     LOGIN_FAILURE: (state, payload) => {
       state.success = false;
       state.login_errors = payload.error.message;
+      state.isLoading = false;
     },
     USER_LOGOUT: (state) => {
       localStorage.removeItem('auth');
       state.auth = null;
-      router.push('/login');
+      router.push('/signin');
     },
     BOOKING_EXPERIENCE: (state, payload) => {
       state.booking_data = payload;
