@@ -63,8 +63,103 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="average_review_section">
+                            <h2>Average Rating</h2>
+                            <h5>Based on 450 ratings</h5>
+                            <br>
+                            <div class="row">
+                                <div class="col-2"><p class="star_range">5-star</p></div>
+                                <div class="col-8">
+                                    <div class="progress">
+                                      <div class="progress-bar" role="progressbar" style="width: 55%;background-color: #f81894;" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <p class="star_range">456</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2"><p class="star_range">4-star</p></div>
+                                <div class="col-8">
+                                    <div class="progress">
+                                      <div class="progress-bar" role="progressbar" style="width: 75%;background-color: #f81894;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <p class="star_range">621</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2"><p class="star_range">3-star</p></div>
+                                <div class="col-8">
+                                    <div class="progress">
+                                      <div class="progress-bar" role="progressbar" style="width: 35%;background-color: #f81894;" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <p class="star_range">159</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2"><p class="star_range">2-star</p></div>
+                                <div class="col-8">
+                                    <div class="progress">
+                                      <div class="progress-bar" role="progressbar" style="width: 25%;background-color: #f81894;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <p class="star_range">84</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2"><p class="star_range">1-star</p></div>
+                                <div class="col-8">
+                                    <div class="progress">
+                                      <div class="progress-bar" role="progressbar" style="width: 15%;background-color: #f81894;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <p class="star_range">21</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="gst_review_content">
+                            <h2>Reviews</h2>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="guest_review_">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <div class="guest_review_pic"></div>
+                                            </div>
+                                            <div class="col-6">
+                                                <p class="review_name">Barbara Cox</p>
+                                                <p class="review_rev">* * * * * *</p>
+                                                <p class="review_date">It is a long established fact that a reader will be distracted by the readable content</p>
+                                            </div>
+                                            <!-- <div class="col-4">
+                                                <div class="guest_review_cont">
+                                                    <h4>Great</h4>
+                                                    <p>good quality stickers</p>
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="digital_feature blog_part">
+       <!--  <div class="digital_feature blog_part">
             <div class="row">
                 <div class="col-lg-12 review_content">
                     <h4>
@@ -156,7 +251,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 
