@@ -17,7 +17,7 @@
                     <li class="nav-item" v-if="!checkUser"><router-link style="color: #fff !important;" class="nav-link" to="/signin">Sign in</router-link></li>
                     <li class="nav-item" v-if="!checkUser">
                       <router-link style="color: #fff !important;" class="nav-link" to="/signin">
-                        <img src="../assets/message-icon.png" style="height: 34px;" alt="">
+                        <img src="../assets/envelope-2.png" style="height: 24px;" alt="">
                       </router-link>
                     </li>
                     <li class="nav-item" v-if="!checkUser">

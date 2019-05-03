@@ -31,14 +31,26 @@ export default {
     },
     filterRestaurantSearch: ({commit}, data = `${API_BASE}/restaurants`) => {
       // console.log(`https://travvapi.herokuapp.com/api/restaurants?location=${data.search}&min_price=${data.min_price}&max_price=${data.max_price}`)
+      // STILL HOPING IT WILL WORK
+      // return new Promise((resolve, reject) => {
+      //   commit('FILTER_RESTAURANTS_LOADING');
+      //   axios.get(data).then(response => {
+
+      //   }).catch(({err}) => {
+      //     console.log(err);
+      //   })
+      // });
+      commit('IS_LOADING');
       commit('FILTER_RESTAURANTS_LOADING');
       axios.get(data).then(response => {
 
           commit('FILTER_RESTAURANTS', response.data);
+          commit('NOT_LOADING')
         // }, 5000)
       }).catch(({err}) => {
-
+          commit('NOT_LOADING')
       });
+
     },
     filterExperiencesSearch: ({commit}, data = `${API_BASE}/experiences`) => {
       commit('FILTER_EXPERIENCE_LOADING')

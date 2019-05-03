@@ -423,8 +423,12 @@
     .gst_review_content h2 {
         font-weight: bolder;
     }
+    .star_range {
+        font-size: 1.1rem;
+        font-weight: bolder;
+    }
     .progress {
-        height: 1.5rem;
+        height: 2.5rem;
     }
     .guest_review_for_mobile{
         display: none;

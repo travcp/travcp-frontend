@@ -8,9 +8,11 @@
 			</div>
 			<div class="container">
 				<div class="row">
-					<div class="col-md-5">
-						<h2>Average Rating</h2>
-						<p>Based on 450 ratings</p>
+					<div class="col-md-6">
+						<div class="average_content">
+							<h2>Average Rating</h2>
+							<p>Based on 450 ratings</p>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -46,5 +48,11 @@
 	.review_heading h1 {
 		font-weight: bolder;
 		color: #FFF;
+	}
+	.average_content {
+		padding: ;
+	}
+	.average_content h2 {
+		font-weight: bolder;
 	}
 </style>

@@ -4,7 +4,7 @@
             <!-- <router-link :to="'/result-details/'+ experience.id"> -->
             <router-link class="navbar-brand" to="/"><h2>TravvApp</h2></router-link>
             <!-- <slot name="search"></slot> -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="display: inline;width: 50px;">
                 <span style="background: grey;"></span>
                 <span style="background: grey;"></span>
                 <span style="background: grey;"></span>

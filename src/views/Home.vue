@@ -331,7 +331,7 @@
       border-radius: 8px;
       background-color: #f81894;
       color: #FFF;
-      margin-top: -20px;
+      margin-top: 20px;
     }
 
     .no-pad-l {

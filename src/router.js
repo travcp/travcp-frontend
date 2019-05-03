@@ -13,7 +13,9 @@ import Signup from '@/views/Signup.vue';
 import NotFound from '@/views/NotFound.vue';
 import Signin from '@/views/Signin.vue';
 import Review from '@/views/Review.vue';
-
+import EditProfile from '@/views/EditProfile.vue';
+import MerchantExperience from '@/views/MerchantExperience.vue';
+import NewExperience from '@/views/NewExperience.vue';
 
 Vue.use(Router)
 
@@ -105,6 +107,21 @@ export default new Router({
       path: '/dashbaord/review',
       name: 'Review',
       component: Review
+    },
+    {
+      path: '/dashboard/edit-profile',
+      name: 'EditProfile',
+      component: EditProfile
+    },
+    {
+      path: '/dashboard/merchant-experience',
+      name: 'MerchantExperience',
+      component: MerchantExperience
+    },
+    {
+      path: '/dashboard/new-exp',
+      name: 'NewExperience',
+      component: NewExperience
     }
   ]
 });
