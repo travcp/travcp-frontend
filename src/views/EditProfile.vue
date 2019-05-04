@@ -50,7 +50,7 @@
 									Tour with me, Discover Places and experience the culture, its best when you tour with me.
 								</p>
 							</div>
-							<div class="col-2">
+							<div class="col-4" style="padding-top: 22px;text-align: center;">
 								<button type="button" class="btn btn-lg submit_btn">Submit</button>
 							</div>
 						</div>
@@ -88,19 +88,22 @@
 		margin-top: 95px;
 	}
 	.edit-prof-input{
-		border-radius: 40px;
-		border: 1px solid #777;
+		border-radius: 0;
+		border-top: none;
+		border-left: none;
+		border-right: none;
+		border-bottom: 1px solid #777;
 		/*box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;*/
 	}
 	.submit_btn{
 		background: #F81894;
-	      border: none;
-	      font-size: 16px;
-	      width: 120px;
-	      height: 36px;
-	      border-radius: 8px;
-	      background-color: #f81894;
-	      color: #FFF;
+	    border: none;
+	    font-size: 16px;
+	    width: 120px;
+	    height: 36px;
+	    border-radius: 8px;
+	    background-color: #f81894;
+	    color: #FFF;
 	}
 	.edit_profile_content {
 		border: none;

@@ -12,11 +12,12 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-md-12">
+								<br>
 								<button type="button" class="btn btn-lg add_exp_btn">+ Add Experience</button>
 							</div>
-							<div class="col-4">
+							<div class="col-4" style="padding-left: 60px;">
 								<div class="card merchant_experience_card" style="width: 18rem;">
-								  <img class="card-img-top" src="../assets/shibuya.png" alt="Card image cap">
+								  <img class="card-img-top" src="../assets/body_merchant_experience.jpg" alt="Card image cap">
 								  <div class="card-body" style="padding-top: 10px;padding-bottom: 10px;">
 								    <div class="row">
 								    	<div class="col-6">
@@ -29,9 +30,9 @@
 								  </div>
 								</div>
 							</div>
-							<div class="col-4">
+							<div class="col-4" style="padding-left: 60px;">
 								<div class="card merchant_experience_card" style="width: 18rem;">
-								  <img class="card-img-top" src="../assets/shibuya.png" alt="Card image cap">
+								  <img class="card-img-top" src="../assets/body_merchant_experience.jpg" alt="Card image cap">
 								  <div class="card-body" style="padding-top: 10px;padding-bottom: 10px;">
 								    <div class="row">
 								    	<div class="col-6">
@@ -44,9 +45,9 @@
 								  </div>
 								</div>
 							</div>
-							<div class="col-4">
+							<div class="col-4" style="padding-left: 60px;">
 								<div class="card merchant_experience_card" style="width: 18rem;">
-								  <img class="card-img-top" src="../assets/shibuya.png" alt="Card image cap">
+								  <img class="card-img-top" src="../assets/body_merchant_experience.jpg" alt="Card image cap">
 								  <div class="card-body" style="padding-top: 10px;padding-bottom: 10px;">
 								    <div class="row">
 								    	<div class="col-6">
@@ -59,9 +60,9 @@
 								  </div>
 								</div>
 							</div>
-							<div class="col-4">
+							<div class="col-4" style="padding-left: 60px;">
 								<div class="card merchant_experience_card" style="width: 18rem;">
-								  <img class="card-img-top" src="../assets/shibuya.png" alt="Card image cap">
+								  <img class="card-img-top" src="../assets/body_merchant_experience.jpg" alt="Card image cap">
 								  <div class="card-body" style="padding-top: 10px;padding-bottom: 10px;">
 								    <div class="row">
 								    	<div class="col-6">
@@ -74,9 +75,9 @@
 								  </div>
 								</div>
 							</div>
-							<div class="col-4">
+							<div class="col-4" style="padding-left: 60px;">
 								<div class="card merchant_experience_card" style="width: 18rem;">
-								  <img class="card-img-top" src="../assets/shibuya.png" alt="Card image cap">
+								  <img class="card-img-top" src="../assets/body_merchant_experience.jpg" alt="Card image cap">
 								  <div class="card-body" style="padding-top: 10px;padding-bottom: 10px;">
 								    <div class="row">
 								    	<div class="col-6">
@@ -89,9 +90,9 @@
 								  </div>
 								</div>
 							</div>
-							<div class="col-4">
+							<div class="col-4" style="padding-left: 60px;">
 								<div class="card merchant_experience_card" style="width: 18rem;">
-								  <img class="card-img-top" src="../assets/shibuya.png" alt="Card image cap">
+								  <img class="card-img-top" src="../assets/body_merchant_experience.jpg" alt="Card image cap">
 								  <div class="card-body" style="padding-top: 10px;padding-bottom: 10px;">
 								    <div class="row">
 								    	<div class="col-6">
@@ -130,7 +131,7 @@
 		margin-top: 92px;
 		text-align: center;
 		padding: 90px;
-		background: url('../assets/shibuya.png');
+		background: url('../assets/head_merchant_experience.jpg');
 	    background-position: center;
 	    background-size: cover;
 	    background-repeat: no-repeat;
