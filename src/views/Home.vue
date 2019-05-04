@@ -11,7 +11,7 @@
           <div class="container">
             <div class="row">
               <div class="col-lg-4" style="text-align: center;">
-                <img src="../assets/Icons/add-listing.svg" />
+                <img src="../assets/Icons/add-listing.svg" style="height: 125px; width: 125px;" />
                 <p class="title">Add Listing</p>  
                 <!-- <div class="c_box_item">
                 </div> -->
@@ -19,7 +19,7 @@
                 </div>
               </div>
               <div class="col-lg-4" style="text-align: center;">
-                  <img src="../assets/Icons/compass.svg" style="height: 131px;" />
+                  <img src="../assets/Icons/compass.svg" style="height: 125px;" />
                   <p class="title">Explore Places</p>
                 <!-- <div class="c_box_item">
                   <p class="title">Explore Places</p>
@@ -29,7 +29,7 @@
                 </div>
               </div>
               <div class="col-lg-4 no-pad-r" style="text-align: center;">
-                  <img src="../assets/Icons/security.svg" />
+                  <img src="../assets/Icons/security.svg" style="height: 125px;" />
                   <p class="title">Get Security Updates</p>
                 <!-- <div class="c_box_item">
                   <p class="title">Get Security Updates</p>
