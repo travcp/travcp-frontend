@@ -12,7 +12,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item"><a class="nav-link" href="#">Add Listings</a></li>
-                    <li class="nav-item"><a  href="static.html">Videos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Videos</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Bookings</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Help</a></li>                    
                     <li class="nav-item" v-if="!checkUser"><router-link style="color: #000 !important;" class="nav-link" to="/signin">Sign in</router-link></li>                    
