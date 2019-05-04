@@ -13,7 +13,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<br>
-								<button type="button" class="btn btn-lg add_exp_btn">+ Add Experience</button>
+								<router-link to="/dashboard/new-exp" style="text-decoration: none;"><button type="button" class="btn btn-lg add_exp_btn">+ Add Experience</button></router-link>
 							</div>
 							<div class="col-4" style="padding-left: 60px;">
 								<div class="card merchant_experience_card" style="width: 18rem;">

@@ -11,7 +11,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item"><a class="nav-link nav-item-color" href="#">Add Listings</a></li>
+
+                    <li class="nav-item">
+                      <router-link class="nav-link nav-item-color" to="/dashboard/new-exp">Add Listings</router-link>
+                    </li>
                     <li class="nav-item"><a class="nav-link nav-item-color" href="#">Videos</a></li>
                     <li class="nav-item"><a class="nav-link nav-item-color" href="#">Bookings</a></li>
                     <li class="nav-item"><a class="nav-link nav-item-color" href="#">Help</a></li>  
@@ -41,7 +44,7 @@
                         <!-- <a class="dropdown-item drp_pd" href="#">Profile <span class="badge badge-info">Comming Soon</span></a> -->
                         <router-link class="dropdown-item drp_pd" to="/dashboard/edit-profile">Profile</router-link>
                         <router-link class="dropdown-item drp_pd" to="/dashboard/merchant-experience">Experiences</router-link>
-                        <router-link class="dropdown-item drp_pd" to="/dashboard/new-exp">New Experiences</router-link>
+                        <!-- <router-link class="dropdown-item drp_pd" to="/dashboard/new-exp">New Experiences</router-link> -->
                         <a class="dropdown-item drp_pd" href="#">Payment <span class="badge badge-info">Comming Soon</span></a>
                         <a class="dropdown-item drp_pd" href="#">Settings <span class="badge badge-info">Comming Soon</span></a>
                         <a class="dropdown-item drp_pd" href="#" @click="logout">Sign out</a>

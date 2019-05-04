@@ -5,7 +5,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<div class="card" style="width: 100%;background: #eee;">
+						<div class="card" style="width: 100%;border: none;">
 						  <div class="card-body">
 						    <div class="row">
 						    	<div class="col-12">
@@ -15,34 +15,88 @@
 						    				<div class="col-8">
 								    			<div class="row">
 								    				<div class="form-group col-6">
+														<label for="">Select Experience Type</label>
+														<select id="inputState" class="form-control new_experience_input">
+													        <option selected>Select</option>
+													        <option>An Experience Here</option>
+													      </select>
+													</div>
+								    				<div class="form-group col-6">
+														<label for="">About the experience designer</label>
+														<textarea cols="30" rows="10" class="form-control"></textarea>
+													</div>
+													<div class="form-group col-6">
+														  <label class="">City</label>
+														  <input type="text" class="form-control new_experience_input" placeholder="City">
+													</div> <br> <br>
+													<div class="form-group col-6">
+														  <label class="">Offerings on tour ( drinks, snacks, etc)</label>
+														  <input type="text" class="form-control new_experience_input" placeholder="Offerings on tour ( drinks, snacks, etc)">
+													</div>
+								    				<div class="form-group col-6">
+														<label for="">Language</label>
+														<select id="inputState" class="form-control new_experience_input">
+													        <option selected>Select</option>
+													        <option>English</option>
+													      </select>
+													</div>
+								    				<div class="form-group col-6">
+														<label for="">Short descriptions of the experience</label>
+														<textarea cols="30" rows="10" class="form-control"></textarea>
+													</div>
+								    				<div class="form-group col-6">
+														<label for="">Pictures</label>
+														<input type="file" class="form-control" name="" multiple="true">
+													</div>
+													<div class="form-group col-6">
+														  <label class="">Price in Naira, Dollars and Pounds</label>
+														  <input type="text" class="form-control new_experience_input" placeholder="$200,000">
+													</div>
+													<div class="form-group col-6">
+														  <label class="">Dates and time</label>
+														  <input type="text" class="form-control new_experience_input" placeholder="Date and time">
+													</div>
+													<div class="form-group col-6">
+														  <label class="">Where they would meet up with clients with map</label>
+														  <input type="text" class="form-control new_experience_input" placeholder="Where they would meet up with clients with map">
+													</div>
+													<div class="form-group col-6">
+														  <label class="">What tourists should bring along</label>
+														  <input type="text" class="form-control new_experience_input" placeholder="What tourists should bring along">
+													</div>
+													<div class="form-group col-6">
+														  <label class="">Itinerary for the experience</label>
+														  <input type="text" class="form-control new_experience_input" placeholder="Itinerary for the experience">
+													</div>
+													<div class="form-group col-6">
+														  <label class="">Number that each tour can admit</label>
+														  <input type="text" class="form-control new_experience_input" placeholder="Number that each tour can admit">
+													</div>
+								    				<!-- <div class="form-group col-6">
 														<label for="">Category</label>
 														<select id="inputState" class="form-control new_experience_input">
 													        <option selected>Select</option>
 													        <option>a category here</option>
 													      </select>
-													</div>
-													<div class="form-group col-6">
+													</div> -->
+													<!-- <div class="form-group col-6">
 														<div class="custom-file">
 														  <input type="file" class="custom-file-input" id="customFile">
 														  <label class="custom-file-label" for="customFile">Upload Image</label>
 														</div>
-													</div>
-													<div class="form-group col-6">
+													</div> -->
+													<!-- <div class="form-group col-6">
 														  <label class="">Title</label>
 														  <input type="text" class="form-control new_experience_input" placeholder="TravvApp Inc.">
-													</div>
+													</div> -->
 													<div class="col-6"></div>
-													<div class="form-group col-6">
-														  <label class="">Price</label>
-														  <input type="text" class="form-control new_experience_input" placeholder="$200,000">
-													</div>
 													<div class="col-6"></div>
-													<div class="col-12">
+													<!-- <div class="col-12">
 														  <h5>More Info</h5>
 														  <p>
 														  	asldiasjdaospd aspdas pdasjdpoijaspd sa dasoipdjspo asdf siofdsfidasf[0awpfne pa asdifasdlmfap fda fpsdf apfsidp]
 														  </p>
-													</div>
+													</div> -->
 													<!-- <div class="col-8"></div> -->
 								    			</div>
 						    				</div>
@@ -79,7 +133,7 @@
 </script>
 
 <style>
-	.new_experience{
+	.new_experience {
 		margin-top: 97px;
 
 	}
@@ -94,12 +148,16 @@
 		font-size: 21px;
 	}
 	.new_experience_input {
-		border-bottom: none;
-		background-image: linear-gradient(to top, #989a9f, #adaeb2, #c3c3c6, #d8d8da, #eeeeee);
+		/*border-bottom: none;*/
+		/*background-image: linear-gradient(to top, #989a9f, #adaeb2, #c3c3c6, #d8d8da, #eeeeee);*/
 		border-radius: 4px;
-		box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+		/*box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;*/
 		height: 50px;
 		font-size: 18px;
+		border-radius: 0;
+	    border-top: none;
+	    border-left: none;
+	    border-right: none;
 	}
 	.uploaded_image {
 		border: 3px solid #c3c3c6;
@@ -110,14 +168,20 @@
 	    background-size: cover;
 	    background-repeat: no-repeat;
 	}
-	.submit_exp_btn{
+	.submit_exp_btn {
 		background: #F81894;
-	      border: none;
-	      font-size: 16px;
-	      width: 120px;
-	      height: 36px;
-	      border-radius: 8px;
-	      background-color: #f81894;
-	      color: #FFF;
+	    border: none;
+	    font-size: 16px;
+	    width: 120px;
+	    height: 36px;
+	    border-radius: 8px;
+	    background-color: #f81894;
+	    color: #FFF;
+	}
+	textarea.form-control {
+		border-top: none;
+	    border-left: none;
+	    border-right: none;
+        height: 70px;
 	}
 </style>
