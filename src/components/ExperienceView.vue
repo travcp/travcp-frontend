@@ -426,6 +426,7 @@
     .star_range {
         font-size: 1.1rem;
         font-weight: bolder;
+        margin-bottom: 5px;
     }
     .progress {
         height: 2.5rem;

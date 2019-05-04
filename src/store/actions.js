@@ -79,7 +79,7 @@ export default {
     },
     async userLogin ({commit}, data) {
       commit('LOGIN_LOADING');
-		      await axios.post(`${API_BASE}/auth/login`, {
+		  await axios.post(`${API_BASE}/auth/login`, {
         		"email" : data.email,
 			     "password" : data.password
 		      }).then(res => {

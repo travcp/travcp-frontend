@@ -38,6 +38,9 @@
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Dashboard</a>
                         <a class="dropdown-item" href="#">Profile</a>
+                        <router-link class="dropdown-item" to="/dashboard/edit-profile">Profile</router-link>
+                        <router-link class="dropdown-item" to="/dashboard/merchant-experience">Experiences</router-link>
+                        <router-link class="dropdown-item" to="/dashboard/new-exp">New Experiences</router-link>
                         <a class="dropdown-item" href="#">Experiences</a>
                         <a class="dropdown-item" href="#">Payment</a>
                         <a class="dropdown-item" href="#">Settings</a>
