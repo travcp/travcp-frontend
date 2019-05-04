@@ -150,15 +150,15 @@
                         });
                         // this.$noty.success("Login sucessfull")
                     } 
-                    // else {
-                    // 	this.$noty.error("Oops, something went wrong!")
-                    // }
-                    if (this.login_errors != null) {
+                    else {
                     	this.$noty.error("Oops, something went wrong!")
-                    	// this.$noty.success("Login sucessfull")
-                    } else {
-                    	// this.$noty.success("Login sucessfull")
                     }
+                    // if (this.login_errors != null) {
+                    // 	this.$noty.error("Oops, something went wrong!")
+                    // 	// this.$noty.success("Login sucessfull")
+                    // } else {
+                    // 	// this.$noty.success("Login sucessfull")
+                    // }
                 });
             }
         },
@@ -222,7 +222,7 @@
 	    margin-bottom: 100px;
 	}
 	.signin-image-holder {
-    background: url(../assets/signin_hero_image.jpg) no-repeat;
-    background-size: cover;
+	    background: url(../assets/signin_hero_image.jpg) no-repeat;
+	    background-size: cover;
 	}
 </style>
