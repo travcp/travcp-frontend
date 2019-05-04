@@ -89,8 +89,8 @@
 	}
 	.edit-prof-input{
 		border-radius: 40px;
-		border: 1px solid grey;
-		box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+		border: 1px solid #777;
+		/*box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;*/
 	}
 	.submit_btn{
 		background: #F81894;
