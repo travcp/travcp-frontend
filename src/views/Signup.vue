@@ -1,11 +1,12 @@
 <template>
-	
-		<div class="wrapper">
-			<div class="image-holder">
-				<!-- <img src="../assets/shibuya.png" alt="Sign up image"> -->
-				<div class="image-holder-inner-text">
-					<!-- <h2>Find a Unique Spot</h2> <br>
-					<p>With TravvApp, you get to book unique <br> spots, Experineces and also order <br> Souvernirs straight from your home.</p> -->
+  <div>
+    <Navbar />
+    <div class="wrapper">
+      <div class="image-holder signup-image-holder">
+        <!-- <img src="../assets/shibuya.png" alt="Sign up image"> -->
+        <div class="image-holder-inner-text">
+          <!-- <h2>Find a Unique Spot</h2> <br>
+          <p>With TravvApp, you get to book unique <br> spots, Experineces and also order <br> Souvernirs straight from your home.</p> -->
           <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="display: block">
               <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -15,24 +16,24 @@
               <div class="carousel-inner" role="listbox">
                 <!-- Slide One - Set the background image for this slide in the line below -->
                 <div class="carousel-item active">
-                	<h2>Find a Unique Spot</h2> <br>
-                	<p>With TravvApp, you get to book unique <br> spots, Experineces and also order <br> Souvernirs straight from your home.</p>
+                  <h2>Find a Unique Spot</h2> <br>
+                  <p>With TravvApp, you get to book unique <br> spots, Experineces and also order <br> Souvernirs straight from your home.</p>
                   <div class="carousel-caption d-none d-md-block">
                     <!-- <h2 class="display-4">First Slide</h2> -->
                   </div>
                 </div>
                 <!-- Slide Two - Set the background image for this slide in the line below -->
                 <div class="carousel-item">
-                	<h2>Find a Unique Spot</h2> <br>
-                	<p>With TravvApp, you get to book unique <br> spots, Experineces and also order <br> Souvernirs straight from your home.</p>
+                  <h2>Find a Unique Spot</h2> <br>
+                  <p>With TravvApp, you get to book unique <br> spots, Experineces and also order <br> Souvernirs straight from your home.</p>
                   <div class="carousel-caption d-none d-md-block">
                     <!-- <h2 class="display-4">Second Slide</h2> -->
                   </div>
                 </div>
                 <!-- Slide Three - Set the background image for this slide in the line below -->
                 <div class="carousel-item">
-                	<h2>Find a Unique Spot</h2> <br>
-                	<p>With TravvApp, you get to book unique <br> spots, Experineces and also order <br> Souvernirs straight from your home.</p>
+                  <h2>Find a Unique Spot</h2> <br>
+                  <p>With TravvApp, you get to book unique <br> spots, Experineces and also order <br> Souvernirs straight from your home.</p>
                   <div class="carousel-caption d-none d-md-block">
                     <!-- <h2 class="display-4">Third Slide</h2> -->
                   </div>
@@ -40,79 +41,80 @@
               </div>
               <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
                     <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span> -->
-          			<button class="btn btn-primary" style="background-color: grey;border-color: grey;border-radius: 100px;">
-          				-->
-          			</button>
+                <button class="btn btn-primary" style="background-color: grey;border-color: grey;border-radius: 100px;">
+                  -->
+                </button>
                     <span class="sr-only">
                     </span>
                   </a>
           </div>
-				</div>
-			</div>
-			<div class="form-inner">
-				<div class="row">
-					<div class="col-md-12" style="text-align: right;">
-						<div class="btn-group toggle-user btn-group-toggle" data-toggle="buttons">
-						  <label class="btn br-update" style="background: grey;color: #FFF;">
-						    <input type="radio" name="options" id="option1" autocomplete="off" checked> Merchant
-						  </label>
-						  <label class="btn active br-update" style="background: #F81894;color: #FFF;">
-						    <input type="radio" name="options" id="option2" autocomplete="off"> User
-						  </label>
-						</div>
-					</div>
-					<div class="col-md-12">
-						<form @submit.prevent="formSubmit">
-							<div class="form-header">
-								<h3>Sign up</h3>
+        </div>
+      </div>
+      <div class="form-inner">
+        <div class="container">
+        <div class="row">
+          <div class="col-md-12" style="text-align: right;">
+            <!-- <div class="btn-group toggle-user btn-group-toggle" data-toggle="buttons">
+              <label class="btn br-update" style="background: grey;color: #FFF;">
+                <input type="radio" name="options" id="option1" autocomplete="off" checked> Merchant
+              </label>
+              <label class="btn active br-update" style="background: #F81894;color: #FFF;">
+                <input type="radio" name="options" id="option2" autocomplete="off"> User
+              </label>
+            </div> -->
+          </div>
+          <div class="col-md-12">
+            <form @submit.prevent="formSubmit">
+              <div class="form-header">
+                <h3>Sign up</h3>
 
 
-								<div class="alert alert-danger" role="alert" v-if="user_errors">
-								  {{ user_errors.errors.email[0] }}
-								</div>
-							</div>
-							<div class="row">
-								<div class="form-group col-md-5">
-									<label for="">First Name</label>
-									<input  v-validate="'required'" v-model="first_name" type="text" name="first_name" class="form-control signin-input" placeholder="Micheal">
-								</div>
-								<div class="form-group col-md-5">
-									<label for="">Last Name</label>
-									<input v-model="surname" type="text" class="form-control signin-input" placeholder="Jackson">
-								</div>
-							</div>
+                <div class="alert alert-danger" role="alert" v-if="user_errors">
+                  {{ user_errors.errors.email[0] }}
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-12">
+                  <label for="">First Name</label>
+                  <input  v-validate="'required'" v-model="first_name" type="text" name="first_name" class="form-control signin-input" placeholder="Micheal">
+                </div>
+                <div class="form-group col-md-12">
+                  <label for="">Last Name</label>
+                  <input v-model="surname" type="text" class="form-control signin-input" placeholder="Jackson">
+                </div>
+              </div>
 
-							<div class="row">
-								<div class="form-group col-md-10">
-									<label for="">Choose your Username</label>
-									<input type="text" class="form-control signin-input" placeholder="JohnXYZ.">
-								</div>
-							</div>
-							
-							<div class="row">
-								<div class="form-group col-md-10">
-									<label for="">Email</label>
-									<input v-validate="'required|email'" v-model="email" type="email" name="email" class="form-control signin-input" placeholder="Enter a valid email address">
-								</div>
-							</div>
+              <!-- <div class="row">
+                <div class="form-group col-md-12">
+                  <label for="">Choose your Username</label>
+                  <input type="text" class="form-control signin-input" placeholder="JohnXYZ.">
+                </div>
+              </div> -->
+              
+              <div class="row">
+                <div class="form-group col-md-12">
+                  <label for="">Email</label>
+                  <input v-validate="'required|email'" v-model="email" type="email" name="email" class="form-control signin-input" placeholder="Enter a valid email address">
+                </div>
+              </div>
 
-							<div class="row">
-								<div class="form-group col-md-10">
-									<label for="">Password</label>
-									<input v-validate="'required|min:6'" type="password" v-model="password" name="password"  class="form-control signin-input" placeholder="********">
-								</div>
-							</div>
-							
-							<div class="container">
-								<div class="row">
-									<div class="col-md-10">
-										<div class="form-check form-check-inline">
-										  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-										  <label class="form-check-label" for="inlineCheckbox1">I agree to the following <a href="#">Terms and Conditions</a> </label>
-										</div>
-									</div>
-									<div class="col-md-10" style="text-align: center">
-										<button type="submit" class="btn btn-lg signup-btn">
+              <div class="row">
+                <div class="form-group col-md-12">
+                  <label for="">Password</label>
+                  <input v-validate="'required|min:6'" type="password" v-model="password" name="password"  class="form-control signin-input" placeholder="********">
+                </div>
+              </div>
+              
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                      <label class="form-check-label" for="inlineCheckbox1">I agree to the following <a href="#">Terms and Conditions</a> </label>
+                    </div>
+                  </div>
+                  <div class="col-md-12" style="text-align: center">
+                    <button type="submit" class="btn btn-lg signup-btn">
                       <span v-if="isLoading">
                         <img style="height: 20px;" src="../assets/loader_rolling.gif" />
                       </span>
@@ -120,22 +122,28 @@
                         Sign up
                       </span>
                     </button>
-									</div>
-								</div>
-								
-							</div>
+                  </div>
+                </div>
+                
+              </div>
 
-						</form>
-					</div>
-				</div>
-			</div>
-			
-		</div>
+            </form>
+            <br>
+            <h6 style="text-align: center;">Already a Member ? <router-link to="/signin">Sign in</router-link></h6>
+          </div>
+        </div>
+          
+        </div>
+      </div>
+      
+    </div>
+  </div>
 
 </template>
 
 <script>
   import { mapState, mapActions, mapGetters, mapMutations } from 'vuex';
+  import Navbar from '@/components/Navbar.vue';
 
 	export default {
 		name: 'Signup',
@@ -185,6 +193,9 @@
             user_errors() {
                 return this.user_registration_errors;
             }
+        },
+        components: {
+          Navbar
         }
 	}
 </script>
@@ -291,5 +302,13 @@ label {
     .wrapper .form-inner {
         width: 100%;
     }
+  }
+  .signup-image-holder {
+      background: url(../assets/signin_hero_image.jpg) no-repeat;
+      background-size: cover;
+  }
+  .form-header {
+    margin-bottom: 19px;
+    margin-top: 39px;
   }
 </style>

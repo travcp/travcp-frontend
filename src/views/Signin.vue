@@ -1,5 +1,6 @@
 <template>
-	
+		<div>
+		<Navbar />
 		<div class="wrapper">
 			<div class="image-holder signin-image-holder">
 				<!-- <img src="../assets/shibuya.png" alt="Sign up image"> -->
@@ -51,14 +52,14 @@
 					<div class="col-md-12 signin-form">
 						<div class="row">
 							<div class="col-md-12" style="text-align: right;">
-								<div class="btn-group toggle-user btn-group-toggle" data-toggle="buttons">
+								<!-- <div class="btn-group toggle-user btn-group-toggle" data-toggle="buttons">
 								  <label class="btn br-update" style="background: grey;color: #FFF;">
 								    <input type="radio" name="options" id="option1" autocomplete="off" checked> Merchant
 								  </label>
 								  <label class="btn active br-update" style="background: #F81894;color: #FFF;">
 								    <input type="radio" name="options" id="option2" autocomplete="off"> User
 								  </label>
-								</div>
+								</div> -->
 							</div>
 										<br>
 							<div class="col-md-12">
@@ -111,6 +112,8 @@
 			</div>
 			
 		</div>
+			
+		</div>
 
 </template>
 
@@ -120,6 +123,7 @@
         mapActions,
         mapGetters
     } from 'vuex';
+    import Navbar from '@/components/Navbar.vue';
 
     export default {
         name: 'Signin',
@@ -177,6 +181,9 @@
                     return this.loginerrors.error.message
                 }
             }
+        },
+        components: {
+        	Navbar
         }
     }
 </script>
@@ -189,7 +196,7 @@
 		border-radius: 15px;
 		height: 100%;
 		width: 750px;
-		padding: 40px 10px 10px 10px;
+	    padding: 130px 10px 10px 10px;
 	}
 	.login-btn{
 	    background: #F81894;

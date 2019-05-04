@@ -11,23 +11,24 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">Add Listings</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Videos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Bookings</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Help</a></li>                    
+                    <li class="nav-item"><a class="nav-link nav-item-color" href="#">Add Listings</a></li>
+                    <li class="nav-item"><a class="nav-link nav-item-color" href="#">Videos</a></li>
+                    <li class="nav-item"><a class="nav-link nav-item-color" href="#">Bookings</a></li>
+                    <li class="nav-item"><a class="nav-link nav-item-color" href="#">Help</a></li>  
+
                     <li class="nav-item" v-if="!checkUser"><router-link style="color: #000 !important;" class="nav-link" to="/signin">Sign in</router-link></li>                    
                     <!-- <li class="nav-item" v-if="!checkUser"><router-link style="color: #000 !important;" class="nav-link" to="/signup">Sign up</router-link></li> -->
-                    <li class="nav-item" v-if="checkUser"><button style="color: #000 !important;background:none;border: none;" class="nav-link">Hi {{ username }}</button></li>
-                    <li class="nav-item" @click="logout" v-if="checkUser">
+                    <!-- <li class="nav-item" v-if="checkUser"><button style="color: #000 !important;background:none;border: none;" class="nav-link">Hi {{ username }}</button></li> -->
+                    <!-- <li class="nav-item" @click="logout" v-if="checkUser">
                       <a style="color: #000 !important;" class="nav-link" href="#">Log out</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item" v-if="checkUser">
-                      <router-link style="color: #fff !important;" class="nav-link" to="/signin">
+                      <router-link style="color: #fff !important;" class="nav-link" to="/">
                         <img src="../assets/envelope-2.png" style="height: 24px;" alt="">
                       </router-link>
                     </li>
                     <li class="nav-item" v-if="checkUser">
-                      <router-link style="color: #fff !important;" class="nav-link" to="/signin">
+                      <router-link style="color: #fff !important;" class="nav-link" to="/">
                         <img src="../assets/bell-icon-2.png" style="height: 24px;" alt="">
                       </router-link>
                     </li>
@@ -43,7 +44,7 @@
                         <router-link class="dropdown-item drp_pd" to="/dashboard/new-exp">New Experiences</router-link>
                         <a class="dropdown-item drp_pd" href="#">Payment <span class="badge badge-info">Comming Soon</span></a>
                         <a class="dropdown-item drp_pd" href="#">Settings <span class="badge badge-info">Comming Soon</span></a>
-                        <a class="dropdown-item drp_pd" href="#">Sign out <span class="badge badge-info">Comming Soon</span></a>
+                        <a class="dropdown-item drp_pd" href="#" @click="logout">Sign out</a>
                       </div>
                     </li>
                 </ul>

@@ -385,6 +385,9 @@
   }
 
   @media only screen and (max-width: 576px) {
+    .main_menu_area .navbar .navbar-nav li a.nav-item-color {
+        color: #FFF !important;
+    }
     .toggle-sec-nav {
       display: block;
     }

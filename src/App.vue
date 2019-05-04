@@ -41,4 +41,8 @@ export default {
 * {
   font-family: MuseoSans !important;
 }
+.navbar-light .navbar-toggler {
+    color: rgba(0,0,0,.5);
+     border-color: none; 
+}
 </style>
