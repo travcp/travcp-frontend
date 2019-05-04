@@ -12,15 +12,15 @@
             <div class="row">
               <div class="col-lg-4" style="text-align: center;">
                 <img src="../assets/Icons/add-listing.svg" style="height: 125px; width: 125px;" />
-                <p class="title">Add Listing</p>  
+                <p class="title">Add Listing</p>
                 <!-- <div class="c_box_item">
                 </div> -->
                 <div>
                 </div>
               </div>
               <div class="col-lg-4" style="text-align: center;">
-                  <img src="../assets/Icons/compass.svg" style="height: 125px;" />
-                  <p class="title">Explore Places</p>
+                <img src="../assets/Icons/compass.svg" style="height: 125px;" />
+                <p class="title">Explore Places</p>
                 <!-- <div class="c_box_item">
                   <p class="title">Explore Places</p>
                 </div> -->
@@ -29,8 +29,8 @@
                 </div>
               </div>
               <div class="col-lg-4 no-pad-r" style="text-align: center;">
-                  <img src="../assets/Icons/security.svg" style="height: 125px;" />
-                  <p class="title">Get Security Updates</p>
+                <img src="../assets/Icons/security.svg" style="height: 125px;" />
+                <p class="title">Get Security Updates</p>
                 <!-- <div class="c_box_item">
                   <p class="title">Get Security Updates</p>
                 </div> -->
@@ -136,7 +136,11 @@
   import HomeNavbar from '@/components/HomeNavbar.vue';
   import Sliderarea from '@/components/Sliderarea.vue'
   import SecondNav from '@/components/SecondNav.vue';
-  import { mapState, mapGetters, mapActions } from 'vuex';
+  import {
+    mapState,
+    mapGetters,
+    mapActions
+  } from 'vuex';
   export default {
     name: 'home',
     components: {
@@ -149,9 +153,11 @@
       LatestPosts,
       SecondNav
     },
-    data: function(){return{
-      // experiences: []
-    }},
+    data: function () {
+      return {
+        // experiences: []
+      }
+    },
     methods: {
       ...mapActions(['getExperiences']),
       ...mapActions(['getRestaurants'])
@@ -160,15 +166,15 @@
       ...mapState(['experiences']),
       ...mapGetters(['allExperiences']),
       ...mapState(['restaurants']),
-      topRatedExp: function(){
+      topRatedExp: function () {
         // let exp = this.allExperiences;
         return this.experiences.slice(0, 3);
       },
-      featuredrest: function(){
+      featuredrest: function () {
         return this.restaurants.slice(0, 3);
       }
     },
-    created: function(){
+    created: function () {
       this.getExperiences();
       this.getRestaurants();
       // this.experiences = this.allExperiences;
@@ -187,18 +193,23 @@
   header.main_menu_area {
     z-index: 12213;
   }
-  .toggleFirstNav{
+
+  .toggleFirstNav {
     display: none;
   }
-  .main_menu_area .navbar .navbar-nav{
+
+  .main_menu_area .navbar .navbar-nav {
     width: 100%;
   }
+
   .main_menu_area .navbar .navbar-nav li a {
-        color: #FFF !important;
-    }
-    .navbar-brand {
-        color: #FFF !important;
-    }
+    color: #FFF !important;
+  }
+
+  .navbar-brand {
+    color: #FFF !important;
+  }
+
   .carousel1 {
     display: none;
   }
@@ -233,21 +244,26 @@
     padding-right: 18px;
     text-align: center;
   }
-  .secondNavTitle{
+
+  .secondNavTitle {
     width: 100%;
     text-align: center;
   }
-  .secondNavTitle h3, .secondNavTitle h3 span {
+
+  .secondNavTitle h3,
+  .secondNavTitle h3 span {
     font-family: MuseoSans700 !important;
     font-size: 23px;
     font-weight: bolder;
     font-style: normal;
     font-stretch: normal;
   }
+
   .navbar-brand {
     color: #FFF !important;
   }
-  .vertical-divider{
+
+  .vertical-divider {
     width: 1px;
     height: 21px;
     background: #f81894;
@@ -256,6 +272,7 @@
     float: right;
     left: 100px;
   }
+
   .main_menu_area .navbar .navbar-nav li a {
     color: #FFF !important;
   }
@@ -283,9 +300,10 @@
   }
 
   @media only screen and (max-height: 622px) {
-    .navbar-toggler{
+    .navbar-toggler {
       width: 45px;
     }
+
     .c_feature_box {
       margin-top: 20px !important;
     }
@@ -367,12 +385,14 @@
   }
 
   @media only screen and (max-width: 576px) {
-    .toggle-sec-nav{
+    .toggle-sec-nav {
       display: block;
     }
-    .toggleFirstNav{
+
+    .toggleFirstNav {
       display: none;
     }
+
     header.main_menu_area {
       padding-left: 8px !important;
       padding-right: 8px !important;
@@ -544,6 +564,7 @@
     line-height: 1.5;
     letter-spacing: normal;
     color: #f81894;
+    text-align: right;
   }
 
   /* .img-round {
@@ -688,14 +709,17 @@
     color: #ffffff;
     padding: 16px 0 15px 25px;
   }
+
   button.btn.btn-travv.toggle-display-sm {
     margin-bottom: 4px;
     width: 100%;
   }
+
   .feature_video_lg {
     width: 100%;
     height: 510px;
   }
+
   .feature_video_sm {
     display: flex;
     flex-direction: column;
