@@ -127,8 +127,6 @@
         background: #F81894;
         border: none;
         /* padding: 44px 29px 39px 25px; */
-
-        
         font-family: MuseoSans700;
         font-size: 18px;
         width: 175px;
@@ -136,6 +134,7 @@
         border-radius: 8px;
         background-color: #f81894;
         color: #FFF;
+        margin-top: 20px;
     }
 
     .cont-btn:focus {
