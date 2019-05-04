@@ -34,12 +34,14 @@
                         <img src="../assets/profile_2.png" class="rounded-circle" style="height: 50px;">
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Dashboard</a>
-                        <a class="dropdown-item" href="#">Profile</a>
-                        <a class="dropdown-item" href="#">Experiences</a>
-                        <a class="dropdown-item" href="#">Payment</a>
-                        <a class="dropdown-item" href="#">Settings</a>
-                        <a class="dropdown-item" href="#">Sign out</a>
+                        <a class="dropdown-item" href="#">Dashboard <span class="badge badge-info">Comming Soon</span></a>
+                        <a class="dropdown-item" href="#">Profile <span class="badge badge-info">Comming Soon</span></a>
+                        <router-link class="dropdown-item" to="/dashboard/edit-profile">Profile</router-link>
+                        <router-link class="dropdown-item" to="/dashboard/merchant-experience">Experiences</router-link>
+                        <router-link class="dropdown-item" to="/dashboard/new-exp">New Experiences</router-link>
+                        <a class="dropdown-item" href="#">Payment <span class="badge badge-info">Comming Soon</span></a>
+                        <a class="dropdown-item" href="#">Settings <span class="badge badge-info">Comming Soon</span></a>
+                        <a class="dropdown-item" href="#">Sign out <span class="badge badge-info">Comming Soon</span></a>
                       </div>
                     </li>
                 </ul>
