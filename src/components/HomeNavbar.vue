@@ -26,22 +26,22 @@
                       </router-link>
                     </li>
 
-                   <!--  <li class="nav-item" v-if="!checkUser"><router-link style="color: #fff !important;" class="nav-link" to="/signup">Sign up</router-link></li> -->
+
                     <li class="nav-item" v-if="checkUser"><button style="color: #fff !important;background:none;border: none;" class="nav-link">Hi {{ username }}</button></li>
                     <li class="nav-item" @click="logout" v-if="checkUser"><a style="color: #fff !important;" class="nav-link" href="#">Log out</a></li>
                     <li class="nav-item dropdown" v-if="checkUser">
                       <a class="nav-link dropdown-toggle" href="#" style="color: #fff !important;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img src="../assets/profile_2.png" class="rounded-circle" style="height: 50px;">
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Dashboard <span class="badge badge-info">Comming Soon</span></a>
-                        <a class="dropdown-item" href="#">Profile <span class="badge badge-info">Comming Soon</span></a>
-                        <router-link class="dropdown-item" to="/dashboard/edit-profile">Profile</router-link>
-                        <router-link class="dropdown-item" to="/dashboard/merchant-experience">Experiences</router-link>
-                        <router-link class="dropdown-item" to="/dashboard/new-exp">New Experiences</router-link>
-                        <a class="dropdown-item" href="#">Payment <span class="badge badge-info">Comming Soon</span></a>
-                        <a class="dropdown-item" href="#">Settings <span class="badge badge-info">Comming Soon</span></a>
-                        <a class="dropdown-item" href="#">Sign out <span class="badge badge-info">Comming Soon</span></a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="padding: 8px 0px 5px 1px;">
+                        <a class="dropdown-item drp_pd" href="#">Dashboard <span class="badge badge-info">Comming Soon</span></a>
+                        <a class="dropdown-item drp_pd" href="#">Profile <span class="badge badge-info">Comming Soon</span></a>
+                        <router-link class="dropdown-item drp_pd" to="/dashboard/edit-profile">Profile</router-link>
+                        <router-link class="dropdown-item drp_pd" to="/dashboard/merchant-experience">Experiences</router-link>
+                        <router-link class="dropdown-item drp_pd" to="/dashboard/new-exp">New Experiences</router-link>
+                        <a class="dropdown-item drp_pd" href="#">Payment <span class="badge badge-info">Comming Soon</span></a>
+                        <a class="dropdown-item drp_pd" href="#">Settings <span class="badge badge-info">Comming Soon</span></a>
+                        <a class="dropdown-item drp_pd" href="#">Sign out <span class="badge badge-info">Comming Soon</span></a>
                       </div>
                     </li>
                 </ul>

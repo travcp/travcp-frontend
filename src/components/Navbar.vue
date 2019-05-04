@@ -35,15 +35,15 @@
                       <a class="nav-link dropdown-toggle" href="#" style="color: #fff !important;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img src="../assets/profile_2.png" class="rounded-circle" style="height: 50px;">
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Dashboard <span class="badge badge-info">Comming Soon</span></a>
-                        <a class="dropdown-item" href="#">Profile <span class="badge badge-info">Comming Soon</span></a>
-                        <router-link class="dropdown-item" to="/dashboard/edit-profile">Profile</router-link>
-                        <router-link class="dropdown-item" to="/dashboard/merchant-experience">Experiences</router-link>
-                        <router-link class="dropdown-item" to="/dashboard/new-exp">New Experiences</router-link>
-                        <a class="dropdown-item" href="#">Payment <span class="badge badge-info">Comming Soon</span></a>
-                        <a class="dropdown-item" href="#">Settings <span class="badge badge-info">Comming Soon</span></a>
-                        <a class="dropdown-item" href="#">Sign out <span class="badge badge-info">Comming Soon</span></a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="padding: 5px 0px 5px 1px;">
+                        <a class="dropdown-item drp_pd" href="#">Dashboard <span class="badge badge-info">Comming Soon</span></a>
+                        <a class="dropdown-item drp_pd" href="#">Profile <span class="badge badge-info">Comming Soon</span></a>
+                        <router-link class="dropdown-item drp_pd" to="/dashboard/edit-profile">Profile</router-link>
+                        <router-link class="dropdown-item drp_pd" to="/dashboard/merchant-experience">Experiences</router-link>
+                        <router-link class="dropdown-item drp_pd" to="/dashboard/new-exp">New Experiences</router-link>
+                        <a class="dropdown-item drp_pd" href="#">Payment <span class="badge badge-info">Comming Soon</span></a>
+                        <a class="dropdown-item drp_pd" href="#">Settings <span class="badge badge-info">Comming Soon</span></a>
+                        <a class="dropdown-item drp_pd" href="#">Sign out <span class="badge badge-info">Comming Soon</span></a>
                       </div>
                     </li>
                 </ul>
@@ -102,5 +102,8 @@ export default {
 header.main_menu_area{
     padding-left: 88px;
     padding-right: 88px;
+}
+.drp_pd {
+  padding: 5px 0 5px 15px !important;
 }
 </style>
