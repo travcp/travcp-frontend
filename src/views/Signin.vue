@@ -1,7 +1,7 @@
 <template>
 	
 		<div class="wrapper">
-			<div class="image-holder">
+			<div class="image-holder signin-image-holder">
 				<!-- <img src="../assets/shibuya.png" alt="Sign up image"> -->
 				<div class="image-holder-inner-text">
 					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="display: block">
@@ -220,5 +220,9 @@
 	    position: relative;
 	    /* top: -80px; */
 	    margin-bottom: 100px;
+	}
+	.signin-image-holder {
+    background: url(../assets/signin_hero_image.jpg) no-repeat;
+    background-size: cover;
 	}
 </style>

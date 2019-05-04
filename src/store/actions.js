@@ -83,9 +83,10 @@ export default {
         	 "email" : data.email,
 			     "password" : data.password
 		      }).then(res => {
-		        resolve(commit('LOGIN_SUCCESS', res.data))
+		        commit('LOGIN_SUCCESS', res.data)
 		        router.push("/");
 		      }).catch(err => {
+            console.log(`Error ${err}`);
 		        commit('LOGIN_FAILURE', err.response.data);
 		      })
     },
