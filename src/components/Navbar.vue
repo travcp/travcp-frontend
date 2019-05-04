@@ -41,7 +41,6 @@
                         <router-link class="dropdown-item" to="/dashboard/edit-profile">Profile</router-link>
                         <router-link class="dropdown-item" to="/dashboard/merchant-experience">Experiences</router-link>
                         <router-link class="dropdown-item" to="/dashboard/new-exp">New Experiences</router-link>
-                        <a class="dropdown-item" href="#">Experiences <span class="badge badge-info">Comming Soon</span></a>
                         <a class="dropdown-item" href="#">Payment <span class="badge badge-info">Comming Soon</span></a>
                         <a class="dropdown-item" href="#">Settings <span class="badge badge-info">Comming Soon</span></a>
                         <a class="dropdown-item" href="#">Sign out <span class="badge badge-info">Comming Soon</span></a>
