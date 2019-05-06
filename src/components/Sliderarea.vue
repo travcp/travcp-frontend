@@ -17,19 +17,19 @@
                             </button>
 
                             <div class="btn-group btn-group-toggle toggle-display">
-                                <label class="btn btn-travv" v-bind:class="{ 'active-travv': Experiences }" data-ExpType="tours">
+                                <label class="btn btn-travv" @click="toggleColor" v-bind:class="{ 'active-travv': Experiences }" data-ExpType="tours">
                                     <img src="../assets/Icons/tours-experiences.svg" /> Tours & Experiences
                                 </label>
                                 <label class="btn btn-travv active-travv">
                                     |
                                 </label>
-                                <label class="btn btn-travv" @click="toggleRestColor" v-bind:class="{ 'active-travv': Restaurants }" data-ExpType="restaurants">
+                                <label class="btn btn-travv" @click="toggleColor" v-bind:class="{ 'active-travv': Restaurants }" data-ExpType="restaurants">
                                     <img src="../assets/Icons/restaurants.svg" style="margin-top: -8px;" /> Restaurants
                                 </label>
                                 <label class="btn btn-travv active-travv">
                                     |
                                 </label>
-                                <label class="btn btn-travv" v-bind:class="{ 'active-travv': Destination }" data-ExpType="places">
+                                <label class="btn btn-travv" @click="toggleColor"  v-bind:class="{ 'active-travv': Destination }" data-ExpType="places">
                                     <img src="../assets/Icons/places.svg" style="margin-top: -8px;" /> Places / Destination
                                 </label>
                             </div> <br>
@@ -59,27 +59,28 @@
         name: 'Sliderarea',
         data() {
             return {
-                Experiences : false,
+                Experiences : true,
                 Restaurants : false,
                 Destination : false
             }
         },
         methods: {
-            toggleRestColor: function(event) {
-                console.log(event.target.dataset.ExpType)
-                if(event.target.dataset.ExpType == "tours"){
+            toggleColor: function(event) {
+                
+                console.log(event.target.dataset.exptype)
+                if(event.target.dataset.exptype == "tours"){
                     this.Experiences = true
-                    this.Restaurants = true
+                    this.Restaurants = false
                     this.Destination = false
-                } else if (event.target.dataset.ExpType == "restaurants") {
+                } else if (event.target.dataset.exptype == "restaurants") {
                     this.Experiences = false
                     this.Restaurants = true
                     this.Destination = false
 
-                } else if (event.target.dataset.ExpType == "places") {
+                } else if (event.target.dataset.exptype == "places") {
                     this.Experiences = false
-                    this.Restaurants = true
-                    this.Destination = false
+                    this.Restaurants = false
+                    this.Destination = true
 
                 }
                 // this.Experiences.Destination = event.target.dataset.Destination;
