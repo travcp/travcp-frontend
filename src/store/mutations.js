@@ -90,5 +90,8 @@ export default {
     },
     NOT_LOADING: (state) => {
       state.isLoading = false;
+    },
+    ALL_EVENTS: (state, payload) => {
+      state.allEvents = payload.data;
     }
 }

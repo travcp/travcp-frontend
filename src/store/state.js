@@ -14,6 +14,7 @@ export default {
     booking_data: null,
     events: [],
     check_in: null,
-    check_out: null
+    check_out: null,
+    allEvents: []
     // user_token: 
 }

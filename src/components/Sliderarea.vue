@@ -17,31 +17,32 @@
                             </button>
 
                             <div class="btn-group btn-group-toggle toggle-display">
-                                <label class="btn btn-travv active-travv">
+                                <label class="btn btn-travv" v-bind:class="{ 'active-travv': Experiences }" data-ExpType="tours">
                                     <img src="../assets/Icons/tours-experiences.svg" /> Tours & Experiences
                                 </label>
                                 <label class="btn btn-travv active-travv">
                                     |
                                 </label>
-                                <label class="btn btn-travv">
+                                <label class="btn btn-travv" @click="toggleRestColor" v-bind:class="{ 'active-travv': Restaurants }" data-ExpType="restaurants">
                                     <img src="../assets/Icons/restaurants.svg" style="margin-top: -8px;" /> Restaurants
                                 </label>
                                 <label class="btn btn-travv active-travv">
                                     |
                                 </label>
-                                <label class="btn btn-travv">
+                                <label class="btn btn-travv" v-bind:class="{ 'active-travv': Destination }" data-ExpType="places">
                                     <img src="../assets/Icons/places.svg" style="margin-top: -8px;" /> Places / Destination
                                 </label>
                             </div> <br>
                             <div class="btn-group btn-group-toggle" style="margin-right: 31px;margin-top: 20px;">
-                                <label class="btn btn-travv">
+                                <input type="text" class="whereWould" placeholder="Where would you like to go?">
+                                <!-- <label class="btn btn-travv">
                                     Where would you like to go?
-                                </label>
+                                </label> -->
                                 <label class="btn btn-travv active-travv">
                                     |
                                 </label>
                                 <label class="btn btn-travv">
-                                    <img src="../assets/Icons/Calendar.svg" style="margin-top: -8px;" />
+                                    <img src="../assets/Icons/Calendar.svg" style="margin-top: -14px;height: 54px;" />
                                 </label>
                             </div> <button type="button" class="btn btn-lg cont-btn">Continue</button>
                         </div>
@@ -55,7 +56,36 @@
 
 <script>
     export default {
-        name: 'Sliderarea'
+        name: 'Sliderarea',
+        data() {
+            return {
+                Experiences : false,
+                Restaurants : false,
+                Destination : false
+            }
+        },
+        methods: {
+            toggleRestColor: function(event) {
+                console.log(event.target.dataset.ExpType)
+                if(event.target.dataset.ExpType == "tours"){
+                    this.Experiences = true
+                    this.Restaurants = true
+                    this.Destination = false
+                } else if (event.target.dataset.ExpType == "restaurants") {
+                    this.Experiences = false
+                    this.Restaurants = true
+                    this.Destination = false
+
+                } else if (event.target.dataset.ExpType == "places") {
+                    this.Experiences = false
+                    this.Restaurants = true
+                    this.Destination = false
+
+                }
+                // this.Experiences.Destination = event.target.dataset.Destination;
+
+            }
+        }
     }
 </script>
 
@@ -142,5 +172,28 @@
     }
     .main_slider_container{
         padding-left: 191px;
+    }
+    .whereWould {
+        height: 100%;
+        width: 160%;
+        border: none;
+        background-color: #ffffff;
+        font-size: 18px;
+        font-weight: bolder;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #555555;
+        border-radius: 0.5rem;
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+        padding: 0 0 0 20px;
+        outline: none;
+    }
+    .whereWould::placeholder {
+      color: red;
+      color: #555555;
+      font-weight: bolder;
     }
 </style>

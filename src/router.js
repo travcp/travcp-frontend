@@ -16,7 +16,7 @@ import Review from '@/views/Review.vue';
 import EditProfile from '@/views/EditProfile.vue';
 import MerchantExperience from '@/views/MerchantExperience.vue';
 import NewExperience from '@/views/NewExperience.vue';
-
+import RecommendedPlaces from '@/components/RecommendedPlaces.vue';
 Vue.use(Router)
 
 export default new Router({
@@ -78,6 +78,11 @@ export default new Router({
       path: '/restaurants/:id/:name',
       name: 'RestaurantsView',
       component: RestaurantsView
+    },
+    {
+      path: '/places/:id/:name',
+      name: 'RecommendedPlaces',
+      component: RecommendedPlaces
     },
     {
       path: '/register',

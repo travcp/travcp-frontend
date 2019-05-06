@@ -59,7 +59,9 @@
                 <div class="carousel-inner">
                   <div class="carousel-item active" data-interval="10000">
                     <div class="recom4uimages-up mount_fuji">
+
                       <p>Mount Fuji</p>
+                      }
                     </div>
                   </div>
                   <div class="carousel-item" data-interval="20000">
@@ -88,35 +90,50 @@
             <div class="col-lg-12 toggleCarousel">
               <div class="row">
                 <div class="col-md-6" style="padding-right: 5px;">
-                  <div class="recom4uimages-up mount_fuji">
-                    <p>Mount Fuji</p>
-                  </div>
+                  <router-link :to="'/places/'+experiences[experiences.length - 1].id + '/' + experiences[experiences.length - 1].city">
+                    <div class="recom4uimages-up mount_fuji">
+                      <p>{{ experiences[experiences.length - 1].city }}</p>
+                      <!-- <p>Mount Fuji</p> -->
+                    </div>
+                  </router-link>
                 </div>
                 <div class="col-md-6" style="padding-left: 5px;">
-                  <div class="recom4uimages-up kyoto">
-                    <p>Kyoto</p>
-                  </div>
+                  <router-link :to="'/places/'+experiences[experiences.length - 2].id + '/' + experiences[experiences.length - 2].city">
+                    <div class="recom4uimages-up kyoto">
+                      <p>{{ experiences[experiences.length - 2].city }}</p>
+                      <!-- <p>Kyoto</p> -->
+                    </div>
+                  </router-link>
                 </div>
                 <div class="col-md-4" style="padding-right: 5px;">
-                  <div class="recom4uimages-dwn tokyo">
-                    <p>Tokyo</p>
-                  </div>
+                  <router-link :to="'/places/'+experiences[experiences.length - 3].id + '/' + experiences[experiences.length - 3].city">
+                    <div class="recom4uimages-dwn tokyo">
+                      <p>{{ experiences[experiences.length - 3].city }}</p>
+                      <!-- <p>Tokyo</p> -->
+                    </div>
+                  </router-link>
                 </div>
                 <div class="col-md-4" style="padding-left: 5px;padding-right: 5px;">
-                  <div class="recom4uimages-dwn niigata">
-                    <p>Niigata</p>
-                  </div>
+                  <router-link :to="'/places/'+experiences[experiences.length - 4].id + '/' + experiences[experiences.length - 4].city">
+                    <div class="recom4uimages-dwn niigata">
+                      <p>{{ experiences[experiences.length - 4].city }}</p>
+                      <!-- <p>Niigata</p> -->
+                    </div>
+                  </router-link>
                 </div>
                 <div class="col-md-4" style="padding-left: 5px;">
-                  <div class="recom4uimages-dwn saporo">
-                    <p>Saporo</p>
-                  </div>
+                  <router-link :to="'/places/'+experiences[experiences.length - 5].id + '/' + experiences[experiences.length - 5].city">
+                    <div class="recom4uimages-dwn saporo">
+                      <p>{{ experiences[experiences.length - 5].city }}</p>
+                      <!-- <p>Saporo</p> -->
+                    </div>
+                  </router-link>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <FeaturedPlaces />
+        <FeaturedPlaces :experiences="experiences.slice(0, 3)" />
         <FeaturedRest :restaurants="featuredrest" />
         <TopRatedExp :experiences="experiences.slice(0, 3)" />
         <FeaturedVideo />

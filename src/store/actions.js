@@ -29,7 +29,7 @@ export default {
         commit('RESTAURANTS_BY_ID', response.data);
       });
     },
-    filterRestaurantSearch: ({commit}, data = `${API_BASE}/restaurants`) => {
+    async filterRestaurantSearch ({commit}, data = `${API_BASE}/restaurants`) {
       // console.log(`https://travvapi.herokuapp.com/api/restaurants?location=${data.search}&min_price=${data.min_price}&max_price=${data.max_price}`)
       // STILL HOPING IT WILL WORK
       // return new Promise((resolve, reject) => {
@@ -42,7 +42,7 @@ export default {
       // });
       commit('IS_LOADING');
       commit('FILTER_RESTAURANTS_LOADING');
-      axios.get(data).then(response => {
+      await axios.get(data).then(response => {
 
           commit('FILTER_RESTAURANTS', response.data);
           commit('NOT_LOADING')
@@ -110,13 +110,14 @@ export default {
         commit('BOOKING_EXPERIENCE_FAILURE', err.response.data);
       })
     },
-    getEvents: ({commit}, data) => {
-      axios.get(`/events`)
-      .then(res => {
-        commit('GET_EVENTS', res.data)
-      })
-      .catch(err => {
-        console.log(err);
-      })
-    }
+    async getEvents ({commit}, data) {
+      await axios.get(`${API_BASE}/events`)
+            .then(res => {
+              commit('GET_EVENTS', res.data)
+            })
+            .catch(err => {
+              console.log(err);
+            })
+    },
+    // async get
 }
