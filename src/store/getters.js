@@ -4,5 +4,8 @@ export default {
     },
     allRestaurants: (state) => {
       return state.restaurants;
+    },
+    allEvents: (state) => {
+    	return state.events;
     }
 }

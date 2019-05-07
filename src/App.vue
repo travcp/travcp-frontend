@@ -9,10 +9,20 @@
 <script>
 import Navbar from './components/Navbar.vue';
 import Footer from './components/Footer.vue';
-
+import {mapActions} from 'vuex';
 export default {
   name: 'App',
-  components: {Navbar, Footer}
+  components: {Navbar, Footer},
+  methods: {
+    ...mapActions(['getExperiences']),
+    ...mapActions(['getRestaurants']),
+    ...mapActions(['getEvents'])
+  },
+  created() {
+    // this.getExperiences()
+    // this.getRestaurants()
+    this.getEvents()
+  }
 }
 </script>
 

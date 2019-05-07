@@ -61,7 +61,7 @@
                     <div class="recom4uimages-up mount_fuji">
 
                       <p>Mount Fuji</p>
-                      }
+                      
                     </div>
                   </div>
                   <div class="carousel-item" data-interval="20000">
@@ -87,55 +87,58 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-12 toggleCarousel">
+            <!-- // For Recommended Places -->
+                        <div class="col-lg-12 toggleCarousel">
               <div class="row">
                 <div class="col-md-6" style="padding-right: 5px;">
-                  <router-link :to="'/places/'+experiences[experiences.length - 1].id + '/' + experiences[experiences.length - 1].city">
+                  <router-link to="/signin">
                     <div class="recom4uimages-up mount_fuji">
-                      <p>{{ experiences[experiences.length - 1].city }}</p>
-                      <!-- <p>Mount Fuji</p> -->
+                      <!-- <p>{{ experiences[experiences.length - 1].city }}</p> -->
+                      <p>Mount Fuji</p>
                     </div>
                   </router-link>
                 </div>
                 <div class="col-md-6" style="padding-left: 5px;">
-                  <router-link :to="'/places/'+experiences[experiences.length - 2].id + '/' + experiences[experiences.length - 2].city">
+                  <router-link to="/signin">
                     <div class="recom4uimages-up kyoto">
-                      <p>{{ experiences[experiences.length - 2].city }}</p>
-                      <!-- <p>Kyoto</p> -->
+                      <!-- <p>{{ experiences[experiences.length - 2].city }}</p> -->
+                      <p>Kyoto</p>
                     </div>
                   </router-link>
                 </div>
                 <div class="col-md-4" style="padding-right: 5px;">
-                  <router-link :to="'/places/'+experiences[experiences.length - 3].id + '/' + experiences[experiences.length - 3].city">
+                  <router-link to="/signin">
                     <div class="recom4uimages-dwn tokyo">
-                      <p>{{ experiences[experiences.length - 3].city }}</p>
-                      <!-- <p>Tokyo</p> -->
+                      <!-- <p>{{ experiences[experiences.length - 3].city }}</p> -->
+                      <p>Tokyo</p>
                     </div>
                   </router-link>
                 </div>
                 <div class="col-md-4" style="padding-left: 5px;padding-right: 5px;">
-                  <router-link :to="'/places/'+experiences[experiences.length - 4].id + '/' + experiences[experiences.length - 4].city">
+                  <router-link to="/signin">
                     <div class="recom4uimages-dwn niigata">
-                      <p>{{ experiences[experiences.length - 4].city }}</p>
-                      <!-- <p>Niigata</p> -->
+                      <!-- <p>{{ experiences[experiences.length - 4].city }}</p> -->
+                      <p>Niigata</p>
                     </div>
                   </router-link>
                 </div>
                 <div class="col-md-4" style="padding-left: 5px;">
-                  <router-link :to="'/places/'+experiences[experiences.length - 5].id + '/' + experiences[experiences.length - 5].city">
+                  <router-link to="/signin">
                     <div class="recom4uimages-dwn saporo">
-                      <p>{{ experiences[experiences.length - 5].city }}</p>
-                      <!-- <p>Saporo</p> -->
+                      <!-- <p>{{ experiences[experiences.length - 5].city }}</p> -->
+                      <p>Saporo</p>
                     </div>
                   </router-link>
                 </div>
               </div>
             </div>
+
+
           </div>
         </div>
-        <FeaturedPlaces :experiences="experiences.slice(0, 3)" />
-        <FeaturedRest :restaurants="featuredrest" />
-        <TopRatedExp :experiences="experiences.slice(0, 3)" />
+        <!-- <FeaturedPlaces :experiences="experiences.slice(0, 3)" /> -->
+        <!-- <FeaturedRest :restaurants="featuredrest" /> -->
+        <FeaturedEvents :events="events.slice(0, 3)" />
         <FeaturedVideo />
         <LatestPosts />
       </div>
@@ -147,6 +150,7 @@
   // @ is an alias to /src
   import FeaturedPlaces from '@/components/FeaturedPlaces.vue';
   import FeaturedRest from '@/components/FeaturedRest.vue';
+  import FeaturedEvents from '@/components/FeaturedEvents.vue';
   import TopRatedExp from '@/components/TopRatedExp.vue';
   import FeaturedVideo from '@/components/FeaturedVideo.vue';
   import LatestPosts from '@/components/LatestPosts.vue';
@@ -168,7 +172,8 @@
       TopRatedExp,
       FeaturedVideo,
       LatestPosts,
-      SecondNav
+      SecondNav,
+      FeaturedEvents
     },
     data: function () {
       return {
@@ -183,6 +188,7 @@
       ...mapState(['experiences']),
       ...mapGetters(['allExperiences']),
       ...mapState(['restaurants']),
+      ...mapState(['events']),
       topRatedExp: function () {
         // let exp = this.allExperiences;
         return this.experiences.slice(0, 3);
@@ -192,8 +198,7 @@
       }
     },
     created: function () {
-      this.getExperiences();
-      this.getRestaurants();
+
       // this.experiences = this.allExperiences;
       // console.log(this.experiences)
     }

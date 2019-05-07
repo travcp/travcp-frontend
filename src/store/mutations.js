@@ -91,7 +91,14 @@ export default {
     NOT_LOADING: (state) => {
       state.isLoading = false;
     },
-    ALL_EVENTS: (state, payload) => {
-      state.allEvents = payload.data;
+    GET_EVENTS: (state, payload) => {
+      state.events = payload.data;
+      state.isLoading = false;
+    },
+    EVENTS_LOADING: (state, payload) => {
+      state.isLoading = true;
+    },
+    GET_EVENTS_BY_ID: (state, payload) => {
+      state.event = payload.data;
     }
 }

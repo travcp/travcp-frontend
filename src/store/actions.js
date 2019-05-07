@@ -2,7 +2,7 @@ import Vue from 'vue';
 import router from '@/router';
 
 import axios from 'axios';
-let API_BASE = 'https://travvapi.herokuapp.com/api';
+let API_BASE = 'http://travvapi.herokuapp.com/api';
 
 Vue.use(router);
 
@@ -79,14 +79,13 @@ export default {
     },
     async userLogin ({commit}, data) {
       commit('LOGIN_LOADING');
-		  await axios.post(`${API_BASE}/auth/login`, {
-        	 "email" : data.email,
-			     "password" : data.password
-		      }).then(res => {
+		  await axios.post(`${API_BASE}/auth/login`, data).then(res => {
 		        commit('LOGIN_SUCCESS', res.data)
 		        router.push("/");
 		      }).catch(err => {
-            console.log(`Error ${err}`);
+            // console.log(`Error ${err}`);
+            // console.log(err.response);
+
 		        commit('LOGIN_FAILURE', err.response.data);
 		      })
     },
@@ -95,7 +94,7 @@ export default {
     },
     bookingExperience: ({ commit, state }, data) => {
       let requestHeaders = {
-        headers: {'Authorization': "bearer " + state.auth.access_token}
+        headers: {'Authorization': "Bearer " + state.auth.access_token}
       };
       commit('BOOKING_EXPERIENCE_LOADING')
       axios.post(`${API_BASE}/bookings/experiences/${data.experience_id}`, 
@@ -110,8 +109,9 @@ export default {
         commit('BOOKING_EXPERIENCE_FAILURE', err.response.data);
       })
     },
-    async getEvents ({commit}, data) {
-      await axios.get(`${API_BASE}/events`)
+    async getEvents ({commit}) {
+      commit('EVENTS_LOADING')
+      await axios.get(`${API_BASE}/experience_types/2/experiences`)
             .then(res => {
               commit('GET_EVENTS', res.data)
             })
@@ -119,5 +119,15 @@ export default {
               console.log(err);
             })
     },
+    async getEventsById ({ commit }, data) {
+      commit('EVENTS_LOADING')
+      await axios.get(`${API_BASE}/experiences/${data}`)
+            .then(res => {
+              commit('GET_EVENTS_BY_ID', res.data)
+            })
+            .catch(err => {
+              console.log(err);
+            })
+    }
     // async get
 }

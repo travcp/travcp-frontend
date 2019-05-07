@@ -17,6 +17,11 @@ import EditProfile from '@/views/EditProfile.vue';
 import MerchantExperience from '@/views/MerchantExperience.vue';
 import NewExperience from '@/views/NewExperience.vue';
 import RecommendedPlaces from '@/components/RecommendedPlaces.vue';
+import EventsView from '@/components/EventsView.vue';
+// import RecommendedPlaces from '@/components/RecommendedPlaces.vue';
+
+import EventSearchResults from '@/components/EventSearchResults.vue';
+
 Vue.use(Router)
 
 export default new Router({
@@ -53,6 +58,11 @@ export default new Router({
       component: ExperiencesSearchResults
     },
     {
+      path: '/events',
+      name: 'EventSearchResults',
+      component: EventSearchResults
+    },
+    {
       path: '/restaurants',
       name: 'RestaurantsSearchResults',
       component: RestaurantsSearchResults
@@ -70,9 +80,9 @@ export default new Router({
       ]
     },
     {
-      path: '/experiences/:id/:name',
-      name: 'ExperienceView',
-      component: ExperienceView
+      path: '/event/:id/:name',
+      name: 'EventsView',
+      component: EventsView
     },
     {
       path: '/restaurants/:id/:name',

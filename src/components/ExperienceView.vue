@@ -18,63 +18,33 @@
             <div class="row">
                 <div class="col-lg-7 blog_content">
                     <h3>
-                        DAY TRIP | {{ experience.state }}
+                        <!-- DAY TRIP | {{ experience.state }} -->
                     </h3>
-                    <h1>{{ experience.city }}</h1>
+                    <!-- <h1>{{ experience.city }}</h1> -->
                     <h5>{{ experience.title }}</h5>
                     <p>
                         {{ experience.description }}
                     </p>
-                    <h5>Why do we use it?</h5>
+                    <h5>About Merchant</h5>
                     <p>
-                        It is a long established fact that a reader will be distracted by the readable content of a page
-                        when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
-                        distribution of letters, as opposed to using &apos;Content here, content here&apos;, making it
-                        look like readable English. Many desktop publishing packages and web page editors now use Lorem
-                        Ipsum as their default model text, and a search for &apos;lorem ipsum&apos; will uncover many
-                        web sites still in their infancy. Various versions have evolved over the years, sometimes by
-                        accident, sometimes on purpose (injected humour and the like).
+                        {{ experience.about_merchant }}
                     </p>
                 </div>
                 <div class="col-lg-5 sidebar-pd">
-                    <div class="travv-sidebar" style="height: 575px;">
+                    <div class="travv-sidebar">
                         <div class="container">
                             <div class="row sidebar_text">
                                 <div class="col-md-12">
                                     <h3>Location</h3>
-                                    <h5>{{ experience.state }}</h5>
+                                    <h5>{{ experience.location }}</h5>
                                 </div>
                                 <div class="col-md-12">
                                     <h3>Duration</h3>
                                     <h5>36 hours</h5>
                                 </div>
                                 <div class="col-md-12">
-                                    <h3>Cost</h3>
-                                    <h5>$ {{ experience.dollar_price }}</h5>
-                                </div>
-                                <div class="col-md-12">
-                                    <h3>Payment Covers</h3>
-                                    <h5>Transportation and Feeding</h5>
-                                </div>
-                                <div class="col-md-12">
                                     <h3>Language</h3>
                                     <h5>English</h5>
-                                </div>
-                                <div class="col-md-12">
-                                    <h3 style="margin-bottom: 10px;">Book</h3>
-                                    
-                                    <form @submit.prevent="bookExperience">
-                                        <!-- <p>Start Date <input id="datepicker" v-model="start_date" type="date" width="276" /> -->
-                                        <date-picker v-model="time" range :shortcuts="shortcuts" :lang="lang"></date-picker>
-                                        <!-- <p>End Date <input id="datepicker2" v-model="end_date" type="date" width="276" /></p> -->
-                                        <br>
-                                        <div class="row">
-                                            <div class="col-md-10" style="text-align: center;">
-                                                <button type="submit" class="book_btn">Book Now</button>
-                                            </div>
-                                        </div>
-                                        <!-- <date-picker v-model="time1" :first-day-of-week="1"></date-picker> -->
-                                    </form>
                                 </div>
 
                             </div>

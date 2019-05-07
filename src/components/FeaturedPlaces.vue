@@ -144,7 +144,7 @@
             <div class="col-lg-8">
                 <div class="d_feature_text">
                     <div class="main_title">
-                        <h2>Top Rated Experience</h2>
+                        <h2>Featured Places</h2>
                     </div>
                 </div>
             </div>

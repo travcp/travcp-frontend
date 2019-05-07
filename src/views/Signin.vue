@@ -149,8 +149,8 @@
                 this.$validator.validateAll().then(result => {
                     if (result) {
                         this.userLogin({
-                            email: this.email,
-                            password: this.password
+                            "email": this.email,
+                            "password": this.password
                         });
                         // this.$noty.success("Login sucessfull")
                     } 

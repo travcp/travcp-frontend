@@ -4,7 +4,7 @@
             <div class="col-lg-8">
                 <div class="d_feature_text">
                     <div class="main_title">
-                        <h2>Top Rated Experience</h2>
+                        <h2>Featured Events</h2>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                 <div class="container toggleCarousel">
                     <div class="row">
                         <div class="col-md-4 left_feature_place" v-for="experience in experiences" :key="experience.id" style="padding-right: 24px;padding-left: 0px;">
-                            <router-link :to="'/experiences/'+ experience.id + '/' + experience.city">
+                            <router-link :to="'/experience/'+ experience.id + '/' + experience.city">
                               <div class="featured_places nagoya">
                                   <div class="featured_places_item">
                                       <div class="featured_places_overlay featured_places_overlay_active">
