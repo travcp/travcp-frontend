@@ -2,7 +2,7 @@ import Vue from 'vue';
 import router from '@/router';
 
 import axios from 'axios';
-let API_BASE = 'http://travvapi.herokuapp.com/api';
+let API_BASE = 'https://travvapi.herokuapp.com/api';
 
 Vue.use(router);
 
