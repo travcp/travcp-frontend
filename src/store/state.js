@@ -16,6 +16,8 @@ export default {
     check_in: null,
     check_out: null,
     events: [],
-    event: {}
+    event: {},
+    places: [],
+    place: {}
     // user_token: 
 }

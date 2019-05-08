@@ -30,16 +30,6 @@ export default {
       });
     },
     async filterRestaurantSearch ({commit}, data = `${API_BASE}/restaurants`) {
-      // console.log(`https://travvapi.herokuapp.com/api/restaurants?location=${data.search}&min_price=${data.min_price}&max_price=${data.max_price}`)
-      // STILL HOPING IT WILL WORK
-      // return new Promise((resolve, reject) => {
-      //   commit('FILTER_RESTAURANTS_LOADING');
-      //   axios.get(data).then(response => {
-
-      //   }).catch(({err}) => {
-      //     console.log(err);
-      //   })
-      // });
       commit('IS_LOADING');
       commit('FILTER_RESTAURANTS_LOADING');
       await axios.get(data).then(response => {
@@ -128,6 +118,41 @@ export default {
             .catch(err => {
               console.log(err);
             })
-    }
-    // async get
+    },
+    async filterEventsSearch ({commit}, data = `${API_BASE}/experience_types/2/experiences`) {
+      commit('FILTER_EXPERIENCE_LOADING')
+      // experiences?locations=${data.location}
+      await axios.get(data).then(response => {
+                commit('GET_EVENTS', response.data);
+            }).catch(({error}) => {
+                console.log(`Error ${error}`)
+            });
+    },
+    async getPlaces({ commit }) {
+      commit('IS_LOADING');
+      await axios.get(`${API_BASE}/experience_types/2/experiences`)
+                  .then((response) => {
+                    commit('GET_PLACES', response.data);
+                  }).catch(({error}) => {
+                    console.log(`Error ${error}`)
+                  })
+    },
+    async getPlacesById ({ commit }, data) {
+      commit('IS_LOADING');
+      await axios.get(`${API_BASE}/experiences/${data}`)
+                  .then((response) => {
+                    commit('GET_PLACES_BY_ID', response.data);
+                  }).catch(({error}) => {
+                    console.log(`Error ${error}`);
+                  })
+    },
+    async filterPlacesSearch ({commit}, data = `${API_BASE}/experience_types/22/experiences`) {
+      commit('FILTER_EXPERIENCE_LOADING')
+      // experiences?locations=${data.location}
+      await axios.get(data).then(response => {
+                commit('GET_PLACES', response.data);
+            }).catch(({error}) => {
+                console.log(`Error ${error}`)
+            });
+    },
 }

@@ -100,5 +100,13 @@ export default {
     },
     GET_EVENTS_BY_ID: (state, payload) => {
       state.event = payload.data;
+    },
+    GET_PLACES: (state, payload) => {
+      state.places = payload.data;
+      state.isLoading = false;
+    },
+    GET_PLACES_BY_ID: (state, payload) => {
+      state.place = payload.data;
+      state.isLoading = false;
     }
 }

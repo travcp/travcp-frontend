@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
-import SearchResults from './views/SearchResults.vue';
-import ResultDetails from './views/ResultDetails.vue';
-import ExperienceView from './components/ExperienceView.vue';
+import SearchResults from '@/views/SearchResults.vue';
+import ResultDetails from '@/views/ResultDetails.vue';
+import ExperienceView from '@/components/ExperienceView.vue';
 import RestaurantsView from '@/components/RestaurantView';
 import ExperiencesSearchResults from '@/components/ExperiencesSearchResults';
 import RestaurantsSearchResults from '@/components/RestaurantsSearchResults';
@@ -18,6 +18,9 @@ import MerchantExperience from '@/views/MerchantExperience.vue';
 import NewExperience from '@/views/NewExperience.vue';
 import RecommendedPlaces from '@/components/RecommendedPlaces.vue';
 import EventsView from '@/components/EventsView.vue';
+import PlacesView from '@/components/PlacesView.vue';
+import PlacesSearchResults from '@/components/PlacesSearchResults.vue';
+
 // import RecommendedPlaces from '@/components/RecommendedPlaces.vue';
 
 import EventSearchResults from '@/components/EventSearchResults.vue';
@@ -58,6 +61,11 @@ export default new Router({
       component: ExperiencesSearchResults
     },
     {
+      path: '/experience/:id/:name',
+      name: 'ExperienceView',
+      component: ExperienceView
+    },
+    {
       path: '/events',
       name: 'EventSearchResults',
       component: EventSearchResults
@@ -85,14 +93,19 @@ export default new Router({
       component: EventsView
     },
     {
+      path: '/place/:id/:name',
+      name: 'PlacesView',
+      component: PlacesView
+    },
+    {
+      path: '/places',
+      name: 'PlacesSearchResults',
+      component: PlacesSearchResults
+    },
+    {
       path: '/restaurants/:id/:name',
       name: 'RestaurantsView',
       component: RestaurantsView
-    },
-    {
-      path: '/places/:id/:name',
-      name: 'RecommendedPlaces',
-      component: RecommendedPlaces
     },
     {
       path: '/register',

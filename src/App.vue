@@ -16,12 +16,16 @@ export default {
   methods: {
     ...mapActions(['getExperiences']),
     ...mapActions(['getRestaurants']),
-    ...mapActions(['getEvents'])
+    ...mapActions(['getEvents']),
+    ...mapActions(['getPlaces']),
+    // ...mapActions(['getExperiences'])
   },
   created() {
     // this.getExperiences()
     // this.getRestaurants()
-    this.getEvents()
+    this.getEvents();
+    this.getPlaces();
+    this.getExperiences();
   }
 }
 </script>
@@ -54,5 +58,8 @@ export default {
 .navbar-light .navbar-toggler {
     color: rgba(0,0,0,.5);
     border-color: transparent; 
+}
+.progress {
+    margin-bottom: 10px;
 }
 </style>

@@ -51,17 +51,17 @@
               </div>
             </div>
             <div class="col-lg-4">
-              <button type="button" class="btn view_all_btn">VIEW ALL</button>
+              <router-link to="/experiences">
+                <button type="button" class="btn view_all_btn">VIEW ALL</button>
+              </router-link>
             </div>
             <div class="col-lg-12">
 
-              <div id="carousel-2" class="carousel slide" data-ride="carousel">
+              <!-- <div id="carousel-2" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                   <div class="carousel-item active" data-interval="10000">
                     <div class="recom4uimages-up mount_fuji">
-
                       <p>Mount Fuji</p>
-                      
                     </div>
                   </div>
                   <div class="carousel-item" data-interval="20000">
@@ -85,48 +85,53 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
             <!-- // For Recommended Places -->
                         <div class="col-lg-12 toggleCarousel">
               <div class="row">
                 <div class="col-md-6" style="padding-right: 5px;">
-                  <router-link to="/signin">
+                  <router-link :to="'/experience/'+ getExp1.id + '/' + getExp1.city">
                     <div class="recom4uimages-up mount_fuji">
                       <!-- <p>{{ experiences[experiences.length - 1].city }}</p> -->
-                      <p>Mount Fuji</p>
+                      <!-- <p>{{ this.experiences[Math.floor(Math.random()*this.experiences.length)].city }}</p> -->
+                      <p>{{ getExp1.city }}</p>
                     </div>
                   </router-link>
                 </div>
                 <div class="col-md-6" style="padding-left: 5px;">
-                  <router-link to="/signin">
+                  <router-link :to="'/experience/'+ getExp2.id + '/' + getExp2.city">
                     <div class="recom4uimages-up kyoto">
                       <!-- <p>{{ experiences[experiences.length - 2].city }}</p> -->
-                      <p>Kyoto</p>
+                      <!-- <p>Kyoto</p> -->
+                      <p>{{ getExp2.city }}</p>
                     </div>
                   </router-link>
                 </div>
                 <div class="col-md-4" style="padding-right: 5px;">
-                  <router-link to="/signin">
+                  <router-link :to="'/experience/'+ getExp3.id + '/' + getExp3.city">
                     <div class="recom4uimages-dwn tokyo">
                       <!-- <p>{{ experiences[experiences.length - 3].city }}</p> -->
-                      <p>Tokyo</p>
+                      <!-- <p>Tokyo</p> -->
+                      <p>{{ getExp3.city }}</p>
                     </div>
                   </router-link>
                 </div>
                 <div class="col-md-4" style="padding-left: 5px;padding-right: 5px;">
-                  <router-link to="/signin">
+                  <router-link :to="'/experience/'+ getExp4.id + '/' + getExp4.city">
                     <div class="recom4uimages-dwn niigata">
                       <!-- <p>{{ experiences[experiences.length - 4].city }}</p> -->
-                      <p>Niigata</p>
+                      <!-- <p>Niigata</p> -->
+                      <p>{{ getExp4.city }}</p>
                     </div>
                   </router-link>
                 </div>
                 <div class="col-md-4" style="padding-left: 5px;">
-                  <router-link to="/signin">
+                  <router-link :to="'/experience/'+ getExp5.id + '/' + getExp5.city">
                     <div class="recom4uimages-dwn saporo">
                       <!-- <p>{{ experiences[experiences.length - 5].city }}</p> -->
-                      <p>Saporo</p>
+                      <!-- <p>Saporo</p> -->
+                      <p>{{ getExp5.city }}</p>
                     </div>
                   </router-link>
                 </div>
@@ -139,6 +144,7 @@
         <!-- <FeaturedPlaces :experiences="experiences.slice(0, 3)" /> -->
         <!-- <FeaturedRest :restaurants="featuredrest" /> -->
         <FeaturedEvents :events="events.slice(0, 3)" />
+        <FeaturedPlaces :places="places.slice(0, 3)" />
         <FeaturedVideo />
         <LatestPosts />
       </div>
@@ -173,7 +179,8 @@
       FeaturedVideo,
       LatestPosts,
       SecondNav,
-      FeaturedEvents
+      FeaturedEvents,
+      exp1: {}
     },
     data: function () {
       return {
@@ -182,23 +189,32 @@
     },
     methods: {
       ...mapActions(['getExperiences']),
-      ...mapActions(['getRestaurants'])
+      ...mapActions(['getRestaurants']),
+      getExp1() {
+        this.exp1 = this.experiences[Math.floor(Math.random()*this.experiences.length)]
+      }
     },
     computed: {
       ...mapState(['experiences']),
       ...mapGetters(['allExperiences']),
       ...mapState(['restaurants']),
       ...mapState(['events']),
+      ...mapState(['places']),
+      ...mapGetters(['getExp1', 'getExp2', 'getExp3', 'getExp4', 'getExp5']),
       topRatedExp: function () {
         // let exp = this.allExperiences;
         return this.experiences.slice(0, 3);
       },
       featuredrest: function () {
         return this.restaurants.slice(0, 3);
-      }
+      },
+      // genRandomExperience: function(){
+      //   return this.experiences[Math.floor(Math.random()*this.experiences.length)];
+      // }
     },
     created: function () {
-
+      console.log(this.genRandom);
+      this.getExperiences()
       // this.experiences = this.allExperiences;
       // console.log(this.experiences)
     }
@@ -742,7 +758,7 @@
 
   .feature_video_lg {
     width: 100%;
-    height: 510px;
+    height: 390px;
   }
 
   .feature_video_sm {
@@ -750,11 +766,19 @@
     flex-direction: column;
     justify-content: flex-end;
     width: 100%;
-    height: 201px;
+    height: 150px;
     /* background-color: rgba(248, 24, 148, 0.4); */
-    margin-bottom: 10px;
+    margin-bottom: 4px;
   }
-
+  .feature_video_sm_title {
+    margin-bottom: 30px;
+      font-size: 12px;
+      line-height: initial;
+  }
+  .feature_video_sm_title h6 {
+      font-weight: bolder;
+      font-size: 14px;
+  }
   /* @media(max-width: ) */
   .mount_fuji {
     background: url('../assets/mount_fuji.png');

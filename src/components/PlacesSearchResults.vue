@@ -4,7 +4,7 @@
         <section class="filter_area" style="">
             <div class="container">
                 <div class="project_inner">
-                    <form @submit.prevent="filterExperience">
+                    <form @submit.prevent="filterPlaces">
                     <div class="row">
                         <div class="col-md-2">
                             <button class="btn filter_btn dropdown-toggle" type="button" id="dropdownMenuButton"
@@ -109,14 +109,14 @@
                 <div class="col-lg-12">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-4 experience" v-for="experience in allExperiences" :key="experience.id" style="padding-right: 24px; padding-left: 0px;">
-                                <router-link :to="'/experience/'+ experience.id + '/' + experience.city">
+                            <div class="col-md-4 experience" v-for="place in places" :key="place.id" style="padding-right: 24px; padding-left: 0px;">
+                                <router-link :to="'/place/'+ place.id + '/' + place.city">
                                     <div class="search_items">
                                         <div class="search_items_back_img nagoya"></div>
                                         <div class="search_items_item">
                                             <div class="fetr_places_overlay">
-                                                <p>DAY TRIP {{ experience.state }}</p>
-                                                <h3> {{ experience.city }}</h3>
+                                                <p>DAY TRIP {{ place.state }}</p>
+                                                <h3> {{ place.city }}</h3>
                                                 <p><b>4.75 *</b> (224)</p>
                                             </div>
                                         </div>
@@ -136,7 +136,7 @@
     import { mapState, mapGetters, mapActions } from 'vuex';
     import DatePicker from 'vue2-datepicker'
     export default {
-        name: 'SearchResults',
+        name: 'EventSearchResults',
         data: function () {
             return {
                 search: '',
@@ -209,26 +209,29 @@
         },
         computed: {
             ...mapState(['isLoading']),
-            ...mapGetters(['allExperiences']),
+            ...mapState(['places']),
         },
         methods: {
-            ...mapActions(['getExperiences']),
-            ...mapActions(['filterExperiencesSearch']),
-            filterExperience: function(){
+            ...mapActions(['getPlaces']),
+            ...mapActions(['filterPlacesSearch']),
+            filterPlaces: function(){
                 let data = {
                     search: this.search,
                     min_price: this.value_1[0],
                     max_price: this.value_1[1]
                 }
+                let API_BASE = 'https://travvapi.herokuapp.com/api';
+
+                let url = `${API_BASE}/experience_types/2/experiences?locations=${data.search}&min_price=${data.min_price}&max_price=${data.max_price}`;
+
                 if(data.search == ''){
-                    return this.filterExperiencesSearch();
+                    return this.filterPlacesSearch();
                 } else {
-                    return this.filterExperiencesSearch(data);
+                    return this.filterPlacesSearch(url);
                 }
                 // return this.filterExperiencesSearch(data);
             },
             dntTogle: function(){
-                // preventDefault()
                 return true;
             },
             stopProp: function(e){
@@ -236,7 +239,7 @@
             }
         },
         created: function(){
-            this.getExperiences();
+            this.getPlaces();
         }
     }
 </script>

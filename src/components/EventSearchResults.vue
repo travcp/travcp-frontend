@@ -4,7 +4,7 @@
         <section class="filter_area" style="">
             <div class="container">
                 <div class="project_inner">
-                    <form @submit.prevent="filterExperience">
+                    <form @submit.prevent="filterEvents">
                     <div class="row">
                         <div class="col-md-2">
                             <button class="btn filter_btn dropdown-toggle" type="button" id="dropdownMenuButton"
@@ -213,22 +213,25 @@
         },
         methods: {
             ...mapActions(['getEvents']),
-            // ...mapActions(['filterExperiencesSearch']),
-            filterExperience: function(){
+            ...mapActions(['filterEventsSearch']),
+            filterEvents: function(){
                 let data = {
                     search: this.search,
                     min_price: this.value_1[0],
                     max_price: this.value_1[1]
                 }
+                let API_BASE = 'https://travvapi.herokuapp.com/api';
+
+                let url = `${API_BASE}/experience_types/2/experiences?locations=${data.search}&min_price=${data.min_price}&max_price=${data.max_price}`;
+
                 if(data.search == ''){
-                    return this.filterExperiencesSearch();
+                    return this.filterEventsSearch();
                 } else {
-                    return this.filterExperiencesSearch(data);
+                    return this.filterEventsSearch(url);
                 }
                 // return this.filterExperiencesSearch(data);
             },
             dntTogle: function(){
-                // preventDefault()
                 return true;
             },
             stopProp: function(e){
