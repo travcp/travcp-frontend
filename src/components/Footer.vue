@@ -43,8 +43,10 @@
                                 <div class="f_w_title">
                                     <h3>Merchants</h3>
                                 </div>
-                                <ul>
-                                    <li>Register</li>
+                                <ul class="">
+                                    <li class="">
+                                        <a class="" href="#merchant-signup-modal" data-toggle="modal">Register</a>
+                                    </li>
                                     <li>Requirements</li>
                                     <li>Benefits</li>
                                     <li>Community</li>
@@ -82,12 +84,16 @@
                     </div>
                 </div>
             </div>
+            <merchant-signup-modal></merchant-signup-modal>
         </footer>
+        
 </template>
 
 <script>
+import MerchantSignupModal from '@/views/MerchantSignupModal'
 export default {
-    name: 'Footer'
+    name: 'Footer',
+    components: {MerchantSignupModal}
 }
 </script>
 
