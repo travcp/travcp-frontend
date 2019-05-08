@@ -155,4 +155,24 @@ export default {
                 console.log(`Error ${error}`)
             });
     },
+    async updateProfile ({ commit, state }, data) {
+      let requestHeaders = {
+        headers: {'Authorization': "Bearer " + state.auth.access_token}
+      };
+      commit('EDIT_PROFILE_LOADING');
+      await axios.put(`${API_BASE}/users/${data.user_id}`, {
+                    "first_name": data.first_name,
+                    "surname": data.surname,
+                    "email": data.email,
+                    "subscribed_to_newsletter": 1,
+                    "role": data.role
+                  }, requestHeaders)
+                  .then((res) => {
+                    commit('EDIT_PROFILE_SUCESS', res.data)
+                    console.log(res.data)
+                  }).catch((error) => {
+                    commit('EDIT_PROFILE_FAIL')
+                      console.log(`Error ${error}`)
+                  })
+    }
 }

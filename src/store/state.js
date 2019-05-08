@@ -18,6 +18,8 @@ export default {
     events: [],
     event: {},
     places: [],
-    place: {}
+    place: {},
+    editProfileData: null,
+    editProfileError: null
     // user_token: 
 }

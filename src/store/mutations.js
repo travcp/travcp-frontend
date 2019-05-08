@@ -108,5 +108,27 @@ export default {
     GET_PLACES_BY_ID: (state, payload) => {
       state.place = payload.data;
       state.isLoading = false;
+    },
+    EDIT_PROFILE_LOADING: (state) => {
+      state.isLoading = true;
+    },
+    EDIT_PROFILE_SUCESS: (state, payload) => {
+      state.editProfileData = payload;
+      state.isLoading = false;
+      console.log("payload", payload)
+      let newData = JSON.parse(localStorage.getItem('auth'));
+      newData.user = payload.data;
+      
+      console.log("new data", newData);
+      localStorage.setItem("auth", JSON.stringify(newData))
+      
+
+      state.auth.user = payload.data;
+      // localStorage.setItem("auth", JSON.stringify(payload));
+    },
+    EDIT_PROFILE_FAIL: (state, payload) => {
+      state.isLoading = false;
+      state.editProfileError = payload;
     }
+    // UPDATE_
 }
