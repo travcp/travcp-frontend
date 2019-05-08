@@ -10,7 +10,8 @@
 						    <div class="row">
 						    	<div class="col-12">
 						    		<div class="new_experience_content">
-						    			<h2>Add New</h2>
+						    			<h2 style="font-size: 1.5em">Add New</h2>
+						    			<br>	
 						    			<div class="row">
 						    				<div class="col-8">
 								    			<div class="row">
@@ -143,9 +144,8 @@
 		text-align: center;
 	}
 	.new_experience_content label {
-		font-weight: bolder;
 		color: grey;
-		font-size: 21px;
+		font-size: 16px;
 	}
 	.new_experience_input {
 		/*border-bottom: none;*/

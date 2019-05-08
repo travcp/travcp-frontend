@@ -70,7 +70,7 @@
                     <div class="col-md-6">
                         <div class="average_review_section">
                             <h2>Average Rating</h2>
-                            <h5>Based on 450 ratings</h5>
+                            <h5>Based on 1351 ratings</h5>
                             <br>
                             <div class="row">
                                 <div class="col-2"><p class="star_range">5-star</p></div>
@@ -284,13 +284,16 @@
   }
     .average_review_section h2 {
         font-weight: bolder;
+        font-size: 1.5rem;
     }
     .average_review_section h5 {
         color: #776d6d;
         font-weight: bolder;
+        font-size: 1rem
     }
     .gst_review_content h2 {
         font-weight: bolder;
+        font-size: 1.5rem;
     }
     .star_range {
         font-size: 1.1rem;
