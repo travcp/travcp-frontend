@@ -43,7 +43,7 @@
                         <a class="dropdown-item drp_pd" href="#">Dashboard <span class="badge badge-info">Comming Soon</span></a>
                         <!-- <a class="dropdown-item drp_pd" href="#">Profile <span class="badge badge-info">Comming Soon</span></a> -->
                         <router-link class="dropdown-item drp_pd" to="/dashboard/edit-profile">Profile</router-link>
-                        <router-link class="dropdown-item drp_pd" to="/dashboard/merchant-experience">Experiences</router-link>
+                        <router-link class="dropdown-item drp_pd" to="/experiences">Experiences</router-link>
                         <!-- <router-link class="dropdown-item drp_pd" to="/dashboard/new-exp">New Experiences</router-link> -->
                         <a class="dropdown-item drp_pd" href="#">Payment <span class="badge badge-info">Comming Soon</span></a>
                         <a class="dropdown-item drp_pd" href="#">Settings <span class="badge badge-info">Comming Soon</span></a>
