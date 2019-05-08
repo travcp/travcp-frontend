@@ -153,7 +153,7 @@
 		border-radius: 4px;
 		/*box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;*/
 		height: 50px;
-		font-size: 18px;
+		font-size: 16px;
 		border-radius: 0;
 	    border-top: none;
 	    border-left: none;
