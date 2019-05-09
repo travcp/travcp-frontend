@@ -14,7 +14,7 @@
                       <router-link style="color: #fff !important;" class="nav-link" to="/dashboard/new-exp">Add Listings</router-link>
                     </li>
                     <li class="nav-item"><a style="color: #fff !important;"  href="static.html">Videos</a></li>
-                    <li class="nav-item"><a style="color: #fff !important;" class="nav-link" href="#">Bookings</a></li>
+                    <li class="nav-item"><a style="color: #fff !important;" class="nav-link" href="/experiences">Bookings</a></li>
                     <li class="nav-item"><a style="color: #fff !important;" class="nav-link" href="#">Help</a></li>                    
                     <li class="nav-item" v-if="!checkUser"><router-link style="color: #fff !important;" class="nav-link" to="/signin">Sign in</router-link></li>
                     <li class="nav-item" v-if="checkUser">
