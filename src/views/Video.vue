@@ -9,7 +9,11 @@
           <hr class="my-booking-title-horizontal">
         </div>
         <div class="row video-images">
-          <div class="col-md video-details-image" data-toggle="modal" data-target="#video-modal"></div>
+          <div class="col-md video-details-image" data-toggle="modal" data-target="#video-modal">
+            <p
+              class="video-text"
+            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium nemo</p>
+          </div>
           <div
             class="modal fade"
             id="video-modal"
@@ -137,9 +141,7 @@ export default {
   margin-top: 30px;
 }
 .video-details-image {
-  background-color: #000;
   background-image: url("../assets/videoImage.jpg");
-  background-blend-mode: screen;
 
   background-position: center;
   background-size: cover;
@@ -148,6 +150,11 @@ export default {
   width: 100%;
   height: 150px;
   margin: 10px;
+}
+.video-text {
+  color: #fff;
+  margin-top: 80px;
+  font-size: 18px;
 }
 .modal-content {
   border: none;
