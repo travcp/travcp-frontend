@@ -38,13 +38,6 @@
                                             <input v-validate="'required|email'" v-model="email" type="email" name="email" class="form-control signin-input" placeholder="Enter a valid email address">
                                         </div>
                                     </div>
-
-                                    <!-- <div class="row">
-                                        <div class="form-group col-md-12">
-                                            <label for="">Password</label>
-                                            <input v-validate="'required|min:6'" type="password" v-model="password" name="password"  class="form-control signin-input" placeholder="********">
-                                        </div>
-                                    </div> -->
                                     
                                     <div class="container">
                                         <div class="row">
@@ -87,12 +80,13 @@
 import { mapState, mapActions, mapGetters, mapMutations } from 'vuex';
 export default {
     name: "MerchantSignupModal",
-        data() {return{
-            first_name: null,
-            surname: null,
-            email: null,
-            password: null
-        }},
+        data(){
+            return {
+                business_name: "",
+                about_merchant: "",
+                email: "",
+            }
+        },
         methods: {
             ...mapActions(['userRegistration']),
             formSubmit: function(){

@@ -1,0 +1,227 @@
+<template>
+       <div class="profile-container">
+           <Navbar/>
+           <div class="container">
+               <div class="row">
+                   <div class="col-md-4">
+                       <div class="card profile-card">
+                           <div class="card-body">
+                               <span class="float-right">
+                                   <span class="edit-link-button">
+                                       <a href="#"><i class="fa edit"></i> Edit</a>
+                                   </span>
+                                   
+                               </span>
+                               <!-- <div class="user_pic"></div> -->
+                               <img src="/img/profile_2.png" class="user_pic" alt="profile picture">
+                                <h5 class="card-title">Micheal Jackson</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">michealjackson23</h6>
+                                <p class="location"><img src="/img/icons/map-marker-alt-solid.svg" alt="" style="width:10px"> Lagos, Nigeria</p>
+                                <p class="card-text description">Tour with me, Discover Places and experience the culture with me</p>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-md-8">
+                       <div class="card bookings-card">
+                           <div class="card-body">
+                               <div class="card-head">
+                                   <span class="card-title">My Bookings</span> 
+                                   <span class="float-right"><a href="#">See All</a></span>
+                               </div>
+                               <br>
+                               <div class="row">
+                                   <div class="col-md-4 experience">
+                                       <router-link :to="'/'">
+                                            <div class="search_items">
+                                                <div class="search_items_back_img nagoya"></div>
+                                                <div class="search_items_item">
+                                                    <div class="fetr_places_overlay">
+                                                        <p>DAY TRIP state</p>
+                                                        <h3>city</h3>
+                                                        <!-- <p><b>4.75 *</b> (224)</p> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </router-link>
+                                   </div>
+                                   <div class="col-md-4 experience">
+                                       <router-link :to="'/'">
+                                            <div class="search_items">
+                                                <div class="search_items_back_img nagoya"></div>
+                                                <div class="search_items_item">
+                                                    <div class="fetr_places_overlay">
+                                                        <p>DAY TRIP state</p>
+                                                        <h3>city</h3>
+                                                        <!-- <p><b>4.75 *</b> (224)</p> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </router-link>
+                                   </div>
+                                   <div class="col-md-4 experience">
+                                       <router-link :to="'/'">
+                                            <div class="search_items">
+                                                <div class="search_items_back_img nagoya"></div>
+                                                <div class="search_items_item">
+                                                    <div class="fetr_places_overlay">
+                                                        <p>DAY TRIP state</p>
+                                                        <h3>city</h3>
+                                                        <!-- <p><b>4.75 *</b> (224)</p> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </router-link>
+                                   </div>
+                                    <!-- <div class="col-md-4 experience" v-for="experience in allExperiences" :key="experience.id" style="padding-right: 24px; padding-left: 0px;">
+                                        <router-link :to="'/experience/'+ experience.id + '/' + experience.city">
+                                            <div class="search_items">
+                                                <div class="search_items_back_img nagoya"></div>
+                                                <div class="search_items_item">
+                                                    <div class="fetr_places_overlay">
+                                                        <p>DAY TRIP {{ experience.state }}</p>
+                                                        <h3> {{ experience.city }}</h3>
+                                                        <p><b>4.75 *</b> (224)</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </router-link>
+                                    </div> -->
+                                </div>
+                           </div>
+                       </div>
+                       <div class="card videos-card">
+                           <div class="card-body">
+                               <div class="card-head">
+                                    <h5 class="card-title">Videos</h5>
+                                </div>
+                           </div>
+                           
+                       </div>
+                   </div>
+               </div>
+           </div>
+        </div> 
+</template>
+<script>
+import Navbar from '@/components/Navbar.vue';
+import { mapState, mapActions } from 'vuex';
+export default {
+    name: "Profile",
+    components: { Navbar}
+}
+</script>
+<style scoped>
+    .profile-container{
+        margin-top:95px;
+        margin-bottom: 50px;
+        --pink-text-color: #D3187F;
+        --black-text-color: #333333;
+        --grey-text-color: #555555;
+    }
+
+    .profile-container a{
+        font-weight: bold;
+        text-transform: uppercase;
+        color: var(--pink-text-color);
+    }
+
+    .edit-link-button a{
+        background: var(--pink-text-color);
+        padding-top:3px;
+        padding-bottom:3px;
+        padding-right:5px;
+        padding-left:5px;
+        color:white;
+        border-radius: 5px;
+        font-size:12px;
+    }
+    
+    .user_pic{
+        /* border: 1px solid #000; */
+		height: 140px;
+		width: 140px;
+        /* display:inline-block; */
+		/* margin-left: 90px; */
+		margin-bottom: 40px;
+		border-radius: 100%;
+    }
+    .card.profile-card{
+        border:none;
+    }
+    .profile-card .card-body{
+        text-align:center;
+    }
+    .profile-card .card-title{
+        color: var(--pink-text-color);
+        font-weight:bold;
+    }
+    .profile-card p.location{
+        font-weight: bold;
+        color: var(--black-text-color);
+    }
+    .profile-card .description{
+        font-weight:bold;
+    }
+
+    .bookings-card.card{
+        border:none;
+    }
+    .bookings-card .card-title{
+        color: var(--grey-text-color);
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .bookings-card .card-head a{
+        font-size:11px;
+    }
+    .nagoya {
+        background: url('../assets/nagoya.png');
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .search_items {
+        height: 393px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+        margin-bottom: 43px;
+    }
+
+    .search_items_back_img {
+        width: 100%;
+        height: 318px;
+    }
+
+    .search_items_item p {
+        font-family: MuseoSans;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .search_items_item h3 {
+        font-family: MuseoSans;
+        font-size: 30px;
+        font-weight: bold;
+        font-style: normal;
+        color: var(--grey-text-color)
+    }
+
+    .search_items_item p b {
+        color: #f81894;
+        font-family: MuseoSans;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .videos-card{
+        box-shadow: 2px 2px 9px var(--grey-text-color);
+    }
+    .videos-card .card-title{
+        color: var(--pink-text-color);
+        font-weight: bold;
+    }
+</style>
+
