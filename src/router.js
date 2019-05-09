@@ -21,6 +21,7 @@ import EventsView from '@/components/EventsView.vue';
 import PlacesView from '@/components/PlacesView.vue';
 import PlacesSearchResults from '@/components/PlacesSearchResults.vue';
 import Profile from '@/views/Profile';
+import Messages from '@/views/Messages';
 // import RecommendedPlaces from '@/components/RecommendedPlaces.vue';
 
 import EventSearchResults from '@/components/EventSearchResults.vue';
@@ -150,6 +151,11 @@ export default new Router({
       path: '/dashboard/new-exp',
       name: 'NewExperience',
       component: NewExperience
+    },
+    {
+      path: '/dashboard/messages',
+      name: "Messages",
+      component: Messages
     },
     {
       path: '/profile',
