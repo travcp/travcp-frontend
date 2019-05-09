@@ -20,12 +20,8 @@ import RecommendedPlaces from '@/components/RecommendedPlaces.vue';
 import EventsView from '@/components/EventsView.vue';
 import PlacesView from '@/components/PlacesView.vue';
 import PlacesSearchResults from '@/components/PlacesSearchResults.vue';
-<<<<<<< HEAD
 import MyBooking from '@/views/MyBooking.vue';
-
-=======
 import Profile from '@/views/Profile';
->>>>>>> 3b019c75a61ea20968d1cf642d34cf51f7ded91c
 // import RecommendedPlaces from '@/components/RecommendedPlaces.vue';
 
 import EventSearchResults from '@/components/EventSearchResults.vue';
@@ -157,15 +153,14 @@ export default new Router({
       component: NewExperience
     },
     {
-<<<<<<< HEAD
       path: '/my-bookings',
       name: 'MyBooking',
       component: MyBooking
-=======
+    },
+    {
       path: '/profile',
       name: "Profile",
       component: Profile
->>>>>>> 3b019c75a61ea20968d1cf642d34cf51f7ded91c
     }
   ]
 });
