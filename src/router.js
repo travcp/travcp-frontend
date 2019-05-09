@@ -21,7 +21,8 @@ import EventsView from '@/components/EventsView.vue';
 import PlacesView from '@/components/PlacesView.vue';
 import PlacesSearchResults from '@/components/PlacesSearchResults.vue';
 import MyBooking from '@/views/MyBooking.vue';
-import Profile from '@/views/Profile';
+import Profile from '@/views/Profile.vue';
+import Video from '@/views/Video.vue'
 // import RecommendedPlaces from '@/components/RecommendedPlaces.vue';
 
 import EventSearchResults from '@/components/EventSearchResults.vue';
@@ -161,6 +162,11 @@ export default new Router({
       path: '/profile',
       name: "Profile",
       component: Profile
+    },
+    {
+      path: '/video',
+      name: "Video",
+      component: Video
     }
   ]
 });
