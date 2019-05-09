@@ -13,63 +13,63 @@
 						    			<h2 style="font-size: 1.5em">Add New</h2>
 						    			<br>	
 						    			<div class="row">
-						    				<div class="col-8">
+						    				<div class="col-md-8">
 								    			<div class="row">
-								    				<div class="form-group col-6">
+								    				<div class="form-group col-md-6">
 														<label for="">Select Experience Type</label>
 														<select id="inputState" class="form-control new_experience_input">
 													        <option selected>Select</option>
 													        <option>An Experience Here</option>
 													      </select>
 													</div>
-								    				<div class="form-group col-6">
+								    				<div class="form-group col-md-6">
 														<label for="">About the experience designer</label>
 														<textarea cols="30" rows="10" class="form-control"></textarea>
 													</div>
-													<div class="form-group col-6">
+													<div class="form-group col-md-6">
 														  <label class="">City</label>
 														  <input type="text" class="form-control new_experience_input" placeholder="City">
 													</div> <br> <br>
-													<div class="form-group col-6">
+													<div class="form-group col-md-6">
 														  <label class="">Offerings on tour ( drinks, snacks, etc)</label>
 														  <input type="text" class="form-control new_experience_input" placeholder="Offerings on tour ( drinks, snacks, etc)">
 													</div>
-								    				<div class="form-group col-6">
+								    				<div class="form-group col-md-6">
 														<label for="">Language</label>
 														<select id="inputState" class="form-control new_experience_input">
 													        <option selected>Select</option>
 													        <option>English</option>
 													      </select>
 													</div>
-								    				<div class="form-group col-6">
+								    				<div class="form-group col-md-6">
 														<label for="">Short descriptions of the experience</label>
 														<textarea cols="30" rows="10" class="form-control"></textarea>
 													</div>
-								    				<div class="form-group col-6">
+								    				<div class="form-group col-md-6">
 														<label for="">Pictures</label>
 														<input type="file" class="form-control" name="" multiple="true">
 													</div>
-													<div class="form-group col-6">
+													<div class="form-group col-md-6">
 														  <label class="">Price in Naira, Dollars and Pounds</label>
 														  <input type="text" class="form-control new_experience_input" placeholder="$200,000">
 													</div>
-													<div class="form-group col-6">
+													<div class="form-group col-md-6">
 														  <label class="">Dates and time</label>
 														  <input type="text" class="form-control new_experience_input" placeholder="Date and time">
 													</div>
-													<div class="form-group col-6">
+													<div class="form-group col-md-6">
 														  <label class="">Where they would meet up with clients with map</label>
 														  <input type="text" class="form-control new_experience_input" placeholder="Where they would meet up with clients with map">
 													</div>
-													<div class="form-group col-6">
+													<div class="form-group col-md-6">
 														  <label class="">What tourists should bring along</label>
 														  <input type="text" class="form-control new_experience_input" placeholder="What tourists should bring along">
 													</div>
-													<div class="form-group col-6">
+													<div class="form-group col-md-6">
 														  <label class="">Itinerary for the experience</label>
 														  <input type="text" class="form-control new_experience_input" placeholder="Itinerary for the experience">
 													</div>
-													<div class="form-group col-6">
+													<div class="form-group col-md-6">
 														  <label class="">Number that each tour can admit</label>
 														  <input type="text" class="form-control new_experience_input" placeholder="Number that each tour can admit">
 													</div>
@@ -101,7 +101,7 @@
 													<!-- <div class="col-8"></div> -->
 								    			</div>
 						    				</div>
-						    				<div class="col-4">
+						    				<div class="col-md-4">
 						    					<h5>Uploaded Image</h5> <br>
 						    					<div class="uploaded_image">
 						    						

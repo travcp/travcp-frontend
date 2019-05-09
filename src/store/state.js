@@ -20,6 +20,8 @@ export default {
     places: [],
     place: {},
     editProfileData: null,
+    editProfileError: null,
+    reviews: [],
     editProfileError: null
     // user_token: 
 }

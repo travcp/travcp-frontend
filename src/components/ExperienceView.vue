@@ -263,7 +263,7 @@
 <style>
   @media only screen and (max-width: 576px) {
     .project_area {
-        margin: 121px 10px 42px 10px !important;
+        margin: 10px 10px 42px 10px !important;
     }
     .digital_feature.blog_part {
         margin: 0px 10px 42px 10px !important;
@@ -326,9 +326,8 @@
     }
 
     .project_area {
-        margin-top: 121px;
         height: 518px !important;
-        margin: 121px 88px 42px 88px;
+        margin: 10px 88px 42px 88px;
         margin-bottom: 57px;
     }
 

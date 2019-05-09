@@ -115,11 +115,11 @@ export default {
     EDIT_PROFILE_SUCESS: (state, payload) => {
       state.editProfileData = payload;
       state.isLoading = false;
-      console.log("payload", payload)
+      // console.log("payload", payload)
       let newData = JSON.parse(localStorage.getItem('auth'));
       newData.user = payload.data;
       
-      console.log("new data", newData);
+      // console.log("new data", newData);
       localStorage.setItem("auth", JSON.stringify(newData))
       
 
@@ -129,6 +129,15 @@ export default {
     EDIT_PROFILE_FAIL: (state, payload) => {
       state.isLoading = false;
       state.editProfileError = payload;
+    },
+    GET_REVIEW_LOADING: (state) => {
+      state.isLoading = true;
+    },
+    GET_REVIEW: (state, payload) => {
+      state.reviews = payload.data;
+    },
+    GET_REVIEW_ERROR: (state, payload) => {
+      state.editProfileError = payload.data;
     }
     // UPDATE_
 }

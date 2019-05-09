@@ -1,16 +1,19 @@
 <template>
-    <header class="main_menu_area">
-        <nav class="container navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="container navbar navbar-expand-lg navbar-light travvappNavbar">
             <!-- <router-link :to="'/result-details/'+ experience.id"> -->
             <router-link class="navbar-brand" to="/"><h2 style="color: #f81894;font-weight: bolder;">TravvApp</h2></router-link>
             <!-- <slot name="search"></slot> -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="display: inline;width: 50px;">
-                <span style="background: grey;"></span>
-                <span style="background: grey;"></span>
-                <span style="background: grey;"></span>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
+                 <span class="navbar-toggler-icon"></span>
             </button>
+            <!-- <button class="navbar-toggler"  type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">style="display: inline;width: 50px;"
+              <span class="navbar-toggler-icon"></span>
+            </button> -->
+            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button> -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav ml-auto ">
 
                     <li class="nav-item">
                       <router-link class="nav-link nav-item-color" to="/dashboard/new-exp">Add Listings</router-link>
@@ -53,7 +56,6 @@
                 </ul>
             </div>
         </nav>
-    </header>
 </template>
 
 <script>
@@ -96,18 +98,25 @@ export default {
     letter-spacing: 1.8px;
     color: #555;
 }
-.main_menu_area {
+.travv_light_nav {
    border-bottom: none;
 }
-.main_menu_area .navbar .navbar-nav li a{
+.navbar .navbar-nav li a{
     font-size: 14px;
     font-weight: bold;
 }
-header.main_menu_area{
+.travv_light_nav{
     padding-left: 88px;
     padding-right: 88px;
 }
 .drp_pd {
   padding: 5px 0 5px 15px !important;
+}
+.nav-item a.nav-link {
+  color: #555 !important;
+  font-weight: bold !important;
+}
+.travvappNavbar li.nav-item {
+    min-width: 100px;
 }
 </style>

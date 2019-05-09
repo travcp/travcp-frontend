@@ -42,7 +42,7 @@
                                     |
                                 </label>
                                 <label class="btn btn-travv">
-                                    <img src="../assets/zoom-icon.png" style="margin-top: -14px;height: 54px;" />
+                                    <img src="../assets/zoom-icon.png" style="margin-top: -10px;height: 24px;" />
                                 </label>
                             </div> <button type="button" class="btn btn-lg cont-btn">Continue</button>
                         </div>

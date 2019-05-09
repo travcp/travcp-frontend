@@ -1,6 +1,7 @@
 <template>
 	<div class="edit_profile">
 		<Navbar />
+		<br><br>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8">
@@ -9,47 +10,49 @@
 						<br><br>
 						<form @submit.prevent="formSubmit">
 							<div class="row">
-								<div class="form-group col-4">
+								<!-- first_name
+								surname
+								email
+								company
+								address
+								city
+								country
+								postal_code -->
+								<div class="form-group col-4" v-if="!checkUserType">
 									<label for="">Company (disabled)</label>
-									<input type="text" class="form-control edit-prof-input" placeholder="TravvApp Inc.">
+									<input type="text" v-model="company" class="form-control edit-prof-input" placeholder="TravvApp Inc.">
 								</div>
 								<div class="form-group col-4">
 									<label for="">Username</label>
 									<input type="text" class="form-control edit-prof-input" placeholder="michealjackson23">
 								</div>
-								<!-- first_name
-								surname
-								email -->
-								<!-- authFirstName
-								authSurnName
-								authEmail -->
 								<div class="form-group col-4">
 									<label for="">Email address</label>
-									<input v-validate="'required|email'" v-model="authEmail" type="text" class="form-control edit-prof-input" placeholder="Email">
+									<input v-validate="'required|email'" type="text" class="form-control edit-prof-input" placeholder="Email" v-model="email">
 								</div>
 								<div class="form-group col-6">
 									<label for="">First Name</label>
-									<input v-validate="'required'" v-model="authFirstName" type="text" class="form-control edit-prof-input" placeholder="Micheal">
+									<input v-validate="'required'" type="text" class="form-control edit-prof-input" placeholder="Micheal" v-model="first_name">
 								</div>
 								<div class="form-group col-6">
 									<label for="">Last Name</label>
-									<input v-validate="'required'" v-model="authSurnName" type="text" class="form-control edit-prof-input" placeholder="Jackson">
+									<input v-validate="'required'" v-model="surname" type="text" class="form-control edit-prof-input" placeholder="Jackson">
 								</div>
 								<div class="form-group col-12">
 									<label for="">Address</label>
-									<input type="text" class="form-control edit-prof-input" placeholder="15, Osborne Foreshore Road, Ikoyi, Lagos">
+									<input type="text" class="form-control edit-prof-input" placeholder="15, Osborne Foreshore Road, Ikoyi, Lagos" v-model="address">
 								</div>
 								<div class="form-group col-4">
 									<label for="">City</label>
-									<input type="text" class="form-control edit-prof-input" placeholder="Lagos">
+									<input type="text" class="form-control edit-prof-input" placeholder="Lagos" v-model="city">
 								</div>
 								<div class="form-group col-4">
 									<label for="">Country</label>
-									<input type="text" class="form-control edit-prof-input" placeholder="Nigeria">
+									<input type="text" class="form-control edit-prof-input" placeholder="Nigeria" v-model="country">
 								</div>
 								<div class="form-group col-4">
 									<label for="">Postal Code</label>
-									<input type="text" class="form-control edit-prof-input" placeholder="Zip Code">
+									<input type="text" class="form-control edit-prof-input" placeholder="Zip Code" v-model="postal_code">
 								</div>
 								<div class="col-8">
 									<h5>About Me</h5>
@@ -92,30 +95,29 @@
         //         return next({ path: '/' })
         //     }
         //     next();
-        // },
+        // },"company": null,
+        // "address": null,
+        // "city": null,
+        // "country": null,
+        // "postal_code": null
 		data() {
 			return {
-				first_name: this.auth.user.firstname,
+				first_name: null,
 				surname: null,
 				email: null,
 				subscribed_to_newsletter: null,
-				role: 'user'
+				company: null,
+				address: null,
+				city: null,
+				country: null,
+				postal_code: null
 			}
 		},
 		components: {
 			Navbar
 		},
 		computed: {
-			...mapState(['auth']),
-			authFirstName(){
-				return this.first_name = this.auth.user.first_name
-			},
-			authSurnName(){
-				return this.surname = this.auth.user.surname
-			},
-			authEmail(){
-				return this.email = this.auth.user.email
-			}
+			...mapState(['auth'])
 		},
 		methods: {
 			...mapActions(['updateProfile']),
@@ -127,21 +129,71 @@
 							surname: this.surname,
 							email: this.email,
 							subscribed_to_newsletter: this.subscribed_to_newsletter,
-							role: this.role,
-							user_id: this.auth.user.id
+							user_id: this.auth.user.id,
+							company: this.company,
+					        address: this.address,
+					        city: this.city,
+					        country: this.country,
+					        postal_code: this.postal_code
 						});
                     } else {
                         this.$noty.error("Oops, something went wrong!")
                     }
                 });
+			},
+			checkUserType(){
+				if(this.auth.user.role != "user") {
+					return true
+				} else {
+					return false
+				}
+			},
+			authFirstName(){
+				this.first_name = this.auth.user.first_name
+				return this.auth.user.first_name
+			},
+			authSurnName(){
+				this.surname = this.auth.user.surname
+				return this.auth.user.surname
+			},
+			authEmail(){
+				this.email = this.auth.user.email
+				return this.auth.user.email
+			},
+			authCompany(){
+				this.company = this.auth.user.company
+				return this.auth.user.company
+			},
+			authAddress(){
+				this.address = this.auth.user.address
+				return this.auth.user.address;
+			},
+			authCity(){
+				this.city = this.auth.user.city;
+				return this.auth.user.city;
+			},
+			authCountry(){
+				this.country = this.auth.user.country
+				return this.auth.user.country;
+			},
+			authPostalCode(){
+				this.postal_code = this.auth.user.postal_code
+				return this.auth.user.postal_code
 			}
+		},
+		created() {
+			this.authFirstName()
+			this.authSurnName()
+			this.authEmail()
+			this.authCompany()
+			this.authAddress()
+			this.authCity()
+			this.authCountry()
+			this.authPostalCode()
 		}
 	}
 </script>
 <style>
-	.edit_profile {
-		margin-top: 95px;
-	}
 	.edit-prof-input{
 		border-radius: 0;
 		border-top: none;
