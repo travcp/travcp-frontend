@@ -8,7 +8,7 @@
                            <div class="card-body">
                                <span class="float-right">
                                    <span class="edit-link-button">
-                                       <a href="#"><i class="fa edit"></i> Edit</a>
+                                       <router-link to="/dashboard/edit-profile"><i class="fa edit"></i> Edit</router-link>
                                    </span>
                                    
                                </span>
@@ -112,7 +112,7 @@ export default {
 </script>
 <style scoped>
     .profile-container{
-        margin-top:95px;
+        margin-top:5px;
         margin-bottom: 50px;
         --pink-text-color: #D3187F;
         --black-text-color: #333333;

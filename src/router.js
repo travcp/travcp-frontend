@@ -20,6 +20,7 @@ import RecommendedPlaces from '@/components/RecommendedPlaces.vue';
 import EventsView from '@/components/EventsView.vue';
 import PlacesView from '@/components/PlacesView.vue';
 import PlacesSearchResults from '@/components/PlacesSearchResults.vue';
+import MyBooking from '@/views/MyBooking.vue';
 import Profile from '@/views/Profile';
 import Messages from '@/views/Messages';
 // import RecommendedPlaces from '@/components/RecommendedPlaces.vue';
@@ -29,7 +30,7 @@ import EventSearchResults from '@/components/EventSearchResults.vue';
 Vue.use(Router)
 
 export default new Router({
-  scrollBehavior (to, from, savedPosition) {
+  scrollBehavior(to, from, savedPosition) {
     return { x: 0, y: 0 }
   },
   mode: "history",
@@ -158,9 +159,14 @@ export default new Router({
       component: Messages
     },
     {
-      path: '/profile',
+      path: '/dashbaord/my-bookings',
+      name: 'MyBooking',
+      component: MyBooking
+    },
+    {
+      path: '/dashboard/profile',
       name: "Profile",
       component: Profile
-    }
+    },
   ]
 });

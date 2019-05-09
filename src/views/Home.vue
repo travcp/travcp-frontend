@@ -179,8 +179,7 @@
       FeaturedVideo,
       LatestPosts,
       SecondNav,
-      FeaturedEvents,
-      exp1: {}
+      FeaturedEvents
     },
     data: function () {
       return {
@@ -658,7 +657,7 @@
 
   .col-lg-6.col-md-6.latest-post {
     position: relative;
-    height: 398px;
+    height: 401px;
     box-shadow: 0 2px 13px 0 rgba(204, 204, 204, 0.5);
     background-color: #ffffff;
     background: #FFF;

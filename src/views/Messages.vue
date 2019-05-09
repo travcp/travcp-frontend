@@ -215,9 +215,9 @@ export default {
 </script>
 <style>
 footer.footer_area{
-        display:none;
-        
-    }
+    display:none;
+    
+}
 </style>
 
 <style scoped>

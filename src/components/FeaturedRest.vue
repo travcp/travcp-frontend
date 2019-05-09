@@ -66,44 +66,7 @@
 
               </router-link>
             </div>
-            <!-- <div class="col-md-4 middle_feature_place" style="padding-left: 24px;padding-right: 24px;">
-                    <div class="featured_places ueno">
-                      <div class="featured_places_item">
-                        <div class="featured_places_overlay">
-                          <div class="row">
-                            <div class="col-md-7">
-                              <p class="ftr_places_title">UENO</p>
-                            </div>
-                            <div class="col-md-2">
-                              <p class="ftr_places_title">221</p>
-                            </div>
-                            <div class="col-md-2">
-                              <p class="ftr_places_title">50</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4 right_feature_place" style=" padding-right: 0px;padding-left: 24px;">
-                    <div class="featured_places shibuya">
-                      <div class="featured_places_item">
-                        <div class="featured_places_overlay">
-                          <div class="row">
-                            <div class="col-md-7">
-                              <p class="ftr_places_title">SHIBUYA</p>
-                            </div>
-                            <div class="col-md-2">
-                              <p class="ftr_places_title">221</p>
-                            </div>
-                            <div class="col-md-2">
-                              <p class="ftr_places_title">50</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> -->
+
           </div>
         </div>
       </div>
@@ -130,7 +93,6 @@
                 resize: true
                 // any options from Flickity can be used
             },
-            items: [{name: 'Tolu'}, {name: 'Dara'},{name: 'Taiwo'}]
         }
     },
     methods: {

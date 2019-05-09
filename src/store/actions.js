@@ -130,7 +130,7 @@ export default {
     },
     async getPlaces({ commit }) {
       commit('IS_LOADING');
-      await axios.get(`${API_BASE}/experience_types/2/experiences`)
+      await axios.get(`${API_BASE}/experience_types/22/experiences`)
                   .then((response) => {
                     commit('GET_PLACES', response.data);
                   }).catch(({error}) => {
@@ -165,14 +165,46 @@ export default {
                     "surname": data.surname,
                     "email": data.email,
                     "subscribed_to_newsletter": 1,
-                    "role": data.role
+                    "company": data.company,
+                    "address": data.address,
+                    "city": data.city,
+                    "country": data.country,
+                    "postal_code": data.postal_code
                   }, requestHeaders)
                   .then((res) => {
                     commit('EDIT_PROFILE_SUCESS', res.data)
                     console.log(res.data)
                   }).catch((error) => {
                     commit('EDIT_PROFILE_FAIL')
-                      console.log(`Error ${error}`)
+                    console.log(`Error ${error}`)
                   })
+    },
+    async getReviewsData({ commit }) {
+      let requestHeaders = {
+        headers: {'Authorization': "Bearer " + state.auth.access_token}
+      };
+      commit('GET_REVIEW_LOADING');
+      await axios.get(`${API_BASE}/reviews`)
+            .then((res) => {
+                commit('GET_REVIEW', res.data);
+            }).catch((err) => {
+                commit('GET_REVIEW_ERROR', err)
+            })
+    },
+    async rateExperience({ commit, state }, data) {
+      commit('REVIEW_LOADING')
+      let requestHeaders = {
+        headers: {'Authorization': "Bearer " + state.auth.access_token}
+      };
+      axios.post(`${API_BASE}/reviews`, {
+                  "user_id": data.user_id,
+                  "experience_id": data.experience_id,
+                  "review_body": data.review_body
+                }, requestHeaders).then((response) => {
+                  console.log(response.data)
+                  commit('REVIEW_SUCCESSFUL', response.data)
+                }).catch((err) => {
+                  commit('REVIEW_ERROR', err.data)
+                })
     }
 }
