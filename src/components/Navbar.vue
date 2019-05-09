@@ -1,5 +1,5 @@
 <template>
-        <nav class="container navbar navbar-expand-lg navbar-light travvappNavbar">
+        <nav class="container navbar navbar-expand-lg navbar-light travvappNavbar" style="background: transparent;">
             <!-- <router-link :to="'/result-details/'+ experience.id"> -->
             <router-link class="navbar-brand" to="/"><h2 style="color: #f81894;font-weight: bolder;">TravvApp</h2></router-link>
             <!-- <slot name="search"></slot> -->
@@ -120,5 +120,6 @@ export default {
     min-width: 100px;
     position: relative;
     top: 10px;
+    z-index: 10;
 }
 </style>
