@@ -22,6 +22,7 @@ export default {
     editProfileData: null,
     editProfileError: null,
     reviews: [],
-    editProfileError: null
+    editProfileError: null,
+    reviewData: null
     // user_token: 
 }

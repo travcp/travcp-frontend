@@ -138,6 +138,16 @@ export default {
     },
     GET_REVIEW_ERROR: (state, payload) => {
       state.editProfileError = payload.data;
+    },
+    REVIEW_LOADING: (state, payload) => {
+      state.isLoading = true;
+    },
+    REVIEW_SUCCESSFUL: (state, payload) => {
+      state.isLoading = false;
+      state.reviewData = payload.data
+    },
+    REVIEW_ERROR: (state) => {
+      state.isLoading = false;
     }
     // UPDATE_
 }

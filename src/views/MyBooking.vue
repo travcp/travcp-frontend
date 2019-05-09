@@ -123,7 +123,7 @@ export default {
 </script>
 <style scoped>
 .main {
-  padding-top: 100px;
+  /*padding-top: 100px;*/
 }
 .my-booking-left {
   margin-top: 30px;
@@ -164,7 +164,7 @@ export default {
   padding: 20px;
 }
 .my-booking-details-right {
-  margin-left: 55%;
+  /*margin-left: 55%;*/
 }
 .changed {
   height: 200px;

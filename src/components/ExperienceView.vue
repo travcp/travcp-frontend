@@ -29,9 +29,37 @@
                     <p>
                         {{ experience.about_merchant }}
                     </p>
+                    <br>
+                    <h6>Rate the Experience</h6> <br>
+                    <form  @submit.prevent="rateExperienceSubmit">
+                        <div class="col-md-6">
+                            <div id="reviewStars-input" @click="toggleRatingBox">
+                                <input id="star-4" value="1" v-model="reviewStar" type="radio" name="reviewStars"/>
+                                <label title="gorgeous" for="star-4"></label>
+
+                                <input id="star-3" value="2" v-model="reviewStar" type="radio" name="reviewStars"/>
+                                <label title="good" for="star-3"></label>
+
+                                <input id="star-2" value="3" v-model="reviewStar" type="radio" name="reviewStars"/>
+                                <label title="regular" for="star-2"></label>
+
+                                <input id="star-1" value="4" v-model="reviewStar" type="radio" name="reviewStars"/>
+                                <label title="poor" for="star-1"></label>
+
+                                <input id="star-0" value="5" v-model="reviewStar" type="radio" name="reviewStars"/>
+                                <label title="bad" for="star-0"></label>
+                            </div><br><br>
+                        </div>
+                        <div class="form-group col-md-6" v-if="toggleRating">
+                            <h6>Rate this Experience</h6>
+                            <!-- <label>Rate this Experience</label> -->
+                            <input type="text" class="form-control edit-prof-input" v-model="rate_this_exp_text">
+                            <button type="submit" class="book_btn">Rate</button>
+                        </div>
+                    </form>
                 </div>
                 <div class="col-lg-5 sidebar-pd">
-                    <div class="travv-sidebar">
+                    <div class="travv-sidebar" style="height: 620px;">
                         <div class="container">
                             <div class="row sidebar_text">
                                 <div class="col-md-12">
@@ -58,7 +86,15 @@
                                     <h3>Language</h3>
                                     <h5>{{ experience.language }}</h5>
                                 </div>
-
+                                <form @submit.prevent="bookExperience">
+                                    <h3>Book</h3>
+                                    <date-picker v-model="time" range :shortcuts="shortcuts" :lang="lang"></date-picker>
+                                    <!-- <p>Start Date <input id="datepicker" v-model="start_date" type="date" width="276" /> -->
+                                    <!-- <date-picker v-model="time" range :shortcuts="shortcuts" :lang="lang"></date-picker> -->
+                                    <!-- <p>End Date <input id="datepicker2" v-model="end_date" type="date" width="276" /></p> -->
+                                    <button type="submit" class="book_btn">Book Now</button>
+                                    <!-- <date-picker v-model="time1" :first-day-of-week="1"></date-picker> -->
+                                </form>
                             </div>
                             
                         </div>
@@ -180,12 +216,15 @@
         name: 'ExperienceView',
         data() {
             return {
+                rate_this_exp_text: "",
                 start_date: '4/12/2019',
                 end_date: '6/12/2019',
                 dateFormat: 'D MMM',
                 dateOne: '',
                 dateTwo: '',
                 time: '',
+                reviewStar: null,
+                toggleRating: false,
                 // custom lang
                 lang: {
                     days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
@@ -220,6 +259,22 @@
         methods: {
             ...mapActions(['getExperienceById']),
             ...mapActions(['bookingExperience']),
+            ...mapActions(['rateExperience']),
+            rateExperienceSubmit(){
+                if (this.toggleRating) {
+                    // user_id
+                    // experience_id
+                    // review_body
+                    this.rateExperience({
+                        "user_id": this.auth.user.id,
+                        "experience_id": this.experience.id,
+                        "review_body": this.rate_this_exp_text
+                    });
+                    this.$noty.success("Review is Successfull")
+                    this.toggleRating = false;
+                    this.rate_this_exp_text = ""
+                } 
+            },
             bookExperience: function () {
                 if(this.auth) {
                     let data = {
@@ -244,6 +299,9 @@
                 if (day.length < 2) day = '0' + day;
 
                 return [year, month, day].join('-');
+            },
+            toggleRatingBox(){
+                this.toggleRating = true;
             }
         },
         computed: {
@@ -583,7 +641,7 @@
         width: 250px;
     }
     .book_btn {
-        margin-top: 24px;
+        margin-top: 14px;
         background: #F81894;
         border: none;        
         font-family: MuseoSans700;
@@ -595,4 +653,73 @@
         color: #FFF;
         cursor: pointer;
     }
+#reviewStars-input input:checked ~ label, #reviewStars-input label, #reviewStars-input label:hover, #reviewStars-input label:hover ~ label {
+  background: url('http://positivecrash.com/wp-content/uploads/ico-s71a7fdede6.png') no-repeat;
+}
+
+#reviewStars-input {
+  
+  /*fix floating problems*/
+  overflow: hidden;
+  *zoom: 1;
+  /*end of fix floating problems*/
+  
+  position: relative;
+  float: left;
+}
+
+#reviewStars-input input {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  
+  width: 43px;
+  height: 40px;
+  
+  position: absolute;
+  top: 0;
+  z-index: 0;
+}
+
+#reviewStars-input input:checked ~ label {
+  background-position: 0 -40px;
+  height: 40px;
+  width: 43px;
+}
+
+#reviewStars-input label {
+  background-position: 0 0;
+  height: 40px;
+  width: 43px;
+  float: right;
+  cursor: pointer;
+  margin-right: 10px;
+  
+  position: relative;
+  z-index: 1;
+}
+
+#reviewStars-input label:hover, #reviewStars-input label:hover ~ label {
+  background-position: 0 -40px;
+  height: 40px;
+  width: 43px;
+}
+
+#reviewStars-input #star-0 {
+  left: 0px;
+}
+#reviewStars-input #star-1 {
+  left: 53px;
+}
+#reviewStars-input #star-2 {
+  left: 106px;
+}
+#reviewStars-input #star-3 {
+  left: 159px;
+}
+#reviewStars-input #star-4 {
+  left: 212px;
+}
+#reviewStars-input #star-5 {
+  left: 265px;
+}
 </style>

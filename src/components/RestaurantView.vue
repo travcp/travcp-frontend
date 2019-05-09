@@ -159,99 +159,6 @@
                 </div>
             </div>
         </div>
-       <!--  <div class="digital_feature blog_part">
-            <div class="row">
-                <div class="col-lg-12 review_content">
-                    <h4>
-                        Guest Reviews
-                    </h4>
-                </div>
-                <div class="col-lg-12">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="guest_review">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="guest_review_pic">
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p class="review_name">Christopher Acebo</p>
-                                                    <p class="review_date">Jan 31, 2016</p>
-                                                    <p class="review_rev">* 1 Review</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <div class="guest_review_cont">
-                                                <h4>Great</h4>
-                                                <p>good quality stickers</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="guest_review">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="guest_review_pic">
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p class="review_name">Christopher Acebo</p>
-                                                    <p class="review_date">Jan 31, 2016</p>
-                                                    <p class="review_rev">* 1 Review</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <div class="guest_review_cont">
-                                                <h4>Great</h4>
-                                                <p>good quality stickers</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="guest_review">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="guest_review_pic">
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p class="review_name">Christopher Acebo</p>
-                                                    <p class="review_date">Jan 31, 2016</p>
-                                                    <p class="review_rev">* 1 Review</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <div class="guest_review_cont">
-                                                <h4>Great</h4>
-                                                <p>good quality stickers</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
     </div>
 </template>
 
@@ -292,9 +199,9 @@
     }
 
     .project_area {
-        margin-top: 121px;
+        margin-top: 100px;
         height: 518px !important;
-        margin: 121px 88px 42px 88px;
+        margin: 10px 88px 42px 88px;
         margin-bottom: 57px;
     }
 

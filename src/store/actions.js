@@ -190,5 +190,21 @@ export default {
             }).catch((err) => {
                 commit('GET_REVIEW_ERROR', err)
             })
+    },
+    async rateExperience({ commit, state }, data) {
+      commit('REVIEW_LOADING')
+      let requestHeaders = {
+        headers: {'Authorization': "Bearer " + state.auth.access_token}
+      };
+      axios.post(`${API_BASE}/reviews`, {
+                  "user_id": data.user_id,
+                  "experience_id": data.experience_id,
+                  "review_body": data.review_body
+                }, requestHeaders).then((response) => {
+                  console.log(response.data)
+                  commit('REVIEW_SUCCESSFUL', response.data)
+                }).catch((err) => {
+                  commit('REVIEW_ERROR', err.data)
+                })
     }
 }

@@ -19,7 +19,7 @@
                       <router-link class="nav-link nav-item-color" to="/dashboard/new-exp">Add Listings</router-link>
                     </li>
                     <li class="nav-item"><a class="nav-link nav-item-color" href="#">Videos</a></li>
-                    <li class="nav-item"><a class="nav-link nav-item-color" href="/experiences">Bookings</a></li>
+                    <li class="nav-item"><router-link class="nav-link nav-item-color" to="/dashbaord/my-bookings">Bookings</router-link></li>
                     <li class="nav-item"><a class="nav-link nav-item-color" href="#">Help</a></li>  
 
                     <li class="nav-item" v-if="!checkUser"><router-link style="color: #000 !important;" class="nav-link" to="/signin">Sign in</router-link></li>                    
@@ -45,7 +45,7 @@
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="padding: 5px 0px 5px 1px;">
                         <a class="dropdown-item drp_pd" href="#">Dashboard <span class="badge badge-info">Comming Soon</span></a>
                         <!-- <a class="dropdown-item drp_pd" href="#">Profile <span class="badge badge-info">Comming Soon</span></a> -->
-                        <router-link class="dropdown-item drp_pd" to="/dashboard/edit-profile">Profile</router-link>
+                        <router-link class="dropdown-item drp_pd" to="/dashboard/profile">Profile</router-link>
                         <router-link class="dropdown-item drp_pd" to="/experiences">Experiences</router-link>
                         <!-- <router-link class="dropdown-item drp_pd" to="/dashboard/new-exp">New Experiences</router-link> -->
                         <a class="dropdown-item drp_pd" href="#">Payment <span class="badge badge-info">Comming Soon</span></a>
@@ -118,5 +118,7 @@ export default {
 }
 .travvappNavbar li.nav-item {
     min-width: 100px;
+    position: relative;
+    top: 10px;
 }
 </style>
