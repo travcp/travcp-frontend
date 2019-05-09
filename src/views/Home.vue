@@ -179,8 +179,7 @@
       FeaturedVideo,
       LatestPosts,
       SecondNav,
-      FeaturedEvents,
-      exp1: {}
+      FeaturedEvents
     },
     data: function () {
       return {
