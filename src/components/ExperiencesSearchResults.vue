@@ -10,7 +10,7 @@
                             <button class="btn filter_btn dropdown-toggle" type="button" id="dropdownMenuButton"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img src="../assets/Icons/filter_(active).svg"
-                                    style="margin-left: -39px;margin-right: 13px;" />
+                                    style="height: 25px;" />
                                 Filter
                             </button>
                             <div class="dropdown-menu" @click="stopProp" aria-labelledby="dropdownMenuButton">
@@ -109,7 +109,7 @@
                 <div class="col-lg-12">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-4 experience" v-for="experience in allExperiences" :key="experience.id" style="padding-right: 24px; padding-left: 0px;">
+                            <div class="col-md-4 experience" v-for="experience in allExperiences" :key="experience.id" style="">
                                 <router-link :to="'/experience/'+ experience.id + '/' + experience.city">
                                     <div class="search_items">
                                         <div class="search_items_back_img nagoya"></div>
@@ -293,20 +293,20 @@
         background: #000;
         margin-top: 121px;
         min-height: 146px;
-        padding: 36px 0 36px 89px;
+        padding: 46px 0 36px 89px;
         margin-bottom: 57px;
     }
 
     .filter_btn {
-        width: 206px;
-        height: 74px;
+        width: 160px;
+        height: 54px;;
         border-radius: 8px;
         border: solid 2px #ffffff;
         border: 2px solid #FFF;
         color: #FFF;
         background: transparent;
         font-family: MuseoSans;
-        font-size: 21px;
+        font-size: 18px;
         font-weight: bold;
     }
 
