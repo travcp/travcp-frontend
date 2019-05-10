@@ -213,15 +213,9 @@ export default {
     }
 }
 </script>
-<style>
-footer.footer_area{
-    display:none;
-    
-}
-</style>
 
 <style scoped>
-    .messages-container{
+    .messages-container {
         /* margin-top:95px;
         margin-bottom: 50px; */
         margin-top:70px;

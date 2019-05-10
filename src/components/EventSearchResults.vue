@@ -128,6 +128,7 @@
                 </div>
             </div>
         </div>
+        <!-- <Footer /> -->
     </div>
 </template>
 
@@ -135,6 +136,8 @@
     import Navbar from '@/components/Navbar.vue';
     import { mapState, mapGetters, mapActions } from 'vuex';
     import DatePicker from 'vue2-datepicker'
+    import Footer from '@/components/Footer.vue';
+
     export default {
         name: 'EventSearchResults',
         data: function () {
@@ -205,7 +208,7 @@
             }
         },
         components: {
-            Navbar
+            Navbar, Footer
         },
         computed: {
             ...mapState(['isLoading']),

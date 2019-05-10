@@ -137,12 +137,15 @@
       </div>
       
     </div>
+    <!-- <Footer /> -->
   </div>
 
 </template>
 
 <script>
   import { mapState, mapActions, mapGetters, mapMutations } from 'vuex';
+  import Footer from '@/components/Footer.vue';
+
   import Navbar from '@/components/Navbar.vue';
 
 	export default {
@@ -195,7 +198,7 @@
             }
         },
         components: {
-          Navbar
+          Navbar, Footer
         }
 	}
 </script>

@@ -25,6 +25,8 @@ export default {
     reviews: [],
     editProfileError: null,
     reviewData: null,
-    API_BASE:'https://travvapi.herokuapp.com/api'
+    API_BASE:'https://travvapi.herokuapp.com/api',
+    emptySearchResult: null,
+    experience_types: []
     // user_token: 
 }

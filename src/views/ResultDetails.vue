@@ -169,11 +169,13 @@
 <script>
     import Navbar from '@/components/Navbar.vue';
     import { mapState, mapActions, mapGetters } from 'vuex';
+    import Footer from '@/components/Footer.vue';
 
     export default {
         name: 'ResultDetails',
         components: {
-            Navbar
+            Navbar,
+            Footer
         }
     }
 </script>

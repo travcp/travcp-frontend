@@ -150,6 +150,7 @@
         <LatestPosts />
       </div>
     </section>
+    <!-- <Footer /> -->
   </div>
 </template>
 
@@ -164,6 +165,8 @@
   import HomeNavbar from '@/components/HomeNavbar.vue';
   import Sliderarea from '@/components/Sliderarea.vue'
   import SecondNav from '@/components/SecondNav.vue';
+  import Footer from '@/components/Footer.vue';
+
   import {
     mapState,
     mapGetters,
@@ -180,7 +183,8 @@
       FeaturedVideo,
       LatestPosts,
       SecondNav,
-      FeaturedEvents
+      FeaturedEvents,
+      Footer
     },
     data: function () {
       return {

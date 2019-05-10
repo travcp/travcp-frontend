@@ -67,4 +67,7 @@ export default {
 .progress {
     margin-bottom: 10px;
 }
+.categories_widget {
+  margin-left: 0;
+}
 </style>

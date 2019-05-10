@@ -6,12 +6,6 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
                  <span class="navbar-toggler-icon"></span>
             </button>
-            <!-- <button class="navbar-toggler"  type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">style="display: inline;width: 50px;"
-              <span class="navbar-toggler-icon"></span>
-            </button> -->
-            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button> -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto ">
 
@@ -19,15 +13,10 @@
                       <router-link class="nav-link nav-item-color" to="/dashboard/new-exp">Add Listings</router-link>
                     </li>
                     <li class="nav-item"><a class="nav-link nav-item-color" href="#">Videos</a></li>
-                    <li class="nav-item"><router-link class="nav-link nav-item-color" to="/dashbaord/my-bookings">Bookings</router-link></li>
+                    <li class="nav-item"><router-link class="nav-link nav-item-color" to="/dashboard/my-bookings">Bookings</router-link></li>
                     <li class="nav-item"><a class="nav-link nav-item-color" href="#">Help</a></li>  
 
                     <li class="nav-item" v-if="!checkUser"><router-link style="color: #000 !important;" class="nav-link" to="/signin">Sign in</router-link></li>                    
-                    <!-- <li class="nav-item" v-if="!checkUser"><router-link style="color: #000 !important;" class="nav-link" to="/signup">Sign up</router-link></li> -->
-                    <!-- <li class="nav-item" v-if="checkUser"><button style="color: #000 !important;background:none;border: none;" class="nav-link">Hi {{ username }}</button></li> -->
-                    <!-- <li class="nav-item" @click="logout" v-if="checkUser">
-                      <a style="color: #000 !important;" class="nav-link" href="#">Log out</a>
-                    </li> -->
                     <li class="nav-item" v-if="checkUser">
                       <router-link style="color: #fff !important;" class="nav-link" to="/">
                         <img src="../assets/envelope-2.png" style="height: 24px;" alt="">
@@ -43,9 +32,9 @@
                         <img src="../assets/profile_2.png" class="rounded-circle" style="height: 50px;">
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="padding: 5px 0px 5px 1px;">
-                        <a class="dropdown-item drp_pd" href="#">Dashboard <span class="badge badge-info">Comming Soon</span></a>
+                        <!-- <a class="dropdown-item drp_pd" href="#">Dashboard <span class="badge badge-info">Comming Soon</span></a> -->
                         <!-- <a class="dropdown-item drp_pd" href="#">Profile <span class="badge badge-info">Comming Soon</span></a> -->
-                        <router-link class="dropdown-item drp_pd" to="/dashboard/profile">Profile</router-link>
+                        <router-link class="dropdown-item drp_pd" to="/dashboard/profile">Dashboard</router-link>
                         <router-link class="dropdown-item drp_pd" to="/experiences">Experiences</router-link>
                         <!-- <router-link class="dropdown-item drp_pd" to="/dashboard/new-exp">New Experiences</router-link> -->
                         <a class="dropdown-item drp_pd" href="#">Payment <span class="badge badge-info">Comming Soon</span></a>

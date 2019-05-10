@@ -112,7 +112,7 @@
 			</div>
 			
 		</div>
-			
+		<!-- <Footer /> -->
 		</div>
 
 </template>
@@ -124,6 +124,7 @@
         mapGetters
     } from 'vuex';
     import Navbar from '@/components/Navbar.vue';
+	import Footer from '@/components/Footer.vue';
 
     export default {
         name: 'Signin',
@@ -183,7 +184,8 @@
             }
         },
         components: {
-        	Navbar
+        	Navbar,
+        	Footer
         }
     }
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <div class="home">
+    <div class="ExperienceView">
         <Navbar>
             <div class="searchbar" slot="search">
                 <span class="searchbar" style="color: #f81894;">
@@ -32,7 +32,7 @@
                     <br>
                     <h6 style="margin-left:20px;"><b>Rate the Experience</b></h6> <br>
                     <form  @submit.prevent="rateExperienceSubmit">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div id="reviewStars-input" @click="toggleRatingBox">
                                 <input id="star-4" value="1" v-model="reviewStar" type="radio" name="reviewStars"/>
                                 <label title="gorgeous" for="star-4"></label>
@@ -92,7 +92,14 @@
                                     <!-- <p>Start Date <input id="datepicker" v-model="start_date" type="date" width="276" /> -->
                                     <!-- <date-picker v-model="time" range :shortcuts="shortcuts" :lang="lang"></date-picker> -->
                                     <!-- <p>End Date <input id="datepicker2" v-model="end_date" type="date" width="276" /></p> -->
-                                    <button type="submit" class="book_btn">Book Now</button>
+                                    <button type="submit" class="book_btn">
+                                    <span v-if="isLoading">
+                                        <img style="height: 20px;" src="../assets/loader_rolling.gif" />
+                                      </span>
+                                      <span v-else>
+                                        Book Now
+                                      </span>
+                                    </button>
                                     <!-- <date-picker v-model="time1" :first-day-of-week="1"></date-picker> -->
                                 </form>
                             </div>
@@ -199,12 +206,14 @@
                 </div>
             </div>
         </div>
+        <!-- <Footer /> -->
     </div>
 </template>
 
 <script>
     import Navbar from '@/components/Navbar.vue';
     import DatePicker from 'vue2-datepicker';
+    import Footer from '@/components/Footer.vue';
 
     import {
         mapState,
@@ -286,6 +295,10 @@
             bookExperience: function () {
                 if(this.auth) {
                     let data = {
+                        food_menu_ids: ["2", "3", "4"],
+                        price: this.experience.naira_price,
+                        merchant_id: this.experience.merchant_id,
+                        user_id: this.auth.user.id,
                         experience_id: this.$route.params.id,
                         start_date: this.formatDate(this.time[0]),
                         end_date: this.formatDate(this.time[1])

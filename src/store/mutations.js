@@ -28,7 +28,7 @@ export default {
       state.isLoading = true;
     },
     FILTER_EXPERIENCE: (state, payload) => {
-      state.experiences = payload.data;
+      state.experiences = payload;
       state.isLoading = false;
     },
     FILTER_EXPERIENCE_LOADING: (state, payload) => {
@@ -147,6 +147,13 @@ export default {
       state.reviewData = payload.data
     },
     REVIEW_ERROR: (state) => {
+      state.isLoading = false;
+    },
+    EMPTY_SEARCH_RESULTS: (state) => {
+      // state.emptySearchResult = true;
+    },
+    GET_EXPERIENCE_TYPES: (state, paylaod) => {
+      state.experience_types = payload;
       state.isLoading = false;
     }
     // UPDATE_
