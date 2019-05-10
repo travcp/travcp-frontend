@@ -18,7 +18,7 @@
                 <div class="container toggleCarousel">
                     <div class="row">
                         <div class="col-md-4 left_feature_place" v-for="event in events" :key="event.id" style="padding-right: 10px;padding-left: 0px;">
-                            <router-link :to="'/event/'+ event.id + '/' + event.city">
+                            <router-link :to="'/experience/'+ event.id + '/' + event.city">
                               <div class="featured_places nagoya">
                                   <div class="featured_places_item">
                                       <div class="featured_places_overlay featured_places_overlay_active">

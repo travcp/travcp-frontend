@@ -40,19 +40,19 @@
 								</div>
 								<div class="form-group col-12">
 									<label for="">Address</label>
-									<input type="text" class="form-control edit-prof-input" placeholder="15, Osborne Foreshore Road, Ikoyi, Lagos" v-model="address">
+									<input v-validate="'required'" type="text" class="form-control edit-prof-input" placeholder="15, Osborne Foreshore Road, Ikoyi, Lagos" v-model="address">
 								</div>
 								<div class="form-group col-4">
 									<label for="">City</label>
-									<input type="text" class="form-control edit-prof-input" placeholder="Lagos" v-model="city">
+									<input v-validate="'required'" type="text" class="form-control edit-prof-input" placeholder="Lagos" v-model="city">
 								</div>
 								<div class="form-group col-4">
 									<label for="">Country</label>
-									<input type="text" class="form-control edit-prof-input" placeholder="Nigeria" v-model="country">
+									<input v-validate="'required'" type="text" class="form-control edit-prof-input" placeholder="Nigeria" v-model="country">
 								</div>
 								<div class="form-group col-4">
 									<label for="">Postal Code</label>
-									<input type="text" class="form-control edit-prof-input" placeholder="Zip Code" v-model="postal_code">
+									<input v-validate="'required'" type="text" class="form-control edit-prof-input" placeholder="Zip Code" v-model="postal_code">
 								</div>
 								<div class="col-8">
 									<h5>About Me</h5>
@@ -61,7 +61,14 @@
 									</p>
 								</div>
 								<div class="col-4" style="padding-top: 22px;text-align: center;">
-									<button type="submit" class="btn btn-lg submit_btn">Submit</button>
+									<button type="submit" class="btn btn-lg submit_btn">
+										  <span v-if="isLoading">
+					                        <img style="height: 20px;" src="../assets/loader_rolling.gif" />
+					                      </span>
+					                      <span v-else>
+					                        Submit
+					                      </span>
+									</button>
 								</div>
 							</div>
 						</form>
@@ -69,7 +76,7 @@
 				</div>
 				<div class="col-md-4 edit_profile_user_sec">
 					<div class="card" style="width: 100%;">
-					  <div class="card-body">
+					  <div class="card-body" style="text-align: center;">
 					  	<div class="user_pic"></div>
 					    <h5 class="card-title">Micheal Jackson</h5>
 					    <h6 class="card-subtitle mb-2 text-muted">michealjackson23</h6>
@@ -117,7 +124,8 @@
 			Navbar
 		},
 		computed: {
-			...mapState(['auth'])
+			...mapState(['auth']),
+			...mapState(['isLoading'])
 		},
 		methods: {
 			...mapActions(['updateProfile']),
@@ -135,6 +143,11 @@
 					        city: this.city,
 					        country: this.country,
 					        postal_code: this.postal_code
+						}).then(data => {
+                        	this.$noty.success("Profile Updated Succefully")
+						}).catch(err => {
+							console.log(err.data)
+                        	this.$noty.error("Oops, something went wrong!")
 						});
                     } else {
                         this.$noty.error("Oops, something went wrong!")
@@ -233,8 +246,7 @@
 		border: 1px solid #000;
 		height: 140px;
 		width: 140px;
-		margin-left: 90px;
-		margin-bottom: 40px;
+	    display: inline-block;
 		border-radius: 100%;
 	}
 </style>

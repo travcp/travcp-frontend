@@ -311,4 +311,7 @@ label {
     margin-bottom: 19px;
     margin-top: 39px;
   }
+  .wrapper {
+    margin-top: -70px;
+  }
 </style>

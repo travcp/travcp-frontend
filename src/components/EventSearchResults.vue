@@ -110,7 +110,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-4 experience" v-for="event in events" :key="event.id" style="padding-right: 24px; padding-left: 0px;">
-                                <router-link :to="'/event/'+ event.id + '/' + event.city">
+                                <router-link :to="'/experience/'+ event.id + '/' + event.city">
                                     <div class="search_items">
                                         <div class="search_items_back_img nagoya"></div>
                                         <div class="search_items_item">
