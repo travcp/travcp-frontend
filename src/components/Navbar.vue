@@ -1,22 +1,25 @@
 <template>
-    <header class="main_menu_area">
-        <nav class="container navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="container navbar navbar-expand-lg navbar-light travvappNavbar">
             <!-- <router-link :to="'/result-details/'+ experience.id"> -->
             <router-link class="navbar-brand" to="/"><h2 style="color: #f81894;font-weight: bolder;">TravvApp</h2></router-link>
             <!-- <slot name="search"></slot> -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="display: inline;width: 50px;">
-                <span style="background: grey;"></span>
-                <span style="background: grey;"></span>
-                <span style="background: grey;"></span>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
+                 <span class="navbar-toggler-icon"></span>
             </button>
+            <!-- <button class="navbar-toggler"  type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">style="display: inline;width: 50px;"
+              <span class="navbar-toggler-icon"></span>
+            </button> -->
+            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button> -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav ml-auto ">
 
                     <li class="nav-item">
                       <router-link class="nav-link nav-item-color" to="/dashboard/new-exp">Add Listings</router-link>
                     </li>
                     <li class="nav-item"><a class="nav-link nav-item-color" href="#">Videos</a></li>
-                    <li class="nav-item"><a class="nav-link nav-item-color" href="/experiences">Bookings</a></li>
+                    <li class="nav-item"><router-link class="nav-link nav-item-color" to="/dashbaord/my-bookings">Bookings</router-link></li>
                     <li class="nav-item"><a class="nav-link nav-item-color" href="#">Help</a></li>  
 
                     <li class="nav-item" v-if="!checkUser"><router-link style="color: #000 !important;" class="nav-link" to="/signin">Sign in</router-link></li>                    
@@ -42,7 +45,7 @@
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="padding: 5px 0px 5px 1px;">
                         <a class="dropdown-item drp_pd" href="#">Dashboard <span class="badge badge-info">Comming Soon</span></a>
                         <!-- <a class="dropdown-item drp_pd" href="#">Profile <span class="badge badge-info">Comming Soon</span></a> -->
-                        <router-link class="dropdown-item drp_pd" to="/dashboard/edit-profile">Profile</router-link>
+                        <router-link class="dropdown-item drp_pd" to="/dashboard/profile">Profile</router-link>
                         <router-link class="dropdown-item drp_pd" to="/experiences">Experiences</router-link>
                         <!-- <router-link class="dropdown-item drp_pd" to="/dashboard/new-exp">New Experiences</router-link> -->
                         <a class="dropdown-item drp_pd" href="#">Payment <span class="badge badge-info">Comming Soon</span></a>
@@ -53,7 +56,6 @@
                 </ul>
             </div>
         </nav>
-    </header>
 </template>
 
 <script>
@@ -96,18 +98,27 @@ export default {
     letter-spacing: 1.8px;
     color: #555;
 }
-.main_menu_area {
+.travv_light_nav {
    border-bottom: none;
 }
-.main_menu_area .navbar .navbar-nav li a{
+.navbar .navbar-nav li a{
     font-size: 14px;
     font-weight: bold;
 }
-header.main_menu_area{
+.travv_light_nav{
     padding-left: 88px;
     padding-right: 88px;
 }
 .drp_pd {
   padding: 5px 0 5px 15px !important;
+}
+.nav-item a.nav-link {
+  color: #555 !important;
+  font-weight: bold !important;
+}
+.travvappNavbar li.nav-item {
+    min-width: 100px;
+    position: relative;
+    top: 10px;
 }
 </style>

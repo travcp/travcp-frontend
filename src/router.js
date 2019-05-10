@@ -154,12 +154,12 @@ export default new Router({
       component: NewExperience
     },
     {
-      path: '/my-bookings',
+      path: '/dashbaord/my-bookings',
       name: 'MyBooking',
       component: MyBooking
     },
     {
-      path: '/profile',
+      path: '/dashboard/profile',
       name: "Profile",
       component: Profile
     },

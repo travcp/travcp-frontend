@@ -1,5 +1,8 @@
 <template>
     <div class="home">
+        <div class="expereince_head">
+            
+        </div>
         <Navbar />
         <section class="filter_area" style="">
             <div class="container">
@@ -89,10 +92,10 @@
                                 <input v-model="search" class="filter_search_input" type="text"
                                     placeholder="Tour & Experiences in Tokyo " />
                                 |
-                                <img src="../assets/Icons/Calendar.svg" style="margin-top: -8px;margin-left: 31px;" />
+                                <img src="../assets/Icons/Calendar.svg" style="margin-top: -8px;margin-left: 31px;height: 28px;" />
                                 <button type="submit" class="filter_search_icon">
                                     <!-- <i class="material-icons">add</i> -->
-                                    <img v-if="!isLoading" src="../assets/icons8-search.svg" />
+                                    <img v-if="!isLoading" src="../assets/icons8-search.svg" style="height: 28px;" />
                                     <img v-if="isLoading" style="height: 20px;" src="../assets/loader_rolling.gif" />
 
                                     <!-- <font-awesome-icon icon="user" /> -->
@@ -103,7 +106,9 @@
                     </form>
                 </div>
             </div>
+            <button v-if="checkUserType != 'user'" type="button" class="btn btn-lg add-new-btn">Add New Experience</button>
         </section>
+
         <div class="digital_feature">
             <div class="row">
                 <div class="col-lg-12">
@@ -210,11 +215,15 @@
         computed: {
             ...mapState(['isLoading']),
             ...mapGetters(['allExperiences']),
+            ...mapState(['auth']),
+            checkUserType() {
+                return this.auth.role;
+            }
         },
         methods: {
             ...mapActions(['getExperiences']),
             ...mapActions(['filterExperiencesSearch']),
-            filterExperience: function(){
+            filterExperience: function() {
                 let data = {
                     search: this.search,
                     min_price: this.value_1[0],
@@ -242,11 +251,20 @@
 </script>
 
 <style scoped>
+.add-new-btn {
+        background: #F81894;
+        border: none;
+        font-family: MuseoSans700;
+        font-size: 18px;
+        width: 200px;
+        height: 54px;
+        border-radius: 8px;
+        color: #FFF;
+        margin-top: 20px;
+        margin-left: 15px;
+    }
     a {
         color: inherit;
-    }
-    header.main_menu_area{
-        z-index: -12213;
     }
     input[type=checkbox] {
         margin-right: 10px;
@@ -291,7 +309,7 @@
 
     .filter_area {
         background: #000;
-        margin-top: 121px;
+        margin-top: 25px;
         min-height: 146px;
         padding: 46px 0 36px 89px;
         margin-bottom: 57px;

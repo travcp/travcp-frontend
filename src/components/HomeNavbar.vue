@@ -13,8 +13,8 @@
                     <li class="nav-item">
                       <router-link style="color: #fff !important;" class="nav-link" to="/dashboard/new-exp">Add Listings</router-link>
                     </li>
-                    <li class="nav-item"><a style="color: #fff !important;"  href="static.html">Videos</a></li>
-                    <li class="nav-item"><a style="color: #fff !important;" class="nav-link" href="/experiences">Bookings</a></li>
+                    <li class="nav-item"><a style="color: #fff !important;"  href="#">Videos</a></li>
+                    <li class="nav-item"><router-link style="color: #fff !important;" class="nav-link" to="/dashbaord/my-bookings">Bookings</router-link></li>
                     <li class="nav-item"><a style="color: #fff !important;" class="nav-link" href="#">Help</a></li>                    
                     <li class="nav-item" v-if="!checkUser"><router-link style="color: #fff !important;" class="nav-link" to="/signin">Sign in</router-link></li>
                     <li class="nav-item" v-if="checkUser">
@@ -38,7 +38,7 @@
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="padding: 8px 0px 5px 1px;">
                         <a class="dropdown-item drp_pd" href="#">Dashboard <span class="badge badge-info">Comming Soon</span></a>
                         <!-- <a class="dropdown-item drp_pd" href="#">Profile <span class="badge badge-info">Comming Soon</span></a> -->
-                        <router-link class="dropdown-item drp_pd" to="/dashboard/edit-profile">Profile</router-link>
+                        <router-link class="dropdown-item drp_pd" to="/dashboard/profile">Profile</router-link>
                         <router-link class="dropdown-item drp_pd" to="/experiences">Experiences</router-link>
                         <!-- <router-link class="dropdown-item drp_pd" to="/dashboard/new-exp">New Experiences</router-link> -->
                         <a class="dropdown-item drp_pd" href="#">Payment <span class="badge badge-info">Comming Soon</span></a>

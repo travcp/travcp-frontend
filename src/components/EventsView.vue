@@ -29,6 +29,34 @@
                     <p>
                         {{ event.about_merchant }}
                     </p>
+                    <br>
+                    <h6>Rate the Experience</h6> <br>
+                    <form  @submit.prevent="rateExperienceSubmit">
+                        <div class="col-md-6">
+                            <div id="reviewStars-input" @click="toggleRatingBox">
+                                <input id="star-4" value="1" v-model="reviewStar" type="radio" name="reviewStars"/>
+                                <label title="gorgeous" for="star-4"></label>
+
+                                <input id="star-3" value="2" v-model="reviewStar" type="radio" name="reviewStars"/>
+                                <label title="good" for="star-3"></label>
+
+                                <input id="star-2" value="3" v-model="reviewStar" type="radio" name="reviewStars"/>
+                                <label title="regular" for="star-2"></label>
+
+                                <input id="star-1" value="4" v-model="reviewStar" type="radio" name="reviewStars"/>
+                                <label title="poor" for="star-1"></label>
+
+                                <input id="star-0" value="5" v-model="reviewStar" type="radio" name="reviewStars"/>
+                                <label title="bad" for="star-0"></label>
+                            </div><br><br>
+                        </div>
+                        <div class="form-group col-md-6" v-if="toggleRating">
+                            <h6>Rate this Experience</h6>
+                            <!-- <label>Rate this Experience</label> -->
+                            <input type="text" class="form-control edit-prof-input" v-model="rate_this_exp_text">
+                            <button type="submit" class="book_btn">Rate</button>
+                        </div>
+                    </form>
                 </div>
                 <div class="col-lg-5 sidebar-pd">
                     <div class="travv-sidebar" style="padding: 41px 0 0 50px;">
@@ -174,6 +202,9 @@
         name: 'EventsView',
         data() {
             return {
+                rate_this_exp_text: "",
+                reviewStar: null,
+                toggleRating: false,
                 start_date: '4/12/2019',
                 end_date: '6/12/2019',
                 dateFormat: 'D MMM',
@@ -214,6 +245,22 @@
         methods: {
             ...mapActions(['getEventsById']),
             ...mapActions(['bookingExperience']),
+            ...mapActions(['rateExperience']),
+            rateExperienceSubmit(){
+                if (this.toggleRating) {
+                    // user_id
+                    // experience_id
+                    // review_body
+                    this.rateExperience({
+                        "user_id": this.auth.user.id,
+                        "experience_id": this.experience.id,
+                        "review_body": this.rate_this_exp_text
+                    });
+                    this.$noty.success("Review is Successfull")
+                    this.toggleRating = false;
+                    this.rate_this_exp_text = ""
+                } 
+            },
             bookExperience: function () {
                 if(this.auth) {
                     let data = {
@@ -238,6 +285,9 @@
                 if (day.length < 2) day = '0' + day;
 
                 return [year, month, day].join('-');
+            },
+            toggleRatingBox(){
+                this.toggleRating = true;
             }
         },
         computed: {
