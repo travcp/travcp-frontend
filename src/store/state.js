@@ -23,6 +23,7 @@ export default {
     editProfileError: null,
     reviews: [],
     editProfileError: null,
-    reviewData: null
+    reviewData: null,
+    API_BASE:'https://travvapi.herokuapp.com/api'
     // user_token: 
 }

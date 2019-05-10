@@ -8,7 +8,10 @@
           <p>My Bookings</p>
           <hr class="my-booking-title-horizontal">
         </div>
-        <div class="row">
+        <div v-if="bookings.length < 1">
+          <empty-result>You do not have any bookings yet. When you book an experience, it will appear here.</empty-result>
+        </div>
+        <div class="row" v-for="booking in bookings" :key="booking.id">
           <div class="col-md-3 my-booking-details-image"></div>
           <div class="col-md-9">
             <div class="my-booking-trip-main">
@@ -27,7 +30,7 @@
             </div>
           </div>
         </div>
-        <div class="row my-booking-left">
+        <!-- <div class="row my-booking-left">
           <div class="col-md-3 my-booking-details-image"></div>
           <div class="col-md-9">
             <div class="my-booking-trip-main">
@@ -45,7 +48,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
       <!-- booking header details right -->
       <div class="col-lg-4">
@@ -114,10 +117,38 @@
 </template>
 <script>
 import Navbar from "@/components/Navbar.vue";
+import EmptyResult from "@/components/EmptyResult.vue";
+import { mapActions } from 'vuex';
+import axios from 'axios';
+
 export default {
   name: "MyBooking",
   components: {
-    Navbar
+    Navbar, EmptyResult
+  },
+  data(){
+    return {
+      bookings: []
+    }
+  },
+  methods:{
+    getMyBookings(){
+      
+      let requestHeaders = {
+        headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
+      };
+      axios.get(`${this.$store.state.API_BASE}/users/${this.$store.state.auth.user.id}/bookings`, requestHeaders).then(response => {
+        this.bookings = response.data.data;
+        
+      }).catch(err => {
+        console.log("There was error fetching mybookings");
+      })
+      
+    }
+  },
+  created(){
+    // console.log(this.$store.state)
+    this.getMyBookings()
   }
 };
 </script>
