@@ -192,6 +192,7 @@ export default {
 .overlay-changed {
   background-color: #f81894;
   opacity: 0.6;
+  height: 30px;
 }
 .my-booking-title {
   text-align: center;

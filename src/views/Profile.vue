@@ -175,13 +175,13 @@ export default {
         font-size:11px;
     }
     .nagoya {
-        background: url('../assets/nagoya.png');
+        background: url('/images/shibuya.png');
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
     }
     .search_items {
-        height: 393px;
+        height: 200px;
         width: 100%;
         display: flex;
         flex-direction: column;
