@@ -110,7 +110,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-4 experience" v-for="place in places" :key="place.id" style="padding-right: 24px; padding-left: 0px;">
-                                <router-link :to="'/place/'+ place.id + '/' + place.city">
+                                <router-link :to="'/experience/'+ place.id + '/' + place.city">
                                     <div class="search_items">
                                         <div class="search_items_back_img nagoya"></div>
                                         <div class="search_items_item">

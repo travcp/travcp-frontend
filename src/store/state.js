@@ -10,6 +10,7 @@ export default {
     login_errors: null,
     user_registration_errors: null,
     isLoading: false,
+    loadingExperience: false,
     auth: localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')) : null,
     booking_data: null,
     events: [],

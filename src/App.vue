@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <!-- <Navbar /> -->
+    <!-- <Circle8 /> -->
     <router-view/>
     <Footer />
   </div>
@@ -9,10 +10,14 @@
 <script>
 import Navbar from './components/Navbar.vue';
 import Footer from './components/Footer.vue';
-import {mapActions} from 'vuex';
+import {mapActions, mapState} from 'vuex';
+import {Circle8} from 'vue-loading-spinner'
 export default {
   name: 'App',
-  components: {Navbar, Footer},
+  components: {Navbar, Footer, Circle8},
+  computed: {
+    ...mapState(['loadingExperience'])
+  },
   methods: {
     ...mapActions(['getExperiences']),
     ...mapActions(['getRestaurants']),

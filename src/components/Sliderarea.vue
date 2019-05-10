@@ -33,18 +33,21 @@
                                     <img src="../assets/Icons/places.svg" style="margin-top: -8px;" /> Places / Destination
                                 </label>
                             </div> <br>
-                            <div class="btn-group btn-group-toggle" style="margin-right: 31px;margin-top: 20px;">
-                                <input type="text" class="whereWould" placeholder="Where would you like to go?">
-                                <!-- <label class="btn btn-travv">
-                                    Where would you like to go?
-                                </label> -->
-                                <label class="btn btn-travv active-travv">
-                                    |
-                                </label>
-                                <label class="btn btn-travv">
-                                    <img src="../assets/zoom-icon.png" style="margin-top: -10px;height: 24px;" />
-                                </label>
-                            </div> <button type="button" class="btn btn-lg cont-btn">Continue</button>
+                            
+                            <form @submit.prevent="searchSubmit">
+                                <div class="btn-group btn-group-toggle" style="margin-right: 31px;margin-top: 20px;">
+                                    <input type="text" class="whereWould" v-model='search_text' placeholder="Where would you like to go?">
+                                    <!-- <label class="btn btn-travv">
+                                        Where would you like to go?
+                                    </label> -->
+                                    <label class="btn btn-travv active-travv">
+                                        |
+                                    </label>
+                                    <label class="btn btn-travv">
+                                        <img src="../assets/zoom-icon.png" style="margin-top: -10px;height: 24px;" />
+                                    </label>
+                                </div> <button type="submit" class="btn btn-lg cont-btn">Continue</button>    
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -55,16 +58,36 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex';
+
     export default {
         name: 'Sliderarea',
         data() {
             return {
                 Experiences : true,
                 Restaurants : false,
-                Destination : false
+                Destination : false,
+                search_text: ''
             }
         },
         methods: {
+            ...mapActions(['filterExperiencesSearch']),
+            searchSubmit(){
+                let data = {
+                    search: this.search_text
+                }
+                let API_BASE = 'https://travvapi.herokuapp.com/api';
+
+                let url = `${API_BASE}/experiences?locations=${data.search}`;
+
+                if(data.search == ''){
+                    this.$router.push("/experiences");
+                    return this.filterExperiencesSearch();
+                } else {
+                    this.$router.push("/experiences");
+                    return this.filterExperiencesSearch(url);
+                }
+            },
             toggleColor: function(event) {
                 
                 console.log(event.target.dataset.exptype)
@@ -176,7 +199,7 @@
     }
     .whereWould {
         height: 100%;
-        width: 160%;
+        width: 260px;
         border: none;
         background-color: #ffffff;
         font-size: 18px;
