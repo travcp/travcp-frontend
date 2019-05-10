@@ -25,6 +25,7 @@ import Profile from '@/views/Profile';
 import Messages from '@/views/Messages';
 import Video from '@/views/Video.vue'
 import AboutUs from '@/views/AboutUs'
+import Notifications from '@/views/Notifications'
 // import RecommendedPlaces from '@/components/RecommendedPlaces.vue';
 
 import EventSearchResults from '@/components/EventSearchResults.vue';
@@ -179,6 +180,11 @@ export default new Router({
       path: '/about-us',
       name: "AboutUs",
       component: AboutUs
+    },
+    {
+      path: '/notifications',
+      name: "Notifications",
+      component: Notifications
     }
   ]
 });
