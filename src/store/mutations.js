@@ -79,7 +79,7 @@ export default {
       state.isLoading = true;
     },
     BOOKING_EXPERIENCE_FAILURE: (state, payload) => {
-      
+      state.isLoading = false;
     },
     GET_EVENTS: (state, payload) => {
       state.events = payload;
@@ -152,8 +152,8 @@ export default {
     EMPTY_SEARCH_RESULTS: (state) => {
       // state.emptySearchResult = true;
     },
-    GET_EXPERIENCE_TYPES: (state, paylaod) => {
-      state.experience_types = payload;
+    GET_EXPERIENCE_TYPES: (state, payload) => {
+      state.experience_types = payload.data;
       state.isLoading = false;
     }
     // UPDATE_
