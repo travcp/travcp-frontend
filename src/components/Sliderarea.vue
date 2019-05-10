@@ -78,7 +78,7 @@ import {mapActions} from 'vuex';
                 }
                 let API_BASE = 'https://travvapi.herokuapp.com/api';
 
-                let url = `${API_BASE}/experiences?locations=${data.search}`;
+                let url = `${API_BASE}/experiences?location=${data.search}`;
 
                 if(data.search == ''){
                     this.$router.push("/experiences");
