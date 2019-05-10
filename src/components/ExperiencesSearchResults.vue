@@ -217,7 +217,10 @@
             ...mapGetters(['allExperiences']),
             ...mapState(['auth']),
             checkUserType() {
-                return this.auth.role;
+                if(this.auth) {
+                    return this.auth.user.role;                    
+                }
+                return null
             }
         },
         methods: {
@@ -229,10 +232,14 @@
                     min_price: this.value_1[0],
                     max_price: this.value_1[1]
                 }
+                let API_BASE = 'https://travvapi.herokuapp.com/api';
+
+                let url = `${API_BASE}/experiences?locations=${data.search}&min_price=${data.min_price}&max_price=${data.max_price}`;
+
                 if(data.search == ''){
                     return this.filterExperiencesSearch();
                 } else {
-                    return this.filterExperiencesSearch(data);
+                    return this.filterExperiencesSearch(url);
                 }
                 // return this.filterExperiencesSearch(data);
             },

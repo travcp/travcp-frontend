@@ -45,7 +45,6 @@ export default {
     filterExperiencesSearch: ({commit}, data = `${API_BASE}/experiences`) => {
       commit('FILTER_EXPERIENCE_LOADING')
       axios.get(data).then(response => {
-
           commit('FILTER_EXPERIENCE', response.data);
       }).catch(({err}) => {
 
@@ -155,12 +154,13 @@ export default {
                 console.log(`Error ${error}`)
             });
     },
-    async updateProfile ({ commit, state }, data) {
+    updateProfile ({ commit, state }, data) {
       let requestHeaders = {
         headers: {'Authorization': "Bearer " + state.auth.access_token}
       };
       commit('EDIT_PROFILE_LOADING');
-      await axios.put(`${API_BASE}/users/${data.user_id}`, {
+      return new Promise((resolve, reject) => {
+        axios.put(`${API_BASE}/users/${data.user_id}`, {
                     "first_name": data.first_name,
                     "surname": data.surname,
                     "email": data.email,
@@ -173,11 +173,14 @@ export default {
                   }, requestHeaders)
                   .then((res) => {
                     commit('EDIT_PROFILE_SUCESS', res.data)
+                    resolve(res.data)
                     console.log(res.data)
                   }).catch((error) => {
                     commit('EDIT_PROFILE_FAIL')
-                    console.log(`Error ${error}`)
+                    console.log(`Error ${error.data}`)
+                    reject(error);
                   })
+      })
     },
     async getReviewsData({ commit }) {
       let requestHeaders = {

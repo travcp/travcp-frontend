@@ -30,7 +30,7 @@
                         {{ experience.about_merchant }}
                     </p>
                     <br>
-                    <h6>Rate the Experience</h6> <br>
+                    <h6 style="margin-left:20px;"><b>Rate the Experience</b></h6> <br>
                     <form  @submit.prevent="rateExperienceSubmit">
                         <div class="col-md-6">
                             <div id="reviewStars-input" @click="toggleRatingBox">
@@ -86,7 +86,7 @@
                                     <h3>Language</h3>
                                     <h5>{{ experience.language }}</h5>
                                 </div>
-                                <form @submit.prevent="bookExperience">
+                                <form @submit.prevent="bookExperience" style="padding-left: 17px;">
                                     <h3>Book</h3>
                                     <date-picker v-model="time" range :shortcuts="shortcuts" :lang="lang"></date-picker>
                                     <!-- <p>Start Date <input id="datepicker" v-model="start_date" type="date" width="276" /> -->
@@ -178,7 +178,10 @@
                                             </div>
                                             <div class="col-6">
                                                 <p class="review_name">Barbara Cox</p>
-                                                <p class="review_rev">* * * * * *</p>
+                                                <p class="review_rev">
+                                                    <img src="../assets/review-icon.svg" alt="Review icon" style="height: 28px;"><img src="../assets/review-icon.svg" alt="Review icon" style="height: 28px;"><img src="../assets/review-icon.svg" alt="Review icon" style="height: 28px;"><img src="../assets/review-icon.svg" alt="Review icon" style="height: 28px;">
+                                                </p>
+                                                <br>
                                                 <p class="review_date">It is a long established fact that a reader will be distracted by the readable content</p>
                                             </div>
                                             <!-- <div class="col-4">
@@ -261,19 +264,24 @@
             ...mapActions(['bookingExperience']),
             ...mapActions(['rateExperience']),
             rateExperienceSubmit(){
-                if (this.toggleRating) {
-                    // user_id
-                    // experience_id
-                    // review_body
-                    this.rateExperience({
-                        "user_id": this.auth.user.id,
-                        "experience_id": this.experience.id,
-                        "review_body": this.rate_this_exp_text
-                    });
-                    this.$noty.success("Review is Successfull")
-                    this.toggleRating = false;
-                    this.rate_this_exp_text = ""
-                } 
+                if(this.auth) {
+                    if (this.toggleRating) {
+                        // user_id
+                        // experience_id
+                        // review_body
+                        this.rateExperience({
+                            "user_id": this.auth.user.id,
+                            "experience_id": this.experience.id,
+                            "review_body": this.rate_this_exp_text
+                        });
+                        this.$noty.success("Review is Successfull")
+                        this.toggleRating = false;
+                        this.rate_this_exp_text = ""
+                    } 
+                } else {
+                    this.$noty.error("Oops, You need to Login to Review or Rate an Expereince");
+                }
+                
             },
             bookExperience: function () {
                 if(this.auth) {
@@ -301,7 +309,11 @@
                 return [year, month, day].join('-');
             },
             toggleRatingBox(){
-                this.toggleRating = true;
+                if(this.auth) {
+                    this.toggleRating = true;
+                } else {
+                    this.$noty.error("Oops, You need to Login to Review or Rate an Expereince");
+                }
             }
         },
         computed: {
@@ -590,7 +602,7 @@
 
     .review_name {
         font-size: 16px !important;
-        font-weight: bold;
+        font-weight: 100;
         font-style: normal;
         font-stretch: normal;
         line-height: normal;

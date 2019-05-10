@@ -57,7 +57,7 @@
             </div>
             <div class="col-lg-12">
 
-              <!-- <div id="carousel-2" class="carousel slide" data-ride="carousel">
+              <div id="carousel-2" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                   <div class="carousel-item active" data-interval="10000">
                     <div class="recom4uimages-up mount_fuji">
@@ -85,7 +85,8 @@
                     </div>
                   </div>
                 </div>
-              </div> -->
+              </div>
+              
             </div>
             <!-- // For Recommended Places -->
                         <div class="col-lg-12 toggleCarousel">
@@ -657,7 +658,7 @@
 
   .col-lg-6.col-md-6.latest-post {
     position: relative;
-    height: 401px;
+    height: 457px;
     box-shadow: 0 2px 13px 0 rgba(204, 204, 204, 0.5);
     background-color: #ffffff;
     background: #FFF;

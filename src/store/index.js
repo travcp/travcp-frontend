@@ -15,8 +15,6 @@ Vue.use(router)
 Vue.use(VueNoty);
 
 
-let API_BASE = 'https://travvapi.herokuapp.com/api';
-
 export default new Vuex.Store({
   state,
   mutations,
