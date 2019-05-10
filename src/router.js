@@ -168,5 +168,5 @@ export default new Router({
       name: "Video",
       component: Video
     }
-  ]
+    ]
 });
