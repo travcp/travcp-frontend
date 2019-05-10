@@ -91,7 +91,7 @@ export default {
       commit('BOOKING_EXPERIENCE_LOADING')
       axios.post(`${API_BASE}/bookings`, 
       {
-        "food_menu_ids": data.food_menu_ids,
+        // "food_menu_ids": data.food_menu_ids,
         "price": data.price,
         "merchant_id": data.merchant_id,
         "user_id": data.user_id,
@@ -104,7 +104,7 @@ export default {
         router.push("/");
         console.log(res.data)
       }).catch(err => {
-        commit('BOOKING_EXPERIENCE_FAILURE', err.response.data);
+        commit('BOOKING_EXPERIENCE_FAILURE', err.response);
       })
     },
     async getEvents ({commit}) {
@@ -224,7 +224,7 @@ export default {
       axios.get(`${API_BASE}/experience_types`)
             .then(response => {
               console.log(response.data.data)
-              commit('GET_EXPERIENCE_TYPES', response.data.data);
+              commit('GET_EXPERIENCE_TYPES', response.data);
             }).catch(error => {
               console.log(error)
             })

@@ -20,8 +20,8 @@
 															<label for="">Select Experience Type</label>
 															<select id="inputState" class="form-control new_experience_input">
 														        <option selected>Select</option>
-														        <option>An Experience Here</option>
-														      </select>
+														        <option v-for="experience_type in experience_types">{{ experience_type.name }}</option>
+														    </select>
 														</div>
 									    				<div class="form-group col-md-6">
 															<label for="">About the experience designer</label>
@@ -144,6 +144,7 @@
 		},
 		created() {
 			this.getExperienceTypes()
+			console.log(this.experience_types)
 		}
 	}
 </script>
