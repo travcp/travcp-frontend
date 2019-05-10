@@ -21,7 +21,8 @@ import EventsView from '@/components/EventsView.vue';
 import PlacesView from '@/components/PlacesView.vue';
 import PlacesSearchResults from '@/components/PlacesSearchResults.vue';
 import MyBooking from '@/views/MyBooking.vue';
-import Profile from '@/views/Profile.vue';
+import Profile from '@/views/Profile';
+import Messages from '@/views/Messages';
 import Video from '@/views/Video.vue'
 // import RecommendedPlaces from '@/components/RecommendedPlaces.vue';
 
@@ -152,6 +153,11 @@ export default new Router({
       path: '/dashboard/new-exp',
       name: 'NewExperience',
       component: NewExperience
+    },
+    {
+      path: '/dashboard/messages',
+      name: "Messages",
+      component: Messages
     },
     {
       path: '/dashbaord/my-bookings',

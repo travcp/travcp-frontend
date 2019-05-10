@@ -67,7 +67,7 @@
         methods: {
             toggleColor: function(event) {
                 
-                console.log(event.target.dataset.exptype)
+                // console.log(event.target.dataset.exptype)
                 if(event.target.dataset.exptype == "tours"){
                     this.Experiences = true
                     this.Restaurants = false

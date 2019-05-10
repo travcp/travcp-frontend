@@ -212,7 +212,7 @@
       // }
     },
     created: function () {
-      console.log(this.genRandom);
+      // console.log(this.genRandom);
       this.getExperiences()
       // this.experiences = this.allExperiences;
       // console.log(this.experiences)
