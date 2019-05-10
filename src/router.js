@@ -23,6 +23,7 @@ import PlacesSearchResults from '@/components/PlacesSearchResults.vue';
 import MyBooking from '@/views/MyBooking.vue';
 import Profile from '@/views/Profile';
 import Messages from '@/views/Messages';
+import Video from '@/views/Video.vue'
 // import RecommendedPlaces from '@/components/RecommendedPlaces.vue';
 
 import EventSearchResults from '@/components/EventSearchResults.vue';
@@ -168,5 +169,10 @@ export default new Router({
       name: "Profile",
       component: Profile
     },
+    {
+      path: '/video',
+      name: "Video",
+      component: Video
+    }
   ]
 });
