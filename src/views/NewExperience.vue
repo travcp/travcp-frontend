@@ -129,7 +129,7 @@
 <script>
 	import Navbar from '@/components/Navbar.vue';
 	import Footer from '@/components/Footer.vue';
-	import { mapActions } from 'vuex';
+	import { mapActions, mapState } from 'vuex';
 
 	export default {
 		name: 'NewExperience',
