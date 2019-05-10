@@ -1,8 +1,5 @@
 <template>
-    <div class="home">
-        <div class="expereince_head">
-            
-        </div>
+    <div class="ExpereinceSearchResults">
         <Navbar />
         <section class="filter_area" style="">
             <div class="container">
@@ -133,6 +130,7 @@
                 </div>
             </div>
         </div>
+        <!-- <Footer /> -->
     </div>
 </template>
 
@@ -140,6 +138,8 @@
     import Navbar from '@/components/Navbar.vue';
     import { mapState, mapGetters, mapActions } from 'vuex';
     import DatePicker from 'vue2-datepicker'
+    import Footer from '@/components/Footer.vue';
+
     export default {
         name: 'SearchResults',
         data: function () {
@@ -210,7 +210,8 @@
             }
         },
         components: {
-            Navbar
+            Navbar,
+            Footer
         },
         computed: {
             ...mapState(['isLoading']),

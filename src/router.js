@@ -160,7 +160,7 @@ export default new Router({
       component: Messages
     },
     {
-      path: '/dashbaord/my-bookings',
+      path: '/dashboard/my-bookings',
       name: 'MyBooking',
       component: MyBooking
     },

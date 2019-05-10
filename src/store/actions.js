@@ -42,12 +42,15 @@ export default {
       });
 
     },
-    filterExperiencesSearch: ({commit}, data = `${API_BASE}/experiences`) => {
+    async filterExperiencesSearch ({commit}, data = `${API_BASE}/experiences`) {
       commit('FILTER_EXPERIENCE_LOADING')
-      axios.get(data).then(response => {
-          commit('FILTER_EXPERIENCE', response.data);
-      }).catch(({err}) => {
-
+      await axios.get(data).then(response => {
+          commit('FILTER_EXPERIENCE', response.data.data);
+          if(response.data.data.length < 1){
+            commit('EMPTY_SEARCH_RESULTS')
+          }
+      }).catch((err) => {
+        console.log(`Error from Experence Search ${err}`)
       });
     },
     async userRegistration ({commit}, data) {
@@ -86,11 +89,17 @@ export default {
         headers: {'Authorization': "Bearer " + state.auth.access_token}
       };
       commit('BOOKING_EXPERIENCE_LOADING')
-      axios.post(`${API_BASE}/bookings/experiences/${data.experience_id}`, 
+      axios.post(`${API_BASE}/bookings`, 
       {
+        "food_menu_ids": data.food_menu_ids,
+        "price": data.price,
+        "merchant_id": data.merchant_id,
+        "user_id": data.user_id,
+        "experience_id": data.experience_id,
         "start_date": data.start_date,
 	      "end_date": data.end_date
       }, requestHeaders).then(res => {
+        console.lod(res.data.data)
         commit('BOOKING_EXPERIENCE', res.data)
         router.push("/");
         console.log(res.data)
@@ -209,5 +218,15 @@ export default {
                 }).catch((err) => {
                   commit('REVIEW_ERROR', err.data)
                 })
+    },
+    async getExperienceTypes({ commit }) {
+      commit('IS_LOADING');
+      axios.get(`${API_BASE}/experience_types`)
+            .then(response => {
+              console.log(response.data.data)
+              commit('GET_EXPERIENCE_TYPES', response.data.data);
+            }).catch(error => {
+              console.log(error)
+            })
     }
 }

@@ -113,6 +113,7 @@
         </div>
       </div>
     </div>
+  <Footer />
   </div>
 </template>
 <script>
@@ -120,11 +121,12 @@ import Navbar from "@/components/Navbar.vue";
 import EmptyResult from "@/components/EmptyResult.vue";
 import { mapActions } from 'vuex';
 import axios from 'axios';
+import Footer from '@/components/Footer.vue';
 
 export default {
   name: "MyBooking",
   components: {
-    Navbar, EmptyResult
+    Navbar, EmptyResult, Footer
   },
   data(){
     return {
