@@ -214,7 +214,7 @@ export default {
 }
 </script>
 <style>
-footer.footer_area{
+footer.footer_area {
     display:none;
     
 }

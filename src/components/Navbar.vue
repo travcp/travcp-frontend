@@ -43,9 +43,9 @@
                         <img src="../assets/profile_2.png" class="rounded-circle" style="height: 50px;">
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="padding: 5px 0px 5px 1px;">
-                        <a class="dropdown-item drp_pd" href="#">Dashboard <span class="badge badge-info">Comming Soon</span></a>
+                        <!-- <a class="dropdown-item drp_pd" href="#">Dashboard <span class="badge badge-info">Comming Soon</span></a> -->
                         <!-- <a class="dropdown-item drp_pd" href="#">Profile <span class="badge badge-info">Comming Soon</span></a> -->
-                        <router-link class="dropdown-item drp_pd" to="/dashboard/profile">Profile</router-link>
+                        <router-link class="dropdown-item drp_pd" to="/dashboard/profile">Dashboard</router-link>
                         <router-link class="dropdown-item drp_pd" to="/experiences">Experiences</router-link>
                         <!-- <router-link class="dropdown-item drp_pd" to="/dashboard/new-exp">New Experiences</router-link> -->
                         <a class="dropdown-item drp_pd" href="#">Payment <span class="badge badge-info">Comming Soon</span></a>

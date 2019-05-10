@@ -14,9 +14,9 @@
                                </span>
                                <!-- <div class="user_pic"></div> -->
                                <img src="/img/profile_2.png" class="user_pic" alt="profile picture">
-                                <h5 class="card-title">Micheal Jackson</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">michealjackson23</h6>
-                                <p class="location"><img src="/img/icons/map-marker-alt-solid.svg" alt="" style="width:10px"> Lagos, Nigeria</p>
+                                <h5 class="card-title">{{ userProperties.surname }} {{ userProperties.first_name }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted" style="text-transform: lowercase;">{{ userProperties.surname }}{{ userProperties.first_name }}</h6>
+                                <p class="location" v-if="userProperties.address"><img src="/img/icons/map-marker-alt-solid.svg" alt="" style="width:10px"> {{ userProperties.address }}, {{ userProperties.country }}</p>
                                 <p class="card-text description">Tour with me, Discover Places and experience the culture with me</p>
                            </div>
                        </div>
@@ -107,7 +107,13 @@ import Navbar from '@/components/Navbar.vue';
 import { mapState, mapActions } from 'vuex';
 export default {
     name: "Profile",
-    components: { Navbar}
+    components: { Navbar },
+    computed: {
+      ...mapState(['auth']),
+      userProperties() {
+        return this.auth.user;
+      }
+    }
 }
 </script>
 <style scoped>

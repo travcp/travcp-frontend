@@ -234,7 +234,7 @@
                 }
                 let API_BASE = 'https://travvapi.herokuapp.com/api';
 
-                let url = `${API_BASE}/experiences?locations=${data.search}&min_price=${data.min_price}&max_price=${data.max_price}`;
+                let url = `${API_BASE}/experiences?location=${data.search}&min_price=${data.min_price}&max_price=${data.max_price}`;
 
                 if(data.search == ''){
                     return this.filterExperiencesSearch();
