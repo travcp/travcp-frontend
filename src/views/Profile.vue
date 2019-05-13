@@ -26,66 +26,25 @@
                            <div class="card-body">
                                <div class="card-head">
                                    <span class="card-title">My Bookings</span> 
-                                   <span class="float-right"><a href="#">See All</a></span>
+                                   <span class="float-right"><router-link to="/dashboard/my-bookings">See All</router-link></span>
                                </div>
                                <br>
                                <div class="row">
-                                   <div class="col-md-4 experience">
-                                       <router-link :to="'/'">
+                                   <div class="col-md-4 experience" v-for="booking in bookings">
+                                    <!-- experience/2/Mikaylafurt -->
+                                       <router-link :to="'../experience/' + booking.experience.id + '/' + booking.experience.city">
                                             <div class="search_items">
                                                 <div class="search_items_back_img nagoya"></div>
                                                 <div class="search_items_item">
                                                     <div class="fetr_places_overlay">
-                                                        <p>DAY TRIP state</p>
-                                                        <h3>city</h3>
+                                                        <p>DAY TRIP | {{ booking.experience.state }}</p>
+                                                        <h3>{{ booking.experience.city }}</h3>
                                                         <!-- <p><b>4.75 *</b> (224)</p> -->
                                                     </div>
                                                 </div>
                                             </div>
                                         </router-link>
                                    </div>
-                                   <div class="col-md-4 experience">
-                                       <router-link :to="'/'">
-                                            <div class="search_items">
-                                                <div class="search_items_back_img nagoya"></div>
-                                                <div class="search_items_item">
-                                                    <div class="fetr_places_overlay">
-                                                        <p>DAY TRIP state</p>
-                                                        <h3>city</h3>
-                                                        <!-- <p><b>4.75 *</b> (224)</p> -->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </router-link>
-                                   </div>
-                                   <div class="col-md-4 experience">
-                                       <router-link :to="'/'">
-                                            <div class="search_items">
-                                                <div class="search_items_back_img nagoya"></div>
-                                                <div class="search_items_item">
-                                                    <div class="fetr_places_overlay">
-                                                        <p>DAY TRIP state</p>
-                                                        <h3>city</h3>
-                                                        <!-- <p><b>4.75 *</b> (224)</p> -->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </router-link>
-                                   </div>
-                                    <!-- <div class="col-md-4 experience" v-for="experience in allExperiences" :key="experience.id" style="padding-right: 24px; padding-left: 0px;">
-                                        <router-link :to="'/experience/'+ experience.id + '/' + experience.city">
-                                            <div class="search_items">
-                                                <div class="search_items_back_img nagoya"></div>
-                                                <div class="search_items_item">
-                                                    <div class="fetr_places_overlay">
-                                                        <p>DAY TRIP {{ experience.state }}</p>
-                                                        <h3> {{ experience.city }}</h3>
-                                                        <p><b>4.75 *</b> (224)</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </router-link>
-                                    </div> -->
                                 </div>
                            </div>
                        </div>
@@ -107,15 +66,36 @@
 import Navbar from '@/components/Navbar.vue';
 import { mapState, mapActions } from 'vuex';
 import Footer from '@/components/Footer.vue';
-
+import axios from 'axios';
 export default {
     name: "Profile",
     components: { Navbar, Footer },
+    data(){return{
+      bookings: []
+    }},
     computed: {
       ...mapState(['auth']),
       userProperties() {
         return this.auth.user;
       }
+    },
+    methods: {
+      getMyBookings(){
+      
+        let requestHeaders = {
+          headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
+        };
+        axios.get(`${this.$store.state.API_BASE}/users/${this.$store.state.auth.user.id}/bookings`, requestHeaders).then(response => {
+          this.bookings = response.data.data;
+          
+        }).catch(err => {
+          console.log("There was error fetching mybookings");
+        })
+        
+      }
+    },
+    created(){
+      this.getMyBookings()
     }
 }
 </script>

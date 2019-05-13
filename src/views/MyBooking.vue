@@ -16,16 +16,16 @@
           <div class="col-md-9">
             <div class="my-booking-trip-main">
               <div class="my-booking-trip-details-header">
-                <p class="my-booking-trip-details-header-p1">DAY TRIP | WEST SUNNYBERG</p>
-                <p class="my-booking-trip-details-header-p2">Kimberg</p>
+                <p class="my-booking-trip-details-header-p1">DAY TRIP | {{ booking.experience.state }}</p>
+                <p class="my-booking-trip-details-header-p2">{{ booking.experience.city }}</p>
               </div>
               <div class="my-booking-trip-details">
                 <p
                   class="my-booking-trip-details-p1"
-                >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima fugiat alias at suscipit</p>
+                >{{ booking.experience.title }}</p>
                 <p
                   class="my-booking-trip-details-p2"
-                >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus saepe asperiores, culpa ab illum quia quis odit ipsum magni voluptas laboriosam pariatur recusandae est in ad sint? Eveniet, delectus pariatur.</p>
+                >{{ booking.experience.description }}</p>
               </div>
             </div>
           </div>
@@ -113,7 +113,7 @@
         </div>
       </div>
     </div>
-  <Footer />
+  <!-- <Footer /> -->
   </div>
 </template>
 <script>

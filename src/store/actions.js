@@ -228,5 +228,14 @@ export default {
             }).catch(error => {
               console.log(error)
             })
+    },
+    async submitExperience({ commit }, data ) {
+      commit('IS_LOADING');
+      let requestHeaders = {
+        headers: {'Authorization': "Bearer " + state.auth.access_token}
+      };
+      axios.post(`${API_BASE}/experiences`, {
+        data
+      })
     }
 }
