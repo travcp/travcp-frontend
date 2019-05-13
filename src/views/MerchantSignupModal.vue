@@ -6,19 +6,17 @@
                     <h5 class="modal-title">Become a merchant</h5>
                 </div>
                 <div class="modal-content">
-                    <div class="form-inner">
+                    <div class="form-inner" style="padding:15px;">
                         <div class="container">
                             <div class="row">
                             
                                 <div class="col-md-12">
-                                        <form @submit.prevent="formSubmit">
+                                    <form-errors :errors="validationErrors" v-if="validationErrors"></form-errors>
+                                    <form @submit.prevent="submitForm">
                                         <div class="form-header">
-                                            <!-- <h3>Sign up</h3> -->
-
-
-                                            <div class="alert alert-danger" role="alert" v-if="user_errors">
+                                            <!-- <div class="alert alert-danger" role="alert" v-if="user_errors">
                                             {{ user_errors.errors.email[0] }}
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-md-12">
@@ -28,7 +26,6 @@
                                             <div class="form-group col-md-12">
                                                 <label for="">About Merchant</label>
                                                 <textarea name="about_merchant" id="about_merchant" cols="30" rows="10" class="form-control" v-model="about_merchant" placeholder="Merchant's bio"></textarea>
-                                                <!-- <input v-model="surname" type="text" class="form-control signin-input" placeholder="Jackson"> -->
                                             </div>
                                         </div>
                                     
@@ -49,12 +46,13 @@
                                         </div>
                                         <div class="col-md-12" style="text-align: center">
                                             <button type="submit" class="btn btn-lg signup-btn">
-                                            <span v-if="isLoading">
+                                                Sign up
+                                            <!-- <span v-if="isLoading">
                                                 <img style="height: 20px;" src="../assets/loader_rolling.gif" />
                                             </span>
                                             <span v-else>
                                                 Sign up
-                                            </span>
+                                            </span> -->
                                             </button>
                                         </div>
                                         </div>
@@ -78,6 +76,8 @@
 </template>
 <script>
 import { mapState, mapActions, mapGetters, mapMutations } from 'vuex';
+import FormErrors from '@/components/FormErrors.vue';
+import axios from 'axios';
 export default {
     name: "MerchantSignupModal",
         data(){
@@ -85,42 +85,59 @@ export default {
                 business_name: "",
                 about_merchant: "",
                 email: "",
+                validationErrors: ""
             }
         },
         methods: {
-            ...mapActions(['userRegistration']),
-            formSubmit: function(){
-                let data = {
-
-                };
-                this.$validator.validateAll().then(result => {
-                    if (result){
-                        this.userRegistration({
-                            email : this.email,
-                            password: this.password,
-                            first_name: this.first_name,
-                            surname: this.surname
-                        });
-                        if (this.user_registration_errors === null) {
-                        	this.$noty.success("Registration sucessfull")
-                        } else {
-                        	this.$noty.error("Oops, something went wrong!")
+            
+            submitForm: function(){
+                let requestHeaders = {
+                    headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
+                }
+                axios.post(`${this.$store.state.API_BASE}/merchant/extras`, {
+                        business_email: this.email,
+                        business_name: this.business_name,
+                        bio: this.about_merchant,
+                        merchant_id: this.$store.state.auth.user.id
+                    }, requestHeaders).then(response => {
+                        this.$noty.success("Registration sucessfull")
+                    }).catch(err => {
+                        // this.$noty.error("Oops, something went wrong!")
+                        if (err.response.status == 422){
+                            this.validationErrors = err.response.data.errors;
                         }
-                        // this.$
-                    }
-                    else{
-                        this.$noty.error("Oops, something went wrong!")
-                    }
-                });
+                    })
+                // this.$validator.validateAll().then(result => {
+                //     console.log("Break it down")
+                //     if (result){
+                //         console.log("Who that")
+                //         axios.post(`${this.$store.state.API_BASE}/merchant/extras`, {
+                //             business_email: this.email,
+                //             business_name: this.business_name,
+                //             bio: this.about_merchant,
+                //             merchant_id: this.$store.state.auth.user.id
+                //         }).then(response => {
+                //             this.$noty.success("Registration sucessfull")
+                //         }).catch(err => {
+                //             // this.$noty.error("Oops, something went wrong!")
+                //             if (err.response.status == 422){
+                //                 this.validationErrors = err.response.data.errors;
+                //             }
+                //         })
+                        
+                //     }
+                //     else{
+                //         this.$noty.error("Oops, something went wrong!")
+                //     }
+                // });
                 
             }
         },
         computed: {
-            ...mapState(['user_registration_errors']),
-            ...mapState(['isLoading']),
-            user_errors() {
-                return this.user_registration_errors;
-            }
+            
+        },
+        components: {
+            FormErrors
         }
 }
 </script>

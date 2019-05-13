@@ -9,7 +9,10 @@
           <hr class="my-booking-title-horizontal">
         </div>
         <div v-if="bookings.length < 1">
-          <empty-result>You do not have any bookings yet. <br> When you book an experience, it will appear here.</empty-result>
+          <empty-result>
+            <template v-slot:error-header>Errm</template>
+            You do not have any bookings yet. <br> When you book an experience, it will appear here.
+          </empty-result>
         </div>
         <div class="row" v-for="booking in bookings" :key="booking.id">
           <div class="col-md-3 my-booking-details-image"></div>
@@ -149,7 +152,6 @@ export default {
     }
   },
   created(){
-    // console.log(this.$store.state)
     this.getMyBookings()
   }
 };
