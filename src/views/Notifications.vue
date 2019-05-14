@@ -3,7 +3,7 @@
     <Navbar/>
     <!--About us start -->
     <div class="notification-header">
-      <p>About Us</p>
+      <p>Notifications</p>
       <hr>
     </div>
     <div class="container notification-main">

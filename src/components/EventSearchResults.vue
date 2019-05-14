@@ -121,20 +121,11 @@
 </script>
 
 <style scoped>
-.add-new-btn {
-        background: #F81894;
-        border: none;
-        font-family: MuseoSans700;
-        font-size: 18px;
-        width: 60px;
-        height: 54px;
-        border-radius: 8px;
-        color: #FFF;
-        /*margin-top: 20px;
-        margin-left: 15px;*/
-    }
     a {
         color: inherit;
+    }
+    header.main_menu_area{
+        z-index: -12213;
     }
     input[type=checkbox] {
         margin-right: 10px;
@@ -179,22 +170,22 @@
 
     .filter_area {
         background: #000;
-        margin-top: 10px;
-        min-height: auto;
-        padding: 30px 0 30px 89px;
+        margin-top: 121px;
+        min-height: 146px;
+        padding: 36px 0 36px 89px;
         margin-bottom: 57px;
     }
 
     .filter_btn {
-        width: 160px;
-        height: 54px;;
+        width: 206px;
+        height: 74px;
         border-radius: 8px;
         border: solid 2px #ffffff;
         border: 2px solid #FFF;
         color: #FFF;
         background: transparent;
         font-family: MuseoSans;
-        font-size: 16px;
+        font-size: 21px;
         font-weight: bold;
     }
 
@@ -211,7 +202,7 @@
         color: #000;
         padding: 0 10px;
         transition: width .4s linear;
-        font-size: 16px;
+        font-size: 20px;
         padding-left: 48px;
     }
 
@@ -354,12 +345,5 @@
         .main_menu_area .navbar .navbar-toggler span {
             background: #555;
         }
-    }
-    .no-search-results-cont{
-        text-align: center;
-        margin-bottom: 57px;
-    }
-    .no-search-results-cont h3, .suggestion-cont h3{
-        text-transform: initial;
     }
 </style>

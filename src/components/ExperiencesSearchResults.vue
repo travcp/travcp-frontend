@@ -129,7 +129,7 @@
                                 </h3>
                             </div>
                             
-                            <div class="col-md-4 experience" v-if="allExperiences != null && allExperiences.length < 1" v-for="experience in experiencesPlacehodler" :key="experience.id" style="">
+                            <div class="col-md-4 experience" v-if="allExperiences != null && allExperiences.length < 1 && !isLoading" v-for="experience in experiencesPlacehodler" :key="experience.id" style="">
                                 <router-link :to="'/experience/'+ experience.id + '/' + experience.city">
                                     <div class="search_items">
                                         <div class="search_items_back_img nagoya"></div>
@@ -143,7 +143,7 @@
                                     </div>
                                 </router-link>
                             </div>
-                            <div class="col-md-4 experience" v-for="experience in allExperiences" :key="experience.id" style="">
+                            <div class="col-md-4 experience" v-if="!isLoading" v-for="experience in allExperiences" :key="experience.id" style="">
                                 <router-link :to="'/experience/'+ experience.id + '/' + experience.city">
                                     <div class="search_items">
                                         <div class="search_items_back_img nagoya"></div>
@@ -252,6 +252,7 @@
             ...mapState(['auth']),
             ...mapState(['emptySearchResult']),
             ...mapState(['experiencesPlacehodler']),
+            ...mapState(['homeSearch']),
             checkUserType() {
                 if(this.auth) {
                     return this.auth.user.role;                    
@@ -308,6 +309,7 @@
             }
         },
         created: function(){
+            this.search = this.homeSearch;
             // if (this.emptySearchResult) {
             //     this.emptySearchToggle = true;
             //     console.log('Still No Search')
@@ -320,7 +322,7 @@
             //     this.filterExperiencesSearch();
             //     this.emptySearchToggle = false;
             // }
-            this.getExperiences();
+            // this.getExperiences();
         }
     }
 </script>

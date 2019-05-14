@@ -16,7 +16,7 @@
                                     <h3>TravvApp</h3>
                                 </div>
                                 <ul>
-                                    <li>About us</li>
+                                    <li><router-link to="/about-us">About us</router-link></li>
                                     <li>Careers</li>
                                     <li>Press</li>
                                     <li>Policies</li>

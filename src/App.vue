@@ -26,10 +26,10 @@ export default {
     // ...mapActions(['getExperiences'])
   },
   created() {
-    // this.getExperiences()
+    this.getExperiences()
     // // this.getRestaurants()
-    // this.getEvents();
-    // this.getPlaces();
+    this.getEvents();
+    this.getPlaces();
     // this.getExperiences();
   }
 }

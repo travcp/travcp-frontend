@@ -70,10 +70,27 @@
         <div class="video-details-right">
           <div class="feature-places-title">
             <p class="feature-places-title-p1">Featured Places</p>
-            <p class="feature-places-title-p2">SEE ALL</p>
+            <p class="feature-places-title-p2"><router-link to="/places">SEE ALL</router-link></p>
           </div>
           <div>
-            <div class="featured_places saitama changed">
+            <div class="featured_places saitama changed" v-for="place in places.slice(0, 3)">
+              <router-link :to="'/experience/'+ place.id + '/' + place.city">
+              <div class="featured_places_item">
+                <div class="featured_places_overlay overlay-changed" style="height: auto">
+                  <div class="row">
+                    <div class>
+                      <p class="ftr_places_title video-right-p-text" style="padding: 6px 0 15px 25px;">{{ place.city }}</p>
+                    </div>
+                    <div class="video-right-div-2">
+                      <!-- <p class="ftr_places_title video-right-p-text">{{ place.number_admittable }}</p>
+                      <p class="ftr_places_title video-right-p-text">{{ place.rating_count }}</p> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </router-link>
+            </div>
+            <!-- <div class="featured_places saitama changed">
               <div class="featured_places_item">
                 <div class="featured_places_overlay overlay-changed">
                   <div class="row">
@@ -102,22 +119,7 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="featured_places saitama changed">
-              <div class="featured_places_item">
-                <div class="featured_places_overlay overlay-changed">
-                  <div class="row">
-                    <div class>
-                      <p class="ftr_places_title video-right-p-text">SAITAMA</p>
-                    </div>
-                    <div class="video-right-div-2">
-                      <p class="ftr_places_title video-right-p-text">221</p>
-                      <p class="ftr_places_title video-right-p-text">50</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -128,18 +130,22 @@
 <script>
 import Navbar from "@/components/Navbar.vue";
 import Footer from '@/components/Footer.vue';
+import { mapState } from 'vuex';
 
 export default {
   name: "MyBooking",
   components: {
     Navbar,
     Footer
+  },
+  computed: {
+    ...mapState(['places'])
   }
 };
 </script>
 <style scoped>
 .main {
-  padding-top: 100px;
+  /*padding-top: 100px;*/
 }
 .my-booking-left {
   margin-top: 30px;
