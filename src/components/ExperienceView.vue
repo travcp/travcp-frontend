@@ -549,7 +549,7 @@
         widows: 100%;
         width: 100%;
         height: 475px;
-        padding: 61px 0 0 25px;
+        padding: 33px 0 0 25px;
     }
 
     .travv-sidebar_text h3 {

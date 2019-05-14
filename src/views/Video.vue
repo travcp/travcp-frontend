@@ -64,6 +64,18 @@
           <div class="col-md video-details-image"></div>
           <div class="col-md video-details-image"></div>
         </div>
+        <div class="row video-images">
+          <div class="col-md video-details-image"></div>
+          <div class="col-md video-details-image"></div>
+          <div class="col-md video-details-image"></div>
+          <div class="col-md video-details-image"></div>
+        </div>
+        <div class="row video-images">
+          <div class="col-md video-details-image"></div>
+          <div class="col-md video-details-image"></div>
+          <div class="col-md video-details-image"></div>
+          <div class="col-md video-details-image"></div>
+        </div>
       </div>
       <!-- booking header details right -->
       <div class="col-lg-3">

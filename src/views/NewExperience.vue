@@ -17,7 +17,27 @@
 							    	<div class="col-md-6">
 							    			<div class="form-holder">
 							    				<div class="form-index-1" v-if="form_index == 1">
-							    					
+							    			// experience_type_id
+											// about_merchant
+											// contact_email
+											// location
+											// state
+											// offerings
+											// naira_price
+											// dollar_price
+											// pounds_price
+											// price_from
+											// price_to
+											// extra_peeks
+											// drink_types
+											// dining_options
+											// has_outdoor_sitting
+											// opening_and_closing_hours
+											// cancellation_policy
+											// tourist_expected_items
+											// nuumber_admittable
+											// experiences_type_id
+								   			// history
 							    					<div class="form-group col-md-12">
 							    						<label for="">Select Experience Type</label>
 								    					<select  v-validate="'required'" id="inputState" class="form-control new_experience_input" v-model="experience_type">
@@ -36,11 +56,23 @@
 															  <input v-validate="'required'" type="text" class="form-control new_experience_input" placeholder="City" v-model="city">
 							    					</div>
 							    					<div class="form-group col-md-12">
+															  <label class="">Location</label>
+															  <input v-validate="'required'" type="text" class="form-control new_experience_input" placeholder="" >
+							    					</div>
+							    					<div class="form-group col-md-12">
+															  <label class="">State</label>
+															  <input v-validate="'required'" type="text" class="form-control new_experience_input" placeholder="" >
+							    					</div>
+							    					<div class="form-group col-md-12">
 															<label for="">Language</label>
 															<select v-validate="'required'" id="inputState" class="form-control new_experience_input" v-model="language">
 														        <!-- <option selected>Select</option> -->
 														        <option>English</option>
 														      </select>
+							    					</div>
+							    					<div class="form-group col-md-12">
+								    					<label>Offerings</label>
+														<textarea v-validate="'required'" cols="30" rows="10" class="form-control"></textarea>
 							    					</div>
 							    					<div class="form-group col-md-12">
 							    						<div class="row">
@@ -222,7 +254,7 @@
 					// tourist_expected_items
 					// nuumber_admittable
 					// experiences_type_id
-		   //          history
+		   			//          history
 				}
 				this.$validator.validateAll().then(result => {
                     if (result){
