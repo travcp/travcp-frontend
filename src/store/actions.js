@@ -7,10 +7,11 @@ let API_BASE = 'https://travvapi.herokuapp.com/api';
 Vue.use(router);
 
 export default {
-	 async getExperiences({ commit }) {
+	 async getExperiences({ commit, state }) {
       commit('IS_LOADING');
       await axios.get(`${API_BASE}/experiences`).then(response => {
         commit('ALL_EXPERIENCE', response.data);
+        state.experiencesPlacehodler = response.data.data
       });
     },
     async getExperienceById ({commit}, id) {
@@ -42,12 +43,17 @@ export default {
       });
 
     },
-    async filterExperiencesSearch ({commit}, data = `${API_BASE}/experiences`) {
+    async filterExperiencesSearch ({commit, state}, data = `${API_BASE}/experiences`) {
       commit('FILTER_EXPERIENCE_LOADING')
       await axios.get(data).then(response => {
           commit('FILTER_EXPERIENCE', response.data.data);
           if(response.data.data.length < 1){
-            commit('EMPTY_SEARCH_RESULTS')
+            // console.log("an empty search result")
+            // state.emptySearchResult = true;
+            // state.editProfileData = "Example"
+            // commit('EMPTY_SEARCH_RESULTS')
+          } else {
+            commit('SEARCH_RESULTS')
           }
       }).catch((err) => {
         console.log(`Error from Experence Search ${err}`)
@@ -236,6 +242,10 @@ export default {
       };
       axios.post(`${API_BASE}/experiences`, {
         data
+      }, requestHeaders).then(response => {
+        console.log(response.data.data);
+      }).catch((err) => {
+        console.log(err);
       })
-    }
+    },
 }

@@ -128,7 +128,7 @@
 
     export default {
         name: 'Signin',
-        beforeRouteEnter(to, from, next){
+        beforeRouteEnter(to, from, next) {
             if(localStorage.getItem('auth')) {
                 return next({ path: '/' })
             }

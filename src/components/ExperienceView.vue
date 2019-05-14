@@ -178,18 +178,18 @@
                             <br>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="guest_review_">
+                                    <div class="guest_review_" v-for="review in experience.reviews">
                                         <div class="row">
                                             <div class="col-4">
                                                 <div class="guest_review_pic"></div>
                                             </div>
                                             <div class="col-6">
-                                                <p class="review_name">Barbara Cox</p>
+                                                <p class="review_name">{{ review.user_id }}</p>
                                                 <p class="review_rev">
-                                                    <img src="../assets/review-icon.svg" alt="Review icon" style="height: 28px;"><img src="../assets/review-icon.svg" alt="Review icon" style="height: 28px;"><img src="../assets/review-icon.svg" alt="Review icon" style="height: 28px;"><img src="../assets/review-icon.svg" alt="Review icon" style="height: 28px;">
+                                                    <img v-for="i in review.rating" src="../assets/review-icon.svg" alt="Review icon" style="height: 28px;">
                                                 </p>
                                                 <br>
-                                                <p class="review_date">It is a long established fact that a reader will be distracted by the readable content</p>
+                                                <p class="review_date">{{ review.review_body }}</p>
                                             </div>
                                             <!-- <div class="col-4">
                                                 <div class="guest_review_cont">
@@ -197,7 +197,7 @@
                                                     <p>good quality stickers</p>
                                                 </div>
                                             </div> -->
-                                        </div>
+                                        </div> <br>
                                     </div>
                                 </div>
                             </div>
@@ -650,7 +650,7 @@
         height: 120px;
         background: url('../assets/avatar.png');
         background-position: center;
-        background-size: cover;
+        background-size: contain;
         background-repeat: no-repeat;
     }
     @media only screen and (max-width: 576px) {

@@ -128,6 +128,15 @@ import Footer from '@/components/Footer.vue';
 
 export default {
   name: "MyBooking",
+  beforeRouteEnter(to, from, next) {
+      if(localStorage.getItem('auth')) {
+          return next()
+      } else {
+        // this.$noty.error("Sign in to access!")
+        return next({ path: '/signin' })
+      }
+      next();
+  },
   components: {
     Navbar, EmptyResult, Footer
   },

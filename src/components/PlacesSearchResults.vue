@@ -1,133 +1,6 @@
 <template>
-    <div class="home">
-        <Navbar />
-        <section class="filter_area" style="">
-            <div class="container">
-                <div class="project_inner">
-                    <form @submit.prevent="filterPlaces">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <button class="btn filter_btn dropdown-toggle" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="../assets/Icons/filter_(active).svg"
-                                    style="margin-left: -39px;margin-right: 13px;" />
-                                Filter
-                            </button>
-                            <div class="dropdown-menu" @click="stopProp" aria-labelledby="dropdownMenuButton">
-                                <div class="container">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="travv_drop_filter_section">
-                                                    <h3>Category</h3>
-                                                    <p>
-                                                        <input v-model="tour_and_experiences" type="checkbox">Tours
-                                                        and Experiences
-                                                    </p>
-                                                    <p>
-                                                        <input v-model="restaurants" type="checkbox">Restaurants
-                                                    </p>
-                                                    <p>
-                                                        <input v-model="places_destinations" type="checkbox">Places /
-                                                        Destinations
-                                                    </p>
-                                                </div>
-                                                <div class="travv_drop_filter_section" style="margin-top: 51px">
-                                                    <h3>Type</h3>
-                                                    <p>
-                                                        <input v-model="outdoor_activities" type="checkbox">Outdoor
-                                                        activities
-                                                    </p>
-                                                    <p>
-                                                        <input v-model="extended_tours" type="checkbox">Extended tours
-                                                    </p>
-                                                    <p>
-                                                        <input v-model="cultural_tours" type="checkbox">Cultural tours
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="travv_drop_filter_section">
-                                                    <h3>Sort by</h3>
-                                                    <p>
-                                                        <input v-model="popular" type="checkbox">Popular
-                                                        <p>
-                                                            <input v-model="recent" type="checkbox">Recent
-                                                        </p>
-                                                </div>
-                                                <div class="travv_drop_filter_section" style="margin-top: 114px">
-                                                    <p>
-                                                        <input v-model="for_kids" type="checkbox">For kids
-                                                    </p>
-                                                    <p>
-                                                        <input v-model="nightlife" type="checkbox">Nightlife
-                                                    </p>
-                                                    <p>
-                                                        <input v-model="sightseeing" type="checkbox">Sightseeing
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <div class="price_range_section">
-                                                    <h3>Price Range</h3>
-                                                    <vue-slider v-model="value_1" :marks="marks1" :min="value_1_min"
-                                                        :max="value_1_max"></vue-slider>
-                                                </div>
-                                                <div class="duration_section">
-                                                    <h3>Duration</h3>
-                                                    <vue-slider v-model="value_2" :marks="marks2" :min="value_2_min"
-                                                        :max="value_2_max"></vue-slider>
-                                                </div>
-                                            </div>
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-1">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="filter_searchbar" style="color: #f81894;">
-                                <input v-model="search" class="filter_search_input" type="text"
-                                    placeholder="Tour & Experiences in Tokyo " />
-                                |
-                                <img src="../assets/Icons/Calendar.svg" style="margin-top: -8px;margin-left: 31px;" />
-                                <button type="submit" class="filter_search_icon">
-                                    <!-- <i class="material-icons">add</i> -->
-                                    <img v-if="!isLoading" src="../assets/icons8-search.svg" />
-                                    <img v-if="isLoading" style="height: 20px;" src="../assets/loader_rolling.gif" />
-
-                                    <!-- <font-awesome-icon icon="user" /> -->
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    </form>
-                </div>
-            </div>
-        </section>
-        <div class="digital_feature">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4 experience" v-for="place in places" :key="place.id" style="padding-right: 24px; padding-left: 0px;">
-                                <router-link :to="'/experience/'+ place.id + '/' + place.city">
-                                    <div class="search_items">
-                                        <div class="search_items_back_img nagoya"></div>
-                                        <div class="search_items_item">
-                                            <div class="fetr_places_overlay">
-                                                <p>DAY TRIP {{ place.state }}</p>
-                                                <h3> {{ place.city }}</h3>
-                                                <p><b>4.75 *</b> (224)</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </router-link>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="SearchResults">
+        <SearchResults :experiences="places" />
     </div>
 </template>
 
@@ -135,8 +8,9 @@
     import Navbar from '@/components/Navbar.vue';
     import { mapState, mapGetters, mapActions } from 'vuex';
     import DatePicker from 'vue2-datepicker'
+    import SearchResults from '@/components/SearchResults.vue';
     export default {
-        name: 'EventSearchResults',
+        // name: 'PLaxSearchResults',
         data: function () {
             return {
                 search: '',
@@ -205,7 +79,7 @@
             }
         },
         components: {
-            Navbar
+            Navbar, SearchResults
         },
         computed: {
             ...mapState(['isLoading']),

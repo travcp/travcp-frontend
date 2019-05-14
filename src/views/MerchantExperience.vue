@@ -121,6 +121,15 @@
 
 	export default {
 		name: 'MerchantExperience',
+		beforeRouteEnter(to, from, next) {
+            if(localStorage.getItem('auth')) {
+                return next()
+            } else {
+            	// this.$noty.error("Sign in to access!")
+            	return next({ path: '/signin' })
+            }
+            next();
+        },
 		components: {
 			Navbar,
 			Footer

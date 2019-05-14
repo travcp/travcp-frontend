@@ -99,6 +99,15 @@
 
 	export default {
 		name: 'EditProfile',
+		beforeRouteEnter(to, from, next) {
+            if(localStorage.getItem('auth')) {
+                return next()
+            } else {
+            	// this.$noty.error("Sign in to access!")
+            	return next({ path: '/signin' })
+            }
+            next();
+        },
         // beforeRouteEnter(to, from, next){
         //     if(localStorage.getItem('auth')) {
         //         return next({ path: '/' })

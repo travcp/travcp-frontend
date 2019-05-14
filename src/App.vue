@@ -27,10 +27,10 @@ export default {
   },
   created() {
     // this.getExperiences()
-    // this.getRestaurants()
-    this.getEvents();
-    this.getPlaces();
-    this.getExperiences();
+    // // this.getRestaurants()
+    // this.getEvents();
+    // this.getPlaces();
+    // this.getExperiences();
   }
 }
 </script>

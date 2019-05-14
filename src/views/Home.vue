@@ -194,6 +194,8 @@
     methods: {
       ...mapActions(['getExperiences']),
       ...mapActions(['getRestaurants']),
+      ...mapActions(['getEvents']),
+      ...mapActions(['getPlaces']),
       getExp1() {
         this.exp1 = this.experiences[Math.floor(Math.random()*this.experiences.length)]
       }
@@ -219,6 +221,9 @@
     created: function () {
       // console.log(this.genRandom);
       this.getExperiences()
+      this.getEvents();
+      this.getPlaces();
+    // this.getExperiences();
       // this.experiences = this.allExperiences;
       // console.log(this.experiences)
     }

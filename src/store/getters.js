@@ -9,18 +9,18 @@ export default {
     	return state.events;
     },
     getExp1: (state) => {
-    	return state.experiences[Math.floor(Math.random()*state.experiences.length)]
+    	return state.experiencesPlacehodler[Math.floor(Math.random()*state.experiencesPlacehodler.length)]
     },
     getExp2: (state) => {
-    	return state.experiences[Math.floor(Math.random()*state.experiences.length)]
+    	return state.experiencesPlacehodler[Math.floor(Math.random()*state.experiencesPlacehodler.length)]
     },
     getExp3: (state) => {
-    	return state.experiences[Math.floor(Math.random()*state.experiences.length)]
+    	return state.experiencesPlacehodler[Math.floor(Math.random()*state.experiencesPlacehodler.length)]
     },
     getExp4: (state) => {
-    	return state.experiences[Math.floor(Math.random()*state.experiences.length)]
+    	return state.experiencesPlacehodler[Math.floor(Math.random()*state.experiencesPlacehodler.length)]
     },
     getExp5: (state) => {
-    	return state.experiences[Math.floor(Math.random()*state.experiences.length)]
+    	return state.experiencesPlacehodler[Math.floor(Math.random()*state.experiencesPlacehodler.length)]
     }
 }

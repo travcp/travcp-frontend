@@ -1,5 +1,6 @@
 export default {
-    experiences: [],
+    experiences: null,
+    experiencesPlacehodler: [],
     experience: {},
     restaurants: [],
     restaurant: {},
@@ -26,7 +27,7 @@ export default {
     editProfileError: null,
     reviewData: null,
     API_BASE:'https://travvapi.herokuapp.com/api',
-    emptySearchResult: null,
+    emptySearchResult: false,
     experience_types: []
     // user_token: 
 }

@@ -150,11 +150,14 @@ export default {
       state.isLoading = false;
     },
     EMPTY_SEARCH_RESULTS: (state) => {
-      // state.emptySearchResult = true;
+      state.emptySearchResult = true;
     },
     GET_EXPERIENCE_TYPES: (state, payload) => {
       state.experience_types = payload.data;
       state.isLoading = false;
+    },
+    SEARCH_RESULTS: (state) => {
+      state.emptySearchResult = false
     }
     // UPDATE_
 }
