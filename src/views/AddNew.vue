@@ -3,12 +3,11 @@
     <Navbar/>
     <!--About us start -->
     <div class="add-new-header">
-      <p>About Us</p>
+      <p class="add-new-header-p1">Add New</p>
       <hr>
+      <p class="add-new-header-p2">Please fill in your information</p>
     </div>
-    <div>
-      <p>Please fill this information</p>s
-    </div>
+
     <div class="container add-new-main">
       <div class="row">
         <div class="col-md-8 add-new-right">
@@ -103,13 +102,22 @@ export default {
 .add-new-header {
   padding-top: 3%;
 }
-.add-new-header p {
+.add-new-header-p1 {
   font-size: 3em;
   font-weight: bolder;
   color: #f81894;
   text-align: center;
 }
+.add-new-header-p2 {
+  font-size: 1.7em;
+  text-align: center;
+}
+#txt-info {
+  font-size: 25px;
+  text-align: center;
+}
 .add-new-main {
+  margin-top: 40px;
 }
 .add-new-header hr {
   width: 200px;
@@ -127,13 +135,14 @@ export default {
   border-radius: 10px;
   padding-left: 5px;
   height: 35px;
+  border: 1px solid black;
 }
 .input-mid {
   width: 32vw;
   height: 70px;
 }
 .input-wide {
-  width: 48vw;
+  width: 49vw;
   height: 70px;
   border-radius: 15px;
 }
@@ -177,7 +186,7 @@ export default {
 }
 .pad-left {
   padding-left: 130px;
-  padding-top: 25px;
+  padding-top: 20px;
 }
 .about-us-details-view {
   padding-left: 10%;
