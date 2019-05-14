@@ -17,7 +17,7 @@
             You do not have any bookings yet. <br> When you book an experience, it will appear here.
           </empty-result>
         </div>
-        <div class="row" v-for="booking in bookings" :key="booking.id">
+        <div class="row" v-for="booking in bookings" :key="booking.id" style="margin-bottom: 10px;">
           <div class="col-md-3 my-booking-details-image"></div>
           <div class="col-md-9">
             <div class="my-booking-trip-main">
@@ -65,7 +65,7 @@
           </div>
           <div>
             
-            <div class="featured_places saitama changed" v-for="place in places.slice(0, 3)">
+            <div class="featured_places saitama changed" v-for="place in places.slice(0, 3)" >
                   <router-link :to="'/experience/'+ place.id + '/' + place.city">
                   <div class="featured_places_item">
                     <div class="featured_places_overlay overlay-changed">
@@ -256,7 +256,7 @@ export default {
 .feature-places-title {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 .feature-places-title-p1 {
   font-weight: bold;
