@@ -3,35 +3,39 @@
     <Navbar/>
     <!--About us start -->
     <div class="notification-header">
-      <p>About Us</p>
+      <p>Notifications</p>
       <hr>
     </div>
     <div class="container notification-main">
       <div class="notification-view">
         <!-- one -->
         <div class="row notification-view-row">
-          <div class="col-md-2 notification-image-view">
+          <div class="col-md-1 notification-image-view">
             <div class="notification-image"></div>
           </div>
-          <div class="col-md-7 notification-message-view">
+          <div class="col-md-9 notification-message-view">
             <p class="notification-messenger">
               <span class="notification-messenger-text1">KIA restaurant</span> messaged you
             </p>
-            <p class="notification-message">How do you like your suchi?</p>
+            <p
+              class="notification-message"
+            >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Necessitatibus blanditiis corporis vitae architecto, quas iste alias delectus earum optio molestiae perferendis, deleniti atque ducimus? Vitae asperiores nemo maxime amet magni?</p>
             <p class="notification-time">2 days ago</p>
           </div>
           <hr class="rule">
         </div>
         <!--two -->
         <div class="row notification-view-row">
-          <div class="col-md-2 notification-image-view">
+          <div class="col-md-1 notification-image-view">
             <div class="notification-image"></div>
           </div>
-          <div class="col-md-7 notification-message-view">
+          <div class="col-md-9 notification-message-view">
             <p class="notification-messenger">
               <span class="notification-messenger-text1">KIA restaurant</span> messaged you
             </p>
-            <p class="notification-message">How do you like your suchi?</p>
+            <p
+              class="notification-message"
+            >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos sunt, beatae facilis iusto nobis dolor cum repellat esse fugiat quia tempore? Ducimus beatae voluptatem accusamus, nemo totam temporibus odit consequatur?</p>
             <p class="notification-time">2 days ago</p>
           </div>
           <hr class="rule">
@@ -69,9 +73,10 @@ export default {
 }
 .notification-view {
   margin: auto;
-  width: 40%;
+  width: 70%;
 }
 .notification-image-view {
+  padding-top: 10px;
 }
 .notification-image {
   background: url("../assets/profile_1.png");
@@ -79,11 +84,11 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
   border-radius: 50%;
-  height: 70px;
-  width: 70px;
+  height: 55px;
+  width: 55px;
 }
 .notification-message-view {
-  padding-left: 30px;
+  padding-left: 20px;
 }
 .notification-messenger {
   font-size: 16px;
@@ -98,6 +103,6 @@ export default {
   color: rgb(186, 179, 179);
 }
 .rule {
-  width: 500px;
+  width: 900px;
 }
 </style>
