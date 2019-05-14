@@ -26,6 +26,8 @@ import Messages from '@/views/Messages';
 import Video from '@/views/Video.vue'
 import AboutUs from '@/views/AboutUs'
 import Notifications from '@/views/Notifications'
+import MyCart from '@/views/MyCart'
+import AddNew from '@/views/AddNew'
 // import RecommendedPlaces from '@/components/RecommendedPlaces.vue';
 
 import EventSearchResults from '@/components/EventSearchResults.vue';
@@ -185,6 +187,16 @@ export default new Router({
       path: '/notifications',
       name: "Notifications",
       component: Notifications
+    },
+    {
+      path: '/my-cart',
+      name: "MyCart",
+      component: MyCart
+    },
+    {
+      path: '/add-new',
+      name: "AddNew",
+      component: AddNew
     }
   ]
 });
