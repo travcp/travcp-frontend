@@ -123,7 +123,7 @@
                                     </div>
                                 </div>
                                 <div class="col-2">
-                                    <p class="star_range">456</p>
+                                    <p class="star_range">{{ star_5_people }}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -134,7 +134,7 @@
                                     </div>
                                 </div>
                                 <div class="col-2">
-                                    <p class="star_range">621</p>
+                                    <p class="star_range">{{ star_4_people }}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -145,7 +145,7 @@
                                     </div>
                                 </div>
                                 <div class="col-2">
-                                    <p class="star_range">159</p>
+                                    <p class="star_range">{{ star_3_people }}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -156,7 +156,7 @@
                                     </div>
                                 </div>
                                 <div class="col-2">
-                                    <p class="star_range">84</p>
+                                    <p class="star_range">{{ star_2_people }}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -167,7 +167,7 @@
                                     </div>
                                 </div>
                                 <div class="col-2">
-                                    <p class="star_range">21</p>
+                                    <p class="star_range">{{ star_1_people }}</p>
                                 </div>
                             </div>
                         </div>
@@ -184,7 +184,7 @@
                                                 <div class="guest_review_pic"></div>
                                             </div>
                                             <div class="col-6">
-                                                <p class="review_name">{{ review.user_id }}</p>
+                                                <p class="review_name">{{ review.user_name }}</p>
                                                 <p class="review_rev">
                                                     <img v-for="i in review.rating" src="../assets/review-icon.svg" alt="Review icon" style="height: 28px;">
                                                 </p>
@@ -235,6 +235,16 @@
                 dateOne: '',
                 dateTwo: '',
                 time: '',
+                star_5: 0,
+                star_5_people: 0,
+                star_4: 0,
+                star_4_people: 0,
+                star_3: 0,
+                star_3_people: 0,
+                star_2: 0,
+                star_2_people: 0,
+                star_1: 0,
+                star_1_people: 0,
                 reviewStar: null,
                 toggleRating: false,
                 // custom lang
@@ -327,6 +337,53 @@
                 } else {
                     this.$noty.error("Oops, You need to Login to Review or Rate an Expereince");
                 }
+            },
+            calculateReviews() {
+                console.log(this.experiences)
+                // console.log('Hi i am Here')
+                for (var i = 1; i <= this.experience.reviews.length; i++) {
+                    console.log(this.experience.reviews[i].rating)
+                    if(this.experience.reviews[i].rating == 5) {
+                        this.star_5_people = this.star_5_people + 1;
+                        // console.log(reviews[i].rating)
+                    }
+                    else if(this.experience.reviews[i].rating == 4) {
+                        this.star_4_people = this.star_4_people + 1;
+                    }
+                    else if(this.experience.reviews[i].rating == 3) {
+                        this.star_3_people = this.star_3_people + 1;
+                    }
+                    else if(this.experience.eviews[i].rating == 2) {
+                        this.star_2_people = this.star_2_people + 1;
+                    }
+                    else if(this.experience.reviews[i].rating == 1) {
+                        this.star_1_people = this.star_1_people + 1;
+                    }
+                }
+
+                // for(review in this.experience.reviews) {
+                //     if(review.rating == 5) {
+                //         this.star_5_people++;
+                //         console.log(review.rating)
+                //     }
+                //     else if(review.rating == 4) {
+                //         this.star_4_people++;
+                //     }
+                //     else if(review.rating == 3) {
+                //         this.star_3_people++;
+                //     }
+                //     else if(review.rating == 2) {
+                //         this.star_2_people++;
+                //     }
+                //     else if(review.rating == 1) {
+                //         this.star_1_people++;
+                //     }
+                // }
+                // this.experience.reviews.
+                //     forEach(review => {
+                        
+                //     })
+                
             }
         },
         computed: {
@@ -339,6 +396,9 @@
         },
         created: function () {
             this.getExperienceById(this.$route.params['id']);
+            setTimeout(() => {
+              this.calculateReviews();
+            }, 4000)
         }
     }
 </script>
@@ -484,7 +544,8 @@
     }
 
     .travv-sidebar {
-        background: #000;
+        border: 2px solid #000;
+        background: #FFF !important;
         widows: 100%;
         width: 100%;
         height: 475px;
@@ -510,7 +571,7 @@
         font-stretch: normal;
         line-height: 1.2;
         letter-spacing: normal;
-        color: #ffffff;
+        color: #555 !important;
         margin-bottom: 24px;
     }
 
@@ -746,5 +807,8 @@
 }
 #reviewStars-input #star-5 {
   left: 265px;
+}
+.sidebar_text h5{
+    color: #555
 }
 </style>

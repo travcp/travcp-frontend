@@ -201,7 +201,7 @@ export default {
 
     .search_items_item h3 {
         font-family: MuseoSans;
-        font-size: 30px;
+        font-size: 16px;
         font-weight: bold;
         font-style: normal;
         color: var(--grey-text-color)

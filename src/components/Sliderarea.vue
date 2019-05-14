@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex';
+import {mapActions, mapState} from 'vuex';
 
     export default {
         name: 'Sliderarea',
@@ -79,7 +79,7 @@ import {mapActions} from 'vuex';
                 let API_BASE = 'https://travvapi.herokuapp.com/api';
 
                 let url = `${API_BASE}/experiences?location=${data.search}`;
-
+                this.$store.state.homeSearch = this.search_text
                 if(data.search == ''){
                     this.$router.push("/experiences");
                     return this.filterExperiencesSearch();
@@ -109,6 +109,9 @@ import {mapActions} from 'vuex';
                 // this.Experiences.Destination = event.target.dataset.Destination;
 
             }
+        },
+        computed: {
+            ...mapState(['homeSearch'])
         }
     }
 </script>

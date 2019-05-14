@@ -174,7 +174,7 @@ export default new Router({
       component: Profile
     },
     {
-      path: '/video',
+      path: '/videos',
       name: "Video",
       component: Video
     },

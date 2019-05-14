@@ -12,7 +12,7 @@
                     <li class="nav-item">
                       <router-link class="nav-link nav-item-color" to="/dashboard/new-exp">Add Listings</router-link>
                     </li>
-                    <li class="nav-item"><a class="nav-link nav-item-color" href="#">Videos</a></li>
+                    <li class="nav-item"><router-link class="nav-link nav-item-color" to="/videos">Videos</router-link></li>
                     <li class="nav-item" v-if="checkUser"><router-link class="nav-link nav-item-color" to="/dashboard/my-bookings">My Bookings</router-link></li>
                     <li class="nav-item"><a class="nav-link nav-item-color" href="#">Help</a></li>  
 
@@ -23,7 +23,7 @@
                       </router-link>
                     </li>
                     <li class="nav-item" v-if="checkUser">
-                      <router-link style="color: #fff !important;" class="nav-link" to="/">
+                      <router-link style="color: #fff !important;" class="nav-link" to="/notifications">
                         <img src="../assets/bell-icon-2.png" style="height: 24px;" alt="">
                       </router-link>
                     </li>
@@ -32,11 +32,8 @@
                         <img src="../assets/profile_2.png" class="rounded-circle" style="height: 50px;">
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="padding: 5px 0px 5px 1px;">
-                        <!-- <a class="dropdown-item drp_pd" href="#">Dashboard <span class="badge badge-info">Comming Soon</span></a> -->
-                        <!-- <a class="dropdown-item drp_pd" href="#">Profile <span class="badge badge-info">Comming Soon</span></a> -->
                         <router-link class="dropdown-item drp_pd" to="/dashboard/profile">Dashboard</router-link>
                         <router-link class="dropdown-item drp_pd" to="/experiences">Experiences</router-link>
-                        <!-- <router-link class="dropdown-item drp_pd" to="/dashboard/new-exp">New Experiences</router-link> -->
                         <a class="dropdown-item drp_pd" href="#">Payment <span class="badge badge-info">Comming Soon</span></a>
                         <a class="dropdown-item drp_pd" href="#">Settings <span class="badge badge-info">Comming Soon</span></a>
                         <a class="dropdown-item drp_pd" href="#" @click="logout">Sign out</a>

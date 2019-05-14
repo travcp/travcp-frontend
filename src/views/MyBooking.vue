@@ -8,7 +8,10 @@
           <p>My Bookings</p>
           <hr class="my-booking-title-horizontal">
         </div>
-        <div v-if="bookings.length < 1">
+        <div style="text-align: center;" v-if="loading">
+          <Circle9 />           
+        </div>
+        <div v-if="bookings.length < 1 && !loading">
           <empty-result>
             <template v-slot:error-header>Errm</template>
             You do not have any bookings yet. <br> When you book an experience, it will appear here.
@@ -58,10 +61,31 @@
         <div class="my-booking-details-right">
           <div class="feature-places-title">
             <p class="feature-places-title-p1">Featured Places</p>
-            <p class="feature-places-title-p2">SEE ALL</p>
+            <p class="feature-places-title-p2"><router-link to="/places">SEE ALL</router-link></p>
           </div>
           <div>
-            <div class="featured_places saitama changed">
+            
+            <div class="featured_places saitama changed" v-for="place in places.slice(0, 3)">
+                  <router-link :to="'/experience/'+ place.id + '/' + place.city">
+                  <div class="featured_places_item">
+                    <div class="featured_places_overlay overlay-changed">
+                      <div class="row">
+                        <div class="col-sm-7 col-md-7">
+                          <p class="ftr_places_title">{{ place.city }}</p>
+                        </div>
+                        <div class="col-sm-2 col-md-2">
+                          <p class="ftr_places_title">{{ place.number_admittable }}</p>
+                        </div>
+                        <div class="col-sm-2 col-md-2">
+                          <p class="ftr_places_title">{{ place.rating_count }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </router-link>
+            </div>
+
+            <!-- <div class="featured_places saitama changed">
               <div class="featured_places_item">
                 <div class="featured_places_overlay overlay-changed">
                   <div class="row">
@@ -111,7 +135,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -122,10 +146,11 @@
 <script>
 import Navbar from "@/components/Navbar.vue";
 import EmptyResult from "@/components/EmptyResult.vue";
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 import axios from 'axios';
 import Footer from '@/components/Footer.vue';
-
+import { Circle9 } from 'vue-loading-spinner'
+// events.slice(0, 3)
 export default {
   name: "MyBooking",
   beforeRouteEnter(to, from, next) {
@@ -138,22 +163,26 @@ export default {
       next();
   },
   components: {
-    Navbar, EmptyResult, Footer
+    Navbar, EmptyResult, Footer, Circle9, mapState
   },
   data(){
     return {
-      bookings: []
+      bookings: [],
+      loading: false,
     }
   },
-  methods:{
+  computed: {
+    ...mapState(['places'])
+  },
+  methods: {
     getMyBookings(){
-      
+      this.loading = true;
       let requestHeaders = {
         headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
       };
       axios.get(`${this.$store.state.API_BASE}/users/${this.$store.state.auth.user.id}/bookings`, requestHeaders).then(response => {
         this.bookings = response.data.data;
-        
+        this.loading = false;
       }).catch(err => {
         console.log("There was error fetching mybookings");
       })
@@ -221,6 +250,9 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
 }
+.changed .ftr_places_title {
+  padding: 5px 0 15px 25px;
+}
 .feature-places-title {
   display: flex;
   flex-direction: row;
@@ -249,5 +281,8 @@ export default {
 }
 .my-booking-title-horizontal {
   width: 300px;
+}
+.spinner.spinner--circle-9 {
+  display: inline-block;
 }
 </style>

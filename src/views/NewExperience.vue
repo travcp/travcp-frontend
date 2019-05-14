@@ -117,7 +117,7 @@
 
 							    			</div>
 							    	</div>
-							    	<div class="col-md-3" v-if="form_index == 0">
+							    	<div class="col-md-3" v-if="form_index == 1">
 							    		<h5>Uploaded Image</h5> <br>
 										<vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"></vue-dropzone>
 				    					<!-- <div class="uploaded_image">
@@ -200,7 +200,29 @@
 					meet_up: this.meet_up,
 					what_tourists_should_bring_along: this.what_tourists_should_bring_along,
 					itinerary_for_the_experience: this.itinerary_for_the_experience,
-					number_that_each_tour_can_admit :  this.number_that_each_tour_can_admit
+					number_that_each_tour_can_admit :  this.number_that_each_tour_can_admit,
+
+					// experience_type_id
+					// about_merchant
+					// contact_email
+					// location
+					// state
+					// offerings
+					// naira_price
+					// dollar_price
+					// pounds_price
+					// price_from
+					// price_to
+					// extra_peeks
+					// drink_types
+					// dining_options
+					// has_outdoor_sitting
+					// opening_and_closing_hours
+					// cancellation_policy
+					// tourist_expected_items
+					// nuumber_admittable
+					// experiences_type_id
+		   //          history
 				}
 				this.$validator.validateAll().then(result => {
                     if (result){

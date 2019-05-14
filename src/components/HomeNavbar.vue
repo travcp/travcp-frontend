@@ -13,34 +13,27 @@
                     <li class="nav-item">
                       <router-link style="color: #fff !important;" class="nav-link" to="/dashboard/new-exp">Add Listings</router-link>
                     </li>
-                    <li class="nav-item"><a style="color: #fff !important;"  href="#">Videos</a></li>
+                    <li class="nav-item"><router-link style="color: #fff !important;"  to="/videos">Videos</router-link></li>
                     <li class="nav-item" v-if="checkUser"><router-link style="color: #fff !important;" class="nav-link" to="/dashboard/my-bookings">My Bookings</router-link></li>
                     <li class="nav-item"><a style="color: #fff !important;" class="nav-link" href="#">Help</a></li>                    
                     <li class="nav-item" v-if="!checkUser"><router-link style="color: #fff !important;" class="nav-link" to="/signin">Sign in</router-link></li>
                     <li class="nav-item" v-if="checkUser">
-                      <router-link style="color: #fff !important;" class="nav-link" to="/">
+                      <router-link style="color: #fff !important;" class="nav-link" to="/dashboard/messages">
                         <img src="../assets/envelope-2.png" style="height: 24px;" alt="">
                       </router-link>
                     </li>
                     <li class="nav-item" v-if="checkUser">
-                      <router-link style="color: #fff !important;" class="nav-link" to="/">
+                      <router-link style="color: #fff !important;" class="nav-link" to="/notifications">
                         <img src="../assets/bell-icon.png" style="height: 24px;" alt="">
                       </router-link>
                     </li>
-
-
-                   <!--  <li class="nav-item" v-if="checkUser"><button style="color: #fff !important;background:none;border: none;" class="nav-link">Hi {{ username }}</button></li> -->
-                    <!-- <li class="nav-item" @click="logout" v-if="checkUser"><a style="color: #fff !important;" class="nav-link" href="#">Log out</a></li> -->
                     <li class="nav-item dropdown" v-if="checkUser">
                       <a class="nav-link dropdown-toggle" href="#" style="color: #fff !important;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img src="../assets/profile_2.png" class="rounded-circle" style="height: 50px;">
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="padding: 8px 0px 5px 1px;">
-                        <!-- <a class="dropdown-item drp_pd" href="#">Dashboard <span class="badge badge-info">Comming Soon</span></a> -->
-                        <!-- <a class="dropdown-item drp_pd" href="#">Profile <span class="badge badge-info">Comming Soon</span></a> -->
                         <router-link class="dropdown-item drp_pd" to="/dashboard/profile">Dashboard</router-link>
                         <router-link class="dropdown-item drp_pd" to="/experiences">Experiences</router-link>
-                        <!-- <router-link class="dropdown-item drp_pd" to="/dashboard/new-exp">New Experiences</router-link> -->
                         <a class="dropdown-item drp_pd" href="#">Payment <span class="badge badge-info">Comming Soon</span></a>
                         <a class="dropdown-item drp_pd" href="#">Settings <span class="badge badge-info">Comming Soon</span></a>
                         <a class="dropdown-item drp_pd" href="#" @click="logout">Sign out</a>
