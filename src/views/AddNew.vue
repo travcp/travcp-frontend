@@ -6,6 +6,9 @@
       <p>About Us</p>
       <hr>
     </div>
+    <div>
+      <p>Please fill this information</p>s
+    </div>
     <div class="container add-new-main">
       <div class="row">
         <div class="col-md-8 add-new-right">
