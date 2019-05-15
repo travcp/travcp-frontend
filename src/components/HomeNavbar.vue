@@ -10,6 +10,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto" style="color: #fff !important;">
+
+                    <li class="nav-item">
+                        <router-link style="color: #fff !important;" class="nav-link nav-item-color" to="/experiences">Explore</router-link>
+                    </li>
                     <li class="nav-item">
                       <router-link style="color: #fff !important;" class="nav-link" to="/dashboard/new-exp">Add Listings</router-link>
                     </li>
@@ -36,7 +40,7 @@
                         <router-link class="dropdown-item drp_pd" to="/experiences">Experiences</router-link>
                         <a class="dropdown-item drp_pd" href="#">Payment <span class="badge badge-info">Comming Soon</span></a>
                         <a class="dropdown-item drp_pd" href="#">Settings <span class="badge badge-info">Comming Soon</span></a>
-                        <a class="dropdown-item drp_pd" href="#" @click="logout">Sign out</a>
+                        <a class="dropdown-item drp_pd" href="/signin" @click="logout">Sign out</a>
                       </div>
                     </li>
                 </ul>

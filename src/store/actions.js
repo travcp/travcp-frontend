@@ -180,7 +180,7 @@ export default {
                     "surname": data.surname,
                     "email": data.email,
                     "subscribed_to_newsletter": 1,
-                    "company": data.company,
+                    // "company": data.company,
                     "address": data.address,
                     "city": data.city,
                     "country": data.country,
@@ -248,4 +248,19 @@ export default {
         console.log(err);
       })
     },
+    async getMyBookings({ commit, state }){
+        this.loading = true;
+        let requestHeaders = {
+            headers: {'Authorization' : "Bearer " + state.auth.access_token}
+        };
+        await axios.get(`${state.API_BASE}/users/${state.auth.user.id}/bookings`, requestHeaders).then(response => {
+            // state.bookings = response.data.data;
+            commit('GET_BOOKINGS', response.data.data)
+            // this.bookings = response.data.data;
+            // this.loading = false;
+        }).catch(err => {
+            console.log("There was error fetching my bookings");
+        })
+
+    }
 }

@@ -13,7 +13,7 @@
                                    
                                </span>
                                <!-- <div class="user_pic"></div> -->
-                               <img src="/img/profile_2.png" class="user_pic" alt="profile picture">
+                                <img src="/img/profile_2.png" class="user_pic" alt="profile picture"> <br>
                                 <h5 class="card-title">{{ userProperties.surname }} {{ userProperties.first_name }}</h5>
                                 <h6 class="card-subtitle mb-2 text-muted" style="text-transform: lowercase;">{{ userProperties.surname }}{{ userProperties.first_name }}</h6>
                                 <p class="location" v-if="userProperties.address"><img src="/img/icons/map-marker-alt-solid.svg" alt="" style="width:10px"> {{ userProperties.address }}, {{ userProperties.country }}</p>

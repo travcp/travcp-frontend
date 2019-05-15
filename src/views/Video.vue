@@ -160,7 +160,7 @@ export default {
   /*padding-top: 100px;*/
 }
 .my-booking-left {
-  margin-top: 30px;
+  margin-top: 70px;
 }
 .video-details-image {
   background-image: url("../assets/videoImage.jpg");

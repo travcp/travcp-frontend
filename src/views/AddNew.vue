@@ -102,6 +102,7 @@ export default {
 <style scoped>
 .add-new-header {
   padding-top: 3%;
+  margin-top: 70px;
 }
 .add-new-header p {
   font-size: 3em;

@@ -59,12 +59,12 @@
                     </form>
                 </div>
                 <div class="col-lg-5 sidebar-pd">
-                    <div class="travv-sidebar" style="height: 620px;">
+                    <div class="travv-sidebar" style="height: auto;">
                         <div class="container">
                             <div class="row sidebar_text">
                                 <div class="col-md-12">
                                     <h3>Location</h3>
-                                    <h5>{{ experience.city }}</h5>
+                                    <h5>{{ experience.location }}</h5>
                                 </div>
                                 <div class="col-md-12">
                                     <h3>Duration</h3>
@@ -88,18 +88,23 @@
                                 </div>
                                 <form @submit.prevent="bookExperience" style="padding-left: 17px;">
                                     <h3>Book</h3>
-                                    <date-picker v-model="time" range :shortcuts="shortcuts" :lang="lang"></date-picker>
+                                    <date-picker v-validate="'required'" v-model="time" range :shortcuts="shortcuts" :lang="lang"></date-picker>
                                     <!-- <p>Start Date <input id="datepicker" v-model="start_date" type="date" width="276" /> -->
                                     <!-- <date-picker v-model="time" range :shortcuts="shortcuts" :lang="lang"></date-picker> -->
                                     <!-- <p>End Date <input id="datepicker2" v-model="end_date" type="date" width="276" /></p> -->
-                                    <button type="submit" class="book_btn">
-                                    <span v-if="isLoading">
-                                        <img style="height: 20px;" src="../assets/loader_rolling.gif" />
-                                      </span>
-                                      <span v-else>
-                                        Book Now
-                                      </span>
-                                    </button>
+                                    <div class="row">
+                                        <div class="col-md-12" style="text-align: center;">
+                                            <button type="submit" class="book_btn">
+                                                <span v-if="isLoading">
+                                                    <img style="height: 20px;" src="../assets/loader_rolling.gif" />
+                                                </span>
+                                                <span v-else>
+                                                    Book Now
+                                                </span>
+                                            </button>
+
+                                        </div>
+                                    </div>
                                     <!-- <date-picker v-model="time1" :first-day-of-week="1"></date-picker> -->
                                 </form>
                             </div>
@@ -108,9 +113,10 @@
                     </div>
                 </div>
             </div>
+            <br><br>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <div class="average_review_section">
                             <h2>Average Rating</h2>
                             <h5>Based on 1351 ratings</h5>
@@ -172,6 +178,8 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-1"></div>
+
                     <div class="col-md-6">
                         <div class="gst_review_content">
                             <h2>Reviews</h2>
@@ -180,10 +188,10 @@
                                 <div class="col-md-12">
                                     <div class="guest_review_" v-for="review in experience.reviews">
                                         <div class="row">
-                                            <div class="col-4">
-                                                <div class="guest_review_pic"></div>
+                                            <div class="col-2" style="text-align: center;">
+                                                <img src="../assets/profile_2.png" class="rounded-circle" style="height: 50px;display: inline-block;">
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-8">
                                                 <p class="review_name">{{ review.user_name }}</p>
                                                 <p class="review_rev">
                                                     <img v-for="i in review.rating" src="../assets/review-icon.svg" alt="Review icon" style="height: 28px;">
@@ -266,7 +274,7 @@
                         }
                     }
                 ],
-                timePickerOptions:{
+                timePickerOptions: {
                     start: '00:00',
                     step: '00:30',
                     end: '23:30'
@@ -282,6 +290,7 @@
             ...mapActions(['getExperienceById']),
             ...mapActions(['bookingExperience']),
             ...mapActions(['rateExperience']),
+            ...mapActions(['getMyBookings']),
             rateExperienceSubmit(){
                 if(this.auth) {
                     if (this.toggleRating) {
@@ -304,18 +313,23 @@
             },
             bookExperience: function () {
                 if(this.auth) {
-                    let data = {
-                        food_menu_ids: ["2", "3", "4"],
-                        price: this.experience.naira_price,
-                        merchant_id: this.experience.merchant_id,
-                        user_id: this.auth.user.id,
-                        experience_id: this.$route.params.id,
-                        start_date: this.formatDate(this.time[0]),
-                        end_date: this.formatDate(this.time[1])
-                    };
-                    // console.log(this.formatDate(this.time[0]));
-                    this.bookingExperience(data);
-                    this.$noty.success("Experience is Booked Succesfully")
+                    if (this.time[0]) {
+                        let data = {
+                            food_menu_ids: ["2", "3", "4"],
+                            price: this.experience.naira_price,
+                            merchant_id: this.experience.merchant_id,
+                            user_id: this.auth.user.id,
+                            experience_id: this.$route.params.id,
+                            start_date: this.formatDate(this.time[0]),
+                            end_date: this.formatDate(this.time[1])
+                        };
+                        // console.log(this.formatDate(this.time[0]));
+                        this.bookingExperience(data);
+                        this.$noty.success("Experience is Booked Succesfully")
+                    } else {
+                        this.$noty.error("Please enter a check in and check out date");
+                    }
+
                 } else {
                     this.$noty.error("Oops, You need to Login to Book and Experience");
                 }
@@ -390,15 +404,24 @@
             ...mapState(['experience']),
             ...mapState(['isLoading']),
             ...mapState(['auth']),
+            ...mapState(['bookings']),
             loading() {
                 // return
             }
         },
         created: function () {
+            console.log('in Experience view')
             this.getExperienceById(this.$route.params['id']);
             setTimeout(() => {
               this.calculateReviews();
-            }, 4000)
+            }, 4000);
+            this.getMyBookings();
+            this.bookings.forEach(book => {
+                console.log(book);
+            })
+            for(let i = 1; i <= this.bookings.length; i++) {
+                console.log(this.bookings[i])
+            }
         }
     }
 </script>
@@ -549,7 +572,7 @@
         widows: 100%;
         width: 100%;
         height: 475px;
-        padding: 33px 0 0 25px;
+        padding: 30px 0 30px 25px !important;
     }
 
     .travv-sidebar_text h3 {
@@ -675,6 +698,7 @@
     }
 
     .review_name {
+        font-family: MuseoSans !important;
         font-size: 16px !important;
         font-weight: 100;
         font-style: normal;
@@ -809,6 +833,10 @@
   left: 265px;
 }
 .sidebar_text h5{
-    color: #555
+    color: #555;
+}
+.sidebar_text h5 {
+  /*font-family: MuseoSans500 !important;*/
+  font-size: 16px !important;
 }
 </style>

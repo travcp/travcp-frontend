@@ -181,6 +181,7 @@ export default {
         headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
       };
       axios.get(`${this.$store.state.API_BASE}/users/${this.$store.state.auth.user.id}/bookings`, requestHeaders).then(response => {
+        this.$store.state.bookings = response.data.data;
         this.bookings = response.data.data;
         this.loading = false;
       }).catch(err => {
@@ -199,7 +200,7 @@ export default {
   /*padding-top: 100px;*/
 }
 .my-booking-left {
-  margin-top: 30px;
+  margin-top: 70px;
 }
 .my-booking-trip-main {
   padding-left: 5px;

@@ -2,6 +2,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
+import VuePassword from 'vue-password'
 
 import VueSlider from 'vue-slider-component';
 import 'vue-slider-component/theme/default.css';
@@ -11,6 +12,7 @@ import 'vuejs-noty/dist/vuejs-noty.css'
 // import AirbnbStyleDatepicker from 'vue-airbnb-style-datepicker'
 // import 'vue-airbnb-style-datepicker/dist/vue-airbnb-style-datepicker.min.css'
 
+Vue.component(VuePassword)
 // see docs for available options
 const datepickerOptions = {}
 

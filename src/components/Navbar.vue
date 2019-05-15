@@ -10,6 +10,9 @@
                 <ul class="navbar-nav ml-auto ">
 
                     <li class="nav-item">
+                        <router-link class="nav-link nav-item-color" to="/experiences">Explore</router-link>
+                    </li>
+                    <li class="nav-item">
                       <router-link class="nav-link nav-item-color" to="/dashboard/new-exp">Add Listings</router-link>
                     </li>
                     <li class="nav-item"><router-link class="nav-link nav-item-color" to="/videos">Videos</router-link></li>
@@ -18,7 +21,7 @@
 
                     <li class="nav-item" v-if="!checkUser"><router-link style="color: #000 !important;" class="nav-link" to="/signin">Sign in</router-link></li>                    
                     <li class="nav-item" v-if="checkUser">
-                      <router-link style="color: #fff !important;" class="nav-link" to="/">
+                      <router-link style="color: #fff !important;" class="nav-link" to="/dashboard/messages">
                         <img src="../assets/envelope-2.png" style="height: 24px;" alt="">
                       </router-link>
                     </li>
@@ -36,7 +39,7 @@
                         <router-link class="dropdown-item drp_pd" to="/experiences">Experiences</router-link>
                         <a class="dropdown-item drp_pd" href="#">Payment <span class="badge badge-info">Comming Soon</span></a>
                         <a class="dropdown-item drp_pd" href="#">Settings <span class="badge badge-info">Comming Soon</span></a>
-                        <a class="dropdown-item drp_pd" href="#" @click="logout">Sign out</a>
+                        <a class="dropdown-item drp_pd" href="/signin" @click="logout">Sign out</a>
                       </div>
                     </li>
                 </ul>

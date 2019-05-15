@@ -215,10 +215,13 @@ export default {
 </script>
 
 <style scoped>
+    nav.container.navbar.navbar-expand-lg.navbar-light.travvappNavbar {
+        margin-top: -10px;
+    }
     .messages-container {
         /* margin-top:95px;
         margin-bottom: 50px; */
-        margin-top:70px;
+        /*margin-top:70px;*/
         --pink-text-color: #D3187F;
         --black-text-color: #333333;
         --grey-text-color: #555555;
@@ -249,8 +252,8 @@ export default {
         left:0;
         right:0;
         top:0;
-        margin-right:89px;
-        margin-left: 89px;
+        /*margin-right:89px;*/
+        /*margin-left: 89px;*/
     }
     .contacts-panel,.messages-panel{
         border-right: 1px solid whitesmoke;

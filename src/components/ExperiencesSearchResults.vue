@@ -90,7 +90,7 @@
                                     placeholder="Tour & Experiences in Tokyo " />
                                 <!-- |
                                 <img src="../assets/Icons/Calendar.svg" style="margin-top: -8px;margin-left: 31px;height: 28px;" /> -->
-                                <button type="submit" class="filter_search_icon">
+                                <button type="submit" class="filter_search_icon" style="border: none;">
                                     <!-- <i class="material-icons">add</i> -->
                                     <img v-if="!isLoading" src="../assets/icons8-search.svg" style="height: 28px;" />
                                     <img v-if="isLoading" style="height: 20px;" src="../assets/loader_rolling.gif" />

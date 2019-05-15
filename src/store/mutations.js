@@ -69,7 +69,7 @@ export default {
     USER_LOGOUT: (state) => {
       localStorage.removeItem('auth');
       state.auth = null;
-      router.push('/signin');
+      // router.push('/signin');
     },
     BOOKING_EXPERIENCE: (state, payload) => {
       state.booking_data = payload;
@@ -79,10 +79,6 @@ export default {
       state.isLoading = true;
     },
     BOOKING_EXPERIENCE_FAILURE: (state, payload) => {
-      state.isLoading = false;
-    },
-    GET_EVENTS: (state, payload) => {
-      state.events = payload;
       state.isLoading = false;
     },
     IS_LOADING: (state) => {
@@ -95,7 +91,7 @@ export default {
       state.events = payload.data;
       state.isLoading = false;
     },
-    EVENTS_LOADING: (state, payload) => {
+    EVENTS_LOADING: (state) => {
       state.isLoading = true;
     },
     GET_EVENTS_BY_ID: (state, payload) => {
@@ -158,6 +154,9 @@ export default {
     },
     SEARCH_RESULTS: (state) => {
       state.emptySearchResult = false
+    },
+    GET_BOOKINGS: (state, payload) => {
+        state.bookings = payload;
     }
     // UPDATE_
 }

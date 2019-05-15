@@ -3,7 +3,7 @@
     <!-- <Navbar /> -->
     <!-- <Circle8 /> -->
     <router-view/>
-    <Footer />
+    <Footer v-if="this.$route.path != '/dashboard/messages'" />
   </div>
 </template>
 
@@ -30,6 +30,7 @@ export default {
     // // this.getRestaurants()
     this.getEvents();
     this.getPlaces();
+    console.log(this.$route)
     // this.getExperiences();
   }
 }

@@ -17,18 +17,17 @@ export default {
     events: [],
     check_in: null,
     check_out: null,
-    events: [],
     event: {},
     places: [],
     place: {},
     editProfileData: null,
-    editProfileError: null,
     reviews: [],
     editProfileError: null,
     reviewData: null,
     API_BASE:'https://travvapi.herokuapp.com/api',
     emptySearchResult: false,
     experience_types: [],
-    homeSearch: null
+    homeSearch: null,
+    bookings: []
     // user_token: 
 }

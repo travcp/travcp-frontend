@@ -10,21 +10,23 @@
           <h2 class="text-lg">Get Prepare for your trip/experience</h2>
           <div class="container">
             <div class="row">
+              
               <div class="col-lg-4" style="text-align: center;">
-                <img src="../assets/Icons/add-listing.svg" style="height: 125px; width: 125px;" />
-                <p class="title">Add Listing</p>
+                <router-link to="/dashboard/new-exp">
+                  <img src="../assets/Icons/add-listing.svg" style="height: 125px; width: 125px;" />
+                  <p class="title">Add Listing</p>
+                </router-link>
                 <!-- <div class="c_box_item">
                 </div> -->
                 <div>
                 </div>
               </div>
               <div class="col-lg-4" style="text-align: center;">
-                <img src="../assets/Icons/compass.svg" style="height: 125px;" />
-                <p class="title">Explore Places</p>
-                <!-- <div class="c_box_item">
-                  <p class="title">Explore Places</p>
-                </div> -->
-
+                <router-link to="/experiences">
+                  <img src="../assets/Icons/compass.svg" style="height: 125px;" />
+                  <p class="title">Explore Places</p>  
+                </router-link>
+                
                 <div>
                 </div>
               </div>
