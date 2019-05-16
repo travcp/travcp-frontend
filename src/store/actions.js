@@ -214,7 +214,7 @@ export default {
       let requestHeaders = {
         headers: {'Authorization': "Bearer " + state.auth.access_token}
       };
-      axios.post(`${API_BASE}/reviews`, {
+      await axios.post(`${API_BASE}/reviews`, {
                   "user_id": data.user_id,
                   "experience_id": data.experience_id,
                   "review_body": data.review_body
@@ -235,17 +235,21 @@ export default {
               console.log(error)
             })
     },
-    async submitExperience({ commit }, data ) {
+    async submitExperience({ commit, state }, data ) {
       commit('IS_LOADING');
       let requestHeaders = {
         headers: {'Authorization': "Bearer " + state.auth.access_token}
       };
-      axios.post(`${API_BASE}/experiences`, {
-        data
-      }, requestHeaders).then(response => {
-        console.log(response.data.data);
-      }).catch((err) => {
-        console.log(err);
+      return new Promise((resolve, reject) => {
+          axios.post(`${API_BASE}/experiences`, data, requestHeaders).then(response => {
+              resolve(response.data.data);
+              console.log(response.data.data);
+              state.isLoading = false;
+          }).catch((err) => {
+              console.log(err);
+              reject(err);
+              state.isLoading = false;
+          })
       })
     },
     async getMyBookings({ commit, state }){

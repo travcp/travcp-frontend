@@ -63,24 +63,20 @@
                         <div class="container">
                             <div class="row sidebar_text">
                                 <div class="col-md-12">
-                                    <h3>Location</h3>
-                                    <h5>{{ experience.location }}</h5>
+                                    <h3>City</h3>
+                                    <h5>{{ experience.city }}</h5>
                                 </div>
                                 <div class="col-md-12">
                                     <h3>Duration</h3>
                                     <h5>36 hours</h5>
                                 </div>
                                 <div class="col-md-12">
-                                    <h3>Language</h3>
-                                    <h5>English</h5>
-                                </div>
-                                <div class="col-md-12">
                                     <h3>Cost</h3>
-                                    <h5>$ {{ experience.price_from }} - $ {{ experience.price_to }}</h5>
+                                    <h5>$ {{ experience.dollar_price }}</h5>
                                 </div>
                                 <div class="col-md-12">
                                     <h3>Payment Covers</h3>
-                                    <h5>Transportation and Feeding</h5>
+                                    <h5>{{ experience.offerings }}</h5>
                                 </div>
                                 <div class="col-md-12">
                                     <h3>Language</h3>
@@ -222,6 +218,7 @@
     import Navbar from '@/components/Navbar.vue';
     import DatePicker from 'vue2-datepicker';
     import Footer from '@/components/Footer.vue';
+    import axios from 'axios'
 
     import {
         mapState,
@@ -255,6 +252,7 @@
                 star_1_people: 0,
                 reviewStar: null,
                 toggleRating: false,
+                loading: false,
                 // custom lang
                 lang: {
                     days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
@@ -398,7 +396,19 @@
                         
                 //     })
                 
-            }
+            },
+            // get5starPep () {
+            //     // experience/1/reviews/rating/4
+            //     this.loading = true;
+            //     let requestHeaders = {
+            //         headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
+            //     };
+            //     axios.get(`${this.$store.state.API_BASE}/experience/${this.$route.params.id}/reviews/rating/5`, requestHeaders).then(response => {
+            //         console.log(response.data.data);
+            //     }).catch(err => {
+            //         console.log("There was error fetching mybookings");
+            //     })
+            // }
         },
         computed: {
             ...mapState(['experience']),
@@ -407,6 +417,30 @@
             ...mapState(['bookings']),
             loading() {
                 // return
+            },
+            getFiverStarRating() {
+                this.loading = true;
+                let requestHeaders = {
+                    headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
+                };
+                axios.get(`${this.$store.state.API_BASE}/experience/${this.$route.params['id']}/reviews/rating/5`, requestHeaders).then(response => {
+
+                    this.loading = false;
+                }).catch(err => {
+                    console.log("There was error fetching mybookings");
+                });
+            },
+            getFourStarRating() {
+                this.loading = true;
+                let requestHeaders = {
+                    headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
+                };
+                axios.get(`${this.$store.state.API_BASE}/experience/${this.$route.params['id']}/reviews/rating/5`, requestHeaders).then(response => {
+                    console.log(response.data)
+                    this.loading = false;
+                }).catch(err => {
+                    console.log("There was error fetching mybookings");
+                });
             }
         },
         created: function () {
@@ -422,6 +456,10 @@
             for(let i = 1; i <= this.bookings.length; i++) {
                 console.log(this.bookings[i])
             }
+            // experience/1/reviews/rating/4
+            console.log(this.$route.params.id);
+            this.get5starPep();
+            this.getFourStarRating();
         }
     }
 </script>
