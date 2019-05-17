@@ -9,6 +9,7 @@ import 'vue-slider-component/theme/default.css';
 import VeeValidate from 'vee-validate';
 import VueNoty from 'vuejs-noty'
 import 'vuejs-noty/dist/vuejs-noty.css'
+import vueCountryRegionSelect from 'vue-country-region-select'
 // import AirbnbStyleDatepicker from 'vue-airbnb-style-datepicker'
 // import 'vue-airbnb-style-datepicker/dist/vue-airbnb-style-datepicker.min.css'
 
@@ -26,6 +27,8 @@ Vue.use(VeeValidate, {
     invalid: 'is-invalid'
   }
 });
+
+Vue.use(vueCountryRegionSelect)
 // import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 Vue.component('VueSlider', VueSlider);

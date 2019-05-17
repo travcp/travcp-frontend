@@ -15,6 +15,7 @@
     "vee-validate": "^2.2.2",
     "vue": "^2.6.6",
     "vue-airbnb-style-datepicker": "^2.6.1",
+    "vue-country-region-select": "^2.0.6",
     "vue-flickity": "^1.1.2",
     "vue-loading-spinner": "^1.0.11",
     "vue-password": "^1.2.0",

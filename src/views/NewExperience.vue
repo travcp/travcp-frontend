@@ -55,7 +55,7 @@
                                         placeholder="Address"
                                         v-model="address_22" />
                               </div>
-                              <div class="form-group col-md-6">
+                              <div class="form-group col-md-4">
                                 <label>City</label>
                                 <input
                                   v-validate="'required'"
@@ -65,7 +65,7 @@
                                   v-model="city_22"
                                 />
                               </div>
-                              <div class="form-group col-md-6">
+                              <div class="form-group col-md-4">
                                 <label>State</label>
                                 <input
                                         v-validate="'required'"
@@ -74,6 +74,17 @@
                                         placeholder="State"
                                         v-model="state_22"
                                 />
+                              </div>
+                              <div class="form-group col-md-4">
+                                <label>Country</label>
+                                <!-- <input
+                                        v-validate="'required'"
+                                        type="text"
+                                        class="form-control new_experience_input"
+                                        placeholder="Country"
+                                        v-model="state_22"
+                                /> -->
+                                <country-select v-model="country" :country="country" countryName="true" topCountry="US" className="form-control new_experience_input" />
                               </div>
                               <div class="form-group col-md-6">
                                 <label
@@ -90,14 +101,14 @@
                               </div>
                               <div class="form-group col-md-6">
                                 <label>Language</label>
-                                <select
+                                <input type="text" name="language" id="inputState" class="form-control new_experience_input" v-model="language_22" placeholder="Language e.g English">
+                                <!-- <select
                                   id="inputState"
                                   class="form-control new_experience_input"
                                   v-model="language_22"
                                 >
-                                  <!-- <option selected>Select</option> -->
                                   <option>English</option>
-                                </select>
+                                </select> -->
                               </div>
                               <!--<div class="form-group col-md-6">-->
                               <!--<label>Ratings</label>-->
@@ -609,6 +620,7 @@ export default {
       price_2: null,
       address_2: null,
       state_2: null,
+      country: '',
       // city: null,
       // language: null,
       // about_the_experiece_designer: null,
