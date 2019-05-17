@@ -358,189 +358,7 @@
                           </form>
                         </div>
 
-                        <!--<div class="form-group col-md-12">-->
-                        <!--<select id="inputState" class="form-control new_experience_input">-->
-                        <!--&lt;!&ndash; <option selected>Select</option> &ndash;&gt;-->
-                        <!--<option v-for="experience_type in experience_types">{{ experience_type.name }}</option>-->
-                        <!--</select>-->
-                        <!--</div>-->
-                        <!--<div class="form-group col-md-12">-->
-                        <!--<label class="">City</label>-->
-                        <!--<input v-validate="'required'" type="text" class="form-control new_experience_input" placeholder="City" v-model="city">-->
-                        <!--</div>-->
-                        <!--<div class="form-group col-md-12">-->
-                        <!--<label class="">Location</label>-->
-                        <!--<input v-validate="'required'" type="text" class="form-control new_experience_input" placeholder="" >-->
-                        <!--</div>-->
-                        <!--<div class="form-group col-md-12">-->
-                        <!--<label class="">State</label>-->
-                        <!--<input v-validate="'required'" type="text" class="form-control new_experience_input" placeholder="" >-->
-                        <!--</div>-->
-                        <!--<div class="form-group col-md-12">-->
-                        <!--<label for="">Language</label>-->
-                        <!--<select v-validate="'required'" id="inputState" class="form-control new_experience_input" v-model="language">-->
-                        <!--&lt;!&ndash; <option selected>Select</option> &ndash;&gt;-->
-                        <!--<option>English</option>-->
-                        <!--</select>-->
-                        <!--</div>-->
-                        <!--<div class="form-group col-md-12">-->
-                        <!--<label>Offerings</label>-->
-                        <!--<textarea v-validate="'required'" cols="30" rows="10" class="form-control"></textarea>-->
-                        <!--</div>-->
-                        <!--<div class="form-group col-md-12">-->
-                        <!--<div class="row">-->
-                        <!--<div class="col-md-6"></div>-->
-                        <!--<div class="col-md-6" style="text-align: right;">-->
-                        <!--<button type="button" class="btn btn-lg submit_exp_btn" @click="inFormIndx">Next</button>-->
-                        <!--</div>-->
-                        <!--</div>-->
-                        <!--</div>-->
                       </div>
-                      <!--<div class="form-index-2" v-if="form_index == 2">-->
-                      <!--<div class="form-group col-md-12">-->
-                      <!--<label for="">About the experience designer</label>-->
-                      <!--<textarea-->
-                      <!--v-validate="'required'"-->
-                      <!--cols="30"-->
-                      <!--rows="10"-->
-                      <!--class="form-control"-->
-                      <!--v-model="about_the_experiece_designer"-->
-                      <!--&gt;</textarea>-->
-                      <!--</div>-->
-                      <!--<div class="form-group col-md-12">-->
-                      <!--<label class=""-->
-                      <!--&gt;Offerings on tour ( drinks, snacks, etc)</label-->
-                      <!--&gt;-->
-                      <!--<input-->
-                      <!--v-validate="'required'"-->
-                      <!--type="text"-->
-                      <!--class="form-control new_experience_input"-->
-                      <!--placeholder="Offerings on tour ( drinks, snacks, etc)"-->
-                      <!--v-model="offerings_on_tour"-->
-                      <!--/>-->
-                      <!--</div>-->
-                      <!--<div class="form-group col-md-12">-->
-                      <!--<label for=""-->
-                      <!--&gt;Short descriptions of the experience</label-->
-                      <!--&gt;-->
-                      <!--<textarea-->
-                      <!--v-validate="'required'"-->
-                      <!--cols="30"-->
-                      <!--rows="10"-->
-                      <!--class="form-control submit-exp-textarea"-->
-                      <!--v-model="short_description_of_the_experience"-->
-                      <!--&gt;</textarea>-->
-                      <!--</div>-->
-                      <!--<div class="form-group col-md-12">-->
-                      <!--<label class=""-->
-                      <!--&gt;Price in Naira, Dollars and Pounds</label-->
-                      <!--&gt;-->
-                      <!--<input-->
-                      <!--v-validate="'required'"-->
-                      <!--type="text"-->
-                      <!--class="form-control new_experience_input"-->
-                      <!--placeholder="$200,000"-->
-                      <!--v-model="price_in_naira"-->
-                      <!--/>-->
-                      <!--</div>-->
-                      <!--&lt;!&ndash; <div class="form-group col-md-12">-->
-                      <!--<label for="">Pictures</label>-->
-                      <!--<input type="file" class="form-control" name="" multiple="true">-->
-                      <!--</div> &ndash;&gt;-->
-                      <!--<div class="form-group col-md-12">-->
-                      <!--<div class="row">-->
-                      <!--<div class="col-md-6" style="text-align: left;">-->
-                      <!--<button-->
-                      <!--type="button"-->
-                      <!--class="btn btn-lg submit_exp_btn  prev_btn"-->
-                      <!--@click="deFormIndx"-->
-                      <!--&gt;-->
-                      <!--< Back-->
-                      <!--</button>-->
-                      <!--</div>-->
-                      <!--<div class="col-md-6" style="text-align: right;">-->
-                      <!--<button-->
-                      <!--type="button"-->
-                      <!--class="btn btn-lg submit_exp_btn"-->
-                      <!--@click="inFormIndx"-->
-                      <!--&gt;-->
-                      <!--Next-->
-                      <!--</button>-->
-                      <!--</div>-->
-                      <!--</div>-->
-                      <!--</div>-->
-                      <!--</div>-->
-                      <!--<div class="form-index-3" v-if="form_index == 3">-->
-                      <!--<div class="form-group col-md-12">-->
-                      <!--<label class=""-->
-                      <!--&gt;Where they would meet up with clients with-->
-                      <!--map</label-->
-                      <!--&gt;-->
-                      <!--<input-->
-                      <!--v-validate="'required'"-->
-                      <!--type="text"-->
-                      <!--class="form-control new_experience_input"-->
-                      <!--v-model="meet_up"-->
-                      <!--placeholder="Where they would meet up with clients with map"-->
-                      <!--/>-->
-                      <!--</div>-->
-                      <!--<div class="form-group col-md-12">-->
-                      <!--<label class=""-->
-                      <!--&gt;What tourists should bring along</label-->
-                      <!--&gt;-->
-                      <!--<input-->
-                      <!--v-validate="'required'"-->
-                      <!--type="text"-->
-                      <!--class="form-control new_experience_input"-->
-                      <!--v-model="what_tourists_should_bring_along"-->
-                      <!--placeholder="What tourists should bring along"-->
-                      <!--/>-->
-                      <!--</div>-->
-                      <!--<div class="form-group col-md-12">-->
-                      <!--<label class="">Itinerary for the experience</label>-->
-                      <!--<input-->
-                      <!--v-validate="'required'"-->
-                      <!--type="text"-->
-                      <!--class="form-control new_experience_input"-->
-                      <!--placeholder="Itinerary for the experience"-->
-                      <!--v-model="itinerary_for_the_experience"-->
-                      <!--/>-->
-                      <!--</div>-->
-                      <!--<div class="form-group col-md-12">-->
-                      <!--<label class=""-->
-                      <!--&gt;Number that each tour can admit</label-->
-                      <!--&gt;-->
-                      <!--<input-->
-                      <!--v-validate="'required'"-->
-                      <!--type="text"-->
-                      <!--class="form-control new_experience_input"-->
-                      <!--placeholder="Number that each tour can admit"-->
-                      <!--v-model="number_that_each_tour_can_admit"-->
-                      <!--/>-->
-                      <!--</div>-->
-                      <!--<div class="form-group col-md-12">-->
-                      <!--<div class="row">-->
-                      <!--<div class="col-md-6" style="text-align: left;">-->
-                      <!--<button-->
-                      <!--v-validate="'required'"-->
-                      <!--type="button"-->
-                      <!--class="btn btn-lg submit_exp_btn  prev_btn"-->
-                      <!--@click="deFormIndx"-->
-                      <!--&gt;-->
-                      <!--< Back-->
-                      <!--</button>-->
-                      <!--</div>-->
-                      <!--<div class="col-md-6" style="text-align: right;">-->
-                      <!--<button-->
-                      <!--type="submit"-->
-                      <!--class="btn btn-lg submit_exp_btn"-->
-                      <!--&gt;-->
-                      <!--Submit-->
-                      <!--</button>-->
-                      <!--</div>-->
-                      <!--</div>-->
-                      <!--</div>-->
-                      <!--</div>-->
                     </div>
                   </div>
                   <div class="col-md-3" v-if="form_index == 1">
@@ -587,6 +405,7 @@ export default {
   },
   data() {
     return {
+      // experience_type_placeholder: null,
       city_22: null,
       offerings_on_tour_22: null,
       language_22: null,
@@ -620,6 +439,7 @@ export default {
       // itinerary_for_the_experience: null,
       // number_that_each_tour_can_admit: null,
       time: "",
+      required_fields_for_events: ["title", "about_merchant", "contact_email", "location", "city", "state", "country"],
       dropzoneOptions: {
         url: "https://httpbin.org/post",
         thumbnailWidth: 150,
@@ -825,7 +645,10 @@ export default {
   },
   computed: {
     ...mapState(["experience_types"]),
-    ...mapState(["isLoading"])
+    ...mapState(["isLoading"]),
+    experience_type_placeholder () {
+
+    }
   },
   created() {
     this.getExperienceTypes();
