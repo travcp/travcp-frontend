@@ -337,6 +337,7 @@
         height: 54px;
         border-radius: 8px;
         color: #FFF;
+        cursor: pointer;
         /*margin-top: 20px;
         margin-left: 15px;*/
     }
