@@ -3,7 +3,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import VuePassword from 'vue-password'
-
+import vueHeadful from 'vue-headful';
 import VueSlider from 'vue-slider-component';
 import 'vue-slider-component/theme/default.css';
 import VeeValidate from 'vee-validate';
@@ -16,6 +16,7 @@ import ImageUploader from 'vue-image-upload-resize'
 // import 'vue-airbnb-style-datepicker/dist/vue-airbnb-style-datepicker.min.css'
 
 Vue.component(VuePassword)
+Vue.component('vue-headful', vueHeadful);
 // see docs for available options
 const datepickerOptions = {}
 

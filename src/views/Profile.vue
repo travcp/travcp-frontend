@@ -1,5 +1,9 @@
 <template>
        <div class="profile-container">
+        <vue-headful
+            title="Dashboard Profile | TravvApp"
+            description="Description from travvApp"
+        />
            <Navbar/>
            <div class="container">
                <div class="row">

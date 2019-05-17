@@ -1,5 +1,9 @@
 <template>
   <div class="container main">
+    <vue-headful
+            title="My Cart | TravvApp"
+            description="Description from travvApp"
+        />
     <Navbar/>
     <!-- booking header details left -->
     <div class="row my-booking-head">
@@ -11,10 +15,7 @@
         <div style="padding-bottom: 20px">
           <p class="my-cart-sub-title">Cart(3)</p>
         </div>
-        <div>
-          <p>Booking</p>
-        </div>
-        <div class="row my-booking-left">
+        <div class="row my-booking-left" v-for="cart in carts" v-key="cart.id">
           <div class="col-md-3 my-booking-details-image"></div>
           <div class="col-md-6 my-booking-trip-main">
             <div class="my-booking-trip-main-head">
@@ -40,84 +41,16 @@
             </a>
           </div>
         </div>
-        <div class="row my-booking-left">
-          <div class="col-md-3 my-booking-details-image"></div>
-          <div class="col-md-6 my-booking-trip-main">
-            <div class="my-booking-trip-main-head">
-              <div class="my-booking-trip-details-header">
-                <p class="my-booking-trip-details-header-p1">DAY TRIP | WEST SUNNYBERG</p>
-                <p class="my-booking-trip-details-header-p2">Kimberg</p>
-              </div>
-              <div class="my-booking-trip-details">
-                <p
-                  class="my-booking-trip-details-p1"
-                >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima fugiat alias at suscipit</p>
-              </div>
-            </div>
-          </div>
-          <div
-            style="display: flex; flex-direction: row; justify-content: space-evenly; padding-top: 70px; padding-left: 20px"
-          >
-            <a href="#">
-              <p class="col-md-2 my-cart-delete-image"></p>
-            </a>
-            <a href="#">
-              <p class="col-md-2" style="color: #f81894; font-size: 17px; font-weight: bold">REMOVE</p>
-            </a>
-          </div>
+        <div style="text-align: center;" v-if="loading">
+          <Circle9 />
         </div>
-        <div class="row my-booking-left">
-          <div class="col-md-3 my-booking-details-image"></div>
-          <div class="col-md-6 my-booking-trip-main">
-            <div class="my-booking-trip-main-head">
-              <div class="my-booking-trip-details-header">
-                <p class="my-booking-trip-details-header-p1">DAY TRIP | WEST SUNNYBERG</p>
-                <p class="my-booking-trip-details-header-p2">Kimberg</p>
-              </div>
-              <div class="my-booking-trip-details">
-                <p
-                  class="my-booking-trip-details-p1"
-                >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima fugiat alias at suscipit</p>
-              </div>
-            </div>
-          </div>
-          <div
-            style="display: flex; flex-direction: row; justify-content: space-evenly; padding-top: 70px; padding-left: 20px"
-          >
-            <a href="#">
-              <p class="col-md-2 my-cart-delete-image"></p>
-            </a>
-            <a href="#">
-              <p class="col-md-2" style="color: #f81894; font-size: 17px; font-weight: bold">REMOVE</p>
-            </a>
-          </div>
+        <div v-if="carts.length < 1 && !loading">
+          <empty-result>
+            <template v-slot:error-header>Errm</template>
+            You do not have any carts yet. <br> When you book an experience, it will appear here.
+          </empty-result>
         </div>
-        <div class="row my-booking-left">
-          <div class="col-md-3 my-booking-details-image"></div>
-          <div class="col-md-6 my-booking-trip-main">
-            <div class="my-booking-trip-main-head">
-              <div class="my-booking-trip-details-header">
-                <p class="my-booking-trip-details-header-p1">DAY TRIP | WEST SUNNYBERG</p>
-                <p class="my-booking-trip-details-header-p2">Kimberg</p>
-              </div>
-              <div class="my-booking-trip-details">
-                <p
-                  class="my-booking-trip-details-p1"
-                >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima fugiat alias at suscipit</p>
-              </div>
-            </div>
-          </div>
-          <div
-            style="display: flex; flex-direction: row; justify-content: space-evenly; padding-top: 70px; padding-left: 20px"
-          >
-            <a href="#">
-              <p class="col-md-2 my-cart-delete-image"></p>
-            </a>
-            <a href="#">
-              <p class="col-md-2" style="color: #f81894; font-size: 17px; font-weight: bold">REMOVE</p>
-            </a>
-          </div>
-        </div>
+
         <div class="my-cart-button">
           <button class="button button1">Explore</button>
           <button class="button button2">Checkout</button>
@@ -128,60 +61,30 @@
         <div class="my-booking-details-right">
           <div class="feature-places-title">
             <p class="feature-places-title-p1">Featured Places</p>
-            <p class="feature-places-title-p2">SEE ALL</p>
+            <p class="feature-places-title-p2"><router-link to="/places">SEE ALL</router-link></p>
           </div>
           <div>
-            <div class="featured_places saitama changed">
-              <div class="featured_places_item">
-                <div class="featured_places_overlay overlay-changed">
-                  <div class="row">
-                    <div class="col-sm-7 col-md-7">
-                      <p class="ftr_places_title">SAITAMA</p>
-                    </div>
-                    <div class="col-sm-2 col-md-2">
-                      <p class="ftr_places_title">221</p>
-                    </div>
-                    <div class="col-sm-2 col-md-2">
-                      <p class="ftr_places_title">50</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="featured_places saitama changed">
-              <div class="featured_places_item">
-                <div class="featured_places_overlay overlay-changed">
-                  <div class="row">
-                    <div class="col-sm-7 col-md-7">
-                      <p class="ftr_places_title">SAITAMA</p>
-                    </div>
-                    <div class="col-sm-2 col-md-2">
-                      <p class="ftr_places_title">221</p>
-                    </div>
-                    <div class="col-sm-2 col-md-2">
-                      <p class="ftr_places_title">50</p>
+
+            <div class="featured_places saitama changed" v-for="place in places.slice(0, 3)" >
+              <router-link :to="'/experience/'+ place.id + '/' + place.city">
+                <div class="featured_places_item">
+                  <div class="featured_places_overlay overlay-changed">
+                    <div class="row">
+                      <div class="col-sm-7 col-md-7">
+                        <p class="ftr_places_title">{{ place.city }}</p>
+                      </div>
+                      <div class="col-sm-2 col-md-2">
+                        <p class="ftr_places_title">{{ place.number_admittable }}</p>
+                      </div>
+                      <div class="col-sm-2 col-md-2">
+                        <p class="ftr_places_title">{{ place.rating_count }}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </router-link>
             </div>
-            <div class="featured_places saitama changed">
-              <div class="featured_places_item">
-                <div class="featured_places_overlay overlay-changed">
-                  <div class="row">
-                    <div class="col-sm-7 col-md-7">
-                      <p class="ftr_places_title">SAITAMA</p>
-                    </div>
-                    <div class="col-sm-2 col-md-2">
-                      <p class="ftr_places_title">221</p>
-                    </div>
-                    <div class="col-sm-2 col-md-2">
-                      <p class="ftr_places_title">50</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+
           </div>
         </div>
       </div>
@@ -192,30 +95,55 @@
 <script>
 import Navbar from "@/components/Navbar.vue";
 import EmptyResult from "@/components/EmptyResult.vue";
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 import axios from "axios";
 import Footer from "@/components/Footer.vue";
+import { Circle9 } from 'vue-loading-spinner'
+// import EmptyResult from "@/components/EmptyResult.vue";
 
 export default {
-  name: "MyBooking"
-  // beforeRouteEnter(to, from, next) {
-  //   if (localStorage.getItem("auth")) {
-  //     return next();
-  //   } else {
-  //     // this.$noty.error("Sign in to access!")
-  //     return next({ path: "/signin" });
-  //   }
-  //   next();
-  // },
-  // components: {
-  //   Navbar,
-  //   EmptyResult,
-  //   Footer
-  // },
-  // methods: {},
-  // created() {
-  //   this.getMyBookings();
-  // }
+  name: "MyCart",
+  beforeRouteEnter(to, from, next) {
+    if (localStorage.getItem("auth")) {
+      return next();
+    } else {
+      // this.$noty.error("Sign in to access!")
+      return next({ path: "/signin" });
+    }
+    next();
+  },
+  data(){return{
+    loading: false,
+    carts: []
+  }},
+  components: {
+    Navbar,
+    EmptyResult,
+    Footer,
+    Circle9
+  },
+  computed: {
+    ...mapState(['places'])
+  },
+  methods: {
+    getMyCarts(){
+      this.loading = true;
+      let requestHeaders = {
+        headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
+      };
+      axios.get(`${this.$store.state.API_BASE}/users/${this.$store.state.auth.user.id}/carts`, requestHeaders).then(response => {
+        this.carts = response.data.data;
+        this.loading = false;
+      }).catch(err => {
+        this.$noty.error("Oops, there was error getting carts");
+        this.loading = false;
+      })
+
+    }
+  },
+  created() {
+    this.getMyCarts();
+  }
 };
 </script>
 <style scoped>

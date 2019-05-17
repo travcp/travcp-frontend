@@ -1,5 +1,9 @@
 <template>
   <div class="container-fluid">
+    <vue-headful
+            title="New Experience | TravvApp"
+            description="Description from travvApp"
+        />
     <Navbar/>
     <!--About us start -->
     <div class="add-new-header">

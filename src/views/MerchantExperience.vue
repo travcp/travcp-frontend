@@ -1,5 +1,9 @@
 <template>
 	<div>
+		<vue-headful
+            title="Merchant Experience | TravvApp"
+            description="Description from travvApp"
+        />
 		<Navbar />
 		<div class="merchant_experience">
 			<div class="row">

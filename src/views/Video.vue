@@ -1,5 +1,9 @@
 <template>
   <div class="container main">
+    <vue-headful
+            title="Videos | TravvApp"
+            description="Description from travvApp"
+        />
     <Navbar/>
     <!-- booking header details left -->
     <div class="row my-booking-left">

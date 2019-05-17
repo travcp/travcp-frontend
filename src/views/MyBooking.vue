@@ -1,5 +1,9 @@
 <template>
   <div class="container main">
+    <vue-headful
+            title="My Bookings | TravvApp"
+            description="Description from travvApp"
+        />
     <Navbar/>
     <!-- booking header details left -->
     <div class="row my-booking-left">
@@ -36,25 +40,7 @@
             </div>
           </div>
         </div>
-        <!-- <div class="row my-booking-left">
-          <div class="col-md-3 my-booking-details-image"></div>
-          <div class="col-md-9">
-            <div class="my-booking-trip-main">
-              <div class="my-booking-trip-details-header">
-                <p class="my-booking-trip-details-header-p1">DAY TRIP | WEST SUNNYBERG</p>
-                <p class="my-booking-trip-details-header-p2">Kimberg</p>
-              </div>
-              <div class="my-booking-trip-details">
-                <p
-                  class="my-booking-trip-details-p1"
-                >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima fugiat alias at suscipit</p>
-                <p
-                  class="my-booking-trip-details-p2"
-                >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus saepe asperiores, culpa ab illum quia quis odit ipsum magni voluptas laboriosam pariatur recusandae est in ad sint? Eveniet, delectus pariatur.</p>
-              </div>
-            </div>
-          </div>
-        </div> -->
+       
       </div>
       <!-- booking header details right -->
       <div class="col-lg-4">
@@ -85,57 +71,6 @@
                   </router-link>
             </div>
 
-            <!-- <div class="featured_places saitama changed">
-              <div class="featured_places_item">
-                <div class="featured_places_overlay overlay-changed">
-                  <div class="row">
-                    <div class="col-sm-7 col-md-7">
-                      <p class="ftr_places_title">SAITAMA</p>
-                    </div>
-                    <div class="col-sm-2 col-md-2">
-                      <p class="ftr_places_title">221</p>
-                    </div>
-                    <div class="col-sm-2 col-md-2">
-                      <p class="ftr_places_title">50</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="featured_places saitama changed">
-              <div class="featured_places_item">
-                <div class="featured_places_overlay overlay-changed">
-                  <div class="row">
-                    <div class="col-sm-7 col-md-7">
-                      <p class="ftr_places_title">SAITAMA</p>
-                    </div>
-                    <div class="col-sm-2 col-md-2">
-                      <p class="ftr_places_title">221</p>
-                    </div>
-                    <div class="col-sm-2 col-md-2">
-                      <p class="ftr_places_title">50</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="featured_places saitama changed">
-              <div class="featured_places_item">
-                <div class="featured_places_overlay overlay-changed">
-                  <div class="row">
-                    <div class="col-sm-7 col-md-7">
-                      <p class="ftr_places_title">SAITAMA</p>
-                    </div>
-                    <div class="col-sm-2 col-md-2">
-                      <p class="ftr_places_title">221</p>
-                    </div>
-                    <div class="col-sm-2 col-md-2">
-                      <p class="ftr_places_title">50</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> -->
           </div>
         </div>
       </div>
@@ -163,7 +98,7 @@ export default {
       next();
   },
   components: {
-    Navbar, EmptyResult, Footer, Circle9, mapState
+    Navbar, EmptyResult, Footer, Circle9
   },
   data(){
     return {
@@ -185,7 +120,7 @@ export default {
         this.bookings = response.data.data;
         this.loading = false;
       }).catch(err => {
-        console.log("There was error fetching mybookings");
+        this.$noty.error("Oops, There was an error Trying to get bookings, Please reload the page");
       })
       
     }
