@@ -66,6 +66,12 @@
                         <div class="container">
                             <div class="row sidebar_text">
                                 <div class="col-md-12">
+                                    <h3>Experience Type</h3>
+                                    <h5 v-for="experience_type in experience_types">
+                                        <span v-if="experience_type.id == experience.experiences_type_id" style="font-weight: bolder !important; text-transform: capitalize;">{{ experience_type.name }}</span>
+                                    </h5>
+                                </div>
+                                <div class="col-md-12">
                                     <h3>City</h3>
                                     <h5>{{ experience.city }}</h5>
                                 </div>
@@ -293,6 +299,7 @@
             ...mapActions(['bookingExperience']),
             ...mapActions(['rateExperience']),
             ...mapActions(['getMyBookings']),
+            ...mapActions(['getExperienceTypes']),
             rateExperienceSubmit(){
                 if(this.auth) {
                     if (this.toggleRating) {
@@ -428,6 +435,7 @@
             }
         },
         computed: {
+            ...mapState(["experience_types"]),
             ...mapState(['experience']),
             ...mapState(['isLoading']),
             ...mapState(['auth']),
@@ -447,16 +455,17 @@
             this.bookings.forEach(book => {
                 console.log(book);
             })
-            for(let i = 1; i <= this.bookings.length; i++) {
-                console.log(this.bookings[i])
-            }
+            // for(let i = 1; i <= this.bookings.length; i++) {
+            //     console.log(this.bookings[i])
+            // }
             // experience/1/reviews/rating/4
-            console.log(this.$route.params.id);
+            // console.log(this.$route.params.id);
             // this.get5starPep();
             // this.getFourStarRating();
             // this.getFiverStarRating()
             // this.getFourStarRating()
             console.log(`Rating ${this.getFiverStarRating()}`)
+            this.getExperienceTypes();
         }
     }
 </script>
