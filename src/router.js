@@ -51,18 +51,6 @@ export default new Router({
       component: NotFound
     },
     {
-      path: '/search-results',
-      name: 'SearchResults',
-      component: SearchResults,
-      // children: [
-      //   {
-      //     path: '/top-rated-exp',
-      //     name: 'SearchResults',
-      //     component: SearchResults
-      //   }
-      // ]
-    },
-    {
       path: '/experiences',
       name: 'ExperiencesSearchResults',
       component: ExperiencesSearchResults
@@ -83,51 +71,10 @@ export default new Router({
       component: RestaurantsSearchResults
     },
     {
-      path: '/result-details',
-      name: 'ResultDetails',
-      component: ResultDetails,
-      children: [
-        {
-          path: ':id',
-          name: 'ResultDetails',
-          component: ResultDetails
-        }
-      ]
-    },
-    {
-      path: '/event/:id/:name',
-      name: 'EventsView',
-      component: EventsView
-    },
-    {
-      path: '/place/:id/:name',
-      name: 'PlacesView',
-      component: PlacesView
-    },
-    {
       path: '/places',
       name: 'PlacesSearchResults',
       component: PlacesSearchResults
     },
-    {
-      path: '/restaurants/:id/:name',
-      name: 'RestaurantsView',
-      component: RestaurantsView
-    },
-    {
-      path: '/register',
-      name: 'Registration',
-      component: Registration
-    },
-    {
-      path: '/login',
-      name: 'Login',
-      component: Login
-    },
-    // {
-    //   path: '/result-details/:id',
-    //   name: 'ResultDetails'
-    // },
     {
       path: '/signup',
       name: 'Signup',

@@ -52,9 +52,8 @@
                                         v-validate="'required'"
                                         type="text"
                                         class="form-control new_experience_input"
-                                        placeholder="Title"
-                                        v-model="address_22"
-                                />
+                                        placeholder="Address"
+                                        v-model="address_22" />
                               </div>
                               <div class="form-group col-md-6">
                                 <label>City</label>
@@ -72,7 +71,7 @@
                                         v-validate="'required'"
                                         type="text"
                                         class="form-control new_experience_input"
-                                        placeholder="City"
+                                        placeholder="State"
                                         v-model="state_22"
                                 />
                               </div>
@@ -236,6 +235,16 @@
                                 />
                               </div>
                               <div class="form-group col-md-6">
+                                <label>Address</label>
+                                <input
+                                        v-validate="'required'"
+                                        type="text"
+                                        class="form-control new_experience_input"
+                                        placeholder="Address"
+                                        v-model="address_2"
+                                />
+                              </div>
+                              <div class="form-group col-md-6">
                                 <label>City</label>
                                 <input
                                         v-validate="'required'"
@@ -243,6 +252,16 @@
                                         class="form-control new_experience_input"
                                         placeholder="City"
                                         v-model="city_2"
+                                />
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label>State</label>
+                                <input
+                                        v-validate="'required'"
+                                        type="text"
+                                        class="form-control new_experience_input"
+                                        placeholder="State"
+                                        v-model="state_2"
                                 />
                               </div>
                               <div class="form-group col-md-6">
@@ -588,6 +607,8 @@ export default {
       about_event_2: null,
       location_2: null,
       price_2: null,
+      address_2: null,
+      state_2: null,
       // city: null,
       // language: null,
       // about_the_experiece_designer: null,
@@ -781,7 +802,9 @@ export default {
         dollar_price: this.price_2,
         experiences_type_id: this.experience_type,
         contact_email: this.$store.state.auth.user.email,
-        merchant_id: this.$store.state.auth.user.id
+        merchant_id: this.$store.state.auth.user.id,
+        location: this.address_2,
+        state: this.state_2,
       };
 
       this.$validator.validateAll().then(result => {

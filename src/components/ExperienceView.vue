@@ -16,7 +16,10 @@
         </section>
         <div class="digital_feature blog_part">
             <div class="row">
-                <div class="col-lg-7 blog_content">
+                <div class="col-lg-7" style="text-align: center;" v-if="isLoading">
+                    <Circle9 />
+                </div>
+                <div class="col-lg-7 blog_content" v-else>
                     <h3>
                         DAY TRIP | {{ experience.state }}
                     </h3>
@@ -219,7 +222,7 @@
     import DatePicker from 'vue2-datepicker';
     import Footer from '@/components/Footer.vue';
     import axios from 'axios'
-
+    import { Circle9 } from 'vue-loading-spinner'
     import {
         mapState,
         mapActions,
@@ -281,7 +284,8 @@
         },
         components: {
             Navbar,
-            DatePicker
+            DatePicker,
+            Circle9
             // vuejsDatepicker
         },
         methods: {
@@ -303,6 +307,7 @@
                         this.$noty.success("Review is Successfull")
                         this.toggleRating = false;
                         this.rate_this_exp_text = ""
+                        this.getExperienceById(this.$route.params['id']);
                     } 
                 } else {
                     this.$noty.error("Oops, You need to Login to Review or Rate an Expereince");
@@ -397,34 +402,13 @@
                 //     })
                 
             },
-            // get5starPep () {
-            //     // experience/1/reviews/rating/4
-            //     this.loading = true;
-            //     let requestHeaders = {
-            //         headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
-            //     };
-            //     axios.get(`${this.$store.state.API_BASE}/experience/${this.$route.params.id}/reviews/rating/5`, requestHeaders).then(response => {
-            //         console.log(response.data.data);
-            //     }).catch(err => {
-            //         console.log("There was error fetching mybookings");
-            //     })
-            // }
-        },
-        computed: {
-            ...mapState(['experience']),
-            ...mapState(['isLoading']),
-            ...mapState(['auth']),
-            ...mapState(['bookings']),
-            loading() {
-                // return
-            },
             getFiverStarRating() {
                 this.loading = true;
                 let requestHeaders = {
                     headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
                 };
                 axios.get(`${this.$store.state.API_BASE}/experience/${this.$route.params['id']}/reviews/rating/5`, requestHeaders).then(response => {
-
+                    console.log(response.data)
                     this.loading = false;
                 }).catch(err => {
                     console.log("There was error fetching mybookings");
@@ -443,6 +427,16 @@
                 });
             }
         },
+        computed: {
+            ...mapState(['experience']),
+            ...mapState(['isLoading']),
+            ...mapState(['auth']),
+            ...mapState(['bookings']),
+            loading() {
+                // return
+            },
+
+        },
         created: function () {
             console.log('in Experience view')
             this.getExperienceById(this.$route.params['id']);
@@ -458,8 +452,11 @@
             }
             // experience/1/reviews/rating/4
             console.log(this.$route.params.id);
-            this.get5starPep();
-            this.getFourStarRating();
+            // this.get5starPep();
+            // this.getFourStarRating();
+            // this.getFiverStarRating()
+            // this.getFourStarRating()
+            console.log(`Rating ${this.getFiverStarRating()}`)
         }
     }
 </script>
