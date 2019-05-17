@@ -251,6 +251,7 @@
         name: 'ExperienceView',
         data() {
             return {
+                ratings: [],
                 rate_this_exp_text: "",
                 start_date: '4/12/2019',
                 end_date: '6/12/2019',
@@ -420,28 +421,17 @@
                 //     })
                 
             },
-            getFiverStarRating() {
+            ratingInfo() {
                 this.loading = true;
                 let requestHeaders = {
                     headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
                 };
-                axios.get(`${this.$store.state.API_BASE}/experience/${this.$route.params.id}/reviews/rating/5`, requestHeaders).then(response => {
+                axios.get(`${this.$store.state.API_BASE}/experiences/${this.$route.params.id}/reviews`, requestHeaders).then(response => {
                     console.log(response.data)
+                    this.ratings = response.data.rating_info
                     this.loading = false;
                 }).catch(err => {
-                    console.log("There was error fetching mybookings");
-                });
-            },
-            getFourStarRating() {
-                this.loading = true;
-                let requestHeaders = {
-                    headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
-                };
-                axios.get(`${this.$store.state.API_BASE}/experience/${this.$route.params['id']}/reviews/rating/5`, requestHeaders).then(response => {
-                    console.log(response.data)
-                    this.loading = false;
-                }).catch(err => {
-                    console.log("There was error fetching mybookings");
+                    console.log(err.data);
                 });
             },
             checkIfBooked () {
@@ -491,7 +481,7 @@
             // this.getFourStarRating();
             // this.getFiverStarRating()
             // this.getFourStarRating()
-            console.log(`Rating ${this.getFiverStarRating()}`)
+            this.ratingInfo()
             this.getExperienceTypes();
             this.checkIfBooked()
         }
