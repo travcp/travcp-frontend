@@ -1,5 +1,9 @@
 <template>
 		<div>
+			<vue-headful
+	            title="Signin | TravvApp"
+	            description="Description from travvApp"
+        	/>
 		<Navbar />
 		<div class="wrapper">
 			<div class="image-holder signin-image-holder">

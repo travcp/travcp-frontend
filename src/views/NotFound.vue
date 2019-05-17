@@ -1,5 +1,9 @@
 <template>
 	<div>
+		<vue-headful
+            title="Error 404 | TravvApp"
+            description="Description from travvApp"
+        />
 		<Navbar />
 		<EmptyResult />
 		<!-- <Footer /> -->

@@ -1,5 +1,9 @@
 <template>
   <div class="home">
+  	<vue-headful
+            title="Homepage | TravvApp"
+            description="Description from travvApp"
+        />
     <HomeNavbar />
     <Sliderarea class="toggle-sec-nav" />
 
@@ -168,7 +172,7 @@
   import Sliderarea from '@/components/Sliderarea.vue'
   import SecondNav from '@/components/SecondNav.vue';
   import Footer from '@/components/Footer.vue';
-
+  
   import {
     mapState,
     mapGetters,
@@ -186,7 +190,7 @@
       LatestPosts,
       SecondNav,
       FeaturedEvents,
-      Footer
+      Footer,
     },
     data: function () {
       return {

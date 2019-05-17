@@ -1,5 +1,9 @@
 <template>
     <div class="ExpereinceSearchResults">
+        <vue-headful
+            title="Experience search result | TravvApp"
+            description="Description from travvApp"
+        />
         <Navbar />
         <section class="filter_area" style="">
             <div class="container">

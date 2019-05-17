@@ -1,14 +1,14 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home.vue";
+import Home from "@/views/Home.vue";
 // import SearchResults from '@/views/SearchResults.vue';
-import ResultDetails from "@/views/ResultDetails.vue";
+// import ResultDetails from "@/views/ResultDetails.vue";
 import ExperienceView from "@/components/ExperienceView.vue";
 // import RestaurantsView from '@/components/RestaurantView';
 import ExperiencesSearchResults from "@/components/ExperiencesSearchResults";
 import RestaurantsSearchResults from "@/components/RestaurantsSearchResults";
-import Registration from "@/views/Registration.vue";
-import Login from "@/views/Login.vue";
+// import Registration from "@/views/Registration.vue";
+// import Login from "@/views/Login.vue";
 import Signup from "@/views/Signup.vue";
 import NotFound from "@/views/NotFound.vue";
 import Signin from "@/views/Signin.vue";
@@ -45,7 +45,8 @@ export default new Router({
     {
       path: "/",
       name: "home",
-      component: Home
+      component: Home,
+      meta: {title: 'Home'}
     },
     {
       path: "*",
@@ -148,7 +149,7 @@ export default new Router({
       component: Notifications
     },
     {
-      path: "/my-cart",
+      path: "/dashboard/my-cart",
       name: "MyCart",
       component: MyCart
     },

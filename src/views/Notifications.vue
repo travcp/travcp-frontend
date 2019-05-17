@@ -1,5 +1,9 @@
 <template>
   <div class="container-fluid">
+    <vue-headful
+            title="Notifications | TravvApp"
+            description="Description from travvApp"
+        />
     <Navbar/>
     <!--About us start -->
     <div class="notification-header">
@@ -9,7 +13,16 @@
     <div class="container notification-main">
       <div class="notification-view">
         <!-- one -->
-        <div class="row notification-view-row">
+        <div style="text-align: center;" v-if="loading">
+          <Circle9 />           
+        </div>
+        <div v-if="notifications.length < 1 && !loading">
+          <empty-result>
+            <template v-slot:error-header>Errm</template>
+            You do not have any notifications yet. <br> When you book an experience, it will appear here.
+          </empty-result>
+        </div>
+        <div class="row notification-view-row" v-for="notification in notifications">
           <div class="col-md-1 notification-image-view">
             <div class="notification-image"></div>
           </div>
@@ -24,32 +37,59 @@
           </div>
           <hr class="rule">
         </div>
-        <!--two -->
-        <div class="row notification-view-row">
-          <div class="col-md-1 notification-image-view">
-            <div class="notification-image"></div>
-          </div>
-          <div class="col-md-9 notification-message-view">
-            <p class="notification-messenger">
-              <span class="notification-messenger-text1">KIA restaurant</span> messaged you
-            </p>
-            <p
-              class="notification-message"
-            >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos sunt, beatae facilis iusto nobis dolor cum repellat esse fugiat quia tempore? Ducimus beatae voluptatem accusamus, nemo totam temporibus odit consequatur?</p>
-            <p class="notification-time">2 days ago</p>
-          </div>
-          <hr class="rule">
-        </div>
+
+
       </div>
     </div>
   </div>
 </template>
 <script>
 import Navbar from "@/components/Navbar.vue";
+import EmptyResult from "@/components/EmptyResult.vue";
+import { mapActions, mapState } from 'vuex';
+import axios from 'axios';
+import Footer from '@/components/Footer.vue';
+import { Circle9 } from 'vue-loading-spinner'
+// import EmptyResult from "@/components/EmptyResult.vue";
+// import { Circle9 } from 'vue-loading-spinner'
+
+
 export default {
   name: "Notifications",
+  beforeRouteEnter(to, from, next) {
+      if(localStorage.getItem('auth')) {
+          return next()
+      } else {
+        // this.$noty.error("Sign in to access!")
+        return next({ path: '/signin' })
+      }
+      next();
+  },
   components: {
-    Navbar
+    Navbar, EmptyResult, Circle9
+  },
+  data(){return{
+    loading: false,
+    notifications: [],
+  }},
+  methods: {
+    getMyNotifications(){
+      this.loading = true;
+      let requestHeaders = {
+        headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
+      };
+      axios.get(`${this.$store.state.API_BASE}/notifications`, requestHeaders).then(response => {
+        this.notifications = response.data.data;
+        this.loading = false;
+      }).catch(err => {
+        this.$noty.error("Oops, There was an error Trying to get notifications, Please reload the page");
+        this.loading = false;
+      })
+      
+    }
+  },
+  created(){
+    this.getMyNotifications()
   }
 };
 </script>

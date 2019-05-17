@@ -1,5 +1,9 @@
 <template>
     <div class="messages-container">
+        <vue-headful
+            title="Messages | TravvApp"
+            description="Description from travvApp"
+        />
         <Navbar/>
         <div class="container-fluid">
             <!-- <p class="page-header text-center">

@@ -1,5 +1,9 @@
 <template>
   <div>
+    <vue-headful
+            title="Signup | TravvApp"
+            description="Description from travvApp"
+        />
     <Navbar />
     <div class="wrapper">
       <div class="image-holder signup-image-holder">

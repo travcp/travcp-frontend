@@ -1,5 +1,9 @@
 <template>
   <div class="edit_profile">
+    <vue-headful
+            title="Edit Profile | TravvApp"
+            description="Description from travvApp"
+        />
     <Navbar />
     <br /><br />
     <div class="container">
