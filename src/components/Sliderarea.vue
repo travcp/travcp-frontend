@@ -192,6 +192,7 @@ import {mapActions, mapState} from 'vuex';
         background-color: #f81894;
         color: #FFF;
         margin-top: 20px;
+        cursor: pointer;
     }
 
     .cont-btn:focus {
