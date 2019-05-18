@@ -159,7 +159,7 @@
     }
 
     .my-booking-details-image {
-        background: url("../assets/nagoya.png");
+        background: url("../../assets/nagoya.png");
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
@@ -176,7 +176,7 @@
         margin: auto;
         margin-top: 15px;
         margin-bottom: 15px;
-        background: url("../assets/nagoya.png");
+        background: url("../../assets/nagoya.png");
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
