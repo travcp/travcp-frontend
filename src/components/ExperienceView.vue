@@ -374,53 +374,6 @@
                     this.$noty.error("Oops, You need to Login to Review or Rate an Expereince");
                 }
             },
-            calculateReviews() {
-                console.log(this.experiences)
-                // console.log('Hi i am Here')
-                for (var i = 1; i <= this.experience.reviews.length; i++) {
-                    console.log(this.experience.reviews[i].rating)
-                    if(this.experience.reviews[i].rating == 5) {
-                        this.star_5_people = this.star_5_people + 1;
-                        // console.log(reviews[i].rating)
-                    }
-                    else if(this.experience.reviews[i].rating == 4) {
-                        this.star_4_people = this.star_4_people + 1;
-                    }
-                    else if(this.experience.reviews[i].rating == 3) {
-                        this.star_3_people = this.star_3_people + 1;
-                    }
-                    else if(this.experience.eviews[i].rating == 2) {
-                        this.star_2_people = this.star_2_people + 1;
-                    }
-                    else if(this.experience.reviews[i].rating == 1) {
-                        this.star_1_people = this.star_1_people + 1;
-                    }
-                }
-
-                // for(review in this.experience.reviews) {
-                //     if(review.rating == 5) {
-                //         this.star_5_people++;
-                //         console.log(review.rating)
-                //     }
-                //     else if(review.rating == 4) {
-                //         this.star_4_people++;
-                //     }
-                //     else if(review.rating == 3) {
-                //         this.star_3_people++;
-                //     }
-                //     else if(review.rating == 2) {
-                //         this.star_2_people++;
-                //     }
-                //     else if(review.rating == 1) {
-                //         this.star_1_people++;
-                //     }
-                // }
-                // this.experience.reviews.
-                //     forEach(review => {
-                        
-                //     })
-                
-            },
             ratingInfo() {
                 this.loading = true;
                 let requestHeaders = {
@@ -465,9 +418,7 @@
         created: function () {
             console.log('in Experience view')
             this.getExperienceById(this.$route.params['id']);
-            setTimeout(() => {
-              this.calculateReviews();
-            }, 4000);
+            
             this.getMyBookings();
             this.bookings.forEach(book => {
                 console.log(book);
@@ -554,7 +505,7 @@
     }
 
     .project_area {
-        height: 518px !important;
+        height: 400px !important;
         margin: 10px 88px 42px 88px;
         margin-bottom: 57px;
     }
@@ -917,7 +868,7 @@
 
     .project_area {
         margin-top: 0;
-        height: 518px !important;
+        height: 400px !important;
         margin: 0px 88px 42px 88px;
         margin-bottom: 57px;
     }
