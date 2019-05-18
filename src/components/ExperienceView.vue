@@ -143,7 +143,7 @@
                                     </div>
                                 </div>
                                 <div class="col-2">
-                                    <p class="star_range">{{ star_5_people }}</p>
+                                    <p class="star_range">{{ ratings[5] }}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -154,7 +154,7 @@
                                     </div>
                                 </div>
                                 <div class="col-2">
-                                    <p class="star_range">{{ star_4_people }}</p>
+                                    <p class="star_range">{{ ratings[4] }}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -165,7 +165,7 @@
                                     </div>
                                 </div>
                                 <div class="col-2">
-                                    <p class="star_range">{{ star_3_people }}</p>
+                                    <p class="star_range">{{ ratings[3] }}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -176,7 +176,7 @@
                                     </div>
                                 </div>
                                 <div class="col-2">
-                                    <p class="star_range">{{ star_2_people }}</p>
+                                    <p class="star_range">{{ ratings[2] }}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -187,7 +187,7 @@
                                     </div>
                                 </div>
                                 <div class="col-2">
-                                    <p class="star_range">{{ star_1_people }}</p>
+                                    <p class="star_range">{{ ratings[1] }}</p>
                                 </div>
                             </div>
                         </div>
@@ -380,7 +380,7 @@
                     headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
                 };
                 axios.get(`${this.$store.state.API_BASE}/experiences/${this.$route.params.id}/reviews`, requestHeaders).then(response => {
-                    console.log(response.data)
+                    
                     this.ratings = response.data.rating_info
                     this.loading = false;
                 }).catch(err => {
@@ -396,7 +396,7 @@
                     experience_id: this.$route.params.id,
                     user_id: this.$store.state.auth.user.id,
                 }, requestHeaders).then(response => {
-                    console.log(response.data);
+                    
                     this.checkBookingStatus = response.data[0]
                     this.loading = false;
                 }).catch(err => {
@@ -416,22 +416,14 @@
 
         },
         created: function () {
-            console.log('in Experience view')
+            
             this.getExperienceById(this.$route.params['id']);
             
             this.getMyBookings();
             this.bookings.forEach(book => {
-                console.log(book);
+                // console.log(book);
             })
-            // for(let i = 1; i <= this.bookings.length; i++) {
-            //     console.log(this.bookings[i])
-            // }
-            // experience/1/reviews/rating/4
-            // console.log(this.$route.params.id);
-            // this.get5starPep();
-            // this.getFourStarRating();
-            // this.getFiverStarRating()
-            // this.getFourStarRating()
+            
             this.ratingInfo()
             this.getExperienceTypes();
             this.checkIfBooked()
