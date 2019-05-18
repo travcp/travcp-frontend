@@ -148,8 +148,28 @@ export default {
     state.emptySearchResult = true;
   },
   GET_EXPERIENCE_TYPES: (state, payload) => {
+    for(let i = 1; i < payload.data.length; i++) {
+
+    }
+
     state.experience_types = payload.data;
     state.isLoading = false;
+
+    for(let i = 0; i < state.experience_types.length; i++) {
+      if (!state.experience_types[i].experience_fields) {
+        // state.experience_types.splice(i, 1)
+        delete state.experience_types[i]
+      }
+
+      if(state.experience_types[i]) {
+        var requiredFileds = state.experience_types[i].experience_fields;
+
+        state.experience_types[i].experience_fields = requiredFileds.split(',');  
+      }
+    }
+    // console.log(state.experience_types)
+    // console.log(state.experience_types)
+    // var array = string.split(',');
   },
   SEARCH_RESULTS: state => {
     state.emptySearchResult = false;

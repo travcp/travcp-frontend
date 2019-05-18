@@ -312,9 +312,10 @@
                         this.rateExperience({
                             "user_id": this.auth.user.id,
                             "experience_id": this.experience.id,
-                            "review_body": this.rate_this_exp_text
+                            "review_body": this.rate_this_exp_text,
+                            "rating": this.reviewStar
                         });
-                        this.$noty.success("Review is Successfull")
+                        this.$noty.success("Review is Successful")
                         this.toggleRating = false;
                         this.rate_this_exp_text = ""
                         this.getExperienceById(this.$route.params['id']);
@@ -464,7 +465,34 @@
     }
     .booking-action .mx-datepicker.mx-datepicker-range {
         width: 100%;
+  }
+    .average_review_section h2 {
+        font-weight: bolder;
+        font-size: 1.5rem;
     }
+    .average_review_section h5 {
+        color: #776d6d;
+        font-weight: bolder;
+        font-size: 1rem
+    }
+    .gst_review_content h2 {
+        font-weight: bolder;
+        font-size: 1.5rem;
+    }
+    .star_range {
+        font-size: 1.1rem;
+        font-weight: bolder;
+        margin-bottom: 5px;
+    }
+    .progress {
+        height: 2rem;
+    }
+    .guest_review_for_mobile{
+        display: none;
+    }
+    /* .sidebar-pd{
+        padding-left: 80px;
+    } */
     .nagoya{
         max-height:200px;
         /* background-size:100% 100%; */
