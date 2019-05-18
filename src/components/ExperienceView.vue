@@ -62,8 +62,9 @@
                             <div class="row sidebar_text">
                                 <div class="col-md-12">
                                     <h3>Experience Type</h3>
-                                    <h5 v-for="experience_type in experience_types" v-if="experience_type.id == experience.experiences_type_id">
+                                    <h5 v-for="experience_type in experience_types" v-if="experience_type && experience_type.id == experience.experiences_type_id">
                                         {{ experience_type.name }}
+                                    
                                     </h5>
                                 </div>
                                 <div class="col-md-12">
