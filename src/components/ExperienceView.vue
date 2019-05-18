@@ -402,7 +402,7 @@
             ...mapState(['experience']),
             ...mapState(['isLoading']),
             ...mapState(['auth']),
-            ...mapState(['bookings'])
+            ...mapState(['bookings']),
 
         },
         created: function () {
