@@ -145,7 +145,28 @@
                 src="/img/profile_2.png"
                 class="user_pic"
                 alt="profile picture"
-              /> <br>
+              />
+              <br>
+              <image-uploader
+                :debug="1"
+                :maxWidth="512"
+                :autoRotate=true
+                outputFormat="verbose"
+                :preview=true
+                :className="['fileinput', { 'fileinput--loaded' : hasImage }]"
+                capture="environment"
+                accept="image/*"
+                doNotResize="['gif', 'svg']"
+                @input="setImage"
+              >
+                <label for="fileInput" slot="upload-label">
+                  <span class="upload-caption text-primary" href="javascript:void(0)">{{ hasImage ? 'Replace' : 'Change avatar'}}</span>
+                  <br>
+                  <a href="javascript:void(0)" v-if="hasImage" class="btn btn-primary" @click="uploadImage">Upload</a>
+                </label>
+              </image-uploader>
+              
+               <br>
               <!--<div class="user_pic"></div>-->
               <h5 class="card-title">{{ userProperties.surname }} {{ userProperties.first_name }}</h5>
               <h6 class="card-subtitle mb-2 text-muted" style="text-transform: lowercase;">{{ userProperties.surname }}{{ userProperties.first_name }}</h6>
@@ -198,7 +219,9 @@ export default {
       address: null,
       city: null,
       country: null,
-      postal_code: null
+      postal_code: null,
+      hasImage: false,
+      image: null
     };
   },
   components: {
@@ -280,6 +303,16 @@ export default {
     authPostalCode() {
       this.postal_code = this.auth.user.postal_code;
       return this.auth.user.postal_code;
+    },
+    setImage(output){
+      this.hasImage = true;
+      this.image = output;
+    },
+    uploadImage(){
+      document.querySelector(".user_pic").src = this.image.dataUrl;
+      document.querySelector(".img-preview").style.display = "none";
+      this.hasImage = false;
+      this.image = null;
     }
   },
   created() {
@@ -295,6 +328,10 @@ export default {
 };
 </script>
 <style>
+.img-preview{
+  width:100%;
+  max-width: 100%;
+}
 .edit-prof-input {
   border-radius: 0;
   border-top: none;
@@ -336,5 +373,9 @@ export default {
   width: 140px;
   display: inline-block;
   border-radius: 100%;
+}
+
+#fileInput {
+  display: none;
 }
 </style>
