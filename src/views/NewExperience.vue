@@ -39,7 +39,7 @@
 
                         <!-- <p v-if="experience_types.indexOf("Apple");"></p> -->
                         <div class="form-places">
-                          <form @submit.prevent="submitFormExperience_22">
+                          <form @submit.prevent="submitFormExperience">
                             <div class="row">
                               <div class="form-group col-md-6" v-if="requiredFields.includes('title')">
                                 <label>Title</label>
@@ -250,143 +250,6 @@
                                   Submit
                                 </span>
                               </button>
-                            </div>
-                          </form>
-                        </div>
-                        <div v-if="experience_type == '2'" class="form-places">
-
-                          <form @submit.prevent="submitFormExperience_2">
-                            <div class="row">
-                              <div class="form-group col-md-6">
-                                <label>Name of event</label>
-                                <input
-                                        v-validate="'required'"
-                                        type="text"
-                                        class="form-control new_experience_input"
-                                        placeholder="Name of Event"
-                                        v-model="name_of_event_2"
-                                />
-                              </div>
-                              <div class="form-group col-md-6">
-                                <label>Address</label>
-                                <input
-                                        v-validate="'required'"
-                                        type="text"
-                                        class="form-control new_experience_input"
-                                        placeholder="Address"
-                                        v-model="address_2"
-                                />
-                              </div>
-                              <div class="form-group col-md-6">
-                                <label>City</label>
-                                <input
-                                        v-validate="'required'"
-                                        type="text"
-                                        class="form-control new_experience_input"
-                                        placeholder="City"
-                                        v-model="city_2"
-                                />
-                              </div>
-                              <div class="form-group col-md-6">
-                                <label>State</label>
-                                <input
-                                        v-validate="'required'"
-                                        type="text"
-                                        class="form-control new_experience_input"
-                                        placeholder="State"
-                                        v-model="state_2"
-                                />
-                              </div>
-                              <div class="form-group col-md-6">
-                                <label>Language</label>
-                                <select
-                                        id="inputState"
-                                        class="form-control new_experience_input"
-                                        v-model="language_2"
-                                >
-                                  <!-- <option selected>Select</option> -->
-                                  <option>English</option>
-                                </select>
-                              </div>
-                              <div class="form-group col-md-6">
-                                <label>About event</label>
-                                <textarea
-                                        v-validate="'required'"
-                                        cols="30"
-                                        rows="10"
-                                        class="form-control"
-                                        v-model="about_event_2"
-                                ></textarea>
-                              </div>
-                              <!--<div class="form-group col-md-12">-->
-                              <!--<label>Picture</label>-->
-                              <!--<p>Pic</p>-->
-                              <!--</div>-->
-                              <div class="form-group col-md-6">
-                                <label>Location</label>
-                                <input
-                                        v-validate="'required'"
-                                        type="text"
-                                        class="form-control new_experience_input"
-                                        placeholder="Location"
-                                        v-model="location_2"
-                                />
-                              </div>
-                              <!--<div class="form-group col-md-6">-->
-                                <!--<label>Email</label>-->
-                                <!--<input-->
-                                        <!--v-validate="'required'"-->
-                                        <!--type="text"-->
-                                        <!--class="form-control new_experience_input"-->
-                                        <!--placeholder="Contact Email"-->
-                                <!--/>-->
-                              <!--</div>-->
-                              <div class="form-group col-md-6">
-                                <div class="row">
-                                  <div class="form-group col-md-4">
-                                    <label>Price</label>
-                                    <input
-                                            v-validate="'required'"
-                                            type="text"
-                                            class="form-control new_experience_input"
-                                            placeholder="in Dollars"
-                                            v-model="price_2"
-                                    />
-                                  </div>
-                                  <div class="form-group col-md-8">
-                                    <label>Dates Range</label> <br />
-                                    <date-picker
-                                            v-validate="'required'"
-                                            v-model="time"
-                                            range
-                                            :shortcuts="shortcuts"
-                                            :lang="lang"
-                                            input-class="form-control new_experience_input"
-                                    ></date-picker>
-                                  </div>
-                                </div>
-                                <!--<br>-->
-                                <!--<input v-validate="'required'" type="text" class="form-control new_experience_input" placeholder="in Pounds">-->
-                                <!--<br>-->
-                                <!--<input v-validate="'required'" type="text" class="form-control new_experience_input" placeholder="in Dollars">-->
-                              </div>
-                              <div class="col-md-12" style="text-align: center;">
-                                <button
-                                        type="submit"
-                                        class="btn btn-lg submit_exp_btn"
-                                        :disable="isLoading"
-                                >
-                                  <span v-if="isLoading">
-                                  <img
-                                          style="height: 20px;"
-                                          src="../assets/loader_rolling.gif"
-                                  />
-                                  </span>
-                                    <span v-else>
-                                    Submit
-                                  </span>
-                                </button>
-                              </div>
                             </div>
                           </form>
                         </div>
@@ -601,23 +464,32 @@ export default {
       }
 
     },
-    submitFormExperience_22: function() {
+    submitFormExperience: function() {
       // if (this.experience_type == 22) {
         // let start_date = this.formatDate(this.time[0])
         // let end_date = this.formatDate(this.time[1])
         let data = {
           slug: "something-something",
-          title: this.title_22,
-          city: this.city_22,
-          offerings: this.offerings_on_tour_22,
-          language: this.language_22,
-          description: this.short_description_of_the_experience_22,
-          meetup_location: this.where_they_would_meet_up_with_client_22,
-          tourist_expected_items: this.what_tourists_should_bring_along_22,
-          itenary: this.itenary_for_the_experience,
-          number_admittable: this.number_that_each_tour_can_admit_22,
-          dollar_price: this.price_in_dollars_22,
-          experiences_type_id: this.experience_type,
+          title: this.title,
+		  location: this.location,
+		  city: this.city,
+		  state: this.state,
+		  country: this.country,
+		  offerings: this.offerings,
+		  language: this.language,
+		  description: this.description,
+		  naira_price: this.naira_price,
+		  meetup_location: this.meetup_location,
+		  itenary: this.itenary,
+		  tourist_expected_items: this.tourist_expected_items,
+		  number_admittable: this.number_admittable,
+		  start_date: this.start_date,
+		  end_date: this.end_date,
+		  extra_perks: this.extra_perks,
+		  drink_types: this.drink_types,
+		  history: this.history,
+		  start_date: this.formatDate(this.time[0]),
+          end_date: this.formatDate(this.time[1]),
           contact_email: this.$store.state.auth.user.email,
           merchant_id: this.$store.state.auth.user.id,
           location: this.address_22,
@@ -640,37 +512,6 @@ export default {
         });
       // }
 
-    },
-    submitFormExperience_2() {
-      let data = {
-        slug: "something-something",
-        title: this.name_of_event_2,
-        city: this.city_2,
-        language: this.language_2,
-        description: this.about_event_2,
-        location: this.location_2,
-        dollar_price: this.price_2,
-        experiences_type_id: this.experience_type,
-        contact_email: this.$store.state.auth.user.email,
-        merchant_id: this.$store.state.auth.user.id,
-        location: this.address_2,
-        state: this.state_2,
-      };
-
-      this.$validator.validateAll().then(result => {
-        if (result) {
-          this.submitExperience(data)
-                  .then(response => {
-                    console.log(response);
-                    this.$noty.success(`Expereince Posted sucecesfully - ${data.title}`);
-                  })
-                  .catch(err => {
-                    console.log(err);
-                  });
-        } else {
-          this.$noty.error("Oops, something went wrong!");
-        }
-      });
     },
     checkExperienceType(event) {
     	// console.log(event.target.value)
