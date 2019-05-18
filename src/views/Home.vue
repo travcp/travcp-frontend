@@ -35,13 +35,16 @@
                 </div>
               </div>
               <div class="col-lg-4 no-pad-r" style="text-align: center;">
-                <img src="../assets/Icons/security.svg" style="height: 125px;" />
-                <p class="title">Get Security Updates</p>
-                <!-- <div class="c_box_item">
+                <router-link to="/videos">
+                  <img src="../assets/Icons/security.svg" style="height: 125px;" />
                   <p class="title">Get Security Updates</p>
-                </div> -->
-                <div>
-                </div>
+                </router-link>
+                  <!-- <div class="c_box_item">
+                    <p class="title">Get Security Updates</p>
+                  </div> -->
+                  <div>
+                  </div>
+
               </div>
             </div>
 

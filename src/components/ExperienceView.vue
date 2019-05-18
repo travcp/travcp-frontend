@@ -131,7 +131,8 @@
                                 <div class="col-2"><p class="star_range">5-star</p></div>
                                 <div class="col-8">
                                     <div class="progress">
-                                      <div class="progress-bar" role="progressbar" style="width: 55%;background-color: #f81894;" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <!-- { color: activeColor, fontSize: fontSize + 'px' } -->
+                                      <div class="progress-bar" role="progressbar" :style="{ width: (ratings[5] / totalRatingCount) * 100 + '%', backgroundColor: '#f81894' }" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
                                 <div class="col-2">
@@ -142,7 +143,7 @@
                                 <div class="col-2"><p class="star_range">4-star</p></div>
                                 <div class="col-8">
                                     <div class="progress">
-                                      <div class="progress-bar" role="progressbar" style="width: 75%;background-color: #f81894;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                      <div class="progress-bar" role="progressbar" :style="{ width: (ratings[4] / totalRatingCount) * 100 + '%', backgroundColor: '#f81894' }" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
                                 <div class="col-2">
@@ -153,7 +154,7 @@
                                 <div class="col-2"><p class="star_range">3-star</p></div>
                                 <div class="col-8">
                                     <div class="progress">
-                                      <div class="progress-bar" role="progressbar" style="width: 35%;background-color: #f81894;" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+                                      <div class="progress-bar" role="progressbar" :style="{ width: (ratings[3] / totalRatingCount) * 100 + '%', backgroundColor: '#f81894' }" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
                                 <div class="col-2">
@@ -164,7 +165,7 @@
                                 <div class="col-2"><p class="star_range">2-star</p></div>
                                 <div class="col-8">
                                     <div class="progress">
-                                      <div class="progress-bar" role="progressbar" style="width: 25%;background-color: #f81894;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                      <div class="progress-bar" role="progressbar" :style="{ width: (ratings[2] / totalRatingCount) * 100 + '%', backgroundColor: '#f81894' }" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
                                 <div class="col-2">
@@ -175,7 +176,7 @@
                                 <div class="col-2"><p class="star_range">1-star</p></div>
                                 <div class="col-8">
                                     <div class="progress">
-                                      <div class="progress-bar" role="progressbar" style="width: 15%;background-color: #f81894;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                      <div class="progress-bar" role="progressbar" :style="{ width: (ratings[1] / totalRatingCount) * 100 + '%', backgroundColor: '#f81894' }" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
                                 <div class="col-2">
@@ -370,10 +371,10 @@
             },
             ratingInfo() {
                 this.loading = true;
-                let requestHeaders = {
-                    headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
-                };
-                axios.get(`${this.$store.state.API_BASE}/experiences/${this.$route.params.id}/reviews`, requestHeaders).then(response => {
+                // let requestHeaders = {
+                //     headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
+                // };
+                axios.get(`${this.$store.state.API_BASE}/experiences/${this.$route.params.id}/reviews`).then(response => {
                     
                     this.ratings = response.data.rating_info
                     this.loading = false;
@@ -405,20 +406,25 @@
             ...mapState(['isLoading']),
             ...mapState(['auth']),
             ...mapState(['bookings']),
+            totalRatingCount() {
+                return this.ratings[5] + this.ratings[4] + this.ratings[3] + this.ratings[2] + this.ratings[1]
+            }
 
         },
         created: function () {
             
             this.getExperienceById(this.$route.params['id']);
             
-            this.getMyBookings();
+            // this.getMyBookings();
             this.bookings.forEach(book => {
                 // console.log(book);
             })
             
             this.ratingInfo()
             this.getExperienceTypes();
-            this.checkIfBooked()
+            if(this.$store.state.auth) {
+                this.checkIfBooked()                
+            }
         }
     }
 </script>

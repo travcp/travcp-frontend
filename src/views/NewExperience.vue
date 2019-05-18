@@ -494,6 +494,7 @@ export default {
           merchant_id: this.$store.state.auth.user.id,
           location: this.address_22,
           state: this.state_22,
+          experiences_type_id: this.exp_id,
         };
 
         this.$validator.validateAll().then(result => {
@@ -523,6 +524,7 @@ export default {
     		// console.log(this.experience_types)
     		if(this.experience_types[i]) {
     			if(this.experience_types[i].name == event.target.value) {
+    				this.exp_id = this.experience_types[i].id
 	    			this.requiredFields = this.experience_types[i].experience_fields;
 	    			console.log(this.requiredFields)
 	    		}	
