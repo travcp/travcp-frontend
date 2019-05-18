@@ -89,7 +89,8 @@ import { Circle9 } from 'vue-loading-spinner'
 export default {
   name: "MyBooking",
   beforeRouteEnter(to, from, next) {
-      if(localStorage.getItem('auth')) {
+    let checkToken = localStorage.getItem('auth')
+      if(checkToken.auth.access_token) {
           return next()
       } else {
         // this.$noty.error("Sign in to access!")

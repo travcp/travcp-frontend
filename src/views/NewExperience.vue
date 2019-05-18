@@ -384,9 +384,7 @@
                       id="dropzone"
                       :options="dropzoneOptions"
                     ></vue-dropzone>
-                    <!-- <div class="uploaded_image">
-				    						
-				    					</div> -->
+
                   </div>
                 </div>
               </div>
@@ -416,7 +414,7 @@ export default {
       // this.$noty.error("Sign in to access!")
       return next({ path: "/signin" });
     }
-    next();
+    // next();
   },
   data() {
     return {

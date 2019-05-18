@@ -4,16 +4,7 @@
             title="Experience | TravvApp"
             description="Description from travvApp"
         />
-        <Navbar>
-            <div class="searchbar" slot="search">
-                <span class="searchbar" style="color: #f81894;">
-                    <input class="search_input" type="text" placeholder="Search" />
-                    <a href="javascript:void(0)" class="search_icon">
-                        <img src="../assets/icons8-search.svg" />
-                    </a>
-                </span>
-            </div>
-        </Navbar>
+        <Navbar></Navbar>
         <section class="project_area nagoya" style="">
             <div class="container">
             </div>
@@ -41,19 +32,19 @@
                     <form  @submit.prevent="rateExperienceSubmit">
                         <div class="col-md-12">
                             <div id="reviewStars-input" @click="toggleRatingBox">
-                                <input id="star-4" value="1" v-model="reviewStar" type="radio" name="reviewStars"/>
+                                <input id="star-4" value="5" v-model="reviewStar" type="radio" name="reviewStars"/>
                                 <label title="gorgeous" for="star-4"></label>
 
-                                <input id="star-3" value="2" v-model="reviewStar" type="radio" name="reviewStars"/>
+                                <input id="star-3" value="4" v-model="reviewStar" type="radio" name="reviewStars"/>
                                 <label title="good" for="star-3"></label>
 
                                 <input id="star-2" value="3" v-model="reviewStar" type="radio" name="reviewStars"/>
                                 <label title="regular" for="star-2"></label>
 
-                                <input id="star-1" value="4" v-model="reviewStar" type="radio" name="reviewStars"/>
+                                <input id="star-1" value="2" v-model="reviewStar" type="radio" name="reviewStars"/>
                                 <label title="poor" for="star-1"></label>
 
-                                <input id="star-0" value="5" v-model="reviewStar" type="radio" name="reviewStars"/>
+                                <input id="star-0" value="1" v-model="reviewStar" type="radio" name="reviewStars"/>
                                 <label title="bad" for="star-0"></label>
                             </div><br><br>
                         </div>
