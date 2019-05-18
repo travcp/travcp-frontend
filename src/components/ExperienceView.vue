@@ -14,7 +14,7 @@
                 <div class="col-lg-7" style="text-align: center;" v-if="isLoading">
                     <Circle9 />
                 </div>
-                <div class="col-lg-7 blog_content" v-else>
+                <div class="col-sm-6 col-md-7 col-lg-8 blog_content" v-else>
                     <h3>
                         DAY TRIP | {{ experience.state }}
                     </h3>
@@ -56,14 +56,14 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-lg-5 sidebar-pd">
+                <div class="col-sm-6 col-md-5 col-lg-4 sidebar-pd">
                     <div class="travv-sidebar" style="height: auto;">
                         <div class="container">
                             <div class="row sidebar_text">
                                 <div class="col-md-12">
                                     <h3>Experience Type</h3>
-                                    <h5 v-for="experience_type in experience_types">
-                                        <span v-if="experience_type.id == experience.experiences_type_id" style="font-weight: bolder !important; text-transform: capitalize;font-family: MuseoSans500;">{{ experience_type.name }}</span>
+                                    <h5 v-for="experience_type in experience_types" v-if="experience_type.id == experience.experiences_type_id">
+                                        {{ experience_type.name }}
                                     </h5>
                                 </div>
                                 <div class="col-md-12">
@@ -86,9 +86,9 @@
                                     <h3>Language</h3>
                                     <h5>{{ experience.language }}</h5>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-12 booking-action">
                                     <form @submit.prevent="bookExperience" v-if="!checkBookingStatus">
-                                        <h3>Book</h3>
+                                        <h3 class="d-none d-sm-block">Book</h3>
                                         <date-picker v-validate="'required'" v-model="time" range :shortcuts="shortcuts" :lang="lang"></date-picker>
                                         <!-- <p>Start Date <input id="datepicker" v-model="start_date" type="date" width="276" /> -->
                                         <!-- <date-picker v-model="time" range :shortcuts="shortcuts" :lang="lang"></date-picker> -->
@@ -124,7 +124,7 @@
                     <div class="col-md-5">
                         <div class="average_review_section">
                             <h2>Average Rating</h2>
-                            <h5>Based on 1351 ratings</h5>
+                            <h5>Based on {{ reviews.meta ? reviews.meta.total : 0}} ratings</h5>
                             <br>
                             <div class="row">
                                 <div class="col-2"><p class="star_range">5-star</p></div>
@@ -264,6 +264,7 @@
                 toggleRating: false,
                 loading: false,
                 checkBookingStatus: null,
+                reviews: [],
                 // custom lang
                 lang: {
                     days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
@@ -374,6 +375,7 @@
                     
                     this.ratings = response.data.rating_info
                     this.loading = false;
+                    this.reviews = response.data;
                 }).catch(err => {
                     console.log(err.data);
                 });
@@ -400,10 +402,7 @@
             ...mapState(['experience']),
             ...mapState(['isLoading']),
             ...mapState(['auth']),
-            ...mapState(['bookings']),
-            loading() {
-                // return
-            },
+            ...mapState(['bookings'])
 
         },
         created: function () {
@@ -423,7 +422,7 @@
 </script>
 
 <style>
-  @media only screen and (max-width: 576px) {
+@media only screen and (max-width: 576px) {
     .project_area {
         margin: 10px 10px 42px 10px !important;
     }
@@ -432,7 +431,7 @@
         color: #555 !important;
     }
     .sidebar-pd{
-        padding-left: 0 !important;
+        /* padding-left: 0 !important; */
     }
     .guest_review {
         display: none;
@@ -443,322 +442,351 @@
         height: 150px;
         padding-top: 20px;
     }
-  }
-    .average_review_section h2 {
-        font-weight: bolder;
-        font-size: 1.5rem;
+    .booking-action{
+        position:fixed;
+        bottom:0;
+        background:white;
+        z-index:1000;
+        width:100%;
+        margin:unset;
+        padding-top:15px;
+        padding-bottom:15px;
+        padding-right:10px;
+        padding-left:10px;
+        left:0;
+        right:0;
+        border-top:2px solid rgb(235, 235, 235);
     }
-    .average_review_section h5 {
-        color: #776d6d;
-        font-weight: bolder;
-        font-size: 1rem
+    .booking-action button.book_btn{
+        padding: 10px 15px;
+        width: auto;
+        font-size: 14px;
     }
-    .gst_review_content h2 {
-        font-weight: bolder;
-        font-size: 1.5rem;
+    .booking-action .mx-datepicker.mx-datepicker-range {
+        width: 100%;
     }
-    .star_range {
-        font-size: 1.1rem;
-        font-weight: bolder;
-        margin-bottom: 5px;
+    .nagoya{
+        max-height:200px;
+        /* background-size:100% 100%; */
+        height:200px;
     }
-    .progress {
-        height: 2.5rem;
-    }
-    .guest_review_for_mobile{
-        display: none;
-    }
-    .sidebar-pd{
-        padding-left: 80px;
-    }
-    .navbar-brand {
-        color: #555 !important;
-    }
+}
+.average_review_section h2 {
+    font-weight: bolder;
+    font-size: 1.5rem;
+}
+.average_review_section h5 {
+    color: #776d6d;
+    font-weight: bolder;
+    font-size: 1rem
+}
+.gst_review_content h2 {
+    font-weight: bolder;
+    font-size: 1.5rem;
+}
+.star_range {
+    font-size: 1.1rem;
+    font-weight: bolder;
+    margin-bottom: 5px;
+}
+.progress {
+    height: 2.5rem;
+}
+.guest_review_for_mobile{
+    display: none;
+}
+/* .sidebar-pd{
+    padding-left: 80px;
+} */
+.navbar-brand {
+    color: #555 !important;
+}
 
-    .main_menu_area .navbar .navbar-nav li a {
-        color: #555 !important;
-    }
+.main_menu_area .navbar .navbar-nav li a {
+    color: #555 !important;
+}
 
-    .navbar-brand {
-        color: #555 !important;
-    }
+.navbar-brand {
+    color: #555 !important;
+}
 
-    .main_menu_area .navbar .navbar-nav li a {
-        color: #555 !important;
-    }
+.main_menu_area .navbar .navbar-nav li a {
+    color: #555 !important;
+}
 
+.project_area {
+    height: 400px !important;
+    margin: 10px 88px 42px 88px;
+    margin-bottom: 57px;
+}
+
+.cover_image {
+    width: 100%;
+}
+
+.nagoya {
+    background: url('../assets/nagoya.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.project_area:before {
+    background: none;
+}
+
+.digital_feature.blog_part {
+    margin: 0px 88px 42px 88px;
+    color: #555 !important;
+}
+
+.blog_content h1 {
+    font-family: MuseoSans700 !important;
+    font-size: 40px;
+    /* font-weight: bold; */
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.09;
+    letter-spacing: normal;
+    color: #555555;
+    margin-top: 5px;
+    margin-bottom: 47px;
+}
+
+.blog_content h3 {
+    font-family: MuseoSans700 !important;
+    font-size: 18px;
+    /* font-weight: bold; */
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.09;
+    letter-spacing: normal;
+    color: #555555;
+}
+
+.blog_content h5 {
+    font-family: MuseoSans500 !important;
+    font-size: 24px;
+    /* font-weight: 500; */
+    /* font-weight: bold; */
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #555555;
+    margin-bottom: 40px;
+}
+
+.blog_content p {
+    /* font-family: MuseoSans700 !important; */
+    font-size: 20px;
+    /* font-weight: 500; */
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #555555;
+    margin-bottom: 40px;
+}
+
+.travv-sidebar {
+    border: 1px solid rgb(238, 230, 230);
+    background: #FFF !important;
+    width: 100%;
+    height: 475px;
+    padding: 30px 0 30px 25px !important;
+    box-shadow: 0 0 3px rgba(0,0,0,.2);
+    -webkit-box-shadow: 0 0 3px rgba(0,0,0,.2);
+}
+
+.travv-sidebar_text h3 {
+    font-family: MuseoSans500 !important;
+    font-size: 18px;
+    /* font-weight: bolder; */
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.2;
+    letter-spacing: normal;
+    color: #f81894;
+}
+
+.travv-sidebar_text h5 {
+    font-family: MuseoSans500 !important;
+    font-size: 16px;
+    /* font-weight: bolder; */
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.2;
+    letter-spacing: normal;
+    color: #555 !important;
+    margin-bottom: 24px;
+}
+
+.searchbar {
+    height: 100%;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+
+.search_input,
+.searchbar>.search_input {
+    width: 255px;
+    height: 100%;
+    color: #000;
+    padding: 11px 0 11px 29px;
+    transition: width .4s linear;
+    font-size: 20px;
+    margin-left: 25px;
+    border-radius: 8px;
+    border: solid 1px #979797;
+    border-radius: 8px 0 0 8px;
+}
+
+.search_input {
+    color: #fff;
+    border: 0;
+    outline: 0;
+    background: 0 0;
+    caret-color: #000;
+}
+
+/* .searchbar>.search_input {
+    caret-color: red
+} */
+
+input.search_input::placeholder {
+    color: #555;
+}
+
+input::-webkit-calendar-picker-indicator {
+    display: none
+}
+
+.searchbar>.search_icon {
+    background: #f81894;
+    width: 59px;
+    height: 47px;
+    border-radius: 0 8px 8px 0;
+}
+
+.search_icon {
+    height: 100%;
+    width: 78px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    text-decoration: none
+}
+
+.review_content h4 {
+    font-family: MuseoSans500 !important;
+    font-size: 35px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #555555;
+    margin-bottom: 49px;
+}
+
+.guest_review {
+    border-top: 2px solid #eee;
+    height: 150px;
+    padding-top: 20px;
+}
+
+.guest_review_cont h4 {
+    font-family: MuseoSans500 !important;
+    font-size: 18px;
+    /* font-weight: bolder; */
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #555555;
+    margin-bottom: 30px;
+}
+
+.guest_review_cont p {
+    font-family: MuseoSans !important;
+    font-size: 13px;
+    font-weight: 200;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #555555;
+}
+
+.review_name {
+    font-family: MuseoSans !important;
+    font-size: 16px !important;
+    font-weight: 100;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    margin-bottom: 15px;
+}
+
+.review_date {
+    font-family: MuseoSans500 !important;
+    font-size: 12px;
+    /* font-weight: bolder; */
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.review_rev {
+    font-family: MuseoSans500 !important;
+    font-size: 12px;
+    /* font-weight: bolder; */
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #555;
+}
+.guest_review_pic{
+    width: 100%;
+    height: 120px;
+    background: url('../assets/avatar.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+@media only screen and (max-width: 576px) {
     .project_area {
-        height: 400px !important;
-        margin: 10px 88px 42px 88px;
-        margin-bottom: 57px;
+        margin: 121px 10px 42px 10px;
     }
-
-    .cover_image {
-        width: 100%;
-    }
-
-    .nagoya {
-        background: url('../assets/nagoya.png');
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-    }
-
-    .project_area:before {
-        background: none;
-    }
-
     .digital_feature.blog_part {
-        margin: 0px 88px 42px 88px;
+        margin: 0px 10px 42px 10px;
         color: #555 !important;
     }
-
-    .blog_content h1 {
-        font-family: MuseoSans700 !important;
-        font-size: 40px;
-        /* font-weight: bold; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.09;
-        letter-spacing: normal;
-        color: #555555;
-        margin-top: 5px;
-        margin-bottom: 47px;
-    }
-
-    .blog_content h3 {
-        font-family: MuseoSans700 !important;
-        font-size: 18px;
-        /* font-weight: bold; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.09;
-        letter-spacing: normal;
-        color: #555555;
-    }
-
-    .blog_content h5 {
-        font-family: MuseoSans500 !important;
-        font-size: 24px;
-        /* font-weight: 500; */
-        /* font-weight: bold; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #555555;
-        margin-bottom: 40px;
-    }
-
-    .blog_content p {
-        /* font-family: MuseoSans700 !important; */
-        font-size: 20px;
-        /* font-weight: 500; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #555555;
-        margin-bottom: 40px;
-    }
-
-    .travv-sidebar {
-        border: 2px solid #000;
-        background: #FFF !important;
-        widows: 100%;
-        width: 100%;
-        height: 475px;
-        padding: 30px 0 30px 25px !important;
-    }
-
-    .travv-sidebar_text h3 {
-        font-family: MuseoSans500 !important;
-        font-size: 18px;
-        /* font-weight: bolder; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.2;
-        letter-spacing: normal;
-        color: #f81894;
-    }
-
-    .travv-sidebar_text h5 {
-        font-family: MuseoSans500 !important;
-        font-size: 16px;
-        /* font-weight: bolder; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.2;
-        letter-spacing: normal;
-        color: #555 !important;
-        margin-bottom: 24px;
-    }
-
-    .searchbar {
-        height: 100%;
-        border-radius: 8px;
-        background-color: #ffffff;
-    }
-
-    .search_input,
-    .searchbar>.search_input {
-        width: 255px;
-        height: 100%;
-        color: #000;
-        padding: 11px 0 11px 29px;
-        transition: width .4s linear;
-        font-size: 20px;
-        margin-left: 25px;
-        border-radius: 8px;
-        border: solid 1px #979797;
-        border-radius: 8px 0 0 8px;
-    }
-
-    .search_input {
-        color: #fff;
-        border: 0;
-        outline: 0;
-        background: 0 0;
-        caret-color: #000;
-    }
-
-    /* .searchbar>.search_input {
-        caret-color: red
-    } */
-
-    input.search_input::placeholder {
-        color: #555;
-    }
-
-    input::-webkit-calendar-picker-indicator {
-        display: none
-    }
-
-    .searchbar>.search_icon {
-        background: #f81894;
-        width: 59px;
-        height: 47px;
-        border-radius: 0 8px 8px 0;
-    }
-
-    .search_icon {
-        height: 100%;
-        width: 78px;
-        float: right;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 8px;
-        text-decoration: none
-    }
-
-    .review_content h4 {
-        font-family: MuseoSans500 !important;
-        font-size: 35px;
-        font-weight: 500;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #555555;
-        margin-bottom: 49px;
-    }
-
-    .guest_review {
-        border-top: 2px solid #eee;
-        height: 150px;
-        padding-top: 20px;
-    }
-
-    .guest_review_cont h4 {
-        font-family: MuseoSans500 !important;
-        font-size: 18px;
-        /* font-weight: bolder; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #555555;
-        margin-bottom: 30px;
-    }
-
-    .guest_review_cont p {
-        font-family: MuseoSans !important;
-        font-size: 13px;
-        font-weight: 200;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #555555;
-    }
-
-    .review_name {
-        font-family: MuseoSans !important;
-        font-size: 16px !important;
-        font-weight: 100;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        margin-bottom: 15px;
-    }
-
-    .review_date {
-        font-family: MuseoSans500 !important;
-        font-size: 12px;
-        /* font-weight: bolder; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #555;
-        margin-bottom: 15px;
-    }
-
-    .review_rev {
-        font-family: MuseoSans500 !important;
-        font-size: 12px;
-        /* font-weight: bolder; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #555;
-    }
-    .guest_review_pic{
-        width: 100%;
-        height: 120px;
-        background: url('../assets/avatar.png');
-        background-position: center;
-        background-size: contain;
-        background-repeat: no-repeat;
-    }
-    @media only screen and (max-width: 576px) {
-        .project_area {
-            margin: 121px 10px 42px 10px;
-        }
-        .digital_feature.blog_part {
-            margin: 0px 10px 42px 10px;
-            color: #555 !important;
-        }
-    }
-    .mx-datepicker.mx-datepicker-range {
-        width: 250px;
-    }
-    .book_btn {
-        margin-top: 14px;
-        background: #F81894;
-        border: none;        
-        font-family: MuseoSans700;
-        font-size: 16px;
-        width: 130px;
-        height: 45px;
-        border-radius: 8px;
-        background-color: #f81894;
-        color: #FFF;
-        cursor: pointer;
-    }
+}
+.mx-datepicker.mx-datepicker-range {
+    width: 250px;
+}
+.book_btn {
+    margin-top: 14px;
+    background: #F81894;
+    border: none;        
+    font-family: MuseoSans700;
+    font-size: 16px;
+    width: 130px;
+    height: 45px;
+    border-radius: 8px;
+    background-color: #f81894;
+    color: #FFF;
+    cursor: pointer;
+}
 #reviewStars-input input:checked ~ label, #reviewStars-input label, #reviewStars-input label:hover, #reviewStars-input label:hover ~ label {
   background: url('http://positivecrash.com/wp-content/uploads/ico-s71a7fdede6.png') no-repeat;
 }
@@ -836,248 +864,248 @@
   font-size: 16px !important;
 }
 .navbar-brand {
-        color: #555 !important;
-    }
-    .main_menu_area .navbar .navbar-nav li a {
-        color: #555 !important;
-    }
-    .navbar-brand {
-        color: #555 !important;
-    }
+    color: #555 !important;
+}
+.main_menu_area .navbar .navbar-nav li a {
+    color: #555 !important;
+}
+.navbar-brand {
+    color: #555 !important;
+}
 
-    .main_menu_area .navbar .navbar-nav li a {
-        color: #555 !important;
-    }
+.main_menu_area .navbar .navbar-nav li a {
+    color: #555 !important;
+}
 
-    .project_area {
-        margin-top: 0;
-        height: 400px !important;
-        margin: 0px 88px 42px 88px;
-        margin-bottom: 57px;
-    }
+.project_area {
+    margin-top: 0;
+    height: 400px !important;
+    margin: 0px 88px 42px 88px;
+    margin-bottom: 57px;
+}
 
-    .cover_image {
-        width: 100%;
-    }
+.cover_image {
+    width: 100%;
+}
 
-    .nagoya {
-        background: url('../assets/nagoya.png');
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-    }
+.nagoya {
+    background: url('../assets/nagoya.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 
-    .project_area:before {
-        background: none;
-    }
+.project_area:before {
+    background: none;
+}
 
-    .digital_feature.blog_part {
-        margin: 0px 88px 42px 88px;
-        color: #555 !important;
-    }
-    .blog_content h1{
-        font-family: MuseoSans700 !important;
-        /* font-weight: bold; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.09;
-        letter-spacing: normal;
-        color: #555555;
-        margin-top: 5px;
-        margin-bottom: 47px;
-    }
-    .blog_content h3 {
-        font-family: MuseoSans700 !important;
-        font-size: 22px;
-        /* font-weight: bold; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.09;
-        letter-spacing: normal;
-        color: #555555;
-    }
-    .blog_content h5 {
-        font-family: MuseoSans500 !important;
-        font-size: 25px;
-        /* font-weight: 500; */
-        /* font-weight: bold; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #555555;
-        margin-bottom: 40px;
-    }
-    .blog_content p {
-        /* font-family: MuseoSans700 !important; */
-        font-size: 20px;
-        /* font-weight: 500; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #555555;
-        margin-bottom: 40px;
-    }
-    .sidebar{
-        background: #000;
-        widows: 100%;
-        width: 100%;
-        height: 475px;
-        padding: 61px 0 0 50px;
-    }
-    .sidebar_text h3{
-        font-family: MuseoSans500 !important;
-        font-size: 20px;
-        /* font-weight: bolder; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.2;
-        letter-spacing: normal;
-        color: #f81894;
-    }
-    .sidebar_text h5 {
-        font-family: MuseoSans500 !important;
-        font-size: 20px;
-        /* font-weight: bolder; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.2;
-        letter-spacing: normal;
-        color: #ffffff;
-        margin-bottom: 24px;
-    }
-    .searchbar {
-        height: 100%;
-        border-radius: 8px;
-        background-color: #ffffff;
-    }
+.digital_feature.blog_part {
+    margin: 0px 88px 42px 88px;
+    color: #555 !important;
+}
+.blog_content h1{
+    font-family: MuseoSans700 !important;
+    /* font-weight: bold; */
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.09;
+    letter-spacing: normal;
+    color: #555555;
+    margin-top: 5px;
+    margin-bottom: 47px;
+}
+.blog_content h3 {
+    font-family: MuseoSans700 !important;
+    font-size: 22px;
+    /* font-weight: bold; */
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.09;
+    letter-spacing: normal;
+    color: #555555;
+}
+.blog_content h5 {
+    font-family: MuseoSans500 !important;
+    font-size: 25px;
+    /* font-weight: 500; */
+    /* font-weight: bold; */
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #555555;
+    margin-bottom: 40px;
+}
+.blog_content p {
+    /* font-family: MuseoSans700 !important; */
+    font-size: 20px;
+    /* font-weight: 500; */
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #555555;
+    margin-bottom: 40px;
+}
+.sidebar{
+    background: #000;
+    widows: 100%;
+    width: 100%;
+    height: 475px;
+    padding: 61px 0 0 50px;
+}
+.sidebar_text h3{
+    font-family: MuseoSans500 !important;
+    font-size: 20px;
+    /* font-weight: bolder; */
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.2;
+    letter-spacing: normal;
+    color: #f81894;
+}
+.sidebar_text h5 {
+    font-family: MuseoSans500 !important;
+    font-size: 20px;
+    /* font-weight: bolder; */
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.2;
+    letter-spacing: normal;
+    color: #ffffff;
+    margin-bottom: 24px;
+}
+.searchbar {
+    height: 100%;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
 
-    .search_input,
-    .searchbar>.search_input {
-        width: 300px;
-        height: 100%;
-        color: #000;
-        padding: 11px 0 11px 29px;
-        transition: width .4s linear;
-        font-size: 20px;
-        margin-left: 25px;
-        border-radius: 8px;
-        border: solid 1px #979797;
-        border-radius: 8px 0 0 8px;
-    }
+.search_input,
+.searchbar>.search_input {
+    width: 300px;
+    height: 100%;
+    color: #000;
+    padding: 11px 0 11px 29px;
+    transition: width .4s linear;
+    font-size: 20px;
+    margin-left: 25px;
+    border-radius: 8px;
+    border: solid 1px #979797;
+    border-radius: 8px 0 0 8px;
+}
 
-    .search_input {
-        color: #fff;
-        border: 0;
-        outline: 0;
-        background: 0 0;
-        caret-color: #000;
-    }
+.search_input {
+    color: #fff;
+    border: 0;
+    outline: 0;
+    background: 0 0;
+    caret-color: #000;
+}
 
-    /* .searchbar>.search_input {
-        caret-color: red
-    } */
+/* .searchbar>.search_input {
+    caret-color: red
+} */
 
-    input.search_input::placeholder {
-        color: #555;
-    }
+input.search_input::placeholder {
+    color: #555;
+}
 
-    input::-webkit-calendar-picker-indicator {
-        display: none
-    }
+input::-webkit-calendar-picker-indicator {
+    display: none
+}
 
-    .searchbar>.search_icon {
-        background: #f81894;
-        width: 59px;
-        height: 47px;
-        border-radius: 0 8px 8px 0;
-    }
+.searchbar>.search_icon {
+    background: #f81894;
+    width: 59px;
+    height: 47px;
+    border-radius: 0 8px 8px 0;
+}
 
-    .search_icon {
-        height: 100%;
-        width: 78px;
-        float: right;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 8px;
-        text-decoration: none
-    }
-    .review_content h4 {
-        font-family: MuseoSans500 !important;
-        font-size: 45px;
-        font-weight: 500;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #555555;
-        margin-bottom: 49px;
-    }
-    .guest_review{
-        border-top: 2px solid #eee;
-        height: 150px;
-        padding-top: 20px;
-    }
-    .guest_review_cont h4 {
-        font-family: MuseoSans500 !important;
-        font-size: 18px;
-        /* font-weight: bolder; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #555555;
-        margin-bottom: 30px;
-    }
-    .guest_review_cont p {
-        font-family: MuseoSans !important;
-        font-size: 13px;
-        font-weight: 200;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #555555;
-    }
-    .review_name{
-        font-family: MuseoSans900 !important;
-        font-size: 12px;
-        font-weight: bolder;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        margin-bottom: 15px;
-    }
-    .review_date{
-        font-family: MuseoSans500 !important;
-        font-size: 12px;
-        /* font-weight: bolder; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #555;
-        margin-bottom: 15px;
-    }
-    .review_rev{
-        font-family: MuseoSans500 !important;
-        font-size: 12px;
-        /* font-weight: bolder; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #555;
-    }
-    .guest_review_pic{
-        width: 100%;
-        height: 120px;
-        background: url('../assets/avatar.png');
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-    }
+.search_icon {
+    height: 100%;
+    width: 78px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    text-decoration: none
+}
+.review_content h4 {
+    font-family: MuseoSans500 !important;
+    font-size: 45px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #555555;
+    margin-bottom: 49px;
+}
+.guest_review{
+    border-top: 2px solid #eee;
+    height: 150px;
+    padding-top: 20px;
+}
+.guest_review_cont h4 {
+    font-family: MuseoSans500 !important;
+    font-size: 18px;
+    /* font-weight: bolder; */
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #555555;
+    margin-bottom: 30px;
+}
+.guest_review_cont p {
+    font-family: MuseoSans !important;
+    font-size: 13px;
+    font-weight: 200;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #555555;
+}
+.review_name{
+    font-family: MuseoSans900 !important;
+    font-size: 12px;
+    font-weight: bolder;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    margin-bottom: 15px;
+}
+.review_date{
+    font-family: MuseoSans500 !important;
+    font-size: 12px;
+    /* font-weight: bolder; */
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #555;
+    margin-bottom: 15px;
+}
+.review_rev{
+    font-family: MuseoSans500 !important;
+    font-size: 12px;
+    /* font-weight: bolder; */
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #555;
+}
+.guest_review_pic{
+    width: 100%;
+    height: 120px;
+    background: url('../assets/avatar.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 </style>
