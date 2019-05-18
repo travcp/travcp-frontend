@@ -311,9 +311,10 @@
                         this.rateExperience({
                             "user_id": this.auth.user.id,
                             "experience_id": this.experience.id,
-                            "review_body": this.rate_this_exp_text
+                            "review_body": this.rate_this_exp_text,
+                            "rating": this.reviewStar
                         });
-                        this.$noty.success("Review is Successfull")
+                        this.$noty.success("Review is Successful")
                         this.toggleRating = false;
                         this.rate_this_exp_text = ""
                         this.getExperienceById(this.$route.params['id']);

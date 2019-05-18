@@ -89,8 +89,8 @@ import { Circle9 } from 'vue-loading-spinner'
 export default {
   name: "MyBooking",
   beforeRouteEnter(to, from, next) {
-    let checkToken = localStorage.getItem('auth')
-      if(checkToken.auth.access_token) {
+    let checkToken = JSON.parse(localStorage.getItem('auth'))
+      if(checkToken.access_token) {
           return next()
       } else {
         // this.$noty.error("Sign in to access!")
@@ -145,7 +145,7 @@ export default {
 }
 .my-booking-trip-details-header-p1 {
   font-size: 12px;
-  font-weight: 1000;
+  font-weight: 100;
   font-stretch: expanded;
 }
 .my-booking-trip-details-header-p2 {
@@ -157,7 +157,7 @@ export default {
   padding-top: 12px;
 }
 .my-booking-trip-details-p1 {
-  font-size: 18x;
+  font-size: 18px;
   font-weight: bold;
 }
 .my-booking-trip-details-p2 {
