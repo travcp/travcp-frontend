@@ -32,6 +32,8 @@ import AddNew from "@/views/AddNew";
 import MerchantExperiences from "@/views/merchant/merchant-experiences.vue";
 import MerchantReview from "@/views/merchant/merchant-review.vue";
 
+import MerchantBooking from "@/views/merchant/merchant-bookings.vue";
+
 import EventSearchResults from "@/components/EventSearchResults.vue";
 
 Vue.use(Router);
@@ -130,6 +132,11 @@ export default new Router({
     },
     {
       path: "/dashboard/merchant/review",
+      name: "MerchantReview",
+      component: MerchantReview
+    },
+    {
+      path: "/dashboard/merchant/bookings",
       name: "MerchantReview",
       component: MerchantReview
     },

@@ -82,7 +82,7 @@
     import { Circle9 } from 'vue-loading-spinner'
     // events.slice(0, 3)
     export default {
-        name: "MyBooking",
+        name: "MerchantBooking",
         beforeRouteEnter(to, from, next) {
             if(localStorage.getItem('auth')) {
                 return next()
