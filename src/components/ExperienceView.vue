@@ -402,9 +402,6 @@
             ...mapState(['isLoading']),
             ...mapState(['auth']),
             ...mapState(['bookings']),
-            loading() {
-                // return
-            },
 
         },
         created: function () {
@@ -464,7 +461,7 @@
         margin-bottom: 5px;
     }
     .progress {
-        height: 2.5rem;
+        height: 2rem;
     }
     .guest_review_for_mobile{
         display: none;
