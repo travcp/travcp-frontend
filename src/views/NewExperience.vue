@@ -144,7 +144,7 @@
                               </div>
                               <div class="form-group col-md-6" v-if="requiredFields.includes('history')">
                                 <label
-                                  >Drink Types</label
+                                  >History</label
                                 >
                                 <textarea
                                   v-validate="'required'"
@@ -166,24 +166,24 @@
                                   v-model="meetup_location"
                                 />
                               </div>
-                              <div class="form-group col-md-6" v-if="requiredFields.includes('meetup_location')">
+                              <div class="form-group col-md-6" v-if="requiredFields.includes('itenary')">
                                 <label>Itinerary for the experience</label>
                                 <input
                                   v-validate="'required'"
                                   type="text"
                                   class="form-control new_experience_input"
                                   placeholder=""
-                                  v-model="meetup_location"
+                                  v-model="itenary"
                                 />
                               </div>
-                              <div class="form-group col-md-6" v-if="requiredFields.includes('meetup_location')">
+                              <div class="form-group col-md-6" v-if="requiredFields.includes('tourist_expected_items')">
                                 <label>What tourists should bring along</label>
                                 <input
                                   v-validate="'required'"
                                   type="text"
                                   class="form-control new_experience_input"
                                   placeholder=""
-                                  v-model="meetup_location"
+                                  v-model="tourist_expected_items"
                                 />
                               </div>
                               <div class="form-group col-md-6" v-if="requiredFields.includes('number_admittable')">
