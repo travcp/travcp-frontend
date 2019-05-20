@@ -98,49 +98,44 @@
               
             </div>
             <!-- // For Recommended Places -->
-                        <div class="col-lg-12 toggleCarousel">
+            <div class="col-lg-12 toggleCarousel">
               <div class="row">
-                <div class="col-md-6" style="padding-right: 5px;">
+                <div class="col-md-6" style="padding-right: 5px;" v-if="getExp1">
                   <router-link :to="'/experience/'+ getExp1.id + '/' + getExp1.city">
                     <div class="recom4uimages-up mount_fuji">
-                      <!-- <p>{{ experiences[experiences.length - 1].city }}</p> -->
-                      <!-- <p>{{ this.experiences[Math.floor(Math.random()*this.experiences.length)].city }}</p> -->
+                      
                       <p>{{ getExp1.city }}</p>
                     </div>
                   </router-link>
                 </div>
-                <div class="col-md-6" style="padding-left: 5px;">
+                <div class="col-md-6" style="padding-left: 5px;" v-if="getExp2">
                   <router-link :to="'/experience/'+ getExp2.id + '/' + getExp2.city">
                     <div class="recom4uimages-up kyoto">
-                      <!-- <p>{{ experiences[experiences.length - 2].city }}</p> -->
-                      <!-- <p>Kyoto</p> -->
+                      
                       <p>{{ getExp2.city }}</p>
                     </div>
                   </router-link>
                 </div>
-                <div class="col-md-4" style="padding-right: 5px;">
+                <div class="col-md-4" style="padding-right: 5px;" v-if="getExp3">
                   <router-link :to="'/experience/'+ getExp3.id + '/' + getExp3.city">
                     <div class="recom4uimages-dwn tokyo">
-                      <!-- <p>{{ experiences[experiences.length - 3].city }}</p> -->
-                      <!-- <p>Tokyo</p> -->
+                      
                       <p>{{ getExp3.city }}</p>
                     </div>
                   </router-link>
                 </div>
-                <div class="col-md-4" style="padding-left: 5px;padding-right: 5px;">
+                <div class="col-md-4" style="padding-left: 5px;padding-right: 5px;" v-if="getExp4">
                   <router-link :to="'/experience/'+ getExp4.id + '/' + getExp4.city">
                     <div class="recom4uimages-dwn niigata">
-                      <!-- <p>{{ experiences[experiences.length - 4].city }}</p> -->
-                      <!-- <p>Niigata</p> -->
+                      
                       <p>{{ getExp4.city }}</p>
                     </div>
                   </router-link>
                 </div>
-                <div class="col-md-4" style="padding-left: 5px;">
+                <div class="col-md-4" style="padding-left: 5px;" v-if="getExp5">
                   <router-link :to="'/experience/'+ getExp5.id + '/' + getExp5.city">
                     <div class="recom4uimages-dwn saporo">
-                      <!-- <p>{{ experiences[experiences.length - 5].city }}</p> -->
-                      <!-- <p>Saporo</p> -->
+                      
                       <p>{{ getExp5.city }}</p>
                     </div>
                   </router-link>
@@ -205,9 +200,9 @@
       ...mapActions(['getRestaurants']),
       ...mapActions(['getEvents']),
       ...mapActions(['getPlaces']),
-      getExp1() {
-        this.exp1 = this.experiences[Math.floor(Math.random()*this.experiences.length)]
-      }
+      // getExp1() {
+      //   this.exp1 = this.experiences[Math.floor(Math.random()*this.experiences.length)]
+      // }
     },
     computed: {
       ...mapState(['experiences']),
