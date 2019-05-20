@@ -300,8 +300,8 @@ export default {
   data() {
     return {
       // experience_type_placeholder: null,
-      form_index: 1,
-      title: null,
+    form_index: 1,
+    title: null,
 	  location: null,
 	  city: null,
 	  state: null,
@@ -318,7 +318,8 @@ export default {
 	  end_date: null,
 	  extra_perks: null,
 	  drink_types: null,
-	  history: null,
+    history: null,
+    experience_type: null,
       country: '',
       requiredFields: [],
       // city: null,
@@ -469,34 +470,33 @@ export default {
         // let start_date = this.formatDate(this.time[0])
         // let end_date = this.formatDate(this.time[1])
         let data = {
-          slug: "something-something",
           title: this.title,
-		  location: this.location,
-		  city: this.city,
-		  state: this.state,
-		  country: this.country,
-		  offerings: this.offerings,
-		  language: this.language,
-		  description: this.description,
-		  naira_price: this.naira_price,
-		  meetup_location: this.meetup_location,
-		  itenary: this.itenary,
-		  tourist_expected_items: this.tourist_expected_items,
-		  number_admittable: this.number_admittable,
-		  start_date: this.start_date,
-		  end_date: this.end_date,
-		  extra_perks: this.extra_perks,
-		  drink_types: this.drink_types,
-		  history: this.history,
-		  start_date: this.formatDate(this.time[0]),
-          end_date: this.formatDate(this.time[1]),
+          location: this.location,
+          city: this.city,
+          state: this.state,
+          country: this.country,
+          offerings: this.offerings,
+          language: this.language,
+          description: this.description,
+          naira_price: this.naira_price,
+          meetup_location: this.meetup_location,
+          itenary: this.itenary,
+          tourist_expected_items: this.tourist_expected_items,
+          number_admittable: this.number_admittable,
+          start_date: this.start_date,
+          end_date: this.end_date,
+          extra_perks: this.extra_perks,
+          drink_types: this.drink_types,
+          history: this.history,
+          start_date: this.time ? this.formatDate(this.time[0]) : null,
+          end_date: this.time ? this.formatDate(this.time[1]) : null,
           contact_email: this.$store.state.auth.user.email,
           merchant_id: this.$store.state.auth.user.id,
           location: this.address_22,
           state: this.state_22,
           experiences_type_id: this.exp_id,
         };
-
+        Object.entries(data).forEach( o => (o[1] === null ? delete data[o[0]] : 0));
         this.$validator.validateAll().then(result => {
           if (result) {
             this.submitExperience(data)
@@ -515,18 +515,13 @@ export default {
 
     },
     checkExperienceType(event) {
-    	// console.log(event.target.value)
-    	// console.log('This is Demo')
-    	// this.experience_type = this.experience_types.name
-    	// console.log(event.target.value);
-    	// console.log(this.experience_types[0].name);
     	for(let i = 0; i < this.experience_types.length; i++) {
     		// console.log(this.experience_types)
     		if(this.experience_types[i]) {
     			if(this.experience_types[i].name == event.target.value) {
     				this.exp_id = this.experience_types[i].id
 	    			this.requiredFields = this.experience_types[i].experience_fields;
-	    			console.log(this.requiredFields)
+	    			// console.log(this.requiredFields)
 	    		}	
     		}
     	}
