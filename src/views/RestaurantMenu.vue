@@ -15,7 +15,7 @@
                             <div class="col-md-12">
                                 <div class="container">
                                     <div class="restaurant_content">
-                                        <h6>₦ Min. order ₦1,500.00 Min. delivery fee ₦350.00</h6>
+                                        <!-- <h6>₦ Min. order ₦1,500.00 Min. delivery fee ₦350.00</h6> -->
                                     </div>    
                                 </div>
                             </div>
@@ -24,7 +24,7 @@
                                 <div class="container">
                                     <div class="card">
                                       <div class="card-body">
-                                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                        <ul class="nav nav-pills mb-3  nav-fill" id="pills-tab" role="tablist">
                                           <li class="nav-item">
                                             <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Rice</a>
                                           </li>
@@ -53,7 +53,7 @@
                                                                     <h6>Chinese Rice</h6>
                                                                 </div>    
                                                                 <div class="col-md-6" style="text-align: right;">
-                                                                    ₦700.00 + 
+                                                                    <p>₦ 700.00 + </p>
                                                                 </div>    
                                                             </div>
                                                           </li>
@@ -63,7 +63,7 @@
                                                                     <h6>Fried rice</h6>
                                                                 </div>    
                                                                 <div class="col-md-6" style="text-align: right;">
-                                                                    ₦600.00
+                                                                    <p>₦ 600.00 +</p>
                                                                 </div>    
                                                             </div>
                                                         </li>
@@ -73,7 +73,7 @@
                                                                     <h6>Jollof rice</h6>
                                                                 </div>    
                                                                 <div class="col-md-6" style="text-align: right;">
-                                                                    ₦600.00
+                                                                    <p>₦ 600.00 </p>
                                                                 </div>    
                                                             </div>
                                                           </li>
@@ -83,7 +83,7 @@
                                                                     <h6>Genesis special rice</h6>
                                                                 </div>    
                                                                 <div class="col-md-6" style="text-align: right;">
-                                                                    ₦700.00
+                                                                    <p>₦ 700.00 </p>
                                                                 </div>    
                                                             </div>
                                                           </li>
@@ -93,7 +93,7 @@
                                                                     <h6>Coconut rice</h6>
                                                                 </div>    
                                                                 <div class="col-md-6" style="text-align: right;">
-                                                                    ₦600.0
+                                                                    <p>₦ 600.00 </p>
                                                                 </div>    
                                                             </div>
                                                           </li>
@@ -110,6 +110,23 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="container">
+                        <div class="card" style="width: 100%;">
+                          <div class="card-body">
+                            <h5 class="card-title">ORDER FROM</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Genesis Restaurant - Ada George</h6>
+<br><br>
+                            <h5 class="card-title">ESTIMATED DELIVERY TIME</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">35-45 minutes</h6>
+            <br> <br>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <button type="button" class="btn btn-secondary btn-lg btn-block">Proceed to Checkout</button>
+                            <!-- <a href="#" class="card-link">Another link</a> -->
+                          </div>
+                        </div>    
                     </div>
                 </div>
             </div>
@@ -146,5 +163,16 @@ import Navbar from '@/components/Navbar.vue';
     }
     .nav-pills .nav-link.active, .nav-pills .show>.nav-link{
         color: #FFF!important;
+    }
+    .list-group-item {
+        padding: 40px;
+        color: #eee;
+        text-transform: capitalize;
+        font-family: MuseoSans500;
+    }
+    li.list-group-item h6 {
+        font-weight: bolder;
+        color: #606163;
+        font-size: 18px;
     }
 </style>
