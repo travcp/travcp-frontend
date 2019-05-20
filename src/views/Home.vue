@@ -395,7 +395,7 @@
       /* padding: 44px 29px 39px 25px; */
       font-family: MuseoSans700;
       font-size: 21px;
-      width: 120px;
+      width: 100%;
       height: 54px;
       border-radius: 8px;
       background-color: #f81894;
@@ -468,6 +468,7 @@
 
     .btn-group.btn-group-toggle {
       margin-bottom: 10px;
+      margin-right: 0 !important;
     }
 
     .creative_feature_area {

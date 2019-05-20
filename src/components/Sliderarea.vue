@@ -1,6 +1,6 @@
 <template>
     <section class="main_slider_area">
-        <div id="main_slider" class="rev_slider">
+        <div id="main_slider" class="rev_slider" style="padding-bottom: 134px;">
             <div class="main_slider_container">
                 <div>
                     <div class="row" style="margin-right: 0px;">

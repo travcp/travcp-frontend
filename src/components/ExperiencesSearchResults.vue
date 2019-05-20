@@ -10,7 +10,7 @@
                 <div class="project_inner">
                     <form @submit.prevent="filterExperience">
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-md-2" style="margin-bottom: 10px;">
                             <button class="btn filter_btn dropdown-toggle" type="button" id="dropdownMenuButton"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img src="../assets/Icons/filter_(active).svg"
@@ -35,7 +35,7 @@
                                                         Destinations
                                                     </p>
                                                 </div>
-                                                <div class="travv_drop_filter_section" style="margin-top: 51px">
+                                                <div class="travv_drop_filter_section mr-t">
                                                     <h3>Type</h3>
                                                     <p>
                                                         <input v-model="outdoor_activities" type="checkbox">Outdoor
@@ -58,7 +58,7 @@
                                                             <input v-model="recent" type="checkbox">Recent
                                                         </p>
                                                 </div>
-                                                <div class="travv_drop_filter_section" style="margin-top: 114px">
+                                                <div class="travv_drop_filter_section mr-t">
                                                     <p>
                                                         <input v-model="for_kids" type="checkbox">For kids
                                                     </p>
@@ -83,6 +83,13 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <button type="button" class="btn btn-lg apply-btn">
+                                                        Apply
+                                                </button>
+                                            </div>
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -103,11 +110,11 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="col-md-2" style="text-align: center;">
+                        <!-- <div class="col-md-2" style="text-align: center;">
                             <router-link to="/dashboard/new-exp">
                                 <button type="button" class="btn btn-lg add-new-btn">+</button>                              
                             </router-link>
-                        </div>
+                        </div> -->
                     </div>
                     </form>
                 </div>
@@ -119,7 +126,7 @@
                 <div class="col-lg-12">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-12 no-search-results-cont" v-if="allExperiences.length < 1" >
+                            <div class="col-md-12 no-search-results-cont" v-if="allExperiences && allExperiences.length < 1" >
                                 <h3>No results</h3>
                                 <h5>
                                     We couldn't find anything matching {{ search }}, Try searching other keywords
@@ -133,7 +140,7 @@
                                 </h3>
                             </div>
                             
-                            <div class="col-md-4 experience" v-if="allExperiences != null && allExperiences.length < 1 && !isLoading" v-for="experience in experiencesPlacehodler" :key="experience.id" style="">
+                            <div class="col-md-4 experience" v-if="allExperiences && ballExperiences != null && allExperiences.length < 1 && !isLoading" v-for="experience in experiencesPlacehodler" :key="experience.id" style="">
                                 <router-link :to="'/experience/'+ experience.id + '/' + experience.city">
                                     <div class="search_items">
                                         <div class="search_items_back_img nagoya"></div>
@@ -299,9 +306,12 @@
                         // this.$
                     }
                     else{
-                        this.$noty.error("Enter a minimun of 3 words in thre search")
+                        this.$noty.error("Enter a minimun of 3 words in three search")
                     }
                 });
+                
+            },
+            closeDropdown(){
                 
             },
             dntTogle: function(){
@@ -309,7 +319,7 @@
                 return true;
             },
             stopProp: function(e){
-                e.stopPropagation()
+                e.stopPropagation();
             }
         },
         created: function(){
@@ -327,11 +337,35 @@
             //     this.emptySearchToggle = false;
             // }
             // this.getExperiences();
+        },
+        mounted(){
+            
+            // $(".apply-btn").on("click", function(){
+            //     console.log("apply filter")
+            //     $('.dropdown-menu').dropdown('dispose')       
+            // })
+         
         }
     }
 </script>
 
 <style scoped>
+.apply-btn{
+        background: #F81894;
+        border: none;
+        /* padding: 44px 29px 39px 25px; */
+        font-family: MuseoSans700;
+        font-size: 16px;
+        width: 120px;
+        height: 50px;
+        border-radius: 8px;
+        background-color: #f81894;
+        color: #FFF;
+        margin-top: -10px;
+    }
+.mr-t {
+    margin-top: 51px;
+}
 .add-new-btn {
         background: #F81894;
         border: none;
@@ -411,7 +445,7 @@
     }
 
     .filter_searchbar {
-        height: 100%;
+        height: 54;
         border-radius: 8px;
         background-color: #ffffff;
     }
@@ -419,7 +453,7 @@
     .filter_search_input,
     .filter_searchbar>.filter_search_input {
         width: 75%;
-        height: 100%;
+        height: 54px;
         color: #000;
         padding: 0 10px;
         transition: width .4s linear;
@@ -452,7 +486,7 @@
     }
 
     .filter_search_icon {
-        height: 100%;
+        height: 54px;
         width: 78px;
         float: right;
         display: flex;
@@ -556,12 +590,12 @@
         .filter_area {
             padding: 10px 0 36px 1px !important;
         }
-        .filter_searchbar[data-v-350f5dd6] {
-            height: 60px;
+        .filter_searchbar{
+            /* height: 60px; */
         }
         .filter_search_input, 
         .filter_searchbar>.filter_search_input {
-            width: 55%;
+            /* width: 55%; */
         }
         .main_menu_area .navbar .navbar-toggler span {
             background: #555;
@@ -573,5 +607,20 @@
     }
     .no-search-results-cont h3, .suggestion-cont h3{
         text-transform: initial;
+    }
+    @media (max-width: 767px) {
+        .dropdown-menu {
+            width: 380px;
+            margin-top: 17px;
+            padding: 17px 20px 10px 54px;
+            margin-left: -5px;
+            box-shadow: 4px 4px 4px 0 rgba(74, 74, 74, 0.49);
+        }
+        .mr-t {
+            margin-top: 10px;
+        }
+        .apply-btn {
+            margin-top: 50px;
+        }
     }
 </style>
