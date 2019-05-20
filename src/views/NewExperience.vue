@@ -300,28 +300,28 @@ export default {
   data() {
     return {
       // experience_type_placeholder: null,
-    form_index: 1,
-    title: null,
-	  location: null,
-	  city: null,
-	  state: null,
-	  country: null,
-	  offerings: null,
-	  language: null,
-	  description: null,
-	  naira_price: null,
-	  meetup_location: null,
-	  itenary: null,
-	  tourist_expected_items: null,
-	  number_admittable: null,
-	  start_date: null,
-	  end_date: null,
-	  extra_perks: null,
-	  drink_types: null,
-    history: null,
-    experience_type: null,
+      form_index: 1,
+      title: null,
+  	  location: null,
+  	  city: null,
+  	  state: null,
+  	  country: null,
+  	  offerings: null,
+  	  language: null,
+  	  description: null,
+  	  naira_price: null,
+  	  meetup_location: null,
+  	  itenary: null,
+  	  tourist_expected_items: null,
+  	  number_admittable: null,
+  	  start_date: null,
+  	  end_date: null,
+  	  extra_perks: null,
+  	  drink_types: null,
+  	  history: null,
       country: '',
       requiredFields: [],
+      experience_type_name: null,
       // city: null,
       // language: null,
       // about_the_experiece_designer: null,
@@ -519,6 +519,7 @@ export default {
     		// console.log(this.experience_types)
     		if(this.experience_types[i]) {
     			if(this.experience_types[i].name == event.target.value) {
+            this.experience_type_name = event.target.value;
     				this.exp_id = this.experience_types[i].id
 	    			this.requiredFields = this.experience_types[i].experience_fields;
 	    			// console.log(this.requiredFields)

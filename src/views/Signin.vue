@@ -193,6 +193,83 @@
         }
     }
 </script>
+<style scoped>
+	/*button.navbar-toggler {
+	    width: 50px;
+	}*/
+	nav.container.navbar.navbar-expand-lg.navbar-light.travvappNavbar {
+	    position: absolute;
+	    top: 5px;
+	}
+	/*div#navbarSupportedContent {
+	    background: #FFF;
+	    padding-bottom: 20px !important;
+	}*/
+	@media (max-width: 1199px) {
+		.wrapper {
+		    flex-direction: row;
+		}
+		.form-inner {
+		    padding-left: 5vw;
+		    padding-right: 5vw;
+		}
+		.signin-form {
+		    padding-top: 30vh;
+		}
+	}
+	/*@media (max-width: 991px){
+			.wrapper .image-holder {
+			     height: 100vh; 
+			}
+	}*/
+	@media (max-width: 767px) {
+
+		.wrapper .image-holder {
+			display: none;
+		}
+		.wrapper {
+		    flex-direction: column;
+		}
+	}
+	@media (max-width: 1199px)  {
+		.wrapper .image-holder {
+		    width: 100%;
+		    height: 100vh; 
+		}
+		.signin-form {
+		    background: transparent;
+		    padding-top: 20vh;
+		}
+		a.carousel-control-next {
+			display: none;
+		}
+	}
+	@media (max-width: 1199px) {
+		.form-inner {
+		    padding-left: 5vw;
+		    padding-right: 5vw;
+		}
+	}
+	@media (max-width: 551px) {
+		.wrapper .image-holder {
+			display: inline-block;
+		}
+		.signin-form {
+			background: #FFF;
+			padding-top: 0;
+		}
+		.wrapper .image-holder {
+		    width: 100%;
+		    height: 40vh;
+		}
+		.image-holder-inner-text {
+		    display: none;
+		}
+	}
+	nav.container.navbar.navbar-expand-lg.navbar-light.travvappNavbar {
+	    z-index: 2;
+	}
+</style>
 <style>
 	.login-form-inner {
 		background: #C0C2C4;
