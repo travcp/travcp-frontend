@@ -87,7 +87,17 @@
                                     <h3>Language</h3>
                                     <h5>{{ experience.language }}</h5>
                                 </div>
-                                <div class="col-md-12 booking-action">
+                                <div class="col-md-12 booking-action" v-if="experience.experience_type == 'restaurants'">
+                                    <button type="submit" class="book_btn">
+                                        <span v-if="isLoading || loading">
+                                            <img style="height: 20px;" src="../assets/loader_rolling.gif" />
+                                        </span>
+                                        <span v-else>
+                                            View Menu
+                                        </span>
+                                    </button>
+                                </div>
+                                <div class="col-md-12 booking-action" v-else>
                                     <form @submit.prevent="bookExperience" v-if="!checkBookingStatus">
                                         <h3 class="d-none d-sm-block">Book</h3>
                                         <date-picker v-validate="'required'" v-model="time" range :shortcuts="shortcuts" :lang="lang"></date-picker>

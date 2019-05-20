@@ -33,7 +33,7 @@
                     placeholder="TravvApp Inc."
                   />
                 </div>
-                <div class="form-group col-4">
+                <div class="form-group col-6">
                   <label for="">Username</label>
                   <input
                     type="text"
@@ -41,8 +41,8 @@
                     placeholder="michealjackson23"
                   />
                 </div>
-                <div class="form-group col-4">
-                  <label for="">Email address</label>
+                <div class="form-group col-6">
+                  <label for="">Email</label>
                   <input
                     v-validate="'required|email'"
                     type="text"
@@ -51,6 +51,9 @@
                     v-model="email"
                   />
                 </div>
+              </div>
+              <div class="row">
+                
                 <div class="form-group col-6">
                   <label for="">First Name</label>
                   <input
@@ -71,6 +74,8 @@
                     placeholder="Jackson"
                   />
                 </div>
+              </div>
+              <div class="row">
                 <div class="form-group col-12">
                   <label for="">Address</label>
                   <input
@@ -81,6 +86,8 @@
                     v-model="address"
                   />
                 </div>
+              </div>
+              <div class="row">
                 <div class="form-group col-4">
                   <label for="">City</label>
                   <input
@@ -102,7 +109,7 @@
                   />
                 </div>
                 <div class="form-group col-4">
-                  <label for="">Postal Code</label>
+                  <label for="">Postal</label>
                   <input
                     v-validate="'required'"
                     type="text"
@@ -111,7 +118,9 @@
                     v-model="postal_code"
                   />
                 </div>
-                <div class="col-8">
+              </div>
+              <div class="row">
+                <div class="col-12 col-sm-8">
                   <h5>About Me</h5>
                   <p>
                     Tour with me, Discover Places and experience the culture,
@@ -119,10 +128,10 @@
                   </p>
                 </div>
                 <div
-                  class="col-4"
-                  style="padding-top: 22px;text-align: center;"
+                  class="col-12 col-sm-4"
+                  style=""
                 >
-                  <button type="submit" class="btn btn-lg submit_btn">
+                  <button type="submit" class="btn btn-lg submit_btn float-right">
                     <span v-if="isLoading">
                       <img
                         style="height: 20px;"
@@ -148,6 +157,7 @@
               />
               <br>
               <image-uploader
+                ref="fileUpload"
                 :debug="1"
                 :maxWidth="512"
                 :autoRotate=true
@@ -187,6 +197,8 @@
 import Navbar from "@/components/Navbar.vue";
 import { mapState, mapActions } from "vuex";
 import Footer from "@/components/Footer.vue";
+import axios from "axios";
+
 
 export default {
   name: "EditProfile",
@@ -309,13 +321,28 @@ export default {
       this.image = output;
     },
     uploadImage(){
+      // console.log(this.$refs);
+      let image = this.$refs.fileUpload.$el.children[1].files[0];
+      let formData = new FormData();
+      formData.append("profile_image", image);
+      axios.put(`${this.$store.state.API_BASE}/users/${this.$store.state.auth.user.id}`, 
+      formData,
+      {headers: {
+        'Content-Type': 'multipart/form-data',
+        'Authorization' : `Bearer ${this.$store.state.auth.access_token}`
+      }}).then(res => {
+
+      })
+      
       document.querySelector(".user_pic").src = this.image.dataUrl;
       document.querySelector(".img-preview").style.display = "none";
       this.hasImage = false;
       this.image = null;
+
     }
   },
   created() {
+    
     this.authFirstName();
     this.authSurnName();
     this.authEmail();
