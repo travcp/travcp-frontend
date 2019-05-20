@@ -331,7 +331,7 @@ export default {
         'Content-Type': 'multipart/form-data',
         'Authorization' : `Bearer ${this.$store.state.auth.access_token}`
       }}).then(res => {
-
+        console.log(res)
       })
       
       document.querySelector(".user_pic").src = this.image.dataUrl;

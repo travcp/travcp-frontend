@@ -301,6 +301,7 @@ export default {
     return {
       // experience_type_placeholder: null,
       form_index: 1,
+      experience_type: null,
       title: null,
   	  location: null,
   	  city: null,
@@ -322,6 +323,7 @@ export default {
       country: '',
       requiredFields: [],
       experience_type_name: null,
+      opening_and_closing_hours: null,
       // city: null,
       // language: null,
       // about_the_experiece_designer: null,
@@ -495,6 +497,7 @@ export default {
           location: this.address_22,
           state: this.state_22,
           experiences_type_id: this.exp_id,
+          opening_and_closing_hours: this.opening_and_closing_hours
         };
         Object.entries(data).forEach( o => (o[1] === null ? delete data[o[0]] : 0));
         this.$validator.validateAll().then(result => {

@@ -30,7 +30,7 @@ export default {
     // // this.getRestaurants()
     this.getEvents();
     this.getPlaces();
-    console.log(this.$route)
+    // console.log(this.$route)
     // this.getExperiences();
   }
 }

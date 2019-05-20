@@ -12,6 +12,8 @@ export default {
     await axios.get(`${API_BASE}/experiences`).then(response => {
       commit("ALL_EXPERIENCE", response.data);
       state.experiencesPlacehodler = response.data.data;
+    }).catch(err => {
+      state.isLoading = false;
     });
   },
   async getExperienceById({ commit }, id) {
@@ -326,6 +328,7 @@ export default {
         // this.loading = false;
       })
       .catch(err => {
+        state.isLoading = false;
         console.log("There was error fetching my bookings");
       });
   }

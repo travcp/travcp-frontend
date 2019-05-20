@@ -15,7 +15,7 @@
                         <router-link style="color: #fff !important;" class="nav-link nav-item-color" to="/experiences">Explore</router-link>
                     </li>
                     <li class="nav-item">
-                      <router-link style="color: #fff !important;" class="nav-link" to="/dashboard/new-exp">Add Listings</router-link>
+                      <router-link style="color: #fff !important;" class="nav-link" to="/dashboard/merchant/new-experience">Add Listings</router-link>
                     </li>
                     <li class="nav-item"><router-link style="color: #fff !important;"  to="/videos">Videos</router-link></li>
                     <li class="nav-item" v-if="checkUser"><router-link style="color: #fff !important;" class="nav-link" to="/dashboard/my-bookings">My Bookings</router-link></li>

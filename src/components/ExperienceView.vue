@@ -87,7 +87,7 @@
                                     <h3>Language</h3>
                                     <h5>{{ experience.language }}</h5>
                                 </div>
-                                <div class="col-md-12 booking-action" v-if="experience.experience_type == 'restaurants'">
+                                <!-- <div class="col-md-12 booking-action" v-if="experience.experience_type == 'restaurants'">
                                     <button type="submit" class="book_btn">
                                         <span v-if="isLoading || loading">
                                             <img style="height: 20px;" src="../assets/loader_rolling.gif" />
@@ -96,8 +96,8 @@
                                             View Menu
                                         </span>
                                     </button>
-                                </div>
-                                <div class="col-md-12 booking-action" v-else>
+                                </div> -->
+                                <div class="col-md-12 booking-action">
                                     <form @submit.prevent="bookExperience" v-if="!checkBookingStatus">
                                         <h3 class="d-none d-sm-block">Book</h3>
                                         <date-picker v-validate="'required'" v-model="time" range :shortcuts="shortcuts" :lang="lang"></date-picker>
@@ -105,7 +105,7 @@
                                         <!-- <date-picker v-model="time" range :shortcuts="shortcuts" :lang="lang"></date-picker> -->
                                         <!-- <p>End Date <input id="datepicker2" v-model="end_date" type="date" width="276" /></p> -->
                                         <div class="row">
-                                            <div class="col-md-12" style="text-align: center;">
+                                            <div class="col-md-12" style="">
                                                 <button type="submit" class="book_btn">
                                                     <span v-if="isLoading || loading">
                                                         <img style="height: 20px;" src="../assets/loader_rolling.gif" />
@@ -114,7 +114,11 @@
                                                         Book Now
                                                     </span>
                                                 </button>
-
+                                                <div class="float-right">
+                                                    <button type="button" class="book_btn" v-if="experience.experience_type == 'restaurants'" @click="gotoMenu">View Menu</button>
+                                                </div>
+                                                
+                                                
                                             </div>
                                         </div>
                                         <!-- <date-picker v-model="time1" :first-day-of-week="1"></date-picker> -->
@@ -390,7 +394,8 @@
                     this.loading = false;
                     this.reviews = response.data;
                 }).catch(err => {
-                    console.log(err.data);
+                    this.loading = false;
+                    console.log(err);
                 });
             },
             checkIfBooked () {
@@ -408,6 +413,10 @@
                 }).catch(err => {
                     this.$noty.error("Oops, You need to Login to Review or Rate an Expereince");
                 })
+            },
+            gotoMenu(){
+                
+                this.$router.push({name: "RestaurantMenu", params: {id: this.experience.id, name: this.experience.title}});
             }
         },
         computed: {
@@ -475,7 +484,7 @@
         right:0;
         border-top:2px solid rgb(235, 235, 235);
     }
-    .booking-action button.book_btn{
+    .booking-action button.book_btn,a.book_btn{
         padding: 10px 15px;
         width: auto;
         font-size: 14px;
@@ -825,13 +834,14 @@ input::-webkit-calendar-picker-indicator {
     border: none;        
     font-family: MuseoSans700;
     font-size: 16px;
-    width: 130px;
+    /* width: 130px; */
     height: 45px;
     border-radius: 8px;
     background-color: #f81894;
     color: #FFF;
     cursor: pointer;
 }
+
 #reviewStars-input input:checked ~ label, #reviewStars-input label, #reviewStars-input label:hover, #reviewStars-input label:hover ~ label {
   background: url('http://positivecrash.com/wp-content/uploads/ico-s71a7fdede6.png') no-repeat;
 }
