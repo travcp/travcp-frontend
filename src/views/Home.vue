@@ -401,6 +401,7 @@
       background-color: #f81894;
       color: #FFF;
       margin-top: 20px;
+      margin-bottom: 20px;
     }
 
     .no-pad-l {

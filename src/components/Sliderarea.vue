@@ -120,7 +120,7 @@ import {mapActions, mapState} from 'vuex';
     div#main_slider {
         background: url('../assets/hero_image.png') no-repeat;
         background-size: cover;
-        height: 100vh;
+        height: 100%;
     }
 
     .main_slider_container {

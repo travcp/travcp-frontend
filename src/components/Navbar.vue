@@ -19,7 +19,7 @@
                     <li class="nav-item" v-if="checkUser"><router-link class="nav-link nav-item-color" to="/dashboard/my-bookings">My Bookings</router-link></li>
                     <li class="nav-item"><a class="nav-link nav-item-color" href="#">Help</a></li>  
 
-                    <li class="nav-item" v-if="!checkUser"><a style="color: #000 !important;" class="nav-link" href="/signin">Sign in</a></li>                    
+                    <li class="nav-item" v-if="!checkUser"><router-link style="color: #000 !important;" class="nav-link" to="/signin">Sign in</router-link></li>                    
                     <li class="nav-item" v-if="checkUser">
                       <router-link style="color: #fff !important;" class="nav-link" to="/dashboard/messages">
                         <img src="../assets/envelope-2.png" style="height: 24px;" alt="">
