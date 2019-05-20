@@ -36,7 +36,7 @@
                             
                             <form @submit.prevent="searchSubmit">
                                 <div class="btn-group btn-group-toggle" style="margin-right: 31px;margin-top: 20px;">
-                                    <input type="text" class="whereWould" v-model='search_text' placeholder="Where would you like to go?">
+                                    <input type="text" class="btn-travv whereWould" v-model='search_text' placeholder="Where would you like to go?">
                                     <!-- <label class="btn btn-travv">
                                         Where would you like to go?
                                     </label> -->
@@ -207,15 +207,15 @@ import {mapActions, mapState} from 'vuex';
         border: none;
         background-color: #ffffff;
         font-size: 18px;
-        font-weight: bolder;
+        font-weight: 100;
         font-style: normal;
         font-stretch: normal;
         line-height: normal;
         letter-spacing: normal;
         color: #555555;
         border-radius: 0.5rem;
-        border-bottom-right-radius: 0;
-        border-top-right-radius: 0;
+        border-bottom-right-radius: 0 !important;
+        border-top-right-radius: 0 !important;
         padding: 0 0 0 20px;
         outline: none;
     }

@@ -137,8 +137,8 @@ export default new Router({
     },
     {
       path: "/dashboard/merchant/bookings",
-      name: "MerchantReview",
-      component: MerchantReview
+      name: "MerchantBooking",
+      component: MerchantBooking
     },
     {
       path: "/videos",

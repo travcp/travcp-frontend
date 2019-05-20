@@ -3,7 +3,7 @@
             <!-- <router-link :to="'/result-details/'+ experience.id"> -->
             <router-link class="navbar-brand" to="/"><h2 style="color: #f81894;font-weight: bolder;">TravvApp</h2></router-link>
             <!-- <slot name="search"></slot> -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="width: 50px;">
                  <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -19,7 +19,7 @@
                     <li class="nav-item" v-if="checkUser"><router-link class="nav-link nav-item-color" to="/dashboard/my-bookings">My Bookings</router-link></li>
                     <li class="nav-item"><a class="nav-link nav-item-color" href="#">Help</a></li>  
 
-                    <li class="nav-item" v-if="!checkUser"><router-link style="color: #000 !important;" class="nav-link" to="/signin">Sign in</router-link></li>                    
+                    <li class="nav-item" v-if="!checkUser"><a style="color: #000 !important;" class="nav-link" href="/signin">Sign in</a></li>                    
                     <li class="nav-item" v-if="checkUser">
                       <router-link style="color: #fff !important;" class="nav-link" to="/dashboard/messages">
                         <img src="../assets/envelope-2.png" style="height: 24px;" alt="">
