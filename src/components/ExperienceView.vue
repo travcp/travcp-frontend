@@ -16,10 +16,10 @@
                 </div>
                 <div class="col-sm-6 col-md-7 col-lg-8 blog_content" v-else>
                     <h3>
-                        DAY TRIP | {{ experience.state }}
+                        {{ experience.title }} | {{ experience.state }}
                     </h3>
                     <h1>{{ experience.city }}</h1>
-                    <h5>{{ experience.title }}</h5>
+                    <h5>{{ experience.location }}</h5>
                     <p>
                         {{ experience.description }}
                     </p>
@@ -62,9 +62,9 @@
                             <div class="row sidebar_text">
                                 <div class="col-md-12">
                                     <h3>Experience Type</h3>
-                                    <h5 v-for="experience_type in experience_types" v-if="experience_type && experience_type.id == experience.experiences_type_id">
-                                        {{ experience_type.name }}
-                                    
+                                    <!-- v-for="experience_type in experience_types" v-if="experience_type && experience_type.id == experience.experiences_type_id" -->
+                                    <h5>
+                                        {{ experience.experience_type }}
                                     </h5>
                                 </div>
                                 <div class="col-md-12">

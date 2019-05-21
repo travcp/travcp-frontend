@@ -535,8 +535,6 @@ export default {
           end_date: this.time ? this.formatDate(this.time[1]) : null,
           contact_email: this.$store.state.auth.user.email,
           merchant_id: this.$store.state.auth.user.id,
-          location: this.address_22,
-          state: this.state_22,
           experiences_type_id: this.exp_id,
           opening_and_closing_hours: this.opening_and_closing_hours
         };
