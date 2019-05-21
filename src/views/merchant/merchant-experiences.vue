@@ -1,9 +1,9 @@
 <template>
     <div class="SearchResults">
         <SearchResults :experiences="merchant_experience" v-if="!loading" />
-        <div style="text-align: center;" v-if="loading">
+        <!-- <div style="text-align: center;" v-if="loading">
             <Circle9 />
-        </div>
+        </div> -->
         <div v-if="merchant_experience.length < 1 && !loading">
             <empty-result>
                 <template v-slot:error-header>Errm</template>

@@ -40,15 +40,15 @@
                                                       </div>
                                                     <div class="form-group col-md-12">
                                                         <label
-                                                          >About Restaurant</label
+                                                          >Name of Menu</label
                                                         >
-                                                        <textarea
+                                                        <input
                                                           v-validate="'required'"
                                                           cols="30"
                                                           rows="10"
-                                                          class="form-control"
+                                                          class="form-control new_experience_input"
                                                           v-model="description"
-                                                        ></textarea>
+                                                        />
                                                       </div>
                                                     <div class="form-group col-md-12">
                                                         <label

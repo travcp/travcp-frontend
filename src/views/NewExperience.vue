@@ -566,12 +566,15 @@ export default {
                     .post(`${this.$store.state.API_BASE}/experiences`, formData, requestHeaders)
                     .then(response => {
                       // resolve(response.data.data);
-                      return console.log(response.data.data);
+                      console.log(response.data.data);
+                      this.$noty.success("Experience is Submitted Succesfully")
                       this.$store.state.isLoading = false;
+                      this.$router.push('/dashboard/merchant/experiences')
                     })
                     .catch(err => {
                       console.log(err);
                       // reject(err);
+                      this.$noty.error("Oops, something went wrong!");
                       return this.$store.state.isLoading = false;
                     });
                 // });
