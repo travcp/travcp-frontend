@@ -561,7 +561,7 @@ export default {
                     'Authorization': "Bearer " + this.$store.state.auth.access_token
                    }
                 };
-                console.log('Got here 1')
+                // console.log('Got here 1')
                 // return new Promise((resolve, reject) => {
                   this.$store.state.isLoading = true;
                   axios

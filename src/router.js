@@ -31,8 +31,9 @@ import AddNew from "@/views/AddNew";
 // import RecommendedPlaces from '@/components/RecommendedPlaces.vue';
 import MerchantExperiences from "@/views/merchant/merchant-experiences.vue";
 import MerchantReview from "@/views/merchant/merchant-review.vue";
-
+import RestaurantView from '@/views/merchant/restaurant-view.vue';
 import MerchantBooking from "@/views/merchant/merchant-bookings.vue";
+import RestaurantMenus from "@/views/merchant/restaurant-menus.vue";
 
 import EventSearchResults from "@/components/EventSearchResults.vue";
 import RestaurantMenu from '@/views/RestaurantMenu.vue'
@@ -146,6 +147,16 @@ export default new Router({
       path: "/dashboard/merchant/bookings",
       name: "MerchantBooking",
       component: MerchantBooking
+    },
+    {
+      path: "/dashboard/merchant/restaurants",
+      name: "RestaurantView",
+      component: RestaurantView
+    },
+    {
+      path: "/dashboard/merchant/restaurant/:id/:name",
+      name: "RestaurantMenus",
+      component: RestaurantMenus
     },
     {
       path: "/videos",
