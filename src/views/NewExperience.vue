@@ -305,13 +305,14 @@ import axios from 'axios';
 export default {
   name: "NewExperience",
   beforeRouteEnter(to, from, next) {
-    if (localStorage.getItem("auth")) {
-      return next();
-    } else {
-      // this.$noty.error("Sign in to access!")
-      return next({ path: "/signin" });
-    }
-    // next();
+    let checkToken = JSON.parse(localStorage.getItem('auth'))
+      if(checkToken.access_token && checkToken.user.role == 'merchant') {
+          return next()
+      } else {
+        // this.$noty.error("Sign in to access!")
+        return next({ path: '/signin' })
+      }
+      next();
   },
   data() {
     return {

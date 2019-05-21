@@ -57,7 +57,8 @@ import { Circle9 } from 'vue-loading-spinner'
 export default {
   name: "Notifications",
   beforeRouteEnter(to, from, next) {
-      if(localStorage.getItem('auth')) {
+    let checkToken = JSON.parse(localStorage.getItem('auth'))
+      if(checkToken.access_token) {
           return next()
       } else {
         // this.$noty.error("Sign in to access!")

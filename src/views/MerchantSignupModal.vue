@@ -80,6 +80,16 @@ import FormErrors from '@/components/FormErrors.vue';
 import axios from 'axios';
 export default {
     name: "MerchantSignupModal",
+    beforeRouteEnter(to, from, next) {
+    let checkToken = JSON.parse(localStorage.getItem('auth'))
+          if(checkToken.access_token && checkToken.user.role != 'merchant') {
+              return next()
+          } else {
+            // this.$noty.error("Sign in to access!")
+            return next({ path: '/signin' })
+          }
+          next();
+      },
         data(){
             return {
                 business_name: "",
@@ -100,11 +110,21 @@ export default {
                         bio: this.about_merchant,
                         user_id: this.$store.state.auth.user.id
                     }, requestHeaders).then(response => {
-                        this.$noty.success("Registration sucessfull")
+                        this.$noty.success("Registration as a Merchant is sucessfull")
+                        console.log(response.data.data);
+
+                        let updateMerchantData = JSON.parse(localStorage.getItem('auth'));
+                        updateMerchantData.user = response.data.data.user_data;
+                        updateMerchantData.merchantData = response.data.data
+                        localStorage.setItem("auth", JSON.stringify(updateMerchantData))
+
+                        router.push("/dashboard/merchant/new-experience");
+
                     }).catch(err => {
                         // this.$noty.error("Oops, something went wrong!")
                         if (err.response.status == 422){
                             this.validationErrors = err.response.data.errors;
+                            this.$noty.error("Oops, something went wrong!");
                         }
                     })
                 // this.$validator.validateAll().then(result => {

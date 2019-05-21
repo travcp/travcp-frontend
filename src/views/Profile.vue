@@ -74,7 +74,8 @@ import axios from 'axios';
 export default {
     name: "Profile",
     beforeRouteEnter(to, from, next) {
-        if(localStorage.getItem('auth')) {
+    let checkToken = JSON.parse(localStorage.getItem('auth'))
+        if(checkToken.access_token) {
             return next()
         } else {
           // this.$noty.error("Sign in to access!")

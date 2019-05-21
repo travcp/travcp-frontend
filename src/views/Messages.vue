@@ -212,6 +212,16 @@
 import Navbar from '@/components/Navbar'
 export default {
     name: "Message",
+    beforeRouteEnter(to, from, next) {
+    let checkToken = JSON.parse(localStorage.getItem('auth'))
+          if(checkToken.access_token) {
+              return next()
+          } else {
+            // this.$noty.error("Sign in to access!")
+            return next({ path: '/signin' })
+          }
+          next();
+      },
     components: {
         Navbar
     }
