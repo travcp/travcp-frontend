@@ -69,7 +69,8 @@ export default new Router({
     {
       path: "/experience/restaurant/:id/:name",
       name: "RestaurantMenu",
-      component: RestaurantMenu
+      component: RestaurantMenu,
+      props: true
     },
     {
       path: "/events",
@@ -112,7 +113,7 @@ export default new Router({
       component: MerchantExperience
     },
     {
-      path: "/dashboard/merchant/new-experiecnes",
+      path: "/dashboard/merchant/new-experience",
       name: "NewExperience",
       component: NewExperience
     },

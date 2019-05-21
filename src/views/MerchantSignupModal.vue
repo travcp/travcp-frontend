@@ -98,7 +98,7 @@ export default {
                         business_email: this.email,
                         business_name: this.business_name,
                         bio: this.about_merchant,
-                        merchant_id: this.$store.state.auth.user.id
+                        user_id: this.$store.state.auth.user.id
                     }, requestHeaders).then(response => {
                         this.$noty.success("Registration sucessfull")
                     }).catch(err => {

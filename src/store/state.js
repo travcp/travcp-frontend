@@ -1,5 +1,5 @@
 export default {
-    experiences: null,
+    experiences: [],
     experiencesPlacehodler: [],
     experience: {},
     restaurants: [],
