@@ -1,7 +1,9 @@
 <template>
     <header class="main_menu_area">
         <nav class="container navbar navbar-expand-lg navbar-light bg-light">
-            <router-link class="navbar-brand" to="/" style="color: #fff !important;"><h2>TravvApp</h2></router-link>
+            <router-link class="navbar-brand" to="/" style="color: #fff !important;">
+              <img class="travv_logo" src="../assets/travv/travv_app_logo_2.png">
+            </router-link>
             <slot name="search"></slot>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="display: inline;width: 50px;">
                 <span></span>
@@ -15,7 +17,7 @@
                         <router-link style="color: #fff !important;" class="nav-link nav-item-color" to="/experiences">Explore</router-link>
                     </li>
                     <li class="nav-item">
-                      <router-link style="color: #fff !important;" class="nav-link" to="/dashboard/new-exp">Add Listings</router-link>
+                      <router-link style="color: #fff !important;" class="nav-link" to="/dashboard/merchant/new-experiecnes">Add Listings</router-link>
                     </li>
                     <li class="nav-item"><router-link style="color: #fff !important;"  to="/videos">Videos</router-link></li>
                     <li class="nav-item" v-if="checkUser"><router-link style="color: #fff !important;" class="nav-link" to="/dashboard/my-bookings">My Bookings</router-link></li>
@@ -79,11 +81,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .main_menu_area .navbar .navbar-nav {
     display: inline-block;
-    margin-top: 10px;
+    margin-top: 0;
 }
+</style>
+<style>
 .navbar-brand{
     font-family: MuseoSans700 !important;
     font-size: 30px;
@@ -130,5 +134,10 @@ header.main_menu_area{
 }
 .main_menu_area .navbar .navbar-nav li a {
   line-height: 50px;
+}
+.travv_logo {
+  height: 150px;
+  position: relative;
+  top: -50px;
 }
 </style>

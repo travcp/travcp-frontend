@@ -292,7 +292,13 @@ export default {
   async submitExperience({ commit, state }, data) {
     commit("IS_LOADING");
     let requestHeaders = {
-      headers: { Authorization: "Bearer " + state.auth.access_token }
+      // headers: {
+      //     'Content-Type': 'multipart/form-data'
+      // },
+      headers: { 
+        'Content-Type': 'multipart/form-data',
+        'Authorization': "Bearer " + state.auth.access_token
+       }
     };
     return new Promise((resolve, reject) => {
       axios

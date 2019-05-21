@@ -1,7 +1,9 @@
 <template>
         <nav class="container navbar navbar-expand-lg navbar-light travvappNavbar" style="background: transparent;">
             <!-- <router-link :to="'/result-details/'+ experience.id"> -->
-            <router-link class="navbar-brand" to="/"><h2 style="color: #f81894;font-weight: bolder;">TravvApp</h2></router-link>
+            <router-link class="navbar-brand" to="/">
+              <img class="travv_logo" src="../assets/travv/travv_app_logo.png">
+            </router-link>
             <!-- <slot name="search"></slot> -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="width: 50px;">
                  <span class="navbar-toggler-icon"></span>
@@ -13,7 +15,7 @@
                         <router-link class="nav-link nav-item-color" to="/experiences">Explore</router-link>
                     </li>
                     <li class="nav-item">
-                      <router-link class="nav-link nav-item-color" to="/dashboard/new-exp">Add Listings</router-link>
+                      <router-link class="nav-link nav-item-color" to="/dashboard/merchant/new-experiecnes">Add Listings</router-link>
                     </li>
                     <li class="nav-item"><router-link class="nav-link nav-item-color" to="/videos">Videos</router-link></li>
                     <li class="nav-item" v-if="checkUser"><router-link class="nav-link nav-item-color" to="/dashboard/my-bookings">My Bookings</router-link></li>
@@ -76,8 +78,20 @@ export default {
   }
 }
 </script>
-
+<style scoped>
+nav.container.navbar.navbar-expand-lg.navbar-light.travvappNavbar {
+    margin-bottom: -40px;
+}
+ul.navbar-nav.ml-auto {
+    position: relative;
+    top: -35px;
+}
+</style>
 <style>
+.main_menu_area .navbar .navbar-nav {
+    display: inline-block;
+    margin-top: 10px;
+}
 .navbar-brand{
     font-family: MuseoSans700 !important;
     font-size: 30px;

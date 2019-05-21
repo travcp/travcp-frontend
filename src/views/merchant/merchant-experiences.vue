@@ -125,7 +125,7 @@
                 let requestHeaders = {
                     headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
                 };
-                await axios.get(`${this.$store.state.API_BASE}/merchants/${this.$store.state.auth.user.id}/payments`, requestHeaders).then(response => {
+                await axios.get(`${this.$store.state.API_BASE}/merchants/${this.$store.state.auth.user.id}/experiences`, requestHeaders).then(response => {
                     this.merchant_experience = response.data.data;
                     this.loading = false;
                 });

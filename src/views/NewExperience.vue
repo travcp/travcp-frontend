@@ -41,6 +41,20 @@
                         <div class="form-places">
                           <form @submit.prevent="submitFormExperience">
                             <div class="row">
+                              <div class="col-md-12">
+                                   <input type="file" id="file" ref="files" multiple v-on:change="handleFilesUpload()"/>
+
+                                    <div class="large-12 medium-12 small-12 cell">
+                                      <div v-for="(file, key) in files" class="file-listing">{{ file.name }}
+                                      <span class="remove-file" v-on:click="removeFile( key )">Remove</span></div>
+                                    </div>
+                                    <br>
+                                    <!-- <div class="large-12 medium-12 small-12 cell">
+                                      <button @click="addFiles">Add Files</button>
+                                    </div> -->
+                              </div>
+                            </div>
+                            <div class="row">
                               <div class="form-group col-md-6" v-if="requiredFields.includes('title')">
                                 <label>Title</label>
                                 <input
@@ -266,6 +280,7 @@
                       :options="dropzoneOptions"
                     ></vue-dropzone>
 
+
                   </div>
                 </div>
               </div>
@@ -285,6 +300,7 @@ import Navbar from "@/components/Navbar.vue";
 import Footer from "@/components/Footer.vue";
 import { mapActions, mapState } from "vuex";
 import DatePicker from "vue2-datepicker";
+import axios from 'axios';
 
 export default {
   name: "NewExperience",
@@ -300,6 +316,7 @@ export default {
   data() {
     return {
       // experience_type_placeholder: null,
+      experience_type: null,
       form_index: 1,
       title: null,
   	  location: null,
@@ -322,6 +339,8 @@ export default {
       country: '',
       requiredFields: [],
       experience_type_name: null,
+      opening_and_closing_hours: null,
+      files: [],
       // city: null,
       // language: null,
       // about_the_experiece_designer: null,
@@ -330,7 +349,7 @@ export default {
       // price_in_naira: null,
       // meet_up: null,
       // what_tourists_should_bring_along: null,
-      // itinerary_for_the_experience: null,
+      // itinerary_for_the_experience: null, 
       // number_that_each_tour_can_admit: null,
       time: "",
       required_fields_for_events: ["title", "about_merchant", "contact_email", "location", "city", "state", "country"],
@@ -338,7 +357,9 @@ export default {
         url: "https://httpbin.org/post",
         thumbnailWidth: 150,
         maxFilesize: 0.5,
-        headers: { "My-Awesome-Header": "header value" }
+        headers: { 
+          'Content-Type': 'multipart/form-data'
+        }
       },
       lang: {
         days: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
@@ -465,10 +486,30 @@ export default {
       }
 
     },
+    handleFilesUpload(){
+      let uploadedFiles = this.$refs.files.files;
+       
+      for( var i = 0; i < uploadedFiles.length; i++ ){
+        this.files.push( uploadedFiles[i] );
+      }
+    },
+    addFiles(){
+        this.$refs.files.click();
+    },
+    removeFile( key ){
+      this.files.splice( key, 1 );
+    },
     submitFormExperience: function() {
       // if (this.experience_type == 22) {
         // let start_date = this.formatDate(this.time[0])
         // let end_date = this.formatDate(this.time[1])
+        let formData = new FormData();
+         
+        for( var i = 0; i < this.files.length; i++ ){
+          let file = this.files[i];
+          formData.append('images[' + i + ']', file);
+        }
+        console.log(formData)
         let data = {
           title: this.title,
           location: this.location,
@@ -497,18 +538,44 @@ export default {
           experiences_type_id: this.exp_id,
         };
         Object.entries(data).forEach( o => (o[1] === null ? delete data[o[0]] : 0));
+
+
+        for (var key in data) {
+          if (data.hasOwnProperty(key)) {
+            // Do things here
+            formData.append(key, data[key]);
+            console.log(formData)
+          }
+        }
+
+        console.log(formData)
+
         this.$validator.validateAll().then(result => {
           if (result) {
-            this.submitExperience(data)
+            let requestHeaders = {
+                  headers: { 
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': "Bearer " + this.$store.state.auth.access_token
+                   }
+                };
+                console.log('Got here 1')
+                // return new Promise((resolve, reject) => {
+                  this.$store.state.isLoading = true;
+                  axios
+                    .post(`${this.$store.state.API_BASE}/experiences`, formData, requestHeaders)
                     .then(response => {
-                      console.log(response);
-                      this.$noty.success(`Expereince Posted sucecesfully - ${data.title}`);
+                      // resolve(response.data.data);
+                      return console.log(response.data.data);
+                      this.$store.state.isLoading = false;
                     })
                     .catch(err => {
                       console.log(err);
+                      // reject(err);
+                      return this.$store.state.isLoading = false;
                     });
+                // });
           } else {
-            this.$noty.error("Oops, something went wrong!");
+            return this.$noty.error("Oops, something went wrong!");
           }
         });
       // }
@@ -527,7 +594,11 @@ export default {
     		}
     	}
 
+    },
+    sendingEvent (file, xhr, formData) {
+        formData.append('paramName', 'some value or other');
     }
+ 
   },
   computed: {
     ...mapState(["experience_types"]),
