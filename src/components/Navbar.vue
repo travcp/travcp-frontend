@@ -2,7 +2,7 @@
         <nav class="container navbar navbar-expand-lg navbar-light travvappNavbar" style="background: transparent;">
             <!-- <router-link :to="'/result-details/'+ experience.id"> -->
             <router-link class="navbar-brand" to="/">
-              <img class="travv_logo" src="../assets/travv/travv_app_logo.png">
+              <img class="travv_logo" src="../assets/travv/travv_brand_logo.png">
             </router-link>
             <!-- <slot name="search"></slot> -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="width: 50px;">
@@ -80,11 +80,15 @@ export default {
 </script>
 <style scoped>
 nav.container.navbar.navbar-expand-lg.navbar-light.travvappNavbar {
-    margin-bottom: -40px;
+    /* margin-bottom: -40px; */
 }
 ul.navbar-nav.ml-auto {
     position: relative;
     top: -35px;
+}
+div#navbarSupportedContent {
+    position: relative;
+    top: 40px;
 }
 </style>
 <style>

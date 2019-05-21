@@ -2,7 +2,7 @@
     <header class="main_menu_area">
         <nav class="container navbar navbar-expand-lg navbar-light bg-light">
             <router-link class="navbar-brand" to="/" style="color: #fff !important;">
-              <img class="travv_logo" src="../assets/travv/travv_app_logo_2.png">
+              <img class="travv_logo" src="../assets/travv/travv_brand_logo_overlay.png">
             </router-link>
             <slot name="search"></slot>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="display: inline;width: 50px;">
@@ -80,14 +80,11 @@ export default {
   }
 }
 </script>
-
-<style scoped>
+<style>
 .main_menu_area .navbar .navbar-nav {
     display: inline-block;
-    margin-top: 0;
+    margin-top: 10px;
 }
-</style>
-<style>
 .navbar-brand{
     font-family: MuseoSans700 !important;
     font-size: 30px;
@@ -136,8 +133,8 @@ header.main_menu_area{
   line-height: 50px;
 }
 .travv_logo {
-  height: 150px;
+  height: 20px;
   position: relative;
-  top: -50px;
+  /* top: -50px; */
 }
 </style>
