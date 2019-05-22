@@ -821,7 +821,8 @@ input::-webkit-calendar-picker-indicator {
     }
 }
 .mx-datepicker.mx-datepicker-range {
-    width: 250px;
+    /* width: 250px; */
+    width: 100%;
 }
 .book_btn {
     margin-top: 14px;

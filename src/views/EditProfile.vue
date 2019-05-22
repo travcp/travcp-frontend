@@ -130,11 +130,11 @@
               </div>
               <div class="row">
                 <div class="col-12 col-sm-8">
-                  <h5>About Me</h5>
+                  <!-- <h5>About Me</h5>
                   <p>
                     Tour with me, Discover Places and experience the culture,
                     its best when you tour with me.
-                  </p>
+                  </p> -->
                 </div>
                 <div
                   class="col-12 col-sm-4"
@@ -160,7 +160,7 @@
           <div class="card" style="width: 100%;">
             <div class="card-body" style="text-align: center;">
               <img
-                src="/img/profile_2.png"
+                :src="auth.user.profile_image.image"
                 class="user_pic"
                 alt="profile picture"
               />
@@ -269,6 +269,7 @@ export default {
   methods: {
     ...mapActions(["updateProfile"]),
     formSubmit: function(event) {
+      this.validationErrors = null;
       this.$validator.validateAll().then(result => {
         if (result) {
           this.updateProfile({
