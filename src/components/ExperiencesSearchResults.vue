@@ -161,7 +161,7 @@
                                         <div class="search_items_back_img nagoya"></div>
                                         <div class="search_items_item">
                                             <div class="fetr_places_overlay">
-                                                <p>{{ experience.title }} | {{ experience.state }}</p>
+                                                <p><strong>{{ experience.title }}</strong> | {{ experience.experience_type }}</p>
                                                 <h3> {{ experience.city }}</h3>
                                                 <p><b>{{experience.rating == null ? 0 : experience.rating}} *</b> ({{experience.rating_count == null ? 0 : experience.rating_count}})</p>
                                             </div>

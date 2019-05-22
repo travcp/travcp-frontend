@@ -43,9 +43,9 @@
                         <a class="dropdown-item drp_pd" href="#">Settings <span class="badge badge-info">Comming Soon</span></a>
                         <div class="dropdown-divider"></div>
                         <router-link class="dropdown-item drp_pd" to="/dashboard/merchant/new-experience" v-if="checkUser &&  checkUserType == 'merchant'">Add New Experience</router-link>
-                        <router-link class="dropdown-item drp_pd" to="/dashboard/merchant/experiences" v-if="checkUser &&  checkUserType == 'merchant'">Merchant Experiences</router-link>
-                        <router-link class="dropdown-item drp_pd" to="/dashboard/merchant/restaurants" v-if="checkUser &&  checkUserType == 'merchant'">Merchant Restaunrants</router-link>
-                        <router-link class="dropdown-item drp_pd" to="/dashboard/merchant/bookings" v-if="checkUser &&  checkUserType == 'merchant'">Merchant Bookings</router-link>
+                        <router-link class="dropdown-item drp_pd" to="/dashboard/merchant/experiences" v-if="checkUser &&  checkUserType == 'merchant'">My Experiences</router-link>
+                        <router-link class="dropdown-item drp_pd" to="/dashboard/merchant/restaurants" v-if="checkUser &&  checkUserType == 'merchant'">My Restaunrants</router-link>
+                        <router-link class="dropdown-item drp_pd" to="/dashboard/merchant/bookings" v-if="checkUser &&  checkUserType == 'merchant'">My Bookings</router-link>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item drp_pd" href="/signin" @click="logout">Sign out</a>
                       </div>
