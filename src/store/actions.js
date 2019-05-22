@@ -9,12 +9,15 @@ Vue.use(router);
 export default {
   async getExperiences({ commit, state }) {
     commit("IS_LOADING");
-    await axios.get(`${API_BASE}/experiences`).then(response => {
-      commit("ALL_EXPERIENCE", response.data);
-      state.experiencesPlacehodler = response.data.data;
-    }).catch(err => {
-      state.isLoading = false;
-    });
+    await axios
+      .get(`${API_BASE}/experiences`)
+      .then(response => {
+        commit("ALL_EXPERIENCE", response.data);
+        state.experiencesPlacehodler = response.data.data;
+      })
+      .catch(err => {
+        state.isLoading = false;
+      });
   },
   async getExperienceById({ commit }, id) {
     commit("IS_LOADING");
@@ -88,18 +91,22 @@ export default {
   },
   async userLogin({ commit }, data) {
     commit("LOGIN_LOADING");
-    await axios
-      .post(`${API_BASE}/auth/login`, data)
-      .then(res => {
-        commit("LOGIN_SUCCESS", res.data);
-        router.push("/");
-      })
-      .catch(err => {
-        // console.log(`Error ${err}`);
-        // console.log(err.response);
+    return new Promise((resolve, reject) => {
+      axios
+        .post(`${API_BASE}/auth/login`, data)
+        .then(res => {
+          commit("LOGIN_SUCCESS", res.data);
+          router.push("/");
+          resolve(res.data)
+        })
+        .catch(err => {
+          // console.log(`Error ${err}`);
+          // console.log(err.response);
 
-        commit("LOGIN_FAILURE", err.response.data);
-      });
+          commit("LOGIN_FAILURE", err.response.data);
+          reject(err.response.data)
+        });
+    });
   },
   userLogout: ({ commit }) => {
     commit("USER_LOGOUT");
@@ -297,10 +304,10 @@ export default {
       // headers: {
       //     'Content-Type': 'multipart/form-data'
       // },
-      headers: { 
-        'Content-Type': 'multipart/form-data',
-        'Authorization': "Bearer " + state.auth.access_token
-       }
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: "Bearer " + state.auth.access_token
+      }
     };
     return new Promise((resolve, reject) => {
       axios

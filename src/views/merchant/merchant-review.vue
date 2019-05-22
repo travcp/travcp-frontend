@@ -54,8 +54,8 @@
     export default {
         name: "MerchantReview",
         beforeRouteEnter(to, from, next) {
-            let checkToken = JSON.parse(localStorage.getItem('auth') && checkToken.user.role == 'merchant')
-              if(checkToken.access_token) {
+            let checkToken = JSON.parse(localStorage.getItem('auth'))
+              if(checkToken.access_token && checkToken.user.role == 'merchant') {
                   return next()
               } else {
                 // this.$noty.error("Sign in to access!")
@@ -64,7 +64,7 @@
               next();
           },
         components: {
-            Navbar, EmptyResult, Footer, Circle9, mapState
+            Navbar, EmptyResult, Footer, Circle9
         },
         data(){
             return {

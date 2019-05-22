@@ -55,7 +55,6 @@ export default {
   LOGIN_SUCCESS: (state, payload) => {
     state.success = true;
     state.auth = payload;
-    localStorage.setItem("auth", JSON.stringify(payload));
     state.isLoading = false;
   },
   LOGIN_LOADING: state => {

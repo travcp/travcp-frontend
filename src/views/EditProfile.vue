@@ -13,7 +13,15 @@
             class="card shadow p-3 mb-5 bg-white rounded edit_profile_content"
           >
             <h2>Edit Profile</h2>
-            <br /><br />
+            <br />
+            <div v-if="validationErrors">
+              <form-errors
+                      :errors="validationErrors"
+                      v-if="validationErrors"
+              ></form-errors>
+            </div>
+
+            <br />
             <form @submit.prevent="formSubmit">
               <div class="row">
                 <!-- first_name
@@ -27,20 +35,21 @@
                 <div class="form-group col-4" v-if="!checkUserType">
                   <label for="">Company (disabled)</label>
                   <input
+                    v-validate="'required'"
                     type="text"
                     v-model="company"
                     class="form-control edit-prof-input"
                     placeholder="TravvApp Inc."
                   />
                 </div>
-                <div class="form-group col-6">
-                  <label for="">Username</label>
-                  <input
-                    type="text"
-                    class="form-control edit-prof-input"
-                    placeholder="michealjackson23"
-                  />
-                </div>
+                <!--<div class="form-group col-6">-->
+                  <!--<label for="">Username</label>-->
+                  <!--<input-->
+                    <!--type="text"-->
+                    <!--class="form-control edit-prof-input"-->
+                    <!--placeholder="michealjackson23"-->
+                  <!--/>-->
+                <!--</div>-->
                 <div class="form-group col-6">
                   <label for="">Email</label>
                   <input
@@ -199,6 +208,7 @@ import { mapState, mapActions } from "vuex";
 import Footer from "@/components/Footer.vue";
 import axios from "axios";
 
+import FormErrors from '@/components/FormErrors.vue';
 
 export default {
   name: "EditProfile",
@@ -234,12 +244,14 @@ export default {
       country: null,
       postal_code: null,
       hasImage: false,
-      image: null
+      image: null,
+      validationErrors: null
     };
   },
   components: {
     Navbar,
-    Footer
+    Footer,
+    'form-errors': FormErrors
   },
   computed: {
     ...mapState(["auth"]),
@@ -276,7 +288,8 @@ export default {
               this.$noty.success("Profile Updated Succefully");
             })
             .catch(err => {
-              console.log(err.data);
+              console.log(err.response.data.errors);
+              this.validationErrors = err.response.data.errors;
               this.$noty.error("Oops, something went wrong!");
             });
         } else {
@@ -304,8 +317,10 @@ export default {
       return this.auth.user.email;
     },
     authCompany() {
-      this.company = this.auth.user.company;
-      return this.auth.user.company;
+      if(this.$store.state.auth.merchant) {
+        this.company = this.auth.merchant.business_name;
+        return this.auth.merchant.business_name;
+      }
     },
     authAddress() {
       this.address = this.auth.user.address;
@@ -327,6 +342,13 @@ export default {
       this.hasImage = true;
       this.image = output;
     },
+    merchantCompany() {
+      if(this.$store.state.auth.merchant) {
+        this.company = this.auth.merchant.business_name;
+        return this.auth.merchant.business_name;
+      }
+    },
+
     uploadImage(){
       // console.log(this.$refs);
       let image = this.$refs.fileUpload.$el.children[1].files[0];
@@ -358,6 +380,7 @@ export default {
     this.authCity();
     this.authCountry();
     this.authPostalCode();
+    this.merchantCompany();
   }
 };
 </script>

@@ -12,6 +12,8 @@ import Navbar from './components/Navbar.vue';
 import Footer from './components/Footer.vue';
 import {mapActions, mapState} from 'vuex';
 import {Circle8} from 'vue-loading-spinner'
+import axios from 'axios';
+
 export default {
   name: 'App',
   components: {Navbar, Footer, Circle8},
@@ -30,6 +32,24 @@ export default {
     // // this.getRestaurants()
     this.getEvents();
     this.getPlaces();
+    if(this.$store.state.auth) {
+      // localStorage.setItem("auth", JSON.stringify(payload));
+      let checkUserType = this.$store.state.auth.user.role;
+      if(checkUserType == "merchant") {
+        axios.get(`${this.$store.state.API_BASE}/merchant/extras/users/${this.$store.state.auth.user.id}`)
+                .then(response => {
+                  console.log(response.data.data)
+                  let getUserData = JSON.parse(localStorage.getItem('auth'))
+                  getUserData.merchant = response.data.data;
+                  localStorage.setItem("auth", JSON.stringify(getUserData))
+                  this.$store.state.auth.merchant = response.data.data
+                })
+                .catch(err => {
+                  console.log(err);
+                })
+      }
+    }
+
     // console.log(this.$route)
     // this.getExperiences();
   }

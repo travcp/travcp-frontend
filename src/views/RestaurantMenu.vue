@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="restaurant_heading">
-                    <h1>Genesis Restaurant - Ada George</h1>
+                    <h1>{{ restaurant.title }} - {{ restaurant.state }}</h1>
                 </div>
             </div>
         </div>
@@ -18,37 +18,26 @@
                                 <div class="card">
                                     <div class="card-body">
                                     <ul class="nav nav-pills mb-3  nav-fill" id="pills-tab" role="tablist">
-                                        <li class="nav-item">
-                                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Rice</a>
-                                        </li>
-                                        <li class="nav-item">
-                                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Protein</a>
-                                        </li>
-                                        <li class="nav-item">
-                                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">National</a>
-                                        </li>
-                                        <li class="nav-item">
-                                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Swallow</a>
-                                        </li>
-                                        <li class="nav-item">
-                                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Sides</a>
+                                        <li class="nav-item" v-for="(category, index) in categories" :key="category.id">
+                                            <a class="nav-link" v-bind:class="{ active: index == 0 ? true : false }" data-toggle="pill" :href="'#category' + category.id" role="tab" :aria-controls="'#category' + category.id" aria-selected="true">{{ category.name }}</a>
                                         </li>
                                     </ul>
                                     <div class="tab-content" id="pills-tabContent">
-                                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                        <div v-for="(category, index) in categories" :key="category.id" class="tab-pane" v-bind:class="{ active: index == 0 ? true : false, show : index == 0 ? true : false, fade: index != 0 ? true : false }" :id="'category'+category.id" role="tabpanel" :aria-labelledby="'#category' + category.id">
+                                            <!--Category {{ category.id }}-->
                                         <div class="container">
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <ul class="list-group list-group-flush">
                                                         <li class="list-group-item" v-for="item in menus" :key="item.id">
-                                                        <div class="row">
+                                                        <div class="row" v-if="category.id == item.category_id">
                                                             <div class="col-md-6" style="text-align: left;">
                                                                 <h6>{{ item.description }}</h6>
-                                                            </div>    
+                                                            </div>
                                                             <div class="col-md-6" style="text-align: right;">
                                                                 <!-- <p>₦ 700.00 + </p> -->
                                                                 <p>$ {{ item.price }}</p>
-                                                            </div>    
+                                                            </div>
                                                         </div>
                                                         </li>
                                                     </ul>
@@ -56,6 +45,7 @@
                                             </div>
                                         </div>
                                         </div>
+
                                         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
                                         <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
                                     </div>
@@ -71,7 +61,10 @@
                     <div class="card" style="width: 100%;">
                         <div class="card-body">
                         <h5 class="card-title">ORDER FROM</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ name }}</h6>
+                            <br>
+                        <h5 class="card-title">{{ restaurant.title }}</h5>
+                            <p>{{ restaurant.state }}</p>
+                            <p>{{ restaurant.opening_and_closing_hours }}</p>
                         <p class="card-text">.</p>
                         <div class="booking-action text-center">
                             <button type="button" class="btn btn-secondary book_btn">Book</button>
@@ -91,19 +84,12 @@ import axios from 'axios';
 
     export default {
         name: "RestaurantMenu",
-        beforeRouteEnter(to, from, next) {
-            let checkToken = JSON.parse(localStorage.getItem('auth'))
-              if(checkToken.access_token) {
-                  return next()
-              } else {
-                // this.$noty.error("Sign in to access!")
-                return next({ path: '/signin' })
-              }
-              next();
-          },
+
         data(){
             return {
-                menus: []
+                menus: [],
+                categories: [],
+                restaurant: {},
             }
         },
         components: {
@@ -117,10 +103,26 @@ import axios from 'axios';
                 }).catch(err => {
                     console.log(err);
                 })
+            },
+            getCategories() {
+                axios.get(`${this.$store.state.API_BASE}/food_classifications`).then(res => {
+                    this.categories = res.data;
+                    console.log(res.data)
+                }).catch(err => {
+                    console.log(err);
+                })
+            },
+            async getRestaurantById(){
+                await axios.get(`${this.$store.state.API_BASE}/experiences/${this.id}`).then(response => {
+                    this.restaurant = response.data.data
+                    console.log(response.data.data)
+                });
             }
         },
         created(){
+            this.getRestaurantById()
             this.getMenus();
+            this.getCategories();
         }
     }
 </script>
@@ -150,7 +152,7 @@ import axios from 'axios';
     }
     .list-group-item {
         padding: 40px;
-        color: #eee;
+        color: #9b9898;
         text-transform: capitalize;
         font-family: MuseoSans500;
     }
