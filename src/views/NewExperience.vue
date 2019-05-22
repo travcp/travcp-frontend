@@ -343,16 +343,6 @@ export default {
       experience_type_name: null,
       opening_and_closing_hours: null,
       files: [],
-      // city: null,
-      // language: null,
-      // about_the_experiece_designer: null,
-      // offerings_on_tour: null,
-      // short_description_of_the_experience: null,
-      // price_in_naira: null,
-      // meet_up: null,
-      // what_tourists_should_bring_along: null,
-      // itinerary_for_the_experience: null, 
-      // number_that_each_tour_can_admit: null,
       time: "",
       required_fields_for_events: ["title", "about_merchant", "contact_email", "location", "city", "state", "country"],
       dropzoneOptions: {
@@ -416,12 +406,6 @@ export default {
   methods: {
     ...mapActions(["getExperienceTypes"]),
     ...mapActions(["submitExperience"]),
-    inFormIndx() {
-      this.form_index++;
-    },
-    deFormIndx() {
-      this.form_index--;
-    },
     formatDate (date) {
       var d = new Date(date),
               month = '' + (d.getMonth() + 1),
@@ -432,61 +416,6 @@ export default {
       if (day.length < 2) day = '0' + day;
 
       return [year, month, day].join('-');
-    },
-    formSubmit() {
-      if(this.experience_type == 22) {
-        start_date: this.formatDate(this.time[0])
-        end_date: this.formatDate(this.time[1])
-
-        let data = {
-          slug: "somthinasdaas-dsgdsfgg",
-          title: this.title_22,
-          experiences_type_id: this.experience_type,
-          city: this.city,
-          language: this.language,
-          about_the_experiece_designer: this.about_the_experiece_designer,
-          offerings_on_tour: this.offerings_on_tour,
-          short_description_of_the_experience: this
-                  .short_description_of_the_experience,
-          price_in_naira: this.price_in_naira,
-          meet_up: this.meet_up,
-          what_tourists_should_bring_along: this.what_tourists_should_bring_along,
-          itinerary_for_the_experience: this.itinerary_for_the_experience,
-          number_that_each_tour_can_admit: this.number_that_each_tour_can_admit
-        };
-        this.$validator.validateAll().then(result => {
-          if (result) {
-            // this.$
-          } else {
-            this.$noty.error("Oops, something went wrong!");
-          }
-        });
-      } else if (this.experience_type = 2) {
-        let data = {
-          slug: "somthinasdaas-dsgdsfgg",
-          title: this.title_22,
-          experiences_type_id: this.experience_type,
-          // city: this.city,
-          // language: this.language,
-          // about_the_experiece_designer: this.about_the_experiece_designer,
-          // offerings_on_tour: this.offerings_on_tour,
-          // short_description_of_the_experience: this
-          //         .short_description_of_the_experience,
-          // price_in_naira: this.price_in_naira,
-          // meet_up: this.meet_up,
-          // what_tourists_should_bring_along: this.what_tourists_should_bring_along,
-          // itinerary_for_the_experience: this.itinerary_for_the_experience,
-          // number_that_each_tour_can_admit: this.number_that_each_tour_can_admit
-        };
-        this.$validator.validateAll().then(result => {
-          if (result) {
-            // this.$
-          } else {
-            this.$noty.error("Oops, something went wrong!");
-          }
-        });
-      }
-
     },
     handleFilesUpload(){
       let uploadedFiles = this.$refs.files.files;

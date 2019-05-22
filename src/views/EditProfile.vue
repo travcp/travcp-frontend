@@ -246,6 +246,12 @@ export default {
     ...mapState(["isLoading"]),
     userProperties() {
       return this.auth.user;
+    },
+    checkUserType() {
+      if (this.$store.state.auth == 'merchant') {
+        return true;
+      }
+      return false;
     }
   },
   methods: {
@@ -278,13 +284,13 @@ export default {
         }
       });
     },
-    checkUserType() {
-      if (this.auth.user.role != "user") {
-        return true;
-      } else {
-        return false;
-      }
-    },
+    // checkUserType() {
+    //   if (this.auth.user.role == "merchant") {
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+    // },
     authFirstName() {
       this.first_name = this.auth.user.first_name;
       return this.auth.user.first_name;

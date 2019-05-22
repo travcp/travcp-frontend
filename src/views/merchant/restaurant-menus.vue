@@ -135,7 +135,7 @@ import { mapState } from 'vuex';
     export default {
         name: "RestaurantMenus",
         beforeRouteEnter(to, from, next) {
-            let checkToken = JSON.parse(localStorage.getItem('auth'))
+            let checkToken = JSON.parse(localStorage.getItem('auth') && checkToken.user.role == 'merchant')
               if(checkToken.access_token) {
                   return next()
               } else {

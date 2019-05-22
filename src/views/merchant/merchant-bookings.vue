@@ -84,14 +84,15 @@
     export default {
         name: "MerchantBooking",
         beforeRouteEnter(to, from, next) {
-            if(localStorage.getItem('auth')) {
-                return next()
-            } else {
+            let checkToken = JSON.parse(localStorage.getItem('auth') && checkToken.user.role == 'merchant')
+              if(checkToken.access_token) {
+                  return next()
+              } else {
                 // this.$noty.error("Sign in to access!")
                 return next({ path: '/signin' })
-            }
-            next();
-        },
+              }
+              next();
+          },
         components: {
             Navbar, EmptyResult, Footer, Circle9, mapState
         },

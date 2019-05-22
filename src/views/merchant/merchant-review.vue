@@ -39,38 +39,6 @@
                     </div>
                 </div>
             </div>
-            <!-- booking header details right -->
-            <!--<div class="col-lg-4">-->
-                <!--<div class="my-booking-details-right">-->
-                    <!--<div class="feature-places-title">-->
-                        <!--<p class="feature-places-title-p1">Featured Places</p>-->
-                        <!--<p class="feature-places-title-p2"><router-link to="/places">SEE ALL</router-link></p>-->
-                    <!--</div>-->
-                    <!--<div>-->
-
-                        <!--<div class="featured_places saitama changed" v-for="place in places.slice(0, 3)" >-->
-                            <!--<router-link :to="'/experience/'+ place.id + '/' + place.city">-->
-                                <!--<div class="featured_places_item">-->
-                                    <!--<div class="featured_places_overlay overlay-changed">-->
-                                        <!--<div class="row">-->
-                                            <!--<div class="col-sm-7 col-md-7">-->
-                                                <!--<p class="ftr_places_title">{{ place.city }}</p>-->
-                                            <!--</div>-->
-                                            <!--<div class="col-sm-2 col-md-2">-->
-                                                <!--<p class="ftr_places_title">{{ place.number_admittable }}</p>-->
-                                            <!--</div>-->
-                                            <!--<div class="col-sm-2 col-md-2">-->
-                                                <!--<p class="ftr_places_title">{{ place.rating_count }}</p>-->
-                                            <!--</div>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</router-link>-->
-                        <!--</div>-->
-
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
         </div>
         <!-- <Footer /> -->
     </div>
@@ -86,14 +54,15 @@
     export default {
         name: "MerchantReview",
         beforeRouteEnter(to, from, next) {
-            if(localStorage.getItem('auth')) {
-                return next()
-            } else {
+            let checkToken = JSON.parse(localStorage.getItem('auth') && checkToken.user.role == 'merchant')
+              if(checkToken.access_token) {
+                  return next()
+              } else {
                 // this.$noty.error("Sign in to access!")
                 return next({ path: '/signin' })
-            }
-            next();
-        },
+              }
+              next();
+          },
         components: {
             Navbar, EmptyResult, Footer, Circle9, mapState
         },
