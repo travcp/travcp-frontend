@@ -68,8 +68,8 @@
                                     </h5>
                                 </div>
                                 <div class="col-md-12">
-                                    <h3>City</h3>
-                                    <h5>{{ experience.city }}</h5>
+                                    <h3>Country</h3>
+                                    <h5>{{ experience.country }}</h5>
                                 </div>
                                 <div class="col-md-12">
                                     <h3>Duration</h3>
@@ -85,7 +85,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <h3>Language</h3>
-                                    <h5>{{ experience.language }}</h5>
+                                    <h5>{{ experience.language ? experience.language : 'en' }}</h5>
                                 </div>
                                 <!-- <div class="col-md-12 booking-action" v-if="experience.experience_type == 'restaurants'">
                                     <button type="submit" class="book_btn">
@@ -99,7 +99,7 @@
                                 </div> -->
                                 <div class="col-md-12 booking-action">
                                     <form @submit.prevent="bookExperience" v-if="!checkBookingStatus">
-                                        <h3 class="d-none d-sm-block">Book</h3>
+                                        <!-- <h3 class="d-none d-sm-block">Book</h3> -->
                                         <date-picker v-validate="'required'" v-model="time" range :shortcuts="shortcuts" :lang="lang"></date-picker>
                                         <!-- <p>Start Date <input id="datepicker" v-model="start_date" type="date" width="276" /> -->
                                         <!-- <date-picker v-model="time" range :shortcuts="shortcuts" :lang="lang"></date-picker> -->
@@ -146,55 +146,55 @@
                                 <div class="col-8">
                                     <div class="progress">
                                         <!-- { color: activeColor, fontSize: fontSize + 'px' } -->
-                                      <div class="progress-bar" role="progressbar" :style="{ width: (ratings[5] / totalRatingCount) * 100 + '%', backgroundColor: '#f81894' }" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                                      <div class="progress-bar" role="progressbar" :style="{ width: (ratings[5] / totalRatingCount) * 100 + '%', backgroundColor: '#f81894' }" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" v-if="ratings"></div>
                                     </div>
                                 </div>
                                 <div class="col-2">
-                                    <p class="star_range">{{ ratings[5] }}</p>
+                                    <p class="star_range">{{ ratings ? ratings[5] : 0 }}</p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-2"><p class="star_range">4-star</p></div>
                                 <div class="col-8">
                                     <div class="progress">
-                                      <div class="progress-bar" role="progressbar" :style="{ width: (ratings[4] / totalRatingCount) * 100 + '%', backgroundColor: '#f81894' }" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                      <div class="progress-bar" role="progressbar" :style="{ width: (ratings[4] / totalRatingCount) * 100 + '%', backgroundColor: '#f81894' }" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" v-if="ratings"></div>
                                     </div>
                                 </div>
                                 <div class="col-2">
-                                    <p class="star_range">{{ ratings[4] }}</p>
+                                    <p class="star_range">{{ ratings ? ratings[4] : 0 }}</p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-2"><p class="star_range">3-star</p></div>
                                 <div class="col-8">
                                     <div class="progress">
-                                      <div class="progress-bar" role="progressbar" :style="{ width: (ratings[3] / totalRatingCount) * 100 + '%', backgroundColor: '#f81894' }" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+                                      <div class="progress-bar" role="progressbar" :style="{ width: (ratings[3] / totalRatingCount) * 100 + '%', backgroundColor: '#f81894' }" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" v-if="ratings"></div>
                                     </div>
                                 </div>
                                 <div class="col-2">
-                                    <p class="star_range">{{ ratings[3] }}</p>
+                                    <p class="star_range">{{ ratings ? ratings[3] : 0 }}</p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-2"><p class="star_range">2-star</p></div>
                                 <div class="col-8">
                                     <div class="progress">
-                                      <div class="progress-bar" role="progressbar" :style="{ width: (ratings[2] / totalRatingCount) * 100 + '%', backgroundColor: '#f81894' }" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                      <div class="progress-bar" role="progressbar" :style="{ width: (ratings[2] / totalRatingCount) * 100 + '%', backgroundColor: '#f81894' }" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" v-if="ratings"></div>
                                     </div>
                                 </div>
                                 <div class="col-2">
-                                    <p class="star_range">{{ ratings[2] }}</p>
+                                    <p class="star_range">{{ ratings ? ratings[2] : 0 }}</p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-2"><p class="star_range">1-star</p></div>
                                 <div class="col-8">
                                     <div class="progress">
-                                      <div class="progress-bar" role="progressbar" :style="{ width: (ratings[1] / totalRatingCount) * 100 + '%', backgroundColor: '#f81894' }" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                      <div class="progress-bar" role="progressbar" :style="{ width: (ratings[1] / totalRatingCount) * 100 + '%', backgroundColor: '#f81894' }" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" v-if="ratings"></div>
                                     </div>
                                 </div>
                                 <div class="col-2">
-                                    <p class="star_range">{{ ratings[1] }}</p>
+                                    <p class="star_range">{{ ratings ? ratings[1] : 0 }}</p>
                                 </div>
                             </div>
                         </div>
@@ -207,7 +207,7 @@
                             <br>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="guest_review_" v-for="review in experience.reviews">
+                                    <div class="guest_review_" v-for="review in reviews.data">
                                         <div class="row">
                                             <div class="col-2" style="text-align: center;">
                                                 <img src="../assets/profile_2.png" class="rounded-circle" style="height: 50px;display: inline-block;">
@@ -266,16 +266,6 @@
                 dateOne: '',
                 dateTwo: '',
                 time: '',
-                star_5: 0,
-                star_5_people: 0,
-                star_4: 0,
-                star_4_people: 0,
-                star_3: 0,
-                star_3_people: 0,
-                star_2: 0,
-                star_2_people: 0,
-                star_1: 0,
-                star_1_people: 0,
                 reviewStar: null,
                 toggleRating: false,
                 loading: false,
@@ -426,7 +416,10 @@
             ...mapState(['auth']),
             ...mapState(['bookings']),
             totalRatingCount() {
-                return this.ratings[5] + this.ratings[4] + this.ratings[3] + this.ratings[2] + this.ratings[1]
+                // if (this.ratings != null && this.ratings.length > 0){
+                    return this.ratings[5] + this.ratings[4] + this.ratings[3] + this.ratings[2] + this.ratings[1]
+                // }
+                // return 0;
             }
 
         },
@@ -444,6 +437,8 @@
             if(this.$store.state.auth) {
                 this.checkIfBooked()                
             }
+            this.loading = false;
+            
         }
     }
 </script>

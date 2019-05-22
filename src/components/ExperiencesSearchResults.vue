@@ -140,7 +140,7 @@
                                 </h3>
                             </div>
                             
-                            <div class="col-md-4 experience" v-if="allExperiences && allExperiences != null && allExperiences.length < 1 && !isLoading" v-for="experience in experiencesPlacehodler" :key="experience.id" style="">
+                            <div class="col-sm-6 col-md-4 experience" v-if="allExperiences && allExperiences != null && allExperiences.length < 1 && !isLoading" v-for="experience in experiencesPlacehodler" :key="experience.id" style="">
                                 <router-link :to="'/experience/'+ experience.id + '/' + experience.city">
                                     <div class="search_items">
                                         <div class="search_items_back_img nagoya" v-if="experience.images.length > 0" :style="{background: url(experience.images[0])}"></div>
@@ -154,7 +154,7 @@
                                     </div>
                                 </router-link>
                             </div>
-                            <div class="col-md-4 experience" v-if="!isLoading" v-for="experience in allExperiences" :key="experience.id" style="">
+                            <div class="col-sm-6 col-md-4 experience" v-if="!isLoading" v-for="experience in allExperiences" :key="experience.id" style="">
                                 <router-link :to="'/experience/'+ experience.id + '/' + experience.city">
                                     <div class="search_items">
                                         <!-- <div class="search_items_back_img nagoya" v-if="experience.images.length > 0" :style="{background: 'url('+experience.images[0].image+')'}"></div> -->
