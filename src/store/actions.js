@@ -91,22 +91,22 @@ export default {
   },
   async userLogin({ commit }, data) {
     commit("LOGIN_LOADING");
-    return new Promise((resolve, reject) => {
-      axios
+    // return new Promise((resolve, reject) => {
+     await  axios
         .post(`${API_BASE}/auth/login`, data)
         .then(res => {
           commit("LOGIN_SUCCESS", res.data);
           router.push("/");
-          resolve(res.data)
+          // resolve(res.data)
         })
         .catch(err => {
           // console.log(`Error ${err}`);
           // console.log(err.response);
 
           commit("LOGIN_FAILURE", err.response.data);
-          reject(err.response.data)
+          // reject(err.response.data)
         });
-    });
+    // });
   },
   userLogout: ({ commit }) => {
     commit("USER_LOGOUT");
@@ -119,15 +119,7 @@ export default {
     axios
       .post(
         `${API_BASE}/bookings`,
-        {
-          // "food_menu_ids": data.food_menu_ids,
-          price: data.price,
-          merchant_id: data.merchant_id,
-          user_id: data.user_id,
-          experience_id: data.experience_id,
-          start_date: data.start_date,
-          end_date: data.end_date
-        },
+        data,
         requestHeaders
       )
       .then(res => {

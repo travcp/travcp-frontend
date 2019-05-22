@@ -206,14 +206,14 @@ export default {
             email: this.email,
             password: this.password
           })
-            .then(response => {
-              console.log(response.data);
-              return this.$noty.success("Login sucessfull!");
-            })
-            .catch(err => {
-              console.log(err.data);
-              this.$noty.error("Oops, something went wrong");
-            });
+            // .then(response => {
+            //   console.log(response.data);
+            //   return this.$noty.success("Login sucessfull!");
+            // })
+            // .catch(err => {
+            //   console.log(err.data);
+            //   this.$noty.error("Oops, something went wrong");
+            // });
           // this.$noty.success("Login sucessfull")
         } else {
           this.$noty.error("Oops, something went wrong!");

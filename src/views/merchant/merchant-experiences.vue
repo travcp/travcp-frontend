@@ -1,15 +1,92 @@
 <template>
-    <div class="SearchResults">
-        <SearchResults :experiences="merchant_experience" v-if="!loading" />
-        <!-- <div style="text-align: center;" v-if="loading">
-            <Circle9 />
-        </div> -->
-        <div v-if="merchant_experience.length < 1 && !loading">
-            <empty-result>
-                <template v-slot:error-header>Errm</template>
-                You do not have any Experience yet. <br> When you create an experience, it will appear here.
-            </empty-result>
+    <div class="ExpereinceSearchResults">
+        <Navbar />
+        <section class="filter_area" style="">
+            <div class="container">
+                <div class="project_inner">
+                    <form @submit.prevent="filterExperience">
+                        <div class="row">
+                            <div class="col-md-1">
+                            </div>
+                            <div class="col-md-7">
+                                <div class="filter_searchbar" style="color: #f81894;">
+                                    <input v-model="search" v-validate="'required|min:3'" class="filter_search_input" type="text"
+                                           placeholder="Tour & Experiences in Tokyo " />
+                                    <!-- |
+                                    <img src="../assets/Icons/Calendar.svg" style="margin-top: -8px;margin-left: 31px;height: 28px;" /> -->
+                                    <button type="submit" class="filter_search_icon">
+                                        <!-- <i class="material-icons">add</i> -->
+                                        <img v-if="!isLoading" src="../../assets/icons8-search.svg" style="height: 28px;" />
+                                        <img v-if="isLoading" style="height: 20px;" src="../../assets/loader_rolling.gif" />
+
+                                        <!-- <font-awesome-icon icon="user" /> -->
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-2" style="text-align: center;">
+                                <router-link to="/dashboard/new-exp">
+                                    <button type="button" class="btn btn-lg add-new-btn">+</button>
+                                </router-link>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <div class="digital_feature">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 no-search-results-cont" v-if="allExperiences.length < 1" >
+                                <h3>No results</h3>
+                                <h5>
+                                    We couldn't find anything matching {{ search }}, Try searching other keywords
+                                </h5>
+                                <hr>
+                            </div>
+
+                            <div class="col-md-12 suggestion-cont" v-if="allExperiences.length < 1" >
+                                <h3>
+                                    Explore any of these
+                                </h3>
+                            </div>
+
+                            <div class="col-md-4 experience" v-if="allExperiences != null && allExperiences.length < 1" v-for="experience in experiencesPlacehodler" :key="experience.id" style="">
+                                <router-link :to="'/experience/'+ experience.id + '/' + experience.city">
+                                    <div class="search_items">
+                                        <div class="search_items_back_img nagoya"></div>
+                                        <div class="search_items_item">
+                                            <div class="fetr_places_overlay">
+                                                <p>DAY TRIP {{ experience.state }}</p>
+                                                <h3> {{ experience.city }}</h3>
+                                                <p><b>4.75 *</b> (224)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </router-link>
+                            </div>
+                            <div class="col-md-4 experience" v-for="experience in experiences" :key="experience.id" style="">
+                                <router-link :to="'/experience/'+ experience.id + '/' + experience.city">
+                                    <div class="search_items">
+                                        <div class="search_items_back_img nagoya"></div>
+                                        <div class="search_items_item">
+                                            <div class="fetr_places_overlay">
+                                                <p>DAY TRIP {{ experience.state }}</p>
+                                                <h3> {{ experience.city }}</h3>
+                                                <p><b>4.75 *</b> (224)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </router-link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <!-- <Footer /> -->
     </div>
 </template>
 
