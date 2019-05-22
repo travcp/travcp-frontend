@@ -335,7 +335,7 @@
                 if(this.auth) {
                     if (this.time[0]) {
                         let data = {
-                            food_menu_ids: ["2", "3", "4"],
+                            // food_menu_ids: ["2", "3", "4"],
                             price: this.experience.naira_price,
                             merchant_id: this.experience.merchant_id,
                             user_id: this.auth.user.id,

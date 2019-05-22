@@ -45,9 +45,6 @@
                                             </div>
                                         </div>
                                         </div>
-
-                                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
-                                        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
                                     </div>
                                     </div>
                                 </div>
@@ -58,23 +55,34 @@
             </div>
             <div class="col-md-4">
                 <div class="container">
-                    <div class="card" style="width: 100%;">
-                        <div class="card-body">
-                        <h5 class="card-title">ORDER FROM</h5>
-                            <br>
-                        <h5 class="card-title">{{ restaurant.title }}</h5>
-                            <p>{{ restaurant.state }}</p>
-                            <p>{{ restaurant.opening_and_closing_hours }}</p>
-                        <p class="card-text">.</p>
-                        <div class="booking-action text-center">
-                            <button type="button" class="btn btn-secondary book_btn">Book</button>
+                    <form @submit.prevent="bookExperience">
+                        <div class="card" style="width: 100%;">
+                            <div class="card-body">
+                            <h5 class="card-title">ORDER FROM</h5>
+                                <br>
+                            <h5 class="card-title">{{ restaurant.title }}</h5>
+                                <p>{{ restaurant.state }}</p>
+                                <p>{{ restaurant.opening_and_closing_hours }}</p>
+                            <p class="card-text">.</p>
+                            <date-picker v-validate="'required'" v-model="time" range :shortcuts="shortcuts" :lang="lang"></date-picker>
+                            <div class="booking-action text-center">
+                                <button type="submit" class="btn btn-secondary book_btn">
+                                    <span v-if="isLoading">
+                                        <img style="height: 20px;" src="../assets/loader_rolling.gif" />
+                                    </span>
+                                    <span v-else>
+                                        Book
+                                    </span>
+                                </button>
+                            </div>
+
+                            </div>
                         </div>
-                        
-                        </div>
-                    </div>    
+                    </form>
                 </div>
             </div>
         </div>
+        <br>
     </div>
 </template>
 
@@ -82,6 +90,8 @@
 import Navbar from '@/components/Navbar.vue';
 import axios from 'axios';
 
+import DatePicker from 'vue2-datepicker';
+import { mapState, mapActions } from 'vuex'
     export default {
         name: "RestaurantMenu",
 
@@ -90,13 +100,43 @@ import axios from 'axios';
                 menus: [],
                 categories: [],
                 restaurant: {},
+                lang: {
+                    days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                    months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    pickers: ['next 7 days', 'next 30 days', 'previous 7 days', 'previous 30 days'],
+                    placeholder: {
+                        date: 'Select Date',
+                        dateRange: 'Select Date Range'
+                    }
+                },
+                // custom range shortcuts
+                shortcuts: [
+                    {
+                        text: 'Today',
+                        onClick: () => {
+                            this.time3 = [ new Date(), new Date() ]
+                        }
+                    }
+                ],
+                timePickerOptions: {
+                    start: '00:00',
+                    step: '00:30',
+                    end: '23:30'
+                },
+                time: '',
             }
         },
         components: {
-            Navbar
+            Navbar,
+            DatePicker,
+        },
+        computed: {
+            ...mapState(['isLoading']),
+            ...mapState(['auth'])
         },
         props: ['id', 'name'],
         methods: {
+            ...mapActions(['bookingExperience']),
             getMenus(){
                 axios.get(`${this.$store.state.API_BASE}/restaurants/${this.id}/menus`).then(res => {
                     this.menus = res.data.data;
@@ -112,12 +152,46 @@ import axios from 'axios';
                     console.log(err);
                 })
             },
+            bookExperience: function () {
+                if(this.auth) {
+                    if (this.time[0]) {
+                        let data = {
+                            // food_menu_ids: ["2", "3", "4"],
+                            merchant_id: this.restaurant.merchant_id,
+                            user_id: this.auth.user.id,
+                            experience_id: this.$route.params.id,
+                            start_date: this.formatDate(this.time[0]),
+                            end_date: this.formatDate(this.time[1])
+                        };
+                        // console.log(this.formatDate(this.time[0]));
+                        this.bookingExperience(data);
+                        // this.checkIfBooked()
+                        this.$noty.success("Restaurant is Booked Succesfully")
+                    } else {
+                        this.$noty.error("Please enter a check in and check out date");
+                    }
+
+                } else {
+                    this.$noty.error("Oops, You need to Login to Book and Experience");
+                }
+            },
             async getRestaurantById(){
                 await axios.get(`${this.$store.state.API_BASE}/experiences/${this.id}`).then(response => {
                     this.restaurant = response.data.data
                     console.log(response.data.data)
                 });
-            }
+            },
+            formatDate (date) {
+                var d = new Date(date),
+                    month = '' + (d.getMonth() + 1),
+                    day = '' + d.getDate(),
+                    year = d.getFullYear();
+
+                if (month.length < 2) month = '0' + month;
+                if (day.length < 2) day = '0' + day;
+
+                return [year, month, day].join('-');
+            },
         },
         created(){
             this.getRestaurantById()
@@ -160,5 +234,8 @@ import axios from 'axios';
         font-weight: bolder;
         color: #606163;
         font-size: 18px;
+    }
+    .book_btn {
+        width: 100%;
     }
 </style>
