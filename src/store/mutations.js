@@ -148,9 +148,9 @@ export default {
     state.emptySearchResult = true;
   },
   GET_EXPERIENCE_TYPES: (state, payload) => {
-    for(let i = 1; i < payload.data.length; i++) {
+    // for(let i = 1; i < payload.data.length; i++) {
 
-    }
+    // }
 
     state.experience_types = payload.data;
     state.isLoading = false;

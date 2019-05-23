@@ -44,7 +44,7 @@
                                     <h3>Merchants</h3>
                                 </div>
                                 <ul class="">
-                                    <li class="">
+                                    <li class="" v-if="checkUserType == 'user'">
                                         <a class="" href="#merchant-signup-modal" data-toggle="modal">Register</a>
                                     </li>
                                     <li>Requirements</li>
@@ -91,9 +91,20 @@
 
 <script>
 import MerchantSignupModal from '@/views/MerchantSignupModal'
+import { mapState, mapActions } from 'vuex';
+
 export default {
     name: 'Footer',
-    components: {MerchantSignupModal}
+    components: {MerchantSignupModal},
+    methods: {
+        ...mapState(['auth']),
+      checkUser() {
+          return this.auth != null ? true : false
+      },
+      checkUserType(){
+        return this.auth.user.role
+      },
+    }
 }
 </script>
 

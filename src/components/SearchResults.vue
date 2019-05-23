@@ -99,11 +99,11 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="col-md-2" style="text-align: center;">
-                            <router-link to="/dashboard/new-exp">
-                                <button type="button" class="btn btn-lg add-new-btn">+</button>                              
-                            </router-link>
-                        </div>
+                        <!--<div class="col-md-2" style="text-align: center;">-->
+                            <!--<router-link to="/dashboard/new-exp">-->
+                                <!--<button type="button" class="btn btn-lg add-new-btn">+</button>                              -->
+                            <!--</router-link>-->
+                        <!--</div>-->
                     </div>
                     </form>
                 </div>

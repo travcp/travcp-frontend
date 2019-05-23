@@ -7,7 +7,7 @@
     <Navbar />
     <div class="new_experience">
       <div class="new_experience_title" style="text-align: center;">
-        <p>Add New</p>
+        <p>Edit Experience</p>
         <hr class="new_experience_title_horizontal" />
       </div>
       <div class="container">
@@ -22,20 +22,20 @@
                       <div class="form-index-1" v-if="form_index == 1">
                         <div class="row">
                           <div class="form-group col-md-12">
-                            <label>Select Experience Type</label>
+                           <!--  <label>Select Experience Type</label>
                             <select
                               v-validate="'required'"
                               class="form-control new_experience_input"
                               v-model="experience_type"
                               @change="checkExperienceType"
-                            >
+                            > -->
                               <!-- <option selected>Select</option> -->
-                              <option
+                              <!-- <option
                                 v-for="experience_type in experience_types"
                                 v-if="experience_type"
                                 >{{ experience_type.name }}</option
                               >
-                            </select>
+                            </select> -->
                           </div>
                         </div>
 
@@ -82,7 +82,7 @@
                                   type="text"
                                   class="form-control new_experience_input"
                                   placeholder="Title"
-                                  v-model="title"
+                                  v-model="experience.title"
                                   v-if="requiredFields.includes('title')"
                                 />
                               </div>
@@ -96,7 +96,7 @@
                                   type="text"
                                   class="form-control new_experience_input"
                                   placeholder="Location"
-                                  v-model="location"
+                                  v-model="experience.location"
                                 />
                               </div>
                               <div
@@ -109,7 +109,7 @@
                                   type="text"
                                   class="form-control new_experience_input"
                                   placeholder="City"
-                                  v-model="city"
+                                  v-model="experience.city"
                                 />
                               </div>
                               <div
@@ -122,7 +122,7 @@
                                   type="text"
                                   class="form-control new_experience_input"
                                   placeholder="State"
-                                  v-model="state"
+                                  v-model="experience.state"
                                 />
                               </div>
                               <div
@@ -138,7 +138,7 @@
                                         v-model="state_22"
                                 /> -->
                                 <country-select
-                                  v-model="country"
+                                  v-model="experience.country"
                                   :country="country"
                                   :countryName="true"
                                   topCountry="US"
@@ -158,7 +158,7 @@
                                   type="text"
                                   class="form-control new_experience_input"
                                   placeholder="State"
-                                  v-model="offerings"
+                                  v-model="experience.offerings"
                                 />
                               </div>
                               <div
@@ -171,7 +171,7 @@
                                   name="language"
                                   id="inputState"
                                   class="form-control new_experience_input"
-                                  v-model="language"
+                                  v-model="experience.language"
                                   placeholder="Language e.g English"
                                 />
                               </div>
@@ -185,7 +185,7 @@
                                   cols="30"
                                   rows="10"
                                   class="form-control"
-                                  v-model="description"
+                                  v-model="experience.description"
                                 ></textarea>
                               </div>
                               <div
@@ -198,7 +198,7 @@
                                   cols="30"
                                   rows="10"
                                   class="form-control"
-                                  v-model="extra_perks"
+                                  v-model="experience.extra_perks"
                                 ></textarea>
                               </div>
                               <div
@@ -211,7 +211,7 @@
                                   cols="30"
                                   rows="10"
                                   class="form-control"
-                                  v-model="drink_types"
+                                  v-model="experience.drink_types"
                                 ></textarea>
                               </div>
                               <div
@@ -224,7 +224,7 @@
                                   cols="30"
                                   rows="10"
                                   class="form-control"
-                                  v-model="history"
+                                  v-model="experience.history"
                                 ></textarea>
                               </div>
                               <div
@@ -237,7 +237,7 @@
                                   type="text"
                                   class="form-control new_experience_input"
                                   placeholder=""
-                                  v-model="meetup_location"
+                                  v-model="experience.meetup_location"
                                 />
                               </div>
                               <div
@@ -250,7 +250,7 @@
                                   type="text"
                                   class="form-control new_experience_input"
                                   placeholder=""
-                                  v-model="itenary"
+                                  v-model="experience.itenary"
                                 />
                               </div>
                               <div
@@ -263,7 +263,7 @@
                                   type="text"
                                   class="form-control new_experience_input"
                                   placeholder=""
-                                  v-model="tourist_expected_items"
+                                  v-model="experience.tourist_expected_items"
                                 />
                               </div>
                               <div
@@ -279,7 +279,7 @@
                                   type="text"
                                   class="form-control new_experience_input"
                                   placeholder=""
-                                  v-model="number_admittable"
+                                  v-model="experience.number_admittable"
                                 />
                               </div>
                               <div
@@ -295,7 +295,7 @@
                                   type="text"
                                   class="form-control new_experience_input"
                                   placeholder=""
-                                  v-model="opening_and_closing_hours"
+                                  v-model="experience.opening_and_closing_hours"
                                 />
                               </div>
 
@@ -311,14 +311,14 @@
                                       type="text"
                                       class="form-control new_experience_input"
                                       placeholder="in Dollars"
-                                      v-model="naira_price"
+                                      v-model="experience.naira_price"
                                     />
                                   </div>
                                   <div class="form-group col-md-8">
                                     <label>Dates Range</label> <br />
                                     <date-picker
                                       v-validate="'required'"
-                                      v-model="time"
+                                      v-model="experience.time"
                                       range
                                       :shortcuts="shortcuts"
                                       :lang="lang"
@@ -336,7 +336,7 @@
                                 <span v-if="isLoading">
                                   <img
                                     style="height: 20px;"
-                                    src="../assets/loader_rolling.gif"
+                                    src="../../assets/loader_rolling.gif"
                                   />
                                 </span>
                                 <span v-else>
@@ -379,7 +379,7 @@ import DatePicker from "vue2-datepicker";
 import axios from "axios";
 
 export default {
-  name: "NewExperience",
+  name: "MerchantEditExperience",
   beforeRouteEnter(to, from, next) {
     let checkToken = JSON.parse(localStorage.getItem("auth"));
     if (checkToken.access_token && checkToken.user.role == "merchant") {
@@ -393,6 +393,7 @@ export default {
   data() {
     return {
       // experience_type_placeholder: null,
+      experience_types: [],
       validationErrors: [],
       form_index: 1,
       experience_type: null,
@@ -419,6 +420,7 @@ export default {
       opening_and_closing_hours: null,
       files: [],
       time: "",
+      experience: {},
       required_fields_for_events: [
         "title",
         "about_merchant",
@@ -487,7 +489,7 @@ export default {
     DatePicker
   },
   methods: {
-    ...mapActions(["getExperienceTypes"]),
+    // ...mapActions(["getExperienceTypes"]),
     ...mapActions(["submitExperience"]),
     formatDate(date) {
       var d = new Date(date),
@@ -525,30 +527,31 @@ export default {
       }
       console.log(formData);
       let data = {
-        title: this.title,
-        location: this.location,
-        city: this.city,
-        state: this.state,
-        country: this.country,
-        offerings: this.offerings,
-        language: this.language,
-        description: this.description,
-        naira_price: this.naira_price,
-        meetup_location: this.meetup_location,
-        itenary: this.itenary,
-        tourist_expected_items: this.tourist_expected_items,
-        number_admittable: this.number_admittable,
+        title: this.experience.title,
+        location: this.experience.location,
+        city: this.experience.city,
+        state: this.experience.state,
+        country: this.experience.country,
+        offerings: this.experience.offerings,
+        language: this.experience.language,
+        description: this.experience.description,
+        naira_price: this.experience.naira_price,
+        meetup_location: this.experience.meetup_location,
+        itenary: this.experience.itenary,
+        tourist_expected_items: this.experience.tourist_expected_items,
+        number_admittable: this.experience.number_admittable,
         // start_date: this.start_date,
         // end_date: this.end_date,
-        extra_perks: this.extra_perks,
-        drink_types: this.drink_types,
-        history: this.history,
+        extra_perks: this.experience.extra_perks,
+        drink_types: this.experience.drink_types,
+        history: this.experience.history,
         start_date: this.time ? this.formatDate(this.time[0]) : null,
         end_date: this.time ? this.formatDate(this.time[1]) : null,
         contact_email: this.$store.state.auth.merchant.business_email,
         merchant_id: this.$store.state.auth.user.id,
         experiences_type_id: this.exp_id,
-        opening_and_closing_hours: this.opening_and_closing_hours
+        opening_and_closing_hours: this.experience.opening_and_closing_hours,
+        _method: 'PUT'
       };
       Object.entries(data).forEach(o =>
         o[1] === null ? delete data[o[0]] : 0
@@ -577,7 +580,7 @@ export default {
           this.$store.state.isLoading = true;
           axios
             .post(
-              `${this.$store.state.API_BASE}/experiences`,
+              `${this.$store.state.API_BASE}/experiences/${this.experience.id}`,
               formData,
               requestHeaders
             )
@@ -601,30 +604,57 @@ export default {
       });
       // }
     },
-    checkExperienceType(event) {
+    checkExperienceType() {
+      console.log("experience types", this.experience_types);
       for (let i = 0; i < this.experience_types.length; i++) {
-        // console.log(this.experience_types)
-        if (this.experience_types[i]) {
-          if (this.experience_types[i].name == event.target.value) {
-            this.experience_type_name = event.target.value;
+        console.log(this.experience_types)
+        if (this.experience_types[i] != undefined) {
+          if (this.experience_types[i].name == this.$route.params.experience_type) {
+            // this.experience_type_name = event.target.value;
             this.exp_id = this.experience_types[i].id;
             this.requiredFields = this.experience_types[i].experience_fields;
-            // console.log(this.requiredFields)
+            console.log(this.requiredFields)
           }
         }
       }
     },
-    sendingEvent(file, xhr, formData) {
-      formData.append("paramName", "some value or other");
+    getExperienceTypes() {
+      // commit("IS_LOADING");
+      return new Promise((resolve, reject) => {
+        axios
+        .get(`${this.$store.state.API_BASE}/experience_types`)
+        .then(response => {
+          this.experience_types = response.data.data
+          resolve(response.data.data)
+          console.log(response.data.data);
+        })
+        .catch(error => {
+          console.log(error);
+          reject(error)
+        });
+      })
+    },
+    async getExperienceById(id) {
+      await axios.get(`${this.$store.state.API_BASE}/experiences/${this.$route.params.id}`).then(response => {
+        console.log(response.data);
+        this.experience = response.data.data
+      });
     }
   },
   computed: {
-    ...mapState(["experience_types"]),
     ...mapState(["isLoading"]),
     experience_type_placeholder() {}
   },
   created() {
-    this.getExperienceTypes();
+    this.getExperienceById(this.$route.params.id)
+    this.getExperienceTypes()
+      .then(response => {
+        this.checkExperienceType();        
+      }).catch((err) => {
+
+      });
+    // this.checkExperienceType();
+    // console.log(this.params.experience_type)
     console.log(this.experience_types);
   }
 };
@@ -690,7 +720,7 @@ label {
   border: 3px solid #c3c3c6;
   height: 250px;
   width: 100%;
-  background: url("../assets/shibuya.png");
+  background: url("../../assets/shibuya.png");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

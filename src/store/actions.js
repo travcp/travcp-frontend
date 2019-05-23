@@ -280,7 +280,7 @@ export default {
   },
   async getExperienceTypes({ commit }) {
     commit("IS_LOADING");
-    axios
+    await axios
       .get(`${API_BASE}/experience_types`)
       .then(response => {
         console.log(response.data.data);

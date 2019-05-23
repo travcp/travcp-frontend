@@ -6,10 +6,10 @@
                 <div class="project_inner">
                     <form @submit.prevent="filterExperience">
                         <div class="row">
-                            <div class="col-md-1">
+                            <div class="col-md-2">
                             </div>
-                            <div class="col-md-7">
-                                <div class="filter_searchbar" style="color: #f81894;">
+                            <div class="col-md-8">
+                                <div class="filter_searchbar" style="color: #f81894;height: 54px;">
                                     <input v-model="search" v-validate="'required|min:3'" class="filter_search_input" type="text"
                                            placeholder="Tour & Experiences in Tokyo " />
                                     <!-- |
@@ -24,9 +24,9 @@
                                 </div>
                             </div>
                             <div class="col-md-2" style="text-align: center;">
-                                <router-link to="/dashboard/new-exp">
-                                    <button type="button" class="btn btn-lg add-new-btn">+</button>
-                                </router-link>
+                                <!--<router-link to="/dashboard/new-exp">-->
+                                    <!--<button type="button" class="btn btn-lg add-new-btn">+</button>-->
+                                <!--</router-link>-->
                             </div>
                         </div>
                     </form>
@@ -39,47 +39,24 @@
                 <div class="col-lg-12">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-12 no-search-results-cont" v-if="allExperiences.length < 1" >
-                                <h3>No results</h3>
-                                <h5>
-                                    We couldn't find anything matching {{ search }}, Try searching other keywords
-                                </h5>
-                                <hr>
-                            </div>
-
-                            <div class="col-md-12 suggestion-cont" v-if="allExperiences.length < 1" >
-                                <h3>
-                                    Explore any of these
-                                </h3>
-                            </div>
-
-                            <div class="col-md-4 experience" v-if="allExperiences != null && allExperiences.length < 1" v-for="experience in experiencesPlacehodler" :key="experience.id" style="">
-                                <router-link :to="'/experience/'+ experience.id + '/' + experience.city">
-                                    <div class="search_items">
-                                        <div class="search_items_back_img nagoya"></div>
-                                        <div class="search_items_item">
-                                            <div class="fetr_places_overlay">
-                                                <p>DAY TRIP {{ experience.state }}</p>
-                                                <h3> {{ experience.city }}</h3>
-                                                <p><b>4.75 *</b> (224)</p>
+                            <div class="col-md-6" v-for="merchant_experience in merchant_experiences" :key="merchant_experience.id">
+                                <div class="card mb-3" style="width: 100%;">
+                                    <div class="row no-gutters">
+                                        <div class="col-md-5">
+                                            <img src='../../assets/nagoya.png' class="card-img" style="height: 100%;" alt="">
+                                        </div>
+                                        <div class="col-md-7">
+                                            <div class="card-body">
+                                                <h5 class="card-title"><strong>{{ merchant_experience.title }}</strong>  | {{ merchant_experience.experience_type }}</h5>
+                                                <p class="card-text">{{ merchant_experience.city }}</p>
+                                                <p><b>{{merchant_experience.rating == null ? 0 : merchant_experience.rating}} *</b> ({{merchant_experience.rating_count == null ? 0 : merchant_experience.rating_count}})</p>
+                                                <br><br>
+                                                <p class="card-text"><small class="text-muted">Last updated at {{ merchant_experience.updated_at }}</small></p> <br>
+                                                <router-link :to="'/dashboard/merchant/experience/edit/'+ merchant_experience.experience_type + '/' + merchant_experience.id + '/' + merchant_experience.title"><button class="btn btn-info">Edit</button></router-link>
                                             </div>
                                         </div>
                                     </div>
-                                </router-link>
-                            </div>
-                            <div class="col-md-4 experience" v-for="experience in experiences" :key="experience.id" style="">
-                                <router-link :to="'/experience/'+ experience.id + '/' + experience.city">
-                                    <div class="search_items">
-                                        <div class="search_items_back_img nagoya"></div>
-                                        <div class="search_items_item">
-                                            <div class="fetr_places_overlay">
-                                                <p>DAY TRIP {{ experience.state }}</p>
-                                                <h3> {{ experience.city }}</h3>
-                                                <p><b>4.75 *</b> (224)</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </router-link>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -114,7 +91,7 @@
         data: function () {
             return {
                 loading: false,
-                merchant_experience: [],
+                merchant_experiences: [],
                 search: '',
                 tour_and_experiences: false,
                 restaurants: false,
@@ -213,7 +190,7 @@
                     headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
                 };
                 await axios.get(`${this.$store.state.API_BASE}/merchants/${this.$store.state.auth.user.id}/experiences`, requestHeaders).then(response => {
-                    this.merchant_experience = response.data.data;
+                    this.merchant_experiences = response.data.data;
                     this.loading = false;
                 });
             },
@@ -280,9 +257,9 @@
 
     .filter_area {
         background: #000;
-        margin-top: 121px;
+        margin-top: 10px;
         min-height: 146px;
-        padding: 36px 0 36px 89px;
+        padding: 36px 0 36px 0;
         margin-bottom: 57px;
     }
 
