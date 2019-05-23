@@ -33,7 +33,7 @@
                     country
                     postal_code -->
                 <div class="form-group col-4" v-if="!checkUserType">
-                  <label for="">Company (disabled)</label>
+                  <label for="">Company</label>
                   <input
                     v-validate="'required'"
                     type="text"
@@ -160,7 +160,7 @@
           <div class="card" style="width: 100%;">
             <div class="card-body" style="text-align: center;">
               <img
-                :src="userProperties.profile_image ? userProperties.profile_image.image : '#'"
+                :src="auth.user.profile_image ? auth.user.profile_image.image : require('@/assets/avatar.png')"
                 class="user_pic"
                 alt="profile picture"
               />

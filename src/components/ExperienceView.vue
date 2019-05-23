@@ -5,7 +5,11 @@
             description="Description from travvApp"
         />
         <Navbar></Navbar>
-        <section class="project_area nagoya" style="">
+        <section class="project_area nagoya" v-if="experience.images && experience.images.length > 0" :style="{background: 'url(' + experience.images[0].image + ')'}">
+            <div class="container">
+            </div>
+        </section>
+        <section class="project_area nagoya" v-else>
             <div class="container">
             </div>
         </section>
@@ -99,26 +103,30 @@
                                 </div> -->
                                 <div class="col-md-12 booking-action">
                                     <form @submit.prevent="bookExperience" v-if="!checkBookingStatus">
-                                        <!-- <h3 class="d-none d-sm-block">Book</h3> -->
                                         <date-picker v-validate="'required'" v-model="time" range :shortcuts="shortcuts" :lang="lang"></date-picker>
                                         <!-- <p>Start Date <input id="datepicker" v-model="start_date" type="date" width="276" /> -->
                                         <!-- <date-picker v-model="time" range :shortcuts="shortcuts" :lang="lang"></date-picker> -->
                                         <!-- <p>End Date <input id="datepicker2" v-model="end_date" type="date" width="276" /></p> -->
                                         <div class="row">
                                             <div class="col-md-12" style="">
-                                                <button type="submit" class="book_btn">
-                                                    <span v-if="isLoading || loading">
-                                                        <img style="height: 20px;" src="../assets/loader_rolling.gif" />
-                                                    </span>
-                                                    <span v-else>
-                                                        Book Now
-                                                    </span>
-                                                </button>
-                                                <div class="float-right">
-                                                    <button type="button" class="book_btn" v-if="experience.experience_type == 'restaurants'" @click="gotoMenu">View Menu</button>
+                                                <div class="row">
+                                                    <div :class="[experience.experience_type == 'restaurants' ? 'col-6' : 'col-12']">
+                                                        <button type="submit" class="book_btn btn-block">
+                                                            <span v-if="isLoading || loading">
+                                                                <img style="height: 20px;" src="../assets/loader_rolling.gif" />
+                                                            </span>
+                                                            <span v-else>
+                                                                Book Now
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-6" v-if="experience.experience_type == 'restaurants'">
+                                                        <button type="button" class="book_btn btn-block"  @click="gotoMenu">View Menu</button>
+                                                    </div>
                                                 </div>
-                                                
-                                                
+                                                <div class="text-center">
+                                                    You won't be charged yet
+                                                </div>
                                             </div>
                                         </div>
                                         <!-- <date-picker v-model="time1" :first-day-of-week="1"></date-picker> -->
@@ -210,7 +218,7 @@
                                     <div class="guest_review_" v-for="review in reviews.data">
                                         <div class="row">
                                             <div class="col-2" style="text-align: center;">
-                                                <img src="../assets/profile_2.png" class="rounded-circle" style="height: 50px;display: inline-block;">
+                                                <img :src="review.user.profile_image ? review.user.profile_image.image : require('@/assets/avatar.png')" class="rounded-circle" style="height: 50px;display: inline-block;">
                                             </div>
                                             <div class="col-8">
                                                 <p class="review_name">{{ review.user_name }}</p>
@@ -320,11 +328,14 @@
                             "experience_id": this.experience.id,
                             "review_body": this.rate_this_exp_text,
                             "rating": this.reviewStar
+                        }).then(res => {
+                            this.$noty.success("Your review has been submitted");
+                            this.toggleRating = false;
+                            this.rate_this_exp_text = "";
+                            this.getExperienceById(this.$route.params['id']);
                         });
-                        this.$noty.success("Review is Successful")
-                        this.toggleRating = false;
-                        this.rate_this_exp_text = ""
-                        this.getExperienceById(this.$route.params['id']);
+                        
+                        
                     } 
                 } else {
                     this.$noty.error("Oops, You need to Login to Review or Rate an Expereince");
@@ -464,29 +475,7 @@
         height: 150px;
         padding-top: 20px;
     }
-    .booking-action{
-        position:fixed;
-        bottom:0;
-        background:white;
-        z-index:1000;
-        width:100%;
-        margin:unset;
-        padding-top:15px;
-        padding-bottom:15px;
-        padding-right:10px;
-        padding-left:10px;
-        left:0;
-        right:0;
-        border-top:2px solid rgb(235, 235, 235);
-    }
-    .booking-action button.book_btn,a.book_btn{
-        padding: 10px 15px;
-        width: auto;
-        font-size: 14px;
-    }
-    .booking-action .mx-datepicker.mx-datepicker-range {
-        width: 100%;
-  }
+    
     .average_review_section h2 {
         font-weight: bolder;
         font-size: 1.5rem;
@@ -518,6 +507,32 @@
         max-height:200px;
         /* background-size:100% 100%; */
         height:200px;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .booking-action{
+        position:fixed;
+        bottom:0;
+        background:white;
+        z-index:1000;
+        width:100%;
+        margin:unset;
+        padding-top:15px;
+        padding-bottom:15px;
+        padding-right:10px;
+        padding-left:10px;
+        left:0;
+        right:0;
+        border-top:2px solid rgb(235, 235, 235);
+    }
+    .booking-action button.book_btn,a.book_btn{
+        padding: 10px 15px;
+        /* width: auto; */
+        font-size: 14px;
+    }
+    .booking-action .mx-datepicker.mx-datepicker-range {
+        width: 100%;
     }
 }
 .average_review_section h2 {
@@ -832,7 +847,7 @@ input::-webkit-calendar-picker-indicator {
     font-size: 16px;
     /* width: 130px; */
     height: 45px;
-    border-radius: 8px;
+    border-radius: 5px;
     background-color: #f81894;
     color: #FFF;
     cursor: pointer;

@@ -17,11 +17,12 @@
                                    
                                </span>
                                <!-- <div class="user_pic"></div> -->
-                                <img src="/img/profile_2.png" class="user_pic" alt="profile picture"> <br>
+                               
+                                <img :src="auth.user.profile_image ? auth.user.profile_image.image : require('@/assets/avatar.png')" class="user_pic" alt="profile picture"> <br>
                                 <h5 class="card-title">{{ userProperties.surname }} {{ userProperties.first_name }}</h5>
                                 <h6 class="card-subtitle mb-2 text-muted" style="text-transform: lowercase;">{{ userProperties.surname }}{{ userProperties.first_name }}</h6>
                                 <p class="location" v-if="userProperties.address"><img src="/img/icons/map-marker-alt-solid.svg" alt="" style="width:10px"> {{ userProperties.address }}, {{ userProperties.country }}</p>
-                                <p class="card-text description">Tour with me, Discover Places and experience the culture with me</p>
+                                <!-- <p class="card-text description">Tour with me, Discover Places and experience the culture with me</p> -->
                            </div>
                        </div>
                    </div>

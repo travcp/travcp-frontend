@@ -273,6 +273,7 @@ export default {
       .then(response => {
         console.log(response.data);
         commit("REVIEW_SUCCESSFUL", response.data);
+        return response;
       })
       .catch(err => {
         commit("REVIEW_ERROR", err.data);
@@ -280,7 +281,7 @@ export default {
   },
   async getExperienceTypes({ commit }) {
     commit("IS_LOADING");
-    await axios
+    axios
       .get(`${API_BASE}/experience_types`)
       .then(response => {
         console.log(response.data.data);

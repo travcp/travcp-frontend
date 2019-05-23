@@ -1,7 +1,7 @@
 <template>
   <div>
     <vue-headful
-      title="New Experiene | TravvApp"
+      title="Edit Experiene | TravvApp"
       description="Description from travvApp"
     />
     <Navbar />
@@ -282,7 +282,7 @@
                                   v-model="experience.number_admittable"
                                 />
                               </div>
-                              <div
+                              <!-- <div
                                 class="form-group col-md-6"
                                 v-if="
                                   requiredFields.includes('opening_and_closing_hours')
@@ -297,8 +297,14 @@
                                   placeholder=""
                                   v-model="experience.opening_and_closing_hours"
                                 />
+                              </div> -->
+                              <div class="col-md-12" v-if="
+                                  requiredFields.includes('opening_and_closing_hours')
+                                ">
+                                <label>Opening and closing hours</label>
+                                <open-closing-times v-if="isJson(experience.opening_and_closing_hours)" :days="JSON.parse(experience.opening_and_closing_hours)" v-model="experience.opening_and_closing_hours"></open-closing-times>
+                                <open-closing-times v-model="experience.opening_and_closing_hours" v-else/>
                               </div>
-
                               <div
                                 class="form-group col-md-6"
                                 v-if="requiredFields.includes('naira_price')"
@@ -377,6 +383,7 @@ import Footer from "@/components/Footer.vue";
 import { mapActions, mapState } from "vuex";
 import DatePicker from "vue2-datepicker";
 import axios from "axios";
+import OpenClosingTimes from "@/components/utility/OpenClosingTimes"
 
 export default {
   name: "MerchantEditExperience",
@@ -486,7 +493,8 @@ export default {
     Navbar,
     Footer,
     vueDropzone: vue2Dropzone,
-    DatePicker
+    DatePicker,
+    OpenClosingTimes
   },
   methods: {
     // ...mapActions(["getExperienceTypes"]),
@@ -525,7 +533,7 @@ export default {
         let file = this.files[i];
         formData.append("images[" + i + "]", file);
       }
-      console.log(formData);
+      
       let data = {
         title: this.experience.title,
         location: this.experience.location,
@@ -550,7 +558,7 @@ export default {
         contact_email: this.$store.state.auth.merchant.business_email,
         merchant_id: this.$store.state.auth.user.id,
         experiences_type_id: this.exp_id,
-        opening_and_closing_hours: this.experience.opening_and_closing_hours,
+        opening_and_closing_hours: JSON.stringify(this.experience.opening_and_closing_hours),
         _method: 'PUT'
       };
       Object.entries(data).forEach(o =>
@@ -561,11 +569,11 @@ export default {
         if (data.hasOwnProperty(key)) {
           // Do things here
           formData.append(key, data[key]);
-          console.log(formData);
+          // console.log(formData);
         }
       }
 
-      console.log(formData);
+      // console.log(formData);
 
       this.$validator.validateAll().then(result => {
         if (result) {
@@ -605,7 +613,7 @@ export default {
       // }
     },
     checkExperienceType() {
-      console.log("experience types", this.experience_types);
+      
       for (let i = 0; i < this.experience_types.length; i++) {
         console.log(this.experience_types)
         if (this.experience_types[i] != undefined) {
@@ -636,9 +644,19 @@ export default {
     },
     async getExperienceById(id) {
       await axios.get(`${this.$store.state.API_BASE}/experiences/${this.$route.params.id}`).then(response => {
-        console.log(response.data);
+        
         this.experience = response.data.data
       });
+    },
+    isJson(item){
+      item = typeof item !== 'string' ? JSON.stringify(item) : item;
+      try{
+        item = JSON.parse(item);
+      }
+      catch(e){
+        return false;
+      }
+      return typeof item === 'object' && item !== null;
     }
   },
   computed: {
@@ -653,9 +671,6 @@ export default {
       }).catch((err) => {
 
       });
-    // this.checkExperienceType();
-    // console.log(this.params.experience_type)
-    console.log(this.experience_types);
   }
 };
 </script>
