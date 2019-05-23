@@ -115,7 +115,7 @@
                 <div class="col-lg-12">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-12 no-search-results-cont" v-if="allExperiences.length < 1" >
+                            <div class="col-md-12 no-search-results-cont" v-if="allExperiences && allExperiences.length < 1 && !isLoading">
                                 <h3>No results</h3>
                                 <h5>
                                     We couldn't find anything matching {{ search }}, Try searching other keywords
