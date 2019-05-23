@@ -111,7 +111,7 @@
                 let requestHeaders = {
                     headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
                 };
-                axios.get(`${this.$store.state.API_BASE}/${this.$store.state.user.id}/bookings`, requestHeaders).then(response => {
+                axios.get(`${this.$store.state.API_BASE}/merchants/${this.$store.state.auth.user.id}/bookings`, requestHeaders).then(response => {
                     this.$store.state.bookings = response.data.data;
                     this.bookings = response.data.data;
                     this.loading = false;
