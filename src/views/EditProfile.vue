@@ -130,11 +130,11 @@
               </div>
               <div class="row">
                 <div class="col-12 col-sm-8">
-                  <h5>About Me</h5>
+                  <!-- <h5>About Me</h5>
                   <p>
                     Tour with me, Discover Places and experience the culture,
                     its best when you tour with me.
-                  </p>
+                  </p> -->
                 </div>
                 <div
                   class="col-12 col-sm-4"
@@ -160,7 +160,7 @@
           <div class="card" style="width: 100%;">
             <div class="card-body" style="text-align: center;">
               <img
-                src="/img/profile_2.png"
+                :src="userProperties.profile_image ? userProperties.profile_image.image : '#'"
                 class="user_pic"
                 alt="profile picture"
               />
@@ -269,6 +269,7 @@ export default {
   methods: {
     ...mapActions(["updateProfile"]),
     formSubmit: function(event) {
+      this.validationErrors = null;
       this.$validator.validateAll().then(result => {
         if (result) {
           this.updateProfile({
@@ -354,16 +355,24 @@ export default {
       let image = this.$refs.fileUpload.$el.children[1].files[0];
       let formData = new FormData();
       formData.append("profile_image", image);
-      axios.put(`${this.$store.state.API_BASE}/users/${this.$store.state.auth.user.id}`, 
+      formData.append("_method", "PUT");
+      axios.post(`${this.$store.state.API_BASE}/users/${this.$store.state.auth.user.id}`, 
       formData,
       {headers: {
         'Content-Type': 'multipart/form-data',
         'Authorization' : `Bearer ${this.$store.state.auth.access_token}`
       }}).then(res => {
-        console.log(res)
+        let newData = JSON.parse(localStorage.getItem("auth"));
+        console.log("response data", res.data);
+        console.log("new data", newData);
+        newData.user = res.data.data;
+
+        localStorage.setItem("auth", JSON.stringify(newData));
+
+        this.$store.state.auth.user = newData.user;
       })
       
-      document.querySelector(".user_pic").src = this.image.dataUrl;
+      // document.querySelector(".user_pic").src = this.image.dataUrl;
       document.querySelector(".img-preview").style.display = "none";
       this.hasImage = false;
       this.image = null;
