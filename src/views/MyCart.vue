@@ -13,44 +13,44 @@
           <hr class="my-booking-title-horizontal">
         </div>
         <div style="padding-bottom: 20px">
-          <p class="my-cart-sub-title">Cart(3)</p>
+          <p class="my-cart-sub-title">Cart( {{ cart.items.length }} )</p>
+          <p class="my-cart-sub-title">Price - {{ calcPrice }}</p>
         </div>
-        <div class="row my-booking-left" v-for="cart in carts" v-key="cart.id">
+        <div class="row my-booking-left" v-for="item in cart.items" :key="item.id">
           <div class="col-md-3 my-booking-details-image"></div>
           <div class="col-md-6 my-booking-trip-main">
             <div class="my-booking-trip-main-head">
               <div class="my-booking-trip-details-header">
-                <p class="my-booking-trip-details-header-p1">DAY TRIP | WEST SUNNYBERG</p>
-                <p class="my-booking-trip-details-header-p2">Kimberg</p>
+                <p class="my-booking-trip-details-header-p1">{{ item.booking.experience.title }} | WEST SUNNYBERG</p>
+                <p class="my-booking-trip-details-header-p2">{{ item.booking.experience.city }}</p>
               </div>
               <div class="my-booking-trip-details">
                 <p
                   class="my-booking-trip-details-p1"
-                >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima fugiat alias at suscipit</p>
+                >{{ item.booking.experience.description }}</p>
               </div>
             </div>
           </div>
           <div
-            style="display: flex; flex-direction: row; justify-content: space-evenly; padding-top: 70px; padding-left: 20px"
-          >
+            style="display: flex; flex-direction: row; justify-content: space-evenly; padding-top: 70px; padding-left: 20px">
             <a href="#">
-              <p class="col-md-2 my-cart-delete-image"></p>
+              <!-- <p class="col-md-2 my-cart-delete-image"></p> -->
             </a>
-            <a href="#">
-              <p class="col-md-2" style="color: #f81894; font-size: 17px; font-weight: bold">REMOVE</p>
-            </a>
+            <button class="btn" style="background: #f81894;">
+              <p class="col-md-2" style="color #FFF;font-size: 17px; font-weight: bold" @click="removeFromCart(item.id)">REMOVE</p>
+            </button>
           </div>
         </div>
         <div style="text-align: center;" v-if="loading">
           <Circle9 />
         </div>
-        <div v-if="carts.length < 1 && !loading">
+        <div v-if="cart.items.length < 1 && !loading">
           <empty-result>
             <template v-slot:error-header>Errm</template>
             You do not have any carts yet. <br> When you book an experience, it will appear here.
           </empty-result>
         </div>
-
+      
         <div class="my-cart-button">
           <button class="button button1">Explore</button>
           <button class="button button2">Checkout</button>
@@ -113,10 +113,13 @@ export default {
       }
       next();
   },
-  data(){return{
-    loading: false,
-    carts: []
-  }},
+  data() {
+    return {
+      loading: false,
+      cart: [],
+      no_cart_items: null,
+    }
+  },
   components: {
     Navbar,
     EmptyResult,
@@ -124,7 +127,17 @@ export default {
     Circle9
   },
   computed: {
-    ...mapState(['places'])
+    ...mapState(['places']),
+    getNoCarts() {
+      return true
+    },
+    calcPrice(){
+      let price = 0;
+      this.cart.items.forEach(item => {
+        price += item.booking.price
+      });
+      return price;
+    }
   },
   methods: {
     getMyCarts(){
@@ -132,18 +145,31 @@ export default {
       let requestHeaders = {
         headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
       };
-      axios.get(`${this.$store.state.API_BASE}/users/${this.$store.state.auth.user.id}/carts`, requestHeaders).then(response => {
-        this.carts = response.data.data;
+      axios.get(`${this.$store.state.API_BASE}/users/${this.$store.state.auth.user.id}/cart`, requestHeaders).then(response => {
+        this.cart = response.data.data;
         this.loading = false;
       }).catch(err => {
         this.$noty.error("Oops, there was error getting carts");
         this.loading = false;
       })
 
+    },
+    removeFromCart(item_id) {
+      let requestHeaders = {
+        headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token }
+      };
+      axios.delete(`${this.$store.state.API_BASE}/cart_items/${item_id}`, requestHeaders).then(response => {
+                console.log(response.data)
+                this.getMyCarts()
+                // this.loading = false;
+              }).catch(err => {
+                this.$noty.error("Oops, there was error getting carts");
+              })
     }
   },
   created() {
     this.getMyCarts();
+    // console.log(this.items)
   }
 };
 </script>
@@ -167,12 +193,14 @@ export default {
 .button1 {
   color: #f81894;
   background-color: #fff;
-  box-shadow: 2px 1px 1px grey;
+  border: 2px solid #eee;
+  /*box-shadow: 2px 1px 1px grey;*/
 }
 .button2 {
   color: #fff;
   background-color: #f81894;
-  box-shadow: 2px 1px 1px grey;
+  /*box-shadow: 2px 1px 1px grey;*/
+  border: 2px solid #eee;
   margin-left: 30px;
 }
 .my-booking-head {
@@ -186,7 +214,7 @@ export default {
   padding-left: 15px;
 }
 .my-booking-trip-main-head {
-  padding-top: 20px;
+  padding-top: 2px;
 }
 .my-booking-trip-details-header {
 }

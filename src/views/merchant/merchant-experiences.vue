@@ -52,7 +52,13 @@
                                                 <p><b>{{merchant_experience.rating == null ? 0 : merchant_experience.rating}} *</b> ({{merchant_experience.rating_count == null ? 0 : merchant_experience.rating_count}})</p>
                                                 
                                                 <p class="card-text"><small class="text-muted">Last updated at {{ merchant_experience.updated_at }}</small></p>
+                                                <p>{{ merchant_experience.description }}</p>
+                                                
+                                                <p class="card-text"><small class="text-muted">Last updated at {{ merchant_experience.updated_at }}</small></p>
                                                 <router-link :to="'/dashboard/merchant/experience/edit/'+ merchant_experience.experience_type + '/' + merchant_experience.id + '/' + merchant_experience.title"><button class="btn btn-info">Edit</button></router-link>
+
+                                                <br> <br>
+                                                <router-link :to="'/experience/'+ merchant_experience.id + '/' + merchant_experience.city"><button class="btn btn-primary">View</button></router-link>
                                             </div>
                                         </div>
                                     </div>

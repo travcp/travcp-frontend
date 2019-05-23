@@ -66,7 +66,7 @@ export default {
                 close_time: document.querySelector('[data-day-name="' + targetedDayCloseTime + '"]').value,
                 closed: document.querySelector('[data-day-name="' + targetedDayClosedStatus + '"]').checked ? true : false,
             }
-            console.log(document.querySelector('[data-day-name="' + targetedDayClosedStatus + '"]').checked)
+            
             this.days[index] = updatedDay;
             
             this.$emit('input', this.days);

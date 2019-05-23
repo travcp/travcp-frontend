@@ -354,8 +354,20 @@
                             start_date: this.formatDate(this.time[0]),
                             end_date: this.formatDate(this.time[1])
                         };
+                        let requestHeaders = {
+                          headers: { Authorization: "Bearer " + this.$store.state.auth.access_token }
+                        };
                         // console.log(this.formatDate(this.time[0]));
-                        this.bookingExperience(data);
+                        this.bookingExperience(data).then(response => {
+                            console.log(response)
+                            axios.post(`${this.$store.state.API_BASE}/cart/add`,{
+                                    "booking_id": response.id
+                                  }, requestHeaders).then(response => {
+                                    console.log(response.data.data);
+                                  }).catch(error => {
+                                    console.log(error)
+                                  })
+                        });
                         this.checkIfBooked()
                         this.$noty.success("Experience is Booked Succesfully")
                     } else {

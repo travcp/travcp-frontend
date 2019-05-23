@@ -1,6 +1,6 @@
 import Vue from "vue";
 import router from "@/router";
-
+import axios from 'axios';
 Vue.use(router);
 
 export default {
@@ -73,6 +73,7 @@ export default {
   },
   BOOKING_EXPERIENCE: (state, payload) => {
     state.booking_data = payload;
+    
     state.isLoading = false;
   },
   BOOKING_EXPERIENCE_LOADING: state => {

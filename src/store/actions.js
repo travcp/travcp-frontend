@@ -60,9 +60,9 @@ export default {
         commit("FILTER_EXPERIENCE", response.data.data);
         if (response.data.data.length < 1) {
           // console.log("an empty search result")
-          // state.emptySearchResult = true;
-          // state.editProfileData = "Example"
-          // commit('EMPTY_SEARCH_RESULTS')
+          state.emptySearchResult = true;
+          state.editProfileData = "Example"
+          commit('EMPTY_SEARCH_RESULTS')
         } else {
           commit("SEARCH_RESULTS");
         }
@@ -111,26 +111,42 @@ export default {
   userLogout: ({ commit }) => {
     commit("USER_LOGOUT");
   },
-  bookingExperience: ({ commit, state }, data) => {
+  bookingExperience ({ commit, state }, data) {
     let requestHeaders = {
       headers: { Authorization: "Bearer " + state.auth.access_token }
     };
     commit("BOOKING_EXPERIENCE_LOADING");
-    axios
-      .post(
-        `${API_BASE}/bookings`,
-        data,
-        requestHeaders
-      )
-      .then(res => {
-        console.lod(res.data.data);
-        commit("BOOKING_EXPERIENCE", res.data);
-        router.push("/");
-        console.log(res.data);
-      })
-      .catch(err => {
-        commit("BOOKING_EXPERIENCE_FAILURE", err.response);
-      });
+    return new Promise((resolve, reject) => {
+          axios.post(`${API_BASE}/bookings`,
+                  data,
+                  requestHeaders).then(res => {
+                    console.log(res.data.data);
+                    
+                    commit("BOOKING_EXPERIENCE", res.data);
+                    // router.push("/");
+                    resolve(res.data.data);
+                  })
+                  .catch(err => {
+                    commit("BOOKING_EXPERIENCE_FAILURE", err.response);
+                    reject(err)
+                  });
+    })
+    // await axios
+    //   .post(
+    //     `${API_BASE}/bookings`,
+    //     data,
+    //     requestHeaders
+    //   )
+    //   .then(res => {
+    //     console.log(res.data.data);
+        
+    //     commit("BOOKING_EXPERIENCE", res.data);
+    //     // router.push("/");
+    //     console.log(res.data);
+    //   })
+    //   .catch(err => {
+    //     commit("BOOKING_EXPERIENCE_FAILURE", err.response);
+    //   });
   },
   async getEvents({ commit }) {
     commit("EVENTS_LOADING");
