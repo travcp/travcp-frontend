@@ -34,7 +34,7 @@
                     </li>
                     <li class="nav-item dropdown" v-if="checkUser">
                       <a class="nav-link dropdown-toggle" href="#" style="color: #fff !important;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="../assets/profile_2.png" class="rounded-circle" style="height: 50px;">
+                        <img :src="auth.user.profile_image ? auth.user.profile_image.image : require('@/assets/avatar.png')" class="rounded-circle" style="height: 50px;">
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="padding: 5px 0px 5px 1px;">
                         <router-link class="dropdown-item drp_pd" to="/dashboard/profile">Dashboard</router-link>

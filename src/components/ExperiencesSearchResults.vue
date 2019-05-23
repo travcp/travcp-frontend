@@ -143,7 +143,8 @@
                             <div class="col-sm-6 col-md-4 experience" v-if="allExperiences && allExperiences != null && allExperiences.length < 1 && !isLoading" v-for="experience in experiencesPlacehodler" :key="experience.id" style="">
                                 <router-link :to="'/experience/'+ experience.id + '/' + experience.city">
                                     <div class="search_items">
-                                        <div class="search_items_back_img nagoya" v-if="experience.images.length > 0" :style="{background: url(experience.images[0])}"></div>
+                                        <div class="search_items_back_img nagoya" v-if="experience.images && experience.images.length > 0" :style="{background: 'url(' + experience.images[0].image + ')'}"></div>
+                                        <div class="nagoya" v-else></div>
                                         <div class="search_items_item">
                                             <div class="fetr_places_overlay">
                                                 <p>{{ experience.title }} | {{ experience.state }}</p>
@@ -157,8 +158,8 @@
                             <div class="col-sm-6 col-md-4 experience" v-if="!isLoading" v-for="experience in allExperiences" :key="experience.id" style="">
                                 <router-link :to="'/experience/'+ experience.id + '/' + experience.city">
                                     <div class="search_items">
-                                        <!-- <div class="search_items_back_img nagoya" v-if="experience.images.length > 0" :style="{background: 'url('+experience.images[0].image+')'}"></div> -->
-                                        <div class="search_items_back_img nagoya"></div>
+                                        <div class="search_items_back_img nagoya" v-if="experience.images && experience.images.length > 0" :style="{background: 'url(' + experience.images[0].image + ')'}"></div>
+                                        <div class="search_items_back_img nagoya" v-else></div>
                                         <div class="search_items_item">
                                             <div class="fetr_places_overlay">
                                                 <p><strong>{{ experience.title }}</strong> | {{ experience.experience_type }}</p>

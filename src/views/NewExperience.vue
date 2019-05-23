@@ -282,12 +282,19 @@
                                   v-model="number_admittable"
                                 />
                               </div>
-                              <div
+                              <div class="col-md-12" v-if="
+                                  requiredFields.includes('opening_and_closing_hours')
+                                ">
+                                <label>Opening and closing hours</label>
+                                <open-closing-times v-model="opening_and_closing_hours"/>
+                              </div>
+                              <!-- <div
                                 class="form-group col-md-6"
                                 v-if="
                                   requiredFields.includes('opening_and_closing_hours')
                                 "
                               >
+                              
                                 <label>Opening and closing hours</label>
                                 <input
                                   name="opening_and_closing_hours"
@@ -297,7 +304,7 @@
                                   placeholder=""
                                   v-model="opening_and_closing_hours"
                                 />
-                              </div>
+                              </div> -->
 
                               <div
                                 class="form-group col-md-6"
@@ -377,6 +384,7 @@ import Footer from "@/components/Footer.vue";
 import { mapActions, mapState } from "vuex";
 import DatePicker from "vue2-datepicker";
 import axios from "axios";
+import OpenClosingTimes from "@/components/utility/OpenClosingTimes"
 
 export default {
   name: "NewExperience",
@@ -393,6 +401,7 @@ export default {
   data() {
     return {
       // experience_type_placeholder: null,
+      
       validationErrors: [],
       form_index: 1,
       experience_type: null,
@@ -484,7 +493,8 @@ export default {
     Navbar,
     Footer,
     vueDropzone: vue2Dropzone,
-    DatePicker
+    DatePicker,
+    OpenClosingTimes
   },
   methods: {
     ...mapActions(["getExperienceTypes"]),
@@ -523,7 +533,7 @@ export default {
         let file = this.files[i];
         formData.append("images[" + i + "]", file);
       }
-      console.log(formData);
+      // console.log(formData);
       let data = {
         title: this.title,
         location: this.location,
@@ -548,7 +558,7 @@ export default {
         contact_email: this.$store.state.auth.merchant.business_email,
         merchant_id: this.$store.state.auth.user.id,
         experiences_type_id: this.exp_id,
-        opening_and_closing_hours: this.opening_and_closing_hours
+        opening_and_closing_hours: JSON.stringify(this.opening_and_closing_hours)
       };
       Object.entries(data).forEach(o =>
         o[1] === null ? delete data[o[0]] : 0
@@ -558,11 +568,11 @@ export default {
         if (data.hasOwnProperty(key)) {
           // Do things here
           formData.append(key, data[key]);
-          console.log(formData);
+          // console.log(formData);
         }
       }
 
-      console.log(formData);
+      // console.log(formData);
 
       this.$validator.validateAll().then(result => {
         if (result) {
@@ -625,7 +635,6 @@ export default {
   },
   created() {
     this.getExperienceTypes();
-    console.log(this.experience_types);
   }
 };
 </script>

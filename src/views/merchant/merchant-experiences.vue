@@ -43,16 +43,18 @@
                                 <div class="card mb-3" style="width: 100%;">
                                     <div class="row no-gutters">
                                         <div class="col-md-5">
-                                            <img src='../../assets/nagoya.png' class="card-img" style="height: 100%;" alt="">
+                                            <img :src="merchant_experience.images.length > 0 ? merchant_experience.images[0].image : require('../../assets/nagoya.png')" class="card-img" style="height: 100%; width:100%" alt="">
                                         </div>
                                         <div class="col-md-7">
                                             <div class="card-body">
                                                 <h5 class="card-title"><strong>{{ merchant_experience.title }}</strong>  | {{ merchant_experience.experience_type }}</h5>
                                                 <p class="card-text">{{ merchant_experience.city }}</p>
                                                 <p><b>{{merchant_experience.rating == null ? 0 : merchant_experience.rating}} *</b> ({{merchant_experience.rating_count == null ? 0 : merchant_experience.rating_count}})</p>
+                                                
+                                                <p class="card-text"><small class="text-muted">Last updated at {{ merchant_experience.updated_at }}</small></p>
                                                 <p>{{ merchant_experience.description }}</p>
-                                                <br><br>
-                                                <p class="card-text"><small class="text-muted">Last updated at {{ merchant_experience.updated_at }}</small></p> <br>
+                                                
+                                                <p class="card-text"><small class="text-muted">Last updated at {{ merchant_experience.updated_at }}</small></p>
                                                 <router-link :to="'/dashboard/merchant/experience/edit/'+ merchant_experience.experience_type + '/' + merchant_experience.id + '/' + merchant_experience.title"><button class="btn btn-info">Edit</button></router-link>
 
                                                 <br> <br>
