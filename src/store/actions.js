@@ -59,10 +59,10 @@ export default {
       .then(response => {
         commit("FILTER_EXPERIENCE", response.data.data);
         if (response.data.data.length < 1) {
-          // console.log("an empty search result")
-          state.emptySearchResult = true;
-          state.editProfileData = "Example"
-          commit('EMPTY_SEARCH_RESULTS')
+          // // console.log("an empty search result")
+          // state.emptySearchResult = true;
+          // state.editProfileData = "Example"
+          // commit('EMPTY_SEARCH_RESULTS')
         } else {
           commit("SEARCH_RESULTS");
         }
