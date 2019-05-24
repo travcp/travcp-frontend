@@ -34,7 +34,7 @@
                                     <li>Travel Credit</li>
                                     <li>Group Tour</li>
                                     <li>Guidebooks</li>
-                                    <li>TravvApp Mag</li>
+                                    <li><a href="http://travvblog.herokuapp.com">TravvApp Blog</a></li>
                                 </ul>
                             </aside>
                         </div>
@@ -110,7 +110,10 @@ export default {
           e.preventDefault();
           
           if(this.$store.state.auth){
-              location.href = "http://travvapi.herokuapp.com/api/forums?token="+this.$store.state.auth.access_token
+              location.href = "http://travvapi.herokuapp.com/api/travvforum?token="+this.$store.state.auth.access_token
+          }
+          else{
+              location.href = "http://travvapi.herokuapp.com/api/travvforum"
           }
       }
     }
