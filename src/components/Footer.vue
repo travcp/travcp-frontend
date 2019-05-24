@@ -33,7 +33,7 @@
                                     <li><router-link to="/trust-and-safety">Trust & Safety</router-link></li>
                                     <li><router-link to="/travel-credit">Travel Credit</router-link></li>
                                     <li><router-link to="/group-tour">Group Tour</router-link></li>
-                                    <li>Guidebooks</li>
+                                    <li><router-link to="/guidebooks">Guidebooks</router-link></li>
                                     <li><a href="http://travvblog.herokuapp.com">TravvApp Blog</a></li>
                                 </ul>
                             </aside>
@@ -47,8 +47,8 @@
                                     <li class="" v-if="checkUserType == 'user'">
                                         <a class="" href="#merchant-signup-modal" data-toggle="modal">Become a Merchant</a>
                                     </li>
-                                    <li>Requirements</li>
-                                    <li>Benefits</li>
+                                    <li><router-link to="/requirements">Requirements</router-link></li>
+                                    <li><router-link to="/benefits">Benefits</router-link></li>
                                     <li>
                                         <a href="http://travvapi.herokuapp.com/forums" @click="gotoForum">Community</a>
                                     </li>

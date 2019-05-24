@@ -47,6 +47,9 @@ import Faqs from '@/views/pages/Faqs.vue'
 import TrustAndSafety from '@/views/discover/TrustAndSafety.vue'
 import TravelCredit from '@/views/discover/TravelCredit.vue'
 import GroupTour from '@/views/discover/GroupTour.vue'
+import Guidebooks from '@/views/discover/Guidebooks.vue'
+import Requirements from '@/views/pages/Requirements.vue';
+import Benefits from '@/views/pages/Benefits.vue';
 
 Vue.use(Router);
 
@@ -96,6 +99,21 @@ export default new Router({
       path: "/group-tour",
       name: "GroupTour",
       component: GroupTour
+    },
+    {
+      path: "/guidebooks",
+      name: "Guidebooks",
+      component: Guidebooks
+    },
+    {
+      path: "/requirements",
+      name: "Requirements",
+      component: Requirements
+    },
+    {
+      path: "/benefits",
+      name: "Benefits",
+      component: Benefits
     },
     {
       path: "*",
