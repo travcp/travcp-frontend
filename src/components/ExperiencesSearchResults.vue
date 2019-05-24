@@ -9,9 +9,10 @@
     import { mapState, mapGetters, mapActions } from 'vuex';
     import DatePicker from 'vue2-datepicker'
     import Footer from '@/components/Footer.vue';
+    import SearchResults from '@/components/SearchResults.vue';
 
     export default {
-        name: 'SearchResults',
+        name: 'ExperiencesSearchResults',
         data: function () {
             return {
                 emptySearchToggle: false,
@@ -82,7 +83,8 @@
         },
         components: {
             Navbar,
-            Footer
+            Footer,
+            SearchResults
         },
         computed: {
             ...mapState(['isLoading']),

@@ -171,7 +171,7 @@ export default {
               })
     },
     payWithPaystack(){
-    var that = this
+    var _this = this
     var handler = PaystackPop.setup({
       key: 'pk_test_a3c6507e7a82c63308de9c5863bbe0950492d508',
       email: this.$store.state.auth.user.email,
@@ -188,9 +188,9 @@ export default {
          ]
       },
       callback: function(response){
+          _this.checkOut(response.reference);
+          _this.paystack_response = response.reference
           alert('success. transaction ref is ' + response.reference);
-          this.paystack_response = response.reference
-          that.checkOut();
       },
       onClose: function(){
           alert('window closed');
@@ -198,19 +198,21 @@ export default {
     });
     handler.openIframe();
   },
-  checkOut(){
+  checkOut(reference){
       let requestHeaders = {
         headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token }
       };
-      
-      let trasc_id = this.paystack_response.toString();
+      console.log('Got Here');
 
+      // let trasc_id = this.paystack_response.toString();
+      console.log(reference)
       axios.post(`${this.$store.state.API_BASE}/cart/checkout`, {
-                    "transaction_id": trasc_id,
+                    "transaction_id": reference,
                     "price": this.calcPrice,
                     "cart_id": this.cart.id
                   },requestHeaders).then(response => {
                     console.log(response.data)
+                    this.$noty.success("Payment Successfull")
                     this.getMyCarts()
                     // this.loading = false;
                   }).catch(err => {

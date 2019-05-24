@@ -1,6 +1,6 @@
 <template>
-    <div class="SearchResults">
-        <SearchResults :experiences="events" />
+    <div>
+        <search-results :experiences="events"></search-results>
     </div>
 </template>
 
@@ -81,7 +81,8 @@
             }
         },
         components: {
-            Navbar, Footer, SearchResults
+            Navbar, Footer,
+            'search-results': SearchResults
         },
         computed: {
             ...mapState(['isLoading']),
