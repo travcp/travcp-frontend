@@ -120,10 +120,10 @@ export default {
           axios.post(`${API_BASE}/bookings`,
                   data,
                   requestHeaders).then(res => {
-                    console.log(res.data.data);
+                    // console.log(res.data.data);
                     
                     commit("BOOKING_EXPERIENCE", res.data);
-                    // router.push("/");
+                    
                     resolve(res.data.data);
                   })
                   .catch(err => {

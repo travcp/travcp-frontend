@@ -49,7 +49,9 @@
                                     </li>
                                     <li>Requirements</li>
                                     <li>Benefits</li>
-                                    <li>Community</li>
+                                    <li>
+                                        <a href="http://travvapi.herokuapp.com/forums" @click="gotoForum">Community</a>
+                                    </li>
                                 </ul>
                             </aside>
                         </div>
@@ -104,6 +106,13 @@ export default {
       checkUserType(){
         return this.auth.user.role
       },
+      gotoForum(e){
+          e.preventDefault();
+          
+          if(this.$store.state.auth){
+              location.href = "http://travvapi.herokuapp.com/api/forums?token="+this.$store.state.auth.access_token
+          }
+      }
     }
 }
 </script>
