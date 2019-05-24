@@ -43,9 +43,9 @@
                                 <div class="f_w_title">
                                     <h3>Merchants</h3>
                                 </div>
-                                <ul class="">
+                                <ul class="" style="width: 100%;">
                                     <li class="" v-if="checkUserType == 'user'">
-                                        <a class="" href="#merchant-signup-modal" data-toggle="modal">Register</a>
+                                        <a class="" href="#merchant-signup-modal" data-toggle="modal">Become a Merchant</a>
                                     </li>
                                     <li>Requirements</li>
                                     <li>Benefits</li>
@@ -99,12 +99,8 @@ export default {
     name: 'Footer',
     components: {MerchantSignupModal},
     methods: {
-        ...mapState(['auth']),
       checkUser() {
           return this.auth != null ? true : false
-      },
-      checkUserType(){
-        return this.auth.user.role
       },
       gotoForum(e){
           e.preventDefault();
@@ -115,6 +111,12 @@ export default {
           else{
               location.href = "http://travvapi.herokuapp.com/travvforum"
           }
+      }
+    },
+    computed: {
+        ...mapState(['auth']),
+      checkUserType(){
+        return this.auth.user.role
       }
     }
 }

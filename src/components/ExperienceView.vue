@@ -32,6 +32,8 @@
                         {{ experience.about_merchant }}
                     </p>
                     <br>
+                    <h5>Payment Covers</h5>
+                    <p>{{ experience.offerings }}</p>
                     <!-- <h6 style="margin-left:20px;"><b>Rate the Experience</b></h6> <br> -->
                     <form  @submit.prevent="rateExperienceSubmit" v-if="auth">
                         <div class="col-md-12">
@@ -113,10 +115,7 @@
                                     <h3>Cost</h3>
                                     <h5>$ {{ experience.dollar_price }}</h5>
                                 </div>
-                                <div class="col-md-12">
-                                    <h3>Payment Covers</h3>
-                                    <h5>{{ experience.offerings }}</h5>
-                                </div>
+                                
                                 <div class="col-md-12">
                                     <h3>Language</h3>
                                     <h5>{{ experience.language ? experience.language : 'en' }}</h5>
