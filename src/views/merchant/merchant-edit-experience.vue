@@ -679,7 +679,7 @@ label {
   font-size: 15px !important;
 }
 </style>
-<style>
+<style scoped>
 .form-holder {
   width: 100%;
   /*height: 300px;*/
