@@ -1,13 +1,13 @@
 <template>
   <div class="container">
     <vue-headful
-            title="About | TravvApp"
+            title="Policies | TravvApp"
             description="Description from travvApp"
         />
     <Navbar/>
     <!--About us start -->
     <div class="about-us-header">
-      <p>About Us</p>
+      <p>Policies</p>
       <hr>
     </div>
     <div class="about-us-main">
@@ -44,7 +44,7 @@
 <script>
 import Navbar from "@/components/Navbar.vue";
 export default {
-  name: "AboutUs",
+  name: "Press",
   components: {
     Navbar
   }
@@ -74,7 +74,7 @@ export default {
   padding-bottom: 5%;
 }
 .about-us-image {
-  background: url("../assets/ueno.png");
+  background: url("../../assets/ueno.png");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

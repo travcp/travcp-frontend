@@ -39,6 +39,15 @@ import MerchantEditExperience from "@/views/merchant/merchant-edit-experience.vu
 import EventSearchResults from "@/components/EventSearchResults.vue";
 import RestaurantMenu from '@/views/RestaurantMenu.vue'
 
+import Careers from '@/views/pages/Careers.vue'
+import Press from '@/views/pages/Press.vue'
+import Policies from '@/views/pages/Policies.vue'
+import Faqs from '@/views/pages/Faqs.vue'
+
+import TrustAndSafety from '@/views/discover/TrustAndSafety.vue'
+import TravelCredit from '@/views/discover/TravelCredit.vue'
+import GroupTour from '@/views/discover/GroupTour.vue'
+
 Vue.use(Router);
 
 export default new Router({
@@ -52,6 +61,41 @@ export default new Router({
       name: "home",
       component: Home,
       meta: {title: 'Home'}
+    },
+    {
+      path: "/careers",
+      name: "Careers",
+      component: Careers,
+    },
+    {
+      path: "/press",
+      name: "Press",
+      component: Press,
+    },
+    {
+      path: "/policies",
+      name: "Policies",
+      component: Policies,
+    },
+    {
+      path: "/FAQS",
+      name: "Faqs",
+      component: Faqs,
+    },
+    {
+      path: "/trust-and-safety",
+      name: "TrustAndSafety",
+      component: TrustAndSafety
+    },
+    {
+      path: "/travel-credit",
+      name: "TravelCredit",
+      component: TravelCredit
+    },
+    {
+      path: "/group-tour",
+      name: "GroupTour",
+      component: GroupTour
     },
     {
       path: "*",

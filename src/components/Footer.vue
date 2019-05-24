@@ -17,10 +17,10 @@
                                 </div>
                                 <ul>
                                     <li><router-link to="/about-us">About us</router-link></li>
-                                    <li>Careers</li>
-                                    <li>Press</li>
-                                    <li>Policies</li>
-                                    <li>FAQs</li>
+                                    <li><router-link to="/careers">Careers</router-link></li>
+                                    <li><router-link to="/press">Press</router-link></li>
+                                    <li><router-link to="/policies">Policies</router-link></li>
+                                    <li><router-link to="/faqs">FAQs</router-link></li>
                                 </ul>
                             </aside>
                         </div>
@@ -30,9 +30,9 @@
                                     <h3>Discover</h3>
                                 </div>
                                 <ul>
-                                    <li>Trust & Safety</li>
-                                    <li>Travel Credit</li>
-                                    <li>Group Tour</li>
+                                    <li><router-link to="/trust-and-safety">Trust & Safety</router-link></li>
+                                    <li><router-link to="/travel-credit">Travel Credit</router-link></li>
+                                    <li><router-link to="/group-tour">Group Tour</router-link></li>
                                     <li>Guidebooks</li>
                                     <li><a href="http://travvblog.herokuapp.com">TravvApp Blog</a></li>
                                 </ul>
