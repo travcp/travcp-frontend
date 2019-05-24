@@ -309,11 +309,8 @@
                 loading: false,
                 checkBookingStatus: null,
                 reviews: [],
-<<<<<<< HEAD
                 securityStar: null,
-=======
                 delivery_address: null,
->>>>>>> 1a041bb44718df7a15e603c7cfd124191c7aabaf
                 // custom lang
 //                 toggleSecurityBox
                 securityRating: false,
