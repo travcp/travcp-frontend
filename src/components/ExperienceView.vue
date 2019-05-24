@@ -33,7 +33,7 @@
                     </p>
                     <br>
                     <!-- <h6 style="margin-left:20px;"><b>Rate the Experience</b></h6> <br> -->
-                    <form  @submit.prevent="rateExperienceSubmit">
+                    <form  @submit.prevent="rateExperienceSubmit" v-if="auth">
                         <div class="col-md-12">
                             
                             <div>
@@ -57,8 +57,8 @@
                             </div>
                             
                             <div>
-                                <h6 v-if="toggleRating"><b>Rate Security of the Experience</b></h6> <br>
-                                <div id="securityStars-input" @click="toggleSecurityBox" v-if="toggleRating">
+                                <h6><b>Rate Security of the Experience</b></h6> <br>
+                                <div id="securityStars-input" @click="toggleSecurityBox">
                                     <input id="star-2-4" value=5 v-model="securityStar" type="radio" name="securityStars"/>
                                     <label title="gorgeous" for="star-2-4"></label>
 
@@ -75,9 +75,9 @@
                                     <label title="bad" for="star-2-0"></label>
                                 </div><br><br>
                             </div>
-                        </div>
+                        </div> <br><br>
                         <div class="form-group col-md-6" v-if="toggleRating && securityRating">
-                            <h6>Rate this Experience</h6>
+                            <h6>Review this Experience</h6>
                             <!-- <label>Rate this Experience</label> -->
                             <input type="text" class="form-control edit-prof-input" v-model="rate_this_exp_text">
                             <button type="submit" class="book_btn">Rate</button>
