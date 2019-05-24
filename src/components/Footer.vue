@@ -110,10 +110,10 @@ export default {
           e.preventDefault();
           
           if(this.$store.state.auth){
-              location.href = "http://travvapi.herokuapp.com/api/travvforum?token="+this.$store.state.auth.access_token
+              location.href = "http://travvapi.herokuapp.com/travvforum?token="+this.$store.state.auth.access_token
           }
           else{
-              location.href = "http://travvapi.herokuapp.com/api/travvforum"
+              location.href = "http://travvapi.herokuapp.com/travvforum"
           }
       }
     }
