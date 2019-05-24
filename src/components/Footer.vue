@@ -17,10 +17,10 @@
                                 </div>
                                 <ul>
                                     <li><router-link to="/about-us">About us</router-link></li>
-                                    <li>Careers</li>
-                                    <li>Press</li>
-                                    <li>Policies</li>
-                                    <li>FAQs</li>
+                                    <li><router-link to="/careers">Careers</router-link></li>
+                                    <li><router-link to="/press">Press</router-link></li>
+                                    <li><router-link to="/policies">Policies</router-link></li>
+                                    <li><router-link to="/faqs">FAQs</router-link></li>
                                 </ul>
                             </aside>
                         </div>
@@ -30,9 +30,9 @@
                                     <h3>Discover</h3>
                                 </div>
                                 <ul>
-                                    <li>Trust & Safety</li>
-                                    <li>Travel Credit</li>
-                                    <li>Group Tour</li>
+                                    <li><router-link to="/trust-and-safety">Trust & Safety</router-link></li>
+                                    <li><router-link to="/travel-credit">Travel Credit</router-link></li>
+                                    <li><router-link to="/group-tour">Group Tour</router-link></li>
                                     <li>Guidebooks</li>
                                     <li><a href="http://travvblog.herokuapp.com">TravvApp Blog</a></li>
                                 </ul>
@@ -43,9 +43,9 @@
                                 <div class="f_w_title">
                                     <h3>Merchants</h3>
                                 </div>
-                                <ul class="">
+                                <ul class="" style="width: 100%;">
                                     <li class="" v-if="checkUserType == 'user'">
-                                        <a class="" href="#merchant-signup-modal" data-toggle="modal">Register</a>
+                                        <a class="" href="#merchant-signup-modal" data-toggle="modal">Become a Merchant</a>
                                     </li>
                                     <li>Requirements</li>
                                     <li>Benefits</li>
@@ -99,12 +99,8 @@ export default {
     name: 'Footer',
     components: {MerchantSignupModal},
     methods: {
-        ...mapState(['auth']),
       checkUser() {
           return this.auth != null ? true : false
-      },
-      checkUserType(){
-        return this.auth.user.role
       },
       gotoForum(e){
           e.preventDefault();
@@ -115,6 +111,12 @@ export default {
           else{
               location.href = "http://travvapi.herokuapp.com/travvforum"
           }
+      }
+    },
+    computed: {
+        ...mapState(['auth']),
+      checkUserType(){
+        return this.auth.user.role
       }
     }
 }

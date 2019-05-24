@@ -53,7 +53,10 @@
       
         <div class="my-cart-button">
           <button class="button button1">Explore</button>
-          <button class="button button2">Checkout</button>
+          <form >
+            <button type="button" class="button button2" @click="payWithPaystack()"> Checkout </button> 
+          </form>
+          <!-- <button class="">Checkout</button> -->
         </div>
       </div>
       <!-- booking header details right -->
@@ -118,6 +121,7 @@ export default {
       loading: false,
       cart: [],
       no_cart_items: null,
+      paystack_response: null
     }
   },
   components: {
@@ -165,7 +169,57 @@ export default {
               }).catch(err => {
                 this.$noty.error("Oops, there was error getting carts");
               })
-    }
+    },
+    payWithPaystack(){
+    var _this = this
+    var handler = PaystackPop.setup({
+      key: 'pk_test_a3c6507e7a82c63308de9c5863bbe0950492d508',
+      email: this.$store.state.auth.user.email,
+      amount: 1000,
+      currency: "NGN",
+      ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+      metadata: {
+         custom_fields: [
+            {
+                display_name: "Mobile Number",
+                variable_name: "mobile_number",
+                value: "+2348012345678"
+            }
+         ]
+      },
+      callback: function(response){
+          _this.checkOut(response.reference);
+          _this.paystack_response = response.reference
+          alert('success. transaction ref is ' + response.reference);
+      },
+      onClose: function(){
+          alert('window closed');
+      }
+    });
+    handler.openIframe();
+  },
+  checkOut(reference){
+      let requestHeaders = {
+        headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token }
+      };
+      console.log('Got Here');
+
+      // let trasc_id = this.paystack_response.toString();
+      console.log(reference)
+      axios.post(`${this.$store.state.API_BASE}/cart/checkout`, {
+                    "transaction_id": reference,
+                    "price": this.calcPrice,
+                    "cart_id": this.cart.id
+                  },requestHeaders).then(response => {
+                    console.log(response.data)
+                    this.$noty.success("Payment Successfull")
+                    this.getMyCarts()
+                    // this.loading = false;
+                  }).catch(err => {
+                    this.$noty.error("Oops, there was error getting carts");
+                  })
+
+  }
   },
   created() {
     this.getMyCarts();

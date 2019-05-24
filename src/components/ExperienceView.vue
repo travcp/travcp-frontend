@@ -32,28 +32,54 @@
                         {{ experience.about_merchant }}
                     </p>
                     <br>
-                    <h6 style="margin-left:20px;"><b>Rate the Experience</b></h6> <br>
-                    <form  @submit.prevent="rateExperienceSubmit">
+                    <h5>Payment Covers</h5>
+                    <p>{{ experience.offerings }}</p>
+                    <!-- <h6 style="margin-left:20px;"><b>Rate the Experience</b></h6> <br> -->
+                    <form  @submit.prevent="rateExperienceSubmit" v-if="auth">
                         <div class="col-md-12">
-                            <div id="reviewStars-input" @click="toggleRatingBox">
-                                <input id="star-4" value="5" v-model="reviewStar" type="radio" name="reviewStars"/>
-                                <label title="gorgeous" for="star-4"></label>
+                            
+                            <div>
+                                <h6><b>Rate the Experience</b></h6> <br>
+                                <div id="reviewStars-input" @click="toggleRatingBox" >
+                                    <input id="star-4" value=5 v-model="reviewStar" type="radio" name="reviewStars"/>
+                                    <label title="gorgeous" for="star-4"></label>
 
-                                <input id="star-3" value="4" v-model="reviewStar" type="radio" name="reviewStars"/>
-                                <label title="good" for="star-3"></label>
+                                    <input id="star-3" value=4 v-model="reviewStar" type="radio" name="reviewStars"/>
+                                    <label title="good" for="star-3"></label>
 
-                                <input id="star-2" value="3" v-model="reviewStar" type="radio" name="reviewStars"/>
-                                <label title="regular" for="star-2"></label>
+                                    <input id="star-2" value=3 v-model="reviewStar" type="radio" name="reviewStars"/>
+                                    <label title="regular" for="star-2"></label>
 
-                                <input id="star-1" value="2" v-model="reviewStar" type="radio" name="reviewStars"/>
-                                <label title="poor" for="star-1"></label>
+                                    <input id="star-1" value=2 v-model="reviewStar" type="radio" name="reviewStars"/>
+                                    <label title="poor" for="star-1"></label>
 
-                                <input id="star-0" value="1" v-model="reviewStar" type="radio" name="reviewStars"/>
-                                <label title="bad" for="star-0"></label>
-                            </div><br><br>
-                        </div>
-                        <div class="form-group col-md-6" v-if="toggleRating">
-                            <h6>Rate this Experience</h6>
+                                    <input id="star-0" value=1 v-model="reviewStar" type="radio" name="reviewStars"/>
+                                    <label title="bad" for="star-0"></label>
+                                </div><br><br><br><br>    
+                            </div>
+                            
+                            <div>
+                                <h6><b>Rate Security of the Experience</b></h6> <br>
+                                <div id="securityStars-input" @click="toggleSecurityBox">
+                                    <input id="star-2-4" value=5 v-model="securityStar" type="radio" name="securityStars"/>
+                                    <label title="gorgeous" for="star-2-4"></label>
+
+                                    <input id="star-2-3" value=4 v-model="securityStar" type="radio" name="securityStars"/>
+                                    <label title="good" for="star-2-3"></label>
+
+                                    <input id="star-2-2" value=3 v-model="securityStar" type="radio" name="securityStars"/>
+                                    <label title="regular" for="star-2-2"></label>
+
+                                    <input id="star-2-1" value=2 v-model="securityStar" type="radio" name="securityStars"/>
+                                    <label title="poor" for="star-2-1"></label>
+
+                                    <input id="star-2-0" value=1 v-model="securityStar" type="radio" name="securityStars"/>
+                                    <label title="bad" for="star-2-0"></label>
+                                </div><br><br>
+                            </div>
+                        </div> <br><br>
+                        <div class="form-group col-md-6" v-if="toggleRating && securityRating">
+                            <h6>Review this Experience</h6>
                             <!-- <label>Rate this Experience</label> -->
                             <input type="text" class="form-control edit-prof-input" v-model="rate_this_exp_text">
                             <button type="submit" class="book_btn">Rate</button>
@@ -64,6 +90,12 @@
                     <div class="travv-sidebar" style="height: auto;">
                         <div class="container">
                             <div class="row sidebar_text">
+                                <div class="col-md-12" style="position: absolute;text-align: right;right: 30px;">
+
+                                    <img v-if="experience.security == 'secure'" src="../assets/travv/protected.png" width="56" />
+                                    <img v-else src="../assets/travv/caution.png" width="56" />
+
+                                </div>
                                 <div class="col-md-12">
                                     <h3>Experience Type</h3>
                                     <!-- v-for="experience_type in experience_types" v-if="experience_type && experience_type.id == experience.experiences_type_id" -->
@@ -83,10 +115,7 @@
                                     <h3>Cost</h3>
                                     <h5>$ {{ experience.dollar_price }}</h5>
                                 </div>
-                                <div class="col-md-12">
-                                    <h3>Payment Covers</h3>
-                                    <h5>{{ experience.offerings }}</h5>
-                                </div>
+                                
                                 <div class="col-md-12">
                                     <h3>Language</h3>
                                     <h5>{{ experience.language ? experience.language : 'en' }}</h5>
@@ -279,8 +308,11 @@
                 loading: false,
                 checkBookingStatus: null,
                 reviews: [],
+                securityStar: null,
                 delivery_address: null,
                 // custom lang
+//                 toggleSecurityBox
+                securityRating: false,
                 lang: {
                     days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
                     months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -328,7 +360,8 @@
                             "user_id": this.auth.user.id,
                             "experience_id": this.experience.id,
                             "review_body": this.rate_this_exp_text,
-                            "rating": this.reviewStar
+                            "rating": this.reviewStar,
+                            "security_rating": this.securityStar
                         }).then(res => {
                             this.$noty.success("Your review has been submitted");
                             this.toggleRating = false;
@@ -404,6 +437,14 @@
                     this.$noty.error("Oops, You need to Login to Review or Rate an Expereince");
                 }
             },
+            toggleSecurityBox() {
+                if(this.auth) {
+                    this.toggleRating = true;
+                    this.securityRating = true
+                } else {
+                    this.$noty.error("Oops, You need to Login to Review or Rate an Expereince");
+                }
+            },
             ratingInfo() {
                 this.loading = true;
                 // let requestHeaders = {
@@ -473,6 +514,13 @@
         }
     }
 </script>
+<style scoped>
+.rounded-circle {
+    border-radius: 50%!important;
+    height: 50px;
+    width: 50px;
+}
+</style>
 
 <style>
 @media only screen and (max-width: 576px) {
@@ -865,7 +913,7 @@ input::-webkit-calendar-picker-indicator {
     border: none;        
     font-family: MuseoSans700;
     font-size: 16px;
-    /* width: 130px; */
+    width: 130px;
     height: 45px;
     border-radius: 5px;
     background-color: #f81894;
@@ -942,6 +990,78 @@ input::-webkit-calendar-picker-indicator {
 #reviewStars-input #star-5 {
   left: 265px;
 }
+
+
+#securityStars-input input:checked ~ label, #securityStars-input label, #securityStars-input label:hover, #securityStars-input label:hover ~ label {
+  background: url('http://positivecrash.com/wp-content/uploads/ico-s71a7fdede6.png') no-repeat;
+}
+
+#securityStars-input {
+  
+  /*fix floating problems*/
+  overflow: hidden;
+  *zoom: 1;
+  /*end of fix floating problems*/
+  
+  position: relative;
+  float: left;
+}
+
+#securityStars-input input {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  
+  width: 43px;
+  height: 40px;
+  
+  position: absolute;
+  top: 0;
+  z-index: 0;
+}
+
+#securityStars-input input:checked ~ label {
+  background-position: 0 -40px;
+  height: 40px;
+  width: 43px;
+}
+
+#securityStars-input label {
+  background-position: 0 0;
+  height: 40px;
+  width: 43px;
+  float: right;
+  cursor: pointer;
+  margin-right: 10px;
+  
+  position: relative;
+  z-index: 1;
+}
+
+#securityStars-input label:hover, #securityStars-input label:hover ~ label {
+  background-position: 0 -40px;
+  height: 40px;
+  width: 43px;
+}
+
+#securityStars-input #star-2-0 {
+  left: 0px;
+}
+#securityStars-input #star-2-1 {
+  left: 53px;
+}
+#securityStars-input #star-2-2 {
+  left: 106px;
+}
+#securityStars-input #star-2-3 {
+  left: 159px;
+}
+#securityStars-input #star-2-4 {
+  left: 212px;
+}
+#securityStars-input #star-2-5 {
+  left: 265px;
+}
+
 .sidebar_text h5{
     color: #555 !important;
 }
