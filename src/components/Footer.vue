@@ -34,7 +34,7 @@
                                     <li>Travel Credit</li>
                                     <li>Group Tour</li>
                                     <li>Guidebooks</li>
-                                    <li>TravvApp Mag</li>
+                                    <li><a href="http://travvblog.herokuapp.com">TravvApp Blog</a></li>
                                 </ul>
                             </aside>
                         </div>
@@ -49,7 +49,9 @@
                                     </li>
                                     <li>Requirements</li>
                                     <li>Benefits</li>
-                                    <li>Community</li>
+                                    <li>
+                                        <a href="http://travvapi.herokuapp.com/forums" @click="gotoForum">Community</a>
+                                    </li>
                                 </ul>
                             </aside>
                         </div>
@@ -104,6 +106,16 @@ export default {
       checkUserType(){
         return this.auth.user.role
       },
+      gotoForum(e){
+          e.preventDefault();
+          
+          if(this.$store.state.auth){
+              location.href = "http://travvapi.herokuapp.com/travvforum?token="+this.$store.state.auth.access_token
+          }
+          else{
+              location.href = "http://travvapi.herokuapp.com/travvforum"
+          }
+      }
     }
 }
 </script>

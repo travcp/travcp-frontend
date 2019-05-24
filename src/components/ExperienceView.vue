@@ -133,7 +133,13 @@
                                 </div> -->
                                 <div class="col-md-12 booking-action">
                                     <form @submit.prevent="bookExperience" v-if="!checkBookingStatus">
-                                        <date-picker v-validate="'required'" v-model="time" range :shortcuts="shortcuts" :lang="lang"></date-picker>
+                                        
+                                        <div v-if="experience.experience_type == 'sourvenirs'">
+                                            <input type="text" name="deliveryAddress" v-validate="'required|min:5' ? experience.experience_type == 'sourvenirs' : ''" v-model="delivery_address" placeholder="Address you'd like the item delivered to" class="form-control">
+                                            <span>{{ errors.first('deliveryAddress') }}</span>
+                                        </div>
+                                        <date-picker name="date" v-validate="'required' ? experience.experience_type == 'restaurants' : ''" v-model="time" range :shortcuts="shortcuts" :lang="lang" v-else></date-picker>
+                                        <span>{{ errors.first('date') }}</span>
                                         <!-- <p>Start Date <input id="datepicker" v-model="start_date" type="date" width="276" /> -->
                                         <!-- <date-picker v-model="time" range :shortcuts="shortcuts" :lang="lang"></date-picker> -->
                                         <!-- <p>End Date <input id="datepicker2" v-model="end_date" type="date" width="276" /></p> -->
@@ -258,12 +264,6 @@
                                                 <br>
                                                 <p class="review_date">{{ review.review_body }}</p>
                                             </div>
-                                            <!-- <div class="col-4">
-                                                <div class="guest_review_cont">
-                                                    <h4>Great</h4>
-                                                    <p>good quality stickers</p>
-                                                </div>
-                                            </div> -->
                                         </div> <br>
                                     </div>
                                 </div>
@@ -309,7 +309,11 @@
                 loading: false,
                 checkBookingStatus: null,
                 reviews: [],
+<<<<<<< HEAD
                 securityStar: null,
+=======
+                delivery_address: null,
+>>>>>>> 1a041bb44718df7a15e603c7cfd124191c7aabaf
                 // custom lang
 //                 toggleSecurityBox
                 securityRating: false,
@@ -378,35 +382,42 @@
             },
             bookExperience: function () {
                 if(this.auth) {
-                    if (this.time[0]) {
-                        let data = {
-                            // food_menu_ids: ["2", "3", "4"],
-                            price: this.experience.naira_price,
-                            merchant_id: this.experience.merchant_id,
-                            user_id: this.auth.user.id,
-                            experience_id: this.$route.params.id,
-                            start_date: this.formatDate(this.time[0]),
-                            end_date: this.formatDate(this.time[1])
-                        };
-                        let requestHeaders = {
-                          headers: { Authorization: "Bearer " + this.$store.state.auth.access_token }
-                        };
-                        // console.log(this.formatDate(this.time[0]));
-                        this.bookingExperience(data).then(response => {
-                            console.log(response)
-                            axios.post(`${this.$store.state.API_BASE}/cart/add`,{
-                                    "booking_id": response.id
-                                  }, requestHeaders).then(response => {
-                                    console.log(response.data.data);
-                                  }).catch(error => {
-                                    console.log(error)
-                                  })
-                        });
-                        this.checkIfBooked()
-                        this.$noty.success("Experience is Booked Succesfully")
-                    } else {
-                        this.$noty.error("Please enter a check in and check out date");
-                    }
+                    this.$validator.validate().then(valid => {
+                        if (valid) {
+                            // if (this.time[0]) {
+                                let data = {
+                                    // food_menu_ids: ["2", "3", "4"],
+                                    price: this.experience.naira_price,
+                                    merchant_id: this.experience.merchant_id,
+                                    user_id: this.auth.user.id,
+                                    experience_id: this.$route.params.id,
+                                    start_date: this.formatDate(this.time[0]),
+                                    end_date: this.formatDate(this.time[1]),
+                                    delivery_address: this.delivery_address
+                                };
+                                let requestHeaders = {
+                                headers: { Authorization: "Bearer " + this.$store.state.auth.access_token }
+                                };
+                                // console.log(this.formatDate(this.time[0]));
+                                this.bookingExperience(data).then(response => {
+                                    console.log(response)
+                                    axios.post(`${this.$store.state.API_BASE}/cart/add`,{
+                                            "booking_id": response.id
+                                        }, requestHeaders).then(response => {
+                                            console.log(response.data.data);
+                                        }).catch(error => {
+                                            console.log(error)
+                                        })
+                                    this.checkIfBooked()
+                                    this.$noty.success("This experience has been added to your cart")
+                                });
+                                
+                            // } else {
+                            //     this.$noty.error("Please enter a check in and check out date");
+                            // }
+                        }
+                    });
+                    
 
                 } else {
                     this.$noty.error("Oops, You need to Login to Book and Experience");
