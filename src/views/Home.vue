@@ -36,8 +36,8 @@
               </div>
               <div class="col-lg-4 no-pad-r" style="text-align: center;">
                 <router-link to="/videos">
-                  <img src="../assets/Icons/security.svg" style="height: 125px;" />
-                  <p class="title">Get Security Updates</p>
+                  <img src="../assets/travv/play.png" style="height: 125px;" />
+                  <p class="title">Videos</p>
                 </router-link>
                   <!-- <div class="c_box_item">
                     <p class="title">Get Security Updates</p>

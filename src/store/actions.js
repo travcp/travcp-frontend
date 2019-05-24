@@ -282,7 +282,8 @@ export default {
           user_id: data.user_id,
           experience_id: data.experience_id,
           review_body: data.review_body,
-          rating: Number(data.rating)
+          rating: Number(data.rating),
+          security_rating: Number(data.security_rating)
         },
         requestHeaders
       )
