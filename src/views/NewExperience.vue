@@ -1,14 +1,11 @@
 <template>
   <div>
-    <vue-headful
-      title="New Experiene | TravvApp"
-      description="Description from travvApp"
-    />
-    <Navbar />
+    <vue-headful title="New Experiene | TravvApp" description="Description from travvApp"/>
+    <Navbar/>
     <div class="new_experience">
       <div class="new_experience_title" style="text-align: center;">
         <p>Add New</p>
-        <hr class="new_experience_title_horizontal" />
+        <hr class="new_experience_title_horizontal">
       </div>
       <div class="container">
         <div class="row">
@@ -33,8 +30,7 @@
                               <option
                                 v-for="experience_type in experience_types"
                                 v-if="experience_type"
-                                >{{ experience_type.name }}</option
-                              >
+                              >{{ experience_type.name }}</option>
                             </select>
                           </div>
                         </div>
@@ -50,279 +46,282 @@
                                   ref="files"
                                   multiple
                                   v-on:change="handleFilesUpload()"
-                                />
+                                >
 
                                 <div class="large-12 medium-12 small-12 cell">
-                                  <div
-                                    v-for="(file, key) in files"
-                                    class="file-listing"
-                                  >
+                                  <div v-for="(file, key) in files" class="file-listing">
                                     {{ file.name }}
                                     <span
                                       class="remove-file"
                                       v-on:click="removeFile(key)"
-                                      >Remove</span
-                                    >
+                                    >Remove</span>
                                   </div>
                                 </div>
-                                <br />
+                                <br>
                                 <!-- <div class="large-12 medium-12 small-12 cell">
                                       <button @click="addFiles">Add Files</button>
-                                    </div> -->
+                                </div>-->
                               </div>
                             </div>
-                            <div class="row">
-                              <div
-                                class="form-group col-md-6"
-                                v-if="requiredFields.includes('title')"
-                              >
-                                <label>Title</label>
-                                <input
-                                  v-validate="'required'"
-                                  type="text"
-                                  class="form-control new_experience_input"
-                                  placeholder="Title"
-                                  v-model="title"
+                            <div class="row-unusable">
+                              <div class="row">
+                                <div
+                                  class="form-group col-md-12"
                                   v-if="requiredFields.includes('title')"
-                                />
-                              </div>
-                              <div
-                                class="form-group col-md-6"
-                                v-if="requiredFields.includes('location')"
-                              >
-                                <label>Location</label>
-                                <input
-                                  v-validate="'required'"
-                                  type="text"
-                                  class="form-control new_experience_input"
-                                  placeholder="Location"
-                                  v-model="location"
-                                />
-                              </div>
-                              <div
-                                class="form-group col-md-6"
-                                v-if="requiredFields.includes('city')"
-                              >
-                                <label>City</label>
-                                <input
-                                  v-validate="'required'"
-                                  type="text"
-                                  class="form-control new_experience_input"
-                                  placeholder="City"
-                                  v-model="city"
-                                />
-                              </div>
-                              <div
-                                class="form-group col-md-6"
-                                v-if="requiredFields.includes('state')"
-                              >
-                                <label>State</label>
-                                <input
-                                  v-validate="'required'"
-                                  type="text"
-                                  class="form-control new_experience_input"
-                                  placeholder="State"
-                                  v-model="state"
-                                />
-                              </div>
-                              <div
-                                class="form-group col-md-4"
-                                v-if="requiredFields.includes('country')"
-                              >
-                                <label>Country</label>
-                                <!-- <input
-                                        v-validate="'required'"
-                                        type="text"
-                                        class="form-control new_experience_input"
-                                        placeholder="Country"
-                                        v-model="state_22"
-                                /> -->
-                                <country-select
-                                  v-model="country"
-                                  :country="country"
-                                  :countryName="true"
-                                  topCountry="US"
-                                  className="form-control new_experience_input"
-                                />
-                              </div>
-                              <div
-                                class="form-group col-md-6"
-                                v-if="requiredFields.includes('offerings')"
-                              >
-                                <label
-                                  >Offerings on tour ( drinks, snacks,
-                                  etc)</label
                                 >
-                                <input
-                                  v-validate="'required'"
-                                  type="text"
-                                  class="form-control new_experience_input"
-                                  placeholder="State"
-                                  v-model="offerings"
-                                />
+                                  <label>Title</label>
+                                  <input
+                                    v-validate="'required'"
+                                    type="text"
+                                    class="form-control new_experience_input"
+                                    placeholder="Title"
+                                    v-model="title"
+                                    v-if="requiredFields.includes('title')"
+                                  >
+                                </div>
                               </div>
-                              <div
-                                class="form-group col-md-6"
-                                v-if="requiredFields.includes('language')"
-                              >
-                                <label>Language</label>
-                                <input
-                                  type="text"
-                                  name="language"
-                                  id="inputState"
-                                  class="form-control new_experience_input"
-                                  v-model="language"
-                                  placeholder="Language e.g English"
-                                />
+                              <div class="row">
+                                <div
+                                  class="form-group col-md-12"
+                                  v-if="requiredFields.includes('location')"
+                                >
+                                  <label>Location</label>
+                                  <input
+                                    v-validate="'required'"
+                                    type="text"
+                                    class="form-control new_experience_input"
+                                    placeholder="Location"
+                                    v-model="location"
+                                  >
+                                </div>
                               </div>
-                              <div
-                                class="form-group col-md-6"
-                                v-if="requiredFields.includes('description')"
-                              >
-                                <label>Short descriptions</label>
-                                <textarea
-                                  v-validate="'required'"
-                                  cols="30"
-                                  rows="10"
-                                  class="form-control"
-                                  v-model="description"
-                                ></textarea>
+                              <div class="row">
+                                <div
+                                  class="form-group col-md-4"
+                                  v-if="requiredFields.includes('city')"
+                                >
+                                  <label>City</label>
+                                  <input
+                                    v-validate="'required'"
+                                    type="text"
+                                    class="form-control new_experience_input"
+                                    placeholder="City"
+                                    v-model="city"
+                                  >
+                                </div>
+                                <div
+                                  class="form-group col-md-4"
+                                  v-if="requiredFields.includes('state')"
+                                >
+                                  <label>State</label>
+                                  <input
+                                    v-validate="'required'"
+                                    type="text"
+                                    class="form-control new_experience_input"
+                                    placeholder="State"
+                                    v-model="state"
+                                  >
+                                </div>
+                                <div
+                                  class="form-group col-md-4"
+                                  v-if="requiredFields.includes('country')"
+                                >
+                                  <label>Country</label>
+                                  <country-select
+                                    v-model="country"
+                                    :country="country"
+                                    :countryName="true"
+                                    topCountry="US"
+                                    class="form-control new_experience_input"
+                                  />
+                                </div>
                               </div>
-                              <div
-                                class="form-group col-md-6"
-                                v-if="requiredFields.includes('extra_perks')"
-                              >
-                                <label>Extra Perks</label>
-                                <textarea
-                                  v-validate="'required'"
-                                  cols="30"
-                                  rows="10"
-                                  class="form-control"
-                                  v-model="extra_perks"
-                                ></textarea>
-                              </div>
-                              <div
-                                class="form-group col-md-6"
-                                v-if="requiredFields.includes('drink_types')"
-                              >
-                                <label>Drink Types</label>
-                                <textarea
-                                  v-validate="'required'"
-                                  cols="30"
-                                  rows="10"
-                                  class="form-control"
-                                  v-model="drink_types"
-                                ></textarea>
-                              </div>
-                              <div
-                                class="form-group col-md-6"
-                                v-if="requiredFields.includes('history')"
-                              >
-                                <label>History</label>
-                                <textarea
-                                  v-validate="'required'"
-                                  cols="30"
-                                  rows="10"
-                                  class="form-control"
-                                  v-model="history"
-                                ></textarea>
-                              </div>
-                              <div
-                                class="form-group col-md-6"
-                                v-if="requiredFields.includes('meetup_location')"
-                              >
-                                <label>Meet up Location</label>
-                                <input
-                                  v-validate="'required'"
-                                  type="text"
-                                  class="form-control new_experience_input"
-                                  placeholder=""
-                                  v-model="meetup_location"
-                                />
-                              </div>
-                              <div
-                                class="form-group col-md-6"
-                                v-if="requiredFields.includes('itenary')"
-                              >
-                                <label>Itinerary for the experience</label>
-                                <input
-                                  v-validate="'required'"
-                                  type="text"
-                                  class="form-control new_experience_input"
-                                  placeholder=""
-                                  v-model="itenary"
-                                />
-                              </div>
-                              <div
-                                class="form-group col-md-6"
-                                v-if="requiredFields.includes('tourist_expected_items')"
-                              >
-                                <label>What tourists should bring along</label>
-                                <input
-                                  v-validate="'required'"
-                                  type="text"
-                                  class="form-control new_experience_input"
-                                  placeholder=""
-                                  v-model="tourist_expected_items"
-                                />
-                              </div>
-                              <div
-                                class="form-group col-md-6"
-                                v-if="
-                                  requiredFields.includes('number_admittable')
-                                "
-                              >
-                                <label>Number admittable</label>
-                                <input
-                                  name="number_admittable"
-                                  v-validate="'required'"
-                                  type="text"
-                                  class="form-control new_experience_input"
-                                  placeholder=""
-                                  v-model="number_admittable"
-                                />
-                              </div>
-                              <div class="col-md-12" v-if="
-                                  requiredFields.includes('opening_and_closing_hours')
-                                ">
-                                <label>Opening and closing hours</label>
-                                <open-closing-times v-model="opening_and_closing_hours"/>
-                              </div>
-                              <!-- <div
-                                class="form-group col-md-6"
-                                v-if="
-                                  requiredFields.includes('opening_and_closing_hours')
-                                "
-                              >
-                              
-                                <label>Opening and closing hours</label>
-                                <input
-                                  name="opening_and_closing_hours"
-                                  v-validate="'required'"
-                                  type="text"
-                                  class="form-control new_experience_input"
-                                  placeholder=""
-                                  v-model="opening_and_closing_hours"
-                                />
-                              </div> -->
-
-                              <div
-                                class="form-group col-md-6"
-                                v-if="requiredFields.includes('naira_price')"
-                              >
-                                <div class="row">
-                                  <div class="form-group col-md-4">
-                                    <label>Price</label>
+                              <div class="row">
+                                  <div
+                                    class="form-group col-md-6"
+                                    v-if="requiredFields.includes('offerings')"
+                                  >
+                                    <label>
+                                      Offerings on tour ( drinks, snacks,
+                                      etc)
+                                    </label>
                                     <input
                                       v-validate="'required'"
                                       type="text"
                                       class="form-control new_experience_input"
-                                      placeholder="in Dollars"
-                                      v-model="naira_price"
-                                    />
+                                      placeholder="What payment covers"
+                                      v-model="offerings"
+                                    >
                                   </div>
-                                  <div class="form-group col-md-8">
-                                    <label>Dates Range</label> <br />
+                                  <div
+                                    class="form-group col-md-6"
+                                    v-if="requiredFields.includes('language')"
+                                  >
+                                    <label>Language</label>
+                                    <input
+                                      type="text"
+                                      name="language"
+                                      id="inputState"
+                                      class="form-control new_experience_input"
+                                      v-model="language"
+                                      placeholder="Language e.g English"
+                                    >
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div
+                                    class="form-group col-md-6"
+                                    v-if="requiredFields.includes('description')"
+                                  >
+                                    <label>Description of the experience</label>
+                                    <textarea
+                                      v-validate="'required'"
+                                      placeholder="A short description of the experience"
+                                      cols="30"
+                                      rows="10"
+                                      class="form-control"
+                                      v-model="description"
+                                    ></textarea>
+                                  </div>
+                                  <div
+                                    class="form-group col-md-6"
+                                    v-if="requiredFields.includes('about_merchant')"
+                                  >
+                                    <label>Merchant's Bio</label>
+                                    <textarea
+                                      v-validate="'required'"
+                                      placeholder="A short bio about the merchant adding this experience"
+                                      cols="30"
+                                      rows="10"
+                                      class="form-control"
+                                      v-model="about_merchant"
+                                    ></textarea>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div
+                                    class="form-group col-md-6"
+                                    v-if="requiredFields.includes('extra_perks')"
+                                  >
+                                    <label>Extra Perks</label>
+                                    <textarea
+                                      v-validate="'required'"
+                                      cols="30"
+                                      rows="10"
+                                      class="form-control"
+                                      v-model="extra_perks"
+                                    ></textarea>
+                                  </div>
+                                  <div
+                                    class="form-group col-md-6"
+                                    v-if="requiredFields.includes('drink_types')"
+                                  >
+                                    <label>Drink Types</label>
+                                    <textarea
+                                      cols="30"
+                                      rows="10"
+                                      class="form-control"
+                                      v-model="drink_types"
+                                    ></textarea>
+                                  </div>
+                              </div>
+
+                              <div class="row">
+                                  <div
+                                    class="form-group col-md-6"
+                                    v-if="requiredFields.includes('history')"
+                                  >
+                                    <label>History</label>
+                                    <textarea
+                                      cols="30"
+                                      rows="10"
+                                      placeholder="History of the experience"
+                                      class="form-control"
+                                      v-model="history"
+                                    ></textarea>
+                                  </div>
+                                  <div
+                                    class="form-group col-md-6"
+                                    v-if="requiredFields.includes('meetup_location')"
+                                  >
+                                    <label>Meet up Location</label>
+                                    <input
+                                      v-validate="'required'"
+                                      type="text"
+                                      class="form-control new_experience_input"
+                                      placeholder
+                                      v-model="meetup_location"
+                                    >
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div
+                                    class="form-group col-md-5"
+                                    v-if="requiredFields.includes('itenary')"
+                                  >
+                                    <label>Itinerary for the experience</label>
+                                    <input
+                                      v-validate="'required'"
+                                      type="text"
+                                      class="form-control new_experience_input"
+                                      placeholder
+                                      v-model="itenary"
+                                    >
+                                  </div>
+                                  <div
+                                    class="form-group col-md-4"
+                                    v-if="requiredFields.includes('tourist_expected_items')"
+                                  >
+                                    <label>What tourists should bring along</label>
+                                    <input
+                                      v-validate="'required'"
+                                      type="text"
+                                      class="form-control new_experience_input"
+                                      placeholder
+                                      v-model="tourist_expected_items"
+                                    >
+                                  </div>
+                                  <div
+                                    class="form-group col-md-3"
+                                    v-if="
+                                      requiredFields.includes('number_admittable')
+                                    "
+                                  >
+                                    <label>Number admittable</label>
+                                    <input
+                                      name="number_admittable"
+                                      v-validate="'required'"
+                                      type="number"
+                                      class="form-control new_experience_input"
+                                      placeholder
+                                      v-model="number_admittable"
+                                    >
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-md-12" v-if=" requiredFields.includes('opening_and_closing_hours')">
+                                    <label>Opening and closing hours</label>
+                                    <open-closing-times v-model="opening_and_closing_hours"/>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                <div
+                                  class="form-group col-md-6"
+                                  v-if="requiredFields.includes('dollar_price')"
+                                >
+                                  <label>Price ($)</label>
+                                    <input
+                                      v-validate="'required'"
+                                      type="number"
+                                      step="any"
+                                      class="form-control new_experience_input"
+                                      placeholder="in Dollars"
+                                      v-model="dollar_price"
+                                    >
+                                  </div>
+                                  <div class="form-group col-md-6" v-if="requiredFields.includes('start_date')">
+                                    <label>Dates Range</label>
+                                    <br>
                                     <date-picker
                                       v-validate="'required'"
                                       v-model="time"
@@ -332,9 +331,11 @@
                                       input-class="form-control new_experience_input"
                                     ></date-picker>
                                   </div>
-                                </div>
+                                  
+                                
                               </div>
                             </div>
+                            <br>
                             <div class="col-md-12" style="text-align: center;">
                               <button
                                 type="submit"
@@ -350,6 +351,7 @@
                                 <span v-else>
                                   Submit
                                 </span>
+                                <span v-else>Create Experience</span>
                               </button>
                             </div>
                           </form>
@@ -359,12 +361,8 @@
                   </div>
                   <div class="col-md-3" v-if="form_index == 1">
                     <h5>Uploaded Image</h5>
-                    <br />
-                    <vue-dropzone
-                      ref="myVueDropzone"
-                      id="dropzone"
-                      :options="dropzoneOptions"
-                    ></vue-dropzone>
+                    <br>
+                    <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"></vue-dropzone>
                   </div>
                 </div>
               </div>
@@ -385,7 +383,7 @@ import Footer from "@/components/Footer.vue";
 import { mapActions, mapState } from "vuex";
 import DatePicker from "vue2-datepicker";
 import axios from "axios";
-import OpenClosingTimes from "@/components/utility/OpenClosingTimes"
+import OpenClosingTimes from "@/components/utility/OpenClosingTimes";
 
 export default {
   name: "NewExperience",
@@ -402,7 +400,7 @@ export default {
   data() {
     return {
       // experience_type_placeholder: null,
-      
+
       validationErrors: [],
       form_index: 1,
       experience_type: null,
@@ -410,10 +408,11 @@ export default {
       location: null,
       city: null,
       state: null,
+      about_merchant: null,
       offerings: null,
       language: null,
       description: null,
-      naira_price: null,
+      dollar_price: null,
       meetup_location: null,
       itenary: null,
       tourist_expected_items: null,
@@ -544,11 +543,12 @@ export default {
         offerings: this.offerings,
         language: this.language,
         description: this.description,
-        naira_price: this.naira_price,
+        dollar_price: this.dollar_price,
         meetup_location: this.meetup_location,
         itenary: this.itenary,
         tourist_expected_items: this.tourist_expected_items,
         number_admittable: this.number_admittable,
+        about_merchant: this.about_merchant,
         // start_date: this.start_date,
         // end_date: this.end_date,
         extra_perks: this.extra_perks,
@@ -559,7 +559,9 @@ export default {
         contact_email: this.$store.state.auth.merchant.business_email,
         merchant_id: this.$store.state.auth.user.id,
         experiences_type_id: this.exp_id,
-        opening_and_closing_hours: JSON.stringify(this.opening_and_closing_hours)
+        opening_and_closing_hours: JSON.stringify(
+          this.opening_and_closing_hours
+        )
       };
       Object.entries(data).forEach(o =>
         o[1] === null ? delete data[o[0]] : 0
@@ -673,7 +675,6 @@ label {
   /*box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;*/
   height: 50px;
   font-size: 14px;
-  border-radius: 10px;
   border-top: none;
   border-left: none;
   border-right: none;
@@ -711,7 +712,7 @@ label {
   /* padding: 44px 29px 39px 25px; */
   font-family: MuseoSans700;
   font-size: 16px;
-  width: 120px;
+  
   height: 50px;
   border-radius: 8px;
   background-color: #f81894;
@@ -725,7 +726,7 @@ label {
   text-align: left !important;
 }
 textarea.form-control {
-  border-radius: 10px;
+  border-radius: 5px;
   border: 1px solid #000;
   height: 70px;
 }

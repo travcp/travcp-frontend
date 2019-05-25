@@ -51,8 +51,8 @@
                                                 <p class="card-text">{{ merchant_experience.city }}</p>
                                                 <p><b>{{merchant_experience.rating == null ? 0 : merchant_experience.rating}} *</b> ({{merchant_experience.rating_count == null ? 0 : merchant_experience.rating_count}})</p>
                                                 
-                                                <p class="card-text"><small class="text-muted">Last updated at {{ merchant_experience.updated_at }}</small></p>
-                                                <p>{{ merchant_experience.description }}</p>
+                                                <p class="card-text"><small class="text-muted">Created {{ merchant_experience.created_at }}</small></p>
+                                                <p>{{ merchant_experience.description ?  merchant_experience.description.slice(0, 100) : '' }}</p>
                                                 
                                                 <p class="card-text"><small class="text-muted">Last updated at {{ merchant_experience.updated_at }}</small></p>
                                                 <router-link :to="'/dashboard/merchant/experience/edit/'+ merchant_experience.experience_type + '/' + merchant_experience.id + '/' + merchant_experience.title"><button class="btn btn-info">Edit</button></router-link>
