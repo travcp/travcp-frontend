@@ -51,8 +51,8 @@
           </div>
           <div>
             
-            <div class="featured_places saitama changed" v-for="place in places.slice(0, 3)" >
-                  <router-link :to="'/experience/'+ place.id + '/' + place.city">
+          <router-link v-for="place in places.slice(0, 3)"  :to="'/experience/'+ place.id + '/' + place.city">
+            <div class="featured_places saitama changed">
                   <div class="featured_places_item">
                     <div class="featured_places_overlay overlay-changed">
                       <div class="row">
@@ -68,8 +68,8 @@
                       </div>
                     </div>
                   </div>
-                  </router-link>
             </div>
+          </router-link>
 
           </div>
         </div>

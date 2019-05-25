@@ -79,8 +79,8 @@
                           </div>
                         </div>
                         <div class="col-md-12" style="text-align: center">
-                          <button type="submit" class="btn btn-lg signup-btn">
-                            <span v-if="isLoading">
+                          <button type="submit" class="btn btn-lg signup-btn" :disabled="loading.merchantSignup">
+                            <span v-if="loading.merchantSignup">
                               <img
                                 style="height: 20px;"
                                 src="../assets/loader_rolling.gif"
@@ -136,7 +136,7 @@ export default {
   },
   methods: {
     submitForm: function() {
-      this.$store.state.isLoading = true;
+      this.$store.state.loading.merchantSignup = true;
       let requestHeaders = {
         headers: {
           Authorization: "Bearer " + this.$store.state.auth.access_token
@@ -160,7 +160,7 @@ export default {
           updateMerchantData.user = response.data.data.user_data;
           updateMerchantData.merchantData = response.data.data;
           localStorage.setItem("auth", JSON.stringify(updateMerchantData));
-          this.$store.state.isLoading = false;
+          this.$store.state.loading.merchantSignup = false;
           this.$router.push("/dashboard/merchant/new-experience");
         })
         .catch(err => {
@@ -168,7 +168,7 @@ export default {
           if (err.response.status == 422) {
             this.validationErrors = err.response.data.errors;
             this.$noty.error("Oops, something went wrong!");
-            this.$store.state.isLoading = false;
+          this.$store.state.loading.merchantSignup = false;
           }
         });
       // this.$validator.validateAll().then(result => {
@@ -197,7 +197,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(["isLoading"])
+    ...mapState(["loading"])
   },
   components: {
     FormErrors

@@ -143,8 +143,8 @@
                 <div class="row">
                   <div class="col-md-3"></div>
                   <div class="col-md-6" style="text-align: center;">
-                    <button type="submit" class="btn btn-lg login-btn">
-                      <span v-if="isLoading">
+                    <button type="submit" class="btn btn-lg login-btn" :disabled="loading.userLogin">
+                      <span v-if="loading.userLogin">
                         <img
                           style="height: 20px;"
                           src="../assets/loader_rolling.gif"
@@ -230,9 +230,7 @@ export default {
   computed: {
     ...mapState(["login_errors"]),
     ...mapState(["isLoading"]),
-    loading() {
-      return this.isLoading;
-    },
+    ...mapState(['loading']),
     loginerrors() {
       // return Object.keys(this.login_errors).length >= 2;
       return this.login_errors;

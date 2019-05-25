@@ -140,8 +140,8 @@
                   class="col-12 col-sm-4"
                   style=""
                 >
-                  <button type="submit" class="btn btn-lg submit_btn float-right">
-                    <span v-if="isLoading">
+                  <button type="submit" class="btn btn-lg submit_btn float-right" :disabled="loading.updateProfile">
+                    <span v-if="loading.updateProfile">
                       <img
                         style="height: 20px;"
                         src="../assets/loader_rolling.gif"
@@ -255,7 +255,7 @@ export default {
   },
   computed: {
     ...mapState(["auth"]),
-    ...mapState(["isLoading"]),
+    ...mapState(["loading"]),
     userProperties() {
       return this.auth.user;
     },

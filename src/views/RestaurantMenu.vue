@@ -66,8 +66,8 @@
                             <p class="card-text">.</p>
                             <date-picker v-validate="'required'" v-model="time" range :shortcuts="shortcuts" :lang="lang"></date-picker>
                             <div class="booking-action text-center">
-                                <button type="submit" class="btn btn-secondary book_btn">
-                                    <span v-if="isLoading">
+                                <button type="submit" class="btn btn-secondary book_btn" :disabled="loading.bookRestaunrant">
+                                    <span v-if="loading.bookRestaunrant">
                                         <img style="height: 20px;" src="../assets/loader_rolling.gif" />
                                     </span>
                                     <span v-else>
@@ -131,7 +131,7 @@ import { mapState, mapActions } from 'vuex'
             DatePicker,
         },
         computed: {
-            ...mapState(['isLoading']),
+            ...mapState(['loading']),
             ...mapState(['auth'])
         },
         props: ['id', 'name'],

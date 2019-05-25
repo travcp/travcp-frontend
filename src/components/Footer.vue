@@ -116,7 +116,9 @@ export default {
     computed: {
         ...mapState(['auth']),
       checkUserType(){
-        return this.auth.user.role
+        if(this.auth){
+            return this.auth.user.role
+        }
       }
     }
 }

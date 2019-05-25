@@ -8,56 +8,44 @@ Vue.use(router);
 
 export default {
   async getExperiences({ commit, state }) {
-    commit("IS_LOADING");
+    // commit("IS_LOADING");
+    state.loading.getExperiences = true;
     await axios
       .get(`${API_BASE}/experiences`)
       .then(response => {
-        commit("ALL_EXPERIENCE", response.data);
         state.experiencesPlacehodler = response.data.data;
+        state.loading.getExperiences = false;
+        commit("ALL_EXPERIENCE", response.data);
       })
       .catch(err => {
         state.isLoading = false;
+        state.loading.getExperiences = false;
       });
   },
-  async getExperienceById({ commit }, id) {
-    commit("IS_LOADING");
+  async getExperienceById({ commit, state }, id) {
+    // commit("IS_LOADING");
+
+    state.loading.getExperienceById = false;
+
     await axios.get(`${API_BASE}/experiences/${id}`).then(response => {
+      state.loading.getExperienceById = true;
       commit("EXPERIENCE_BY_ID", response.data);
     });
-  },
-  async getRestaurants({ commit }) {
-    await axios.get(`${API_BASE}/restaurants`).then(response => {
-      commit("ALL_RESTAURANTS", response.data);
-    });
-  },
-  async getRestaurantById({ commit }, id) {
-    await axios.get(`${API_BASE}/restaurants/${id}`).then(response => {
-      commit("RESTAURANTS_BY_ID", response.data);
-    });
-  },
-  async filterRestaurantSearch({ commit }, data = `${API_BASE}/restaurants`) {
-    commit("IS_LOADING");
-    commit("FILTER_RESTAURANTS_LOADING");
-    await axios
-      .get(data)
-      .then(response => {
-        commit("FILTER_RESTAURANTS", response.data);
-        commit("NOT_LOADING");
-        // }, 5000)
-      })
-      .catch(({ err }) => {
-        commit("NOT_LOADING");
-      });
+
   },
   async filterExperiencesSearch(
     { commit, state },
     data = `${API_BASE}/experiences`
   ) {
-    commit("FILTER_EXPERIENCE_LOADING");
+    
+    state.loading.filterExperiencesSearch = true;
+    
     await axios
       .get(data)
       .then(response => {
+        state.loading.filterExperiencesSearch = false;
         commit("FILTER_EXPERIENCE", response.data.data);
+
         if (response.data.data.length < 1) {
           // // console.log("an empty search result")
           // state.emptySearchResult = true;
@@ -69,10 +57,14 @@ export default {
       })
       .catch(err => {
         console.log(`Error from Experence Search ${err}`);
+        state.loading.filterExperiencesSearch = false;
       });
   },
-  async userRegistration({ commit }, data) {
-    commit("REGISTRATION_LOADING");
+  async userRegistration({ commit, state }, data) {
+    // commit("REGISTRATION_LOADING");
+
+    state.loading.userRegistration = true;
+
     await axios
       .post(`${API_BASE}/auth/register`, {
         email: data.email,
@@ -81,20 +73,26 @@ export default {
         surname: data.surname
       })
       .then(res => {
+        state.loading.userRegistration = false;
         commit("REGISTRATION_SUCCESS", res.data);
+
         router.push("/");
       })
       .catch(err => {
         console.log(err);
+        state.loading.userRegistration = false;
         commit("REGISTRATION_ERROR", err.response.data);
       });
   },
-  async userLogin({ commit }, data) {
-    commit("LOGIN_LOADING");
+  async userLogin({ commit, state }, data) {
+    // commit("LOGIN_LOADING");
+    state.loading.userLogin = true;
+
     // return new Promise((resolve, reject) => {
-     await  axios
+     await axios
         .post(`${API_BASE}/auth/login`, data)
         .then(res => {
+          state.loading.userLogin = false;
           commit("LOGIN_SUCCESS", res.data);
           router.push("/");
           // resolve(res.data)
@@ -102,6 +100,7 @@ export default {
         .catch(err => {
           // console.log(`Error ${err}`);
           // console.log(err.response);
+          state.loading.userLogin = false;
 
           commit("LOGIN_FAILURE", err.response.data);
           // reject(err.response.data)
@@ -115,110 +114,122 @@ export default {
     let requestHeaders = {
       headers: { Authorization: "Bearer " + state.auth.access_token }
     };
-    commit("BOOKING_EXPERIENCE_LOADING");
+    // commit("BOOKING_EXPERIENCE_LOADING");
+    state.loading.bookingExperience = true;
+
     return new Promise((resolve, reject) => {
           axios.post(`${API_BASE}/bookings`,
                   data,
                   requestHeaders).then(res => {
                     // console.log(res.data.data);
+                    state.loading.bookingExperience = false;
                     
                     commit("BOOKING_EXPERIENCE", res.data);
                     
                     resolve(res.data.data);
                   })
                   .catch(err => {
+                    state.loading.bookingExperience = false;
                     commit("BOOKING_EXPERIENCE_FAILURE", err.response);
                     reject(err)
                   });
     })
-    // await axios
-    //   .post(
-    //     `${API_BASE}/bookings`,
-    //     data,
-    //     requestHeaders
-    //   )
-    //   .then(res => {
-    //     console.log(res.data.data);
-        
-    //     commit("BOOKING_EXPERIENCE", res.data);
-    //     // router.push("/");
-    //     console.log(res.data);
-    //   })
-    //   .catch(err => {
-    //     commit("BOOKING_EXPERIENCE_FAILURE", err.response);
-    //   });
   },
-  async getEvents({ commit }) {
-    commit("EVENTS_LOADING");
+  async getEvents({ commit, state }) {
+    // commit("EVENTS_LOADING");
+    state.loading.getEvents = false;
+
     await axios
       .get(`${API_BASE}/experience_types/2/experiences`)
       .then(res => {
+        state.loading.getEvents = false;
         commit("GET_EVENTS", res.data);
       })
       .catch(err => {
         console.log(err);
+        state.loading.getEvents = false;
+
       });
   },
-  async getEventsById({ commit }, data) {
-    commit("EVENTS_LOADING");
+  async getEventsById({ commit, state }, data) {
+    // commit("EVENTS_LOADING");
+    state.loading.getEventsById = true;
+
     await axios
       .get(`${API_BASE}/experiences/${data}`)
       .then(res => {
+        state.loading.getEventsById = false;
         commit("GET_EVENTS_BY_ID", res.data);
       })
       .catch(err => {
         console.log(err);
+        state.loading.getEventsById = true;
       });
   },
   async filterEventsSearch(
-    { commit },
+    { commit, state },
     data = `${API_BASE}/experience_types/2/experiences`
   ) {
-    commit("FILTER_EXPERIENCE_LOADING");
+    // commit("FILTER_EXPERIENCE_LOADING");
+    state.loading.filterEventsSearch = false;
     // experiences?locations=${data.location}
     await axios
       .get(data)
       .then(response => {
+        state.loading.filterEventsSearch = true;
         commit("GET_EVENTS", response.data);
       })
       .catch(({ error }) => {
+        state.loading.filterEventsSearch = true;
         console.log(`Error ${error}`);
       });
   },
-  async getPlaces({ commit }) {
-    commit("IS_LOADING");
+  async getPlaces({ commit, state }) {
+    // commit("IS_LOADING");
+
+    state.loading.getPlaces = false;
     await axios
       .get(`${API_BASE}/experience_types/22/experiences`)
       .then(response => {
+        state.loading.getPlaces = true;
         commit("GET_PLACES", response.data);
       })
       .catch(({ error }) => {
+        state.loading.getPlaces = true;
         console.log(`Error ${error}`);
       });
   },
-  async getPlacesById({ commit }, data) {
-    commit("IS_LOADING");
+  async getPlacesById({ commit, state }, data) {
+    // commit("IS_LOADING");
+
+    state.loading.getPlacesById = true;
     await axios
       .get(`${API_BASE}/experiences/${data}`)
       .then(response => {
+        state.loading.getPlacesById = false;
         commit("GET_PLACES_BY_ID", response.data);
       })
       .catch(({ error }) => {
+        state.loading.getPlacesById = false;
         console.log(`Error ${error}`);
       });
   },
   async filterPlacesSearch(
-    { commit },
+    { commit, state },
     data = `${API_BASE}/experience_types/22/experiences`
   ) {
-    commit("FILTER_EXPERIENCE_LOADING");
+    // commit("FILTER_EXPERIENCE_LOADING");
+
+    state.loading.filterPlacesSearch = true;
     // experiences?locations=${data.location}
     await axios
       .get(data)
       .then(response => {
+        state.loading.filterPlacesSearch = false;
         commit("GET_PLACES", response.data);
       })
       .catch(({ error }) => {
+        state.loading.filterPlacesSearch = false;
         console.log(`Error ${error}`);
       });
   },
@@ -226,7 +237,9 @@ export default {
     let requestHeaders = {
       headers: { Authorization: "Bearer " + state.auth.access_token }
     };
-    commit("EDIT_PROFILE_LOADING");
+    state.loading.updateProfile = true;
+
+    // commit("EDIT_PROFILE_LOADING");
     return new Promise((resolve, reject) => {
       axios
         .put(
@@ -245,36 +258,42 @@ export default {
           requestHeaders
         )
         .then(res => {
-          commit("EDIT_PROFILE_SUCESS", res.data);
           resolve(res.data);
           console.log(res.data);
+          state.loading.updateProfile = false;
+          commit("EDIT_PROFILE_SUCESS", res.data);
         })
         .catch(error => {
-          commit("EDIT_PROFILE_FAIL");
+          state.loading.updateProfile = false;
           console.log(`Error ${error.data}`);
           reject(error);
+          commit("EDIT_PROFILE_FAIL");
         });
     });
   },
-  async getReviewsData({ commit }) {
+  async getReviewsData({ commit, state }) {
     let requestHeaders = {
       headers: { Authorization: "Bearer " + state.auth.access_token }
     };
-    commit("GET_REVIEW_LOADING");
+    // commit("GET_REVIEW_LOADING");
+    state.loading.getReviewsData = true;
     await axios
       .get(`${API_BASE}/reviews`)
       .then(res => {
+        state.loading.getReviewsData = false;
         commit("GET_REVIEW", res.data);
       })
       .catch(err => {
+        state.loading.getReviewsData = false;
         commit("GET_REVIEW_ERROR", err);
       });
   },
   async rateExperience({ commit, state }, data) {
-    commit("REVIEW_LOADING");
+    // commit("REVIEW_LOADING");
     let requestHeaders = {
       headers: { Authorization: "Bearer " + state.auth.access_token }
     };
+    state.loading.rateExperience = true;
     await axios
       .post(
         `${API_BASE}/reviews`,
@@ -288,28 +307,35 @@ export default {
         requestHeaders
       )
       .then(response => {
+        state.loading.rateExperience = false;
         console.log(response.data);
         commit("REVIEW_SUCCESSFUL", response.data);
         return response;
       })
       .catch(err => {
+        state.loading.rateExperience = false;
         commit("REVIEW_ERROR", err.data);
       });
   },
   async getExperienceTypes({ commit }) {
-    commit("IS_LOADING");
+    // commit("IS_LOADING");
+
+    state.loading.getExperienceTypes = true;
     axios
       .get(`${API_BASE}/experience_types`)
       .then(response => {
         console.log(response.data.data);
+        state.loading.getExperienceTypes = false;
         commit("GET_EXPERIENCE_TYPES", response.data);
       })
       .catch(error => {
+        state.loading.getExperienceTypes = false;
         console.log(error);
       });
   },
   async submitExperience({ commit, state }, data) {
-    commit("IS_LOADING");
+    // commit("IS_LOADING");
+    state.loading.submitExperience = true;
     let requestHeaders = {
       // headers: {
       //     'Content-Type': 'multipart/form-data'
@@ -325,17 +351,20 @@ export default {
         .then(response => {
           resolve(response.data.data);
           console.log(response.data.data);
-          state.isLoading = false;
+          state.loading.submitExperience = false;
+          // state.isLoading = false;
         })
         .catch(err => {
           console.log(err);
+          state.loading.submitExperience = false;
           reject(err);
-          state.isLoading = false;
+          // state.isLoading = false;
         });
     });
   },
   async getMyBookings({ commit, state }) {
-    this.loading = true;
+    // this.loading = true;
+    state.loading.getMyBookings = true;
     let requestHeaders = {
       headers: { Authorization: "Bearer " + state.auth.access_token }
     };
@@ -346,12 +375,14 @@ export default {
       )
       .then(response => {
         // state.bookings = response.data.data;
+        state.loading.getMyBookings = false;
         commit("GET_BOOKINGS", response.data.data);
         // this.bookings = response.data.data;
         // this.loading = false;
       })
       .catch(err => {
-        state.isLoading = false;
+        // state.isLoading = false;
+        state.loading.getMyBookings = false;
         console.log("There was error fetching my bookings");
       });
   }

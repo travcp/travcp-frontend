@@ -339,8 +339,9 @@
                               <button
                                 type="submit"
                                 class="btn btn-lg submit_exp_btn"
+                                :disabled="loading.submitExperience"
                               >
-                                <span v-if="isLoading">
+                                <span v-if="loading.submitExperience">
                                   <img
                                     style="height: 20px;"
                                     src="../assets/loader_rolling.gif"
@@ -584,7 +585,7 @@ export default {
           };
           // console.log('Got here 1')
           // return new Promise((resolve, reject) => {
-          this.$store.state.isLoading = true;
+          this.$store.state.loading.submitExperience = true;
           axios
             .post(
               `${this.$store.state.API_BASE}/experiences`,
@@ -595,14 +596,14 @@ export default {
               // resolve(response.data.data);
               console.log(response.data.data);
               this.$noty.success("Experience is Submitted Succesfully");
-              this.$store.state.isLoading = false;
+              this.$store.state.loading.submitExperience = false;
               this.$router.push("/dashboard/merchant/experiences");
             })
             .catch(err => {
               console.log(err);
               // reject(err);
               this.$noty.error("Oops, something went wrong!");
-              return (this.$store.state.isLoading = false);
+              return (this.$store.state.loading.submitExperience = false);
             });
           // });
         } else {
@@ -630,7 +631,7 @@ export default {
   },
   computed: {
     ...mapState(["experience_types"]),
-    ...mapState(["isLoading"]),
+    ...mapState(["loading"]),
     experience_type_placeholder() {}
   },
   created() {

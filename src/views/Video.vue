@@ -89,8 +89,8 @@
             <p class="feature-places-title-p2"><router-link to="/places">SEE ALL</router-link></p>
           </div>
           <div>
-            <div class="featured_places saitama changed" v-for="place in places.slice(0, 3)">
-              <router-link :to="'/experience/'+ place.id + '/' + place.city">
+              <router-link v-for="place in places.slice(0, 3)" :to="'/experience/'+ place.id + '/' + place.city">
+            <div class="featured_places saitama changed">
               <div class="featured_places_item">
                 <div class="featured_places_overlay overlay-changed" style="height: auto">
                   <div class="row">
@@ -104,38 +104,8 @@
                   </div>
                 </div>
               </div>
+            </div> 
               </router-link>
-            </div>
-            <!-- <div class="featured_places saitama changed">
-              <div class="featured_places_item">
-                <div class="featured_places_overlay overlay-changed">
-                  <div class="row">
-                    <div class>
-                      <p class="ftr_places_title video-right-p-text">SAITAMA</p>
-                    </div>
-                    <div class="video-right-div-2">
-                      <p class="ftr_places_title video-right-p-text">221</p>
-                      <p class="ftr_places_title video-right-p-text">50</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="featured_places saitama changed">
-              <div class="featured_places_item">
-                <div class="featured_places_overlay overlay-changed">
-                  <div class="row">
-                    <div class>
-                      <p class="ftr_places_title video-right-p-text">SAITAMA</p>
-                    </div>
-                    <div class="video-right-div-2">
-                      <p class="ftr_places_title video-right-p-text">221</p>
-                      <p class="ftr_places_title video-right-p-text">50</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> -->
           </div>
         </div>
       </div>
