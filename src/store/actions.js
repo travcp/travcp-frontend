@@ -317,7 +317,7 @@ export default {
         commit("REVIEW_ERROR", err.data);
       });
   },
-  async getExperienceTypes({ commit }) {
+  async getExperienceTypes({ commit, state }) {
     // commit("IS_LOADING");
 
     state.loading.getExperienceTypes = true;

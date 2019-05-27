@@ -79,7 +79,8 @@ export default {
     src: url("assets/Fonts/MuseoSans_500.otf") format("opentype");
 }
 * {
-  font-family: MuseoSans !important;
+  font-family: MuseoSans;
+   /* !important; */
 }
 .navbar-light .navbar-toggler {
     color: rgba(0,0,0,.5);

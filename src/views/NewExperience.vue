@@ -40,6 +40,7 @@
                           <form @submit.prevent="submitFormExperience">
                             <div class="row">
                               <div class="col-md-12">
+                                <label for="Experience banner">Upload a banner image (You can upload multiple images)</label>
                                 <input
                                   type="file"
                                   id="file"
@@ -52,9 +53,9 @@
                                   <div v-for="(file, key) in files" class="file-listing">
                                     {{ file.name }}
                                     <span
-                                      class="remove-file"
+                                      class="remove-file text-danger"
                                       v-on:click="removeFile(key)"
-                                    >Remove</span>
+                                    ><i class="fa fa-times"></i> Remove</span>
                                   </div>
                                 </div>
                                 <br>
@@ -359,11 +360,11 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-3" v-if="form_index == 1">
+                  <!-- <div class="col-md-3" v-if="form_index == 1">
                     <h5>Uploaded Image</h5>
                     <br>
                     <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"></vue-dropzone>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
