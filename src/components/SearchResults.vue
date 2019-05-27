@@ -92,8 +92,8 @@
                                 <img src="../assets/Icons/Calendar.svg" style="margin-top: -8px;margin-left: 31px;height: 28px;" /> -->
                                 <button type="submit" class="filter_search_icon">
                                     <!-- <i class="material-icons">add</i> -->
-                                    <img v-if="!isLoading" src="../assets/icons8-search.svg" style="height: 28px;" />
-                                    <img v-if="isLoading" style="height: 20px;" src="../assets/loader_rolling.gif" />
+                                    <img v-if="!loading.filterExperiencesSearch" src="../assets/icons8-search.svg" style="height: 28px;" />
+                                    <img v-if="loading.filterExperiencesSearch" style="height: 20px;" src="../assets/loader_rolling.gif" />
 
                                     <!-- <font-awesome-icon icon="user" /> -->
                                 </button>
@@ -115,7 +115,7 @@
                 <div class="col-lg-12">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-12 no-search-results-cont" v-if="allExperiences && allExperiences.length < 1 && !isLoading">
+                            <div class="col-md-12 no-search-results-cont" v-if="allExperiences && allExperiences.length < 1 && !loading.filterExperiencesSearch">
                                 <h3>No results</h3>
                                 <h5>
                                     We couldn't find anything matching {{ search }}, Try searching other keywords
@@ -249,7 +249,7 @@
             Footer
         },
         computed: {
-            ...mapState(['isLoading']),
+            ...mapState(['loading']),
             ...mapGetters(['allExperiences']),
             ...mapState(['auth']),
             ...mapState(['emptySearchResult']),

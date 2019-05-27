@@ -63,8 +63,8 @@
                                                             />
                                                       </div>
                                                     <div class="form-group col-md-6">
-                                                       <button type="submit" class="btn btn-lg submitRestaurant">
-                                                            <span v-if="isLoading">
+                                                       <button type="submit" class="btn btn-lg submitRestaurant" :disabled="loading.addMenu">
+                                                            <span v-if="loading.addMenu">
                                                               <img
                                                                 style="height: 20px;"
                                                                 src="../../assets/loader_rolling.gif"
@@ -101,8 +101,8 @@
                                           <button type="button" class="btn btn-warning" @click="editMenu(menu.id)" style="margin-right: 10px;">
                                             Edit
                                           </button>
-                                          <button type="button" class="btn btn-danger" @click="deleteMenu(menu.id)">
-                                            <span v-if="isLoading">
+                                          <button type="button" class="btn btn-danger" @click="deleteMenu(menu.id)" :disabled="loading.deleteMenu">
+                                            <span v-if="loading.deleteMenu">
                                                 <img
                                                   style="height: 20px;"
                                                   src="../../assets/loader_rolling.gif"
@@ -183,12 +183,12 @@ import { mapState } from 'vuex';
                           'Authorization': "Bearer " + this.$store.state.auth.access_token
                          }
                       }
-                      this.$store.state.isLoading = true;
+                      this.$store.state.loading.deleteMenu = true;
                       axios
                         .delete(`${this.$store.state.API_BASE}/food/menus/${menu_id}`, requestHeaders)
                         .then(response => {
                           console.log(response.data.data)
-                          this.$store.state.isLoading = false;
+                          this.$store.state.loading.deleteMenu = false;
                           this.getMenus();
                         })
                         .catch(err => {
@@ -196,7 +196,7 @@ import { mapState } from 'vuex';
                           // reject(err);
                           console.log(err)
                           this.$noty.error("Oops, something went wrong!");
-                          return this.$store.state.isLoading = false;
+                          return this.$store.state.loading.deleteMenu = false;
                         });
 
                   //   } else {
@@ -220,13 +220,13 @@ import { mapState } from 'vuex';
                         price: this.price
                       }
 
-                      this.$store.state.isLoading = true;
+                      this.$store.state.loading.addMenu = true;
                       axios
                         .post(`${this.$store.state.API_BASE}/food/menus`, data, requestHeaders)
                         .then(response => {
                           // resolve(response.data.data);
                           // return console.log(response.data.data);
-                          this.$store.state.isLoading = false;
+                          this.$store.state.loading.addMenu = false;
                           
                           this.food_category = ''
                           this.description = ''
@@ -241,7 +241,7 @@ import { mapState } from 'vuex';
                           console.log(err)
                           this.$noty.error("Oops, something went wrong!");
                             
-                          return this.$store.state.isLoading = false;
+                          return this.$store.state.loading.addMenu = false;
                         });
 
                     } else {
@@ -251,7 +251,7 @@ import { mapState } from 'vuex';
             }
         },
         computed: {
-          ...mapState(['isLoading'])
+          ...mapState(['loading'])
         },
         created(){
             this.getMenus();

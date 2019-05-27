@@ -127,8 +127,8 @@
                     </div>
                   </div>
                   <div class="col-md-12" style="text-align: center">
-                    <button type="submit" class="btn btn-lg signup-btn">
-                      <span v-if="isLoading">
+                    <button type="submit" class="btn btn-lg signup-btn" :disabled="loading.userRegistration">
+                      <span v-if="loading.userRegistration">
                         <img style="height: 20px;" src="../assets/loader_rolling.gif" />
                       </span>
                       <span v-else>
@@ -212,7 +212,7 @@
         },
         computed: {
             ...mapState(['user_registration_errors']),
-            ...mapState(['isLoading']),
+            ...mapState(['loading']),
             user_errors() {
                 return this.user_registration_errors;
             }
