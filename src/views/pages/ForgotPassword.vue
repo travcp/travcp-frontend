@@ -1,7 +1,7 @@
 <template>
   <div>
     <vue-headful
-      title="Signin | TravvApp"
+      title="Forgot Password | TravvApp"
       description="Description from travvApp"
     />
     <Navbar />
@@ -105,9 +105,9 @@
             <br />
             <div class="col-md-12">
               <form @submit.prevent="formSubmit">
-                <div class="form-header">
-                  <h3>Sign in</h3>
-                  <p style="color: red" v-if="loginerrors">{{ loginerrors }}</p>
+                <div class="form-header" style="margin-bottom: 89px;">
+                  <h3>Forgot Password</h3>
+                  <p style="color: red" v-if="error_message">{{ error_message }}</p>
                 </div>
 
                 <div class="row">
@@ -119,39 +119,26 @@
                       v-model="email"
                       class="form-control signin-input"
                       name="email"
-                      placeholder="Email"
+                      placeholder="Enter Email"
                     />
                   </div>
                   <div class="col-md-2"></div>
                 </div>
 
-                <div class="row">
-                  <div class="col-md-2"></div>
-                  <div class="form-group col-md-8">
-                    <input
-                      type="password"
-                      class="form-control signin-input"
-                      placeholder="Password"
-                      v-model="password"
-                      name="password"
-                    />
-                  </div>
-                  <div class="col-md-2"></div>
-                </div>
                 <br />
                 <br />
                 <div class="row">
                   <div class="col-md-3"></div>
                   <div class="col-md-6" style="text-align: center;">
-                    <button type="submit" class="btn btn-lg login-btn" :disabled="loading.userLogin">
-                      <span v-if="loading.userLogin">
+                    <button type="submit" class="btn btn-lg login-btn" :disabled="loading">
+                      <span v-if="loading">
                         <img
                           style="height: 20px;"
-                          src="../assets/loader_rolling.gif"
+                          src="../../assets/loader_rolling.gif"
                         />
                       </span>
                       <span v-else>
-                        Sign in
+                        Recover
                       </span>
                     </button>
                   </div>
@@ -160,13 +147,14 @@
               <div class="row">
                 <div class="col-md-12">
                   <p class="not-a-mem">
-                    Not a Member yet?
-                    <router-link to="/signup">Sign up</router-link>
+                    Already a Member yet?
+                    <router-link to="/signup">Sign in</router-link>
                   </p>
                 </div>
                 <div class="col-md-12">
                   <p class="not-a-mem">
-                    <router-link to="/forgot-password">Forgot Password ?</router-link>
+                    Not a Memeber yet?
+                    <router-link to="/signup">Sign up</router-link>
                   </p>
                 </div>
               </div>
@@ -183,9 +171,10 @@
 import { mapState, mapActions, mapGetters } from "vuex";
 import Navbar from "@/components/Navbar.vue";
 import Footer from "@/components/Footer.vue";
+import axios from 'axios';
 
 export default {
-  name: "Signin",
+  name: "ForgotPassword",
   beforeRouteEnter(to, from, next) {
     if (localStorage.getItem("auth")) {
       return next({ path: "/" });
@@ -195,7 +184,8 @@ export default {
   data: function() {
     return {
       email: null,
-      password: null
+      loading: false,
+      error_message: null
     };
   },
   methods: {
@@ -207,19 +197,19 @@ export default {
       };
       this.$validator.validateAll().then(result => {
         if (result) {
-          this.userLogin({
-            email: this.email,
-            password: this.password
+          this.loading = true;
+          axios.post(`${this.$store.state.API_BASE}/auth/forgot`, {
+            "email": this.email
+          }).then(response => {
+
+            console.log(response.data)
+
+            this.loading = false
+          }).catch(error => {
+            console.log(error.response.data)
+            this.error_message = error.response.data.message
+            this.loading = false
           })
-            // .then(response => {
-            //   console.log(response.data);
-            //   return this.$noty.success("Login sucessfull!");
-            // })
-            // .catch(err => {
-            //   console.log(err.data);
-            //   this.$noty.error("Oops, something went wrong");
-            // });
-          // this.$noty.success("Login sucessfull")
         } else {
           this.$noty.error("Oops, something went wrong!");
         }
@@ -233,9 +223,6 @@ export default {
     }
   },
   computed: {
-    ...mapState(["login_errors"]),
-    ...mapState(["isLoading"]),
-    ...mapState(['loading']),
     loginerrors() {
       // return Object.keys(this.login_errors).length >= 2;
       return this.login_errors;
@@ -370,7 +357,7 @@ nav.container.navbar.navbar-expand-lg.navbar-light.travvappNavbar {
   margin-bottom: 100px;
 }
 .signin-image-holder {
-  background: url(../assets/signin_hero_image.jpg) no-repeat;
+  background: url(../../assets/signin_hero_image.jpg) no-repeat;
   background-size: cover;
 }
 </style>

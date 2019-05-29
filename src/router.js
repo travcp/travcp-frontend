@@ -51,6 +51,8 @@ import Guidebooks from '@/views/discover/Guidebooks.vue'
 import Requirements from '@/views/pages/Requirements.vue';
 import Benefits from '@/views/pages/Benefits.vue';
 
+import ForgotPassword from '@/views/pages/ForgotPassword.vue';
+
 Vue.use(Router);
 
 export default new Router({
@@ -250,6 +252,11 @@ export default new Router({
       path: "/add-new",
       name: "AddNew",
       component: AddNew
+    },
+    {
+      path: "/forgot-password",
+      name: "ForgotPassword",
+      component: ForgotPassword
     }
   ]
 });

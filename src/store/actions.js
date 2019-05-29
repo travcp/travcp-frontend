@@ -64,7 +64,9 @@ export default {
     // commit("REGISTRATION_LOADING");
 
     state.loading.userRegistration = true;
-
+    // reutrn new Promise ((resolve, reject ), {
+    //
+    // })
     await axios
       .post(`${API_BASE}/auth/register`, {
         email: data.email,
