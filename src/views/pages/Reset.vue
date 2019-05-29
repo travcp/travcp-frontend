@@ -1,7 +1,7 @@
 <template>
   <div>
     <vue-headful
-      title="Forgot Password | TravvApp"
+      title="Reset | TravvApp"
       description="Description from travvApp"
     />
     <Navbar />
@@ -106,8 +106,9 @@
             <div class="col-md-12">
               <form @submit.prevent="formSubmit">
                 <div class="form-header">
-                  <h3 style="margin-bottom: 10px;">Forgot Password</h3>
-                  <p style="color: red;margin-bottom: 39px" v-if="message">{{ message }}</p>
+                  <h3 style="margin-bottom: 10px;">Reset</h3>
+                  <p style="color: red;margin-bottom: 39px" v-if="error_message">{{ error_message }}</p>
+                  <p style="color: blue;margin-bottom: 39px" v-if="message">{{ message }}</p>
                 </div>
 
                 <div class="row">
@@ -125,6 +126,37 @@
                   <div class="col-md-2"></div>
                 </div>
 
+                <div class="row">
+                  <div class="col-md-2"></div>
+                  <div class="form-group col-md-8" style="text-align: center;">
+                    <input
+                      type="password"
+                      v-validate="'required|min:6'"
+                      v-model="password"
+                      class="form-control signin-input"
+                      name="password"
+                      placeholder="Enter new Password"
+                    />
+                  </div>
+                  <div class="col-md-2"></div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-2"></div>
+                  <div class="form-group col-md-8" style="text-align: center;">
+                    <input
+                      type="password"
+                      v-validate="'required|min:6'"
+                      v-model="new_password_confirmation"
+                      class="form-control signin-input"
+                      name="new_password"
+                      placeholder="Confirm new Password"
+                    />
+                  </div>
+                  <div class="col-md-2"></div>
+                </div>
+
+
                 <br />
                 <br />
                 <div class="row">
@@ -138,7 +170,7 @@
                         />
                       </span>
                       <span v-else>
-                        Recover
+                        Reset
                       </span>
                     </button>
                   </div>
@@ -174,9 +206,9 @@ import Footer from "@/components/Footer.vue";
 import axios from 'axios';
 
 export default {
-  name: "ForgotPassword",
+  name: "Reset",
   beforeRouteEnter(to, from, next) {
-    if (localStorage.getItem("auth")) {
+    if (localStorage.getItem("auth") && this.$route.query.token) {
       return next({ path: "/" });
     }
     next();
@@ -186,7 +218,10 @@ export default {
       email: null,
       loading: false,
       error_message: null,
-      message: null
+      password: null,
+      new_password: null,
+      message: null,
+      new_password_confirmation: null
     };
   },
   methods: {
@@ -199,16 +234,16 @@ export default {
       this.$validator.validateAll().then(result => {
         if (result) {
           this.loading = true;
-          axios.post(`${this.$store.state.API_BASE}/auth/forgot`, {
-            "email": this.email
+          axios.post(`${this.$store.state.API_BASE}/reset`, {
+            "email": this.email,
+            "token" : this.$route.query.token,
+            "password" : this.password,
+            "password_confirmation": this.new_password_confirmation
           }).then(response => {
 
-            this.$noty.success(response.data.message);
-            this.message = response.data.message
-            this.loading = false
             console.log(response.data)
-
-            this.loading = false
+            router.push("/signin");
+            this.$noty.success("Password Reset Succesfull");
           }).catch(error => {
             console.log(error.response.data)
             this.error_message = error.response.data.error.message
@@ -240,6 +275,12 @@ export default {
   components: {
     Navbar,
     Footer
+  },
+  created(){
+    if (this.$route.query.token) {
+      router.push("/");
+    }
+    console.log(this.$route)
   }
 };
 </script>

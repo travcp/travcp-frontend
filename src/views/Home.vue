@@ -170,7 +170,8 @@
   import Sliderarea from '@/components/Sliderarea.vue'
   import SecondNav from '@/components/SecondNav.vue';
   import Footer from '@/components/Footer.vue';
-  
+  import axios from 'axios';
+
   import {
     mapState,
     mapGetters,
@@ -193,6 +194,7 @@
     data: function () {
       return {
         // experiences: []
+        random_experiences: [],
       }
     },
     methods: {
@@ -200,6 +202,13 @@
       ...mapActions(['getRestaurants']),
       ...mapActions(['getEvents']),
       ...mapActions(['getPlaces']),
+      getRandomExperiences() {
+        axios.get(`${this.$store.state.API_BASE}/experiences/random/5`).then(response => {
+          
+        }).catch(error => {
+
+        })
+      }
       // getExp1() {
       //   this.exp1 = this.experiences[Math.floor(Math.random()*this.experiences.length)]
       // }

@@ -52,6 +52,7 @@ import Requirements from '@/views/pages/Requirements.vue';
 import Benefits from '@/views/pages/Benefits.vue';
 
 import ForgotPassword from '@/views/pages/ForgotPassword.vue';
+import Reset from '@/views/pages/Reset.vue';
 
 Vue.use(Router);
 
@@ -257,6 +258,11 @@ export default new Router({
       path: "/forgot-password",
       name: "ForgotPassword",
       component: ForgotPassword
+    },
+    {
+      path: "/reset",
+      name: "Reset",
+      component: Reset
     }
   ]
 });
