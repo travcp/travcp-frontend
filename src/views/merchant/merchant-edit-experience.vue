@@ -356,7 +356,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-3" v-if="form_index == 1">
+                  <!-- <div class="col-md-3" v-if="form_index == 1">
                     <h5>Uploaded Image</h5>
                     <br />
                     <vue-dropzone
@@ -364,7 +364,7 @@
                       id="dropzone"
                       :options="dropzoneOptions"
                     ></vue-dropzone>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
