@@ -107,7 +107,8 @@
               <form @submit.prevent="formSubmit">
                 <div class="form-header">
                   <h3 style="margin-bottom: 10px;">Forgot Password</h3>
-                  <p style="color: red;margin-bottom: 39px" v-if="message">{{ message }}</p>
+                  <p style="color: red;margin-bottom: 39px" v-if="error_message">{{ error_message }}</p>
+                  <p style="color: blue;margin-bottom: 39px" v-if="message">{{ message }}</p>
                 </div>
 
                 <div class="row">

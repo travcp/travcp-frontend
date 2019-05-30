@@ -89,7 +89,7 @@
             <p class="feature-places-title-p2"><router-link to="/places">SEE ALL</router-link></p>
           </div>
           <div>
-              <router-link v-for="place in places.slice(0, 3)" :to="'/experience/'+ place.id + '/' + place.city">
+              <router-link v-for="place in places.slice(0, 3)" :key="place.id" :to="'/experience/'+ place.id + '/' + place.city">
             <div class="featured_places saitama changed">
               <div class="featured_places_item">
                 <div class="featured_places_overlay overlay-changed" style="height: auto">
@@ -110,7 +110,7 @@
         </div>
       </div>
     </div>
-    <Footer />
+    <!-- <Footer /> -->
   </div>
 </template>
 <script>

@@ -208,7 +208,7 @@ import axios from 'axios';
 export default {
   name: "Reset",
   beforeRouteEnter(to, from, next) {
-    if (localStorage.getItem("auth") && this.$route.query.token) {
+    if (localStorage.getItem("auth")) {
       return next({ path: "/" });
     }
     next();
@@ -226,6 +226,13 @@ export default {
   },
   methods: {
     ...mapActions(["userLogin"]),
+    getUserdata(){
+      axios.get(`${this.$store.state.API_BASE}/users/${this.route.query.user_id}`).then(response => {
+        console.log(response.data);
+      }).then(error => {
+        console.log(response.data)
+      })
+    },
     formSubmit: function() {
       let data = {
         email: this.email,
@@ -234,21 +241,27 @@ export default {
       this.$validator.validateAll().then(result => {
         if (result) {
           this.loading = true;
-          axios.post(`${this.$store.state.API_BASE}/reset`, {
-            "email": this.email,
-            "token" : this.$route.query.token,
-            "password" : this.password,
-            "password_confirmation": this.new_password_confirmation
-          }).then(response => {
+          if(this.password == this.new_password_confirmation) {
+            axios.post(`${this.$store.state.API_BASE}/auth/reset`, {
+                        "email": this.email,
+                        "token" : this.$route.query.token,
+                        "password" : this.password,
+                        "password_confirmation": this.new_password_confirmation
+                      }).then(response => {
 
-            console.log(response.data)
-            router.push("/signin");
-            this.$noty.success("Password Reset Succesfull");
-          }).catch(error => {
-            console.log(error.response.data)
-            this.error_message = error.response.data.error.message
-            this.loading = false
-          })
+                        console.log(response.data)
+                        this.$router.push("/signin");
+                        this.$noty.success("Password Reset Succesfull");
+                      }).catch(error => {
+                        this.loading = false
+                        console.log(error.response.data)
+                        this.error_message = error.response.data.error
+                      })
+                    } else {
+                        this.loading = false
+                        this.error_message = "password Confirmation do not match"
+                        this.$noty.error("Oops, something went wrong!");      
+                    }
         } else {
           this.$noty.error("Oops, something went wrong!");
         }
@@ -277,8 +290,8 @@ export default {
     Footer
   },
   created(){
-    if (this.$route.query.token) {
-      router.push("/");
+    if (!this.$route.query.token) {
+      this.$router.push("/");
     }
     console.log(this.$route)
   }

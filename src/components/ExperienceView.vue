@@ -381,32 +381,61 @@
                     this.$validator.validate().then(valid => {
                         if (valid) {
                             // if (this.time[0]) {
-                                let data = {
-                                    // food_menu_ids: ["2", "3", "4"],
-                                    price: this.experience.naira_price,
-                                    merchant_id: this.experience.merchant_id,
-                                    user_id: this.auth.user.id,
-                                    experience_id: this.$route.params.id,
-                                    start_date: this.formatDate(this.time[0]),
-                                    end_date: this.formatDate(this.time[1]),
-                                    delivery_address: this.delivery_address
-                                };
-                                let requestHeaders = {
-                                headers: { Authorization: "Bearer " + this.$store.state.auth.access_token }
-                                };
-                                // console.log(this.formatDate(this.time[0]));
-                                this.bookingExperience(data).then(response => {
-                                    console.log(response)
-                                    axios.post(`${this.$store.state.API_BASE}/cart/add`,{
-                                            "booking_id": response.id
-                                        }, requestHeaders).then(response => {
-                                            console.log(response.data.data);
-                                        }).catch(error => {
-                                            console.log(error)
-                                        })
-                                    this.checkIfBooked()
-                                    this.$noty.success("This experience has been added to your cart")
-                                });
+                                if(this.delivery_address) {
+                                    let data = {
+                                        // food_menu_ids: ["2", "3", "4"],
+                                        // price: this.experience.naira_price,
+                                        merchant_id: this.experience.merchant_id,
+                                        user_id: this.auth.user.id,
+                                        experience_id: this.$route.params.id,
+                                        // start_date: this.formatDate(this.time[0]),
+                                        // end_date: this.formatDate(this.time[1]),
+                                        address: this.delivery_address
+                                    };
+                                    let requestHeaders = {
+                                    headers: { Authorization: "Bearer " + this.$store.state.auth.access_token }
+                                    };
+                                    // console.log(this.formatDate(this.time[0]));
+                                    this.bookingExperience(data).then(response => {
+                                        console.log(response)
+                                        axios.post(`${this.$store.state.API_BASE}/cart/add`,{
+                                                "booking_id": response.id
+                                            }, requestHeaders).then(response => {
+                                                console.log(response.data.data);
+                                            }).catch(error => {
+                                                console.log(error)
+                                            })
+                                        this.checkIfBooked()
+                                        this.$noty.success("This experience has been added to your cart")
+                                    });
+                                } else {
+                                    let data = {
+                                        // food_menu_ids: ["2", "3", "4"],
+                                        price: this.experience.naira_price,
+                                        merchant_id: this.experience.merchant_id,
+                                        user_id: this.auth.user.id,
+                                        experience_id: this.$route.params.id,
+                                        start_date: this.formatDate(this.time[0]),
+                                        end_date: this.formatDate(this.time[1]),
+                                        // delivery_address: this.delivery_address
+                                    };
+                                    let requestHeaders = {
+                                    headers: { Authorization: "Bearer " + this.$store.state.auth.access_token }
+                                    };
+                                    // console.log(this.formatDate(this.time[0]));
+                                    this.bookingExperience(data).then(response => {
+                                        console.log(response)
+                                        axios.post(`${this.$store.state.API_BASE}/cart/add`,{
+                                                "booking_id": response.id
+                                            }, requestHeaders).then(response => {
+                                                console.log(response.data.data);
+                                            }).catch(error => {
+                                                console.log(error)
+                                            })
+                                        this.checkIfBooked()
+                                        this.$noty.success("This experience has been added to your cart")
+                                    });
+                                }
                                 
                             // } else {
                             //     this.$noty.error("Please enter a check in and check out date");

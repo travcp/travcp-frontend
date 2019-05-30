@@ -57,6 +57,9 @@ export default {
 </script>
 
 <style>
+body {
+  font-family: MuseoSans;
+}
 @font-face {
     font-family: MuseoSans;
     src: url("assets/Fonts/MuseoSans-100.otf") format("opentype");
@@ -78,7 +81,7 @@ export default {
     font-family: MuseoSans500;
     src: url("assets/Fonts/MuseoSans_500.otf") format("opentype");
 }
-* {
+*, {
   font-family: MuseoSans;
    /* !important; */
 }
@@ -91,5 +94,16 @@ export default {
 }
 .categories_widget {
   margin-left: 0;
+}
+.main_menu_area .navbar .navbar-nav li a,
+.categories_widget ul li a,
+.copy_right_area .float-md-right .nav li a ,
+.feature_video_sm_title h6,
+.ftr_places_title,
+.image-holder-inner-text h2,
+.form-header h3,
+.navbar .navbar-nav li a,
+.login-btn {
+  font-family: MuseoSans;
 }
 </style>

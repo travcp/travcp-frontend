@@ -338,7 +338,6 @@
   }
 
   .title {
-    font-family: MuseoSans900;
     font-size: 20px;
     font-weight: bolder;
     text-align: center;
@@ -714,7 +713,7 @@
   }
 
   .recom4uimages-up p {
-    font-family: MuseoSans500;
+    font-family: MuseoSans;
     font-size: 36px;
     font-weight: 500;
     font-style: normal;
@@ -734,7 +733,7 @@
   }
 
   .recom4uimages-dwn p {
-    font-family: MuseoSans500;
+    font-family: MuseoSans;
     font-size: 36px;
     font-weight: 500;
     font-style: normal;
