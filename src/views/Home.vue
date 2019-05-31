@@ -150,8 +150,9 @@
         <!-- <FeaturedRest :restaurants="featuredrest" /> -->
         <FeaturedEvents :events="events.slice(0, 3)" />
         <FeaturedPlaces :places="places.slice(0, 3)" />
+        <FeaturedRest :restaurants="restaurants.slice(0, 3)" />
         <FeaturedVideo />
-        <LatestPosts />
+        <!-- <LatestPosts /> -->
       </div>
     </section>
     <!-- <Footer /> -->
@@ -171,6 +172,7 @@
   import SecondNav from '@/components/SecondNav.vue';
   import Footer from '@/components/Footer.vue';
   import axios from 'axios';
+  // import FeaturedRest from '@/components/FeaturedRest.vue'
 
   import {
     mapState,
@@ -219,6 +221,7 @@
       ...mapState(['restaurants']),
       ...mapState(['events']),
       ...mapState(['places']),
+      ...mapState(['restaurants']),
       ...mapGetters(['getExp1', 'getExp2', 'getExp3', 'getExp4', 'getExp5']),
       topRatedExp: function () {
         // let exp = this.allExperiences;
@@ -763,7 +766,6 @@
 
   .ftr_places_title {
     height: 24px;
-    font-family: Lato;
     font-size: 18px;
     font-weight: 500;
     font-style: normal;

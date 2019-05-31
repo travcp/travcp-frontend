@@ -39,6 +39,7 @@ export default {
         merchantEditExperience: false,
         deleteMenu: false,
         addMenu: false,
+        getRestaurants: false
     },
     loadingExperience: false,
     auth: localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')) : null,

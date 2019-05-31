@@ -17,7 +17,32 @@
             <div class="col-lg-12">
                 <div class="container toggleCarousel">
                     <div class="row">
-                        <div class="col-md-4 left_feature_place" v-for="place in places" :key="place.id" style="padding-right: 10px;padding-left: 0px;">
+                      <div class="card-deck">
+                        <div class="row">
+                          <div class="col-md-4" v-for="place in places" :key="place.id">
+                            <router-link :to="'/experience/'+ place.id + '/' + place.city">
+                                <div class="featured-card card">
+                                <img v-if="place.images.length" :src="place.images[0].image" class="card-img-top featured-card-img" alt="...">
+                                <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" alt="...">
+                                 <div class="featured-card-footer featured_places_overlay_active">
+                                    <div class="row">
+                                      <div class="col-6">
+                                        {{ place.city }}                              
+                                      </div>
+                                      <div class="col-3 text-center">
+                                       <p>{{ place.rating_count }} <i class="fa fa-star"></i></p>  
+                                      </div>
+                                      <div class="col-3 text-center">
+                                       <p>{{ place.number_admittable }} <i class="fa fa-heart"></i></p>  
+                                      </div>
+                                    </div>
+                                  </div>
+                            </div>
+                            </router-link>
+                          </div>
+                        </div>
+                      </div>
+                        <!-- <div class="col-md-4 left_feature_place" v-for="place in places" :key="place.id" style="padding-right: 10px;padding-left: 0px;">
                             <router-link :to="'/experience/'+ place.id + '/' + place.city">
                               <div class="featured_places osaka">
                                   <div class="featured_places_item">
@@ -37,7 +62,7 @@
                                   </div>
                               </div>
                             </router-link>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

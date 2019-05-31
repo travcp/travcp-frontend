@@ -25,13 +25,15 @@ export default {
     ...mapActions(['getRestaurants']),
     ...mapActions(['getEvents']),
     ...mapActions(['getPlaces']),
+    ...mapActions(['getRestaurants']),
     // ...mapActions(['getExperiences'])
   },
   created() {
     this.getExperiences()
     // // this.getRestaurants()
-    this.getEvents();
-    this.getPlaces();
+    this.getEvents()
+    this.getPlaces()
+    this.getRestaurants()
     if(this.$store.state.auth) {
       // localStorage.setItem("auth", JSON.stringify(payload));
       let checkUserType = this.$store.state.auth.user.role;
@@ -57,7 +59,7 @@ export default {
 </script>
 
 <style>
-body {
+body, h6, h5, h4, h3, h2, h1, p  {
   font-family: MuseoSans;
 }
 @font-face {

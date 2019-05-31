@@ -13,8 +13,8 @@
           <hr class="my-booking-title-horizontal">
         </div>
         <div style="padding-bottom: 20px">
-          <p class="my-cart-sub-title">Cart( {{ cart.items.length }} )</p>
-          <p class="my-cart-sub-title">Price - {{ calcPrice }}</p>
+          <p class="my-cart-sub-title">Cart(  )</p>
+          <p class="my-cart-sub-title">Price - ${{ calcPrice }}</p>
         </div>
         <div class="row my-booking-left" v-for="item in cart.items" :key="item.id">
           <div class="col-md-3 my-booking-details-image"></div>
@@ -36,15 +36,15 @@
             <a href="#">
               <!-- <p class="col-md-2 my-cart-delete-image"></p> -->
             </a>
-            <button class="btn" style="background: #f81894;">
-              <p class="col-md-2" style="color #FFF;font-size: 17px; font-weight: bold" @click="removeFromCart(item.id)">REMOVE</p>
+            <button class="btn" style="background: #f81894;color #FFF;height: 40px;">
+              <p class="col-md-2" style="font-size: 17px; font-weight: bold;" @click="removeFromCart(item.id)"><i class="fa fa-bin"></i>REMOVE</p>
             </button>
           </div>
         </div>
         <div style="text-align: center;" v-if="loading">
           <Circle9 />
         </div>
-        <div v-if="cart.items.length < 1 && !loading">
+        <div v-if="cart.length < 1 && !loading">
           <empty-result>
             <template v-slot:error-header>Errm</template>
             You do not have any carts yet. <br> When you book an experience, it will appear here.
@@ -137,10 +137,18 @@ export default {
     },
     calcPrice(){
       let price = 0;
-      this.cart.items.forEach(item => {
-        price += item.booking.price
-      });
-      return price;
+      if(this.cart){
+        for(let i = 1; i <= this.cart.items; i++){
+          price += this.cart[i].booking.price
+        }
+        // this.cart.items.forEach(item => {
+        //   price += item.booking.price
+        // });
+        return price;  
+      } else {
+        return false;
+      }
+      // return 0;
     }
   },
   methods: {
@@ -153,8 +161,12 @@ export default {
         this.cart = response.data.data;
         this.loading = false;
       }).catch(err => {
-        this.$noty.error("Oops, there was error getting carts");
         this.loading = false;
+        if (err.response.status == 404) {
+          console.log(err.response.data)
+          return this.cart = []
+        }
+        this.$noty.error("Oops, there was error getting carts");
       })
 
     },
@@ -175,7 +187,7 @@ export default {
     var handler = PaystackPop.setup({
       key: 'pk_test_a3c6507e7a82c63308de9c5863bbe0950492d508',
       email: this.$store.state.auth.user.email,
-      amount: 1000,
+      amount: thi.calcPrice,
       currency: "NGN",
       ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
       metadata: {
@@ -216,6 +228,7 @@ export default {
                     this.getMyCarts()
                     // this.loading = false;
                   }).catch(err => {
+                    console.log(err)
                     this.$noty.error("Oops, there was error getting carts");
                   })
 
@@ -247,12 +260,14 @@ export default {
 .button1 {
   color: #f81894;
   background-color: #fff;
+  height: 40px;
   border: 2px solid #eee;
   /*box-shadow: 2px 1px 1px grey;*/
 }
 .button2 {
   color: #fff;
   background-color: #f81894;
+  height: 40px;
   /*box-shadow: 2px 1px 1px grey;*/
   border: 2px solid #eee;
   margin-left: 30px;

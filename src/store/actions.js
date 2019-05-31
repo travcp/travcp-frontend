@@ -60,31 +60,33 @@ export default {
         state.loading.filterExperiencesSearch = false;
       });
   },
-  async userRegistration({ commit, state }, data) {
+   userRegistration({ commit, state }, data) {
     // commit("REGISTRATION_LOADING");
 
     state.loading.userRegistration = true;
-    // reutrn new Promise ((resolve, reject ), {
-    //
-    // })
-    await axios
-      .post(`${API_BASE}/auth/register`, {
-        email: data.email,
-        password: data.password,
-        first_name: data.first_name,
-        surname: data.surname
-      })
-      .then(res => {
-        state.loading.userRegistration = false;
-        commit("REGISTRATION_SUCCESS", res.data);
+    return new Promise ((resolve, reject) => {
+      axios
+        .post(`${API_BASE}/auth/register`, {
+          email: data.email,
+          password: data.password,
+          first_name: data.first_name,
+          surname: data.surname
+        })
+        .then(res => {
+          state.loading.userRegistration = false;
+          commit("REGISTRATION_SUCCESS", res.data);
 
-        router.push("/");
-      })
-      .catch(err => {
-        console.log(err);
-        state.loading.userRegistration = false;
-        commit("REGISTRATION_ERROR", err.response.data);
-      });
+          router.push("/");
+          resolve(res.data);
+        })
+        .catch(err => {
+          console.log(err);
+          state.loading.userRegistration = false;
+          commit("REGISTRATION_ERROR", err.response.data);
+          reject(err.response.data)
+        });
+    })
+    
   },
   async userLogin({ commit, state }, data) {
     // commit("LOGIN_LOADING");
@@ -195,6 +197,21 @@ export default {
       .then(response => {
         state.loading.getPlaces = true;
         commit("GET_PLACES", response.data);
+      })
+      .catch(({ error }) => {
+        state.loading.getPlaces = true;
+        console.log(`Error ${error}`);
+      });
+  },
+  async getRestaurants({ commit, state }) {
+    // commit("IS_LOADING");
+
+    state.loading.getRestaurants = false;
+    await axios
+      .get(`${API_BASE}/experience_types/12/experiences`)
+      .then(response => {
+        state.loading.getRestaurants = true;
+        commit("ALL_RESTAURANTS", response.data);
       })
       .catch(({ error }) => {
         state.loading.getPlaces = true;

@@ -106,7 +106,7 @@
             <div class="col-md-12">
               <form @submit.prevent="formSubmit">
                 <div class="form-header">
-                  <h3>Sign in</h3>
+                  <h3>Sign in</h3> <br>
                   <p style="color: red" v-if="loginerrors">{{ loginerrors }}</p>
                 </div>
 

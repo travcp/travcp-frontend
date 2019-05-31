@@ -5,7 +5,7 @@
             description="Description from travvApp"
         />
         <Navbar></Navbar>
-        <section class="project_area nagoya" v-if="experience.images && experience.images.length > 0" :style="{background: 'url(' + experience.images[0].image + ')'}">
+        <section class="project_area nagoya" v-if="experience.images && experience.images.length > 0" :style="{background: 'url(' + experience.images[0].image + ')'}" style="background-position: center;background-size: cover;background-repeat: no-repeat;">
             <div class="container">
             </div>
         </section>

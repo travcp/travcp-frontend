@@ -77,8 +77,15 @@
       keyboard: true
     });
   </script>
-  <script>
-  
+<script>
+  $('#upload-shield').change(function() {
+    var filename = $(this).val();
+    var lastIndex = filename.lastIndexOf("\\");
+    if (lastIndex >= 0) {
+        filename = filename.substring(lastIndex + 1);
+    }
+    $('#filename').val(filename);
+});
 </script>
   <!-- built files will be auto injected -->
 </body>

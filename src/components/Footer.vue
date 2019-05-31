@@ -44,7 +44,7 @@
                                     <h3>Merchants</h3>
                                 </div>
                                 <ul class="" style="width: 100%;">
-                                    <li class="" v-if="checkUserType == 'user'">
+                                    <li class="" @click="confirmUserType()">
                                         <a class="" href="#merchant-signup-modal" data-toggle="modal">Become a Merchant</a>
                                     </li>
                                     <li><router-link to="/requirements">Requirements</router-link></li>
@@ -111,6 +111,14 @@ export default {
           else{
               location.href = "http://travvapi.herokuapp.com/travvforum"
           }
+      },
+      confirmUserType(){
+        if (this.checkUserType == 'user'){
+            return true
+        } else if(this.checkUserType == 'not Logged in') {
+            this.$router.push("/signup")
+            return false
+        }
       }
     },
     computed: {
@@ -119,6 +127,7 @@ export default {
         if(this.auth){
             return this.auth.user.role
         }
+        return 'not Logged in'
       }
     }
 }

@@ -120,6 +120,15 @@
               
               <div class="container">
                 <div class="row">
+                  <!-- <div class="col-md-12">
+                    
+                    <input type="checkbox" value="true" 
+                        v-model="agree" id="check3"/>
+                    <label for="check3">
+                    <div><i class="fa fa-check"></i></div>I agree to the following
+                        <a href="#">Terms and Conditions</a>
+                    </label>
+                  </div> -->
                   <div class="col-md-12">
                     <div class="form-check form-check-inline">
                       <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
@@ -195,12 +204,14 @@
                             password: this.password,
                             first_name: this.first_name,
                             surname: this.surname
+                        }).then(response => {
+                          this.$noty.success("Registration sucessfull")
+                        }).catch(err => {
+                          this.$noty.error("Oops, something went wrong!")
                         });
-                        if (this.user_registration_errors === null) {
-                        	this.$noty.success("Registration sucessfull")
-                        } else {
-                        	this.$noty.error("Oops, something went wrong!")
-                        }
+                        // if (this.user_registration_errors === null) {
+                        // } else {
+                        // }
                         // this.$
                     }
                     else{
@@ -320,7 +331,6 @@
     background: #F81894;
     border: none;
     /* padding: 44px 29px 39px 25px; */
-    font-family: MuseoSans700;
     font-size: 16px;
     width: 120px;
     height: 50px;
