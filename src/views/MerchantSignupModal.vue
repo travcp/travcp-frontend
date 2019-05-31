@@ -73,7 +73,7 @@
                     </div>
                       <div class="form-group col-md-12">
                         <label for="">Upload Valid ID</label>
-                        <input type="file" class="form-control-lg" ref="files" v-on:change="onFileChanged()" />
+                        <input type="file" class="form-control" ref="files" v-on:change="onFileChanged()" />
                       </div>
                     </div>
                     <div class="container">
@@ -262,12 +262,12 @@ export default {
 input[type="checkbox"]{ display:none; }
 
 label div{
-  width:23px;
-  height:23px;
+  width:20px;
+  height:20px;
   display:inline-block;
   border:2px solid #fff;
   text-align:center;
-  line-height:20px;
+  line-height:15px;
   margin-right:6px; 
   border-radius:3px;
   cursor:pointer; 
