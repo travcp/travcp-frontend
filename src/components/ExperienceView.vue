@@ -40,7 +40,8 @@
                             
                             <div>
                                 <h6><b>Rate the Experience</b></h6> <br>
-                                <div id="reviewStars-input" @click="toggleRatingBox" >
+                                <p class="alert alert-warning" v-if="!checkBookingStatus">To rate this Experience you need to book first</p>
+                                <div id="reviewStars-input" @click="toggleRatingBox" v-else>
                                     <input id="star-4" value=5 v-model="reviewStar" type="radio" name="reviewStars"/>
                                     <label title="gorgeous" for="star-4"></label>
 
