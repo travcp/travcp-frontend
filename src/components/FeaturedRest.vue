@@ -22,22 +22,22 @@
                           <div class="col-md-4" v-for="restaurant in restaurants" :key="restaurant.id">
                             <router-link :to="'/experience/'+ restaurant.id + '/' + restaurant.city">
                                 <div class="featured-card card">
-                                <img v-if="restaurant.images.length" :src="restaurant.images[0].image" class="card-img-top featured-card-img" alt="...">
-                                <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" alt="...">
-                                 <div class="featured-card-footer featured_places_overlay_active">
-                                    <div class="row">
-                                      <div class="col-6">
-                                        {{ restaurant.city }}                                  
-                                      </div>
-                                      <div class="col-3 text-center">
-                                       <p>{{ restaurant.rating_count }} <i class="fa fa-star"></i></p>  
-                                      </div>
-                                      <div class="col-3 text-center">
-                                       <p>{{ restaurant.number_admittable }} <i class="fa fa-heart"></i></p>  
+                                  <img v-if="restaurant.images.length" :src="restaurant.images[0].image" class="card-img-top featured-card-img" alt="...">
+                                  <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" alt="...">
+                                   <div class="featured-card-footer featured_places_overlay_active">
+                                      <div class="row">
+                                        <div class="col-6">
+                                          {{ restaurant.city }}                                  
+                                        </div>
+                                        <div class="col-3 text-center">
+                                         <p>{{ restaurant.rating_count }} <i class="fa fa-star"></i></p>  
+                                        </div>
+                                        <div class="col-3 text-center">
+                                         <p>{{ restaurant.number_admittable }} <i class="fa fa-heart"></i></p>  
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
-                            </div>
                             </router-link>
                           </div>
                         </div>

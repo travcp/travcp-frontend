@@ -9083,6 +9083,11 @@ vuejs-noty@^0.1.3:
   dependencies:
     noty "^3.1.0"
 
+vueperslides@^1.19.0:
+  version "1.19.0"
+  resolved "https://registry.yarnpkg.com/vueperslides/-/vueperslides-1.19.0.tgz#0dc75593a7b8bca025f9433f0e406fcf5a21090a"
+  integrity sha512-O/TzDH4Wh9cTgumcelSyAOtO8eD0Nqb+pMNyO5iyZ6qF0QlYdFgcxfcGtzlehpqlhVro8MXk8EcHZbMiHPF3YQ==
+
 vuex@^3.0.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/vuex/-/vuex-3.1.1.tgz#0c264bfe30cdbccf96ab9db3177d211828a5910e"

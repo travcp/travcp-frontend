@@ -180,7 +180,7 @@
             <br><br>
             <div class="row">
                 <div class="form-group col-md-4">
-                    <input v-model=vm.searchPlace v-gmaps-searchbox=vm placeholder="Enter Location" class="form-control" style="border: 1px solid #000; border-radius: 3px;padding: 10px;">
+                    <input v-model=vm.searchPlace v-gmaps-searchbox=vm placeholder="Enter Your Location" class="form-control" style="border: 1px solid #000; border-radius: 3px;padding: 10px;">
                     <!-- <button class="btn btn-primary" @click="getDirection">Get Direction</button> -->
                 </div>
                 <div class="col-md-8">
@@ -190,7 +190,7 @@
                         <iframe v-else height="450" frameborder="0" style="border:0;width:100%;"
 :src="'https://www.google.com/maps/embed/v1/search?q=' + experience.location + '&key=AIzaSyDgnbjMxlLW2BHBPJ4-iFsX_aB9jEHBFCg'" allowfullscreen></iframe>
                 </div>
-            </div>
+            </div> <br><br>
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -286,6 +286,35 @@
                             </div>
                         </div>
                     </div>
+                </div> <br>
+                <div class="row">
+                    <div class="col-md-12" style="margin-bottom: 20px">
+                        <h3>
+                            Suggested Experiences
+                        </h3>
+                    </div>
+                    <br>
+                    <div class="col-md-3" v-for="data in getSimilarExperienceData.slice(0, 4)" style="margin-bottom: 10px">
+                       <a :href="'/experience/'+ data.id + '/' + data.city">
+                        <div class="featured-card card">
+                          <img v-if="data.images.length" :src="data.images[0].image" class="card-img-top featured-card-img" alt="...">
+                          <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" alt="...">
+                           <div class="featured-card-footer featured_places_overlay_active">
+                              <div class="row">
+                                <div class="col-6">
+                                  {{ data.city }}                                  
+                                </div>
+                                <div class="col-2 text-center">
+                                 <p>{{ data.rating_count }} <i class="fa fa-star"></i></p>  
+                                </div>
+                                <div class="col-3 text-center" style="padding-right: 0px;">
+                                 <p>{{ data.number_admittable }} <i class="fa fa-heart"></i></p>  
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                       </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -328,6 +357,7 @@
                 reviews: [],
                 securityStar: null,
                 delivery_address: null,
+                getSimilarExperienceData: [],
                 vm: {
                     searchPlace: '',
                     location: {}
@@ -379,6 +409,16 @@
             ...mapActions(['rateExperience']),
             ...mapActions(['getMyBookings']),
             ...mapActions(['getExperienceTypes']),
+            getSimilarExperiences(){
+                axios.get(`${this.$store.state.API_BASE}/experiences?city=${this.experience.city}`).then(response => {
+                    console.log(response.data.data)
+                    this.getSimilarExperienceData = response.data.data
+                    this.loading = false;
+                }).catch(err => {
+                    this.loading = false;
+                    console.log(err);
+                });
+            },
             getDirection(){
                 console.log('Hi There')
                 if(this.vm.place) {
@@ -441,6 +481,7 @@
                                                 console.log(error)
                                             })
                                         this.checkIfBooked()
+                                        this.ratingInfo()
                                         this.$noty.success("This experience has been added to your cart")
                                     });
                                 } else {
@@ -577,6 +618,7 @@
             if(this.$store.state.auth) {
                 this.checkIfBooked()                
             }
+            this.getSimilarExperiences()
             this.loading = false;
             
         }

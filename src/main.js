@@ -17,6 +17,11 @@ Vue.use(VueGmaps, {
   // libraries: ['places'],
   // version: '3'
 })
+import { VueperSlides, VueperSlide } from 'vueperslides'
+
+// Since v. 1.6.0, you need to include Vueper Slides CSS file for default styles.
+import 'vueperslides/dist/vueperslides.css'
+
 // import AirbnbStyleDatepicker from 'vue-airbnb-style-datepicker'
 // import 'vue-airbnb-style-datepicker/dist/vue-airbnb-style-datepicker.min.css'
 
