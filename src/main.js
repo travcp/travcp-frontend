@@ -11,7 +11,12 @@ import VueNoty from 'vuejs-noty'
 import 'vuejs-noty/dist/vuejs-noty.css'
 import vueCountryRegionSelect from 'vue-country-region-select'
 import ImageUploader from 'vue-image-upload-resize'
-
+import VueGmaps from 'vue-gmaps'
+Vue.use(VueGmaps, {
+  key: 'AIzaSyDgnbjMxlLW2BHBPJ4-iFsX_aB9jEHBFCg',
+  // libraries: ['places'],
+  // version: '3'
+})
 // import AirbnbStyleDatepicker from 'vue-airbnb-style-datepicker'
 // import 'vue-airbnb-style-datepicker/dist/vue-airbnb-style-datepicker.min.css'
 

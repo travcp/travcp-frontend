@@ -40,7 +40,7 @@
                             
                             <div>
                                 <h6><b>Rate the Experience</b></h6> <br>
-                                <p class="alert alert-warning" v-if="!checkBookingStatus">To rate this Experience you need to book first</p>
+                                <p class="alert alert-warning" v-if="!checkBookingStatus" style="margin:0;">To rate this Experience you need to book first</p>
                                 <div id="reviewStars-input" @click="toggleRatingBox" v-else>
                                     <input id="star-4" value=5 v-model="reviewStar" type="radio" name="reviewStars"/>
                                     <label title="gorgeous" for="star-4"></label>
@@ -178,8 +178,24 @@
                 </div>
             </div>
             <br><br>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <input v-model=vm.searchPlace v-gmaps-searchbox=vm placeholder="Enter Location" class="form-control" style="border: 1px solid #000; border-radius: 3px;padding: 10px;">
+                    <!-- <button class="btn btn-primary" @click="getDirection">Get Direction</button> -->
+                </div>
+                <div class="col-md-8">
+                    <iframe v-if="vm.place" height="450" frameborder="0" style="border:0;width:100%;"
+:src="'https://www.google.com/maps/embed/v1/directions?origin=' + vm.place.formatted_address.replace(/\s+/g, '+') + '&destination=' + experience.location + '&key=AIzaSyDgnbjMxlLW2BHBPJ4-iFsX_aB9jEHBFCg'" allowfullscreen></iframe>
+
+                        <iframe v-else height="450" frameborder="0" style="border:0;width:100%;"
+:src="'https://www.google.com/maps/embed/v1/search?q=' + experience.location + '&key=AIzaSyDgnbjMxlLW2BHBPJ4-iFsX_aB9jEHBFCg'" allowfullscreen></iframe>
+                </div>
+            </div>
             <div class="container">
                 <div class="row">
+                    <div class="col-md-12">
+                        
+                    </div>
                     <div class="col-md-5">
                         <div class="average_review_section">
                             <h2>Average Rating</h2>
@@ -297,6 +313,7 @@
         data() {
             return {
                 ratings: [],
+                current_location: null,
                 rate_this_exp_text: "",
                 start_date: '4/12/2019',
                 end_date: '6/12/2019',
@@ -311,6 +328,10 @@
                 reviews: [],
                 securityStar: null,
                 delivery_address: null,
+                vm: {
+                    searchPlace: '',
+                    location: {}
+                },
                 // custom lang
 //                 toggleSecurityBox
                 securityRating: false,
@@ -339,6 +360,13 @@
                 }
             }
         },
+        watch: {
+          vm: function() {
+            if(this.vm.place){
+                this.vm.searchPlace = this.vm.place.formatted_address                
+            }
+          }
+        },
         components: {
             Navbar,
             DatePicker,
@@ -351,6 +379,12 @@
             ...mapActions(['rateExperience']),
             ...mapActions(['getMyBookings']),
             ...mapActions(['getExperienceTypes']),
+            getDirection(){
+                console.log('Hi There')
+                if(this.vm.place) {
+                    document.getElementsByTagName('iframe')[0].src = 'https://www.google.com/maps/embed/v1/directions?origin=' + this.vm.place.formatted_address + '&destination=' + this.experience.location.replace(/\s+/g, '+') + '&key=AIzaSyDgnbjMxlLW2BHBPJ4-iFsX_aB9jEHBFCg'
+                }
+            },
             rateExperienceSubmit(){
                 if(this.auth) {
                     if (this.toggleRating) {
@@ -469,12 +503,12 @@
             },
             toggleSecurityBox() {
                 if(this.auth) {
-                    if (this.checkBookingStatus) {
+                    // if (this.checkBookingStatus) {
                         this.toggleRating = true
                         this.securityRating = true
-                    } else {
-                        this.$noty.warning("You need to book this Expereince to rate");
-                    }
+                    // } else {
+                        // this.$noty.warning("You need to book this Expereince to rate");
+                    // }
                 } else {
                     this.$noty.error("Oops, You need to Login to Review or Rate an Expereince");
                 }
