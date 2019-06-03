@@ -30,7 +30,7 @@
                                         {{ event.city }}                                  
                                       </div>
                                       <div class="col-3 text-center">
-                                       <p>{{ event.rating_count }} <i class="fa fa-star"></i></p>  
+                                       <p>{{ event.rating }} <i class="fa fa-star"></i></p>  
                                       </div>
                                       <div class="col-3 text-center">
                                        <p>{{ event.number_admittable }} <i class="fa fa-heart"></i></p>  

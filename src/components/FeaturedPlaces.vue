@@ -30,10 +30,10 @@
                                         {{ place.city }}                              
                                       </div>
                                       <div class="col-3 text-center">
-                                       <p>{{ place.rating_count }} <i class="fa fa-star"></i></p>  
+                                       <p>{{ place.rating }} <i class="fa fa-star"></i></p>  
                                       </div>
                                       <div class="col-3 text-center">
-                                       <p>{{ place.number_admittable }} <i class="fa fa-heart"></i></p>  
+                                      <a href="#"> <p>{{ place.number_admittable }} <i class="fa fa-heart"></i></p></a>
                                       </div>
                                     </div>
                                   </div>

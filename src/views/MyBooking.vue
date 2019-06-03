@@ -90,7 +90,7 @@ export default {
   name: "MyBooking",
   beforeRouteEnter(to, from, next) {
     let checkToken = JSON.parse(localStorage.getItem('auth'))
-      if(checkToken.access_token) {
+      if(checkToken && checkToken.access_token) {
           return next()
       } else {
         // this.$noty.error("Sign in to access!")

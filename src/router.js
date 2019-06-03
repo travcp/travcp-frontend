@@ -54,6 +54,8 @@ import Benefits from '@/views/pages/Benefits.vue';
 import ForgotPassword from '@/views/pages/ForgotPassword.vue';
 import Reset from '@/views/pages/Reset.vue';
 
+import LikedExperiences from '@/views/LikedExperiences.vue';
+
 Vue.use(Router);
 
 export default new Router({
@@ -173,6 +175,11 @@ export default new Router({
       path: "/dashboard/edit-profile",
       name: "EditProfile",
       component: EditProfile
+    },
+    {
+      path: "/dashboard/saved-experiences",
+      name: "LikedExperiences",
+      component: LikedExperiences
     },
     {
       path: "/dashboard/merchant-experience",

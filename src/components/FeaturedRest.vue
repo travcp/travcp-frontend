@@ -30,7 +30,7 @@
                                           {{ restaurant.city }}                                  
                                         </div>
                                         <div class="col-3 text-center">
-                                         <p>{{ restaurant.rating_count }} <i class="fa fa-star"></i></p>  
+                                         <p>{{ restaurant.rating }} <i class="fa fa-star"></i></p>  
                                         </div>
                                         <div class="col-3 text-center">
                                          <p>{{ restaurant.number_admittable }} <i class="fa fa-heart"></i></p>  

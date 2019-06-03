@@ -138,7 +138,7 @@
                                             <div class="fetr_places_overlay">
                                                 <p>{{ experience.title }} | {{ experience.state }}</p>
                                                 <h3> {{ experience.city }}</h3>
-                                                <p><b>{{experience.rating == null ? 0 : experience.rating}} *</b> ({{experience.rating_count == null ? 0 : experience.rating_count}})</p>
+                                                <p><b>{{experience.rating == null ? 0 : experience.rating}} <i class="fa fa-star"></i></b> ({{experience.rating_count == null ? 0 : experience.rating_count}})</p>
                                             </div>
                                         </div>
                                     </div>
@@ -153,7 +153,8 @@
                                             <div class="fetr_places_overlay">
                                                 <p>{{ experience.title }} | {{ experience.state }}</p>
                                                 <h3> {{ experience.city }}</h3>
-                                                <p><b>{{experience.rating == null ? 0 : experience.rating}} *</b> ({{experience.rating_count == null ? 0 : experience.rating_count}})</p>
+                                                
+                                                <p><b>{{experience.rating == null ? 0 : experience.rating}} <i class="fa fa-star"></i></b> ({{experience.rating_count == null ? 0 : experience.rating_count}})</p>
                                             </div>
                                         </div>
                                     </div>

@@ -12,73 +12,79 @@
           <p>Videos</p>
           <hr class="my-booking-title-horizontal">
         </div>
-        <div class="row video-images">
-          <div class="col-md video-details-image" data-toggle="modal" data-target="#video-modal">
-            <p
-              class="video-text"
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium nemo</p>
-          </div>
-          <div
-            class="modal fade"
-            id="video-modal"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-          >
-            <div
-              class="modal-dialog"
-              role="document"
-              style="max-width: 60%; margin-top: 5%; height: 400px"
-            >
-              <div class="modal-content modal-style">
-                <div class="modal-body" style="padding: 0">
-                  <button
-                    type="button"
-                    class="close modal-button-style"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                  <iframe
-                    width="420"
-                    height="415"
-                    style="width: 100%"
-                    src="https://www.youtube.com/embed/A3PDXmYoF5U"
-                  ></iframe>
-                </div>
-                <div class="modal-footer" style="padding: 0;border-top: none;">
-                  <div class="row" style="width: 100%;">
-                    <div class="col-md-12" style="text-align: center">
-                      <!-- <p>Share</p> -->
-                    </div>
-                  </div>
-                </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card">
+              <img src="../assets/videoImage.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Experience at London</h5>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                </p>
+                <footer class="blockquote-footer text-right">Canada</footer>
               </div>
             </div>
           </div>
-          <div class="col-md video-details-image"></div>
-          <div class="col-md video-details-image"></div>
-          <div class="col-md video-details-image"></div>
-        </div>
-        <div class="row video-images">
-          <div class="col-md video-details-image"></div>
-          <div class="col-md video-details-image"></div>
-          <div class="col-md video-details-image"></div>
-          <div class="col-md video-details-image"></div>
-        </div>
-        <div class="row video-images">
-          <div class="col-md video-details-image"></div>
-          <div class="col-md video-details-image"></div>
-          <div class="col-md video-details-image"></div>
-          <div class="col-md video-details-image"></div>
-        </div>
-        <div class="row video-images">
-          <div class="col-md video-details-image"></div>
-          <div class="col-md video-details-image"></div>
-          <div class="col-md video-details-image"></div>
-          <div class="col-md video-details-image"></div>
+          <div class="col-md-4">
+            <div class="card">
+              <img src="../assets/videoImage.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Experience at London</h5>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                </p>
+                <footer class="blockquote-footer text-right">Canada</footer>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card">
+              <img src="../assets/videoImage.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Experience at London</h5>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                </p>
+                <footer class="blockquote-footer text-right">Canada</footer>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card">
+              <img src="../assets/videoImage.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Experience at London</h5>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                </p>
+                <footer class="blockquote-footer text-right">Canada</footer>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card">
+              <img src="../assets/videoImage.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Experience at London</h5>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                </p>
+                <footer class="blockquote-footer text-right">Canada</footer>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card">
+              <img src="../assets/videoImage.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Experience at London</h5>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                </p>
+                <footer class="blockquote-footer text-right">Canada</footer>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <!-- booking header details right -->
@@ -130,6 +136,9 @@ export default {
 };
 </script>
 <style scoped>
+.card {
+  margin-bottom: 20px;
+}
 .main {
   /*padding-top: 100px;*/
 }
