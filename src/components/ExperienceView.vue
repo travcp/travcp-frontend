@@ -413,6 +413,7 @@
                 axios.get(`${this.$store.state.API_BASE}/experiences?city=${this.experience.city}`).then(response => {
                     console.log(response.data.data)
                     this.getSimilarExperienceData = response.data.data
+                    this.getSimilarExperienceData.shift()
                     this.loading = false;
                 }).catch(err => {
                     this.loading = false;
