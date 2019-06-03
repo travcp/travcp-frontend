@@ -468,8 +468,12 @@
             },
             toggleSecurityBox() {
                 if(this.auth) {
-                    this.toggleRating = true;
-                    this.securityRating = true
+                    if (this.checkBookingStatus) {
+                        this.toggleRating = true
+                        this.securityRating = true
+                    } else {
+                        this.$noty.warning("You need to book this Expereince to rate");
+                    }
                 } else {
                     this.$noty.error("Oops, You need to Login to Review or Rate an Expereince");
                 }
@@ -478,7 +482,7 @@
                 this.loading = true;
                 // let requestHeaders = {
                 //     headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
-                // };
+                // };1
                 axios.get(`${this.$store.state.API_BASE}/experiences/${this.$route.params.id}/reviews`).then(response => {
                     
                     this.ratings = response.data.rating_info
@@ -498,7 +502,7 @@
                     experience_id: this.$route.params.id,
                     user_id: this.$store.state.auth.user.id,
                 }, requestHeaders).then(response => {
-                    
+                    console.log(response.data)
                     this.checkBookingStatus = response.data[0]
                     this.loading = false;
                 }).catch(err => {
