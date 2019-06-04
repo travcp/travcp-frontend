@@ -236,9 +236,9 @@
     },
     created: function () {
       // console.log(this.genRandom);
-      this.getExperiences()
-      this.getEvents();
-      this.getPlaces();
+      // this.getExperiences()
+      // this.getEvents();
+      // this.getPlaces();
     // this.getExperiences();
       // this.experiences = this.allExperiences;
       // console.log(this.experiences)
@@ -650,13 +650,13 @@
     object-fit: cover;
   } */
 
-  .stories_background {
+  /*.stories_background {
     background: url('../assets/image_5.png');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
   }
-
+*/
   .more_stories_content {
     padding-top: 70px;
     padding-bottom: 12px;
@@ -805,21 +805,21 @@
       font-size: 14px;
   }
   /* @media(max-width: ) */
-  .mount_fuji {
+ /* .mount_fuji {
     background: url('../assets/mount_fuji.png');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
   }
-
-  .kyoto {
+*/
+  /*.kyoto {
     background: url('../assets/Kyoto.png');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-  }
+  }*/
 
-  .tokyo {
+  /*.tokyo {
     background: url('../assets/Tokyo.png');
     background-position: center;
     background-size: cover;
@@ -880,7 +880,7 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-  }
+  }*/
 
   .feature_video_lg {
     background: url('../assets/feature_video_lg.png');
@@ -924,7 +924,7 @@
     background-repeat: no-repeat;
   }
 
-  .latest_post_1 {
+/*  .latest_post_1 {
     background: url('../assets/latest_post_1.png');
     background-position: center;
     background-size: cover;
@@ -936,7 +936,7 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-  }
+  }*/
 
   .c_box_item img {
     height: 120px;
