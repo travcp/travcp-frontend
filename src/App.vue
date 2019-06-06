@@ -73,6 +73,7 @@ export default {
 <style>
 body, h6, h5, h4, h3, h2, h1, p  {
   font-family: MuseoSans;
+  font-weight: 200 !important;
 }
 @font-face {
     font-family: MuseoSans;

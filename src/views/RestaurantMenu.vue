@@ -62,7 +62,25 @@
                                 <br>
                             <h5 class="card-title">{{ restaurant.title }}</h5>
                                 <p>{{ restaurant.state }}</p>
-                                <p>{{ restaurant.opening_and_closing_hours }}</p>
+                                <table class="table table-dark">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Day</th>
+                                        <th scope="col">Opening Hours</th>
+                                        <th scope="col">Closing Hours</th>
+                                        <th scope="col">Closed</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="data in JSON.parse(restaurant.opening_and_closing_hours)" v-if="JSON.parse(restaurant.opening_and_closing_hours) instanceof Array">
+                                        <td>{{ data.day }}</td>
+                                        <td>{{ data.open_time }}</td>
+                                        <td>{{ data.close_time }}</td>
+                                        <td>{{ data.close_time ? 'Yes' : 'No' }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <!-- <p>{{ restaurant.opening_and_closing_hours }}</p> -->
                             <p class="card-text">.</p>
                             <date-picker v-validate="'required'" v-model="time" range :shortcuts="shortcuts" :lang="lang"></date-picker>
                             <div class="booking-action text-center">

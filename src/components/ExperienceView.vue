@@ -180,7 +180,8 @@
             <br><br>
             <div class="row">
                 <div class="form-group col-md-4">
-                    <input v-model=vm.searchPlace v-gmaps-searchbox=vm placeholder="Enter Your Location" class="form-control" style="border: 1px solid #000; border-radius: 3px;padding: 10px;">
+                    <label for="">Get Direction</label>
+                    <input v-model=vm.searchPlace v-gmaps-searchbox=vm placeholder="Enter your current location" class="form-control" style="border: 1px solid #000; border-radius: 3px;padding: 10px;">
                     <!-- <button class="btn btn-primary" @click="getDirection">Get Direction</button> -->
                 </div>
                 <div class="col-md-8">
@@ -588,7 +589,7 @@
             },
             gotoMenu(){
                 
-                this.$router.push({name: "RestaurantMenu", params: {id: this.experience.id, name: this.experience.title}});
+                this.$router.push({name: "RestaurantMenu", params: {id: this.experience.id, name: this.experience.title.toString().toLowerCase().replace( /\s/g, '-')}});
             }
         },
         computed: {
