@@ -130,9 +130,9 @@
                             </div>
                             
                             <div class="col-md-4 experience" v-if="allExperiences != null && allExperiences.length < 1" v-for="experience in experiencesPlacehodler" :key="experience.id" style="">
-                                <router-link :to="'/experience/'+ experience.id + '/' + experience.city.toString().toLowerCase().replace( /\s/g, '-')">
+                                <router-link :to="'/experience/'+ experience.id + '/' + experience.title.toString().toLowerCase().replace( /\s/g, '-')">
                                     <div class="search_items">
-                                        <div class="search_items_back_img nagoya" v-if="experience.images && experience.images.length > 0" :style="{background: 'url(' + experience.images[0].image + ')'}"></div>
+                                        <div class="search_items_back_img nagoya" v-if="experience.images && experience.images.length > 0" :style="{'background-image': 'url(' + experience.images[0].image ? experience.images[0].image : '../assets/nagoya.png' + ')'}"></div>
                                         <div class="nagoya" v-else></div>
                                         <div class="search_items_item">
                                             <div class="fetr_places_overlay">
@@ -145,9 +145,9 @@
                                 </router-link>
                             </div>
                             <div class="col-md-4 experience" v-for="experience in experiences" :key="experience.id" style="">
-                                <router-link :to="'/experience/'+ experience.id + '/' + experience.city.toString().toLowerCase().replace( /\s/g, '-')">
+                                <router-link :to="'/experience/'+ experience.id + '/' + experience.title.toString().toLowerCase().replace( /\s/g, '-')">
                                     <div class="search_items">
-                                        <div class="search_items_back_img nagoya" v-if="experience.images && experience.images.length > 0" :style="{background: 'url(' + experience.images[0].image + ')'}"></div>
+                                        <div class="search_items_back_img nagoya" v-if="experience.images && experience.images.length > 0"  :style="{'background-image': 'url(' + experience.images[0].image ? experience.images[0].image : '../assets/nagoya.png' + ')'}"></div>
                                         <div class="nagoya" v-else></div>
                                         <div class="search_items_item">
                                             <div class="fetr_places_overlay">

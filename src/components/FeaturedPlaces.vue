@@ -20,7 +20,7 @@
                       <div class="card-deck">
                         <div class="row">
                           <div class="col-md-4" v-for="place in places" :key="place.id">
-                            <router-link :to="'/experience/'+ place.id + '/' + place.city.toString().toLowerCase().replace( /\s/g, '-')">
+                            <router-link :to="'/experience/'+ place.id + '/' + place.title.toString().toLowerCase().replace( /\s/g, '-')">
                                 <div class="featured-card card">
                                 <img v-if="place.images.length" :src="place.images[0].image" class="card-img-top featured-card-img" alt="...">
                                 <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" alt="...">

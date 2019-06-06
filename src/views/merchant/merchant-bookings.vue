@@ -76,7 +76,7 @@
 <script>
     import Navbar from "@/components/Navbar.vue";
     import EmptyResult from "@/components/EmptyResult.vue";
-    import { mapActions, mapState } from 'vuex';
+    import { mapState } from 'vuex';
     import axios from 'axios';
     import Footer from '@/components/Footer.vue';
     import { Circle9 } from 'vue-loading-spinner'
@@ -94,7 +94,7 @@
               next();
           },
         components: {
-            Navbar, EmptyResult, Footer, Circle9, mapState
+            Navbar, EmptyResult, Circle9
         },
         data(){
             return {

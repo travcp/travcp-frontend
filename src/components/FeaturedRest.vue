@@ -20,7 +20,7 @@
                       <div class="card-deck">
                         <div class="row">
                           <div class="col-md-4" v-for="restaurant in restaurants" :key="restaurant.id">
-                            <router-link :to="'/experience/'+ restaurant.id + '/' + restaurant.city.toString().toLowerCase().replace( /\s/g, '-')">
+                            <router-link :to="'/experience/'+ restaurant.id + '/' + restaurant.title.toString().toLowerCase().replace( /\s/g, '-')">
                                 <div class="featured-card card">
                                   <img v-if="restaurant.images.length" :src="restaurant.images[0].image" class="card-img-top featured-card-img" alt="...">
                                   <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" alt="...">
