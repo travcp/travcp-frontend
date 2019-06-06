@@ -17,9 +17,15 @@
                                    
                                </span>
                                <!-- <div class="user_pic"></div> -->
+
                                
-                                <img :src="auth.user.profile_image ? auth.user.profile_image.image : require('@/assets/avatar.png')" class="user_pic" alt="profile picture"> <br>
-                                <h5 class="card-title">{{ userProperties.surname }} {{ userProperties.first_name }}</h5>
+                                <img :src="auth.user.profile_image ? auth.user.profile_image.image : require('@/assets/avatar.png')" class="user_pic" alt="profile picture">
+                                <img v-if="medalType && medalType.name == 'Rookie'" src="../assets/travv/bronze.png" style="height: 60px;position:relative;top: 30px;left: -20px;" alt="Medal">
+                               <img v-if="medalType && medalType.name == 'Hobby'" src="../assets/travv/sliver.png" style="height: 60px;position:relative;top: 30px;left: -20px;" alt="Medal">
+                               <img v-if="medalType && medalType.name == 'Expert'" src="../assets/travv/gold.png" style="height: 60px;position:relative;top: 30px;left: -20px;" alt="Medal">
+
+                               <br>
+                                <h5 class="card-title" style="text-transform: capitalize">{{ userProperties.surname }} {{ userProperties.first_name }}</h5>
                                 <h6 class="card-subtitle mb-2 text-muted" style="text-transform: lowercase;">{{ userProperties.surname }}{{ userProperties.first_name }}</h6>
                                 <p class="location" v-if="userProperties.address"><img src="/img/icons/map-marker-alt-solid.svg" alt="" style="width:10px"> {{ userProperties.address }}, {{ userProperties.country }}</p>
                                 <!-- <p class="card-text description">Tour with me, Discover Places and experience the culture with me</p> -->
@@ -86,12 +92,22 @@ export default {
     },
     components: { Navbar, Footer },
     data(){return{
-      bookings: []
+      bookings: [],
+      medalType: null
     }},
     computed: {
       ...mapState(['auth']),
       userProperties() {
         return this.auth.user;
+      },
+      getUserMedalType() {
+          if (this.medalType && this.medalType.name == "Rookie") {
+              return 'bronze.png'
+          } else if (this.medalType && this.medalType.name == "Hobby") {
+              return 'silver.png'
+          } else if (this.medalType && this.medalType.name == "Expert"){
+              return 'gold.png'
+          }
       }
     },
     methods: {
@@ -107,10 +123,22 @@ export default {
           console.log("There was error fetching mybookings");
         })
         
-      }
+      },
+        getUserMedal(){
+            if(this.auth && this.auth.access_token){
+                axios.get(`${this.$store.state.API_BASE}/medals`).then(response => {
+                    console.log(response.data.data)
+                    this.medalType = response.data.data[0]
+                }).catch((error) => {
+                    console.log(error.data);
+
+                })
+            }
+        }
     },
     created(){
       this.getMyBookings()
+      this.getUserMedal()
     }
 }
 </script>
@@ -148,6 +176,8 @@ export default {
 		/* margin-left: 90px; */
 		margin-bottom: 40px;
 		border-radius: 100%;
+        position: relative;
+        right: -20px;
     }
     .card.profile-card{
         border:none;

@@ -16,9 +16,10 @@ import axios from 'axios';
 
 export default {
   name: 'App',
-  components: {Navbar, Footer, Circle8},
+  components: {Footer},
   computed: {
-    ...mapState(['loadingExperience'])
+    ...mapState(['loadingExperience']),
+    ...mapState(['auth'])
   },
   methods: {
     ...mapActions(['getExperiences']),
@@ -26,6 +27,16 @@ export default {
     ...mapActions(['getEvents']),
     ...mapActions(['getPlaces']),
     ...mapActions(['getRestaurants']),
+    getUserMedal(){
+      if(this.auth && this.auth.access_token){
+        axios.get(`${this.$store.state.API_BASE}/medals`).then(response => {
+          console.log(response.data.data)
+        }).catch((error) => {
+          console.log(error.data);
+
+        })
+      }
+    }
     // ...mapActions(['getExperiences'])
   },
   created() {
@@ -34,6 +45,7 @@ export default {
     this.getEvents()
     this.getPlaces()
     this.getRestaurants()
+    this.getUserMedal();
     if(this.$store.state.auth) {
       // localStorage.setItem("auth", JSON.stringify(payload));
       let checkUserType = this.$store.state.auth.user.role;

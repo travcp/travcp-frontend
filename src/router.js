@@ -177,7 +177,7 @@ export default new Router({
       component: EditProfile
     },
     {
-      path: "/dashboard/saved-experiences",
+      path: "/dashboard/favourite-experiences",
       name: "LikedExperiences",
       component: LikedExperiences
     },

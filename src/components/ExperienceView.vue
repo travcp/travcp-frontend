@@ -198,7 +198,7 @@
                     </div>
                     <div class="col-md-5">
                         <div class="average_review_section">
-                            <h2>Average Rating</h2>
+                            <h2>Average Rating <b>{{ experience.rating }}</b></h2>
                             <h5>Based on {{ reviews.meta ? reviews.meta.total : 0}} ratings</h5>
                             <br>
                             <div class="row">
@@ -275,7 +275,7 @@
                                             <div class="col-8">
                                                 <p class="review_name">{{ review.user_name }}</p>
                                                 <p class="review_rev">
-                                                    <img v-for="i in review.rating" src="../assets/review-icon.svg" alt="Review icon" style="height: 28px;">
+                                                    <img v-for="i in review.rating" :key="i.id" src="../assets/review-icon.svg" alt="Review icon" style="height: 28px;">
                                                 </p>
                                                 <br>
                                                 <p class="review_date">{{ review.review_body }}</p>
@@ -295,7 +295,7 @@
                     </div>
                     <br>
                     <div class="col-md-3" v-for="data in getSimilarExperienceData.slice(0, 4)" style="margin-bottom: 10px">
-                       <a :href="'/experience/'+ data.id + '/' + data.city">
+                       <a :href="'/experience/'+ data.id + '/' + data.city.toString().toLowerCase().replace( /\s/g, '-')">
                         <div class="featured-card card">
                           <img v-if="data.images.length" :src="data.images[0].image" class="card-img-top featured-card-img" alt="...">
                           <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" alt="...">

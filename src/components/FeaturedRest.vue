@@ -20,7 +20,7 @@
                       <div class="card-deck">
                         <div class="row">
                           <div class="col-md-4" v-for="restaurant in restaurants" :key="restaurant.id">
-                            <router-link :to="'/experience/'+ restaurant.id + '/' + restaurant.city">
+                            <router-link :to="'/experience/'+ restaurant.id + '/' + restaurant.city.toString().toLowerCase().replace( /\s/g, '-')">
                                 <div class="featured-card card">
                                   <img v-if="restaurant.images.length" :src="restaurant.images[0].image" class="card-img-top featured-card-img" alt="...">
                                   <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" alt="...">
@@ -32,7 +32,7 @@
                                         <div class="col-3 text-center">
                                          <p>{{ restaurant.rating }} <i class="fa fa-star"></i></p>  
                                         </div>
-                                        <div class="col-3 text-center">
+                                        <div class="col-3 text-center" @click="postFavoriteExeperience(restaurant.id)">
                                          <p>{{ restaurant.number_admittable }} <i class="fa fa-heart"></i></p>  
                                         </div>
                                       </div>
@@ -42,27 +42,6 @@
                           </div>
                         </div>
                       </div>
-                        <!-- <div class="col-md-4 left_feature_place" v-for="event in events" :key="event.id" style="padding-right: 10px;padding-left: 0px;">
-                            <router-link :to="'/experience/'+ event.id + '/' + event.city">
-                              <div class="featured_places nagoya">
-                                  <div class="featured_places_item">
-                                      <div class="featured_places_overlay featured_places_overlay_active">
-                                          <div class="row">
-                                              <div class="col-md-7">
-                                                  <p class="ftr_places_title">{{ event.city }}</p>
-                                              </div>
-                                              <div class="col-md-2">
-                                                  <p class="ftr_places_title">{{ event.number_admittable }}</p>
-                                              </div>
-                                              <div class="col-md-2">
-                                                  <p class="ftr_places_title">{{ event.rating_count }}</p>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                            </router-link>
-                        </div> -->
                     </div>
                 </div>
             </div>
@@ -72,38 +51,44 @@
 
 <script>
 import Flickity from 'vue-flickity';
+import Axios from 'axios'
+import { mapState } from 'vuex'
 
 export default {
     name: 'FeaturedRest',
     data: function(){return{
-      
+      loading: false
     }},
     props: ['restaurants'],
-    // components: {
-    //       Flickity
-    // },
-    // data () {
-    //     return {
-    //         flickityOptions: {
-    //             initialIndex: 3,
-    //             prevNextButtons: false,
-    //             pageDots: false,
-    //             wrapAround: true,
-    //             autoPlay: 5000,
-    //             resize: true
-    //             // any options from Flickity can be used
-    //         }
-    //     }
-    // },
-    // methods: {
-    //     // next() {
-    //     //     this.$refs.flickity.next();
-    //     // },
-
-    //     // previous() {
-    //     //     this.$refs.flickity.previous();
-    //     // }
-    // }
+    computed:{
+        ...mapState(['auth'])
+    },
+    methods: {
+        postFavoriteExeperience(Id){
+            this.loading = true
+            if(this.auth && this.auth.access_token){
+                let data = {
+                    user_id: this.auth.user.id,
+                    experience_id: Id
+                }
+                let requestHeaders = {
+                    headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
+                }
+                Axios.post(`${this.$store.state.API_BASE}/favourites`,
+                    data,
+                    requestHeaders).then(response => {
+                    console.log(response.data.data);
+                    this.loading = false
+                    this.$noty.success('Experience now Favorite')
+                }).catch(error => {
+                    console.log(error.data)
+                    this.loading = false
+                })
+            } else {
+                this.$noty.error('You need to Login to Have a Favourite Experience')
+            }
+        }
+    }
 }
 </script>
 

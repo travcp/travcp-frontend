@@ -20,7 +20,7 @@
                       <div class="card-deck">
                         <div class="row">
                           <div class="col-md-4" v-for="event in events" :key="event.id">
-                            <router-link :to="'/experience/'+ event.id + '/' + event.city">
+                            <router-link :to="'/experience/'+ event.id + '/' + event.city.toString().toLowerCase().replace( /\s/g, '-')">
                                 <div class="featured-card card">
                                 <img v-if="event.images.length" :src="event.images[0].image" class="card-img-top featured-card-img" alt="...">
                                 <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" alt="...">
@@ -32,7 +32,7 @@
                                       <div class="col-3 text-center">
                                        <p>{{ event.rating }} <i class="fa fa-star"></i></p>  
                                       </div>
-                                      <div class="col-3 text-center">
+                                      <div class="col-3 text-center" @click="postFavoriteExeperience(event.id)">
                                        <p>{{ event.number_admittable }} <i class="fa fa-heart"></i></p>  
                                       </div>
                                     </div>
@@ -72,11 +72,12 @@
 
 <script>
 import Flickity from 'vue-flickity';
-
+import Axios from 'axios'
+import { mapState } from 'vuex'
 export default {
     name: 'FeaturedEvents',
     data: function(){return{
-      
+      loading: false
     }},
     props: ['events'],
     // components: {
@@ -95,15 +96,42 @@ export default {
     //         }
     //     }
     // },
-    // methods: {
-    //     // next() {
-    //     //     this.$refs.flickity.next();
-    //     // },
+    computed: {
+        ...mapState(['auth'])
+    },
+    methods: {
+        // next() {
+        //     this.$refs.flickity.next();
+        // },
 
-    //     // previous() {
-    //     //     this.$refs.flickity.previous();
-    //     // }
-    // }
+        // previous() {
+        //     this.$refs.flickity.previous();
+        // }
+        postFavoriteExeperience(Id){
+            this.loading = true
+            if(this.auth && this.auth.access_token){
+                let data = {
+                    user_id: this.auth.user.id,
+                    experience_id: Id
+                }
+                let requestHeaders = {
+                    headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
+                }
+                Axios.post(`${this.$store.state.API_BASE}/favourites`,
+                    data,
+                    requestHeaders).then(response => {
+                    console.log(response.data.data);
+                    this.loading = false
+                    this.$noty.success('Experience now Favorite')
+                }).catch(error => {
+                    console.log(error.data)
+                    this.loading = false
+                })
+            } else {
+                this.$noty.error('You need to Login to Have a Favourite Experience')
+            }
+        }
+    }
 }
 </script>
 

@@ -7,10 +7,16 @@
                 <div class="col-lg-12">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-12" style="margin-bottom: 20px;">
-                                <h3>Saved Experiences</h3>
+                            <div class="col-md-12" style="margin-bottom: 60px;">
+                                <h3>Favourite Experiences</h3>
                             </div>
-                            <div class="col-md-4 experience" v-for="experience in allExperiences" :key="experience.id" style="">
+                            <div v-if="FavoritesExperience.length < 1 && !loading">
+                                <empty-result>
+                                    <template v-slot:error-header>Errm</template>
+                                    You do not have any Favorite Experience yet. <br> When you love an experience, it will appear here.
+                                </empty-result>
+                            </div>
+                            <div class="col-md-4 experience" v-for="experience in FavoritesExperience" :key="experience.id" style="">
                                 <router-link :to="'/experience/'+ experience.id + '/' + experience.city">
                                     <div class="search_items">
                                         <div class="search_items_back_img nagoya" v-if="experience.images && experience.images.length > 0" :style="{background: 'url(' + experience.images[0].image + ')'}"></div>
@@ -40,6 +46,8 @@
     import { mapState, mapGetters, mapActions } from 'vuex';
     import DatePicker from 'vue2-datepicker'
     import Footer from '@/components/Footer.vue';
+    import Axios from 'axios';
+    import EmptyResult from "@/components/EmptyResult.vue";
 
     export default {
         name: 'LikedExperiences',
@@ -74,66 +82,50 @@
                 value_2_min: 1,
                 value_2_max: 30,
                 value_1: [10, 5000],
+                loading: false,
+                FavoritesExperience: []
             }
         },
         components: {
             Navbar,
-            Footer
+            EmptyResult
         },
         computed: {
-            ...mapState(['loading']),
-            ...mapGetters(['allExperiences']),
             ...mapState(['auth']),
-            ...mapState(['emptySearchResult']),
-            ...mapState(['experiencesPlacehodler']),
             checkUserType() {
                 if(this.auth) {
                     return this.auth.user.role;                    
                 }
                 return null
-            }
+            },
         },
         methods: {
             ...mapActions(['getEvents']),
             ...mapActions(['getExperiences']),
             ...mapActions(['filterExperiencesSearch']),
-            filterExperience: function() {
-                this.emptySearchToggle = false;
-                console.log('Searching')
-                let data = {
-                    search: this.search,
-                    min_price: this.value_1[0],
-                    max_price: this.value_1[1]
-                }
-                this.$validator.validateAll().then(result => {
-                    if (result){
-                            let url = `${this.$store.state.API_BASE}/experiences?location=${data.search}&min_price=${data.min_price}&max_price=${data.max_price}`;
 
-                            if(data.search == ''){
-                                this.filterExperiencesSearch();
-                            } else {
-                                console.log("Non empty search")
-                                this.filterExperiencesSearch(url);
-                                
-                            }
-                        // this.$
-                    }
-                    else{
-                        this.$noty.error("Enter a minimun of 3 words in thre search")
-                    }
-                });
-                
-            },
             dntTogle: function(){
                 // preventDefault()
                 return true;
             },
             stopProp: function(e){
                 e.stopPropagation()
+            },
+            getUserFavorites(){
+                this.loading = true;
+                Axios.get(`${this.$store.state.API_BASE}/favourites`)
+                    .then(response => {
+                        console.log(response.data.data);
+                        this.FavoritesExperience = response.data.data
+                        this.loading = false
+                    }).catch(error => {
+                        console.log(err.data);
+                        this.loading = false;
+                })
             }
         },
         created: function(){
-            this.getEvents();
+            this.getUserFavorites();
         }
     }
 </script>

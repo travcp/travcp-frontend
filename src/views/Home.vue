@@ -74,22 +74,22 @@
                     </div>
                   </div>
                   <div class="carousel-item" data-interval="20000">
-                    <div class="recom4uimages-up kyoto">
+                    <div class="recom4uimages-up mount_fuji">
                       <p>Kyoto</p>
                     </div>
                   </div>
                   <div class="carousel-item" data-interval="20000">
-                    <div class="recom4uimages-up tokyo">
+                    <div class="recom4uimages-up mount_fuji">
                       <p>Tokyo</p>
                     </div>
                   </div>
                   <div class="carousel-item">
-                    <div class="recom4uimages-up niigata">
+                    <div class="recom4uimages-up mount_fuji">
                       <p>Niigata</p>
                     </div>
                   </div>
                   <div class="carousel-item">
-                    <div class="recom4uimages-up saporo">
+                    <div class="recom4uimages-up mount_fuji">
                       <p>Saporo</p>
                     </div>
                   </div>
@@ -146,13 +146,10 @@
 
           </div>
         </div>
-        <!-- <FeaturedPlaces :experiences="experiences.slice(0, 3)" /> -->
-        <!-- <FeaturedRest :restaurants="featuredrest" /> -->
         <FeaturedEvents :events="events.slice(0, 3)" />
         <FeaturedPlaces :places="places.slice(0, 3)" />
         <FeaturedRest :restaurants="restaurants.slice(0, 3)" />
         <FeaturedVideo />
-        <!-- <LatestPosts /> -->
       </div>
     </section>
     <!-- <Footer /> -->
@@ -805,13 +802,13 @@
       font-size: 14px;
   }
   /* @media(max-width: ) */
- /* .mount_fuji {
+  .mount_fuji {
     background: url('../assets/mount_fuji.png');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
   }
-*/
+
   /*.kyoto {
     background: url('../assets/Kyoto.png');
     background-position: center;

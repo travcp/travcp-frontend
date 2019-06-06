@@ -187,7 +187,7 @@ export default {
     var handler = PaystackPop.setup({
       key: 'pk_test_a3c6507e7a82c63308de9c5863bbe0950492d508',
       email: this.$store.state.auth.user.email,
-      amount: thi.calcPrice,
+      amount: this.calcPrice,
       currency: "NGN",
       ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
       metadata: {
