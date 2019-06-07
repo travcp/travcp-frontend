@@ -62,7 +62,7 @@
                                 <br>
                             <h5 class="card-title">{{ restaurant.title }}</h5>
                                 <p>{{ restaurant.state }}</p>
-                                <table class="table table-dark">
+                                <table class="table table-dark" style="background-color: #f81894;">
                                     <thead>
                                     <tr>
                                         <th scope="col">Day</th>
@@ -220,6 +220,9 @@ import { mapState, mapActions } from 'vuex'
 </script>
 
 <style scoped>
+.table-dark th, .table-dark thead th {
+    border-color: #FFF;
+}
 .restaurant_heading {
         height: 250px;
         width: 100%;

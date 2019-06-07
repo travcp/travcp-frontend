@@ -809,14 +809,18 @@
     background-repeat: no-repeat;
   }
 
-  /*.kyoto {
+  .kyoto {
     background: url('../assets/Kyoto.png');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-  }*/
-
-  /*.tokyo {
+  }
+  .saporo {
+    background: url('../assets/Saporo.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }.tokyo {
     background: url('../assets/Tokyo.png');
     background-position: center;
     background-size: cover;
@@ -830,6 +834,7 @@
     background-repeat: no-repeat;
   }
 
+  /*
   .niigata2 {
     background: url('../assets/niigata2.png');
     background-position: center;
@@ -837,12 +842,7 @@
     background-repeat: no-repeat;
   }
 
-  .saporo {
-    background: url('../assets/Saporo.png');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
+
 
   .nagoya {
     background: url('../assets/nagoya.png');

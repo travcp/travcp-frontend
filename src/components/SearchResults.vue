@@ -293,6 +293,7 @@
                 });
                 
             },
+            
             dntTogle: function(){
                 // preventDefault()
                 return true;
