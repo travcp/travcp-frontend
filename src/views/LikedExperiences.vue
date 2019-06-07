@@ -16,17 +16,17 @@
                                     You do not have any Favorite Experience yet. <br> When you love an experience, it will appear here.
                                 </empty-result>
                             </div>
-                            <div class="col-md-4 experience" v-for="experience in FavoritesExperience" :key="experience.id" style="">
-                                <router-link :to="'/experience/'+ experience.id + '/' + experience.title">
+                            <div class="col-md-4 experience" v-for="experience in FavoritesExperience" :key="experience.experience.id" style="">
+                                <router-link :to="'/experience/'+ experience.experience.id + '/' + experience.experience.title.toString().toLowerCase().replace( /\s/g, '-')">
                                     <div class="search_items">
-                                        <div class="search_items_back_img nagoya" v-if="experience.images && experience.images.length > 0" :style="{background: 'url(' + experience.images[0].image + ')'}"></div>
+                                        <div class="search_items_back_img nagoya" v-if="experience.experience.images && experience.experience.images.length > 0" :style="{background: 'url(' + experience.experience.images[0].image + ')'}"></div>
                                         <div class="nagoya" v-else></div>
                                         <div class="search_items_item">
                                             <div class="fetr_places_overlay">
-                                                <p>{{ experience.title }} | {{ experience.state }}</p>
-                                                <h3> {{ experience.city }}</h3>
+                                                <p>{{ experience.experience.title }} | {{ experience.experience.state }}</p>
+                                                <h3> {{ experience.experience.city }}</h3>
                                                 
-                                                <p><b>{{experience.rating == null ? 0 : experience.rating}} <i class="fa fa-star"></i></b> ({{experience.rating_count == null ? 0 : experience.rating_count}})</p>
+                                                <p><b>{{experience.experience.rating == null ? 0 : experience.experience.rating}} <i class="fa fa-star"></i></b> ({{experience.experience.rating_count == null ? 0 : experience.experience.rating_count}})</p>
                                             </div>
                                         </div>
                                     </div>

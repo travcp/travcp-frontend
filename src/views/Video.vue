@@ -8,7 +8,7 @@
     <!-- booking header details left -->
     <div class="row my-booking-left">
       <div class="col-lg-9 my-booking-header">
-        <div class="my-booking-title">
+        <div class="my-booking-title" @click="getVideos()">
           <p>Videos</p>
           <hr class="my-booking-title-horizontal">
         </div>
@@ -42,7 +42,7 @@
           <div class="col-md-4" v-for="video in videoData" :key="video.id">
 
             <div class="card">
-              <img :src="'http://img.youtube.com/vi/' + getVideoParam(video.url) +'/hqdefault.jpg'"  data-toggle="modal" :data-target="'#video' + video.id" class="card-img-top" alt="...">
+              <img :src="'http://img.youtube.com/vi/' + getVideoParam(video.url) +'/hqdefault.jpg'"  data-toggle="modal" :data-target="'#video' + video.id" class="card-img-top cursor-pointer" alt="...">
              <!--  <iframe class="card-img-top"style="width: 100%" 
                   :src="video.url">
                   </iframe> -->
