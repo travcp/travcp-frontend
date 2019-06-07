@@ -14,7 +14,7 @@
         </div>
         <div style="padding-bottom: 20px">
           <p class="my-cart-sub-title">Cart(  )</p>
-          <p class="my-cart-sub-title">Price - ${{ calcPrice }}</p>
+          <p class="my-cart-sub-title">Price - ${{ calcPrice() }}</p>
         </div>
         <div class="row my-booking-left" v-for="item in cart.items" :key="item.id">
           <div class="col-md-3 my-booking-details-image"></div>
@@ -121,7 +121,8 @@ export default {
       loading: false,
       cart: [],
       no_cart_items: null,
-      paystack_response: null
+      paystack_response: null,
+      price: 0
     }
   },
   components: {
@@ -134,12 +135,15 @@ export default {
     ...mapState(['places']),
     getNoCarts() {
       return true
-    },
+    }
+  },
+  methods: {
     calcPrice(){
-      let price = 0;
-      if(this.cart){
+      // let price = 0;
+      if(this.cart) {
+        console.log(this.cart.items)
         for(let i = 1; i <= this.cart.items; i++){
-          price += this.cart[i].booking.price
+          price += this.cart[i].items.booking.experience.dollar_price.price
         }
         // this.cart.items.forEach(item => {
         //   price += item.booking.price
@@ -149,9 +153,7 @@ export default {
         return false;
       }
       // return 0;
-    }
-  },
-  methods: {
+    },
     getMyCarts(){
       this.loading = true;
       let requestHeaders = {
@@ -188,7 +190,7 @@ export default {
       key: 'pk_test_a3c6507e7a82c63308de9c5863bbe0950492d508',
       email: this.$store.state.auth.user.email,
       amount: this.calcPrice,
-      currency: "NGN",
+      currency: "USD",
       ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
       metadata: {
          custom_fields: [

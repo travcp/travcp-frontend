@@ -307,17 +307,17 @@
                               </div>
                               <div
                                 class="form-group col-md-6"
-                                v-if="requiredFields.includes('naira_price')"
+                                v-if="requiredFields.includes('dollar_price')"
                               >
                                 <div class="row">
                                   <div class="form-group col-md-4">
-                                    <label>Price</label>
+                                    <label>Price ($)</label>
                                     <input
                                       v-validate="'required'"
                                       type="text"
                                       class="form-control new_experience_input"
                                       placeholder="in Dollars"
-                                      v-model="experience.naira_price"
+                                      v-model="experience.dollar_price"
                                     />
                                   </div>
                                   <div class="form-group col-md-8">
@@ -412,7 +412,7 @@ export default {
       offerings: null,
       language: null,
       description: null,
-      naira_price: null,
+      dollar_price: null,
       meetup_location: null,
       itenary: null,
       tourist_expected_items: null,
@@ -544,7 +544,7 @@ export default {
         offerings: this.experience.offerings,
         language: this.experience.language,
         description: this.experience.description,
-        naira_price: this.experience.naira_price,
+        dollar_price: this.experience.dollar_price,
         meetup_location: this.experience.meetup_location,
         itenary: this.experience.itenary,
         tourist_expected_items: this.experience.tourist_expected_items,

@@ -43,7 +43,7 @@
                                <div class="row">
                                    <div class="col-md-4 experience" v-for="booking in bookings">
                                     <!-- experience/2/Mikaylafurt -->
-                                       <router-link :to="'../experience/' + booking.experience.id + '/' + booking.experience.title">
+                                       <router-link :to="'../experience/' + booking.experience.id + '/' + booking.experience.title.toString().toLowerCase().replace( /\s/g, '-')">
                                             <div class="search_items">
                                                 <div class="search_items_back_img nagoya"></div>
                                                 <div class="search_items_item">
