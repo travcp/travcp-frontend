@@ -71,8 +71,13 @@
             <form @submit.prevent="formSubmit">
               <div class="form-header">
                 <h3>Sign up</h3>
-
-
+                  <div v-if="validationErrors.length > 0">
+                    
+                  <form-errors
+                    :errors="validationErrors"
+                    v-if="validationErrors"
+                  ></form-errors>
+                  </div>
                 <div class="alert alert-danger" role="alert" v-if="user_errors">
                   {{ user_errors.errors.email[0] }}
                 </div>
@@ -132,7 +137,7 @@
                   <div class="col-md-12">
                     <div class="form-check form-check-inline">
                       <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                      <label class="form-check-label" for="inlineCheckbox1">I agree to the following <a href="#">Terms and Conditions</a> </label>
+                      <label class="form-check-label" for="inlineCheckbox1" checked>I agree to the following <a href="#">Terms and Conditions</a> </label>
                     </div>
                   </div>
                   <div class="col-md-12" style="text-align: center">
@@ -165,6 +170,7 @@
 </template>
 
 <script>
+import FormErrors from "@/components/FormErrors.vue";
   import { mapState, mapActions, mapGetters, mapMutations } from 'vuex';
   import Footer from '@/components/Footer.vue';
 
@@ -185,7 +191,8 @@
             email: null,
             password: null,
             eyeVisibility: false,
-            passwordFieldType: 'password'
+            passwordFieldType: 'password',
+            validationErrors: []
         }},
         methods: {
             ...mapActions(['userRegistration']),
@@ -207,7 +214,13 @@
                         }).then(response => {
                           this.$noty.success("Registration sucessfull")
                         }).catch(err => {
-                          this.$noty.error("Oops, something went wrong!")
+                          if (err.response.status == 422) {
+                            this.validationErrors = err.response.data.errors;
+                            console.log(err.response.data)
+                            this.$noty.error("Oops, something went wrong!");
+                            this.$store.state.loading.userRegistration = false;
+                          }
+                          // this.$noty.error("Oops, something went wrong!")
                         });
                         // if (this.user_registration_errors === null) {
                         // } else {
@@ -229,7 +242,7 @@
             }
         },
         components: {
-          Navbar, Footer, VuePassword
+          Navbar, Footer, VuePassword, FormErrors
         }
 	}
 </script>

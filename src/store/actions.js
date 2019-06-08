@@ -83,7 +83,7 @@ export default {
           console.log(err);
           state.loading.userRegistration = false;
           commit("REGISTRATION_ERROR", err.response.data);
-          reject(err.response.data)
+          reject(err)
         });
     })
     

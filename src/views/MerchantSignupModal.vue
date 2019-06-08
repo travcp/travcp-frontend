@@ -104,10 +104,10 @@
                     </div>
                   </form>
                   <br />
-                  <h6 style="text-align: center;">
+                  <!-- <h6 style="text-align: center;">
                     Already a Member ?
                     <router-link to="/signin">Sign in</router-link>
-                  </h6>
+                  </h6> -->
                   <br />
                   <br />
                 </div>

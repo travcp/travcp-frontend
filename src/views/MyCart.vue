@@ -13,8 +13,8 @@
           <hr class="my-booking-title-horizontal">
         </div>
         <div style="padding-bottom: 20px">
-          <p class="my-cart-sub-title">Cart({{ item.booking.qauntity }})</p>
-          <p class="my-cart-sub-title">Price - ${{ item.booking.qauntity.price }}</p>
+          <p class="my-cart-sub-title">Cart()</p>
+          <p class="my-cart-sub-title">Price - ${{ calcPrice }}</p>
         </div>
         <div class="row my-booking-left" v-for="item in cart.items" :key="item.id">
           <div class="col-md-3 my-booking-details-image"></div>
@@ -138,22 +138,28 @@ export default {
     }
   },
   methods: {
-    // calcPrice(){
-    //   // let price = 0;
-    //   if(this.cart) {
-    //     console.log(this.cart.items)
-    //     for(let i = 1; i <= this.cart.items; i++){
-    //       price += this.cart[i].items.booking.experience.dollar_price.price
-    //     }
-    //     // this.cart.items.forEach(item => {
-    //     //   price += item.booking.price
-    //     // });
-    //     return price;  
-    //   } else {
-    //     return false;
-    //   }
-    //   // return 0;
-    // },
+    calcPrice(){
+      let price = 0;
+      if(this.cart) {
+        console.log("cart items", this.cart.items)
+        for(let i = 0; i < this.cart.items.length; i++){
+          price += this.cart.items[i].booking.price
+          console.log("booking price", this.cart.items[i].booking.price);
+          // for(let i = 1; i <= this.cart.items; i++){
+          //   // price += this.cart[i].items.booking.dollar_price
+            
+          // }  
+        }
+        // this.cart.items.forEach(item => {
+        //   price += item.booking.price
+        // });
+        return price;  
+      }
+      else{
+        console.log("cart items is false")
+      }
+      // return 0;
+    },
     getMyCarts(){
       this.loading = true;
       let requestHeaders = {
@@ -161,6 +167,7 @@ export default {
       }
       axios.get(`${this.$store.state.API_BASE}/users/${this.$store.state.auth.user.id}/cart`, requestHeaders).then(response => {
         this.cart = response.data.data;
+        console.log(this.cart)
         this.loading = false;
       }).catch(err => {
         this.loading = false;
@@ -186,11 +193,12 @@ export default {
     },
     payWithPaystack(){
     var _this = this
+    console.log("price is " + this.calcPrice());
     var handler = PaystackPop.setup({
       key: 'pk_test_a3c6507e7a82c63308de9c5863bbe0950492d508',
       email: this.$store.state.auth.user.email,
-      amount: item.booking.qauntity.price,
-      currency: "USD",
+      amount: this.calcPrice(),
+      currency: "NGN",
       ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
       metadata: {
          custom_fields: [
