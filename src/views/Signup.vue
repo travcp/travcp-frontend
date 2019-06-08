@@ -86,12 +86,12 @@
                 <div class="form-group col-md-12">
                   <label for="">First Name</label>
 
-                  <input  v-validate="'required'" v-model="first_name" type="text" name="first_name" class="form-control signin-input" placeholder="Micheal">
+                  <input v-validate="'required|min:3'" v-model="first_name" type="text" name="first_name" class="form-control signin-input" placeholder="Micheal">
                 </div>
                 <div class="form-group col-md-12">
                   <label for="">Last Name</label>
 
-                  <input v-model="surname" type="text" class="form-control signin-input" placeholder="Jackson">
+                  <input v-validate="'min:3'"  v-model="surname" type="text" class="form-control signin-input" placeholder="Jackson">
                 </div>
               </div>
 
@@ -136,12 +136,12 @@
                   </div> -->
                   <div class="col-md-12">
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                      <label class="form-check-label" for="inlineCheckbox1" checked>I agree to the following <a href="#">Terms and Conditions</a> </label>
+                      <input class="form-check-input" type="checkbox" v-model="agreeToTerms" id="inlineCheckbox1" value="option1">
+                      <label class="form-check-label" for="inlineCheckbox1">I agree to the following <a href="#">Terms and Conditions</a> </label>
                     </div>
                   </div>
                   <div class="col-md-12" style="text-align: center">
-                    <button type="submit" class="btn btn-lg signup-btn" :disabled="loading.userRegistration">
+                    <button type="submit" class="btn btn-lg signup-btn" :disabled="loading.userRegistration || !agreeToTerms">
                       <span v-if="loading.userRegistration">
                         <img style="height: 20px;" src="../assets/loader_rolling.gif" />
                       </span>
@@ -192,7 +192,8 @@ import FormErrors from "@/components/FormErrors.vue";
             password: null,
             eyeVisibility: false,
             passwordFieldType: 'password',
-            validationErrors: []
+            validationErrors: [],
+            agreeToTerms: false
         }},
         methods: {
             ...mapActions(['userRegistration']),

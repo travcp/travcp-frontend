@@ -21,9 +21,9 @@
                         <div class="row">
                           <div class="col-md-4" v-for="event in events" :key="event.id">
                             <router-link :to="'/experience/'+ event.id + '/' + event.title.toString().toLowerCase().replace( /\s/g, '-')">
-                                <div class="featured-card card">
+                                <div class="featured-card card h-100">
                                 <img v-if="event.images.length" :src="event.images[0].image" class="card-img-top featured-card-img" alt="...">
-                                <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" alt="...">
+                                <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" style="height: 50vh;" alt="...">
                                  <div class="featured-card-footer featured_places_overlay_active">
                                     <div class="row">
                                       <div class="col-6">

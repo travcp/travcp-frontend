@@ -133,8 +133,8 @@
                                 <router-link :to="'/experience/'+ experience.id + '/' + experience.title.toString().toLowerCase().replace( /\s/g, '-')">
                                     <div class="search_items">
         <div class="featured-card card">
-          <img v-if="experience.images.length" :src="experience.images[0].image" class="card-img-top featured-card-img" style="height: 50vh;" alt="...">
-          <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" alt="...">
+          <img v-if="experience.images.length" :src="experience.images[0].image" class="card-img-top featured-card-img" style="height: 45vh;" alt="...">
+          <img v-else src="../assets/osaka.png" style="height: 45vh;" class="card-img-top featured-card-img" alt="...">
            <div class="card-body">
                 <p class="card-text">{{ experience.title }} | {{ experience.state }}</p>
                 <h5 class="card-title"> {{ experience.city }}</h5>
@@ -156,8 +156,8 @@
                             <div class="col-md-4 experience" v-for="experience in experiences" :key="experience.id" style="">
                                 <router-link :to="'/experience/'+ experience.id + '/' + experience.title.toString().toLowerCase().replace( /\s/g, '-')">
         <div class="featured-card card" style="margin-bottom: 20px;">
-          <img v-if="experience.images.length" :src="experience.images[0].image" style="height: 50vh;"  class="card-img-top featured-card-img" alt="...">
-          <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" alt="...">
+          <img v-if="experience.images.length" :src="experience.images[0].image" style="height: 45vh;" class="card-img-top featured-card-img" alt="...">
+          <img v-else src="../assets/osaka.png" style="height: 45vh;" class="card-img-top featured-card-img" alt="...">
            <div class="card-body">
                 <p class="card-text" style="color: #f81894">{{ experience.title }} | {{ experience.state }}</p>
                 <h5 class="card-title"> {{ experience.city }}</h5>
