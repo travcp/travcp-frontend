@@ -110,7 +110,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <h3>Duration</h3>
-                                    <h5>36 hours</h5>
+                                    <h5>{{ experience.duration }} hours</h5>
                                 </div>
                                 <div class="col-md-12">
                                     <h3>Cost</h3>

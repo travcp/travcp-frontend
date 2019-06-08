@@ -50,7 +50,7 @@
                     <!--placeholder="michealjackson23"-->
                   <!--/>-->
                 <!--</div>-->
-                <div class="form-group col-6">
+                <!-- <div class="form-group col-6">
                   <label for="">Email</label>
                   <input
                     v-validate="'required|email'"
@@ -59,7 +59,7 @@
                     placeholder="Email"
                     v-model="email"
                   />
-                </div>
+                </div> -->
               </div>
               <div class="row">
                 
@@ -236,7 +236,7 @@ export default {
     return {
       first_name: null,
       surname: null,
-      email: null,
+      // email: null,
       subscribed_to_newsletter: null,
       company: null,
       address: null,
@@ -275,7 +275,6 @@ export default {
           this.updateProfile({
             first_name: this.first_name,
             surname: this.surname,
-            email: this.email,
             subscribed_to_newsletter: this.subscribed_to_newsletter,
             user_id: this.auth.user.id,
             company: this.company,

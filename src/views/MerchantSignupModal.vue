@@ -203,6 +203,7 @@ export default {
                 localStorage.setItem("auth", JSON.stringify(updateMerchantData));
                 this.$store.state.loading.merchantSignup = false;
                 this.$router.push("/dashboard/merchant/new-experience");
+                 window.location.reload(1);
               })
               .catch(err => {
                 // this.$noty.error("Oops, something went wrong!")
