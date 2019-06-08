@@ -297,8 +297,8 @@
                     <br>
                     <div class="col-md-3" v-for="data in getSimilarExperienceData.slice(0, 4)" style="margin-bottom: 10px">
                        <a :href="'/experience/'+ data.id + '/' + data.title.toString().toLowerCase().replace( /\s/g, '-')">
-                        <div class="featured-card card">
-                          <img v-if="data.images.length" :src="data.images[0].image" class="card-img-top featured-card-img" alt="...">
+                        <div class="featured-card card h-100">
+                          <img v-if="data.images.length" :src="data.images[0].image" style="height: 33vh;" class="card-img-top featured-card-img" alt="...">
                           <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" alt="...">
                            <div class="featured-card-footer featured_places_overlay_active">
                               <div class="row">
