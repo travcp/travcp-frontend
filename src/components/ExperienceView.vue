@@ -40,7 +40,16 @@
                     </p>
                     <br>
                     <h5>Payment Covers</h5>
-                    <p>{{ experience.offerings }}</p>
+                    <p>{{ experience.offerings }}</p>  
+                    <video id="myVideo" playsinline class="video-js vjs-default-skin">
+                      <p class="vjs-no-js">
+                        To view this video please enable JavaScript, or consider upgrading to a
+                        web browser that
+                        <a href="https://videojs.com/html5-video-support/" target="_blank">
+                          supports HTML5 video.
+                        </a>
+                      </p>
+                    </video>
                     <!-- <h6 style="margin-left:20px;"><b>Rate the Experience</b></h6> <br> -->
                     <form  @submit.prevent="rateExperienceSubmit" v-if="auth">
                         <div class="col-md-12">
@@ -212,7 +221,7 @@
                         <div class="average_review_section">
                             <h2>Average Rating <b>{{ experience.rating }}</b></h2>
                             <h5>Based on {{ reviews.meta ? reviews.meta.total : 0}} ratings</h5>
-                            <star-rating :rating="experience.rating" :read-only="true" :increment="0.01" :star-size="48"></star-rating>
+                            <star-rating :rating="parseFloat(experience.rating)" :read-only="true" :increment="0.01" :star-size="48"></star-rating>
                             <br>
                             <div class="row">
                                 <div class="col-2"><p class="star_range">5-star</p></div>
@@ -429,7 +438,7 @@
             ...mapActions(['getMyBookings']),
             ...mapActions(['getExperienceTypes']),
             getSimilarExperiences(){
-                axios.get(`${this.$store.state.API_BASE}/experiences?city=${this.experience.city}`).then(response => {
+                axios.get(`${this.$store.state.API_BASE}/experiences?city=${this.experience.city}&stat`).then(response => {
                     console.log(response.data.data)
                     this.getSimilarExperienceData = response.data.data
                     this.getSimilarExperienceData.shift()
@@ -607,8 +616,8 @@
                 })
             },
             gotoMenu(){
-                
                 this.$router.push({name: "RestaurantMenu", params: {id: this.experience.id, name: this.experience.title.toString().toLowerCase().replace( /\s/g, '-')}});
+                window.location.reload(1);
             }
         },
         computed: {
@@ -632,7 +641,7 @@
                 console.log(response)
                 console.log(this.experience)
                 for(let i = 0; i <= this.experience.images.length;i++){
-                    console.log(this.experience.images[i].image)
+                    // console.log(this.experience.images[i].image)
                     this.images.push(this.experience.images[i].image)
                 }
             });
@@ -651,7 +660,55 @@
             }
             this.getSimilarExperiences()
             this.loading = false;
-            
+            var options = {
+                controls: true,
+                width: 320,
+                height: 240,
+                fluid: false,
+                controlBar: {
+                    volumePanel: false
+                },
+                plugins: {
+                    record: {
+                        audio: false,
+                        video: true,
+                        maxLength: 5,
+                        debug: true
+                    }
+                }
+            };
+
+            // apply some workarounds for certain browsers
+            applyVideoWorkaround();
+
+            var player = videojs('myVideo', options, function() {
+                // print version information at startup
+                var msg = 'Using video.js ' + videojs.VERSION +
+                    ' with videojs-record ' + videojs.getPluginVersion('record') +
+                    ' and recordrtc ' + RecordRTC.version;
+                videojs.log(msg);
+            });
+
+            // error handling
+            player.on('deviceError', function() {
+                console.warn('device error:', player.deviceErrorCode);
+            });
+
+            player.on('error', function(element, error) {
+                console.error(error);
+            });
+
+            // user clicked the record button and started recording
+            player.on('startRecord', function() {
+                console.log('started recording!');
+            });
+
+            // user completed recording and stream is available
+            player.on('finishRecord', function() {
+                // the blob object contains the recorded data that
+                // can be downloaded by the user, stored on server etc.
+                console.log('finished recording: ', player.recordedData);
+            });
         }
     }
 </script>

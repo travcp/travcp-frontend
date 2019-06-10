@@ -13,8 +13,8 @@
           <hr class="my-booking-title-horizontal">
         </div>
         <div style="padding-bottom: 20px">
-          <p class="my-cart-sub-title">Cart()</p>
-          <p class="my-cart-sub-title">Price - ${{ calcPrice }}</p>
+          <p class="my-cart-sub-title">Cart( {{ cart.items.length }} )</p>
+          <p class="my-cart-sub-title">Price - ${{ calcPrice() }}</p>
         </div>
         <div class="row my-booking-left" v-for="item in cart.items" :key="item.id">
           <div class="col-md-3 my-booking-details-image"></div>
@@ -143,8 +143,8 @@ export default {
       if(this.cart) {
         console.log("cart items", this.cart.items)
         for(let i = 0; i < this.cart.items.length; i++){
-          price += this.cart.items[i].booking.price
-          console.log("booking price", this.cart.items[i].booking.price);
+          price += this.cart.items[i].booking.experience.dollar_price
+          console.log("booking price", this.cart.items[i].booking.experience.dollar_price);
           // for(let i = 1; i <= this.cart.items; i++){
           //   // price += this.cart[i].items.booking.dollar_price
             

@@ -18,11 +18,11 @@
                                 <div class="card">
                                     <div class="card-body">
                                     <ul class="nav nav-pills mb-3  nav-fill" id="pills-tab" role="tablist">
-                                        <li class="nav-item" v-if="categories.length" v-for="(category, index) in categories" :key="category.id">
+                                        <li class="nav-item" v-if="categories && categories.length" v-for="(category, index) in categories" :key="category.id">
                                             <a class="nav-link" v-bind:class="{ active: index == 0 ? true : false }" data-toggle="pill" :href="'#category' + category.id" role="tab" :aria-controls="'#category' + category.id" aria-selected="true">{{ category.name }}</a>
                                         </li>
                                     </ul>
-                                    <div class="tab-content" v-if="categories.length" id="pills-tabContent">
+                                    <div class="tab-content" v-if="categories && categories.length" id="pills-tabContent">
                                         <div v-for="(category, index) in categories" :key="category.id" class="tab-pane" v-bind:class="{ active: index == 0 ? true : false, show : index == 0 ? true : false, fade: index != 0 ? true : false }" :id="'category'+category.id" role="tabpanel" :aria-labelledby="'#category' + category.id">
                                             <!--Category {{ category.id }}-->
                                         <div class="container">
@@ -117,7 +117,9 @@ import { mapState, mapActions } from 'vuex'
             return {
                 menus: [],
                 categories: [],
-                restaurant: {},
+                restaurant: {
+                    opening_and_closing_hours: ''
+                },
                 lang: {
                     days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
                     months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
