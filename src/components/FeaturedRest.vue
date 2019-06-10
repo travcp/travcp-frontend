@@ -21,11 +21,11 @@
                         <div class="row">
                           <div class="col-md-4" v-for="restaurant in restaurants" :key="restaurant.id">
                             <router-link :to="'/experience/'+ restaurant.id + '/' + restaurant.title.toString().toLowerCase().replace( /\s/g, '-')">
-                                <div class="featured-card card h-100">
-                                  <img v-if="restaurant.images.length" style="height: 50vh;" :src="restaurant.images[0].image" class="card-img-top featured-card-img" alt="...">
-                                  <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" style="height: 50vh;" alt="...">
+                                <div class="featured-card card" style="overflow: hidden;">
+                                  <img v-if="restaurant.images.length" style="width: 100%;object-fit: cover;height:380px;" :src="restaurant.images[0].image" class="card-img-top featured-card-img" alt="...">
+                                  <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" style="width: 100%;object-fit: cover;height: 380px;" alt="...">
                                    <div class="featured-card-footer featured_places_overlay_active">
-                                      <div class="row">
+                                      <div class="row" style="text-transform: capitalize;">
                                         <div class="col-6">
                                           {{ restaurant.city }}                                  
                                         </div>
@@ -53,6 +53,7 @@
 import Flickity from 'vue-flickity';
 import Axios from 'axios'
 import { mapState } from 'vuex'
+import VueGallerySlideshow from 'vue-gallery-slideshow';
 
 export default {
     name: 'FeaturedRest',

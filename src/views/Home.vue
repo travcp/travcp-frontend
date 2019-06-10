@@ -16,7 +16,7 @@
             <div class="row">
               
               <div class="col-lg-4" style="text-align: center;">
-                <router-link to="/dashboard/new-exp">
+                <router-link to="/dashboard/merchant/new-experience">
                   <img src="../assets/Icons/add-listing.svg" style="height: 125px; width: 125px;" />
                   <p class="title">Add Listing</p>
                 </router-link>

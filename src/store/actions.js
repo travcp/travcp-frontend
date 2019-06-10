@@ -22,15 +22,19 @@ export default {
         state.loading.getExperiences = false;
       });
   },
-  async getExperienceById({ commit, state }, id) {
+  getExperienceById({ commit, state }, id) {
     // commit("IS_LOADING");
 
     state.loading.getExperienceById = false;
-
-    await axios.get(`${API_BASE}/experiences/${id}`).then(response => {
-      state.loading.getExperienceById = true;
-      commit("EXPERIENCE_BY_ID", response.data);
-    });
+    return new Promise((resolve, reject)=> {
+        axios.get(`${API_BASE}/experiences/${id}`).then(response => {
+            state.loading.getExperienceById = true;
+            commit("EXPERIENCE_BY_ID", response.data);
+            resolve(response.data);
+        }).catch(error => {
+            reject(error.response.data)
+        });
+    })
 
   },
   async filterExperiencesSearch(

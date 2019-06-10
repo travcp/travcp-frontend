@@ -13,17 +13,24 @@
             <div class="container">
             </div>
         </section>
+        <div class="row">
+            <div class="col-md-12" style="text-align: center;">
+                <img class="image" v-for="(image, i) in images" :src="image" :key="i" @click="index = i">
+                <vue-gallery-slideshow :images="images" :index="index" @close="index = null"></vue-gallery-slideshow>
+            </div>
+        </div>
+        <br><br>
         <div class="digital_feature blog_part">
             <div class="row">
                 <div class="col-lg-7" style="text-align: center;" v-if="isLoading">
                     <Circle9 />
                 </div>
                 <div class="col-sm-6 col-md-7 col-lg-8 blog_content" v-else>
-                    <h3>
+                    <h3 style="text-transform: capitalize;">
                         {{ experience.title }} | {{ experience.state }}
                     </h3>
-                    <h1>{{ experience.city }}</h1>
-                    <h5>{{ experience.location }}</h5>
+                    <h1 style="text-transform: capitalize;">{{ experience.city }}</h1>
+                    <h5 style="text-transform: capitalize;">{{ experience.location }}</h5>
                     <p>
                         {{ experience.description }}
                     </p>
@@ -91,6 +98,10 @@
                     <div class="travv-sidebar" style="height: auto;">
                         <div class="container">
                             <div class="row sidebar_text">
+
+                                <!--<div class="book_btn" style="padding-top: 10px;text-align: center;">-->
+                                    <!--View all Photos-->
+                                <!--</div>-->
                                 <div class="col-md-12" style="position: absolute;text-align: right;right: 30px;">
 
                                     <img v-if="experience.security == 'secure'" src="../assets/travv/protected.png" width="56" />
@@ -100,7 +111,7 @@
                                 <div class="col-md-12">
                                     <h3>Experience Type</h3>
                                     <!-- v-for="experience_type in experience_types" v-if="experience_type && experience_type.id == experience.experiences_type_id" -->
-                                    <h5>
+                                    <h5 style="text-transform: capitalize;">
                                         {{ experience.experience_type }}
                                     </h5>
                                 </div>
@@ -180,7 +191,7 @@
             <br><br>
             <div class="row">
                 <div class="form-group col-md-4">
-                    <label for="">Get Direction</label>
+                    <label>Get Direction</label>
                     <input v-model=vm.searchPlace v-gmaps-searchbox=vm placeholder="Enter your current location" class="form-control" style="border: 1px solid #000; border-radius: 3px;padding: 10px;">
                     <!-- <button class="btn btn-primary" @click="getDirection">Get Direction</button> -->
                 </div>
@@ -201,6 +212,7 @@
                         <div class="average_review_section">
                             <h2>Average Rating <b>{{ experience.rating }}</b></h2>
                             <h5>Based on {{ reviews.meta ? reviews.meta.total : 0}} ratings</h5>
+                            <star-rating :rating="experience.rating" :read-only="true" :increment="0.01" :star-size="48"></star-rating>
                             <br>
                             <div class="row">
                                 <div class="col-2"><p class="star_range">5-star</p></div>
@@ -274,9 +286,9 @@
                                                 <img :src="review.user.profile_image ? review.user.profile_image.image : require('@/assets/avatar.png')" class="rounded-circle" style="height: 50px;display: inline-block;">
                                             </div>
                                             <div class="col-8">
-                                                <p class="review_name">{{ review.user_name }}</p>
+                                                <p class="review_name" style="font-family: MuseoSans;font-weight: 100;">{{ review.user_name }}</p>
                                                 <p class="review_rev">
-                                                    <img v-for="i in review.rating" :key="i.id" src="../assets/review-icon.svg" alt="Review icon" style="height: 28px;">
+                                                    <img v-for="i in review.rating" :key="i.id" src="../assets/review-icon.svg" alt="Review icon" style="height: 15px;">
                                                 </p>
                                                 <br>
                                                 <p class="review_date">{{ review.review_body }}</p>
@@ -295,25 +307,26 @@
                         </h3>
                     </div>
                     <br>
+
                     <div class="col-md-3" v-for="data in getSimilarExperienceData.slice(0, 4)" style="margin-bottom: 10px">
                        <a :href="'/experience/'+ data.id + '/' + data.title.toString().toLowerCase().replace( /\s/g, '-')">
-                        <div class="featured-card card h-100">
-                          <img v-if="data.images.length" :src="data.images[0].image" style="height: 33vh;" class="card-img-top featured-card-img" alt="...">
-                          <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" alt="...">
-                           <div class="featured-card-footer featured_places_overlay_active">
-                              <div class="row">
-                                <div class="col-6">
-                                  {{ data.city }}                                  
-                                </div>
-                                <div class="col-2 text-center">
-                                 <p>{{ data.rating_count }} <i class="fa fa-star"></i></p>  
-                                </div>
-                                <div class="col-3 text-center" style="padding-right: 0px;">
-                                 <p>{{ data.number_admittable }} <i class="fa fa-heart"></i></p>  
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                           <div class="featured-card card" style="overflow: hidden;">
+                               <img v-if="data.images.length" style="width: 100%;object-fit: cover;height:280px;" :src="data.images[0].image" class="card-img-top featured-card-img" alt="...">
+                               <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" style="width: 100%;object-fit: cover;height: 280px;" alt="...">
+                               <div class="featured-card-footer featured_places_overlay_active" style="margin-top: -80px;padding-top: 5px;padding-bottom: 0;">
+                                   <div class="row" style="text-transform: capitalize;">
+                                       <div class="col-12">
+                                           {{ data.city }}
+                                       </div>
+                                       <div class="col-6">
+                                           <p>{{ data.rating }} <i class="fa fa-star"></i></p>
+                                       </div>
+                                       <div class="col-6 text-center" @click="postFavoriteExeperience(data.id)">
+                                           <p>{{ data.number_admittable }} <i class="fa fa-heart"></i></p>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
                        </a>
                     </div>
                 </div>
@@ -334,7 +347,8 @@
         mapActions,
         mapGetters
     } from 'vuex';
-
+    import VueGallerySlideshow from 'vue-gallery-slideshow';
+    import StarRating from 'vue-star-rating'
     // import Datepicker from 'vuejs-datepicker';
     // import format from 'date-fns/format'
 
@@ -342,6 +356,9 @@
         name: 'ExperienceView',
         data() {
             return {
+                images: [
+                ],
+                index: null,
                 ratings: [],
                 current_location: null,
                 rate_this_exp_text: "",
@@ -401,8 +418,9 @@
         components: {
             Navbar,
             DatePicker,
-            Circle9
-            // vuejsDatepicker
+            Circle9,
+            VueGallerySlideshow,
+            StarRating
         },
         methods: {
             ...mapActions(['getExperienceById']),
@@ -444,6 +462,7 @@
                             this.toggleRating = false;
                             this.rate_this_exp_text = "";
                             this.getExperienceById(this.$route.params['id']);
+                            window.location.reload(1);
                         });
                         
                         
@@ -608,8 +627,18 @@
         },
         created: function () {
             
-            this.getExperienceById(this.$route.params['id']);
-            
+            this.getExperienceById(this.$route.params['id']).then(response => {
+                console.log('In here already')
+                console.log(response)
+                console.log(this.experience)
+                for(let i = 0; i <= this.experience.images.length;i++){
+                    console.log(this.experience.images[i].image)
+                    this.images.push(this.experience.images[i].image)
+                }
+            });
+            // if(this.experience){
+
+            // }
             // this.getMyBookings();
             this.bookings.forEach(book => {
                 // console.log(book);
@@ -632,9 +661,24 @@
     height: 50px;
     width: 50px;
 }
+.vue-star-rating-star {
+    overflow: visible!important;
+    height: 40px;
+    width: 40px;
+}
 </style>
 
 <style>
+.image {
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 3px;
+    border: 1px solid lightgray;
+    object-fit: contain;
+}
 @media only screen and (max-width: 576px) {
     .project_area {
         margin: 10px 10px 42px 10px !important;
@@ -1196,9 +1240,8 @@ input::-webkit-calendar-picker-indicator {
 }
 
 .project_area {
-    margin-top: 0;
     height: 400px !important;
-    margin: 0px 88px 42px 88px;
+    margin: 20px 88px 42px 88px;
     margin-bottom: 57px;
 }
 

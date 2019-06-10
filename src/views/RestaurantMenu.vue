@@ -18,11 +18,11 @@
                                 <div class="card">
                                     <div class="card-body">
                                     <ul class="nav nav-pills mb-3  nav-fill" id="pills-tab" role="tablist">
-                                        <li class="nav-item" v-for="(category, index) in categories" :key="category.id">
+                                        <li class="nav-item" v-if="categories.length" v-for="(category, index) in categories" :key="category.id">
                                             <a class="nav-link" v-bind:class="{ active: index == 0 ? true : false }" data-toggle="pill" :href="'#category' + category.id" role="tab" :aria-controls="'#category' + category.id" aria-selected="true">{{ category.name }}</a>
                                         </li>
                                     </ul>
-                                    <div class="tab-content" id="pills-tabContent">
+                                    <div class="tab-content" v-if="categories.length" id="pills-tabContent">
                                         <div v-for="(category, index) in categories" :key="category.id" class="tab-pane" v-bind:class="{ active: index == 0 ? true : false, show : index == 0 ? true : false, fade: index != 0 ? true : false }" :id="'category'+category.id" role="tabpanel" :aria-labelledby="'#category' + category.id">
                                             <!--Category {{ category.id }}-->
                                         <div class="container">
@@ -53,16 +53,16 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" v-if="restaurant">
                 <div class="container">
                     <form @submit.prevent="bookExperience">
                         <div class="card" style="width: 100%;">
                             <div class="card-body">
-                            <h5 class="card-title">ORDER FROM</h5>
-                                <br>
-                            <h5 class="card-title">{{ restaurant.title }}</h5>
-                                <p>{{ restaurant.state }}</p>
-                                <table class="table table-dark" style="background-color: #f81894;">
+                            <!--<h5 class="card-title">ORDER FROM</h5>-->
+                                <!--<br>-->
+                            <h3 class="card-title" style="text-transform: capitalize;">{{ restaurant.title }}</h3>
+                                <p class="card-title" style="text-transform: capitalize;">{{ restaurant.state }}</p>
+                                <table class="table table-dark" style="background-color: #f81894;" v-if="restaurant.opening_and_closing_hours.length > 10">
                                     <thead>
                                     <tr>
                                         <th scope="col">Day</th>
@@ -72,7 +72,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr v-for="data in JSON.parse(restaurant.opening_and_closing_hours)" v-if="JSON.parse(restaurant.opening_and_closing_hours) instanceof Array">
+                                    <tr v-for="data in JSON.parse(restaurant.opening_and_closing_hours)">
                                         <td>{{ data.day }}</td>
                                         <td>{{ data.open_time }}</td>
                                         <td>{{ data.close_time }}</td>
