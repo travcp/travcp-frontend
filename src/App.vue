@@ -36,10 +36,26 @@ export default {
 
         })
       }
+    },
+    getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(this.showPosition);
+      } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+    },
+    showPosition(position) {
+      // x.innerHTML = "Latitude: " + position.coords.latitude + 
+      // "<br>Longitude: " + position.coords.longitude;
+      axios.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + position.coords.latitude + ","+ position.coords.longitude + "&sensor=true&key=AIzaSyDgnbjMxlLW2BHBPJ4-iFsX_aB9jEHBFCg").then(response => {
+        console.log(response.data)
+        this.$store.state.current_location = response.data.results
+      })
     }
     // ...mapActions(['getExperiences'])
   },
   created() {
+    this.getLocation()
     this.getExperiences()
     // // this.getRestaurants()
     this.getEvents()

@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="restaurant_heading">
-                    <h1>Genesis Restaurant - Ada George</h1>
+                    <h1>{{ restaurant.title }} - {{ restaurant.state }}</h1>
                 </div>
             </div>
         </div>
@@ -98,10 +98,7 @@
                                         <!-- <input type="text" :value="menu.description"  /> -->
                                         <!-- <p>Some Text Some Text Some Text Some Text Some Text Some Text Some Text Some Text Some Text Some Text Some Text Some Text</p> <br> -->
                                         <p>
-                                          <button type="button" class="btn btn-warning" @click="editMenu(menu.id)" style="margin-right: 10px;">
-                                            Edit
-                                          </button>
-                                          <button type="button" class="btn btn-danger" @click="deleteMenu(menu.id)" :disabled="loading.deleteMenu">
+                                          <button type="button" style="width: 120px;" class="btn btn-danger" @click="deleteMenu(menu.id)" :disabled="loading.deleteMenu">
                                             <span v-if="loading.deleteMenu">
                                                 <img
                                                   style="height: 20px;"
@@ -151,7 +148,8 @@ import { mapState } from 'vuex';
                 food_category: null,
                 description: null,
                 price: null,
-                loading: false
+                loading: false,
+                restaurant: {}
             }
         },
         components: {
@@ -248,12 +246,19 @@ import { mapState } from 'vuex';
                       this.$noty.error("Oops, something went wrong!");
                     }
                   });
-            }
+            },
+            async getRestaurantById(){
+                await axios.get(`${this.$store.state.API_BASE}/experiences/${this.$route.params.id}`).then(response => {
+                    this.restaurant = response.data.data
+                    console.log(response.data.data)
+                });
+            },
         },
         computed: {
-          ...mapState(['loading'])
+          // ...mapState(['loading'])
         },
         created(){
+            this.getRestaurantById()
             this.getMenus();
             this.getCategories();
         }

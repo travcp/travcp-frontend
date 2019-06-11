@@ -39,7 +39,7 @@
                       <a class="nav-link dropdown-toggle" href="#" style="color: #fff !important;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img :src="auth.user.profile_image ? auth.user.profile_image.image : require('@/assets/avatar.png')" class="rounded-circle" style="height: 50px;width: 50px;">
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="padding: 5px 0px 5px 1px;">
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="padding: 5px 0px 5px 1px;width: 250px;">
                         <router-link class="dropdown-item drp_pd" to="/dashboard/profile">Dashboard</router-link>
                         <router-link class="dropdown-item drp_pd" to="/experiences">Experiences</router-link>
                         <a class="dropdown-item drp_pd" href="/dashboard/my-cart">My Cart</a>

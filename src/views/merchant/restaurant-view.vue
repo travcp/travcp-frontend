@@ -24,19 +24,19 @@
         <div class="row" v-for="merchant_restaurant in merchant_restaurants" :key="merchant_restaurant.id" style="margin-bottom: 10px;">
           <div class="col-md-3 my-booking-details-image"></div>
           <div class="col-md-9">
-            <router-link :to="'/dashboard/merchant/restaurant/' + merchant_restaurant.id + '/' + merchant_restaurant.title">
+            <router-link :to="'/dashboard/merchant/restaurant/' + merchant_restaurant.id + '/' + merchant_restaurant.title.toString().toLowerCase().replace( /\s/g, '-')">
             <div class="my-booking-trip-main">
               <div class="my-booking-trip-details-header">
-                <p class="my-booking-trip-details-header-p1">{{ merchant_restaurant.title }}</p>
-                <p class="my-booking-trip-details-header-p2">asdasfdvb sdaf</p>
+                <p class="my-booking-trip-details-header-p1">{{ merchant_restaurant.city }} | {{ merchant_restaurant.state }}</p>
+                <p class="my-booking-trip-details-header-p2">{{ merchant_restaurant.title }}</p>
               </div>
               <div class="my-booking-trip-details">
                 <p
                   class="my-booking-trip-details-p1"
-                >dasfsdf</p>
+                >{{ merchant_restaurant.title }}</p>
                 <p
                   class="my-booking-trip-details-p2"
-                >asdas</p>
+                >{{ merchant_restaurant.location }}</p>
               </div>
             </div>
             </router-link>
@@ -86,7 +86,7 @@ export default {
       let requestHeaders = {
         headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
       };
-      axios.get(`${this.$store.state.API_BASE}/merchants/${this.$store.state.auth.user.id}/experiences?experiences_type_id=22`, requestHeaders).then(response => {
+      axios.get(`${this.$store.state.API_BASE}/merchants/${this.$store.state.auth.user.id}/experiences?experiences_type_id=12`, requestHeaders).then(response => {
         // this.$store.state.bookings = response.data.data;
         this.merchant_restaurants = response.data.data;
         console.log(response.data.data);

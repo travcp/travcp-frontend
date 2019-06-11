@@ -101,7 +101,7 @@
             <div class="col-lg-12 toggleCarousel">
               <div class="row">
                 <div class="col-md-6" style="padding-right: 5px;" v-if="getExp1">
-                  <router-link :to="'/experience/'+ getExp1.id + '/' + getExp1.city">
+                  <router-link :to="'/experience/'+ getExp1.id + '/' + getExp1.city.toString().toLowerCase().replace( /\s/g, '-')">
                     <div class="recom4uimages-up mount_fuji">
                       
                       <p>{{ getExp1.city }}</p>
@@ -109,7 +109,7 @@
                   </router-link>
                 </div>
                 <div class="col-md-6" style="padding-left: 5px;" v-if="getExp2">
-                  <router-link :to="'/experience/'+ getExp2.id + '/' + getExp2.city">
+                  <router-link :to="'/experience/'+ getExp2.id + '/' + getExp2.city.toString().toLowerCase().replace( /\s/g, '-')">
                     <div class="recom4uimages-up kyoto">
                       
                       <p>{{ getExp2.city }}</p>
@@ -117,7 +117,7 @@
                   </router-link>
                 </div>
                 <div class="col-md-4" style="padding-right: 5px;" v-if="getExp3">
-                  <router-link :to="'/experience/'+ getExp3.id + '/' + getExp3.city">
+                  <router-link :to="'/experience/'+ getExp3.id + '/' + getExp3.city.toString().toLowerCase().replace( /\s/g, '-')">
                     <div class="recom4uimages-dwn tokyo">
                       
                       <p>{{ getExp3.city }}</p>
@@ -125,18 +125,18 @@
                   </router-link>
                 </div>
                 <div class="col-md-4" style="padding-left: 5px;padding-right: 5px;" v-if="getExp4">
-                  <router-link :to="'/experience/'+ getExp4.id + '/' + getExp4.city">
+                  <router-link :to="'/experience/'+ getExp4.id + '/' + getExp4.city.toString().toLowerCase().replace( /\s/g, '-')">
                     <div class="recom4uimages-dwn niigata">
                       
                       <p>{{ getExp4.city }}</p>
                     </div>
                   </router-link>
                 </div>
-                <div class="col-md-4" style="padding-left: 5px;" v-if="getExp5">
-                  <router-link :to="'/experience/'+ getExp5.id + '/' + getExp5.city">
+                <div class="col-md-4" style="padding-left: 5px;" v-if="getExp4">
+                  <router-link :to="'/experience/'+ getExp4.id + '/' + getExp4.city.toString().toLowerCase().replace( /\s/g, '-')">
                     <div class="recom4uimages-dwn saporo">
                       
-                      <p>{{ getExp5.city }}</p>
+                      <p>{{ getExp4.city }}</p>
                     </div>
                   </router-link>
                 </div>
@@ -149,6 +149,7 @@
         <FeaturedEvents :events="events.slice(0, 3)" />
         <FeaturedPlaces :places="places.slice(0, 3)" />
         <FeaturedRest :restaurants="restaurants.slice(0, 3)" />
+        <SuggestedExperiences :experiences="experiences_around_me.slice(0, 3)" />
         <FeaturedVideo />
       </div>
     </section>
@@ -164,6 +165,7 @@
   import TopRatedExp from '@/components/TopRatedExp.vue';
   import FeaturedVideo from '@/components/FeaturedVideo.vue';
   import LatestPosts from '@/components/LatestPosts.vue';
+  import SuggestedExperiences from '@/components/SuggestedExperiences.vue';
   import HomeNavbar from '@/components/HomeNavbar.vue';
   import Sliderarea from '@/components/Sliderarea.vue'
   import SecondNav from '@/components/SecondNav.vue';
@@ -189,11 +191,13 @@
       SecondNav,
       FeaturedEvents,
       Footer,
+      SuggestedExperiences
     },
     data: function () {
       return {
         // experiences: []
         random_experiences: [],
+        experiences_around_me: []
       }
     },
     methods: {
@@ -203,9 +207,10 @@
       ...mapActions(['getPlaces']),
       getRandomExperiences() {
         axios.get(`${this.$store.state.API_BASE}/experiences/random/5`).then(response => {
-          
+          this.random_experiences = response.data.data
+          console.log(response.data.data);
         }).catch(error => {
-
+          console.log(error.response)
         })
       }
       // getExp1() {
@@ -220,6 +225,30 @@
       ...mapState(['places']),
       ...mapState(['restaurants']),
       ...mapGetters(['getExp1', 'getExp2', 'getExp3', 'getExp4', 'getExp5']),
+      experienceAroundMe(){
+        axios.get(`${this.$store.state.API_BASE}/experiences?location=${this.$store.state.current_location[4].formatted_address}`).then(response => {
+          console.log(response.data.data);
+          this.experiences_around_me = response.data.data
+          if(response.data.data.length < 1){
+            axios.get(`${this.$store.state.API_BASE}/experiences?location=${this.$store.state.current_location[7].formatted_address}`).then(response => {
+                console.log(response.data.data);
+                this.experiences_around_me = response.data.data
+                if(response.data.data.length < 1){
+                  axios.get(`${this.$store.state.API_BASE}/experiences?location=${this.$store.state.current_location[9].formatted_address}`).then(response => {
+                    this.experiences_around_me = response.data.data
+                    console.log(response.data.data)
+                  }).catch(error => {
+                    console.log(error.response.data)
+                  })
+                }
+            }).catch(error => {
+              console.log(error.response.data)
+            })
+          }
+        }).catch(error => {
+          console.log(error.response)
+        })
+      },
       topRatedExp: function () {
         // let exp = this.allExperiences;
         return this.experiences.slice(0, 3);
@@ -232,6 +261,8 @@
       // }
     },
     created: function () {
+      this.getRandomExperiences()
+      this.experienceAroundMe()
       // console.log(this.genRandom);
       // this.getExperiences()
       // this.getEvents();

@@ -41,7 +41,7 @@
                         <!-- <img src="../assets/avatar.png" class="rounded-circle" style="height: 50px;"> -->
                         <img :src="auth.user.profile_image ? auth.user.profile_image.image : require('@/assets/avatar.png')" class="rounded-circle" style="height: 50px;width: 50px;">
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="padding: 8px 0px 5px 1px;">
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="padding: 8px 0px 5px 1px;width: 250px;">
                         <router-link class="dropdown-item drp_pd" to="/dashboard/profile">Dashboard</router-link>
                         <router-link class="dropdown-item drp_pd" to="/experiences">Experiences</router-link>
                         <a class="dropdown-item drp_pd" href="/dashboard/my-cart">My Cart</a>

@@ -5,11 +5,11 @@
             description="Description from travvApp"
         />
         <Navbar></Navbar>
-        <section class="project_area nagoya" v-if="experience.images && experience.images.length > 0" :style="{background: 'url(' + experience.images[0].image + ')'}" style="background-position: center;background-size: cover;background-repeat: no-repeat;">
+        <section class="project_area nagoya" v-if="experience.images && experience.images.length > 0" :style="{background: 'url(' + experience.images[0].image + ')'}" style="background-repeat: no-repeat;background-size: cover;background-position: center;">
             <div class="container">
             </div>
         </section>
-        <section class="project_area nagoya" v-else>
+        <section class="project_area nagoya" style="background-repeat: no-repeat;background-size: cover;background-position: center;" v-else>
             <div class="container">
             </div>
         </section>
@@ -41,15 +41,8 @@
                     <br>
                     <h5>Payment Covers</h5>
                     <p>{{ experience.offerings }}</p>  
-                    <video id="myVideo" playsinline class="video-js vjs-default-skin">
-                      <p class="vjs-no-js">
-                        To view this video please enable JavaScript, or consider upgrading to a
-                        web browser that
-                        <a href="https://videojs.com/html5-video-support/" target="_blank">
-                          supports HTML5 video.
-                        </a>
-                      </p>
-                    </video>
+                    
+
                     <!-- <h6 style="margin-left:20px;"><b>Rate the Experience</b></h6> <br> -->
                     <form  @submit.prevent="rateExperienceSubmit" v-if="auth">
                         <div class="col-md-12">
@@ -100,6 +93,11 @@
                             <!-- <label>Rate this Experience</label> -->
                             <input type="text" class="form-control edit-prof-input" v-model="rate_this_exp_text">
                             <button type="submit" class="book_btn">Rate</button>
+                        </div>
+                        <div class="col-md-6">
+                              <button type="button" class="btn btn-primary" style="background: #f81894" data-toggle="modal" data-target="#ReviewVideoModal">
+                                  Make 5 Secs Video Review
+                                </button>
                         </div>
                     </form>
                 </div>
@@ -312,7 +310,7 @@
                 <div class="row">
                     <div class="col-md-12" style="margin-bottom: 20px">
                         <h3>
-                            Suggested Experiences
+                            Similar Experience
                         </h3>
                     </div>
                     <br>
@@ -438,11 +436,18 @@
             ...mapActions(['getMyBookings']),
             ...mapActions(['getExperienceTypes']),
             getSimilarExperiences(){
-                axios.get(`${this.$store.state.API_BASE}/experiences?city=${this.experience.city}&stat`).then(response => {
+                axios.get(`${this.$store.state.API_BASE}/merchants/${this.experience.merchant_id}/experiences`).then(response => {
                     console.log(response.data.data)
                     this.getSimilarExperienceData = response.data.data
                     this.getSimilarExperienceData.shift()
                     this.loading = false;
+                    if(response.data.data.length < 1) {
+                        axios.get(`${this.$store.API_BASE}/experiences?city=${this.experience.city}`).then(response => {
+                            this.getSimilarExperienceData = response.data.data
+                        }).catch(error => {
+                            console.log(error.response.data)
+                        })
+                    }
                 }).catch(err => {
                     this.loading = false;
                     console.log(err);
@@ -660,55 +665,7 @@
             }
             this.getSimilarExperiences()
             this.loading = false;
-            var options = {
-                controls: true,
-                width: 320,
-                height: 240,
-                fluid: false,
-                controlBar: {
-                    volumePanel: false
-                },
-                plugins: {
-                    record: {
-                        audio: false,
-                        video: true,
-                        maxLength: 5,
-                        debug: true
-                    }
-                }
-            };
-
-            // apply some workarounds for certain browsers
-            applyVideoWorkaround();
-
-            var player = videojs('myVideo', options, function() {
-                // print version information at startup
-                var msg = 'Using video.js ' + videojs.VERSION +
-                    ' with videojs-record ' + videojs.getPluginVersion('record') +
-                    ' and recordrtc ' + RecordRTC.version;
-                videojs.log(msg);
-            });
-
-            // error handling
-            player.on('deviceError', function() {
-                console.warn('device error:', player.deviceErrorCode);
-            });
-
-            player.on('error', function(element, error) {
-                console.error(error);
-            });
-
-            // user clicked the record button and started recording
-            player.on('startRecord', function() {
-                console.log('started recording!');
-            });
-
-            // user completed recording and stream is available
-            player.on('finishRecord', function() {
-                // the blob object contains the recorded data that
-                // can be downloaded by the user, stored on server etc.
-                console.log('finished recording: ', player.recordedData);
-            });
+            
         }
     }
 </script>
@@ -863,6 +820,9 @@
     height: 400px !important;
     margin: 10px 88px 42px 88px;
     margin-bottom: 57px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 .cover_image {

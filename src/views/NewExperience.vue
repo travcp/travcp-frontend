@@ -48,7 +48,8 @@
                                   multiple
                                   v-on:change="handleFilesUpload()"
                                 >
-
+                                <br>
+                                <img class="image" src="image">
                                 <div class="large-12 medium-12 small-12 cell">
                                   <div v-for="(file, key) in files" class="file-listing">
                                     {{ file.name }}
@@ -92,7 +93,7 @@
                                     type="text"
                                     class="form-control new_experience_input"
                                     placeholder="Location"
-                                    v-model="location"
+                                    v-model=vm.searchPlace v-gmaps-searchbox=vm 
                                   >
                                 </div>
                               </div>
@@ -401,7 +402,12 @@ export default {
   data() {
     return {
       // experience_type_placeholder: null,
-
+      vm: {
+          searchPlace: '',
+          location: {
+            place: {formatted_address : ''}
+          }
+      },
       validationErrors: [],
       form_index: 1,
       experience_type: null,
@@ -537,7 +543,7 @@ export default {
       // console.log(formData);
       let data = {
         title: this.title,
-        location: this.location,
+        location: this.vm.place.formatted_address,
         city: this.city,
         state: this.state,
         country: this.country,
@@ -648,6 +654,16 @@ label {
 }
 </style>
 <style>
+.image {
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 3px;
+    border: 1px solid lightgray;
+    object-fit: contain;
+}
 .form-holder {
   width: 100%;
   /*height: 300px;*/

@@ -17,6 +17,10 @@ Vue.use(VueGmaps, {
   // libraries: ['places'],
   // version: '3'
 })
+import VueClipboard from 'vue-clipboard2'
+
+Vue.use(VueClipboard)
+
 import { VueperSlides, VueperSlide } from 'vueperslides'
 
 // Since v. 1.6.0, you need to include Vueper Slides CSS file for default styles.

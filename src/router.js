@@ -54,6 +54,8 @@ import Benefits from '@/views/pages/Benefits.vue';
 import ForgotPassword from '@/views/pages/ForgotPassword.vue';
 import Reset from '@/views/pages/Reset.vue';
 
+import Verify from '@/views/pages/Verify.vue';
+
 import LikedExperiences from '@/views/LikedExperiences.vue';
 
 Vue.use(Router);
@@ -74,6 +76,11 @@ export default new Router({
       path: "/careers",
       name: "Careers",
       component: Careers,
+    },
+    {
+      path: "/verify",
+      name: "Verify",
+      component: Verify
     },
     {
       path: "/press",

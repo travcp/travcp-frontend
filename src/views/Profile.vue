@@ -28,6 +28,8 @@
                                 <h5 class="card-title" style="text-transform: capitalize">{{ userProperties.surname }} {{ userProperties.first_name }}</h5>
                                 <h6 class="card-subtitle mb-2 text-muted" style="text-transform: lowercase;">{{ userProperties.surname }}{{ userProperties.first_name }}</h6>
                                 <p class="location" v-if="userProperties.address"><img src="/img/icons/map-marker-alt-solid.svg" alt="" style="width:10px"> {{ userProperties.address }}, {{ userProperties.country }}</p>
+
+                                
                                 <!-- <p class="card-text description">Tour with me, Discover Places and experience the culture with me</p> -->
                            </div>
                        </div>
@@ -41,7 +43,13 @@
                                </div>
                                <br>
                                <div class="row">
-                                   <div class="col-md-4 experience" v-for="booking in bookings">
+                                  <div v-if="bookings.length < 1 && !loading">
+                                    <empty-result>
+                                      <template v-slot:error-header>Errm</template>
+                                      You do not have any bookings yet. <br> When you book an experience, it will appear here.
+                                    </empty-result>
+                                  </div>
+                                   <div v-else class="col-md-4 experience" v-for="booking in bookings">
                                     <!-- experience/2/Mikaylafurt -->
                                        <router-link :to="'../experience/' + booking.experience.id + '/' + booking.experience.title.toString().toLowerCase().replace( /\s/g, '-')">
                                             <div class="search_items">
@@ -64,6 +72,47 @@
                                <div class="card-head">
                                     <h5 class="card-title">Videos</h5>
                                 </div>
+                                <div class="row">
+<div class="col-md-4" v-for="video in videoData" :key="video.id">
+
+            <div class="card">
+              <img :src="'http://img.youtube.com/vi/' + getVideoParam(video.url) +'/hqdefault.jpg'"  data-toggle="modal" :data-target="'#video' + video.id" class="card-img-top cursor-pointer" alt="...">
+
+              <div class="card-body">
+                <h5 class="card-title text-truncate"><span style="">{{ video.title }}</span></h5>
+                <p style="  display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical; overflow:hidden">
+                  {{ video.description }}
+                </p>
+                <footer class="blockquote-footer text-right" style="text-transform: capitalize;cursor: pointer;" @click="getVideoByCat(video.video_category.id)">{{ video.video_category.name }}</footer>
+              </div>
+
+
+            </div>
+
+          </div>
+                                  <div class="col-md-12">
+                                    <div v-for="video in videoData" :key="video.id" class="modal fade" :id="'video' + video.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document" style="max-width: 700px;">
+                                      <div class="modal-content">
+                                        <div class="modal-body" style="padding: 0">
+                                          <iframe width="420" height="415" style="width: 100%" 
+                                          :src="video.url">
+                                          </iframe>
+                                        </div>
+                                        <div class="modal-footer" style="padding: 0;border-top: none;">
+                                          <div class="row" style="width: 100%;">
+                                            <div class="col-md-12" style="text-align: center">
+                                              <!-- <p>Share</p> -->
+                                               <button type="button" class="btn modal-btn-travv" data-dismiss="modal">Close</button>
+                                            </div>
+                                          </div>
+                                         
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  </div>
+                                </div>
                            </div>
                            
                        </div>
@@ -78,6 +127,10 @@ import Navbar from '@/components/Navbar.vue';
 import { mapState, mapActions } from 'vuex';
 import Footer from '@/components/Footer.vue';
 import axios from 'axios';
+import Axios from 'axios';
+import EmptyResult from "@/components/EmptyResult.vue";
+
+
 export default {
     name: "Profile",
     beforeRouteEnter(to, from, next) {
@@ -90,10 +143,12 @@ export default {
         }
         next();
     },
-    components: { Navbar, Footer },
+    components: { Navbar, Footer, EmptyResult },
     data(){return{
       bookings: [],
-      medalType: null
+      medalType: null,
+      videoData: [],
+      message: 'http://travvapp.herokuapp.com/signup?ref'
     }},
     computed: {
       ...mapState(['auth']),
@@ -111,6 +166,7 @@ export default {
       }
     },
     methods: {
+      
       getMyBookings(){
       
         let requestHeaders = {
@@ -134,11 +190,41 @@ export default {
 
                 })
             }
+        },
+        getVideos(){
+          this.loading = true
+          Axios.get(`${this.$store.state.API_BASE}/videos`).then((response) => {
+            console.log(response.data.data)
+            this.loading = false
+            this.videoData = response.data.data
+          }).catch(error => {
+            console.log(error.data)
+            this.loading = false
+          })
+        },
+        getVideoParam(url){
+          var url_string = url; //window.location.href
+          var url = new URL(url_string);
+          // var c = url.searchParams.get("c");
+          return url.pathname.slice(7)
+        },
+        getVideoByCat(catergory){
+          Axios.get(`${this.$store.state.API_BASE}/videos?video_category_id=${catergory}`).then((response) => {
+            console.log(response.data.data)
+            this.loading = false
+            this.videoData = response.data.data
+          }).catch(error => {
+            console.log(error.data)
+            this.loading = false
+          })
         }
     },
     created(){
+      this.message = `http://travvapp.herokuapp.com/signup?ref=${this.auth.user.referral_token}`
+
       this.getMyBookings()
       this.getUserMedal()
+      this.getVideos()
     }
 }
 </script>

@@ -559,7 +559,7 @@ export default {
         contact_email: this.$store.state.auth.merchant.business_email,
         merchant_id: this.$store.state.auth.user.id,
         experiences_type_id: this.exp_id,
-        opening_and_closing_hours: JSON.stringify(this.experience.opening_and_closing_hours),
+        opening_and_closing_hours: this.experience.opening_and_closing_hours,
         _method: 'PUT'
       };
       Object.entries(data).forEach(o =>

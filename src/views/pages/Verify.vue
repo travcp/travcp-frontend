@@ -1,7 +1,7 @@
 <template>
   <div>
     <vue-headful
-      title="Reset | TravvApp"
+      title="Verify | TravvApp"
       description="Description from travvApp"
     />
     <Navbar />
@@ -106,90 +106,11 @@
             <div class="col-md-12">
               <form @submit.prevent="formSubmit">
                 <div class="form-header">
-                  <h3 style="margin-bottom: 10px;">Reset</h3>
+                  <h3 style="margin-bottom: 10px;">Verify</h3>
                   <p style="color: red;margin-bottom: 39px" v-if="error_message">{{ error_message.message }}</p>
                   <p style="color: blue;margin-bottom: 39px" v-if="message">{{ message }}</p>
                 </div>
-
-                <div class="row">
-                  <div class="col-md-2"></div>
-                  <div class="form-group col-md-8" style="text-align: center;">
-                    <input
-                      type="email"
-                      v-validate="'required|email'"
-                      v-model="email"
-                      class="form-control signin-input"
-                      name="email"
-                      placeholder="Enter Email"
-                    />
-                  </div>
-                  <div class="col-md-2"></div>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-2"></div>
-                  <div class="form-group col-md-8" style="text-align: center;">
-                    <input
-                      type="password"
-                      v-validate="'required|min:6'"
-                      v-model="password"
-                      class="form-control signin-input"
-                      name="password"
-                      placeholder="Enter new Password"
-                    />
-                  </div>
-                  <div class="col-md-2"></div>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-2"></div>
-                  <div class="form-group col-md-8" style="text-align: center;">
-                    <input
-                      type="password"
-                      v-validate="'required|min:6'"
-                      v-model="new_password_confirmation"
-                      class="form-control signin-input"
-                      name="new_password"
-                      placeholder="Confirm new Password"
-                    />
-                  </div>
-                  <div class="col-md-2"></div>
-                </div>
-
-
-                <br />
-                <br />
-                <div class="row">
-                  <div class="col-md-3"></div>
-                  <div class="col-md-6" style="text-align: center;">
-                    <button type="submit" class="btn btn-lg login-btn" :disabled="loading">
-                      <span v-if="loading">
-                        <img
-                          style="height: 20px;"
-                          src="../../assets/loader_rolling.gif"
-                        />
-                      </span>
-                      <span v-else>
-                        Reset
-                      </span>
-                    </button>
-                  </div>
-                </div>
               </form>
-              <div class="row">
-                <div class="col-md-12">
-                  <p class="not-a-mem">
-                    Already a Member yet?
-                    <router-link to="/signup">Sign in</router-link>
-                  </p>
-                </div>
-                <div class="col-md-12">
-                  <p class="not-a-mem">
-                    Not a Memeber yet?
-                    <router-link to="/signup">Sign up</router-link>
-                  </p>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -206,93 +127,44 @@ import Footer from "@/components/Footer.vue";
 import axios from 'axios';
 
 export default {
-  name: "Reset",
-  beforeRouteEnter(to, from, next) {
-    if (localStorage.getItem("auth")) {
-      return next({ path: "/" });
-    }
-    next();
-  },
+  name: "Verify",
   data: function() {
     return {
       email: null,
       loading: false,
       error_message: null,
-      password: null,
-      new_password: null,
-      message: null,
-      new_password_confirmation: null
     };
   },
   methods: {
     ...mapActions(["userLogin"]),
-    getUserdata(){
-      axios.get(`${this.$store.state.API_BASE}/users/${this.route.query.user_id}`).then(response => {
-        console.log(response.data);
-      }).then(error => {
-        console.log(response.data)
-      })
+    verifyAUser(){
+      this.loading = true
+      axios.post(`${this.$store.state.API_BASE}/auth/verify`, {
+              "token": this.$route.query.token,
+              "user_id": this.$route.query.user_id
+            })
+            .then(response => {
+              console.log(response.data.data)
+              this.$router.push("/");
+              this.loading = false
+            }).catch(error => {
+              console.log(error.response.data)
+              this.loading = false
+            })
     },
-    formSubmit: function() {
-      let data = {
-        email: this.email,
-        password: this.password
-      };
-      this.$validator.validateAll().then(result => {
-        if (result) {
-          this.loading = true;
-          if(this.password == this.new_password_confirmation) {
-            axios.post(`${this.$store.state.API_BASE}/auth/reset`, {
-                        "email": this.email,
-                        "token" : this.$route.query.token,
-                        "password" : this.password,
-                        "password_confirmation": this.new_password_confirmation
-                      }).then(response => {
-
-                        console.log(response.data)
-                        this.$router.push("/signin");
-                        this.$noty.success("Password Reset Succesfull");
-                      }).catch(error => {
-                        this.loading = false
-                        console.log(error.response.data)
-                        this.error_message = error.response.data.error
-                      })
-                    } else {
-                        this.loading = false
-                        this.error_message = "password Confirmation do not match"
-                        this.$noty.error("Oops, something went wrong!");      
-                    }
-        } else {
-          this.$noty.error("Oops, something went wrong!");
-        }
-        // if (this.login_errors != null) {
-        // 	this.$noty.error("Oops, something went wrong!")
-        // 	// this.$noty.success("Login sucessfull")
-        // } else {
-        // 	// this.$noty.success("Login sucessfull")
-        // }
-      });
-    }
   },
   computed: {
-    loginerrors() {
-      // return Object.keys(this.login_errors).length >= 2;
-      return this.login_errors;
-    },
-    errormessage() {
-      if (this.loginerrors) {
-        return this.loginerrors.error.message;
-      }
-    }
+    
   },
   components: {
     Navbar,
     Footer
   },
   created(){
-    if (!this.$route.query.token) {
+    if (!this.$route.query.token && !this.$route.query.user_id) {
       this.$router.push("/");
     }
+    console.log(this.verifyAUser())
     console.log(this.$route)
   }
 };

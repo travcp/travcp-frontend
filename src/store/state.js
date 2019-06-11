@@ -57,6 +57,7 @@ export default {
     emptySearchResult: false,
     experience_types: [],
     homeSearch: null,
-    bookings: []
+    bookings: [],
+    current_location: []
     // user_token: 
 }

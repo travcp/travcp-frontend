@@ -4,26 +4,26 @@
             <div class="col-lg-8">
                 <div class="d_feature_text">
                     <div class="main_title">
-                        <h2>Featured Restaurants</h2>
+                        <h2>Experiences Around Me</h2>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4">
-                <router-link to="/restaurants"><button type="button" class="btn view_all_btn">SHOW ALL RESTAURANTS</button></router-link>
+                <router-link to="/experiences"><button type="button" class="btn view_all_btn">SHOW ALL EXPERIENCES</button></router-link>
             </div>
             <div class="col-lg-12 carousel"> 
               <carousel  :autoplayLoop="true" :autoplay="true" :autoplayTimeout="1000" :autoplayHoverPause="true" :paginationEnabled="false"
                :perPageCustom="[[480, 1], [100, 1]]">
-                <slide v-for="restaurant in restaurants" :key="restaurant.id">
+                <slide v-for="experience in experiences" :key="experience.id">
                    <!-- <router-link :to="'/experience/'+ restaurant.id + '/' + restaurant.title.toString().toLowerCase().replace( /\s/g, '-')"> -->
-                    <div class="featured-card card" style="margin-bottom: 20px;"  v-on:dblclick="goToRestPage(restaurant.id, restaurant.title.toString().toLowerCase().replace( /\s/g, '-'))">
-                    <img v-if="restaurant.images.length" :src="restaurant.images[0].image" style="width: 100%;object-fit: cover;height:300px;" class="card-img-top featured-card-img" alt="...">
+                    <div class="featured-card card" style="margin-bottom: 20px;"  v-on:dblclick="goToRestPage(experience.id, experience.title.toString().toLowerCase().replace( /\s/g, '-'))">
+                    <img v-if="experience.images.length" :src="experience.images[0].image" style="width: 100%;object-fit: cover;height:300px;" class="card-img-top featured-card-img" alt="...">
                     <img v-else src="../assets/osaka.png" style="width: 100%;object-fit: cover;height:300px;" class="card-img-top featured-card-img" alt="...">
                      <div class="card-body" style="text-align: center">
-                          <p class="card-text" style="color: #f81894;text-transform: capitalize;">{{ restaurant.title }} | {{ restaurant.state }}</p><br>
-                          <h5 class="card-title" style="text-transform: capitalize;color:#000"> {{ restaurant.city }}</h5><br>
-                         <star-rating  :rating="restaurant.rating" :read-only="true" :increment="0.01" :star-size="18"></star-rating>
-                          <p class="card-text" style="color: #f81894"><b>{{restaurant.rating == null ? 0 : restaurant.rating}} <i class="fa fa-star"></i></b> ({{restaurant.rating_count == null ? 0 : restaurant.rating_count}})</p>
+                          <p class="card-text" style="color: #f81894;text-transform: capitalize;">{{ experience.title }} | {{ experience.state }}</p><br>
+                          <h5 class="card-title" style="text-transform: capitalize;color:#000"> {{ experience.city }}</h5><br>
+                         <star-rating  :rating="experience.rating" :read-only="true" :increment="0.01" :star-size="18"></star-rating>
+                          <p class="card-text" style="color: #f81894"><b>{{experience.rating == null ? 0 : experience.rating}} <i class="fa fa-star"></i></b> ({{experience.rating_count == null ? 0 : experience.rating_count}})</p>
                       </div>
                     </div>
 
@@ -33,29 +33,29 @@
             <div class="col-lg-12 toggleCarousel">
                 <div class="container">
                     <div class="row">
-                      <div class="card-deck">
-                        <div class="row">
-                          <div class="col-md-4" v-for="restaurant in restaurants" :key="restaurant.id">
-                            <a :href="'/experience/'+ restaurant.id + '/' + restaurant.title.toString().toLowerCase().replace( /\s/g, '-')">
+                      <div class="card-deck" style=" width: 100%;">
+                        <div class="row" style=" width: 100%;">
+                          <div class="col-md-4" v-for="experience in experiences" :key="experience.id">
+                            <router-link :to="'/experience/'+ experience.id + '/' + experience.title.toString().toLowerCase().replace( /\s/g, '-')">
                                 <div class="featured-card card" style="overflow: hidden;display: flex;flex-direction: column;justify-content: flex-end;width: 100%;color: #FFF;">
-                                  <img v-if="restaurant.images.length" style="width: 100%;object-fit: cover;height:380px;" :src="restaurant.images[0].image" class="card-img-top featured-card-img" alt="...">
+                                  <img v-if="experience.images.length" style="width: 100%;object-fit: cover;height:380px;" :src="experience.images[0].image" class="card-img-top featured-card-img" alt="...">
                                   <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" style="width: 100%;object-fit: cover;height: 380px;" alt="...">
 
                                    <div class="featured-card-footer featured_places_overlay_active">
                                       <div class="row" style="text-transform: capitalize;">
                                         <div class="col-6">
-                                          {{ restaurant.city }}                                  
+                                          {{ experience.city }}                                  
                                         </div>
                                         <div class="col-3 text-center">
-                                         <p>{{ restaurant.rating }} <i class="fa fa-star"></i></p>  
+                                         <p>{{ experience.rating }} <i class="fa fa-star"></i></p>  
                                         </div>
-                                        <div class="col-3 text-center" @click="postFavoriteExeperience(restaurant.id)">
-                                         <p>{{ restaurant.number_admittable }} <i class="fa fa-heart"></i></p>  
+                                        <div class="col-3 text-center" @click="postFavoriteExeperience(experience.id)">
+                                         <p>{{ experience.number_admittable }} <i class="fa fa-heart"></i></p>  
                                         </div>
                                       </div>
                                     </div>
                                   </div>
-                            </a>
+                            </router-link>
                           </div>
                         </div>
                       </div>
@@ -76,11 +76,11 @@ import { Carousel, Slide } from 'vue-carousel';
 import StarRating from 'vue-star-rating'
 
 export default {
-    name: 'FeaturedRest',
+    name: 'SuggestedExperiences',
     data: function(){return{
       loading: false
     }},
-    props: ['restaurants'],
+    props: ['experiences'],
     computed:{
         ...mapState(['auth'])
     },

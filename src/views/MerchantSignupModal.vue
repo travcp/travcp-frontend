@@ -73,7 +73,8 @@
                     </div>
                       <div class="form-group col-md-12">
                         <label for="">Upload Valid ID</label>
-                        <input type="file" class="form-control" ref="files" v-on:change="onFileChanged()" />
+                        <input 
+                          v-validate="'required'" type="file" class="form-control" ref="files" v-on:change="onFileChanged()" />
                       </div>
                     </div>
                     <div class="container">
