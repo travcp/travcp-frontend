@@ -13,7 +13,7 @@
                         <div class="col-lg-3 col-md-6">
                             <aside class="f_widget categories_widget">
                                 <div class="f_w_title">
-                                    <h3>TravvApp</h3>
+                                    <h3>TRAV CP</h3>
                                 </div>
                                 <ul>
                                     <li><router-link to="/about-us">About us</router-link></li>
@@ -34,7 +34,7 @@
                                     <li><router-link to="/travel-credit">Travel Credit</router-link></li>
                                     <li><router-link to="/group-tour">Group Tour</router-link></li>
                                     <li><router-link to="/guidebooks">Guidebooks</router-link></li>
-                                    <li><a href="http://travvblog.herokuapp.com">TravvApp Blog</a></li>
+                                    <li><a href="http://travvblog.herokuapp.com">TRAV CP Blog</a></li>
                                 </ul>
                             </aside>
                         </div>

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <vue-headful
-            title="Travel Credit | TravvApp"
+            title="Travel Credit | TRAV CP"
             description="Description from travvApp"
         />
     <Navbar/>

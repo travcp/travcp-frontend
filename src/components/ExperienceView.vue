@@ -1,8 +1,8 @@
 <template>
     <div class="ExperienceView">
         <vue-headful
-            title="Experience | TravvApp"
-            description="Description from travvApp"
+            title="Experience | TRAV CP"
+            description="Description of TRAV CP"
         />
         <Navbar></Navbar>
         <section class="project_area nagoya" v-if="experience.images && experience.images.length > 0" :style="{background: 'url(' + experience.images[0].image + ')'}" style="background-repeat: no-repeat;background-size: cover;background-position: center;">

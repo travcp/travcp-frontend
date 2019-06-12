@@ -1,6 +1,6 @@
 <template>
   <div>
-    <vue-headful title="New Experiene | TravvApp" description="Description from travvApp"/>
+    <vue-headful title="New Experiene | TRAV CP" description="Description from TRAV CP"/>
     <Navbar/>
     <div class="new_experience">
       <div class="new_experience_title" style="text-align: center;">

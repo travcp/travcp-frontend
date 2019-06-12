@@ -1,8 +1,8 @@
 <template>
   <div>
     <vue-headful
-      title="Reset | TravvApp"
-      description="Description from travvApp"
+      title="Reset | TRAV CP"
+      description="Description from TRAV CP"
     />
     <Navbar />
     <div class="wrapper">

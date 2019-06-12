@@ -1,8 +1,8 @@
 <template>
   <div class="home">
   	<vue-headful
-            title="Homepage | TravvApp"
-            description="Description from travvApp"
+            title="Homepage | TRAV CP"
+            description="Description from TRAV CP"
         />
     <HomeNavbar />
     <Sliderarea class="toggle-sec-nav" />
@@ -225,8 +225,23 @@
       ...mapState(['places']),
       ...mapState(['restaurants']),
       ...mapGetters(['getExp1', 'getExp2', 'getExp3', 'getExp4', 'getExp5']),
-      experienceAroundMe(){
-        axios.get(`${this.$store.state.API_BASE}/experiences?location=${this.$store.state.current_location[4].formatted_address}`).then(response => {
+      getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(this.showPosition);
+        } else { 
+          x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+      },
+      async showPosition(position) {
+        // x.innerHTML = "Latitude: " + position.coords.latitude + 
+        // "<br>Longitude: " + position.coords.longitude;
+        await axios.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + position.coords.latitude + ","+ position.coords.longitude + "&sensor=true&key=AIzaSyDgnbjMxlLW2BHBPJ4-iFsX_aB9jEHBFCg").then(response => {
+          console.log(response.data)
+          this.$store.state.current_location = response.data.results
+        })
+      },
+      async experienceAroundMe(){
+        await axios.get(`${this.$store.state.API_BASE}/experiences?location=${this.$store.state.current_location[4].formatted_address}`).then(response => {
           console.log(response.data.data);
           this.experiences_around_me = response.data.data
           if(response.data.data.length < 1){
@@ -261,6 +276,7 @@
       // }
     },
     created: function () {
+      // this.getLocation()
       this.getRandomExperiences()
       this.experienceAroundMe()
       // console.log(this.genRandom);
