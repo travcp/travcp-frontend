@@ -57,7 +57,7 @@ export default {
   created() {
     this.getLocation()
     // this.getRandomExperiences()
-    this.experienceAroundMe()
+    // this.experienceAroundMe()
     // this.getLocation()
     this.getExperiences()
     // // this.getRestaurants()
