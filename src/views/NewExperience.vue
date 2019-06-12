@@ -49,7 +49,7 @@
                                   v-on:change="handleFilesUpload()"
                                 >
                                 <br>
-                                <img class="image" src="image">
+                                <!-- <img class="image" src="image"> -->
                                 <div class="large-12 medium-12 small-12 cell">
                                   <div v-for="(file, key) in files" class="file-listing">
                                     {{ file.name }}
@@ -566,9 +566,7 @@ export default {
         contact_email: this.$store.state.auth.merchant.business_email,
         merchant_id: this.$store.state.auth.user.id,
         experiences_type_id: this.exp_id,
-        opening_and_closing_hours: JSON.stringify(
-          this.opening_and_closing_hours
-        )
+        opening_and_closing_hours: JSON.stringify(this.opening_and_closing_hours)
       };
       Object.entries(data).forEach(o =>
         o[1] === null ? delete data[o[0]] : 0

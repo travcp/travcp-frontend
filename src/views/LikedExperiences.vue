@@ -10,6 +10,11 @@
                             <div class="col-md-12" style="margin-bottom: 60px;">
                                 <h3>Favourite Experiences</h3>
                             </div>
+                            <div class="col-md-12" style="margin-bottom: 20px;">
+                                <div style="text-align: center;"  v-if="loading">
+                                  <Circle9 />           
+                                </div>
+                            </div>
                             <div v-if="FavoritesExperience.length < 1 && !loading">
                                 <empty-result>
                                     <template v-slot:error-header>Errm</template>
@@ -48,6 +53,7 @@
     import Footer from '@/components/Footer.vue';
     import Axios from 'axios';
     import EmptyResult from "@/components/EmptyResult.vue";
+    import { Circle9 } from 'vue-loading-spinner'
 
     export default {
         name: 'LikedExperiences',
@@ -88,7 +94,8 @@
         },
         components: {
             Navbar,
-            EmptyResult
+            EmptyResult,
+            Circle9
         },
         computed: {
             ...mapState(['auth']),

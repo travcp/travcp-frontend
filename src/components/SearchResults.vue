@@ -128,7 +128,11 @@
                                     Explore any of these
                                 </h3>
                             </div>
-                            
+                            <div class="col-md-12" style="margin-bottom: 20px;">
+                                <div style="text-align: center;"  v-if="loading.filterExperiencesSearch || loading.getExperiences">
+                                  <Circle9 />           
+                                </div>
+                            </div>
                             <div class="col-md-4 experience" v-if="allExperiences != null && allExperiences.length < 1" v-for="experience in experiencesPlacehodler" :key="experience.id" style="">
                                 <router-link :to="'/experience/'+ experience.id + '/' + experience.title.toString().toLowerCase().replace( /\s/g, '-')">
                                     <div class="search_items">
@@ -196,6 +200,7 @@
     import DatePicker from 'vue2-datepicker'
     import Footer from '@/components/Footer.vue';
     import StarRating from 'vue-star-rating'
+    import { Circle9 } from 'vue-loading-spinner'
     export default {
         name: 'SearchResults',
         data: function () {
@@ -269,7 +274,8 @@
         components: {
             Navbar,
             Footer,
-            StarRating
+            StarRating,
+            Circle9
         },
         computed: {
             ...mapState(['loading']),
@@ -298,7 +304,7 @@
                 }
                 this.$validator.validateAll().then(result => {
                     if (result){
-                            let url = `${this.$store.state.API_BASE}/experiences?location=${data.search}&min_price=${data.min_price}&max_price=${data.max_price}`;
+                            let url = `${this.$store.state.API_BASE}/experiences?city=${data.search}&country=${data.search}&title=${data.search}&location=${data.search}&min_price=${data.min_price}&max_price=${data.max_price}`;
 
                             if(data.search == ''){
                                 this.filterExperiencesSearch();
@@ -332,6 +338,9 @@
 </script>
 
 <style scoped>
+.spinner.spinner--circle-9 {
+    margin: auto;
+}
 .vue-star-rating-star {
     overflow: visible!important;
     height: 20px;

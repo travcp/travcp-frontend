@@ -95,7 +95,7 @@
                             <button type="submit" class="book_btn">Rate</button>
                         </div>
                         <div class="col-md-6">
-                              <button type="button" class="btn btn-primary" style="background: #f81894" data-toggle="modal" data-target="#ReviewVideoModal">
+                              <button type="button" v-if="!checkBookingStatus" class="btn btn-primary" style="background: #f81894" data-toggle="modal" data-target="#ReviewVideoModal">
                                   Make 5 Secs Video Review
                                 </button>
                         </div>

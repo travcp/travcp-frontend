@@ -52,7 +52,7 @@
                                   v-on:change="handleFilesUpload()"
                                 />
 
-                                <div class="large-12 medium-12 small-12 cell">
+                                <!-- <div class="large-12 medium-12 small-12 cell">
                                   <div
                                     v-for="(file, key) in files"
                                     class="file-listing"
@@ -63,6 +63,15 @@
                                       v-on:click="removeFile(key)"
                                       >Remove</span
                                     >
+                                  </div>
+                                </div> -->
+                                <div class="large-12 medium-12 small-12 cell">
+                                  <div v-for="(file, key) in files" class="file-listing">
+                                    {{ file.name }}
+                                    <span
+                                      class="remove-file text-danger"
+                                      v-on:click="removeFile(key)"
+                                    ><i class="fa fa-times"></i> Remove</span>
                                   </div>
                                 </div>
                                 <br />
@@ -302,8 +311,8 @@
                                   requiredFields.includes('opening_and_closing_hours')
                                 ">
                                 <label>Opening and closing hours</label>
-                                <open-closing-times v-if="isJson(experience.opening_and_closing_hours)" :days="JSON.parse(experience.opening_and_closing_hours)" v-model="experience.opening_and_closing_hours"></open-closing-times>
-                                <open-closing-times v-model="experience.opening_and_closing_hours" v-else/>
+                                <open-closing-times v-if="isJson(experience.opening_and_closing_hours)" :days="JSON.parse(experience.opening_and_closing_hours)" v-model="opening_and_closing_hours"></open-closing-times>
+                                <open-closing-times v-model="opening_and_closing_hours" v-else/>
                               </div>
                               <div
                                 class="form-group col-md-6"
@@ -559,7 +568,7 @@ export default {
         contact_email: this.$store.state.auth.merchant.business_email,
         merchant_id: this.$store.state.auth.user.id,
         experiences_type_id: this.exp_id,
-        opening_and_closing_hours: this.experience.opening_and_closing_hours,
+        opening_and_closing_hours: JSON.stringify(this.opening_and_closing_hours),
         _method: 'PUT'
       };
       Object.entries(data).forEach(o =>
@@ -647,6 +656,7 @@ export default {
       await axios.get(`${this.$store.state.API_BASE}/experiences/${this.$route.params.id}`).then(response => {
         
         this.experience = response.data.data
+        this.opening_and_closing_hours = this.experience.opening_and_closing_hours;
       });
     },
     isJson(item){

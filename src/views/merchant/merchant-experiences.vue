@@ -11,22 +11,16 @@
                             <div class="col-md-8">
                                 <div class="filter_searchbar" style="color: #f81894;height: 54px;">
                                     <input v-model="search" v-validate="'required|min:3'" class="filter_search_input" type="text"
-                                           placeholder="Tour & Experiences in Tokyo " />
-                                    <!-- |
-                                    <img src="../assets/Icons/Calendar.svg" style="margin-top: -8px;margin-left: 31px;height: 28px;" /> -->
-                                    <button type="submit" class="filter_search_icon">
+                                           placeholder="Search your Experiences" />
+                                   <button type="submit" class="filter_search_icon">
                                         <!-- <i class="material-icons">add</i> -->
                                         <img v-if="!isLoading" src="../../assets/icons8-search.svg" style="height: 28px;" />
                                         <img v-if="isLoading" style="height: 20px;" src="../../assets/loader_rolling.gif" />
-
-                                        <!-- <font-awesome-icon icon="user" /> -->
                                     </button>
                                 </div>
                             </div>
                             <div class="col-md-2" style="text-align: center;">
-                                <!--<router-link to="/dashboard/new-exp">-->
-                                    <!--<button type="button" class="btn btn-lg add-new-btn">+</button>-->
-                                <!--</router-link>-->
+                                
                             </div>
                         </div>
                     </form>
@@ -36,14 +30,18 @@
 
         <div class="digital_feature">
             <div class="row">
+
                 <div class="col-lg-12">
                     <div class="container">
+                        <div style="text-align: center;"  v-if="loading">
+                          <Circle9 />           
+                        </div>
                         <div class="row">
                             <div class="col-md-6" v-for="merchant_experience in merchant_experiences" :key="merchant_experience.id">
                                 <div class="card mb-3" style="width: 100%;">
                                     <div class="row no-gutters">
                                         <div class="col-md-5">
-                                            <img :src="merchant_experience.images.length > 0 ? merchant_experience.images[0].image : require('../../assets/nagoya.png')" class="card-img" style="height: 100%; width:100%" alt="">
+                                            <img :src="merchant_experience.images.length > 0 ? merchant_experience.images[0].image : require('../../assets/nagoya.png')" class="card-img" style="height: 100%; width: 100%;object-fit: cover;height: 380px;" alt="">
                                         </div>
                                         <div class="col-md-7">
                                             <div class="card-body">
@@ -54,7 +52,7 @@
                                                 <p class="card-text"><small class="text-muted">Created {{ merchant_experience.created_at }}</small></p>
                                                 <p>{{ merchant_experience.description ?  merchant_experience.description.slice(0, 100) : '' }}</p>
                                                 
-                                                <p class="card-text"><small class="text-muted">Last updated at {{ merchant_experience.updated_at }}</small></p>
+                                                <p class="card-text"><small class="text-muted">Last updated at {{ merchant_experience.updated_at }}</small></p> <br><br>
                                                 <router-link :to="'/dashboard/merchant/experience/edit/'+ merchant_experience.experience_type + '/' + merchant_experience.id + '/' + merchant_experience.title.toString().toLowerCase().replace( /\s/g, '-')"><button class="btn btn-info">Edit</button></router-link>
 
                                                 <br> <br>
@@ -214,6 +212,9 @@
 </script>
 
 <style scoped>
+    .spinner.spinner--circle-9 {
+        margin: auto
+    }
     a {
         color: inherit;
     }

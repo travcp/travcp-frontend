@@ -37,10 +37,39 @@
                   <input
                     v-validate="'required'"
                     type="text"
-                    v-model="company"
+                    v-model="business_name"
                     class="form-control edit-prof-input"
                     placeholder="TravvApp Inc."
                   />
+                </div>
+                <div class="form-group col-4" v-if="!checkUserType">
+                  <label for="">Bussiness Email</label>
+                  <input
+                    v-validate="'required'"
+                    type="text"
+                    v-model="business_email"
+                    class="form-control edit-prof-input"
+                    placeholder="TravvApp Inc."
+                  />
+                </div>
+                <div class="form-group col-4" v-if="!checkUserType">
+                  <label for="">Bussiness Phone Number</label>
+                  <input
+                    v-validate="'required'"
+                    type="text"
+                    v-model="phone"
+                    class="form-control edit-prof-input"
+                    placeholder="+234 800 000 00"
+                  />
+                </div>
+                <div class="form-group col-12" v-if="!checkUserType">
+                  <label for="">Short Bio</label>
+                  <textarea
+                    v-validate="'required'"
+                    type="text"
+                    v-model="bio"
+                    class="form-control edit-prof-input" 
+                  ></textarea>
                 </div>
                 <!--<div class="form-group col-6">-->
                   <!--<label for="">Username</label>-->
@@ -245,7 +274,11 @@ export default {
       postal_code: null,
       hasImage: false,
       image: null,
-      validationErrors: null
+      validationErrors: null,
+      business_email: null,
+      phone: null,
+      bio: null,
+      business_name: null,
     };
   },
   components: {
@@ -269,6 +302,9 @@ export default {
   methods: {
     ...mapActions(["updateProfile"]),
     formSubmit: function(event) {
+    let requestHeaders = {
+      headers: { Authorization: "Bearer " + this.$store.state.auth.access_token }
+    };
       this.validationErrors = null;
       this.$validator.validateAll().then(result => {
         if (result) {
@@ -277,19 +313,33 @@ export default {
             surname: this.surname,
             subscribed_to_newsletter: this.subscribed_to_newsletter,
             user_id: this.auth.user.id,
-            company: this.company,
             address: this.address,
             city: this.city,
             country: this.country,
             postal_code: this.postal_code
-          })
+          }, requestHeaders)
             .then(data => {
+              if(!this.checkUserType){
+                axios.post(`${this.$store.state.API_BASE}/merchants/extras/${this.$store.state.auth.user.id}`, {
+                    business_name: this.business_name,
+                    business_email: this.business_email,
+                    phone: this.phone,
+                    bio: this.bio,
+                    merchant_id: this.$store.state.auth.merchant.id,
+                    _method: 'PUT'
+                }, requestHeaders).then(response => {
+                  this.$noty.success("Merchant Profile Updated Succefully");
+                  console.log(response.data.data)
+                }).catch(error => {
+                  console.log(error.response.data)
+                })
+              }
               console.log(data)
               this.$noty.success("Profile Updated Succefully");
             })
             .catch(err => {
-              console.log(err.response.data.errors);
-              this.validationErrors = err.response.data.errors;
+              console.log(err.response);
+              // this.validationErrors = err.response.data.errors;
               this.$noty.error("Oops, something went wrong!");
             });
         } else {
@@ -348,7 +398,24 @@ export default {
         return this.auth.merchant.business_name;
       }
     },
-
+    merchantEmail() {
+      if(this.$store.state.auth.merchant) {
+        this.company = this.auth.merchant.business_email;
+        return this.auth.merchant.business_email;
+      }
+    },
+    merchantPhone() {
+      if(this.$store.state.auth.merchant) {
+        this.company = this.auth.merchant.phone;
+        return this.auth.merchant.phone;
+      }
+    },
+    merchantBio() {
+      if(this.$store.state.auth.merchant) {
+        this.company = this.auth.merchant.bio;
+        return this.auth.merchant.bio;
+      }
+    },
     uploadImage(){
       // console.log(this.$refs);
       let image = this.$refs.fileUpload.$el.children[1].files[0];
@@ -389,6 +456,15 @@ export default {
     this.authCountry();
     this.authPostalCode();
     this.merchantCompany();
+    this.merchantEmail()
+    this.merchantPhone()
+    this.merchantBio() 
+    if(!this.checkUserType){
+      this.business_name = this.auth.merchant.business_name
+      this.business_email = this.auth.merchant.business_email
+      this.bio = this.auth.merchant.bio
+      this.phone = this.auth.merchant.phone  
+    }
   }
 };
 </script>
