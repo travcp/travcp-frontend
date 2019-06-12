@@ -240,8 +240,8 @@
           this.$store.state.current_location = response.data.results
         })
       },
-      async experienceAroundMe(){
-        await axios.get(`${this.$store.state.API_BASE}/experiences?location=${this.$store.state.current_location[4].formatted_address}`).then(response => {
+      experienceAroundMe(){
+        axios.get(`${this.$store.state.API_BASE}/experiences?location=${this.$store.state.current_location[4].formatted_address}`).then(response => {
           console.log(response.data.data);
           this.experiences_around_me = response.data.data
           if(response.data.data.length < 1){
