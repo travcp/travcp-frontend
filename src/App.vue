@@ -76,6 +76,7 @@ export default {
         })
       },
       showError(error) {
+        window.location.href = 'https://travvapp.herokuapp.com/'
         switch(error.code) {
           case error.PERMISSION_DENIED:
              this.$noty.warning("User denied the request for Geolocation.")
