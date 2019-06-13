@@ -49,7 +49,30 @@ export default {
         // "<br>Longitude: " + position.coords.longitude;
         await axios.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + position.coords.latitude + ","+ position.coords.longitude + "&sensor=true&key=AIzaSyDgnbjMxlLW2BHBPJ4-iFsX_aB9jEHBFCg").then(response => {
           console.log(response.data)
+
           this.$store.state.current_location = response.data.results
+          axios.get(`${this.$store.state.API_BASE}/experiences?location=${this.$store.state.current_location[4].formatted_address}`).then(response => {
+              console.log(response.data.data);
+              this.$store.state.experiences_around_me = response.data.data
+              if(response.data.data.length < 1){
+                axios.get(`${this.$store.state.API_BASE}/experiences?location=${this.$store.state.current_location[7].formatted_address}`).then(response => {
+                    console.log(response.data.data);
+                    this.$store.state.experiences_around_me = response.data.data
+                    if(response.data.data.length < 1){
+                      axios.get(`${this.$store.state.API_BASE}/experiences?location=${this.$store.state.current_location[9].formatted_address}`).then(response => {
+                        this.$store.state.experiences_around_me = response.data.data
+                        console.log(response.data.data)
+                      }).catch(error => {
+                        console.log(error.response.data)
+                      })
+                    }
+                }).catch(error => {
+                  console.log(error.response.data)
+                })
+              }
+            }).catch(error => {
+              console.log(error.response)
+            })
         })
       },
     // ...mapActions(['getExperiences'])

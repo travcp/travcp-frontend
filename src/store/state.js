@@ -58,6 +58,7 @@ export default {
     experience_types: [],
     homeSearch: null,
     bookings: [],
-    current_location: []
+    current_location: [],
+    experiences_around_me: []
     // user_token: 
 }

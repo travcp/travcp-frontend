@@ -197,7 +197,7 @@
       return {
         // experiences: []
         random_experiences: [],
-        experiences_around_me: []
+        // experiences_around_me: []
       }
     },
     methods: {
@@ -219,51 +219,52 @@
     },
     computed: {
       ...mapState(['experiences']),
+      ...mapState(['experiences_around_me']),
       ...mapGetters(['allExperiences']),
       ...mapState(['restaurants']),
       ...mapState(['events']),
       ...mapState(['places']),
       ...mapState(['restaurants']),
       ...mapGetters(['getExp1', 'getExp2', 'getExp3', 'getExp4', 'getExp5']),
-      getLocation() {
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(this.showPosition);
-        } else { 
-          x.innerHTML = "Geolocation is not supported by this browser.";
-        }
-      },
-      async showPosition(position) {
-        // x.innerHTML = "Latitude: " + position.coords.latitude + 
-        // "<br>Longitude: " + position.coords.longitude;
-        await axios.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + position.coords.latitude + ","+ position.coords.longitude + "&sensor=true&key=AIzaSyDgnbjMxlLW2BHBPJ4-iFsX_aB9jEHBFCg").then(response => {
-          console.log(response.data)
-          this.$store.state.current_location = response.data.results
-        })
-      },
-      experienceAroundMe(){
-        axios.get(`${this.$store.state.API_BASE}/experiences?location=${this.$store.state.current_location[4].formatted_address}`).then(response => {
-          console.log(response.data.data);
-          this.experiences_around_me = response.data.data
-          if(response.data.data.length < 1){
-            axios.get(`${this.$store.state.API_BASE}/experiences?location=${this.$store.state.current_location[7].formatted_address}`).then(response => {
-                console.log(response.data.data);
-                this.experiences_around_me = response.data.data
-                if(response.data.data.length < 1){
-                  axios.get(`${this.$store.state.API_BASE}/experiences?location=${this.$store.state.current_location[9].formatted_address}`).then(response => {
-                    this.experiences_around_me = response.data.data
-                    console.log(response.data.data)
-                  }).catch(error => {
-                    console.log(error.response.data)
-                  })
-                }
-            }).catch(error => {
-              console.log(error.response.data)
-            })
-          }
-        }).catch(error => {
-          console.log(error.response)
-        })
-      },
+      // getLocation() {
+      //   if (navigator.geolocation) {
+      //     navigator.geolocation.getCurrentPosition(this.showPosition);
+      //   } else { 
+      //     x.innerHTML = "Geolocation is not supported by this browser.";
+      //   }
+      // },
+      // async showPosition(position) {
+      //   // x.innerHTML = "Latitude: " + position.coords.latitude + 
+      //   // "<br>Longitude: " + position.coords.longitude;
+      //   await axios.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + position.coords.latitude + ","+ position.coords.longitude + "&sensor=true&key=AIzaSyDgnbjMxlLW2BHBPJ4-iFsX_aB9jEHBFCg").then(response => {
+      //     console.log(response.data)
+      //     this.$store.state.current_location = response.data.results
+      //   })
+      // },
+      // experienceAroundMe(){
+      //   axios.get(`${this.$store.state.API_BASE}/experiences?location=${this.$store.state.current_location[4].formatted_address}`).then(response => {
+      //     console.log(response.data.data);
+      //     this.experiences_around_me = response.data.data
+      //     if(response.data.data.length < 1){
+      //       axios.get(`${this.$store.state.API_BASE}/experiences?location=${this.$store.state.current_location[7].formatted_address}`).then(response => {
+      //           console.log(response.data.data);
+      //           this.experiences_around_me = response.data.data
+      //           if(response.data.data.length < 1){
+      //             axios.get(`${this.$store.state.API_BASE}/experiences?location=${this.$store.state.current_location[9].formatted_address}`).then(response => {
+      //               this.experiences_around_me = response.data.data
+      //               console.log(response.data.data)
+      //             }).catch(error => {
+      //               console.log(error.response.data)
+      //             })
+      //           }
+      //       }).catch(error => {
+      //         console.log(error.response.data)
+      //       })
+      //     }
+      //   }).catch(error => {
+      //     console.log(error.response)
+      //   })
+      // },
       topRatedExp: function () {
         // let exp = this.allExperiences;
         return this.experiences.slice(0, 3);
@@ -278,7 +279,7 @@
     created: function () {
       // this.getLocation()
       this.getRandomExperiences()
-      this.experienceAroundMe()
+      // this.experienceAroundMe()
       // console.log(this.genRandom);
       // this.getExperiences()
       // this.getEvents();
