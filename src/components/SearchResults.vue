@@ -135,7 +135,7 @@
                             </div>
                             <div class="col-md-4 experience" v-if="allExperiences != null && allExperiences.length < 1" v-for="experience in experiencesPlacehodler" :key="experience.id" style="">
                                 <router-link :to="'/experience/'+ experience.id + '/' + experience.title.toString().toLowerCase().replace( /\s/g, '-')">
-                                    <div class="search_items">
+                                    <!-- <div class="search_items"> -->
                                         <div class="featured-card card" style="margin-bottom: 20px;">
                                             <img v-if="experience.images.length" :src="experience.images[0].image" style="width: 100%;object-fit: cover;height:300px;" class="card-img-top featured-card-img" alt="...">
                                             <img v-else src="../assets/osaka.png" style="width: 100%;object-fit: cover;height:300px;" class="card-img-top featured-card-img" alt="...">
@@ -146,16 +146,7 @@
                                                 <p class="card-text" style="color: #f81894"><b>{{experience.rating == null ? 0 : experience.rating}} <i class="fa fa-star"></i></b> ({{experience.rating_count == null ? 0 : experience.rating_count}})</p>
                                             </div>
                                         </div>
-                                        <!-- <div class="search_items_back_img" v-if="experience.images && experience.images.length > 0" :style="{'background-image': 'url(' + experience.images[0].image  + ')'}"></div>
-                                        <div class="search_items_back_img nagoya" v-else></div>
-                                        <div class="search_items_item">
-                                            <div class="fetr_places_overlay">
-                                                <p>{{ experience.title }} | {{ experience.state }}</p>
-                                                <h3> {{ experience.city }}</h3>
-                                                <p><b>{{experience.rating == null ? 0 : experience.rating}} <i class="fa fa-star"></i></b> ({{experience.rating_count == null ? 0 : experience.rating_count}})</p>
-                                            </div>
-                                        </div> -->
-                                    </div>
+                                    <!-- </div> -->
                                 </router-link>
                             </div>
                             <div class="col-md-4 experience" v-for="experience in experiences" :key="experience.id" style="">
@@ -171,18 +162,6 @@
             </div>
           </div>
 
-                                    <!-- <div class="search_items">
-                                        <div class="search_items_back_img" v-if="experience.images && experience.images.length > 0"  :style="{'background-image': 'url(' + experience.images[0].image ? experience.images[0].image : '../assets/nagoya.png' + ')'}"></div>
-                                        <div class="nagoya" v-else></div>
-                                        <div class="search_items_item">
-                                            <div class="fetr_places_overlay">
-                                                <p>{{ experience.title }} | {{ experience.state }}</p>
-                                                <h3> {{ experience.city }}</h3>
-                                                
-                                                <p><b>{{experience.rating == null ? 0 : experience.rating}} <i class="fa fa-star"></i></b> ({{experience.rating_count == null ? 0 : experience.rating_count}})</p>
-                                            </div>
-                                        </div>
-                                    </div> -->
                                 </router-link>
                             </div>
                         </div>
@@ -338,6 +317,9 @@
 </script>
 
 <style scoped>
+.vue-star-rating-rating-text {
+    display: none;
+}
 .spinner.spinner--circle-9 {
     margin: auto;
 }

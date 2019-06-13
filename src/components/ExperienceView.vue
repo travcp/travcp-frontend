@@ -1,11 +1,11 @@
 <template>
     <div class="ExperienceView">
         <vue-headful
-            title="Experience | TRAV CP"
+            title = "Experience | TRAV CP"
             description="Description of TRAV CP"
         />
         <Navbar></Navbar>
-        <section class="project_area nagoya" v-if="experience.images && experience.images.length > 0" :style="{background: 'url(' + experience.images[0].image + ')'}" style="background-repeat: no-repeat;background-size: cover;background-position: center;">
+        <section class="project_area nagoya" v-if="experience.images && experience.images.length > 0" :style="{background: 'url(' + experience.images[0].image + ')', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}" style="background-repeat: no-repeat;background-size: cover;background-position: center;">
             <div class="container">
             </div>
         </section>
@@ -13,19 +13,20 @@
             <div class="container">
             </div>
         </section>
+        <div class="container">
         <div class="row">
             <div class="col-md-12" style="text-align: center;">
                 <img class="image" v-for="(image, i) in images" :src="image" :key="i" @click="index = i">
                 <vue-gallery-slideshow :images="images" :index="index" @close="index = null"></vue-gallery-slideshow>
             </div>
         </div>
-        <br><br>
+        <br>
         <div class="digital_feature blog_part">
             <div class="row">
-                <div class="col-lg-7" style="text-align: center;" v-if="isLoading">
+                <div class="col-lg-7" style="text-align: center;" v-if="loading.getExperienceById">
                     <Circle9 />
                 </div>
-                <div class="col-sm-6 col-md-7 col-lg-8 blog_content" v-else>
+                <div class="col-sm-6 col-md-7 col-lg-7 blog_content" v-else>
                     <h3 style="text-transform: capitalize;">
                         {{ experience.title }} | {{ experience.state }}
                     </h3>
@@ -45,9 +46,9 @@
 
                     <!-- <h6 style="margin-left:20px;"><b>Rate the Experience</b></h6> <br> -->
                     <form  @submit.prevent="rateExperienceSubmit" v-if="auth">
-                        <div class="col-md-12">
-                            
-                            <div>
+                        <div class="row">
+                            <!-- div.row -->
+                            <div class="col-md-6">
                                 <h6><b>Rate the Experience</b></h6> <br>
                                 <p class="alert alert-warning" v-if="!checkBookingStatus" style="margin:0;">To rate this Experience you need to book first</p>
                                 <div id="reviewStars-input" @click="toggleRatingBox" v-else>
@@ -65,10 +66,10 @@
 
                                     <input id="star-0" value=1 v-model="reviewStar" type="radio" name="reviewStars"/>
                                     <label title="bad" for="star-0"></label>
-                                </div><br><br><br><br>    
+                                </div>
                             </div>
                             
-                            <div>
+                            <div class="col-md-6">
                                 <h6><b>Rate Security of the Experience</b></h6> <br>
                                 <div id="securityStars-input" @click="toggleSecurityBox">
                                     <input id="star-2-4" value=5 v-model="securityStar" type="radio" name="securityStars"/>
@@ -87,13 +88,13 @@
                                     <label title="bad" for="star-2-0"></label>
                                 </div><br><br>
                             </div>
-                        </div> <br><br>
+                        </div> 
                         <div class="form-group col-md-6" v-if="toggleRating && securityRating">
                             <h6>Review this Experience</h6>
                             <!-- <label>Rate this Experience</label> -->
                             <input type="text" class="form-control edit-prof-input" v-model="rate_this_exp_text">
                             <button type="submit" class="book_btn">Rate</button>
-                        </div>
+                        </div><br><br>
                         <div class="col-md-6">
                               <button type="button" v-if="!checkBookingStatus" class="btn btn-primary" style="background: #f81894" data-toggle="modal" data-target="#ReviewVideoModal">
                                   Make 5 Secs Video Review
@@ -101,7 +102,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-sm-6 col-md-5 col-lg-4 sidebar-pd">
+                <div class="col-sm-6 col-md-5 col-lg-5 sidebar-pd">
                     <div class="travv-sidebar" style="height: auto;">
                         <div class="container">
                             <div class="row sidebar_text">
@@ -131,7 +132,7 @@
                                     <h5>{{ experience.duration }} hours</h5>
                                 </div>
                                 <div class="col-md-12">
-                                    <h3>Cost</h3>
+                                    <h3>Suggested Cost</h3>
                                     <h5>$ {{ experience.dollar_price }}</h5>
                                 </div>
                                 
@@ -166,7 +167,7 @@
                                                 <div class="row">
                                                     <div :class="[experience.experience_type == 'restaurants' ? 'col-6' : 'col-12']">
                                                         <button type="submit" class="book_btn btn-block">
-                                                            <span v-if="isLoading || loading">
+                                                            <span v-if="loading2">
                                                                 <img style="height: 20px;" src="../assets/loader_rolling.gif" />
                                                             </span>
                                                             <span v-else>
@@ -198,7 +199,7 @@
             <br><br>
             <div class="row">
                 <div class="form-group col-md-4">
-                    <label>Get Direction</label>
+                    <h5>Get Direction</h5>
                     <input v-model=vm.searchPlace v-gmaps-searchbox=vm placeholder="Enter your current location" class="form-control" style="border: 1px solid #000; border-radius: 3px;padding: 10px;">
                     <!-- <button class="btn btn-primary" @click="getDirection">Get Direction</button> -->
                 </div>
@@ -293,11 +294,10 @@
                                                 <img :src="review.user.profile_image ? review.user.profile_image.image : require('@/assets/avatar.png')" class="rounded-circle" style="height: 50px;display: inline-block;">
                                             </div>
                                             <div class="col-8">
-                                                <p class="review_name" style="font-family: MuseoSans;font-weight: 100;">{{ review.user_name }}</p>
-                                                <p class="review_rev">
+                                                <p class="" style="font-family: MuseoSans;font-weight: 100;">{{ review.user_name }}</p>
+                                                <p class="review_rev" style="margin-bottom: 10px">
                                                     <img v-for="i in review.rating" :key="i.id" src="../assets/review-icon.svg" alt="Review icon" style="height: 15px;">
                                                 </p>
-                                                <br>
                                                 <p class="review_date">{{ review.review_body }}</p>
                                             </div>
                                         </div> <br>
@@ -339,6 +339,7 @@
                 </div>
             </div>
         </div>
+    </div>
         <!-- <Footer /> -->
     </div>
 </template>
@@ -377,7 +378,7 @@
                 time: '',
                 reviewStar: null,
                 toggleRating: false,
-                loading: false,
+                loading2: false,
                 checkBookingStatus: null,
                 reviews: [],
                 securityStar: null,
@@ -440,16 +441,16 @@
                     console.log(response.data.data)
                     this.getSimilarExperienceData = response.data.data
                     this.getSimilarExperienceData.shift()
-                    this.loading = false;
-                    if(response.data.data.length < 1) {
-                        axios.get(`${this.$store.API_BASE}/experiences?city=${this.experience.city}`).then(response => {
-                            this.getSimilarExperienceData = response.data.data
+                    this.loading2 = false;
+                    if(response.data.data.length < 3) {
+                        axios.get(`${this.$store.state.API_BASE}/experiences?city=${this.experience.city}&state=${this.experience.state}`).then(response => {
+                            this.getSimilarExperienceData += response.data.data
                         }).catch(error => {
                             console.log(error.response.data)
                         })
                     }
                 }).catch(err => {
-                    this.loading = false;
+                    this.loading2 = false;
                     console.log(err);
                 });
             },
@@ -590,22 +591,22 @@
                 }
             },
             ratingInfo() {
-                this.loading = true;
+                this.loading2 = true;
                 // let requestHeaders = {
                 //     headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
                 // };1
                 axios.get(`${this.$store.state.API_BASE}/experiences/${this.$route.params.id}/reviews`).then(response => {
                     
                     this.ratings = response.data.rating_info
-                    this.loading = false;
+                    this.loading2 = false;
                     this.reviews = response.data;
                 }).catch(err => {
-                    this.loading = false;
+                    this.loading2 = false;
                     console.log(err);
                 });
             },
             checkIfBooked () {
-                this.loading = true;
+                this.loading2 = true;
                 let requestHeaders = {
                     headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
                 };
@@ -615,7 +616,7 @@
                 }, requestHeaders).then(response => {
                     console.log(response.data)
                     this.checkBookingStatus = response.data[0]
-                    this.loading = false;
+                    this.loading2 = false;
                 }).catch(err => {
                     this.$noty.error("Oops, You need to Login to Review or Rate an Expereince");
                 })
@@ -628,7 +629,7 @@
         computed: {
             ...mapState(["experience_types"]),
             ...mapState(['experience']),
-            ...mapState(['isLoading']),
+            ...mapState(['loading']),
             ...mapState(['auth']),
             ...mapState(['bookings']),
             totalRatingCount() {
@@ -664,7 +665,7 @@
                 this.checkIfBooked()                
             }
             this.getSimilarExperiences()
-            this.loading = false;
+            this.loading2 = false;
             
         }
     }

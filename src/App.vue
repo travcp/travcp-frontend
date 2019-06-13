@@ -42,6 +42,7 @@ export default {
           navigator.geolocation.getCurrentPosition(this.showPosition, this.showError);
         } else { 
           x.innerHTML = "Geolocation is not supported by this browser.";
+          this.$noty.warning("Geolocation is not supported by this browser.")
         }
       },
       async showPosition(position) {

@@ -25,13 +25,14 @@ export default {
   getExperienceById({ commit, state }, id) {
     // commit("IS_LOADING");
 
-    state.loading.getExperienceById = false;
+    state.loading.getExperienceById = true;
     return new Promise((resolve, reject)=> {
         axios.get(`${API_BASE}/experiences/${id}`).then(response => {
-            state.loading.getExperienceById = true;
+            state.loading.getExperienceById = false;
             commit("EXPERIENCE_BY_ID", response.data);
             resolve(response.data);
         }).catch(error => {
+            state.loading.getExperienceById = false
             reject(error.response.data)
         });
     })
