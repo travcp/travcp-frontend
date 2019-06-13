@@ -32,15 +32,15 @@
                     </h3>
                     <h1 style="text-transform: capitalize;">{{ experience.city }}</h1>
                     <h5 style="text-transform: capitalize;">{{ experience.location }}</h5>
-                    <p>
+                    <p v-if="experience.description">
                         {{ experience.description }}
                     </p>
-                    <h5>About Merchant</h5>
+                    <h5 v-if="experience.about_merchant">About Merchant</h5>
                     <p>
                         {{ experience.about_merchant }}
                     </p>
                     <br>
-                    <h5>Payment Covers</h5>
+                    <h5 v-if="experience.offerings">Payment Covers</h5>
                     <p>{{ experience.offerings }}</p>  
                     
 
@@ -86,7 +86,7 @@
 
                                     <input id="star-2-0" value=1 v-model="securityStar" type="radio" name="securityStars"/>
                                     <label title="bad" for="star-2-0"></label>
-                                </div><br><br>
+                                </div><br>
                             </div>
                         </div> 
                         <div class="form-group col-md-6" v-if="toggleRating && securityRating">
@@ -119,24 +119,24 @@
                                 <div class="col-md-12">
                                     <h3>Experience Type</h3>
                                     <!-- v-for="experience_type in experience_types" v-if="experience_type && experience_type.id == experience.experiences_type_id" -->
-                                    <h5 style="text-transform: capitalize;">
+                                    <h5 style="text-transform: capitalize;" v-if="experience.experience_type">
                                         {{ experience.experience_type }}
                                     </h5>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-12" v-if="experience.country">
                                     <h3>Country</h3>
                                     <h5>{{ experience.country }}</h5>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-12" v-if="experience.duration">
                                     <h3>Duration</h3>
                                     <h5>{{ experience.duration }} hours</h5>
                                 </div>
-                                <div class="col-md-12">
-                                    <h3>Suggested Cost</h3>
+                                <div class="col-md-12" v-if="experience.dollar_price">
+                                    <h3>Average Cost</h3>
                                     <h5>$ {{ experience.dollar_price }}</h5>
                                 </div>
                                 
-                                <div class="col-md-12">
+                                <div class="col-md-12" v-if="experience.language">
                                     <h3>Language</h3>
                                     <h5>{{ experience.language ? experience.language : 'en' }}</h5>
                                 </div>
@@ -165,7 +165,7 @@
                                         <div class="row">
                                             <div class="col-md-12" style="">
                                                 <div class="row">
-                                                    <div :class="[experience.experience_type == 'restaurants' ? 'col-6' : 'col-12']">
+                                                    <div :class="[experience.experience_type == 'restaurants' ? 'col-md-6' : 'col-md-6']" style="margin: auto">
                                                         <button type="submit" class="book_btn btn-block">
                                                             <span v-if="loading2">
                                                                 <img style="height: 20px;" src="../assets/loader_rolling.gif" />
@@ -175,7 +175,10 @@
                                                             </span>
                                                         </button>
                                                     </div>
-                                                    <div class="col-6" v-if="experience.experience_type == 'restaurants'">
+                                                    <div class="col-md-6" v-if="experience.experience_type != 'restaurants'">
+                                                        <button type="button" class="book_btn btn-block" @click="postFavoriteExeperience(experience.id)">Favourites</button>
+                                                    </div>
+                                                    <div class="col-md-6" v-if="experience.experience_type == 'restaurants'">
                                                         <button type="button" class="book_btn btn-block"  @click="gotoMenu">View Menu</button>
                                                     </div>
                                                 </div>
@@ -443,8 +446,8 @@
                     this.getSimilarExperienceData.shift()
                     this.loading2 = false;
                     if(response.data.data.length < 3) {
-                        axios.get(`${this.$store.state.API_BASE}/experiences?city=${this.experience.city}&state=${this.experience.state}`).then(response => {
-                            this.getSimilarExperienceData += response.data.data
+                        axios.get(`${this.$store.state.API_BASE}/experiences?state=${this.experience.state}`).then(response => {
+                            this.getSimilarExperienceData = response.data.data
                         }).catch(error => {
                             console.log(error.response.data)
                         })
@@ -604,6 +607,30 @@
                     this.loading2 = false;
                     console.log(err);
                 });
+            },
+            postFavoriteExeperience(placeId){
+                this.loading = true
+                if(this.auth && this.auth.access_token){
+                    let data = {
+                        user_id: this.auth.user.id,
+                        experience_id: placeId
+                    }
+                    let requestHeaders = {
+                        headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
+                    }
+                    Axios.post(`${this.$store.state.API_BASE}/favourites`,
+                                data,
+                                requestHeaders).then(response => {
+                                    console.log(response.data.data);
+                                    this.loading = false
+                                    this.$noty.success('Experience now Favorite')
+                                }).catch(error => {
+                                    console.log(error.data)
+                                    this.loading = false
+                                })
+                } else {
+                    this.$noty.error('You need to Login to Have a Favourite Experience')
+                }
             },
             checkIfBooked () {
                 this.loading2 = true;

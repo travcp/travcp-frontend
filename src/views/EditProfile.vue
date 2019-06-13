@@ -320,12 +320,12 @@ export default {
           }, requestHeaders)
             .then(data => {
               if(!this.checkUserType){
-                axios.post(`${this.$store.state.API_BASE}/merchants/extras/${this.$store.state.auth.user.id}`, {
+                axios.post(`${this.$store.state.API_BASE}/merchants/${this.$store.state.auth.user.id}/extras`, {
                     business_name: this.business_name,
                     business_email: this.business_email,
                     phone: this.phone,
                     bio: this.bio,
-                    merchant_id: this.$store.state.auth.merchant.id,
+                    id: this.$store.state.auth.merchant.id,
                     _method: 'PUT'
                 }, requestHeaders).then(response => {
                   this.$noty.success("Merchant Profile Updated Succefully");
