@@ -57,6 +57,7 @@ import Reset from '@/views/pages/Reset.vue';
 import Verify from '@/views/pages/Verify.vue';
 
 import LikedExperiences from '@/views/LikedExperiences.vue';
+import MerchantProfileView from '@/views/MerchantProfileView.vue';
 
 Vue.use(Router);
 
@@ -141,6 +142,11 @@ export default new Router({
       path: "/experience/:id/:name",
       name: "ExperienceView",
       component: ExperienceView
+    },
+    {
+      path: "/merchant/profile/:id/:email",
+      name: "MerchantProfileView",
+      component: MerchantProfileView
     },
     {
       path: "/experience/restaurant/:id/:name",

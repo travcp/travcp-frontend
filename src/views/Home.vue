@@ -11,7 +11,7 @@
       <SecondNav />
       <div>
         <div class="c_feature_box">
-          <h2 class="text-lg">Get Prepare for your trip/experience</h2>
+          <h2 class="text-lg">Prepare for your trip/experience</h2>
           <div class="container">
             <div class="row">
               
@@ -101,7 +101,7 @@
             <div class="col-lg-12 toggleCarousel">
               <div class="row">
                 <div class="col-md-6" style="padding-right: 5px;" v-if="getExp1">
-                  <router-link :to="'/experience/'+ getExp1.id + '/' + getExp1.city.toString().toLowerCase().replace( /\s/g, '-')">
+                  <router-link :to="'/experience/'+ getExp1.id + '/' + getExp1.slug">
                     <div class="recom4uimages-up mount_fuji">
                       
                       <p>{{ getExp1.city }}</p>
@@ -109,7 +109,7 @@
                   </router-link>
                 </div>
                 <div class="col-md-6" style="padding-left: 5px;" v-if="getExp2">
-                  <router-link :to="'/experience/'+ getExp2.id + '/' + getExp2.city.toString().toLowerCase().replace( /\s/g, '-')">
+                  <router-link :to="'/experience/'+ getExp2.id + '/' + getExp2.slug">
                     <div class="recom4uimages-up kyoto">
                       
                       <p>{{ getExp2.city }}</p>
@@ -117,7 +117,7 @@
                   </router-link>
                 </div>
                 <div class="col-md-4" style="padding-right: 5px;" v-if="getExp3">
-                  <router-link :to="'/experience/'+ getExp3.id + '/' + getExp3.city.toString().toLowerCase().replace( /\s/g, '-')">
+                  <router-link :to="'/experience/'+ getExp3.id + '/' + getExp3.slug">
                     <div class="recom4uimages-dwn tokyo">
                       
                       <p>{{ getExp3.city }}</p>
@@ -125,7 +125,7 @@
                   </router-link>
                 </div>
                 <div class="col-md-4" style="padding-left: 5px;padding-right: 5px;" v-if="getExp4">
-                  <router-link :to="'/experience/'+ getExp4.id + '/' + getExp4.city.toString().toLowerCase().replace( /\s/g, '-')">
+                  <router-link :to="'/experience/'+ getExp4.id + '/' + getExp4.slug">
                     <div class="recom4uimages-dwn niigata">
                       
                       <p>{{ getExp4.city }}</p>
@@ -133,10 +133,10 @@
                   </router-link>
                 </div>
                 <div class="col-md-4" style="padding-left: 5px;" v-if="getExp4">
-                  <router-link :to="'/experience/'+ getExp4.id + '/' + getExp4.city.toString().toLowerCase().replace( /\s/g, '-')">
+                  <router-link :to="'/experience/'+ getExp4.id + '/' + getExp4.slug">
                     <div class="recom4uimages-dwn saporo">
                       
-                      <p>{{ getExp4.city }}</p>
+                      <p>{{ getExp5.city }}</p>
                     </div>
                   </router-link>
                 </div>
@@ -265,6 +265,12 @@
       //     console.log(error.response)
       //   })
       // },
+      getVideoParam(url){
+        var url_string = url; //window.location.href
+        var url = new URL(url_string);
+        // var c = url.searchParams.get("c");
+        return url.pathname.slice(7)
+      },
       topRatedExp: function () {
         // let exp = this.allExperiences;
         return this.experiences.slice(0, 3);

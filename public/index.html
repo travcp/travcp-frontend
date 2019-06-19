@@ -24,28 +24,29 @@
   <script src="//vjs.zencdn.net/7.5.4/video.min.js"></script>
   <script src="//unpkg.com/recordrtc/RecordRTC.js"></script>
   <script src="//unpkg.com/webrtc-adapter/out/adapter.js"></script>
-
+  <script src="https://storage.googleapis.com/vrview/2.0/build/vrview.min.js"></script>
   <script src="/video/videojs-record/dist/videojs.record.min.js"></script>
-
+  <!-- <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"> -->
   <script src="/browser-workarounds.js"></script>
+  
   <script>
-var options = {
-    controls: true,
-    width: 320,
-    height: 240,
-    fluid: false,
-    controlBar: {
-        volumePanel: false
-    },
-    plugins: {
-        record: {
-            audio: false,
-            video: true,
-            maxLength: 5,
-            debug: true
-        }
-    }
-};
+  var options = {
+      controls: true,
+      width: 320,
+      height: 240,
+      fluid: false,
+      controlBar: {
+          volumePanel: false
+      },
+      plugins: {
+          record: {
+              audio: false,
+              video: true,
+              maxLength: 5,
+              debug: true
+          }
+      }
+  };
 
 // apply some workarounds for certain browsers
 applyVideoWorkaround();
@@ -89,6 +90,7 @@ player.on('finishRecord', function() {
 </head>
 
 <body>
+                                <!-- <button id="upload_widget_opener" class="cloudinary-button">Upload files</button> -->
 
 
 <!-- Modal -->
@@ -221,6 +223,17 @@ player.on('finishRecord', function() {
                 // can be downloaded by the user, stored on server etc.
                 console.log('finished recording: ', player.recordedData);
             });
+</script>
+
+<script
+  src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+  crossorigin="anonymous"></script>
+<script src="https://widget.cloudinary.com/v2.0/next/global/all.js"> </script>
+
+  <script src="https://media-library.cloudinary.com/global/all.js"></script>
+<script type="text/javascript">  
+
 </script>
   <!-- built files will be auto injected -->
 </body>

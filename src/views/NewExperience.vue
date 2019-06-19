@@ -12,9 +12,20 @@
           <div class="col-md-12">
             <div class="card" style="width: 100%;border: none;">
               <div class="card-body">
-                <div class="row">
-                  <!--<div class="col-md-3"></div>-->
-                  <div class="col-md-9">
+                <div class="row" style="margin:auto;">
+                  <!-- <div class="col-md-2"></div> -->
+
+                  <div class="col-md-7" style="margin: auto;">
+                    <ul class="nav nav-pills nav-justified">
+                      <li class="nav-item">
+                        <a class="nav-link" :style="{background: form_index == 1 ? '#f81894' : '', color:  form_index == 1 ? '#FFF !important' : ''}" href="#" style="color: #FFF;font-weight: 400;">Step 1</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" :style="{background: form_index == 2 ? '#f81894' : '', color:  form_index == 2 ? '#FFF !important' : ''}" href="#" style="color: #FFF;font-weight: 400;">Step 2</a>
+                      </li>
+                    </ul>
+                    <br>
+                     
                     <div class="form-holder">
                       <div class="form-index-1" v-if="form_index == 1">
                         <div class="row">
@@ -34,21 +45,13 @@
                             </select>
                           </div>
                         </div>
-
+                                <!-- <button id="upload_widget_opener" class="cloudinary-button">Upload files</button> -->
                         <!-- <p v-if="experience_types.indexOf("Apple");"></p> -->
                         <div class="form-places">
                           <form @submit.prevent="submitFormExperience">
                             <div class="row">
                               <div class="col-md-12">
-                                <label for="Experience banner">Upload a banner image (You can upload multiple images)</label>
-                                <input
-                                  type="file"
-                                  id="file"
-                                  ref="files"
-                                  multiple
-                                  v-on:change="handleFilesUpload()"
-                                >
-                                <br>
+
                                 <!-- <img class="image" src="image"> -->
                                 <div class="large-12 medium-12 small-12 cell">
                                   <div v-for="(file, key) in files" class="file-listing">
@@ -60,6 +63,7 @@
                                   </div>
                                 </div>
                                 <br>
+
                                 <!-- <div class="large-12 medium-12 small-12 cell">
                                       <button @click="addFiles">Add Files</button>
                                 </div>-->
@@ -93,9 +97,11 @@
                                     type="text"
                                     class="form-control new_experience_input"
                                     placeholder="Location"
-                                    v-model=vm.searchPlace v-gmaps-searchbox=vm 
+                                    v-model='vm.place.formatted_address' v-gmaps-searchbox=vm 
                                   >
                                 </div>
+                                <span> 
+                                </span>
                               </div>
                               <div class="row">
                                 <div
@@ -350,14 +356,35 @@
                                     src="../assets/loader_rolling.gif"
                                   />
                                 </span>
-                                <span v-else>
+                                <!-- <span v-else>
                                   Submit
-                                </span>
+                                </span> -->
                                 <span v-else>Create Experience</span>
                               </button>
                             </div>
                           </form>
                         </div>
+                      </div>
+                      <div class="form-index-2" v-if="form_index == 2">
+                        <h3>
+                          Upload Images to This Experience
+                        </h3> <br>
+                        <FilePond name="Expereince_upload" 
+                         v-bind:files="travv_app_pictures" 
+                         ref="pond" allowMultiple="true" 
+                         accepted-file-types="image/*" allowImageEdit="true" />
+
+                         <button :disabled="fileLoading" class="btn btn-lg submit_exp_btn" @click="handleFilePondInit">
+                            <span v-if="fileLoading">
+                              <img
+                                      style="height: 20px;"
+                                      src="../assets/loader_rolling.gif"
+                                    />
+                            </span>
+                            <span>
+                              Upload Pictures
+                            </span>
+                          </button>   
                       </div>
                     </div>
                   </div>
@@ -386,6 +413,17 @@ import { mapActions, mapState } from "vuex";
 import DatePicker from "vue2-datepicker";
 import axios from "axios";
 import OpenClosingTimes from "@/components/utility/OpenClosingTimes";
+import {CldContext, CldImage, CldVideo, CldTransformation} from 'cloudinary-vue';
+import cloudinary from "cloudinary-core";
+import vueFilePond from 'vue-filepond';
+import 'filepond/dist/filepond.min.css';
+
+import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
+import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css';
+import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
+import FilePondPluginImageEdit from 'filepond-plugin-image-edit';
+
+import 'filepond-plugin-image-edit/dist/filepond-plugin-image-edit.css';
 
 export default {
   name: "NewExperience",
@@ -406,8 +444,13 @@ export default {
           searchPlace: '',
           location: {
             place: {formatted_address : ''}
-          }
+          },
+          place: {formatted_address : ''}
       },
+      form_index: 1,
+      experience_response_data: [],
+      travv_app_pictures: [],
+      cloudinaryUploads: [],
       validationErrors: [],
       form_index: 1,
       experience_type: null,
@@ -493,15 +536,18 @@ export default {
         start: "00:00",
         step: "00:30",
         end: "23:30"
-      }
+      },
+      fileLoading: false
     };
   },
+
   components: {
     Navbar,
     Footer,
     vueDropzone: vue2Dropzone,
     DatePicker,
-    OpenClosingTimes
+    OpenClosingTimes,
+    FilePond: vueFilePond(FilePondPluginImagePreview, FilePondPluginFileValidateType, FilePondPluginImageEdit)
   },
   methods: {
     ...mapActions(["getExperienceTypes"]),
@@ -517,9 +563,58 @@ export default {
 
       return [year, month, day].join("-");
     },
+    async handleFilePondInit(){
+      this.fileLoading = true
+      console.log('FilePond has initialized');
+      console.log(this.$refs.pond.getFiles())
+      const url = 'https://api.cloudinary.com/v1_1/dbzyutd4o/image/upload';
+      let imageFiles = this.$refs.pond.getFiles()
+      if(!imageFiles.length < 1){
+        this.fileLoading = false;
+        this.$noty.warning('Upload at leaset one Image.')
+      } else {
+        for(let i = 0; i < imageFiles.length; i++){
+          let formData = new FormData()
+          formData.append('upload_preset', 'ultgwxm9');
+          formData.append('folder', `experience_${this.experience_response_data.id}`);
+          formData.append('file', imageFiles[i].file);
+
+          await axios.post(url, formData, {
+              headers: {
+                  "Content-Type": "multipart/form-data"
+                }
+            }).then(response => {
+              this.cloudinaryUploads.push(response.data.secure_url)
+              console.log(response.data)
+            }).catch(error => {
+              console.log(error.response.data)
+            })
+          }
+
+        let requestHeaders = {
+          headers: {
+            Authorization: "Bearer " + this.$store.state.auth.access_token
+          }
+        };
+
+        await axios.post(`${this.$store.state.API_BASE}/experiences/${this.experience_response_data.id}`, {
+          images: this.cloudinaryUploads,
+          _method: 'PUT'
+        }, requestHeaders).then(response => {
+          console.log(response.data.data)
+              this.fileLoading = false;
+              this.$noty.success('Experience Image Upload Successfull')
+              this.$router.push("/dashboard/merchant/experiences");
+        }).catch(error => {
+              this.fileLoading = false;
+              console.log(error.response)
+        })
+      }
+    },
     handleFilesUpload() {
       let uploadedFiles = this.$refs.files.files;
-
+      console.log(this.$refs.files.files)
+      // console.log(URL.createObjectURL(this.$refs.files[0]))
       for (var i = 0; i < uploadedFiles.length; i++) {
         this.files.push(uploadedFiles[i]);
       }
@@ -535,15 +630,16 @@ export default {
       // let start_date = this.formatDate(this.time[0])
       // let end_date = this.formatDate(this.time[1])
       let formData = new FormData();
+      let CLOUDINARY_BASE_URL = "https://api.cloudinary.com/v1_1/dbzyutd4o"
 
-      for (var i = 0; i < this.files.length; i++) {
-        let file = this.files[i];
-        formData.append("images[" + i + "]", file);
-      }
+      // for (var i = 0; i < this.files.length; i++) {
+      //   let file = this.files[i];
+      //   // formData.append("images[" + i + "]", file);
+      // }
       // console.log(formData);
       let data = {
         title: this.title,
-        location: this.vm.place.formatted_address,
+        location: this.vm.location.place.formatted_address,
         city: this.city,
         state: this.state,
         country: this.country,
@@ -566,7 +662,8 @@ export default {
         contact_email: this.$store.state.auth.merchant.business_email,
         merchant_id: this.$store.state.auth.user.id,
         experiences_type_id: this.exp_id,
-        opening_and_closing_hours: JSON.stringify(this.opening_and_closing_hours)
+        opening_and_closing_hours: JSON.stringify(this.opening_and_closing_hours),
+        images: this.cloudinaryUploads
       };
       Object.entries(data).forEach(o =>
         o[1] === null ? delete data[o[0]] : 0
@@ -589,7 +686,7 @@ export default {
               "Content-Type": "multipart/form-data",
               Authorization: "Bearer " + this.$store.state.auth.access_token
             }
-          };
+          }
           // console.log('Got here 1')
           // return new Promise((resolve, reject) => {
           this.$store.state.loading.submitExperience = true;
@@ -602,9 +699,36 @@ export default {
             .then(response => {
               // resolve(response.data.data);
               console.log(response.data.data);
+              this.experience_response_data = response.data.data
+              this.form_index = 2
               this.$noty.success("Experience is Submitted Succesfully");
               this.$store.state.loading.submitExperience = false;
-              this.$router.push("/dashboard/merchant/experiences");
+              // formData.append('upload_preset', 'ao19aaag')
+              // for (var i = 0; i < this.files.length; i++) {
+              // let formData = new FormData()
+              //   let file = this.files[i];
+
+              //   formData.append("file", file);
+              //   formData.append("upload_preset", "ultgwxm9")
+
+              //   formData.append("file", file);
+
+              //   var cl = new cloudinary.Cloudinary({cloud_name: "demo", secure: true});
+
+              //   axios({
+              //     url: CLOUDINARY_BASE_URL,
+              //     method: 'POST',
+              //     'Content-Type': 'application/x-www-form-urlencoded',
+              //     data: formData
+              //   }).then(response => {
+              //     console.log(response.data.data)
+              //   }).catch(error => {
+              //     console.log(error.response)
+              //   })
+
+              // }
+
+              // this.$router.push("/dashboard/merchant/experiences");
             })
             .catch(err => {
               console.log(err);
@@ -643,6 +767,32 @@ export default {
   },
   created() {
     this.getExperienceTypes();
+  },
+  mounted() {
+     $("#upload_widget_opener").cloudinary_upload_widget(
+      {
+        cloud_name: "dbzyutd4o",
+        upload_preset: "ultgwxm9",
+        cropping: "server",
+        folder: `experience_${this.$route.params['id']}`,
+        theme: "minimal",
+        stylesheet: ".drag_content { border: 4px solid red }",
+        multiple: false,
+        sources: ["local"],
+        button_class: "ud_button inline no_margin",
+        button_caption: "Browse",
+        thumbnails: ".feature_thumb",
+        thumbnail_transformation: { width: 100, height: 100, crop: "fit" },
+        resource_type: "image"
+      },
+      function(error, result) {
+        if (!error && result && result.event === "success") {
+            this.cloudinaryUploads.push(result.info.secure_url)
+            console.log('Done! Here is the image info: ', result.info); 
+        }
+        console.log(error, result);
+      }
+    );
   }
 };
 </script>

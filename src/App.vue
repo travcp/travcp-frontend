@@ -77,7 +77,6 @@ export default {
         })
       },
       showError(error) {
-        window.location.href = 'https://travvapp.herokuapp.com/'
         switch(error.code) {
           case error.PERMISSION_DENIED:
              this.$noty.warning("User denied the request for Geolocation.")
@@ -96,6 +95,9 @@ export default {
     // ...mapActions(['getExperiences'])
   },
   created() {
+    if(document.URL.split('').splice(0, 5).join('') != "https"){
+        window.location.href = 'https://travvapp.herokuapp.com/'      
+    }
     this.getLocation()
     // this.getRandomExperiences()
     // this.experienceAroundMe()

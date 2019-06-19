@@ -4,26 +4,9 @@
         <section class="filter_area" style="">
             <div class="container">
                 <div class="project_inner">
-                    <form @submit.prevent="filterExperience">
-                        <div class="row">
-                            <div class="col-md-2">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="filter_searchbar" style="color: #f81894;height: 54px;">
-                                    <input v-model="search" v-validate="'required|min:3'" class="filter_search_input" type="text"
-                                           placeholder="Search your Experiences" />
-                                   <button type="submit" class="filter_search_icon">
-                                        <!-- <i class="material-icons">add</i> -->
-                                        <img v-if="!isLoading" src="../../assets/icons8-search.svg" style="height: 28px;" />
-                                        <img v-if="isLoading" style="height: 20px;" src="../../assets/loader_rolling.gif" />
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="col-md-2" style="text-align: center;">
-                                
-                            </div>
-                        </div>
-                    </form>
+                    <h2 style="color: #FFF; font-weight: bolder;text-align: center;">
+                        My Experiences
+                    </h2>
                 </div>
             </div>
         </section>

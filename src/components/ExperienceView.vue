@@ -15,6 +15,13 @@
         </section>
         <div class="container">
         <div class="row">
+            <div class="col-md-12">
+                
+            <!-- <div id='vrview'>
+                <iframe allowfullscreen="true" scrolling="no" width="100%" height="400" style="border: 0px;" src="https://storage.googleapis.com/vrview/2.0/index.html?&images=https://localhost:8080/vr/converted.jpg&is_stereo=true">
+                </iframe>
+            </div> -->
+            </div>
             <div class="col-md-12" style="text-align: center;">
                 <img class="image" v-for="(image, i) in images" :src="image" :key="i" @click="index = i">
                 <vue-gallery-slideshow :images="images" :index="index" @close="index = null"></vue-gallery-slideshow>
@@ -27,22 +34,60 @@
                     <Circle9 />
                 </div>
                 <div class="col-sm-6 col-md-7 col-lg-7 blog_content" v-else>
-                    <h3 style="text-transform: capitalize;">
+                    <h3 style="text-transform: capitalize;;font-size: 20px;">
                         {{ experience.title }} | {{ experience.state }}
                     </h3>
-                    <h1 style="text-transform: capitalize;">{{ experience.city }}</h1>
+                    <h1 style="text-transform: capitalize;font-size: 24px;">{{ experience.city }}</h1>
+                    
+                    <router-link :to="'/merchant/profile/' + experience.merchant_id + '/' + experience.contact_email">
+                        <h6>
+                            <span style="color: #f81894;">By</span> {{ experience.contact_email }}
+                        </h6>    
+                    </router-link><br>
+                    
                     <h5 style="text-transform: capitalize;">{{ experience.location }}</h5>
                     <p v-if="experience.description">
                         {{ experience.description }}
                     </p>
                     <h5 v-if="experience.about_merchant">About Merchant</h5>
-                    <p>
+                    <p v-if="experience.about_merchant">
                         {{ experience.about_merchant }}
                     </p>
                     <br>
                     <h5 v-if="experience.offerings">Payment Covers</h5>
-                    <p>{{ experience.offerings }}</p>  
+                    <p v-if="experience.offerings">{{ experience.offerings }}</p>  
                     
+                    <br>
+                    <h5 v-if="experience.dining_options">Dining Options</h5>
+                    <p v-if="experience.dining_options">{{ experience.dining_options }}</p>  
+
+                    <br>
+                    <h5 v-if="experience.drink_types">Drink Options</h5>
+                    <p v-if="experience.drink_types">{{ experience.drink_types }}</p>  
+
+                    <br>
+                    <h5 v-if="experience.extra_perks">Extra Perks</h5>
+                    <p v-if="experience.extra_perks">{{ experience.extra_perks }}</p>  
+
+                    <br>
+                    <h5 v-if="experience.has_outdoor_sitting">Has Outdoor Sitting</h5>
+                    <p v-if="experience.has_outdoor_sitting">{{ experience.has_outdoor_sitting }}</p>  
+
+                    <br>
+                    <h5 v-if="experience.history">History</h5>
+                    <p v-if="experience.history">{{ experience.history }}</p>  
+
+                    <br>
+                    <h5 v-if="experience.meetup_location">Meetup Location</h5>
+                    <p v-if="experience.meetup_location">{{ experience.meetup_location }}</p>  
+
+                    <br>
+                    <h5 v-if="experience.number_admittable">Number Admittable</h5>
+                    <p v-if="experience.number_admittable">{{ experience.number_admittable }}</p>  
+
+                    <br>
+                    <h5 v-if="experience.tourist_expected_items">Tourist Expected Items</h5>
+                    <p v-if="experience.tourist_expected_items">{{ experience.tourist_expected_items }}</p>  
 
                     <!-- <h6 style="margin-left:20px;"><b>Rate the Experience</b></h6> <br> -->
                     <form  @submit.prevent="rateExperienceSubmit" v-if="auth">
@@ -88,7 +133,7 @@
                                     <label title="bad" for="star-2-0"></label>
                                 </div><br>
                             </div>
-                        </div> 
+                        </div>  <br><br>
                         <div class="form-group col-md-6" v-if="toggleRating && securityRating">
                             <h6>Review this Experience</h6>
                             <!-- <label>Rate this Experience</label> -->
@@ -175,7 +220,7 @@
                                                             </span>
                                                         </button>
                                                     </div>
-                                                    <div class="col-md-6" v-if="experience.experience_type != 'restaurants'">
+                                                    <div class="col-md-6" style="background: #555555'" v-if="experience.experience_type != 'restaurants'">
                                                         <button type="button" class="book_btn btn-block" @click="postFavoriteExeperience(experience.id)">Favourites</button>
                                                     </div>
                                                     <div class="col-md-6" v-if="experience.experience_type == 'restaurants'">
@@ -201,12 +246,14 @@
             </div>
             <br><br>
             <div class="row">
-                <div class="form-group col-md-4">
+                <div class="col-md-12">
                     <h5>Get Direction</h5>
-                    <input v-model=vm.searchPlace v-gmaps-searchbox=vm placeholder="Enter your current location" class="form-control" style="border: 1px solid #000; border-radius: 3px;padding: 10px;">
+                </div>
+                <div class="form-group col-md-12">
+                    <input v-model='vm.place.formatted_address' v-gmaps-searchbox=vm placeholder="Enter your current location" class="form-control" style="border: 1px solid #000; border-radius: 3px;padding: 10px;">
                     <!-- <button class="btn btn-primary" @click="getDirection">Get Direction</button> -->
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <iframe v-if="vm.place" height="450" frameborder="0" style="border:0;width:100%;"
 :src="'https://www.google.com/maps/embed/v1/directions?origin=' + vm.place.formatted_address.replace(/\s+/g, '+') + '&destination=' + experience.location + '&key=AIzaSyDgnbjMxlLW2BHBPJ4-iFsX_aB9jEHBFCg'" allowfullscreen></iframe>
 
@@ -283,9 +330,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-1"></div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="gst_review_content">
                             <h2>Reviews</h2>
                             <br>
@@ -360,6 +406,7 @@
     } from 'vuex';
     import VueGallerySlideshow from 'vue-gallery-slideshow';
     import StarRating from 'vue-star-rating'
+    import Axios from 'axios'
     // import Datepicker from 'vuejs-datepicker';
     // import format from 'date-fns/format'
 
@@ -379,6 +426,7 @@
                 dateOne: '',
                 dateTwo: '',
                 time: '',
+                FavoritesExperience: [],
                 reviewStar: null,
                 toggleRating: false,
                 loading2: false,
@@ -389,7 +437,8 @@
                 getSimilarExperienceData: [],
                 vm: {
                     searchPlace: '',
-                    location: {}
+                    location: {},
+                    place: {formatted_address: ''}
                 },
                 // custom lang
 //                 toggleSecurityBox
@@ -651,6 +700,31 @@
             gotoMenu(){
                 this.$router.push({name: "RestaurantMenu", params: {id: this.experience.id, name: this.experience.title.toString().toLowerCase().replace( /\s/g, '-')}});
                 window.location.reload(1);
+            },
+            getUserFavorites(){
+                if(this.$store.state.auth){
+                    this.loading = true;
+                    Axios.get(`${this.$store.state.API_BASE}/favourites?user_id=${this.$store.state.auth.user.id}`)
+                        .then(response => {
+                            console.log(response.data.data);
+                            this.FavoritesExperience = response.data.data
+                            this.loading = false
+                        }).catch(error => {
+                            console.log(err.data);
+                            this.loading = false;
+                    })    
+                    } else {
+                        this.$noty.error("Need to Login to Add Favorites")
+                        this.$router.push("Login in to add to favorites")
+                    } 
+            },
+            getMerchantExtras(){
+                axios.get(`${this.$store.state.API_BASE}/merchant/extras/${this.experience.merchant_id}`)
+                     .then(response => {
+                        console.log(response.data.data)
+                     }).catch(error => {
+                        console.log(error.response.data)
+                     })
             }
         },
         computed: {
@@ -693,7 +767,39 @@
             }
             this.getSimilarExperiences()
             this.loading2 = false;
-            
+            this.getUserFavorites()
+            player.on('finishRecord', function() {
+                // the blob object contains the recorded data that
+                // can be downloaded by the user, stored on server etc.
+                console.log('finished recording:', player.recordedData);
+                // upload recorded data
+                upload(player.recordedData);
+            });
+            let data = JSON.parse(localStorage.getItem('auth'))
+            let exp_id = this.$route.params.id
+            let _this = this
+            function upload(blob) {
+                let serverUrl = 'https://travvapi.herokuapp.com/api/reviews';
+                let formData = new FormData();
+                formData.append('video', blob, blob.name);
+                formData.append('user_id', data.user.id);
+                formData.append('experience_id', _this.$route.params.id);
+                formData.append('rating', '1');
+                console.log('upload recording ' + blob.name + ' to ' + serverUrl);
+                // start upload
+                axios.post(serverUrl, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization' : `Bearer ${data.access_token}`
+                }
+                }).then(
+                    response => console.log(response.data.data)
+                ).catch(
+                    error => console.error(error.response.data)
+                );
+            }
+        },
+        mounted: function(){
         }
     }
 </script>
@@ -711,6 +817,9 @@
 </style>
 
 <style>
+.vue-star-rating-rating-text{
+    display: none;
+}
 .image {
     width: 100px;
     height: 100px;
@@ -912,7 +1021,7 @@
 
 .blog_content p {
     /* font-family: MuseoSans700 !important; */
-    font-size: 20px;
+    font-size: 16px;
     /* font-weight: 500; */
     font-style: normal;
     font-stretch: normal;
@@ -920,6 +1029,9 @@
     letter-spacing: normal;
     color: #555555;
     margin-bottom: 40px;
+
+    line-height: 1.5em;
+    text-align: justify;
 }
 
 .travv-sidebar {

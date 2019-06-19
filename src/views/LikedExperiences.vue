@@ -119,16 +119,22 @@
                 e.stopPropagation()
             },
             getUserFavorites(){
-                this.loading = true;
-                Axios.get(`${this.$store.state.API_BASE}/favourites?user_id=${this.$store.state.auth.user.id}`)
-                    .then(response => {
-                        console.log(response.data.data);
-                        this.FavoritesExperience = response.data.data
-                        this.loading = false
-                    }).catch(error => {
-                        console.log(err.data);
-                        this.loading = false;
-                })
+                if(this.$store.state.auth){
+                    this.loading = true;
+                    Axios.get(`${this.$store.state.API_BASE}/favourites?user_id=${this.$store.state.auth.user.id}`)
+                        .then(response => {
+                            console.log(response.data.data);
+                            this.FavoritesExperience = response.data.data
+                            this.loading = false
+                        }).catch(error => {
+                            console.log(err.data);
+                            this.loading = false;
+                    })    
+                    } else {
+                        this.$noty.error("Need to Login to Add Favorites")
+                        this.$router.push("Login in to add to favorites")
+                    }
+                
             }
         },
         created: function(){

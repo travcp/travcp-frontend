@@ -75,6 +75,7 @@
                                   </div>
                                 </div>
                                 <br />
+                                <button id="open-btn" class="myBtn">Open</button>
                                 <!-- <div class="large-12 medium-12 small-12 cell">
                                       <button @click="addFiles">Add Files</button>
                                     </div> -->
@@ -682,6 +683,23 @@ export default {
       }).catch((err) => {
 
       });
+  },
+  mounted(){
+       window.ml = cloudinary.createMediaLibrary({
+       cloud_name: 'dbzyutd4o',
+       api_key: '586358369334938',
+       username: 'omoelu1@gmail.com',
+       button_class: 'myBtn',
+       button_caption: 'Manage Image or Video',
+       folder: {path: "user_photos", resource_type: "image"}
+       }, {
+           insertHandler: function (data) {
+             data.assets.forEach(asset => { console.log("Inserted asset:",
+             JSON.stringify(asset, null, 2)) })
+             }
+          },
+          document.getElementById("open-btn")
+      )
   }
 };
 </script>

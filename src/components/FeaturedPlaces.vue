@@ -16,13 +16,13 @@
                :perPageCustom="[[480, 1], [100, 1]]">
                 <slide v-for="place in places" :key="place.id">
                    <!-- <router-link :to="'/experience/'+ restaurant.id + '/' + restaurant.title.toString().toLowerCase().replace( /\s/g, '-')"> -->
-                    <div class="featured-card card" style="margin-bottom: 20px;"  v-on:dblclick="goToRestPage(place.id, place.title.toString().toLowerCase().replace( /\s/g, '-'))">
+                    <div class="featured-card card" style="margin-bottom: 20px;box-shadow:none;"  v-on:click="goToRestPage(place.id, place.title.toString().toLowerCase().replace( /\s/g, '-'))">
                     <img v-if="place.images.length" :src="place.images[0].image" style="width: 100%;object-fit: cover;height:300px;" class="card-img-top featured-card-img" alt="...">
                     <img v-else src="../assets/osaka.png" style="width: 100%;object-fit: cover;height:300px;" class="card-img-top featured-card-img" alt="...">
                      <div class="card-body" style="text-align: center">
                           <p class="card-text" style="color: #f81894;text-transform: capitalize;">{{ place.title }} | {{ place.state }}</p><br>
                           <h5 class="card-title" style="text-transform: capitalize;color:#000"> {{ place.city }}</h5><br>
-                         <star-rating  :rating="place.rating" :read-only="true" :increment="0.01" :star-size="18"></star-rating>
+                         <star-rating  :rating="parseFloat(place.rating)" :read-only="true" :increment="0.01" :star-size="18"></star-rating>
                           <p class="card-text" style="color: #f81894"><b>{{place.rating == null ? 0 : place.rating}} <i class="fa fa-star"></i></b> ({{place.rating_count == null ? 0 : place.rating_count}})</p>
                       </div>
                     </div>
