@@ -409,5 +409,16 @@ export default {
         state.loading.getMyBookings = false;
         console.log("There was error fetching my bookings");
       });
-  }
+  },
+  async getVideos({ commit, state }){
+      // this.loading = true
+      await axios.get(`${state.API_BASE}/videos`).then((response) => {
+        console.log(response.data.data)
+        // this.loading = false
+        this.videoData = response.data.data
+      }).catch(error => {
+        console.log(error.response.data)
+        // this.loading = false
+      })
+    },
 };

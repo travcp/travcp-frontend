@@ -12,7 +12,7 @@
           <p>Videos</p>
           <hr class="my-booking-title-horizontal">
         </div>
-        <div class="row">
+        <div class="row" v-if="videoData.length">
           
             <div class="col-lg-12">
               <div class="row">

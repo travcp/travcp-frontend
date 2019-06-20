@@ -41,7 +41,7 @@
                     
                     <router-link :to="'/merchant/profile/' + experience.merchant_id + '/' + experience.contact_email">
                         <h6>
-                            <span style="color: #f81894;">By</span> {{ experience.contact_email }}
+                            <!-- <span style="color: #f81894;">By</span> {{ experience.contact_email }} -->
                         </h6>    
                     </router-link>
                     
@@ -157,7 +157,7 @@
                                             <div class="col-md-12" style="">
                                                 <div class="row">
                                                     <div :class="[experience.experience_type == 'restaurants' ? 'col-md-6' : 'col-md-6']" style="margin: auto">
-                                                        <button type="submit" class="book_btn btn-block">
+                                                        <button type="submit" class="book_btn btn-block" :disabled="loading2">
                                                             <span v-if="loading2">
                                                                 <img style="height: 20px;" src="../assets/loader_rolling.gif" />
                                                             </span>
@@ -343,7 +343,7 @@
                                             <div class="form-group col-md-12">
                                                 <h6>Review this Experience</h6>
                                                 <!-- <label>Rate this Experience</label> -->
-                                                <input v-validate="'required'" type="text" class="form-control edit-prof-input" v-model="rate_this_exp_text">
+                                                <input required type="text" class="form-control edit-prof-input" v-model="rate_this_exp_text">
                                                 <button type="submit" class="book_btn">Rate</button>
                                             </div>
                                         </form>
@@ -455,7 +455,7 @@
                 checkBookingStatus: null,
                 reviews: [],
                 securityStar: null,
-                delivery_address: null,
+                delivery_address: 'khgyg',
                 getSimilarExperienceData: [],
                 vm: {
                     searchPlace: '',
@@ -562,9 +562,13 @@
                 
             },
             bookExperience: function () {
+                
                 if(this.auth) {
+                    console.log("in Booking")
                     this.$validator.validate().then(valid => {
+                        console.log(valid + " was returned")
                         if (valid) {
+                            console.log(valid);
                             // if (this.time[0]) {
                                 if(this.delivery_address) {
                                     let data = {
@@ -595,42 +599,51 @@
                                         this.$noty.success("This experience has been added to your cart")
                                     });
                                 } else {
-                                    let data = {
-                                        // food_menu_ids: ["2", "3", "4"],
-                                        price: this.experience.naira_price,
-                                        merchant_id: this.experience.merchant_id,
-                                        user_id: this.auth.user.id,
-                                        experience_id: this.$route.params.id,
-                                        start_date: this.formatDate(this.time[0]),
-                                        end_date: this.formatDate(this.time[1]),
-                                        // delivery_address: this.delivery_address
-                                    };
-                                    let requestHeaders = {
-                                    headers: { Authorization: "Bearer " + this.$store.state.auth.access_token }
-                                    };
-                                    // console.log(this.formatDate(this.time[0]));
-                                    this.bookingExperience(data).then(response => {
-                                        console.log(response)
-                                        axios.post(`${this.$store.state.API_BASE}/cart/add`,{
-                                                "booking_id": response.id
-                                            }, requestHeaders).then(response => {
-                                                console.log(response.data.data);
-                                            }).catch(error => {
-                                                console.log(error)
-                                            })
-                                        this.checkIfBooked()
-                                        this.$noty.success("This experience has been added to your cart")
-                                    });
-                                }
+                                    if(this.time[0]){
+
+                                            let data = {
+                                                // food_menu_ids: ["2", "3", "4"],
+                                                price: this.experience.naira_price,
+                                                merchant_id: this.experience.merchant_id,
+                                                user_id: this.auth.user.id,
+                                                experience_id: this.$route.params.id,
+                                                start_date: this.formatDate(this.time[0]),
+                                                end_date: this.formatDate(this.time[1]),
+                                                // delivery_address: this.delivery_address
+                                            };
+                                            let requestHeaders = {
+                                            headers: { Authorization: "Bearer " + this.$store.state.auth.access_token }
+                                            };
+                                            // console.log(this.formatDate(this.time[0]));
+                                            this.bookingExperience(data).then(response => {
+                                                console.log(response)
+                                                axios.post(`${this.$store.state.API_BASE}/cart/add`,{
+                                                        "booking_id": response.id
+                                                    }, requestHeaders).then(response => {
+                                                        console.log(response.data.data);
+                                                    }).catch(error => {
+                                                        console.log(error)
+                                                    })
+                                                this.checkIfBooked()
+                                                this.$noty.success("This experience has been added to your cart")
+                                            });
+                                        } else {
+                                            this.$noty.error("Please enter a check in and check out date");
+                                        }
+                                    }
+                                console.log("in Booking")
                                 
                             // } else {
                             //     this.$noty.error("Please enter a check in and check out date");
                             // }
                         }
+                    }).catch(err =>  {
+                        console.log("A validation error occured")
                     });
                     
 
                 } else {
+                    console.log("in Booking")
                     this.$noty.error("Oops, You need to Login to Book and Experience");
                 }
             },

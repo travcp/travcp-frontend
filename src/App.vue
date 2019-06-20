@@ -95,9 +95,9 @@ export default {
     // ...mapActions(['getExperiences'])
   },
   created() {
-    if(document.URL.split('').splice(0, 5).join('') != "https"){
-        window.location.href = 'https://travvapp.herokuapp.com/'      
-    }
+    // if(document.URL.split('').splice(0, 5).join('') != "https"){
+    //     window.location.href = 'https://travvapp.herokuapp.com/'      
+    // }
     this.getLocation()
     // this.getRandomExperiences()
     // this.experienceAroundMe()

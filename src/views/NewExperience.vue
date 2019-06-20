@@ -573,34 +573,38 @@ export default {
         this.fileLoading = false;
         this.$noty.warning('Upload at leaset one Image.')
       } else {
-        for(let i = 0; i < imageFiles.length; i++){
-          let formData = new FormData()
-          formData.append('upload_preset', 'ultgwxm9');
-          formData.append('folder', `experience_${this.experience_response_data.id}`);
-          formData.append('file', imageFiles[i].file);
+        // for(let i = 0; i < imageFiles.length; i++){
+        //   let formData = new FormData()
+        //   formData.append('upload_preset', 'ultgwxm9');
+        //   formData.append('folder', `experience_${this.experience_response_data.id}`);
+        //   formData.append('file', imageFiles[i].file);
 
-          await axios.post(url, formData, {
-              headers: {
-                  "Content-Type": "multipart/form-data"
-                }
-            }).then(response => {
-              this.cloudinaryUploads.push(response.data.secure_url)
-              console.log(response.data)
-            }).catch(error => {
-              console.log(error.response.data)
-            })
-          }
+        //   await axios.post(url, formData, {
+        //       headers: {
+        //           "Content-Type": "multipart/form-data"
+        //         }
+        //     }).then(response => {
+        //       this.cloudinaryUploads.push(response.data.secure_url)
+        //       console.log(response.data)
+        //     }).catch(error => {
+        //       console.log(error.response.data)
+        //     })
+        //   }
 
         let requestHeaders = {
           headers: {
             Authorization: "Bearer " + this.$store.state.auth.access_token
           }
-        };
+        }
 
-        await axios.post(`${this.$store.state.API_BASE}/experiences/${this.experience_response_data.id}`, {
-          images: this.cloudinaryUploads,
-          _method: 'PUT'
-        }, requestHeaders).then(response => {
+        let formData = new FormData()
+        for (let i = 0; i < imageFiles.length; i++) {
+          let file = this.files[i];
+          formData.append("images[" + i + "]", imageFiles[i].file);
+        }
+        formData.append("_method", "PUT");
+
+        await axios.post(`${this.$store.state.API_BASE}/experiences/${this.experience_response_data.id}`, formData, requestHeaders).then(response => {
           console.log(response.data.data)
               this.fileLoading = false;
               this.$noty.success('Experience Image Upload Successfull')

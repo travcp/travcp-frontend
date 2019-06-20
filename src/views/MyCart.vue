@@ -13,7 +13,7 @@
           <hr class="my-booking-title-horizontal">
         </div>
         <div style="padding-bottom: 20px">
-          <p class="my-cart-sub-title">Cart( {{ cart.length > 1 ? cart.items.length : '' }} )</p>
+          <p class="my-cart-sub-title">Cart( {{ cart.items.length > 1 ? cart.items.length : '' }} )</p>
           <p class="my-cart-sub-title">Price - ${{ calcPrice() }}</p>
         </div>
         <div class="row my-booking-left" v-for="item in cart.items" :key="item.id">

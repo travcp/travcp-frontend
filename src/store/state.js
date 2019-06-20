@@ -59,6 +59,7 @@ export default {
     homeSearch: null,
     bookings: [],
     current_location: [],
-    experiences_around_me: []
+    experiences_around_me: [],
+    videoData: []
     // user_token: 
 }
