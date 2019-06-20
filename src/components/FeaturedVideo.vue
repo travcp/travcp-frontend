@@ -16,7 +16,7 @@
             <div class="col-lg-12">
               <div class="row">
                 <div class="col-md-7">
-                  <div class="feature_video_lg" data-toggle="modal" data-target="#video_1" :style="{background: 'url(http://img.youtube.com/vi/' + getVideoParam(videoData[0].url) + '/hqdefault.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}" >
+                  <div class="feature_video_lg" data-toggle="modal" data-target="#video_1" :style="{background: 'url(http://img.youtube.com/vi/' + getVideoParam(videoData[4].url) + '/mqdefault.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}" >
 
                   </div>
                 </div>
@@ -47,11 +47,11 @@
                       </div>
                     </div>
                     <div class="col-md-6">
-                      <div class="feature_video_sm ft_video_sm_4" data-toggle="modal" data-target="#video_5" :style="{background: 'url(http://img.youtube.com/vi/' + getVideoParam(videoData[4].url) + '/hqdefault.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}">
+                      <div class="feature_video_sm ft_video_sm_4" data-toggle="modal" data-target="#video_5" :style="{background: 'url(http://img.youtube.com/vi/' + getVideoParam(videoData[0].url) + '/hqdefault.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}">
                       </div>
                       <div class="feature_video_sm_title">
-                        <h6 class="card-title text-truncate">{{ videoData[4].title }}</h6>
-                        <p>{{ videoData[4].video_category.name }}</p>
+                        <h6 class="card-title text-truncate">{{ videoData[0].title }}</h6>
+                        <p>{{ videoData[0].video_category.name }}</p>
                       </div>
                     </div>
                   </div>
@@ -61,12 +61,12 @@
           </div>
 
 
-          <div class="modal fade" id="video_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="video_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog" role="document" style="max-width: 700px;">
               <div class="modal-content">
                 <div class="modal-body" style="padding: 0">
                   <iframe width="420" height="415" style="width: 100%" 
-                  :src="videoData[0].url">
+                  :src="videoData[4].url">
                   </iframe>
                 </div>
                 <div class="modal-footer" style="padding: 0;border-top: none;">
@@ -82,7 +82,7 @@
             </div>
           </div>
 
-          <div class="modal fade" id="video_2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="video_2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog" role="document" style="max-width: 700px;">
               <div class="modal-content">
                 <div class="modal-body" style="padding: 0">
@@ -104,7 +104,7 @@
           </div>
 
 
-          <div class="modal fade" id="video_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="video_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog" role="document" style="max-width: 700px;">
               <div class="modal-content">
                 <div class="modal-body" style="padding: 0">
@@ -126,7 +126,7 @@
           </div>
 
 
-          <div class="modal fade" id="video_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="video_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog" role="document" style="max-width: 700px;">
               <div class="modal-content">
                 <div class="modal-body" style="padding: 0">
@@ -148,12 +148,12 @@
           </div>
 
 
-          <div class="modal fade" id="video_5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="video_5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog" role="document" style="max-width: 700px;">
               <div class="modal-content">
                 <div class="modal-body" style="padding: 0">
                   <iframe width="420" height="415" style="width: 100%" 
-                  :src="videoData[4].url">
+                  :src="videoData[0].url">
                   </iframe>
                 </div>
                 <div class="modal-footer" style="padding: 0;border-top: none;">

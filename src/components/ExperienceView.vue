@@ -299,7 +299,7 @@
                                         <form  @submit.prevent="rateExperienceSubmit" v-if="auth">
                                             <div class="row">
                                                 <!-- div.row -->
-                                                <div class="col-md-12" style="margin-bottom: 40px;margin: auto;">
+                                                <div class="col-md-12" style="margin-bottom: 40px;">
                                                     <h6><b>Rate the Experience</b></h6> 
                                                     <p class="alert alert-warning" v-if="!checkBookingStatus" style="margin:0;">To rate this Experience you need to book first</p>
                                                     <div id="reviewStars-input" @click="toggleRatingBox" v-else>
@@ -340,16 +340,11 @@
                                                     </div><br>
                                                 </div>
                                             </div>  <br><br>
-                                            <div class="form-group col-md-12" v-if="toggleRating && securityRating">
+                                            <div class="form-group col-md-12">
                                                 <h6>Review this Experience</h6>
                                                 <!-- <label>Rate this Experience</label> -->
-                                                <input type="text" class="form-control edit-prof-input" v-model="rate_this_exp_text">
+                                                <input v-validate="'required'" type="text" class="form-control edit-prof-input" v-model="rate_this_exp_text">
                                                 <button type="submit" class="book_btn">Rate</button>
-                                            </div><br><br>
-                                            <div class="col-md-6">
-                                                  <button type="button" v-if="!checkBookingStatus" class="btn btn-primary" style="background: #f81894" >
-                                                      Make 5 Secs Video Review
-                                                    </button>
                                             </div>
                                         </form>
                                       </div>
@@ -730,7 +725,7 @@
             },
             getUserFavorites(){
                 if(this.$store.state.auth){
-                    this.loading = true;
+                    // this.loading = true;
                     Axios.get(`${this.$store.state.API_BASE}/favourites?user_id=${this.$store.state.auth.user.id}`)
                         .then(response => {
                             console.log(response.data.data);
@@ -738,7 +733,7 @@
                             this.loading = false
                         }).catch(error => {
                             console.log(err.data);
-                            this.loading = false;
+                            // this.loading = false;
                     })    
                     } else {
                         this.$noty.error("Need to Login to Add Favorites")
@@ -776,7 +771,9 @@
                 console.log(this.experience)
                 for(let i = 0; i <= this.experience.images.length;i++){
                     // console.log(this.experience.images[i].image)
-                    this.images.push(this.experience.images[i].image)
+                    if(this.experience.images.length > 1){
+                        this.images.push(this.experience.images[i].image) 
+                    }
                 }
             });
             // if(this.experience){
