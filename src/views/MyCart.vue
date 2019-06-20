@@ -197,7 +197,7 @@ export default {
     var handler = PaystackPop.setup({
       key: 'pk_test_a3c6507e7a82c63308de9c5863bbe0950492d508',
       email: this.$store.state.auth.user.email,
-      amount: this.calcPrice(),
+      amount: this.calcPrice() * 360.46,
       currency: "NGN",
       ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
       metadata: {
@@ -230,8 +230,9 @@ export default {
       console.log(reference)
       axios.post(`${this.$store.state.API_BASE}/cart/checkout`, {
                     "transaction_id": reference,
-                    "price": this.calcPrice,
-                    "cart_id": this.cart.id
+                    "price": this.calcPrice(),
+                    "cart_id": this.cart.id,
+                    "currency": "USD"
                   },requestHeaders).then(response => {
                     console.log(response.data)
                     this.$noty.success("Payment Successfull")
