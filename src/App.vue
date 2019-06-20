@@ -79,25 +79,25 @@ export default {
       showError(error) {
         switch(error.code) {
           case error.PERMISSION_DENIED:
-             this.$noty.warning("User denied the request for Geolocation.")
+             // this.$noty.warning("User denied the request for Geolocation.")
             break;
           case error.POSITION_UNAVAILABLE:
-             this.$noty.warning("Location information is unavailable.")
+             // this.$noty.warning("Location information is unavailable.")
             break;
           case error.TIMEOUT:
-             this.$noty.warning("The request to get user location timed out.")
+             // this.$noty.warning("The request to get user location timed out.")
             break;
           case error.UNKNOWN_ERROR:
-             this.$noty.warning("An unknown error occurred.")
+             // this.$noty.warning("An unknown error occurred.")
             break;
         }
       }
     // ...mapActions(['getExperiences'])
   },
   created() {
-    if(document.URL.split('').splice(0, 5).join('') != "https"){
-        window.location.href = 'https://travvapp.herokuapp.com/'      
-    }
+    // if(document.URL.split('').splice(0, 5).join('') != "https"){
+    //     window.location.href = 'https://travvapp.herokuapp.com/'      
+    // }
     this.getLocation()
     // this.getRandomExperiences()
     // this.experienceAroundMe()

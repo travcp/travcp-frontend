@@ -149,7 +149,7 @@
         <FeaturedEvents :events="events.slice(0, 3)" />
         <FeaturedPlaces :places="places.slice(0, 3)" />
         <FeaturedRest :restaurants="restaurants.slice(0, 3)" />
-        <SuggestedExperiences :experiences="experiences_around_me.slice(0, 3)" />
+        <!-- <SuggestedExperiences :experiences="experiences_around_me.slice(0, 3)" /> -->
         <FeaturedVideo />
       </div>
     </section>

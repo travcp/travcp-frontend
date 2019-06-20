@@ -37,115 +37,56 @@
                     <h3 style="text-transform: capitalize;;font-size: 20px;">
                         {{ experience.title }} | {{ experience.state }}
                     </h3>
-                    <h1 style="text-transform: capitalize;font-size: 24px;">{{ experience.city }}</h1>
+                    <h1 style="text-transform: capitalize;font-size: 24px;margin-bottom: 10px;">{{ experience.city }}</h1>
                     
                     <router-link :to="'/merchant/profile/' + experience.merchant_id + '/' + experience.contact_email">
                         <h6>
                             <span style="color: #f81894;">By</span> {{ experience.contact_email }}
                         </h6>    
-                    </router-link><br>
+                    </router-link>
                     
-                    <h5 style="text-transform: capitalize;">{{ experience.location }}</h5>
+                    <h5 style="text-transform: capitalize;"><br>{{ experience.location }}</h5>
                     <p v-if="experience.description">
                         {{ experience.description }}
                     </p>
-                    <h5 v-if="experience.about_merchant">About Merchant</h5>
+
+                    <h5 v-if="experience.about_merchant"><br>About Merchant</h5>
                     <p v-if="experience.about_merchant">
                         {{ experience.about_merchant }}
                     </p>
-                    <br>
-                    <h5 v-if="experience.offerings">Payment Covers</h5>
+                    <h5 v-if="experience.offerings">
+                    <br>Payment Covers</h5>
                     <p v-if="experience.offerings">{{ experience.offerings }}</p>  
                     
-                    <br>
-                    <h5 v-if="experience.dining_options">Dining Options</h5>
+                    
+                    <h5 v-if="experience.dining_options"><br>Dining Options</h5>
                     <p v-if="experience.dining_options">{{ experience.dining_options }}</p>  
 
-                    <br>
-                    <h5 v-if="experience.drink_types">Drink Options</h5>
+                    
+                    <h5 v-if="experience.drink_types"><br>Drink Options</h5>
                     <p v-if="experience.drink_types">{{ experience.drink_types }}</p>  
 
-                    <br>
-                    <h5 v-if="experience.extra_perks">Extra Perks</h5>
+                    
+                    <h5 v-if="experience.extra_perks"><br>Extra Perks</h5>
                     <p v-if="experience.extra_perks">{{ experience.extra_perks }}</p>  
 
-                    <br>
-                    <h5 v-if="experience.has_outdoor_sitting">Has Outdoor Sitting</h5>
+                    
+                    <h5 v-if="experience.has_outdoor_sitting"><br>Has Outdoor Sitting</h5>
                     <p v-if="experience.has_outdoor_sitting">{{ experience.has_outdoor_sitting }}</p>  
 
-                    <br>
-                    <h5 v-if="experience.history">History</h5>
+                    
+                    <h5 v-if="experience.history"><br>History</h5>
                     <p v-if="experience.history">{{ experience.history }}</p>  
 
-                    <br>
-                    <h5 v-if="experience.meetup_location">Meetup Location</h5>
-                    <p v-if="experience.meetup_location">{{ experience.meetup_location }}</p>  
+                    
+                    <h5 v-if="experience.meetup_location"><br>Meetup Location</h5>
+                    <p v-if="experience.meetup_location">{{ experience.meetup_location }}</p>   
 
-                    <br>
-                    <h5 v-if="experience.number_admittable">Number Admittable</h5>
-                    <p v-if="experience.number_admittable">{{ experience.number_admittable }}</p>  
-
-                    <br>
-                    <h5 v-if="experience.tourist_expected_items">Tourist Expected Items</h5>
+                    
+                    <h5 v-if="experience.tourist_expected_items"><br>Tourist Expected Items</h5>
                     <p v-if="experience.tourist_expected_items">{{ experience.tourist_expected_items }}</p>  
-
-                    <!-- <h6 style="margin-left:20px;"><b>Rate the Experience</b></h6> <br> -->
-                    <form  @submit.prevent="rateExperienceSubmit" v-if="auth">
-                        <div class="row">
-                            <!-- div.row -->
-                            <div class="col-md-6">
-                                <h6><b>Rate the Experience</b></h6> <br>
-                                <p class="alert alert-warning" v-if="!checkBookingStatus" style="margin:0;">To rate this Experience you need to book first</p>
-                                <div id="reviewStars-input" @click="toggleRatingBox" v-else>
-                                    <input id="star-4" value=5 v-model="reviewStar" type="radio" name="reviewStars"/>
-                                    <label title="gorgeous" for="star-4"></label>
-
-                                    <input id="star-3" value=4 v-model="reviewStar" type="radio" name="reviewStars"/>
-                                    <label title="good" for="star-3"></label>
-
-                                    <input id="star-2" value=3 v-model="reviewStar" type="radio" name="reviewStars"/>
-                                    <label title="regular" for="star-2"></label>
-
-                                    <input id="star-1" value=2 v-model="reviewStar" type="radio" name="reviewStars"/>
-                                    <label title="poor" for="star-1"></label>
-
-                                    <input id="star-0" value=1 v-model="reviewStar" type="radio" name="reviewStars"/>
-                                    <label title="bad" for="star-0"></label>
-                                </div>
-                            </div>
-                            
-                            <div class="col-md-6">
-                                <h6><b>Rate Security of the Experience</b></h6> <br>
-                                <div id="securityStars-input" @click="toggleSecurityBox">
-                                    <input id="star-2-4" value=5 v-model="securityStar" type="radio" name="securityStars"/>
-                                    <label title="gorgeous" for="star-2-4"></label>
-
-                                    <input id="star-2-3" value=4 v-model="securityStar" type="radio" name="securityStars"/>
-                                    <label title="good" for="star-2-3"></label>
-
-                                    <input id="star-2-2" value=3 v-model="securityStar" type="radio" name="securityStars"/>
-                                    <label title="regular" for="star-2-2"></label>
-
-                                    <input id="star-2-1" value=2 v-model="securityStar" type="radio" name="securityStars"/>
-                                    <label title="poor" for="star-2-1"></label>
-
-                                    <input id="star-2-0" value=1 v-model="securityStar" type="radio" name="securityStars"/>
-                                    <label title="bad" for="star-2-0"></label>
-                                </div><br>
-                            </div>
-                        </div>  <br><br>
-                        <div class="form-group col-md-6" v-if="toggleRating && securityRating">
-                            <h6>Review this Experience</h6>
-                            <!-- <label>Rate this Experience</label> -->
-                            <input type="text" class="form-control edit-prof-input" v-model="rate_this_exp_text">
-                            <button type="submit" class="book_btn">Rate</button>
-                        </div><br><br>
-                        <div class="col-md-6">
-                              <button type="button" v-if="!checkBookingStatus" class="btn btn-primary" style="background: #f81894" data-toggle="modal" data-target="#ReviewVideoModal">
-                                  Make 5 Secs Video Review
-                                </button>
-                        </div>
-                    </form>
+                    <br>
+                    <!-- <h6 style="margin-left:20px;"><b>Rate the Experience</b></h6> <br> --> 
                 </div>
                 <div class="col-sm-6 col-md-5 col-lg-5 sidebar-pd">
                     <div class="travv-sidebar" style="height: auto;">
@@ -179,6 +120,11 @@
                                 <div class="col-md-12" v-if="experience.dollar_price">
                                     <h3>Average Cost</h3>
                                     <h5>$ {{ experience.dollar_price }}</h5>
+                                </div>
+
+                                <div class="col-md-12" v-if="experience.number_admittable">
+                                    <h3>Number Admittable</h3>
+                                    <h5>{{ experience.number_admittable }}</h5>
                                 </div>
                                 
                                 <div class="col-md-12" v-if="experience.language">
@@ -254,7 +200,7 @@
                     <!-- <button class="btn btn-primary" @click="getDirection">Get Direction</button> -->
                 </div>
                 <div class="col-md-12">
-                    <iframe v-if="vm.place" height="450" frameborder="0" style="border:0;width:100%;"
+                    <iframe v-if="vm.place.formatted_address" height="450" frameborder="0" style="border:0;width:100%;"
 :src="'https://www.google.com/maps/embed/v1/directions?origin=' + vm.place.formatted_address.replace(/\s+/g, '+') + '&destination=' + experience.location + '&key=AIzaSyDgnbjMxlLW2BHBPJ4-iFsX_aB9jEHBFCg'" allowfullscreen></iframe>
 
                         <iframe v-else height="450" frameborder="0" style="border:0;width:100%;"
@@ -270,12 +216,12 @@
                         <div class="average_review_section">
                             <h2>Average Rating <b>{{ experience.rating }}</b></h2>
                             <h5>Based on {{ reviews.meta ? reviews.meta.total : 0}} ratings</h5>
-                            <star-rating :rating="parseFloat(experience.rating)" :read-only="true" :increment="0.01" :star-size="48"></star-rating>
+                            <star-rating :rating="parseFloat(experience.rating)" :read-only="true" :increment="0.01" :star-size="32"></star-rating>
                             <br>
                             <div class="row">
-                                <div class="col-2"><p class="star_range">5-star</p></div>
+                                <div class="col-2"><p class="star_range">5</p></div>
                                 <div class="col-8">
-                                    <div class="progress">
+                                    <div class="progress" style="height: 2.0rem;">
                                         <!-- { color: activeColor, fontSize: fontSize + 'px' } -->
                                       <div class="progress-bar" role="progressbar" :style="{ width: (ratings[5] / totalRatingCount) * 100 + '%', backgroundColor: '#f81894' }" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" v-if="ratings"></div>
                                     </div>
@@ -285,9 +231,9 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-2"><p class="star_range">4-star</p></div>
+                                <div class="col-2"><p class="star_range">4</p></div>
                                 <div class="col-8">
-                                    <div class="progress">
+                                    <div class="progress" style="height: 2.0rem;">
                                       <div class="progress-bar" role="progressbar" :style="{ width: (ratings[4] / totalRatingCount) * 100 + '%', backgroundColor: '#f81894' }" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" v-if="ratings"></div>
                                     </div>
                                 </div>
@@ -296,9 +242,9 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-2"><p class="star_range">3-star</p></div>
+                                <div class="col-2"><p class="star_range">3</p></div>
                                 <div class="col-8">
-                                    <div class="progress">
+                                    <div class="progress" style="height: 2.0rem;">
                                       <div class="progress-bar" role="progressbar" :style="{ width: (ratings[3] / totalRatingCount) * 100 + '%', backgroundColor: '#f81894' }" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" v-if="ratings"></div>
                                     </div>
                                 </div>
@@ -307,9 +253,9 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-2"><p class="star_range">2-star</p></div>
+                                <div class="col-2"><p class="star_range">2</p></div>
                                 <div class="col-8">
-                                    <div class="progress">
+                                    <div class="progress" style="height: 2.0rem;">
                                       <div class="progress-bar" role="progressbar" :style="{ width: (ratings[2] / totalRatingCount) * 100 + '%', backgroundColor: '#f81894' }" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" v-if="ratings"></div>
                                     </div>
                                 </div>
@@ -318,9 +264,9 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-2"><p class="star_range">1-star</p></div>
+                                <div class="col-2"><p class="star_range">1</p></div>
                                 <div class="col-8">
-                                    <div class="progress">
+                                    <div class="progress" style="height: 2.0rem;">
                                       <div class="progress-bar" role="progressbar" :style="{ width: (ratings[1] / totalRatingCount) * 100 + '%', backgroundColor: '#f81894' }" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" v-if="ratings"></div>
                                     </div>
                                 </div>
@@ -331,9 +277,90 @@
                         </div>
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="col-md-7">
                         <div class="gst_review_content">
-                            <h2>Reviews</h2>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h2 style="text-align: left;">Reviews</h2>
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn" style="border: 2px solid #000;height: 37px;"  data-toggle="modal" data-target="#writeAReviewModal"><i class="fa fa-pencil" style="color: #000;"></i> Write a Review</button>
+                                <div class="modal fade" id="writeAReviewModal" tabindex="-1" role="dialog" aria-labelledby="writeAReviewModal" aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Write a Review</h5>
+                                        <button type="button" class="close" style="width: 40px;" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">
+                                        
+                                        <form  @submit.prevent="rateExperienceSubmit" v-if="auth">
+                                            <div class="row">
+                                                <!-- div.row -->
+                                                <div class="col-md-12" style="margin-bottom: 40px;margin: auto;">
+                                                    <h6><b>Rate the Experience</b></h6> 
+                                                    <p class="alert alert-warning" v-if="!checkBookingStatus" style="margin:0;">To rate this Experience you need to book first</p>
+                                                    <div id="reviewStars-input" @click="toggleRatingBox" v-else>
+                                                        <input id="star-4" value=5 v-model="reviewStar" type="radio" name="reviewStars"/>
+                                                        <label title="gorgeous" for="star-4"></label>
+
+                                                        <input id="star-3" value=4 v-model="reviewStar" type="radio" name="reviewStars"/>
+                                                        <label title="good" for="star-3"></label>
+
+                                                        <input id="star-2" value=3 v-model="reviewStar" type="radio" name="reviewStars"/>
+                                                        <label title="regular" for="star-2"></label>
+
+                                                        <input id="star-1" value=2 v-model="reviewStar" type="radio" name="reviewStars"/>
+                                                        <label title="poor" for="star-1"></label>
+
+                                                        <input id="star-0" value=1 v-model="reviewStar" type="radio" name="reviewStars"/>
+                                                        <label title="bad" for="star-0"></label>
+                                                    </div>
+                                                </div>
+                                                 
+                                                <div class="col-md-12" style="margin: auto;">
+                                                    <h6><b>Rate Security of the Experience</b></h6>  
+                                                    <div id="securityStars-input" @click="toggleSecurityBox">
+                                                        <input id="star-2-4" value=5 v-model="securityStar" type="radio" name="securityStars"/>
+                                                        <label title="gorgeous" for="star-2-4"></label>
+
+                                                        <input id="star-2-3" value=4 v-model="securityStar" type="radio" name="securityStars"/>
+                                                        <label title="good" for="star-2-3"></label>
+
+                                                        <input id="star-2-2" value=3 v-model="securityStar" type="radio" name="securityStars"/>
+                                                        <label title="regular" for="star-2-2"></label>
+
+                                                        <input id="star-2-1" value=2 v-model="securityStar" type="radio" name="securityStars"/>
+                                                        <label title="poor" for="star-2-1"></label>
+
+                                                        <input id="star-2-0" value=1 v-model="securityStar" type="radio" name="securityStars"/>
+                                                        <label title="bad" for="star-2-0"></label>
+                                                    </div><br>
+                                                </div>
+                                            </div>  <br><br>
+                                            <div class="form-group col-md-12" v-if="toggleRating && securityRating">
+                                                <h6>Review this Experience</h6>
+                                                <!-- <label>Rate this Experience</label> -->
+                                                <input type="text" class="form-control edit-prof-input" v-model="rate_this_exp_text">
+                                                <button type="submit" class="book_btn">Rate</button>
+                                            </div><br><br>
+                                            <div class="col-md-6">
+                                                  <button type="button" v-if="!checkBookingStatus" class="btn btn-primary" style="background: #f81894" >
+                                                      Make 5 Secs Video Review
+                                                    </button>
+                                            </div>
+                                        </form>
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                </div>
+                            </div>
                             <br>
                             <div class="row">
                                 <div class="col-md-12">
@@ -853,7 +880,7 @@
     
     .average_review_section h2 {
         font-weight: bolder;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
     .average_review_section h5 {
         color: #776d6d;
@@ -912,7 +939,7 @@
 }
 .average_review_section h2 {
     font-weight: bolder;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 .average_review_section h5 {
     color: #776d6d;
@@ -1016,7 +1043,7 @@
     line-height: normal;
     letter-spacing: normal;
     color: #555555;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
 }
 
 .blog_content p {
@@ -1028,7 +1055,7 @@
     line-height: normal;
     letter-spacing: normal;
     color: #555555;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
 
     line-height: 1.5em;
     text-align: justify;
@@ -1452,7 +1479,7 @@ input::-webkit-calendar-picker-indicator {
     line-height: normal;
     letter-spacing: normal;
     color: #555555;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
 }
 .blog_content p {
     /* font-family: MuseoSans700 !important; */
@@ -1463,7 +1490,7 @@ input::-webkit-calendar-picker-indicator {
     line-height: normal;
     letter-spacing: normal;
     color: #555555;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
 }
 .sidebar{
     background: #000;
