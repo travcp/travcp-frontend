@@ -15,27 +15,12 @@
           <div class="col-md-12">
             <div class="card" style="width: 100%;border: none;">
               <div class="card-body">
-                <div class="row">
+                <div class="row" style="margin: auto;">
                   <!--<div class="col-md-3"></div>-->
-                  <div class="col-md-9">
-                    <div class="form-holder">
-                      <div class="form-index-1" v-if="form_index == 1">
+                      <div class="col-md-7 form-index-1" v-if="form_index == 1">
                         <div class="row">
-                          <div class="form-group col-md-12">
-                           <!--  <label>Select Experience Type</label>
-                            <select
-                              v-validate="'required'"
-                              class="form-control new_experience_input"
-                              v-model="experience_type"
-                              @change="checkExperienceType"
-                            > -->
-                              <!-- <option selected>Select</option> -->
-                              <!-- <option
-                                v-for="experience_type in experience_types"
-                                v-if="experience_type"
-                                >{{ experience_type.name }}</option
-                              >
-                            </select> -->
+                          <div class="form-group col-md-12" v-if="loadingExp">
+                                  <Circle9 /> 
                           </div>
                         </div>
 
@@ -44,13 +29,13 @@
                           <form @submit.prevent="submitFormExperience">
                             <div class="row">
                               <div class="col-md-12">
-                                <input
+                                <!-- <input
                                   type="file"
                                   id="file"
                                   ref="files"
                                   multiple
                                   v-on:change="handleFilesUpload()"
-                                />
+                                /> -->
 
                                 <!-- <div class="large-12 medium-12 small-12 cell">
                                   <div
@@ -65,7 +50,7 @@
                                     >
                                   </div>
                                 </div> -->
-                                <div class="large-12 medium-12 small-12 cell">
+                                <!-- <div class="large-12 medium-12 small-12 cell">
                                   <div v-for="(file, key) in files" class="file-listing">
                                     {{ file.name }}
                                     <span
@@ -73,9 +58,9 @@
                                       v-on:click="removeFile(key)"
                                     ><i class="fa fa-times"></i> Remove</span>
                                   </div>
-                                </div>
+                                </div> -->
                                 <br />
-                                <button id="open-btn" class="myBtn">Open</button>
+                                <!-- <button id="open-btn" class="myBtn">Open</button> -->
                                 <!-- <div class="large-12 medium-12 small-12 cell">
                                       <button @click="addFiles">Add Files</button>
                                     </div> -->
@@ -363,8 +348,16 @@
                             </div>
                           </form>
                         </div>
-                      </div>
-                    </div>
+                    
+                  </div>
+                  <div class="col-md-5">
+                    <h4>
+                      Upload Images to This Experience
+                    </h4> <br>
+                    <FilePond name="Expereince_upload" 
+                     v-bind:files="travv_app_pictures" 
+                     ref="pond" allowMultiple="true" 
+                     accepted-file-types="image/*" allowImageEdit="true" />
                   </div>
                   <!-- <div class="col-md-3" v-if="form_index == 1">
                     <h5>Uploaded Image</h5>
@@ -396,6 +389,15 @@ import DatePicker from "vue2-datepicker";
 import axios from "axios";
 import OpenClosingTimes from "@/components/utility/OpenClosingTimes"
 
+import vueFilePond from 'vue-filepond';
+import 'filepond/dist/filepond.min.css';
+
+import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
+import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css';
+import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
+import FilePondPluginImageEdit from 'filepond-plugin-image-edit';
+
+import { Circle9 } from 'vue-loading-spinner'
 export default {
   name: "MerchantEditExperience",
   beforeRouteEnter(to, from, next) {
@@ -411,9 +413,11 @@ export default {
   data() {
     return {
       // experience_type_placeholder: null,
+      loadingExp: false,
       experience_types: [],
       validationErrors: [],
       form_index: 1,
+      travv_app_pictures: [],
       experience_type: null,
       title: null,
       location: null,
@@ -505,7 +509,9 @@ export default {
     Footer,
     vueDropzone: vue2Dropzone,
     DatePicker,
-    OpenClosingTimes
+    OpenClosingTimes,
+    FilePond: vueFilePond(FilePondPluginImagePreview, FilePondPluginFileValidateType, FilePondPluginImageEdit),
+    Circle9
   },
   methods: {
     // ...mapActions(["getExperienceTypes"]),
@@ -538,11 +544,14 @@ export default {
       // if (this.experience_type == 22) {
       // let start_date = this.formatDate(this.time[0])
       // let end_date = this.formatDate(this.time[1])
+      console.log(this.$refs.pond.getFiles())
+      let imageFiles = this.$refs.pond.getFiles()
       let formData = new FormData();
 
-      for (var i = 0; i < this.files.length; i++) {
+      // let formData = new FormData()
+      for (let i = 0; i < imageFiles.length; i++) {
         let file = this.files[i];
-        formData.append("images[" + i + "]", file);
+        formData.append("images[" + i + "]", imageFiles[i].file);
       }
       
       let data = {
@@ -618,7 +627,8 @@ export default {
             });
           // });
         } else {
-          return this.$noty.error("Oops, something went wrong!");
+          this.$noty.error("Oops, something went wrong!");
+          this.$noty.error("Please Check the Date Range Field");
         }
       });
       // }
@@ -654,9 +664,15 @@ export default {
       })
     },
     async getExperienceById(id) {
+      this.loadingExp = true
       await axios.get(`${this.$store.state.API_BASE}/experiences/${this.$route.params.id}`).then(response => {
         
         this.experience = response.data.data
+        for(let i = 0; i < this.experience.images.length; i++){
+          console.log(this.experience.images[i].image)
+          this.travv_app_pictures.push(this.experience.images[i].image)
+        }
+        this.loadingExp = false
         this.opening_and_closing_hours = this.experience.opening_and_closing_hours;
       });
     },

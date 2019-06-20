@@ -570,9 +570,6 @@ export default {
       const url = 'https://api.cloudinary.com/v1_1/dbzyutd4o/image/upload';
       let imageFiles = this.$refs.pond.getFiles()
       if(!imageFiles.length < 1){
-        this.fileLoading = false;
-        this.$noty.warning('Upload at leaset one Image.')
-      } else {
         // for(let i = 0; i < imageFiles.length; i++){
         //   let formData = new FormData()
         //   formData.append('upload_preset', 'ultgwxm9');
@@ -613,6 +610,9 @@ export default {
               this.fileLoading = false;
               console.log(error.response)
         })
+      } else {
+        this.fileLoading = false;
+        this.$noty.warning('Upload at leaset one Image.')
       }
     },
     handleFilesUpload() {
