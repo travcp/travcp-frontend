@@ -140,7 +140,7 @@ export default {
   methods: {
     calcPrice(){
       let price = 0;
-      if(this.cart.length > 1) {
+      if(this.cart.items.length > 1) {
         console.log("cart items", this.cart.items)
         for(let i = 0; i < this.cart.items.length; i++){
           price += this.cart.items[i].booking.experience.dollar_price
