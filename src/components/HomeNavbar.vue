@@ -27,9 +27,9 @@
                         <router-link class="nav-link nav-item-color" style="color: #fff !important;" to="/dashboard/favourite-experiences">Favourites</router-link>
                     </li>
                     <li class="nav-item" v-if="checkUser">
-                      <router-link style="color: #fff !important;" class="nav-link" to="/dashboard/messages">
+                      <a style="color: #fff !important;" class="nav-link" :href="'http://travvapi.herokuapp.com/dashboard/messages?userid=' + this.auth.user.id + '&nickname=' + this.auth.user.first_name + ' ' + this.auth.user.surname">
                         <img src="../assets/envelope-2.png" style="height: 24px;" alt="">
-                      </router-link>
+                      </a>
                     </li>
                     <li class="nav-item" v-if="checkUser">
                       <router-link style="color: #fff !important;" class="nav-link" to="/notifications">

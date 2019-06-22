@@ -18,112 +18,49 @@
                         <div class="contacts-panel">
                             <input type="search" class="contacts-search-control" placeholder="Search...">
                             <div class="contact-list">
-                                <ul>
+                                <ul v-if="allUsers.length">
                                     <li>
-                                        <div class="row">
+                                        <div class="row" v-for="user in allUsers" @click="chattingUser(user.userId)">
                                             <div class="col-3">
                                                 <img src="/img/profile_2.png" alt="" class="contact-img">
                                             </div>
-                                            <div class="col-6">Contact One</div>
+                                            <div class="col-6">{{ user.nickname }}</div>
                                             <div class="col-2">
-                                                <small class="text-small">8:28am</small>
+                                                <!-- <small class="text-small">8:28am</small> -->
                                                 <span class="badge badge-danger badge-pill">2</span>
+                                                <i class="fa fa-circle" :style="{color: user.connectionStatus == 'online' ? '#d3187f' : 'grey'}"></i>
                                             </div>
                                         </div>
                                     </li>
+                                    break
                                     <li>
-                                        <div class="row">
+                                        <div class="row" v-for="user in userToChat">
                                             <div class="col-3">
-                                                <img src="/img/profile_1.png" alt="" class="contact-img">
+                                                <img src="/img/profile_2.png" alt="" class="contact-img">
                                             </div>
-                                            <div class="col-6">Contact One</div>
+                                            <div class="col-6">{{ user.nickname }}</div>
                                             <div class="col-2">
-                                                <small class="text-small">8:28am</small>
+                                                <!-- <small class="text-small">8:28am</small> -->
                                                 <span class="badge badge-danger badge-pill">2</span>
+                                                <i class="fa fa-circle" :style="{color: user.connectionStatus == 'online' ? '#d3187f' : 'grey'}"></i>
                                             </div>
                                         </div>
                                     </li>
+                                    break
                                     <li>
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <img src="/img/profile_1.png" alt="" class="contact-img">
-                                            </div>
-                                            <div class="col-6">Contact One</div>
-                                            <div class="col-2">
-                                                <small class="text-small">8:28am</small>
-                                                <span class="badge badge-danger badge-pill">2</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <img src="/img/profile_1.png" alt="" class="contact-img">
-                                            </div>
-                                            <div class="col-6">Contact One</div>
-                                            <div class="col-2">
-                                                <small class="text-small">8:28am</small>
-                                                <span class="badge badge-danger badge-pill">2</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <img src="/img/profile_1.png" alt="" class="contact-img">
-                                            </div>
-                                            <div class="col-6">Contact One</div>
-                                            <div class="col-2">
-                                                <small class="text-small">8:28am</small>
-                                                <span class="badge badge-danger badge-pill">2</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <img src="/img/profile_1.png" alt="" class="contact-img">
-                                            </div>
-                                            <div class="col-6">Contact One</div>
-                                            <div class="col-2">
-                                                <small class="text-small">8:28am</small>
-                                                <span class="badge badge-danger badge-pill">2</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <img src="/img/profile_1.png" alt="" class="contact-img">
-                                            </div>
-                                            <div class="col-6">Contact One</div>
-                                            <div class="col-2">
-                                                <small class="text-small">8:28am</small>
-                                                <span class="badge badge-danger badge-pill">2</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <img src="/img/profile_1.png" alt="" class="contact-img">
-                                            </div>
-                                            <div class="col-6">Contact One</div>
-                                            <div class="col-2">
-                                                <small class="text-small">8:28am</small>
-                                                <span class="badge badge-danger badge-pill">2</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <img src="/img/profile_1.png" alt="" class="contact-img">
-                                            </div>
-                                            <div class="col-6">Contact One</div>
-                                            <div class="col-2">
-                                                <small class="text-small">8:28am</small>
-                                                <span class="badge badge-danger badge-pill">2</span>
+                                        <div class="row" v-for="channel in userChannels">
+                                            <div class="col-md-12">
+                                                <div class="row" v-for="user in channel.members" v-if="user.userId != currentUser.userId" @click="openChannel(channel.url)">
+                                                    <div class="col-3">
+                                                        <img src="/img/profile_2.png" alt="" class="contact-img">
+                                                    </div>
+                                                    <div class="col-6">{{ user.nickname }}</div>
+                                                    <div class="col-2">
+                                                        <!-- <small class="text-small">8:28am</small> -->
+                                                        <span class="badge badge-danger badge-pill">2</span>
+                                                        <i class="fa fa-circle" :style="{color: user.connectionStatus == 'online' ? '#d3187f' : 'grey'}"></i>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </li>
@@ -132,62 +69,19 @@
                         </div>
                         <div class="messages-panel">
                             <ul class="messages-list">
-                                <li class="left-list-item left-message">
-                                    <!-- <div class="left-message message"> -->
-                                        
-                                        <div class="text">Hi</div>
-                                        
-                                    <!-- </div> -->
-                                </li>
-                                <li class="right-list-item right-message">
-                                    <!-- <div class="right-message message"> -->
-                                        
-                                        <div class="text">Hello</div>
-                                        
-                                    <!-- </div> -->
-                                </li>
-                                <li class="right-message">
-                                    <!-- <div class="right-message message"> -->
-                                        
-                                        <div class="text">How are you doing?</div>
-                                        
-                                    <!-- </div> -->
-                                </li>
-                                <li class="left-message">
-                                    <!-- <div class=""> -->
-                                        <div class="text">John bull my son, I sent you to school, you don't know how to spell your name</div>
-                                    <!-- </div> -->
-                                </li>
-                                <li class="left-message">
-                                    <div class="text">
-                                        And you?
-                                    </div>
-                                </li>
-                                <li class="right-message">
-                                    <div class="text">I'm fine too, thank you</div>
-                                </li>
-                                <li class="right-message">
-                                    <div class="text">I made an order for your product yesterday, and till now, I'm yet to hear from you</div>
-                                </li>
-                                <li class="left-message">
-                                    <div class="text">Calm down please</div>
-                                </li>
-                                <li class="left-message">
-                                    <div class="text">The issue will be resolved shortly</div>
-                                </li>
-                                <li class="right-message">
-                                    <div class="text">It had better be</div>
-                                </li>
+                                
                                 <!-- <li class="left-message">Fun eni to ba gbon</li>
                                 <li class="right-message">Fun eni to ba gbon</li> -->
                             </ul>
                             <div class="typing-area">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Type a message..." aria-label="Type a message" aria-describedby="type message field">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-danger">Send</button>
-                                    </div>
-                                </div>
+                                <form @submit.prevent="messageSubmit">
+                                    <div class="input-group">
+                                        <input type="text" v-model="message" class="form-control" placeholder="Type a message..." aria-label="Type a message" aria-describedby="type message field">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-danger">Send</button>
+                                        </div>
+                                    </div>    
+                                </form>
                             </div>
                         </div>
                         <div class="contact-info-panel">
@@ -210,6 +104,10 @@
 </template>
 <script>
 import Navbar from '@/components/Navbar'
+import SendBird from 'sendbird'
+
+let sb = new SendBird({appId: 'EDBA8B35-D6D9-42C2-B2C7-F6E0E711D072'});
+
 export default {
     name: "Message",
     beforeRouteEnter(to, from, next) {
@@ -222,9 +120,170 @@ export default {
           }
           next();
       },
-    components: {
+      data(){
+        return {
+            currentUser: [],
+            allUsers: [],
+            userChannels: [],
+            userToChat: [],
+            message: null,
+            channel: {}
+        }
+      },
+      methods: {
+        logout(){
+            sb.disconnect(function(){
+                // A current user is discconected from SendBird server.
+            });
+        },
+        chattingUser(userId){
+            console.log(typeof userId)
+            let _this = this
+            let applicationUserListQuery1 = sb.createApplicationUserListQuery();
+            applicationUserListQuery1.userIdsFilter = [userId];
+            applicationUserListQuery1.next(function(user, error) {
+                if (error) {
+                    return;
+                }
+                _this.createUserChannel(_this.currentUser.userId, userId)
+                
+                console.log(user)
+            });
+        },
+        openChannel(channelUrl) {
+                console.log('Hi i am here')
+            sb.OpenChannel.getChannel(channelUrl, (channel, error) => {
+                console.log(channel)
+                if (error) reject(error)
+                channel.exit()
+              })
+        },
+        createUserChannel(user1Id, user2Id){
+            var userIds = [user1Id, user2Id];
+            var params = new sb.GroupChannelParams();
+                params.isPublic = false;
+                params.isEphemeral = false;
+                params.isDistinct = false;
+                params.addUserIds([user1Id, user2Id]);
+                params.operatorIds = [user1Id];   // or .operators(Array<User>)
+                params.name = user1Id+ " "+ user2Id; 
+
+                sb.GroupChannel.createChannel(params, function(groupChannel, error) {
+                    if (error) {
+                        return;
+                    }
+                    
+                    console.log(groupChannel);
+                });
+        },
+        RetreiveChannels(){
+            var channelListQuery = sb.GroupChannel.createMyGroupChannelListQuery();
+            channelListQuery.includeEmpty = true;
+            channelListQuery.limit = 20;     
+
+            if (channelListQuery.hasNext) {
+                channelListQuery.next(function(channelList, error) {
+                    if (error) {
+                        return;
+                    }
+
+                    console.log(channelList);
+                });
+            }
+        },
+        getUserChannels(){
+            var channelListQuery = sb.GroupChannel.createMyGroupChannelListQuery();
+            channelListQuery.includeEmpty = true;
+            channelListQuery.limit = 20;    // The value of pagination limit could be set up to 100.
+            let _this = this
+            if (channelListQuery.hasNext) {
+                channelListQuery.next(function(channelList, error) {
+                    if (error) {
+                        return;
+                    }
+                    console.log(channelList);
+                    _this.userChannels = channelList
+
+                    for(let i = 0; i < channelList.length; i++) {
+                        // console.log(channelList[i])
+                        for(let y =0; i < channelList[i].members.length; y++)
+                        if(channelList[i].members[y].userId != _this.currentUser.userId){
+                            console.log(channelList[i].members[y])
+                            _this.userToChat.push(channelList[i].members[y])
+                        }
+                    }
+                });
+            }
+        },
+        messageSubmit(){
+            const params = new sb.UserMessageParams();
+
+            params.message = this.message;
+            params.customType = CUSTOM_TYPE;
+            params.data = DATA;
+            params.mentionType = 'users';                       // Either 'users' or 'channel'
+            params.mentionedUserIds = [];        // or mentionedUsers = Array<User>; 
+            params.metaArrayKeys = ['key1', 'key2'];
+            params.translationTargetLanguages = ['fe', 'de'];   // French and German
+            params.pushNotificationDeliveryOption = 'default';  // Either 'default' or 'suppress' 
+
+            groupChannel.sendUserMessage(params, function(message, error) {
+                if (error) {
+                    return;
+                }
+
+                console.log(message);
+            });
+        }
+        // allUsers(){
+        //     // In case of retrieving all users
+        //     let sb = SendBird.getInstance();
+        //     let applicationUserListQuery = sb.createApplicationUserListQuery();
+        //     applicationUserListQuery.next(function(users, error) {
+        //         if (error) {
+        //             console.log(error)
+        //             return;
+        //         }
+        //     });
+        // },
+      },
+      created(){
+        let user_name = this.$store.state.auth.user.name
+        let _this = this
+        sb.connect(this.$store.state.auth.user.id, this.$store.state.auth.access_token, function(user, error) {
+            if (error) {
+                return;
+                }
+            sb.updateCurrentUserInfo(user_name, function(response, error) {
+                if (error) {
+                    return;
+                }   
+                console.log(response)
+            });
+            // _this.allUsers()
+            _this.currentUser = user
+            console.log(user)
+        });
+        let allUsers = SendBird.getInstance();
+        let applicationUserListQuery = allUsers.createApplicationUserListQuery();
+        applicationUserListQuery.next(function(users, error) {
+            if (error) {
+                return;
+            }
+            _this.allUsers = users
+            console.log(users)
+            console.log(error)
+        });
+        this.getUserChannels()
+        // RetreiveChannels()
+        // var userId = this.$store.state.auth.user.id.trim();
+        // var nickname = this.$store.state.auth.user.name.trim();
+
+        // window.location.href = '/dashboard/messages?userid=' + encodeURIComponent(userId) + '&nickname=' + encodeURIComponent(nickname);
+      },
+      components: {
         Navbar
-    }
+      }
 }
 </script>
 

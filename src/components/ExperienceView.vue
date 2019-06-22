@@ -378,6 +378,21 @@
                         </div>
                     </div>
                 </div> <br>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <h2>Video Reviews</h2>                                
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" v-if="!checkBookingStatus" class="btn btn-primary" style="background: #f81894;border:#f81894;">
+                                  Make 5 seconds video review
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-12" style="margin-bottom: 20px">
                         <h3>
@@ -1045,7 +1060,7 @@
 
 .blog_content h5 {
     font-family: MuseoSans500 !important;
-    font-size: 24px;
+    font-size: 22px;
     /* font-weight: 500; */
     /* font-weight: bold; */
     font-style: normal;
@@ -1058,17 +1073,17 @@
 
 .blog_content p {
     /* font-family: MuseoSans700 !important; */
-    font-size: 16px;
+    font-size: 16px !important;
     /* font-weight: 500; */
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #555555;
-    margin-bottom: 10px;
+    font-style: normal !important;
+    font-stretch: normal !important;
+    line-height: normal !important;
+    letter-spacing: normal !important;
+    color: #555555 !important;
+    margin-bottom: 10px !important;
 
-    line-height: 1.5em;
-    text-align: justify;
+    line-height: 1.5em !important;
+    text-align: justify !important;
 }
 
 .travv-sidebar {

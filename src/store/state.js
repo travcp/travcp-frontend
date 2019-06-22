@@ -60,6 +60,12 @@ export default {
     bookings: [],
     current_location: [],
     experiences_around_me: [],
-    videoData: []
+    videoData: [],
+    locale: 'fr',
+    user: null,
+    messages: [],
+    channel: null,
+    channels: null,
+    channelUsers: []
     // user_token: 
 }

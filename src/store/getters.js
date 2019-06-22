@@ -32,5 +32,12 @@ export default {
     return state.experiencesPlacehodler[
       Math.floor(Math.random() * state.experiencesPlacehodler.length)
     ];
+  },
+  earliestMessage(state) {
+    return state.messages[0]
+  },
+
+  isLogged(state) {
+    return state.user
   }
 };

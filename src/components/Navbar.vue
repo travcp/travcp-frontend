@@ -26,9 +26,12 @@
                         <router-link class="nav-link nav-item-color" to="/dashboard/favourite-experiences">Favourites</router-link>
                     </li>
                     <li class="nav-item" v-if="checkUser">
-                      <router-link style="color: #fff !important;" class="nav-link" to="/dashboard/messages">
+                      <a style="color: #fff !important;" class="nav-link" :href="'http://travvapi.herokuapp.com/dashboard/messages?userid=' + this.auth.user.id + '&nickname=' + this.auth.user.first_name + ' ' + this.auth.user.surname">
                         <img src="../assets/envelope-2.png" style="height: 24px;" alt="">
-                      </router-link>
+                      </a>
+                      <!-- <a style="color: #fff !important;" class="nav-link" :href="'https://travvapi.herokuapp.com/api/dashboard/messages?userid=' + this.auth.user.id + '&nickname=' + this.auth.user.first_name + ' ' + this.auth.user.surname">
+                        <img src="../assets/envelope-2.png" style="height: 24px;" alt="">
+                      </a> -->
                     </li>
                     <li class="nav-item" v-if="checkUser">
                       <router-link style="color: #fff !important;" class="nav-link" to="/notifications">

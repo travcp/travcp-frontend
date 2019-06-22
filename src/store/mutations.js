@@ -177,6 +177,25 @@ export default {
   },
   GET_BOOKINGS: (state, payload) => {
     state.bookings = payload;
+  },
+   SET_USER: (state, user) => {
+    state.user = user
+  },
+
+  SET_CHANNELS: (state, channels) => {
+    state.channels = channels
+  },
+
+  SET_CHANNEL: (state, channel) => {
+    state.channel = channel
+  },
+
+  SET_CHANNEL_USERS: (state, channelUsers) => {
+    state.channelUsers = channelUsers
+  },
+
+  SET_MESSAGES: (state, messages) => {
+    state.messages = messages
   }
   // UPDATE_
 };

@@ -59,6 +59,8 @@ import Verify from '@/views/pages/Verify.vue';
 import LikedExperiences from '@/views/LikedExperiences.vue';
 import MerchantProfileView from '@/views/MerchantProfileView.vue';
 
+import ChatIndex from '@/views/Chat/ChatIndex.vue'
+
 Vue.use(Router);
 
 export default new Router({
@@ -268,6 +270,11 @@ export default new Router({
       path: "/dashboard/my-cart",
       name: "MyCart",
       component: MyCart
+    },
+    {
+      path: "/dashboard/chat-index",
+      name: "ChatIndex",
+      component: ChatIndex
     },
     {
       path: "/add-new",

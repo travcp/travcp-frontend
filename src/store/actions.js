@@ -421,4 +421,20 @@ export default {
         // this.loading = false
       })
     },
+    addMessage: ({ commit, state }, message) => {
+      commit('SET_MESSAGES', state.messages.concat(message))
+    },
+
+    addMessages: ({ commit, state }, messages) => {
+      commit('SET_MESSAGES', messages.concat(state.messages))
+    },
+
+    addChannelUser: ({ commit, state }, user) => {
+      commit('SET_CHANNEL_USERS', state.channelUsers.concat(user))
+    },
+
+    removeChannelUser: ({ commit, state }, user) => {
+      commit('SET_CHANNEL_USERS', state.channelUsers.filter(it => it.userId !== user.userId))
+    }
+
 };
