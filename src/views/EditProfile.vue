@@ -319,23 +319,38 @@ export default {
             postal_code: this.postal_code
           }, requestHeaders)
             .then(data => {
-              if(!this.checkUserType){
-                axios.post(`${this.$store.state.API_BASE}/merchant/extras/${this.$store.state.auth.user.id}`, {
-                    business_name: this.business_name,
-                    business_email: this.business_email,
-                    phone: this.phone,
-                    bio: this.bio,
-                    merchant_id: this.$store.state.auth.merchant.id,
-                    _method: 'PUT'
-                }, requestHeaders).then(response => {
-                  this.$noty.success("Merchant Profile Updated Succefully");
-                  console.log(response.data.data)
-                }).catch(error => {
-                  console.log(error.response.data)
-                })
-              }
               console.log(data)
               this.$noty.success("Profile Updated Succefully");
+              if(!this.checkUserType){
+                let merchantData = ""
+                axios.get(`${this.$store.state.API_BASE}/merchants/${this.$store.state.auth.merchant.id}/extras`).then(response => {
+                  console.log(response.data.data)
+                  merchantData = response.data.data
+                    axios.post(`${this.$store.state.API_BASE}/merchant/extras/${merchantData.id}`, {
+                        business_name: this.business_name,
+                        business_email: this.business_email,
+                        phone: this.phone,
+                        bio: this.bio,
+                        merchant_id: this.$store.state.auth.merchant.id,
+                        _method: 'PUT'
+                    }, requestHeaders).then(response => {
+                      let newData = JSON.parse(localStorage.getItem("auth"));
+                      
+                      newData.merchant = response.data.data;
+
+                      // console.log("new data", newData);
+                      localStorage.setItem("auth", JSON.stringify(newData));
+
+                      this.$noty.success("Merchant Profile Updated Succefully");
+                      window.location.reload(1);
+                      console.log(response.data.data)
+                    }).catch(error => {
+                      console.log(error.response.data)
+                    })
+                }).catch(error => {
+                  console.log(error.response.data);
+                })
+              }
             })
             .catch(err => {
               console.log(err.response);
