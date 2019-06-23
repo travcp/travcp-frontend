@@ -742,7 +742,8 @@ export default {
             });
           // });
         } else {
-          return this.$noty.error("Oops, something went wrong!");
+
+          return this.$noty.error("You need to fill all fields");
         }
       });
       // }

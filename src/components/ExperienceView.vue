@@ -156,7 +156,7 @@
                                         <div class="row">
                                             <div class="col-md-12" style="">
                                                 <div class="row">
-                                                    <div :class="[experience.experience_type == 'restaurants' ? 'col-md-6' : 'col-md-6']" style="margin: auto">
+                                                    <div :class="[experience.experience_type == 'restaurants' ? 'col-xs-6 col-md-6' : 'col-xs-6 col-md-6']" style="margin: auto">
                                                         <button type="submit" class="book_btn btn-block" :disabled="loading2">
                                                             <span v-if="loading2">
                                                                 <img style="height: 20px;" src="../assets/loader_rolling.gif" />
@@ -166,10 +166,10 @@
                                                             </span>
                                                         </button>
                                                     </div>
-                                                    <div class="col-md-6" style="background: #555555'" v-if="experience.experience_type != 'restaurants'">
+                                                    <div class="col-xs-6 col-md-6" style="background: #555555'" v-if="experience.experience_type != 'restaurants'">
                                                         <button type="button" class="book_btn btn-block" @click="postFavoriteExeperience(experience.id)">Favourites</button>
                                                     </div>
-                                                    <div class="col-md-6" v-if="experience.experience_type == 'restaurants'">
+                                                    <div class="col-xs-6 col-md-6" v-if="experience.experience_type == 'restaurants'">
                                                         <button type="button" class="book_btn btn-block"  @click="gotoMenu">View Menu</button>
                                                     </div>
                                                 </div>
@@ -1278,7 +1278,7 @@ input::-webkit-calendar-picker-indicator {
     border: none;        
     font-family: MuseoSans700;
     font-size: 16px;
-    width: 130px;
+    /* width: 130px; */
     height: 45px;
     border-radius: 5px;
     background-color: #f81894;

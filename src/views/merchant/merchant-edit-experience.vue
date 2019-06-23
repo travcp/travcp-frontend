@@ -19,7 +19,7 @@
                   <!--<div class="col-md-3"></div>-->
                       <div class="col-md-7 form-index-1" v-if="form_index == 1">
                         <div class="row">
-                          <div class="form-group col-md-12" v-if="loadingExp">
+                          <div class="form-group col-md-12 text-center" v-if="loadingExp">
                                   <Circle9 /> 
                           </div>
                         </div>
@@ -319,9 +319,9 @@
                                     <label>Dates Range</label> <br />
                                     <date-picker
                                       v-validate="'required'"
-                                      v-model="experience.time"
+                                      v-model="time"
                                       range
-                                      :shortcuts="shortcuts"
+                                      :shortcuts="dateShortcuts"
                                       :lang="lang"
                                       input-class="form-control new_experience_input"
                                     ></date-picker>
@@ -342,7 +342,7 @@
                                   />
                                 </span>
                                 <span v-else>
-                                  Submit
+                                  Update
                                 </span>
                               </button>
                             </div>
@@ -613,8 +613,7 @@ export default {
               requestHeaders
             )
             .then(response => {
-              // resolve(response.data.data);
-              console.log(response.data.data);
+              
               this.$noty.success("Experience is Submitted Succesfully");
               this.$store.state.loading.merchantEditExperience = false;
               this.$router.push("/dashboard/merchant/experiences");
@@ -636,13 +635,13 @@ export default {
     checkExperienceType() {
       
       for (let i = 0; i < this.experience_types.length; i++) {
-        console.log(this.experience_types)
+        // console.log(this.experience_types)
         if (this.experience_types[i] != undefined) {
           if (this.experience_types[i].name == this.$route.params.experience_type) {
             // this.experience_type_name = event.target.value;
             this.exp_id = this.experience_types[i].id;
             this.requiredFields = this.experience_types[i].experience_fields;
-            console.log(this.requiredFields)
+            // console.log(this.requiredFields)
           }
         }
       }
@@ -668,6 +667,10 @@ export default {
       await axios.get(`${this.$store.state.API_BASE}/experiences/${this.$route.params.id}`).then(response => {
         
         this.experience = response.data.data
+        this.time = [
+          this.experience.start_date,
+          this.experience.end_date
+        ];
         for(let i = 0; i < this.experience.images.length; i++){
           console.log(this.experience.images[i].image)
           this.travv_app_pictures.push(this.experience.images[i].image)
@@ -689,7 +692,16 @@ export default {
   },
   computed: {
     ...mapState(["loading"]),
-    experience_type_placeholder() {}
+    experience_type_placeholder() {},
+    dateShortcuts: function(){
+      return [
+      {
+        text: 'Start and End date',
+        start: this.experience.start_date,
+        end: this.experience.end_date
+      }
+    ]
+    } 
   },
   created() {
     this.getExperienceById(this.$route.params.id)

@@ -13,7 +13,7 @@
           <hr class="my-booking-title-horizontal">
         </div>
         <div style="padding-bottom: 20px">
-          <p class="my-cart-sub-title">Cart( {{ cart.items.length > 1 ? cart.items.length : '' }} )</p>
+          <p class="my-cart-sub-title">Cart( {{ cart.items ? cart.items.length : 0 }} )</p>
           <p class="my-cart-sub-title">Price - ${{ calcPrice() }}</p>
         </div>
         <div class="row my-booking-left" v-for="item in cart.items" :key="item.id">
@@ -54,7 +54,7 @@
         <div class="my-cart-button">
           <button class="button button1">Explore</button>
           <form >
-            <button type="button" class="button button2" @click="payWithPaystack()"> Checkout </button> 
+            <button type="button" class="button button2" @click="payWithPaystack()" v-if="calcPrice() > 0"> Checkout </button> 
           </form>
           <!-- <button class="">Checkout</button> -->
         </div>
@@ -68,7 +68,7 @@
           </div>
           <div>
 
-            <div class="featured_places saitama changed" v-for="place in places.slice(0, 3)" >
+            <div class="featured_places saitama changed" v-for="place in places.slice(0, 3)" :key="place.id">
               <router-link :to="'/experience/'+ place.id + '/' + place.title">
                 <div class="featured_places_item">
                   <div class="featured_places_overlay overlay-changed">
@@ -140,8 +140,8 @@ export default {
   methods: {
     calcPrice(){
       let price = 0;
-      if(this.cart.items.length > 1) {
-        console.log("cart items", this.cart.items)
+      if(this.cart.items && this.cart.items.length > 1) {
+        
         for(let i = 0; i < this.cart.items.length; i++){
           price += this.cart.items[i].booking.experience.dollar_price
           console.log("booking price", this.cart.items[i].booking.experience.dollar_price);
@@ -156,6 +156,7 @@ export default {
         return price;  
       }
       else{
+        return 0;
         console.log("cart items is false")
       }
       // return 0;
@@ -180,13 +181,14 @@ export default {
 
     },
     removeFromCart(item_id) {
+      this.loading = true;
       let requestHeaders = {
         headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token }
       };
       axios.delete(`${this.$store.state.API_BASE}/cart_items/${item_id}`, requestHeaders).then(response => {
                 console.log(response.data)
                 this.getMyCarts()
-                // this.loading = false;
+                this.loading = false;
               }).catch(err => {
                 this.$noty.error("Oops, there was error getting carts");
               })
