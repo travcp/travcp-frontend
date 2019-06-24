@@ -42,7 +42,9 @@
                               <option
                                 v-for="experience_type in experience_types"
                                 v-if="experience_type" :key="experience_type.id"
-                              >{{ experience_type.name }}</option>
+                              >
+                              {{ experience_type.name.charAt(0).toUpperCase() + experience_type.name.slice(1)}}
+                              </option>
                             </select>
                           </div>
                         </div>
