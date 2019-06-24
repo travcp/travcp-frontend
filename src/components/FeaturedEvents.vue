@@ -36,7 +36,7 @@
                       <div class="card-deck">
                         <div class="row">
                           <div class="col-md-4" v-for="event in events" :key="event.id">
-                            <a :href="'/experience/'+ event.id + '/' + event.title.toString().toLowerCase().replace( /\s/g, '-')">
+                            <router-link :to="'/experience/'+ event.id + '/' + event.title.toString().toLowerCase().replace( /\s/g, '-')">
                                 <div class="featured-card card" style="overflow: hidden;">
                                     <img v-if="event.images.length" style="width: 100%;object-fit: cover;height:380px;" :src="event.images[0].image" class="card-img-top featured-card-img" alt="...">
                                     <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" style="width: 100%;object-fit: cover;height: 380px;" alt="...">
@@ -54,7 +54,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </a>
+                            </router-link>
                           </div>
                         </div>
                       </div>
@@ -127,7 +127,7 @@ export default {
                     requestHeaders).then(response => {
                     console.log(response.data.data);
                     this.loading = false
-                    this.$noty.success('Experience now Favorite')
+                    this.$noty.success('Added to Favorites')
                 }).catch(error => {
                     console.log(error.data)
                     this.loading = false

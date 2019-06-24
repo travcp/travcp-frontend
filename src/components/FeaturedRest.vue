@@ -36,7 +36,7 @@
                       <div class="card-deck">
                         <div class="row">
                           <div class="col-md-4" v-for="restaurant in restaurants" :key="restaurant.id">
-                            <a :href="'/experience/'+ restaurant.id + '/' + restaurant.title.toString().toLowerCase().replace( /\s/g, '-')">
+                            <router-link :to="'/experience/'+ restaurant.id + '/' + restaurant.title.toString().toLowerCase().replace( /\s/g, '-')">
                                 <div class="featured-card card" style="overflow: hidden;display: flex;flex-direction: column;justify-content: flex-end;width: 100%;color: #FFF;">
                                   <img v-if="restaurant.images.length" style="width: 100%;object-fit: cover;height:380px;" :src="restaurant.images[0].image" class="card-img-top featured-card-img" alt="...">
                                   <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" style="width: 100%;object-fit: cover;height: 380px;" alt="...">
@@ -55,7 +55,7 @@
                                       </div>
                                     </div>
                                   </div>
-                            </a>
+                            </router-link>
                           </div>
                         </div>
                       </div>
@@ -105,7 +105,7 @@ export default {
                     requestHeaders).then(response => {
                     console.log(response.data.data);
                     this.loading = false
-                    this.$noty.success('Experience now Favorite')
+                    this.$noty.success('Added to Favorites')
                 }).catch(error => {
                     console.log(error.data)
                     this.loading = false
