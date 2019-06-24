@@ -19,7 +19,7 @@
                   <!--<div class="col-md-3"></div>-->
                       <div class="col-md-7 form-index-1" v-if="form_index == 1">
                         <div class="row">
-                          <div class="form-group col-md-12" v-if="loadingExp">
+                          <div class="form-group col-md-12 text-center" v-if="loadingExp">
                                   <Circle9 /> 
                           </div>
                         </div>
@@ -74,6 +74,7 @@
                                 <label>Title</label>
                                 <input
                                   v-validate="'required'"
+                                  name="Title"
                                   type="text"
                                   class="form-control new_experience_input"
                                   placeholder="Title"
@@ -89,6 +90,7 @@
                                 <input
                                   v-validate="'required'"
                                   type="text"
+                                  name="Location"
                                   class="form-control new_experience_input"
                                   placeholder="Location"
                                   v-model="experience.location"
@@ -102,6 +104,7 @@
                                 <input
                                   v-validate="'required'"
                                   type="text"
+                                  name="City"
                                   class="form-control new_experience_input"
                                   placeholder="City"
                                   v-model="experience.city"
@@ -115,6 +118,7 @@
                                 <input
                                   v-validate="'required'"
                                   type="text"
+                                  name="State"
                                   class="form-control new_experience_input"
                                   placeholder="State"
                                   v-model="experience.state"
@@ -151,6 +155,7 @@
                                 <input
                                   v-validate="'required'"
                                   type="text"
+                                  name="Offerings"
                                   class="form-control new_experience_input"
                                   placeholder="State"
                                   v-model="experience.offerings"
@@ -178,6 +183,7 @@
                                 <textarea
                                   v-validate="'required'"
                                   cols="30"
+                                  name="Short Description"
                                   rows="10"
                                   class="form-control"
                                   v-model="experience.description"
@@ -190,6 +196,7 @@
                                 <label>Extra Perks</label>
                                 <textarea
                                   v-validate="'required'"
+                                  name="Extra Perks"
                                   cols="30"
                                   rows="10"
                                   class="form-control"
@@ -203,6 +210,7 @@
                                 <label>Drink Types</label>
                                 <textarea
                                   v-validate="'required'"
+                                  name="Drink Types"
                                   cols="30"
                                   rows="10"
                                   class="form-control"
@@ -216,6 +224,7 @@
                                 <label>History</label>
                                 <textarea
                                   v-validate="'required'"
+                                  name="History"
                                   cols="30"
                                   rows="10"
                                   class="form-control"
@@ -229,6 +238,7 @@
                                 <label>Meet up Location</label>
                                 <input
                                   v-validate="'required'"
+                                  name="Meetup Location"
                                   type="text"
                                   class="form-control new_experience_input"
                                   placeholder=""
@@ -242,6 +252,7 @@
                                 <label>Itinerary for the experience</label>
                                 <input
                                   v-validate="'required'"
+                                  name="Itinerary"
                                   type="text"
                                   class="form-control new_experience_input"
                                   placeholder=""
@@ -255,6 +266,7 @@
                                 <label>What tourists should bring along</label>
                                 <input
                                   v-validate="'required'"
+                                  name="Expected items"
                                   type="text"
                                   class="form-control new_experience_input"
                                   placeholder=""
@@ -309,6 +321,7 @@
                                     <label>Price ($)</label>
                                     <input
                                       v-validate="'required'"
+                                      name="Price"
                                       type="text"
                                       class="form-control new_experience_input"
                                       placeholder="in Dollars"
@@ -319,9 +332,10 @@
                                     <label>Dates Range</label> <br />
                                     <date-picker
                                       v-validate="'required'"
-                                      v-model="experience.time"
+                                      name="Date range"
+                                      v-model="time"
                                       range
-                                      :shortcuts="shortcuts"
+                                      :shortcuts="dateShortcuts"
                                       :lang="lang"
                                       input-class="form-control new_experience_input"
                                     ></date-picker>
@@ -706,8 +720,6 @@ export default {
                 })
 
               }
-
-
               this.$store.state.loading.merchantEditExperience = false;
               this.$router.push("/dashboard/merchant/experiences");
             })
@@ -728,13 +740,13 @@ export default {
     checkExperienceType() {
       
       for (let i = 0; i < this.experience_types.length; i++) {
-        console.log(this.experience_types)
+        // console.log(this.experience_types)
         if (this.experience_types[i] != undefined) {
           if (this.experience_types[i].name == this.$route.params.experience_type) {
             // this.experience_type_name = event.target.value;
             this.exp_id = this.experience_types[i].id;
             this.requiredFields = this.experience_types[i].experience_fields;
-            console.log(this.requiredFields)
+            // console.log(this.requiredFields)
           }
         }
       }
@@ -760,6 +772,10 @@ export default {
       await axios.get(`${this.$store.state.API_BASE}/experiences/${this.$route.params.id}`).then(response => {
         
         this.experience = response.data.data
+        this.time = [
+          this.experience.start_date,
+          this.experience.end_date
+        ];
         for(let i = 0; i < this.experience.images.length; i++){
           console.log(this.experience.images[i].image)
           
@@ -792,7 +808,16 @@ export default {
   },
   computed: {
     ...mapState(["loading"]),
-    experience_type_placeholder() {}
+    experience_type_placeholder() {},
+    dateShortcuts: function(){
+      return [
+      {
+        text: 'Start and End date',
+        start: this.experience.start_date,
+        end: this.experience.end_date
+      }
+    ]
+    } 
   },
   created() {
     this.getExperienceById(this.$route.params.id)
