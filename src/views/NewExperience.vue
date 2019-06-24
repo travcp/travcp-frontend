@@ -606,26 +606,43 @@ export default {
 
         let requestHeaders = {
           headers: {
+            "Content-Type": "multipart/form-data",
             Authorization: "Bearer " + this.$store.state.auth.access_token
           }
         }
 
-        let formData = new FormData()
         for (let i = 0; i < imageFiles.length; i++) {
-          let file = this.files[i];
-          formData.append("images[" + i + "]", imageFiles[i].file);
-        }
-        formData.append("_method", "PUT");
 
-        await axios.post(`${this.$store.state.API_BASE}/experiences/${this.experience_response_data.id}`, formData, requestHeaders).then(response => {
-          console.log(response.data.data)
-              this.fileLoading = false;
-              this.$noty.success('Experience Image Upload Successfull')
-              this.$router.push("/dashboard/merchant/experiences");
-        }).catch(error => {
-              this.fileLoading = false;
-              console.log(error.response)
-        })
+          let formData = new FormData()
+          let file = this.files[i];
+          formData.append("image", imageFiles[i].file);
+          formData.append("experience_id", this.experience_response_data.id);
+          
+          await axios.post(`${this.$store.state.API_BASE}/uploads`, formData, requestHeaders).then(response => {
+                console.log(response.data.data)
+                this.fileLoading = false;
+                this.$noty.success('Experience Image Upload Successfull')
+                this.$router.push("/dashboard/merchant/experiences");
+          }).catch(error => {
+                this.fileLoading = false;
+                console.log(error.response)
+          })
+
+        }
+
+        // formData.append("_method", "PUT");
+        // formData.append("experience_id", this.experience_response_data.id);
+
+        // await axios.post(`${this.$store.state.API_BASE}/uploads`, formData, requestHeaders).then(response => {
+        //   console.log(response.data.data)
+        //       this.fileLoading = false;
+        //       this.$noty.success('Experience Image Upload Successfull')
+        //       this.$router.push("/dashboard/merchant/experiences");
+        // }).catch(error => {
+        //       this.fileLoading = false;
+        //       console.log(error.response)
+        // })
+
       } else {
         this.fileLoading = false;
         this.$noty.warning('Upload at leaset one Image.')
@@ -659,7 +676,7 @@ export default {
       // console.log(formData);
       let data = {
         title: this.title,
-        location: this.vm.location.place.formatted_address,
+        location: this.vm.place.formatted_address,
         city: this.city,
         state: this.state,
         country: this.country,

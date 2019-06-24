@@ -125,7 +125,7 @@
                                 />
                               </div>
                               <div
-                                class="form-group col-md-4"
+                                class="form-group col-md-6"
                                 v-if="requiredFields.includes('country')"
                               >
                                 <label>Country</label>
@@ -368,8 +368,20 @@
                     <h4>
                       Upload Images to This Experience
                     </h4> <br>
+                    <div class="row"> 
+                        <div class="col-md-6 card" v-for="(pic, key) in travv_app_pictures">  
+                            <!-- <div class="travv-images">  -->
+                              <span style="text-align: right;cursor:pointer;" 
+                                    class="remove-file text-danger"
+                                    v-on:click="removeFile(key)"
+                                  ><i class="fa fa-times"></i> Remove</span>
+                            <img :src="pic.source" style="object-fit: cover;">
+                            <!-- </div> -->
+                          </div>
+                    </div><br>  
+                    
                     <FilePond name="Expereince_upload" 
-                     v-bind:files="travv_app_pictures" 
+                     
                      ref="pond" allowMultiple="true" 
                      accepted-file-types="image/*" allowImageEdit="true" />
                   </div>
@@ -412,6 +424,9 @@ import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
 import FilePondPluginImageEdit from 'filepond-plugin-image-edit';
 
 import { Circle9 } from 'vue-loading-spinner'
+
+import Swal from 'sweetalert2'
+
 export default {
   name: "MerchantEditExperience",
   beforeRouteEnter(to, from, next) {
@@ -427,6 +442,7 @@ export default {
   data() {
     return {
       // experience_type_placeholder: null,
+      deletedImages: [],
       loadingExp: false,
       experience_types: [],
       validationErrors: [],
@@ -530,6 +546,52 @@ export default {
   methods: {
     // ...mapActions(["getExperienceTypes"]),
     ...mapActions(["submitExperience"]),
+    removeFile(key) {
+      Swal.fire({
+                title: 'Are You Sure You Want to Delete This Image',
+                text: 'Please Confirm if image should be Deleted (Action Can not be reversed)?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+              }).then((result) => {
+          if (result.value) {
+          let requestHeaders = {
+              headers: {
+                Authorization: "Bearer " + this.$store.state.auth.access_token
+              },
+              data : {
+                image: this.travv_app_pictures[key].image_files.image
+              }
+            }
+          // for (let i = 0; i < this.deletedImages.length; i++) {
+            console.log(this.travv_app_pictures[key].image_files.id, this.travv_app_pictures[key])
+              
+            axios.delete(`${this.$store.state.API_BASE}/uploads/${this.travv_app_pictures[key].image_files.id}`, requestHeaders).then(response => {
+
+              this.$noty.warning('Experience Image Deleted Successfull')
+
+            this.deletedImages.push(this.travv_app_pictures[key])
+            this.travv_app_pictures.splice(key, 1);
+              console.log(response.data.data)
+
+            }).catch(error => {
+
+              console.log(error.response.data)
+
+            })
+            Swal.fire(
+              'Deleted!',
+              'Your file has been deleted.',
+              'success'
+            )
+          }
+        })
+       // if(this.deletedImages.length) {
+        // }
+      // }
+    },
     formatDate(date) {
       var d = new Date(date),
         month = "" + (d.getMonth() + 1),
@@ -550,9 +612,6 @@ export default {
     },
     addFiles() {
       this.$refs.files.click();
-    },
-    removeFile(key) {
-      this.files.splice(key, 1);
     },
     submitFormExperience: function() {
       // if (this.experience_type == 22) {
@@ -627,8 +686,40 @@ export default {
               requestHeaders
             )
             .then(response => {
-              
-              this.$noty.success("Experience is Submitted Succesfully");
+              // resolve(response.data.data);
+
+              console.log(this.$refs.pond.getFiles())
+                let imageFiles = this.$refs.pond.getFiles()
+
+
+              console.log(response.data.data);
+              this.$noty.success("Experience is Edited Succesfully");
+              let requestHeaders = {
+                  headers: {
+                    "Content-Type": "multipart/form-data",
+                    Authorization: "Bearer " + this.$store.state.auth.access_token
+                  }
+                }
+
+
+              for (let i = 0; i < imageFiles.length; i++) {
+
+                let formData = new FormData()
+                // let file = this.files[i];
+                formData.append("image", imageFiles[i].file);
+                formData.append("experience_id", this.experience.id);
+                
+                axios.post(`${this.$store.state.API_BASE}/uploads`, formData, requestHeaders).then(response => {
+                      console.log(response.data.data)
+                      this.fileLoading = false;
+                      this.$noty.success('Experience Image Upload Successfull')
+                      this.$router.push("/dashboard/merchant/experiences");
+                }).catch(error => {
+                      this.fileLoading = false;
+                      console.log(error.response)
+                })
+
+              }
               this.$store.state.loading.merchantEditExperience = false;
               this.$router.push("/dashboard/merchant/experiences");
             })
@@ -687,7 +778,18 @@ export default {
         ];
         for(let i = 0; i < this.experience.images.length; i++){
           console.log(this.experience.images[i].image)
-          this.travv_app_pictures.push(this.experience.images[i].image)
+          
+          this.travv_app_pictures.push(
+            {
+              source: this.experience.images[i].image,
+
+              options: {
+                  type: "limbo",
+                  
+              },
+              image_files: this.experience.images[i]
+            }
+          )
         }
         this.loadingExp = false
         this.opening_and_closing_hours = this.experience.opening_and_closing_hours;
@@ -837,5 +939,12 @@ textarea.form-control {
 }
 .form-holder .submit_exp_btn {
   text-align: center;
+}
+
+.travv-images{
+  height: 250px;
+  width: 250px;
+  border: 1px solid grey;
+  object-fit: cover;
 }
 </style>
