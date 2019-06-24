@@ -52,11 +52,12 @@
                                                       </div>
                                                     <div class="form-group col-md-12">
                                                         <label
-                                                          >Price</label
+                                                          >Price $</label
                                                         >
                                                         <input
                                                               v-validate="'required|numeric'"
-                                                              type="text"
+                                                              type="number"
+                                                              step="any"
                                                               class="form-control new_experience_input"
                                                               placeholder="Price"
                                                               v-model="price"

@@ -33,6 +33,7 @@
                             <label>Select Experience Type</label>
                             <select
                               v-validate="'required'"
+                              name="Experience Type"
                               class="form-control new_experience_input"
                               v-model="experience_type"
                               @change="checkExperienceType"
@@ -40,7 +41,7 @@
                               <!-- <option selected>Select</option> -->
                               <option
                                 v-for="experience_type in experience_types"
-                                v-if="experience_type"
+                                v-if="experience_type" :key="experience_type.id"
                               >{{ experience_type.name }}</option>
                             </select>
                           </div>
@@ -78,6 +79,7 @@
                                   <label>Title</label>
                                   <input
                                     v-validate="'required'"
+                                    name="Title"
                                     type="text"
                                     class="form-control new_experience_input"
                                     placeholder="Title"
@@ -94,6 +96,7 @@
                                   <label>Location</label>
                                   <input
                                     v-validate="'required'"
+                                    name="Location"
                                     type="text"
                                     class="form-control new_experience_input"
                                     placeholder="Location"
@@ -111,6 +114,7 @@
                                   <label>City</label>
                                   <input
                                     v-validate="'required'"
+                                    name="City"
                                     type="text"
                                     class="form-control new_experience_input"
                                     placeholder="City"
@@ -124,6 +128,7 @@
                                   <label>State</label>
                                   <input
                                     v-validate="'required'"
+                                    name="State"
                                     type="text"
                                     class="form-control new_experience_input"
                                     placeholder="State"
@@ -155,6 +160,7 @@
                                     </label>
                                     <input
                                       v-validate="'required'"
+                                      name="Offerings"
                                       type="text"
                                       class="form-control new_experience_input"
                                       placeholder="What payment covers"
@@ -184,6 +190,7 @@
                                     <label>Description of the experience</label>
                                     <textarea
                                       v-validate="'required'"
+                                      name="Description"
                                       placeholder="A short description of the experience"
                                       cols="30"
                                       rows="10"
@@ -198,6 +205,7 @@
                                     <label>Merchant's Bio</label>
                                     <textarea
                                       v-validate="'required'"
+                                      name="Merchant Bio"
                                       placeholder="A short bio about the merchant adding this experience"
                                       cols="30"
                                       rows="10"
@@ -214,6 +222,7 @@
                                     <label>Extra Perks</label>
                                     <textarea
                                       v-validate="'required'"
+                                      name="Extra perks"
                                       cols="30"
                                       rows="10"
                                       class="form-control"
@@ -226,6 +235,7 @@
                                   >
                                     <label>Drink Types</label>
                                     <textarea
+                                      name="Drink types"
                                       cols="30"
                                       rows="10"
                                       class="form-control"
@@ -241,6 +251,7 @@
                                   >
                                     <label>History</label>
                                     <textarea
+                                      name="History"
                                       cols="30"
                                       rows="10"
                                       placeholder="History of the experience"
@@ -255,6 +266,7 @@
                                     <label>Meet up Location</label>
                                     <input
                                       v-validate="'required'"
+                                      name="Meetup location"
                                       type="text"
                                       class="form-control new_experience_input"
                                       placeholder
@@ -270,6 +282,7 @@
                                     <label>Itinerary for the experience</label>
                                     <input
                                       v-validate="'required'"
+                                      name="Itinerary"
                                       type="text"
                                       class="form-control new_experience_input"
                                       placeholder
@@ -283,6 +296,7 @@
                                     <label>What tourists should bring along</label>
                                     <input
                                       v-validate="'required'"
+                                      name="Expected items"
                                       type="text"
                                       class="form-control new_experience_input"
                                       placeholder
@@ -320,6 +334,7 @@
                                   <label>Price ($)</label>
                                     <input
                                       v-validate="'required'"
+                                      name="Price"
                                       type="number"
                                       step="any"
                                       class="form-control new_experience_input"
@@ -332,6 +347,7 @@
                                     <br>
                                     <date-picker
                                       v-validate="'required'"
+                                      name="Date range"
                                       v-model="time"
                                       range
                                       :shortcuts="shortcuts"

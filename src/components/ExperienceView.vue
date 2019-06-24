@@ -167,7 +167,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="col-xs-6 col-md-6" style="background: #555555'" v-if="experience.experience_type != 'restaurants'">
-                                                        <button type="button" class="book_btn btn-block" @click="postFavoriteExeperience(experience.id)">Favourites</button>
+                                                        <button type="button" class="book_btn btn-block" @click="postFavoriteExeperience(experience.id)">Favourite</button>
                                                     </div>
                                                     <div class="col-xs-6 col-md-6" v-if="experience.experience_type == 'restaurants'">
                                                         <button type="button" class="book_btn btn-block"  @click="gotoMenu">View Menu</button>
@@ -722,7 +722,7 @@
                                 requestHeaders).then(response => {
                                     console.log(response.data.data);
                                     this.loading = false
-                                    this.$noty.success('Experience now Favorite')
+                                    this.$noty.success('Experience has been added to your Favourites list')
                                 }).catch(error => {
                                     console.log(error.data)
                                     this.loading = false
