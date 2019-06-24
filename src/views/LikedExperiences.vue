@@ -123,7 +123,7 @@
                     this.loading = true;
                     Axios.get(`${this.$store.state.API_BASE}/favourites?user_id=${this.$store.state.auth.user.id}`)
                         .then(response => {
-                            console.log(response.data.data);
+                            // console.log(response.data.data);
                             this.FavoritesExperience = response.data.data
                             this.loading = false
                         }).catch(error => {

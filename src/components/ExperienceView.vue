@@ -8,6 +8,9 @@
         <section class="project_area nagoya" v-if="experience.images && experience.images.length > 0" :style="{background: 'url(' + experience.images[0].image + ')', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}" style="background-repeat: no-repeat;background-size: cover;background-position: center;">
             <div class="container">
             </div>
+            <!-- <div class="" style="position:absolute; top:5px; right:5px">
+                <button type="button" style="padding:7px; border-radius:7px; border:none; box-shadow: darkgrey 1px 4px 3px 2px;" @click="postFavoriteExeperience(experience.id)"><i class="fa fa-heart"></i> Favourite</button>
+            </div> -->
         </section>
         <section class="project_area nagoya" style="background-repeat: no-repeat;background-size: cover;background-position: center;" v-else>
             <div class="container">
@@ -34,8 +37,8 @@
                     <Circle9 />
                 </div>
                 <div class="col-sm-6 col-md-7 col-lg-7 blog_content" v-else>
-                    <h3 style="text-transform: capitalize;;font-size: 20px;">
-                        {{ experience.title }} | {{ experience.state }}
+                    <h3 style="text-transform: capitalize;;font-size: 30px;">
+                        {{ experience.title }} | {{ experience.state }} &nbsp; &nbsp; <a href="javascript:void(0)" title="Add to favourites" style="color: #f81894" @click="postFavoriteExeperience(experience.id)"><i class="far fa-heart"></i></a>
                     </h3>
                     <h1 style="text-transform: capitalize;font-size: 24px;margin-bottom: 10px;">{{ experience.city }}</h1>
                     
@@ -148,7 +151,7 @@
                                             <input type="text" name="deliveryAddress" v-validate="'required|min:5' ? experience.experience_type == 'sourvenirs' : ''" v-model="delivery_address" placeholder="Address you'd like the item delivered to" class="form-control">
                                             <span>{{ errors.first('deliveryAddress') }}</span>
                                         </div>
-                                        <date-picker name="date" v-validate="'required' ? experience.experience_type == 'restaurants' : ''" v-model="time" range :shortcuts="shortcuts" :lang="lang" v-else></date-picker>
+                                        <date-picker name="date" v-validate="experience.experience_type == 'restaurants' ? 'required' : ''" v-model="time" range :shortcuts="shortcuts" :lang="lang" v-else></date-picker>
                                         <span>{{ errors.first('date') }}</span>
                                         <!-- <p>Start Date <input id="datepicker" v-model="start_date" type="date" width="276" /> -->
                                         <!-- <date-picker v-model="time" range :shortcuts="shortcuts" :lang="lang"></date-picker> -->
@@ -166,9 +169,7 @@
                                                             </span>
                                                         </button>
                                                     </div>
-                                                    <div class="col-xs-6 col-md-6" style="background: #555555'" v-if="experience.experience_type != 'restaurants'">
-                                                        <button type="button" class="book_btn btn-block" @click="postFavoriteExeperience(experience.id)">Favourite</button>
-                                                    </div>
+                                                    
                                                     <div class="col-xs-6 col-md-6" v-if="experience.experience_type == 'restaurants'">
                                                         <button type="button" class="book_btn btn-block"  @click="gotoMenu">View Menu</button>
                                                     </div>

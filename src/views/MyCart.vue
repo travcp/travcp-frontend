@@ -2,7 +2,7 @@
   <div class="container main">
     <vue-headful
             title="My Cart | TRAV CP"
-            description="Description from TRAV CP"
+            description="Items added to cart ready to be checkedout"
         />
     <Navbar/>
     <!-- booking header details left -->
@@ -27,7 +27,7 @@
               <div class="my-booking-trip-details">
                 <p
                   class="my-booking-trip-details-p1"
-                >{{ item.booking.experience.description }}</p>
+                >{{ item.booking.experience.description.slice(0, 200) }}</p>
               </div>
             </div>
           </div>
@@ -37,7 +37,7 @@
               <!-- <p class="col-md-2 my-cart-delete-image"></p> -->
             </a>
             <button class="btn" style="background: #f81894;color #FFF;height: 40px;">
-              <p class="col-md-2" style="font-size: 17px; font-weight: bold;" @click="removeFromCart(item.id)"><i class="fa fa-bin"></i>REMOVE</p>
+              <p class="col-md-2" style="font-size: 17px; font-weight: bold;" @click="removeFromCart(item.id)"><i class="fa fa-bin"></i>Remove</p>
             </button>
           </div>
         </div>
