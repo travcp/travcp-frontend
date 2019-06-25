@@ -1,8 +1,8 @@
 <template>
     <div class="ExperienceView">
         <vue-headful
-            :title = "'View Experience | ' + $store.state.appName"
-            :description="$store.state.appDescription"
+            title = "Experience | TRAV CP"
+            description="Description of TRAV CP"
         />
         <Navbar></Navbar>
         <section class="project_area nagoya" v-if="experience.images && experience.images.length > 0" :style="{background: 'url(' + experience.images[0].image + ')', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}" style="background-repeat: no-repeat;background-size: cover;background-position: center;">
@@ -188,7 +188,7 @@
                                         <!-- <date-picker v-model="time1" :first-day-of-week="1"></date-picker> -->
                                     </form>
                                     <div class="book_btn" style="padding-top: 10px;text-align: center;" v-else>
-                                        Added to cart
+                                        Booked
                                     </div>
                                 </div>
                             </div>
@@ -290,7 +290,7 @@
                                 <div class="col-md-8">
                                     <h2 style="text-align: left;">Reviews</h2>
                                 </div>
-                                <div class="col-md-4" v-if="checkBookingStatus">
+                                <div class="col-md-4">
                                     <button class="btn" style="border: 2px solid #000;height: 37px;"  data-toggle="modal" data-target="#writeAReviewModal"><i class="fa fa-pencil" style="color: #000;"></i> Write a Review</button>
                                 <div class="modal fade" id="writeAReviewModal" tabindex="-1" role="dialog" aria-labelledby="writeAReviewModal" aria-hidden="true">
                                   <div class="modal-dialog" role="document">
@@ -309,25 +309,22 @@
                                                 <div class="col-md-12" style="margin-bottom: 40px;">
                                                     <h6><b>Rate the Experience</b></h6> 
                                                     <p class="alert alert-warning" v-if="!checkBookingStatus" style="margin:0;">To rate this Experience you need to book first</p>
-                                                    <section v-else>
-                                                        <div id="reviewStars-input" @click="toggleRatingBox">
-                                                            <input id="star-4" value=5 v-model="reviewStar" type="radio" name="reviewStars"/>
-                                                            <label title="gorgeous" for="star-4"></label>
+                                                    <div id="reviewStars-input" @click="toggleRatingBox" v-else>
+                                                        <input id="star-4" value=5 v-model="reviewStar" type="radio" name="reviewStars"/>
+                                                        <label title="gorgeous" for="star-4"></label>
 
-                                                            <input id="star-3" value=4 v-model="reviewStar" type="radio" name="reviewStars"/>
-                                                            <label title="good" for="star-3"></label>
+                                                        <input id="star-3" value=4 v-model="reviewStar" type="radio" name="reviewStars"/>
+                                                        <label title="good" for="star-3"></label>
 
-                                                            <input id="star-2" value=3 v-model="reviewStar" type="radio" name="reviewStars"/>
-                                                            <label title="regular" for="star-2"></label>
+                                                        <input id="star-2" value=3 v-model="reviewStar" type="radio" name="reviewStars"/>
+                                                        <label title="regular" for="star-2"></label>
 
-                                                            <input id="star-1" value=2 v-model="reviewStar" type="radio" name="reviewStars"/>
-                                                            <label title="poor" for="star-1"></label>
+                                                        <input id="star-1" value=2 v-model="reviewStar" type="radio" name="reviewStars"/>
+                                                        <label title="poor" for="star-1"></label>
 
-                                                            <input id="star-0" value=1 v-model="reviewStar" type="radio" name="reviewStars"/>
-                                                            <label title="bad" for="star-0"></label>
-                                                        </div>
-                                                    </section>
-                                                    
+                                                        <input id="star-0" value=1 v-model="reviewStar" type="radio" name="reviewStars"/>
+                                                        <label title="bad" for="star-0"></label>
+                                                    </div>
                                                 </div>
                                                  
                                                 <div class="col-md-12" style="margin: auto;">
@@ -397,7 +394,7 @@
                             </div>
                             <div class="col-md-3">
 
-                                <button type="button" v-if="checkBookingStatus" class="btn btn-primary" style="background: #f81894;border:#f81894;"  data-toggle="modal" data-target="#ReviewVideoModal">
+                                <button type="button" class="btn btn-primary" style="background: #f81894;border:#f81894;"  data-toggle="modal" data-target="#ReviewVideoModal">
                                   Make 5 seconds video review
                                 </button>
                             </div>
@@ -802,7 +799,7 @@
                     } 
             },
             cancelUserFavorites(){
-                // axios.delete(`${this.$store.state.API_BASE}/`).then().catch()
+                axios.delete(`${this.$store.state.API_BASE}/`)
             },
             getMerchantExtras(){
                 axios.get(`${this.$store.state.API_BASE}/merchant/extras/${this.experience.merchant_id}`)

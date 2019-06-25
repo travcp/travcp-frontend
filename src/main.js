@@ -13,12 +13,12 @@ import vueCountryRegionSelect from 'vue-country-region-select'
 import ImageUploader from 'vue-image-upload-resize'
 import VueGmaps from 'vue-gmaps'
 
-import Cloudinary from 'cloudinary-vue';
-Vue.use(Cloudinary, {
-  configuration: {
-    cloudName: "brimatel"
-  }
-});
+// import Cloudinary from 'cloudinary-vue';
+// Vue.use(Cloudinary, {
+//   configuration: {
+//     cloudName: "brimatel"
+//   }
+// });
 
 Vue.use(VueGmaps, {
   key: 'AIzaSyDgnbjMxlLW2BHBPJ4-iFsX_aB9jEHBFCg',

@@ -431,7 +431,7 @@ import { mapActions, mapState } from "vuex";
 import DatePicker from "vue2-datepicker";
 import axios from "axios";
 import OpenClosingTimes from "@/components/utility/OpenClosingTimes";
-import {CldContext, CldImage, CldVideo, CldTransformation} from 'cloudinary-vue';
+// import {CldContext, CldImage, CldVideo, CldTransformation} from 'cloudinary-vue';
 import cloudinary from "cloudinary-core";
 import vueFilePond from 'vue-filepond';
 import 'filepond/dist/filepond.min.css';
