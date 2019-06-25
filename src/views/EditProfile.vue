@@ -32,7 +32,7 @@
                     city
                     country
                     postal_code -->
-                <div class="form-group col-4" v-if="!checkUserType">
+                <div class="form-group col-4" v-if="checkUserType">
                   <label for="">Company</label>
                   <input
                     v-validate="'required'"
@@ -42,7 +42,7 @@
                     placeholder="TravvApp Inc."
                   />
                 </div>
-                <div class="form-group col-4" v-if="!checkUserType">
+                <div class="form-group col-4" v-if="checkUserType">
                   <label for="">Bussiness Email</label>
                   <input
                     v-validate="'required'"
@@ -52,7 +52,7 @@
                     placeholder="TravvApp Inc."
                   />
                 </div>
-                <div class="form-group col-4" v-if="!checkUserType">
+                <div class="form-group col-4" v-if="checkUserType">
                   <label for="">Bussiness Phone Number</label>
                   <input
                     v-validate="'required'"
@@ -62,7 +62,7 @@
                     placeholder="+234 800 000 00"
                   />
                 </div>
-                <div class="form-group col-12" v-if="!checkUserType">
+                <div class="form-group col-12" v-if="checkUserType">
                   <label for="">Short Bio</label>
                   <textarea
                     v-validate="'required'"
@@ -293,7 +293,7 @@ export default {
       return this.auth.user;
     },
     checkUserType() {
-      if (this.$store.state.auth == 'merchant') {
+      if (this.$store.state.auth.user.role == 'merchant') {
         return true;
       }
       return false;
@@ -474,7 +474,7 @@ export default {
     this.merchantEmail()
     this.merchantPhone()
     this.merchantBio() 
-    if(!this.checkUserType){
+    if(this.checkUserType){
       this.business_name = this.auth.merchant.business_name
       this.business_email = this.auth.merchant.business_email
       this.bio = this.auth.merchant.bio

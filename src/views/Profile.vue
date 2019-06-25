@@ -35,6 +35,83 @@
                        </div>
                    </div>
                    <div class="col-md-8">
+                    <div v-if="checkUserType" class="card shadow p-3 mb-5 bg-white rounded">
+                      <div class="card-body">
+                          <div class="card-body">
+                             
+                            <div class="row">
+                              <div class="col-md-6  merchant-data-card" style="border: 1px solid #eee; border-left: 4px solid #d3187f; border-radius: 5px;height: 120px;padding: 15px;padding-top: 25px;position: relative; left: -10px;">
+                                <div class="row">
+                                  <div class="col-md-4">
+                                    <i class="fa fa-plane-departure fa-5x" style="color: #e83e8c;"></i>
+                                  </div>
+                                  <div class="col-md-8">
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <h4>Experiences</h4>
+                                      </div>
+                                      <div class="col-md-12">
+                                        <h6>{{ allExperience }}</h6>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6  merchant-data-card" style="border: 1px solid #eee; border-left: 4px solid #6610f2; border-radius: 5px;height: 120px;padding: 15px;padding-top: 25px;">
+                                <div class="row">
+                                  <div class="col-md-4">
+                                    <i class="fab fa-algolia fa-5x" style="color: #6610f2;"></i>
+                                  </div>
+                                  <div class="col-md-8">
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <h4>Events</h4>
+                                      </div>
+                                      <div class="col-md-12">
+                                        <h6>{{ eventsTotal }}</h6>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6  merchant-data-card" style="border: 1px solid #eee; border-left: 4px solid #20c997; border-radius: 5px;height: 120px;padding: 15px;padding-top: 25px;position: relative; left: -10px;margin-top: 10px;">
+                                <div class="row">
+                                  <div class="col-md-4">
+                                    <i class="fa fa-location-arrow fa-5x" style="color: #20c997;"></i>
+                                  </div>
+                                  <div class="col-md-8">
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <h4>Places</h4>
+                                      </div>
+                                      <div class="col-md-12">
+                                        <h6>{{ placeTotal }}</h6>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6  merchant-data-card" style="border: 1px solid #eee; border-left: 4px solid #17a2b8; border-radius: 5px;height: 120px;padding: 15px;padding-top: 25px;margin-top: 10px;">
+                                <div class="row">
+                                  <div class="col-md-4">
+                                    <i class="fas fa-utensils fa-5x" style="color: #17a2b8;"></i>
+                                  </div>
+                                  <div class="col-md-8">
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <h4>Restaurants</h4>
+                                      </div>
+                                      <div class="col-md-12">
+                                        <h6>{{ restTotal }}</h6>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
                        <div class="card bookings-card">
                            <div class="card-body">
                                <div class="card-head">
@@ -148,7 +225,11 @@ export default {
       bookings: [],
       medalType: null,
       videoData: [],
-      message: 'http://travvapp.herokuapp.com/signup?ref'
+      message: 'http://travvapp.herokuapp.com/signup?ref',
+      allExperience: 0,
+      restTotal: 0,
+      eventsTotal: 0,
+      placeTotal: 0
     }},
     computed: {
       ...mapState(['auth']),
@@ -163,6 +244,12 @@ export default {
           } else if (this.medalType && this.medalType.name == "Expert"){
               return 'gold.png'
           }
+      },
+      checkUserType() {
+        if (this.$store.state.auth.user.role == 'merchant') {
+          return true;
+        }
+        return false;
       }
     },
     methods: {
@@ -208,6 +295,45 @@ export default {
           // var c = url.searchParams.get("c");
           return url.pathname.slice(7)
         },
+        getExperiencesTotal(){
+          axios.get(`${this.$store.state.API_BASE}/merchants/${this.$store.state.auth.user.id}/experiences`)
+                .then((response) => {
+                  console.log('Expereinces')
+                  this.allExperience = response.data.data.length
+
+                    axios.get(`${this.$store.state.API_BASE}/merchants/${this.$store.state.auth.user.id}/experiences?experiences_type_id=12`)
+                          .then(response => {
+                            console.log('Restaurants')
+                            this.restTotal = response.data.data.length
+
+                            axios.get(`${this.$store.state.API_BASE}/merchants/${this.$store.state.auth.user.id}/experiences?experiences_type_id=2`)
+                                  .then(response => {
+                                    console.log('Events')
+                                    this.eventsTotal = response.data.data.length
+
+                                      axios.get(`${this.$store.state.API_BASE}/merchants/${this.$store.state.auth.user.id}/experiences?experiences_type_id=22`)
+                                            .then(response => {
+                                              this.placeTotal = response.data.data.length
+                                              console.log('Places')
+                                              console.log(response.data.data)
+                                            }).catch(error => {
+                                              console.log(error.response.data)
+                                            })
+
+                                    console.log(response.data.data)
+                                  })
+
+                            console.log(response.data.data)
+                          }).catch(error => {
+                            console.log(error.response.data)
+                          })
+
+                  console.log(response.data.data)
+
+                }).catch((error) => {
+                  console.log(error.response.data)
+                })
+        },
         getVideoByCat(catergory){
           Axios.get(`${this.$store.state.API_BASE}/videos?video_category_id=${catergory}`).then((response) => {
             console.log(response.data.data)
@@ -221,7 +347,7 @@ export default {
     },
     created(){
       this.message = `http://travvapp.herokuapp.com/signup?ref=${this.auth.user.referral_token}`
-
+      this.getExperiencesTotal()
       this.getMyBookings()
       this.getUserMedal()
       this.getVideos()

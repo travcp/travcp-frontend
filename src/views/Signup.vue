@@ -175,7 +175,7 @@ import FormErrors from "@/components/FormErrors.vue";
   import Footer from '@/components/Footer.vue';
 
   import Navbar from '@/components/Navbar.vue';
-  import VuePassword from 'vue-password'
+  // import VuePassword from 'vue-password'
 
 	export default {
 		name: 'Signup',
@@ -243,7 +243,7 @@ import FormErrors from "@/components/FormErrors.vue";
             }
         },
         components: {
-          Navbar, Footer, VuePassword, FormErrors
+          Navbar, Footer, FormErrors
         }
 	}
 </script>

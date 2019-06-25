@@ -2,7 +2,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
-import VuePassword from 'vue-password'
+// import VuePassword from 'vue-password'
 import vueHeadful from 'vue-headful';
 import VueSlider from 'vue-slider-component';
 import 'vue-slider-component/theme/default.css';
@@ -37,7 +37,7 @@ Vue.use(VueClipboard)
 // import AirbnbStyleDatepicker from 'vue-airbnb-style-datepicker'
 // import 'vue-airbnb-style-datepicker/dist/vue-airbnb-style-datepicker.min.css'
 
-Vue.component(VuePassword)
+// Vue.component(VuePassword)
 Vue.component('vue-headful', vueHeadful);
 // see docs for available options
 const datepickerOptions = {}
