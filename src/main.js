@@ -13,12 +13,12 @@ import vueCountryRegionSelect from 'vue-country-region-select'
 import ImageUploader from 'vue-image-upload-resize'
 import VueGmaps from 'vue-gmaps'
 
-import Cloudinary from 'cloudinary-vue';
-Vue.use(Cloudinary, {
-  configuration: {
-    cloudName: "brimatel"
-  }
-});
+// import Cloudinary from 'cloudinary-vue';
+// Vue.use(Cloudinary, {
+//   configuration: {
+//     cloudName: "brimatel"
+//   }
+// });
 
 Vue.use(VueGmaps, {
   key: 'AIzaSyDgnbjMxlLW2BHBPJ4-iFsX_aB9jEHBFCg',
@@ -29,10 +29,10 @@ import VueClipboard from 'vue-clipboard2'
 
 Vue.use(VueClipboard)
 
-import { VueperSlides, VueperSlide } from 'vueperslides'
+// import { VueperSlides, VueperSlide } from 'vueperslides'
 
 // Since v. 1.6.0, you need to include Vueper Slides CSS file for default styles.
-import 'vueperslides/dist/vueperslides.css'
+// import 'vueperslides/dist/vueperslides.css'
 
 // import AirbnbStyleDatepicker from 'vue-airbnb-style-datepicker'
 // import 'vue-airbnb-style-datepicker/dist/vue-airbnb-style-datepicker.min.css'

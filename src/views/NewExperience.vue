@@ -423,16 +423,16 @@
 </template>
 
 <script>
-import vue2Dropzone from "vue2-dropzone";
-import "vue2-dropzone/dist/vue2Dropzone.min.css";
+// import vue2Dropzone from "vue2-dropzone";
+// import "vue2-dropzone/dist/vue2Dropzone.min.css";
 import Navbar from "@/components/Navbar.vue";
 import Footer from "@/components/Footer.vue";
 import { mapActions, mapState } from "vuex";
 import DatePicker from "vue2-datepicker";
 import axios from "axios";
 import OpenClosingTimes from "@/components/utility/OpenClosingTimes";
-import {CldContext, CldImage, CldVideo, CldTransformation} from 'cloudinary-vue';
-import cloudinary from "cloudinary-core";
+// import {CldContext, CldImage, CldVideo, CldTransformation} from 'cloudinary-vue';
+// import cloudinary from "cloudinary-core";
 import vueFilePond from 'vue-filepond';
 import 'filepond/dist/filepond.min.css';
 
@@ -562,7 +562,6 @@ export default {
   components: {
     Navbar,
     Footer,
-    vueDropzone: vue2Dropzone,
     DatePicker,
     OpenClosingTimes,
     FilePond: vueFilePond(FilePondPluginImagePreview, FilePondPluginFileValidateType, FilePondPluginImageEdit)
@@ -810,30 +809,8 @@ export default {
     this.getExperienceTypes();
   },
   mounted() {
-     $("#upload_widget_opener").cloudinary_upload_widget(
-      {
-        cloud_name: "dbzyutd4o",
-        upload_preset: "ultgwxm9",
-        cropping: "server",
-        folder: `experience_${this.$route.params['id']}`,
-        theme: "minimal",
-        stylesheet: ".drag_content { border: 4px solid red }",
-        multiple: false,
-        sources: ["local"],
-        button_class: "ud_button inline no_margin",
-        button_caption: "Browse",
-        thumbnails: ".feature_thumb",
-        thumbnail_transformation: { width: 100, height: 100, crop: "fit" },
-        resource_type: "image"
-      },
-      function(error, result) {
-        if (!error && result && result.event === "success") {
-            this.cloudinaryUploads.push(result.info.secure_url)
-            console.log('Done! Here is the image info: ', result.info); 
-        }
-        console.log(error, result);
-      }
-    );
+     
+     
   }
 };
 </script>

@@ -18,53 +18,8 @@
                         <div class="contacts-panel">
                             <input type="search" class="contacts-search-control" placeholder="Search...">
                             <div class="contact-list">
-                                <ul v-if="allUsers.length">
-                                    <li>
-                                        <div class="row" v-for="user in allUsers" @click="chattingUser(user.userId)">
-                                            <div class="col-3">
-                                                <img src="/img/profile_2.png" alt="" class="contact-img">
-                                            </div>
-                                            <div class="col-6">{{ user.nickname }}</div>
-                                            <div class="col-2">
-                                                <!-- <small class="text-small">8:28am</small> -->
-                                                <span class="badge badge-danger badge-pill">2</span>
-                                                <i class="fa fa-circle" :style="{color: user.connectionStatus == 'online' ? '#d3187f' : 'grey'}"></i>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    break
-                                    <li>
-                                        <div class="row" v-for="user in userToChat">
-                                            <div class="col-3">
-                                                <img src="/img/profile_2.png" alt="" class="contact-img">
-                                            </div>
-                                            <div class="col-6">{{ user.nickname }}</div>
-                                            <div class="col-2">
-                                                <!-- <small class="text-small">8:28am</small> -->
-                                                <span class="badge badge-danger badge-pill">2</span>
-                                                <i class="fa fa-circle" :style="{color: user.connectionStatus == 'online' ? '#d3187f' : 'grey'}"></i>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    break
-                                    <li>
-                                        <div class="row" v-for="channel in userChannels">
-                                            <div class="col-md-12">
-                                                <div class="row" v-for="user in channel.members" v-if="user.userId != currentUser.userId" @click="openChannel(channel.url)">
-                                                    <div class="col-3">
-                                                        <img src="/img/profile_2.png" alt="" class="contact-img">
-                                                    </div>
-                                                    <div class="col-6">{{ user.nickname }}</div>
-                                                    <div class="col-2">
-                                                        <!-- <small class="text-small">8:28am</small> -->
-                                                        <span class="badge badge-danger badge-pill">2</span>
-                                                        <i class="fa fa-circle" :style="{color: user.connectionStatus == 'online' ? '#d3187f' : 'grey'}"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
+                                
+                                
                             </div>
                         </div>
                         <div class="messages-panel">
@@ -104,9 +59,9 @@
 </template>
 <script>
 import Navbar from '@/components/Navbar'
-import SendBird from 'sendbird'
+// import SendBird from 'sendbird'
 
-let sb = new SendBird({appId: 'EDBA8B35-D6D9-42C2-B2C7-F6E0E711D072'});
+// let sb = new SendBird({appId: 'EDBA8B35-D6D9-42C2-B2C7-F6E0E711D072'});
 
 export default {
     name: "Message",
@@ -131,110 +86,110 @@ export default {
         }
       },
       methods: {
-        logout(){
-            sb.disconnect(function(){
-                // A current user is discconected from SendBird server.
-            });
-        },
-        chattingUser(userId){
-            console.log(typeof userId)
-            let _this = this
-            let applicationUserListQuery1 = sb.createApplicationUserListQuery();
-            applicationUserListQuery1.userIdsFilter = [userId];
-            applicationUserListQuery1.next(function(user, error) {
-                if (error) {
-                    return;
-                }
-                _this.createUserChannel(_this.currentUser.userId, userId)
+        // logout(){
+        //     sb.disconnect(function(){
+        //         // A current user is discconected from SendBird server.
+        //     });
+        // },
+        // chattingUser(userId){
+        //     console.log(typeof userId)
+        //     let _this = this
+        //     let applicationUserListQuery1 = sb.createApplicationUserListQuery();
+        //     applicationUserListQuery1.userIdsFilter = [userId];
+        //     applicationUserListQuery1.next(function(user, error) {
+        //         if (error) {
+        //             return;
+        //         }
+        //         _this.createUserChannel(_this.currentUser.userId, userId)
                 
-                console.log(user)
-            });
-        },
-        openChannel(channelUrl) {
-                console.log('Hi i am here')
-            sb.OpenChannel.getChannel(channelUrl, (channel, error) => {
-                console.log(channel)
-                if (error) reject(error)
-                channel.exit()
-              })
-        },
-        createUserChannel(user1Id, user2Id){
-            var userIds = [user1Id, user2Id];
-            var params = new sb.GroupChannelParams();
-                params.isPublic = false;
-                params.isEphemeral = false;
-                params.isDistinct = false;
-                params.addUserIds([user1Id, user2Id]);
-                params.operatorIds = [user1Id];   // or .operators(Array<User>)
-                params.name = user1Id+ " "+ user2Id; 
+        //         console.log(user)
+        //     });
+        // },
+        // openChannel(channelUrl) {
+        //         console.log('Hi i am here')
+        //     sb.OpenChannel.getChannel(channelUrl, (channel, error) => {
+        //         console.log(channel)
+        //         if (error) reject(error)
+        //         channel.exit()
+        //       })
+        // },
+        // createUserChannel(user1Id, user2Id){
+        //     var userIds = [user1Id, user2Id];
+        //     var params = new sb.GroupChannelParams();
+        //         params.isPublic = false;
+        //         params.isEphemeral = false;
+        //         params.isDistinct = false;
+        //         params.addUserIds([user1Id, user2Id]);
+        //         params.operatorIds = [user1Id];   // or .operators(Array<User>)
+        //         params.name = user1Id+ " "+ user2Id; 
 
-                sb.GroupChannel.createChannel(params, function(groupChannel, error) {
-                    if (error) {
-                        return;
-                    }
+        //         sb.GroupChannel.createChannel(params, function(groupChannel, error) {
+        //             if (error) {
+        //                 return;
+        //             }
                     
-                    console.log(groupChannel);
-                });
-        },
-        RetreiveChannels(){
-            var channelListQuery = sb.GroupChannel.createMyGroupChannelListQuery();
-            channelListQuery.includeEmpty = true;
-            channelListQuery.limit = 20;     
+        //             console.log(groupChannel);
+        //         });
+        // },
+        // RetreiveChannels(){
+        //     var channelListQuery = sb.GroupChannel.createMyGroupChannelListQuery();
+        //     channelListQuery.includeEmpty = true;
+        //     channelListQuery.limit = 20;     
 
-            if (channelListQuery.hasNext) {
-                channelListQuery.next(function(channelList, error) {
-                    if (error) {
-                        return;
-                    }
+        //     if (channelListQuery.hasNext) {
+        //         channelListQuery.next(function(channelList, error) {
+        //             if (error) {
+        //                 return;
+        //             }
 
-                    console.log(channelList);
-                });
-            }
-        },
-        getUserChannels(){
-            var channelListQuery = sb.GroupChannel.createMyGroupChannelListQuery();
-            channelListQuery.includeEmpty = true;
-            channelListQuery.limit = 20;    // The value of pagination limit could be set up to 100.
-            let _this = this
-            if (channelListQuery.hasNext) {
-                channelListQuery.next(function(channelList, error) {
-                    if (error) {
-                        return;
-                    }
-                    console.log(channelList);
-                    _this.userChannels = channelList
+        //             console.log(channelList);
+        //         });
+        //     }
+        // },
+        // getUserChannels(){
+        //     var channelListQuery = sb.GroupChannel.createMyGroupChannelListQuery();
+        //     channelListQuery.includeEmpty = true;
+        //     channelListQuery.limit = 20;    // The value of pagination limit could be set up to 100.
+        //     let _this = this
+        //     if (channelListQuery.hasNext) {
+        //         channelListQuery.next(function(channelList, error) {
+        //             if (error) {
+        //                 return;
+        //             }
+        //             console.log(channelList);
+        //             _this.userChannels = channelList
 
-                    for(let i = 0; i < channelList.length; i++) {
-                        // console.log(channelList[i])
-                        for(let y =0; i < channelList[i].members.length; y++)
-                        if(channelList[i].members[y].userId != _this.currentUser.userId){
-                            console.log(channelList[i].members[y])
-                            _this.userToChat.push(channelList[i].members[y])
-                        }
-                    }
-                });
-            }
-        },
-        messageSubmit(){
-            const params = new sb.UserMessageParams();
+        //             for(let i = 0; i < channelList.length; i++) {
+        //                 // console.log(channelList[i])
+        //                 for(let y =0; i < channelList[i].members.length; y++)
+        //                 if(channelList[i].members[y].userId != _this.currentUser.userId){
+        //                     console.log(channelList[i].members[y])
+        //                     _this.userToChat.push(channelList[i].members[y])
+        //                 }
+        //             }
+        //         });
+        //     }
+        // },
+        // messageSubmit(){
+        //     const params = new sb.UserMessageParams();
 
-            params.message = this.message;
-            params.customType = CUSTOM_TYPE;
-            params.data = DATA;
-            params.mentionType = 'users';                       // Either 'users' or 'channel'
-            params.mentionedUserIds = [];        // or mentionedUsers = Array<User>; 
-            params.metaArrayKeys = ['key1', 'key2'];
-            params.translationTargetLanguages = ['fe', 'de'];   // French and German
-            params.pushNotificationDeliveryOption = 'default';  // Either 'default' or 'suppress' 
+        //     params.message = this.message;
+        //     params.customType = CUSTOM_TYPE;
+        //     params.data = DATA;
+        //     params.mentionType = 'users';                       // Either 'users' or 'channel'
+        //     params.mentionedUserIds = [];        // or mentionedUsers = Array<User>; 
+        //     params.metaArrayKeys = ['key1', 'key2'];
+        //     params.translationTargetLanguages = ['fe', 'de'];   // French and German
+        //     params.pushNotificationDeliveryOption = 'default';  // Either 'default' or 'suppress' 
 
-            groupChannel.sendUserMessage(params, function(message, error) {
-                if (error) {
-                    return;
-                }
+        //     groupChannel.sendUserMessage(params, function(message, error) {
+        //         if (error) {
+        //             return;
+        //         }
 
-                console.log(message);
-            });
-        }
+        //         console.log(message);
+        //     });
+        // }
         // allUsers(){
         //     // In case of retrieving all users
         //     let sb = SendBird.getInstance();
@@ -248,33 +203,33 @@ export default {
         // },
       },
       created(){
-        let user_name = this.$store.state.auth.user.name
-        let _this = this
-        sb.connect(this.$store.state.auth.user.id, this.$store.state.auth.access_token, function(user, error) {
-            if (error) {
-                return;
-                }
-            sb.updateCurrentUserInfo(user_name, function(response, error) {
-                if (error) {
-                    return;
-                }   
-                console.log(response)
-            });
-            // _this.allUsers()
-            _this.currentUser = user
-            console.log(user)
-        });
-        let allUsers = SendBird.getInstance();
-        let applicationUserListQuery = allUsers.createApplicationUserListQuery();
-        applicationUserListQuery.next(function(users, error) {
-            if (error) {
-                return;
-            }
-            _this.allUsers = users
-            console.log(users)
-            console.log(error)
-        });
-        this.getUserChannels()
+        // let user_name = this.$store.state.auth.user.name
+        // let _this = this
+        // sb.connect(this.$store.state.auth.user.id, this.$store.state.auth.access_token, function(user, error) {
+        //     if (error) {
+        //         return;
+        //         }
+        //     sb.updateCurrentUserInfo(user_name, function(response, error) {
+        //         if (error) {
+        //             return;
+        //         }   
+        //         console.log(response)
+        //     });
+        //     // _this.allUsers()
+        //     _this.currentUser = user
+        //     console.log(user)
+        // });
+        // let allUsers = SendBird.getInstance();
+        // let applicationUserListQuery = allUsers.createApplicationUserListQuery();
+        // applicationUserListQuery.next(function(users, error) {
+        //     if (error) {
+        //         return;
+        //     }
+        //     _this.allUsers = users
+        //     console.log(users)
+        //     console.log(error)
+        // });
+        // this.getUserChannels()
         // RetreiveChannels()
         // var userId = this.$store.state.auth.user.id.trim();
         // var nickname = this.$store.state.auth.user.name.trim();

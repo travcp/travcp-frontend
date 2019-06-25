@@ -406,8 +406,8 @@
 </template>
 
 <script>
-import vue2Dropzone from "vue2-dropzone";
-import "vue2-dropzone/dist/vue2Dropzone.min.css";
+// import vue2Dropzone from "vue2-dropzone";
+// import "vue2-dropzone/dist/vue2Dropzone.min.css";
 import Navbar from "@/components/Navbar.vue";
 import Footer from "@/components/Footer.vue";
 import { mapActions, mapState } from "vuex";
@@ -537,7 +537,6 @@ export default {
   components: {
     Navbar,
     Footer,
-    vueDropzone: vue2Dropzone,
     DatePicker,
     OpenClosingTimes,
     FilePond: vueFilePond(FilePondPluginImagePreview, FilePondPluginFileValidateType, FilePondPluginImageEdit),
