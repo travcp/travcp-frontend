@@ -321,7 +321,7 @@ export default {
             .then(data => {
               console.log(data)
               this.$noty.success("Profile Updated Succefully");
-              if(!this.checkUserType){
+              if(this.checkUserType){
                 let merchantData = ""
                 axios.get(`${this.$store.state.API_BASE}/merchants/${this.$store.state.auth.merchant.id}/extras`).then(response => {
                   console.log(response.data.data)
