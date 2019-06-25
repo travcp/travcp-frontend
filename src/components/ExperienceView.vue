@@ -363,7 +363,7 @@
                             <br>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="guest_review_" v-for="review in reviews.data">
+                                    <div class="guest_review_" v-for="review in reviews.data" v-if="!review.video">
                                         <div class="row">
                                             <div class="col-2" style="text-align: center;">
                                                 <img :src="review.user.profile_image ? review.user.profile_image.image : require('@/assets/avatar.png')" class="rounded-circle" style="height: 50px;display: inline-block;">
@@ -381,22 +381,34 @@
                             </div>
                         </div>
                     </div>
-                </div> <br>
+                </div> <br> <br>    
 
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-9">
-                                <h2>Video Reviews</h2>                                
+                                <h3>Video Reviews</h3>                             
                             </div>
                             <div class="col-md-3">
-                                <button type="button" v-if="!checkBookingStatus" class="btn btn-primary" style="background: #f81894;border:#f81894;">
+
+                                <button type="button" v-if="checkBookingStatus" class="btn btn-primary" style="background: #f81894;border:#f81894;"  data-toggle="modal" data-target="#ReviewVideoModal">
                                   Make 5 seconds video review
                                 </button>
                             </div>
                         </div>
+                        <div class="row" v-if="reviews.data"> 
+                            <div class="col-md-4" v-for="review in reviews.data.slice(0, 3)" v-if="review.video"> 
+                                <video style="width: 100%" controls>
+                                  <source :src="review.video.upload_data" type="video/mp4">
+                                  <source :src="review.video.upload_data" type="video/ogg">
+                                  <source :src="review.video.upload_data" type="video/webm">
+                                  <source :src="review.video.upload_data" type="video/mkv">
+                                  Your browser does not support HTML5 video.
+                                </video>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </div><br> <br>    
                 <div class="row">
                     <div class="col-md-12" style="margin-bottom: 20px">
                         <h3>
@@ -840,7 +852,7 @@
                 formData.append('video', blob, blob.name);
                 formData.append('user_id', data.user.id);
                 formData.append('experience_id', _this.$route.params.id);
-                formData.append('rating', '1');
+                formData.append('rating', '0');
                 console.log('upload recording ' + blob.name + ' to ' + serverUrl);
                 // start upload
                 axios.post(serverUrl, formData, {
@@ -849,7 +861,10 @@
                     'Authorization' : `Bearer ${data.access_token}`
                 }
                 }).then(
-                    response => console.log(response.data.data)
+                    (response) => {
+                        console.log(response.data.data)
+                        window.location.reload(1);
+                    }
                 ).catch(
                     error => console.error(error.response.data)
                 );
