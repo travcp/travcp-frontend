@@ -1,8 +1,8 @@
 <template>
   <div class="edit_profile">
     <vue-headful
-            title="Edit Profile | TRAV CP"
-            description="Description from TRAV CP"
+            :title="'Edit Profile | '+ $store.state.appName"
+            :description="$store.state.appDescription"
         />
     <Navbar />
     <br /><br />

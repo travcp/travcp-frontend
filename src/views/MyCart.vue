@@ -1,8 +1,8 @@
 <template>
   <div class="container main">
     <vue-headful
-            title="My Cart | TRAV CP"
-            description="Items added to cart ready to be checkedout"
+            :title="'My Cart | ' + $store.state.appName"
+            :description="$store.state.appDescription"
         />
     <Navbar/>
     <!-- booking header details left -->

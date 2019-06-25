@@ -1,8 +1,8 @@
 <template>
   <div class="container main">
     <vue-headful
-            title="My Bookings | TRAV CP"
-            description="Description from TRAV CP"
+            :title="'My created restaurants |' + $store.state.appName"
+            :description="$store.state.name"
         />
     <Navbar/>
     <!-- booking header details left -->

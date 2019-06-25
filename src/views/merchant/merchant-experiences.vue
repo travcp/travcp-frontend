@@ -1,5 +1,9 @@
 <template>
     <div class="ExpereinceSearchResults">
+        <vue-headful
+            :title="'My create experiences | '+ $store.state.appName"
+            :description="$store.state.appDescription"
+        />
         <Navbar />
         <section class="filter_area" style="">
             <div class="container">

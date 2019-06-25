@@ -1,5 +1,9 @@
 <template>
     <div class="ExpereinceSearchResults">
+        <vue-headful
+            title="Explore Experiences | TRAVCP"
+            description="Description from TRAV CP"
+        />
         <SearchResults :experiences="allExperiences" />
     </div>
 </template>

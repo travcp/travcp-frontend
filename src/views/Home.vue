@@ -1,8 +1,8 @@
 <template>
   <div class="home">
   	<vue-headful
-            title="Homepage | TRAV CP"
-            description="Description from TRAV CP"
+            title="Homepage | TRAVCP"
+            description="Find experiences, places and travel destinations"
         />
     <HomeNavbar />
     <Sliderarea class="toggle-sec-nav" />
