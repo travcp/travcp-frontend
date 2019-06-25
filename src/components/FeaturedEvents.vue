@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import Flickity from 'vue-flickity';
+// import Flickity from 'vue-flickity';
 import Axios from 'axios'
 import { mapState } from 'vuex'
 import { Carousel, Slide } from 'vue-carousel';
