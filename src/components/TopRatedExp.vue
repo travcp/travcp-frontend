@@ -105,7 +105,7 @@
 </template>
 
 <script>
-import Flickity from 'vue-flickity';
+// import Flickity from 'vue-flickity';
 
 export default {
     data: function(){return{

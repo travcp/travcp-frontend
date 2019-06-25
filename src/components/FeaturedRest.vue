@@ -37,7 +37,7 @@
                         <div class="row">
                           <div class="col-md-4" v-for="restaurant in restaurants" :key="restaurant.id">
                             <router-link :to="'/experience/'+ restaurant.id + '/' + restaurant.title.toString().toLowerCase().replace( /\s/g, '-')">
-                                <div class="featured-card card" style="overflow: hidden;display: flex;flex-direction: column;justify-content: flex-end;width: 100%;color: #FFF;">
+                                <div class="featured-card card" style="overflow: hidden;">
                                   <img v-if="restaurant.images.length" style="width: 100%;object-fit: cover;height:380px;" :src="restaurant.images[0].image" class="card-img-top featured-card-img" alt="...">
                                   <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" style="width: 100%;object-fit: cover;height: 380px;" alt="...">
 
