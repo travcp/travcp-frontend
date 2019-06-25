@@ -38,7 +38,13 @@
                 </div>
                 <div class="col-sm-6 col-md-7 col-lg-7 blog_content" v-else>
                     <h3 style="text-transform: capitalize;;font-size: 30px;">
-                        {{ experience.title }} | {{ experience.state }} &nbsp; &nbsp; <a href="javascript:void(0)" title="Add to favourites" style="color: #f81894" @click="postFavoriteExeperience(experience.id)"><i class="far fa-heart"></i></a>
+                        {{ experience.title }} | {{ experience.state }} &nbsp; &nbsp; 
+                        <a href="javascript:void(0)" v-if="!FavoritesExperience" title="Add to favourites" style="color: #f81894" @click="postFavoriteExeperience(experience.id)"><i class="far fa-heart"></i>
+                            
+                        </a>
+                        <a href="javascript:void(0)" v-else title="Remove from favourites" style="color: #f81894" @click="removeFavoriteExeperience(experience.id)">
+                            <i class="fa fa-heart"></i>
+                        </a>
                     </h3>
                     <h1 style="text-transform: capitalize;font-size: 24px;margin-bottom: 10px;">{{ experience.city }}</h1>
                     
@@ -718,7 +724,17 @@
                 }).catch(err => {
                     this.loading2 = false;
                     console.log(err);
-                });
+                })
+            },
+            cofirmForFavorite(){
+                axios.get(`${this.$store.state.API_BASE}/favourites?user_id=${this.$store.state.auth.user.id}?experience_id?=${this.$route.params.id}`).then(response => {
+                    
+                    console.log('Favorites Data')
+                    console.log(response.data.data)
+                }).catch(err => {
+                    // this.loading2 = false;
+                    console.log(err.response.data);
+                })
             },
             postFavoriteExeperience(placeId){
                 this.loading = true
@@ -767,8 +783,9 @@
             getUserFavorites(){
                 if(this.$store.state.auth){
                     // this.loading = true;
-                    Axios.get(`${this.$store.state.API_BASE}/favourites?user_id=${this.$store.state.auth.user.id}`)
+                    Axios.get(`${this.$store.state.API_BASE}/favourites?user_id=${this.$store.state.auth.user.id}&experience_id=${this.$route.params.id}`)
                         .then(response => {
+                            console.log('User Fav')
                             console.log(response.data.data);
                             this.FavoritesExperience = response.data.data
                             this.loading = false
@@ -780,6 +797,9 @@
                         this.$noty.error("Need to Login to Add Favorites")
                         this.$router.push("Login in to add to favorites")
                     } 
+            },
+            cancelUserFavorites(){
+                // axios.delete(`${this.$store.state.API_BASE}/`).then().catch()
             },
             getMerchantExtras(){
                 axios.get(`${this.$store.state.API_BASE}/merchant/extras/${this.experience.merchant_id}`)
@@ -805,7 +825,7 @@
 
         },
         created: function () {
-            
+            this.getUserFavorites()
             this.getExperienceById(this.$route.params['id']).then(response => {
                 console.log('In here already')
                 console.log(response)
