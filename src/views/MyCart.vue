@@ -1,8 +1,8 @@
 <template>
   <div class="container main">
     <vue-headful
-            title="My Cart | TRAV CP"
-            description="Items added to cart ready to be checkedout"
+            :title="'My Cart | ' + $store.state.appName"
+            :description="$store.state.appDescription"
         />
     <Navbar/>
     <!-- booking header details left -->
@@ -252,7 +252,9 @@ export default {
   },
   created() {
     this.getMyCarts();
-    // console.log(this.items)
+    let paystackScript = document.createElement('script');
+    paystackScript.setAttribute('src', "https://js.paystack.co/v1/inline.js");
+    document.head.appendChild(paystackScript);
   }
 };
 </script>

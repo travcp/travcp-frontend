@@ -1,5 +1,9 @@
 <template>
     <div class="ExpereinceSearchResults">
+        <vue-headful
+            :title="'My Favorite experiences | ' + $store.state.appName"
+            :description="$store.state.appDescription"
+        />
         <Navbar />
     
         <div class="digital_feature" style="margin-top: 60px">

@@ -1,8 +1,8 @@
 <template>
   <div class="container-fluid">
     <vue-headful
-            title="Notifications | TRAV CP"
-            description="Description from TRAV CP"
+            :title="'Notifications | ' + $store.state.appName"
+            :description="$store.state.appDescription"
         />
     <Navbar/>
     <!--About us start -->

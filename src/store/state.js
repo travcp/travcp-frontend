@@ -66,6 +66,8 @@ export default {
     messages: [],
     channel: null,
     channels: null,
-    channelUsers: []
+    channelUsers: [],
+    appName: "TRAVCP",
+    appDescription: "Find restaurants, tours, experiences and travel destinations"
     // user_token: 
 }

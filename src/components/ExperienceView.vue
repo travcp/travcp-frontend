@@ -1,8 +1,8 @@
 <template>
     <div class="ExperienceView">
         <vue-headful
-            title = "Experience | TRAV CP"
-            description="Description of TRAV CP"
+            :title = "'View Experience | ' + $store.state.appName"
+            :description="$store.state.appDescription"
         />
         <Navbar></Navbar>
         <section class="project_area nagoya" v-if="experience.images && experience.images.length > 0" :style="{background: 'url(' + experience.images[0].image + ')', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}" style="background-repeat: no-repeat;background-size: cover;background-position: center;">
@@ -188,7 +188,7 @@
                                         <!-- <date-picker v-model="time1" :first-day-of-week="1"></date-picker> -->
                                     </form>
                                     <div class="book_btn" style="padding-top: 10px;text-align: center;" v-else>
-                                        Booked
+                                        Added to cart
                                     </div>
                                 </div>
                             </div>
@@ -290,7 +290,7 @@
                                 <div class="col-md-8">
                                     <h2 style="text-align: left;">Reviews</h2>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4" v-if="checkBookingStatus">
                                     <button class="btn" style="border: 2px solid #000;height: 37px;"  data-toggle="modal" data-target="#writeAReviewModal"><i class="fa fa-pencil" style="color: #000;"></i> Write a Review</button>
                                 <div class="modal fade" id="writeAReviewModal" tabindex="-1" role="dialog" aria-labelledby="writeAReviewModal" aria-hidden="true">
                                   <div class="modal-dialog" role="document">
@@ -309,22 +309,25 @@
                                                 <div class="col-md-12" style="margin-bottom: 40px;">
                                                     <h6><b>Rate the Experience</b></h6> 
                                                     <p class="alert alert-warning" v-if="!checkBookingStatus" style="margin:0;">To rate this Experience you need to book first</p>
-                                                    <div id="reviewStars-input" @click="toggleRatingBox" v-else>
-                                                        <input id="star-4" value=5 v-model="reviewStar" type="radio" name="reviewStars"/>
-                                                        <label title="gorgeous" for="star-4"></label>
+                                                    <section v-else>
+                                                        <div id="reviewStars-input" @click="toggleRatingBox">
+                                                            <input id="star-4" value=5 v-model="reviewStar" type="radio" name="reviewStars"/>
+                                                            <label title="gorgeous" for="star-4"></label>
 
-                                                        <input id="star-3" value=4 v-model="reviewStar" type="radio" name="reviewStars"/>
-                                                        <label title="good" for="star-3"></label>
+                                                            <input id="star-3" value=4 v-model="reviewStar" type="radio" name="reviewStars"/>
+                                                            <label title="good" for="star-3"></label>
 
-                                                        <input id="star-2" value=3 v-model="reviewStar" type="radio" name="reviewStars"/>
-                                                        <label title="regular" for="star-2"></label>
+                                                            <input id="star-2" value=3 v-model="reviewStar" type="radio" name="reviewStars"/>
+                                                            <label title="regular" for="star-2"></label>
 
-                                                        <input id="star-1" value=2 v-model="reviewStar" type="radio" name="reviewStars"/>
-                                                        <label title="poor" for="star-1"></label>
+                                                            <input id="star-1" value=2 v-model="reviewStar" type="radio" name="reviewStars"/>
+                                                            <label title="poor" for="star-1"></label>
 
-                                                        <input id="star-0" value=1 v-model="reviewStar" type="radio" name="reviewStars"/>
-                                                        <label title="bad" for="star-0"></label>
-                                                    </div>
+                                                            <input id="star-0" value=1 v-model="reviewStar" type="radio" name="reviewStars"/>
+                                                            <label title="bad" for="star-0"></label>
+                                                        </div>
+                                                    </section>
+                                                    
                                                 </div>
                                                  
                                                 <div class="col-md-12" style="margin: auto;">

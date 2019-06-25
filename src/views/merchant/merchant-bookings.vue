@@ -1,5 +1,9 @@
 <template>
     <div class="container main">
+        <vue-headful
+            :title="'My Bookings | '+ $store.state.appName"
+            :description="$store.state.appDescription"
+        />
         <Navbar/>
         <!-- booking header details left -->
         <div class="row my-booking-left">

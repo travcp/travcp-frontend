@@ -1,8 +1,8 @@
 <template>
   <div class="container main">
     <vue-headful
-            title="Videos | TRAV CP"
-            description="Description from TRAV CP"
+            :title="'Videos | ' + $store.state.appName"
+            :description="$store.state.appDescription"
         />
     <Navbar/>
     <!-- booking header details left -->

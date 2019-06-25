@@ -1,8 +1,8 @@
 <template>
        <div class="profile-container">
         <vue-headful
-            title="Dashboard Profile | TRAV CP"
-            description="Description from TRAV CP"
+            :title="'Dashboard Profile | '+ $store.state.appName"
+            :description="$store.state.appDescription"
         />
            <Navbar/>
            <div class="container">
