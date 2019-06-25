@@ -12,7 +12,7 @@
                 <button type="button" style="padding:7px; border-radius:7px; border:none; box-shadow: darkgrey 1px 4px 3px 2px;" @click="postFavoriteExeperience(experience.id)"><i class="fa fa-heart"></i> Favourite</button>
             </div> -->
         </section>
-        <section class="project_area nagoya" style="background-repeat: no-repeat;background-size: cover;background-position: center;" v-else>
+        <section class="project_area default_background" style="background-repeat: no-repeat;background-size: cover;background-position: center;" v-else>
             <div class="container">
             </div>
         </section>
@@ -1054,8 +1054,8 @@
     width: 100%;
 }
 
-.nagoya {
-    background: url('../assets/nagoya.png');
+.default_background {
+    background: url('../assets/travvap_img_default.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
