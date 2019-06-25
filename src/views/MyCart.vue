@@ -252,7 +252,9 @@ export default {
   },
   created() {
     this.getMyCarts();
-    // console.log(this.items)
+    let paystackScript = document.createElement('script');
+    paystackScript.setAttribute('src', "https://js.paystack.co/v1/inline.js");
+    document.head.appendChild(paystackScript);
   }
 };
 </script>

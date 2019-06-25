@@ -1,6 +1,6 @@
 <template>
   <div>
-    <vue-headful :title="'New Experiene | ' + $store.state.appName" description="Description from TRAV CP"/>
+    <vue-headful :title="'New Experiene | ' + $store.state.appName" :description="$store.state.appDescription"/>
     <Navbar/>
     <div class="new_experience">
       <div class="new_experience_title" style="text-align: center;">
@@ -42,7 +42,7 @@
                               <option
                                 v-for="experience_type in experience_types"
                                 v-if="experience_type" :key="experience_type.id"
-                              >
+                              :value="experience_type.name">
                               {{ experience_type.name.charAt(0).toUpperCase() + experience_type.name.slice(1)}}
                               </option>
                             </select>
@@ -784,10 +784,11 @@ export default {
       // }
     },
     checkExperienceType(event) {
+      
       for (let i = 0; i < this.experience_types.length; i++) {
-        // console.log(this.experience_types)
+        
         if (this.experience_types[i]) {
-          if (this.experience_types[i].name == event.target.value) {
+          if (this.experience_types[i].name.toLowerCase() == event.target.value.toLowerCase()) {
             this.experience_type_name = event.target.value;
             this.exp_id = this.experience_types[i].id;
             this.requiredFields = this.experience_types[i].experience_fields;
