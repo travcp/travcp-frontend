@@ -17,10 +17,13 @@
                     <div class="message-panel-container">
                         <div class="contacts-panel">
                             <input type="search" class="contacts-search-control" placeholder="Search...">
+<<<<<<< HEAD
                             <div class="contact-list">
                                 
                                 
                             </div>
+=======
+>>>>>>> f16f35df4205a2a9c91b728ec7fe7c2bfedab02f
                         </div>
                         <div class="messages-panel">
                             <ul class="messages-list">
@@ -28,16 +31,6 @@
                                 <!-- <li class="left-message">Fun eni to ba gbon</li>
                                 <li class="right-message">Fun eni to ba gbon</li> -->
                             </ul>
-                            <div class="typing-area">
-                                <form @submit.prevent="messageSubmit">
-                                    <div class="input-group">
-                                        <input type="text" v-model="message" class="form-control" placeholder="Type a message..." aria-label="Type a message" aria-describedby="type message field">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-danger">Send</button>
-                                        </div>
-                                    </div>    
-                                </form>
-                            </div>
                         </div>
                         <div class="contact-info-panel">
                             <img src="/img/profile_1.png" alt="" srcset="">
