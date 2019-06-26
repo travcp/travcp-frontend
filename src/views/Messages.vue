@@ -6,42 +6,71 @@
         />
         <Navbar/>
         <div class="container-fluid">
-            <!-- <p class="page-header text-center">
-                <span class="page-header-text">
-                    Messages
-                </span>
-            </p> -->
             
             <div class="row">
                 <div class="col-12">
                     <div class="message-panel-container">
                         <div class="contacts-panel">
-                            <input type="search" class="contacts-search-control" placeholder="Search...">
-<<<<<<< HEAD
+                            <input type="search" class="contacts-search-control" placeholder="Search..." v-model="search">
                             <div class="contact-list">
-                                
-                                
+                                <ul class="">
+                                    <li v-for="conversation in filteredConversations" :key="conversation.id" @click="changeConversation(conversation)">
+                                        <a href="#" >
+                                            <div class="row">
+                                                <div class="col-8">
+                                                    <b v-if="currentReceiver.name == conversation.name">{{ conversation.name }}</b>
+                                                    <span v-else>{{ conversation.name }}</span>
+                                                </div>
+                                                <div class="col-4">
+                                                    <span class="badge badge-danger badge-pill">{{ conversation.unread_messages_count }}</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    
+                                </ul>
                             </div>
-=======
->>>>>>> f16f35df4205a2a9c91b728ec7fe7c2bfedab02f
                         </div>
                         <div class="messages-panel">
                             <ul class="messages-list">
-                                
+                                <li v-for="message in messages" :key="message.id" :class="[{'left-list-item left-message': message.user_id != $store.state.auth.user.id}, {'right-list-item right-message' : message.user_id == $store.state.auth.user.id}]">
+                                    <div class="text">{{ message.message }} </div>
+                                    <small class="float-right text-small message-time">{{ moment(message.created_at).calendar() }}</small>
+                                </li>
+                                <div v-if="messages.length < 1" class="text-center">
+                                    <div v-if="loading">
+                                        <Circle9/>
+                                    </div>
+                                    <div v-else>
+                                        No conversation yet. Start one now
+                                    </div>
+                                    
+                                </div>
                                 <!-- <li class="left-message">Fun eni to ba gbon</li>
                                 <li class="right-message">Fun eni to ba gbon</li> -->
+                                
                             </ul>
+                            <div class="typing-area">
+                                <form @submit.prevent="sendMessage">
+                                    <div class="input-group">
+                                        <input type="text"  class="form-control" placeholder="Type a message..." aria-label="Type a message" aria-describedby="type message field" v-model="message">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-danger" type="submit">Send</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                        <div class="contact-info-panel">
-                            <img src="/img/profile_1.png" alt="" srcset="">
+                        <div class="contact-info-panel" v-if="currentReceiver != undefined">
+                            <img :src="currentReceiver.avatar" :alt="''">
                             <p class="contact-name">
-                                KIA Restaurant
+                                {{ currentReceiver.name }}
                             </p>
                             <p class="contact-location">
-                                <img src="/img/icons/map-marker-alt-solid.svg" alt="Location marker" style="width:10px;"> Lagos, Nigeria
+                                <img src="/img/icons/map-marker-alt-solid.svg" alt="Location marker" style="width:10px;"> {{ currentReceiver.country }}
                             </p>
                             <p class="contact-description">
-                                Take a tour with us to get to eat some of the nicest food to be experienced
+                                {{ currentReceiver.bio }}
                             </p>
                         </div>
                     </div>
@@ -52,186 +81,154 @@
 </template>
 <script>
 import Navbar from '@/components/Navbar'
-// import SendBird from 'sendbird'
-
-// let sb = new SendBird({appId: 'EDBA8B35-D6D9-42C2-B2C7-F6E0E711D072'});
-
+import moment from 'moment'
+import axios from 'axios';
+import { Circle9 } from 'vue-loading-spinner'
 export default {
     name: "Message",
-    beforeRouteEnter(to, from, next) {
-    let checkToken = JSON.parse(localStorage.getItem('auth'))
-          if(checkToken.access_token) {
-              return next()
-          } else {
-            // this.$noty.error("Sign in to access!")
-            return next({ path: '/signin' })
-          }
-          next();
-      },
       data(){
         return {
-            currentUser: [],
-            allUsers: [],
-            userChannels: [],
-            userToChat: [],
-            message: null,
-            channel: {}
+            message: "",
+            messages: [
+            ],
+            search: "",
+            currentReceiver: null,
+            conversations: [
+            ],
+            moment: moment,
+            requestHeaders: {
+                headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
+            },
+            loading: false
         }
       },
+      props: ["recipient"], //integer id of the recipient
       methods: {
-        // logout(){
-        //     sb.disconnect(function(){
-        //         // A current user is discconected from SendBird server.
-        //     });
-        // },
-        // chattingUser(userId){
-        //     console.log(typeof userId)
-        //     let _this = this
-        //     let applicationUserListQuery1 = sb.createApplicationUserListQuery();
-        //     applicationUserListQuery1.userIdsFilter = [userId];
-        //     applicationUserListQuery1.next(function(user, error) {
-        //         if (error) {
-        //             return;
-        //         }
-        //         _this.createUserChannel(_this.currentUser.userId, userId)
+        sendMessage(){
+            let message = this.message;
+            if (message != "") {
+                let $msgs = $(".messages-list");
+                $msgs.animate({ scrollTop: $msgs.prop("scrollHeight") }, 400);
                 
-        //         console.log(user)
-        //     });
-        // },
-        // openChannel(channelUrl) {
-        //         console.log('Hi i am here')
-        //     sb.OpenChannel.getChannel(channelUrl, (channel, error) => {
-        //         console.log(channel)
-        //         if (error) reject(error)
-        //         channel.exit()
-        //       })
-        // },
-        // createUserChannel(user1Id, user2Id){
-        //     var userIds = [user1Id, user2Id];
-        //     var params = new sb.GroupChannelParams();
-        //         params.isPublic = false;
-        //         params.isEphemeral = false;
-        //         params.isDistinct = false;
-        //         params.addUserIds([user1Id, user2Id]);
-        //         params.operatorIds = [user1Id];   // or .operators(Array<User>)
-        //         params.name = user1Id+ " "+ user2Id; 
-
-        //         sb.GroupChannel.createChannel(params, function(groupChannel, error) {
-        //             if (error) {
-        //                 return;
-        //             }
+                axios.post(`${this.$store.state.API_BASE}/messages`, {
+                    recipient: this.currentReceiver.id,
+                    message: message,
+                    // type: this.messageType
+                }, this.requestHeaders)
+                .then(res => {
+                    this.messages.push(res.data.data);
+                    this.message = "";
+                    $msgs.animate({ scrollTop: $msgs.prop("scrollHeight") }, 400);
+                }).catch(err => {
+                    console.log("We encountered an error sending that message");
+                });
+            }
+            else{
+                console.log("No message");
+            }
+        },
+        fetchMessages(recipient) {
+            this.loading = true;
+            axios.get(`${this.$store.state.API_BASE}/messages?recipient=${recipient}`, this.requestHeaders)
+                .then(res => {
+                    this.loading = false;
+                let messages = res.data.data;
+                messages.forEach(message => {
+                    this.messages.push(message);
+                });
+                let $msgs = $("ul.messages-list");
+                
+                $msgs.animate({ scrollTop: $msgs.prop("scrollHeight") }, 500);
+                }).catch(err => {
+                    this.loading = false;
+                });
+            },
+        changeConversation(receiver) {
+            
+            if (receiver.id == this.currentReceiver.id) {
+                // this.fetchMessages(receiver.id);
+            } else {
+                this.messages = [];
+                this.currentReceiver = receiver;
+                this.fetchMessages(this.currentReceiver.id);
+            }
+        },
+        fetchConversations() {
+            axios.get(`${this.$store.state.API_BASE}/conversations`, this.requestHeaders).then(res => {
+                let conversators = res.data.data;
+                this.conversations = res.data.data;
+                if (conversators.length > 0) {
+                    if (this.recipient == null || this.recipient.undefined){
+                        this.currentReceiver = conversators[0];
+                        this.fetchMessages(this.currentReceiver.id);
+                    }
                     
-        //             console.log(groupChannel);
-        //         });
-        // },
-        // RetreiveChannels(){
-        //     var channelListQuery = sb.GroupChannel.createMyGroupChannelListQuery();
-        //     channelListQuery.includeEmpty = true;
-        //     channelListQuery.limit = 20;     
+                }
+            });
+        },
+        fetchLastMessages(recipient){
+            
+            axios.get(`${this.$store.state.API_BASE}/last-messages?recipient=${recipient}`, this.requestHeaders).then(res => {
+                let messages = res.data.data;
+                if (messages.length > 0){
 
-        //     if (channelListQuery.hasNext) {
-        //         channelListQuery.next(function(channelList, error) {
-        //             if (error) {
-        //                 return;
-        //             }
-
-        //             console.log(channelList);
-        //         });
-        //     }
-        // },
-        // getUserChannels(){
-        //     var channelListQuery = sb.GroupChannel.createMyGroupChannelListQuery();
-        //     channelListQuery.includeEmpty = true;
-        //     channelListQuery.limit = 20;    // The value of pagination limit could be set up to 100.
-        //     let _this = this
-        //     if (channelListQuery.hasNext) {
-        //         channelListQuery.next(function(channelList, error) {
-        //             if (error) {
-        //                 return;
-        //             }
-        //             console.log(channelList);
-        //             _this.userChannels = channelList
-
-        //             for(let i = 0; i < channelList.length; i++) {
-        //                 // console.log(channelList[i])
-        //                 for(let y =0; i < channelList[i].members.length; y++)
-        //                 if(channelList[i].members[y].userId != _this.currentUser.userId){
-        //                     console.log(channelList[i].members[y])
-        //                     _this.userToChat.push(channelList[i].members[y])
-        //                 }
-        //             }
-        //         });
-        //     }
-        // },
-        // messageSubmit(){
-        //     const params = new sb.UserMessageParams();
-
-        //     params.message = this.message;
-        //     params.customType = CUSTOM_TYPE;
-        //     params.data = DATA;
-        //     params.mentionType = 'users';                       // Either 'users' or 'channel'
-        //     params.mentionedUserIds = [];        // or mentionedUsers = Array<User>; 
-        //     params.metaArrayKeys = ['key1', 'key2'];
-        //     params.translationTargetLanguages = ['fe', 'de'];   // French and German
-        //     params.pushNotificationDeliveryOption = 'default';  // Either 'default' or 'suppress' 
-
-        //     groupChannel.sendUserMessage(params, function(message, error) {
-        //         if (error) {
-        //             return;
-        //         }
-
-        //         console.log(message);
-        //     });
-        // }
-        // allUsers(){
-        //     // In case of retrieving all users
-        //     let sb = SendBird.getInstance();
-        //     let applicationUserListQuery = sb.createApplicationUserListQuery();
-        //     applicationUserListQuery.next(function(users, error) {
-        //         if (error) {
-        //             console.log(error)
-        //             return;
-        //         }
-        //     });
-        // },
+                    new Audio("/mp3/slow-spring-board.mp3").play();
+                    messages.forEach(message => {
+                        this.messages.push(message);
+                    });
+                    let $msgs = $("ul.messages-list");
+                    
+                    $msgs.animate({ scrollTop: $msgs.prop("scrollHeight") }, 500);
+                }
+                else{
+                    
+                }
+                
+            }).catch(err => {
+                console.log(err);
+            });
+        },
+        fetchUser(id){
+            return axios.get(`${this.$store.state.API_BASE}/users/${id}`).then(res => {
+                this.currentReceiver = res.data.data;
+            }).catch(err => {
+                console.log("Unable to fetch user");
+            })
+        }
       },
-      created(){
-        // let user_name = this.$store.state.auth.user.name
-        // let _this = this
-        // sb.connect(this.$store.state.auth.user.id, this.$store.state.auth.access_token, function(user, error) {
-        //     if (error) {
-        //         return;
-        //         }
-        //     sb.updateCurrentUserInfo(user_name, function(response, error) {
-        //         if (error) {
-        //             return;
-        //         }   
-        //         console.log(response)
-        //     });
-        //     // _this.allUsers()
-        //     _this.currentUser = user
-        //     console.log(user)
-        // });
-        // let allUsers = SendBird.getInstance();
-        // let applicationUserListQuery = allUsers.createApplicationUserListQuery();
-        // applicationUserListQuery.next(function(users, error) {
-        //     if (error) {
-        //         return;
-        //     }
-        //     _this.allUsers = users
-        //     console.log(users)
-        //     console.log(error)
-        // });
-        // this.getUserChannels()
-        // RetreiveChannels()
-        // var userId = this.$store.state.auth.user.id.trim();
-        // var nickname = this.$store.state.auth.user.name.trim();
-
-        // window.location.href = '/dashboard/messages?userid=' + encodeURIComponent(userId) + '&nickname=' + encodeURIComponent(nickname);
-      },
-      components: {
-        Navbar
-      }
+      computed: {
+        filteredConversations(){
+            if (this.conversations.length > 0){
+                return this.conversations.filter(convo => {
+                    return convo.name.toLowerCase().includes(this.search);
+                });
+            }
+            
+        }
+    },
+    created(){
+        if (this.recipient == null || this.recipient == undefined) {
+            
+            
+        } else {
+            // this.conversations[0] = this.recipient;
+            this.fetchUser(this.recipient).then(res => {
+                this.fetchMessages(this.currentReceiver.id);
+            })
+            
+        }
+        this.fetchConversations();
+        setInterval(() => {
+            if (this.currentReceiver != undefined){
+                this.fetchLastMessages(this.currentReceiver.id);
+            }
+            
+        }, 3000);
+    },
+    components: {
+        Navbar,
+        Circle9
+    }
 }
 </script>
 

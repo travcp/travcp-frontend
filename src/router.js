@@ -209,7 +209,8 @@ export default new Router({
     {
       path: "/dashboard/messages",
       name: "Messages",
-      component: Messages
+      component: Messages,
+      props: true
     },
     {
       path: "/dashboard/my-bookings",
