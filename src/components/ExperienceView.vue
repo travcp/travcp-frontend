@@ -5,7 +5,11 @@
             description="Description of TRAV CP"
         />
         <Navbar></Navbar>
-        <section class="project_area nagoya" v-if="experience.images && experience.images.length > 0" :style="{background: 'url(' + experience.images[0].image + ')', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}" style="background-repeat: no-repeat;background-size: cover;background-position: center;">
+         <div id='vrview' v-if="experience.vr_video">
+                <iframe allowfullscreen="true" scrolling="no" width="100%" height="400" style="border: 0px;" :src="'https://storage.googleapis.com/vrview/2.0/index.html?&images='+ experience.vr_video + '&is_stereo=true'">
+                </iframe>
+            </div>
+        <section class="project_area nagoya" v-if="!experience.vr_video && experience.images && experience.images.length > 0" :style="{background: 'url(' + experience.images[0].image + ')', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}" style="background-repeat: no-repeat;background-size: cover;background-position: center;">
             <div class="container">
             </div>
             <!-- <div class="" style="position:absolute; top:5px; right:5px">
@@ -489,7 +493,7 @@
                 checkBookingStatus: null,
                 reviews: [],
                 securityStar: null,
-                delivery_address: 'khgyg',
+                delivery_address: null,
                 getSimilarExperienceData: [],
                 vm: {
                     searchPlace: '',
@@ -618,6 +622,8 @@
                                     let requestHeaders = {
                                     headers: { Authorization: "Bearer " + this.$store.state.auth.access_token }
                                     };
+                                    console.log('Hi 0n souvernirs ')
+                                    console.log(this.experience.experience_type)
                                     // console.log(this.formatDate(this.time[0]));
                                     this.bookingExperience(data).then(response => {
                                         console.log(response)
@@ -633,6 +639,7 @@
                                         this.$noty.success("This experience has been added to your cart")
                                     });
                                 } else {
+                                            console.log(this.experience.experience_type)
                                     if(this.time[0]){
 
                                             let data = {
@@ -648,19 +655,35 @@
                                             let requestHeaders = {
                                             headers: { Authorization: "Bearer " + this.$store.state.auth.access_token }
                                             };
-                                            // console.log(this.formatDate(this.time[0]));
-                                            this.bookingExperience(data).then(response => {
-                                                console.log(response)
-                                                axios.post(`${this.$store.state.API_BASE}/cart/add`,{
-                                                        "booking_id": response.id
-                                                    }, requestHeaders).then(response => {
-                                                        console.log(response.data.data);
-                                                    }).catch(error => {
-                                                        console.log(error)
-                                                    })
-                                                this.checkIfBooked()
-                                                this.$noty.success("This experience has been added to your cart")
-                                            });
+                                            console.log('Experience Type')
+                                            console.log(this.experience.experience_type)
+                                            if(this.experience.experience_type == 'restaurants'){
+                                                console.log("in Resturants")
+                                                axios.post(`${this.$store.state.API_BASE}/bookings`, data, requestHeaders)
+                                                        .then(response => {
+                                                            this.checkIfBooked()
+                                                            this.$noty.success("Restaurant Has been added to booking")
+                                                            console.log(response.data.data)
+                                                        })
+                                                        .catch(error => {
+                                                            this.$noty.error("Something Went Wrong.")
+                                                            console.log(error.response.data)
+                                                        })
+                                            } else {
+                                                // console.log(this.formatDate(this.time[0]));
+                                                this.bookingExperience(data).then(response => {
+                                                    console.log(response)
+                                                    axios.post(`${this.$store.state.API_BASE}/cart/add`,{
+                                                            "booking_id": response.id
+                                                        }, requestHeaders).then(response => {
+                                                            console.log(response.data.data);
+                                                        }).catch(error => {
+                                                            console.log(error)
+                                                        })
+                                                    this.checkIfBooked()
+                                                    this.$noty.success("This experience has been added to your cart")
+                                                });
+                                            }
                                         } else {
                                             this.$noty.error("Please enter a check in and check out date");
                                         }

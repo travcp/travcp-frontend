@@ -52,8 +52,8 @@
         </div>
       
         <div class="my-cart-button">
-          <button class="button button1">Explore</button>
-          <form >
+          <router-link to="/experiences"><button class="button button1">Explore</button></router-link>
+          <form>
             <button type="button" class="button button2" @click="payWithPaystack()" v-if="calcPrice() > 0"> Checkout </button> 
           </form>
           <!-- <button class="">Checkout</button> -->

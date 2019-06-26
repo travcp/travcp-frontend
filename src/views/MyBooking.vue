@@ -40,7 +40,30 @@
             </div>
           </div>
         </div>
-       
+       <div class="my-booking-title">
+          <p>My Restuarants</p>
+          <hr class="my-booking-title-horizontal">
+        </div>
+        <div class="row" v-for="booking in restaurant_bookings" :key="booking.id" style="margin-bottom: 10px;">
+          <div class="col-md-3 my-booking-details-image"></div>
+          <div class="col-md-9">
+            <div class="my-booking-trip-main">
+              <div class="my-booking-trip-details-header">
+                <p class="my-booking-trip-details-header-p1">DAY TRIP | {{ booking.experience.state }}</p>
+                <p class="my-booking-trip-details-header-p2">{{ booking.experience.city }}</p>
+              </div>
+              <div class="my-booking-trip-details">
+                <p
+                  class="my-booking-trip-details-p1"
+                >{{ booking.experience.title }}</p>
+                <p
+                  class="my-booking-trip-details-p2"
+                >{{ booking.experience.description }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
       <!-- booking header details right -->
       <div class="col-lg-4">
@@ -105,6 +128,7 @@ export default {
     return {
       bookings: [],
       loading: false,
+      restaurant_bookings: []
     }
   },
   computed: {
@@ -124,10 +148,27 @@ export default {
         this.$noty.error("Oops, There was an error Trying to get bookings, Please reload the page");
       })
       
+    },
+    getMyRestBookings(){
+      this.loading = true;
+      let requestHeaders = {
+        headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
+      };
+      axios.get(`${this.$store.state.API_BASE}/users/${this.$store.state.auth.user.id}/bookings?experience_id=12`, requestHeaders).then(response => {
+        // this.$store.state.bookings = response.data.data;
+        this.restaurant_bookings = response.data.data;
+        this.loading = false;
+        console.log('restaunrant bookings')
+        console.log(response.data.data)
+      }).catch(err => {
+        this.$noty.error("Oops, There was an error Trying to get bookings, Please reload the page");
+      })
+      
     }
   },
   created(){
     this.getMyBookings()
+    this.getMyRestBookings()
   }
 };
 </script>

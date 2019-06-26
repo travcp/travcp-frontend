@@ -245,6 +245,22 @@
                                   v-model="experience.meetup_location"
                                 />
                               </div>
+                              <div class="row">
+                                <div
+                                    class="form-group col-md-12"
+                                    v-if="requiredFields.includes('vr_video')"
+                                  >
+                                    <label>Meet up Location</label>
+                                    <input
+                                      v-validate="'required'"
+                                      name="Meetup location"
+                                      type="text"
+                                      class="form-control new_experience_input"
+                                      placeholder
+                                      v-model="vr_video"
+                                    >
+                                  </div>
+                              </div>
                               <div
                                 class="form-group col-md-6"
                                 v-if="requiredFields.includes('itenary')"
@@ -473,6 +489,7 @@ export default {
       files: [],
       time: "",
       experience: {},
+      vr_video: null,
       required_fields_for_events: [
         "title",
         "about_merchant",
@@ -651,6 +668,7 @@ export default {
         merchant_id: this.$store.state.auth.user.id,
         experiences_type_id: this.exp_id,
         opening_and_closing_hours: JSON.stringify(this.opening_and_closing_hours),
+        vr_video: this.vr_video,
         _method: 'PUT'
       };
       Object.entries(data).forEach(o =>
@@ -828,21 +846,21 @@ export default {
       });
   },
   mounted(){
-       window.ml = cloudinary.createMediaLibrary({
-       cloud_name: 'dbzyutd4o',
-       api_key: '586358369334938',
-       username: 'omoelu1@gmail.com',
-       button_class: 'myBtn',
-       button_caption: 'Manage Image or Video',
-       folder: {path: "user_photos", resource_type: "image"}
-       }, {
-           insertHandler: function (data) {
-             data.assets.forEach(asset => { console.log("Inserted asset:",
-             JSON.stringify(asset, null, 2)) })
-             }
-          },
-          document.getElementById("open-btn")
-      )
+      //  window.ml = cloudinary.createMediaLibrary({
+      //  cloud_name: 'dbzyutd4o',
+      //  api_key: '586358369334938',
+      //  username: 'omoelu1@gmail.com',
+      //  button_class: 'myBtn',
+      //  button_caption: 'Manage Image or Video',
+      //  folder: {path: "user_photos", resource_type: "image"}
+      //  }, {
+      //      insertHandler: function (data) {
+      //        data.assets.forEach(asset => { console.log("Inserted asset:",
+      //        JSON.stringify(asset, null, 2)) })
+      //        }
+      //     },
+      //     document.getElementById("open-btn")
+      // )
   }
 };
 </script>
