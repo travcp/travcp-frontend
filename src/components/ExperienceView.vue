@@ -186,6 +186,7 @@
                                                 </div>
                                                 <div class="text-center">
                                                     You won't be charged yet
+                                                    <a href="javascript:void(0)" class="dropdown-item" @click="chatWithMerchant">Chat with merchant</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -831,7 +832,10 @@
                      }).catch(error => {
                         console.log(error.response.data)
                      })
-            }
+            },
+            chatWithMerchant(){
+				this.$router.push({name: "Messages", params: {recipient: this.experience.merchant_id}});
+			}
         },
         computed: {
             ...mapState(["experience_types"]),
