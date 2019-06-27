@@ -31,6 +31,11 @@
 
                                 
                                 <!-- <p class="card-text description">Tour with me, Discover Places and experience the culture with me</p> -->
+                                 <textarea type="text" style="font-size: 14px;" v-model="message" class="form-control form-control-lg"></textarea>
+                                <button type="button"
+                                  v-clipboard:copy="message"
+                                  v-clipboard:success="onCopy"
+                                  v-clipboard:error="onError">Copy!</button>
                            </div>
                        </div>
                    </div>
@@ -343,7 +348,14 @@ export default {
             console.log(error.data)
             this.loading = false
           })
-        }
+        },
+        onCopy: function (e) {
+          this.$noty.success(`You just copied ${e.text}`)
+          // alert('You just copied: ' + e.text)
+        },
+        onError: function (e) {
+          alert('Failed to copy texts')
+        },
     },
     created(){
       this.message = `http://travvapp.herokuapp.com/signup?ref=${this.auth.user.referral_token}`
