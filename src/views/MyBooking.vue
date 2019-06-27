@@ -15,7 +15,7 @@
         <div style="text-align: center;" v-if="loading">
           <Circle9 />           
         </div>
-        <div v-if="bookings.length < 1 && !loading">
+        <div v-if="bookings.length < 1 && !loading && restaurant_bookings.length < 1">
           <empty-result>
             <template v-slot:error-header>Errm</template>
             You do not have any bookings yet. <br> When you book an experience, it will appear here.
@@ -154,7 +154,7 @@ export default {
       let requestHeaders = {
         headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
       };
-      axios.get(`${this.$store.state.API_BASE}/users/${this.$store.state.auth.user.id}/bookings?experience_id=12?paid=false`, requestHeaders).then(response => {
+      axios.get(`${this.$store.state.API_BASE}/users/${this.$store.state.auth.user.id}/bookings?experiences_type_id=12?paid=false`, requestHeaders).then(response => {
         // this.$store.state.bookings = response.data.data;
         this.restaurant_bookings = response.data.data;
         this.loading = false;
