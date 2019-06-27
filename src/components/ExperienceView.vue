@@ -823,7 +823,7 @@
                     } 
             },
             cancelUserFavorites(){
-                axios.delete(`${this.$store.state.API_BASE}/`)
+                // axios.delete(`${this.$store.state.API_BASE}/`)
             },
             getMerchantExtras(){
                 axios.get(`${this.$store.state.API_BASE}/merchant/extras/${this.experience.merchant_id}`)
@@ -834,7 +834,15 @@
                      })
             },
             chatWithMerchant(){
-				this.$router.push({name: "Messages", params: {recipient: this.experience.merchant_id}});
+                let user_data = null
+                axios.get(`${this.$store.state.API_BASE}/merchants/${this.experience.merchant_id}/extras`)
+                        .then(response => {
+                            user_data = response.data.data.user_data
+                            console.log(response.data.data)
+                        }).catch(error => {
+                            console.log(error.response.data)
+                        })
+				this.$router.push({name: "Messages", params: {recipient: user_data.id}});
 			}
         },
         computed: {
