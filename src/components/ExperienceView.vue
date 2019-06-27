@@ -42,12 +42,12 @@
                 </div>
                 <div class="col-sm-6 col-md-7 col-lg-7 blog_content" v-else>
                     <h3 style="text-transform: capitalize;;font-size: 30px;">
-                        {{ experience.title }} | {{ experience.state }} &nbsp; &nbsp; 
-                        <a href="javascript:void(0)" v-if="!FavoritesExperience" title="Add to favourites" style="color: #f81894" @click="postFavoriteExeperience(experience.id)"><i class="far fa-heart"></i>
-                            
-                        </a>
-                        <a href="javascript:void(0)" v-else title="Remove from favourites" style="color: #f81894" @click="removeFavoriteExeperience(experience.id)">
+                        {{ experience.title }} | {{ experience.state }} &nbsp; &nbsp;
+                        <a href="javascript:void(0)" v-if="FavoritesExperience.length" title="Remove from favourites" style="color: #f81894" @click="removeFavoriteExeperience(experience.id)">
                             <i class="fa fa-heart"></i>
+                        </a> 
+                        <a href="javascript:void(0)" v-else title="Add to favourites" style="color: #f81894" @click="postFavoriteExeperience(experience.id)"><i class="far fa-heart"></i>
+                            
                         </a>
                     </h3>
                     <h1 style="text-transform: capitalize;font-size: 24px;margin-bottom: 10px;">{{ experience.city }}</h1>
@@ -186,7 +186,7 @@
                                                 </div>
                                                 <div class="text-center">
                                                     You won't be charged yet
-                                                    <a href="javascript:void(0)" class="dropdown-item" @click="chatWithMerchant">Chat with merchant</a>
+                                                    <a href="javascript:void(0)" class="dropdown-item" style="border-bottom: 1px solid #000" @click="chatWithMerchant">Chat with merchant</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -839,10 +839,10 @@
                         .then(response => {
                             user_data = response.data.data.user_data
                             console.log(response.data.data)
+                            this.$router.push({name: "Messages", params: {recipient: user_data.id}});
                         }).catch(error => {
                             console.log(error.response.data)
                         })
-				this.$router.push({name: "Messages", params: {recipient: user_data.id}});
 			}
         },
         computed: {

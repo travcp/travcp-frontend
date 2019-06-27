@@ -27,11 +27,12 @@
                         <router-link class="nav-link nav-item-color" style="color: #fff !important;" to="/dashboard/favourite-experiences">Favourites</router-link>
                     </li>
                     <li class="nav-item" v-if="checkUser">
-                      <a style="color: #fff !important;" class="nav-link" :href="'http://travvapi.herokuapp.com/dashboard/messages?userid=' + this.auth.user.id + '&nickname=' + this.auth.user.first_name + ' ' + this.auth.user.surname">
-                        <img src="../assets/envelope-2.png" style="height: 24px;" alt="">
+                      <a style="color: #fff !important;" class="nav-link" to="/dashboard/profile">
+                        <i class="fa fa-envelope" style="font-size: 24px;"></i>
+                        <!-- <img src="../assets/envelope-2.png" style="height: 24px;" alt=""> -->
                       </a>
                     </li>
-                    <li class="nav-item" v-if="checkUser">
+                    <li class="nav-item" v-if="checkUser" style="padding-top: 5px;">
                       <router-link style="color: #fff !important;" class="nav-link" to="/notifications">
                         <img src="../assets/bell-icon.png" style="height: 24px;" alt="">
                       </router-link>
@@ -43,7 +44,7 @@
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="padding: 8px 0px 5px 1px;width: 250px;">
                         <router-link class="dropdown-item drp_pd" to="/dashboard/profile">Dashboard</router-link>
-                        <router-link class="dropdown-item drp_pd" to="/experiences">Experiences</router-link>
+                        <!-- <router-link class="dropdown-item drp_pd" to="/experiences">Experiences</router-link> -->
                         <a class="dropdown-item drp_pd" href="/dashboard/my-cart">My Cart</a>
                         <a class="dropdown-item drp_pd" href="#">Payment <span class="badge badge-info">Comming Soon</span></a>
                         <a class="dropdown-item drp_pd" href="#">Settings <span class="badge badge-info">Comming Soon</span></a>

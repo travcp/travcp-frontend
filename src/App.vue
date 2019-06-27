@@ -2,12 +2,16 @@
   <div id="app">
     <!-- <Navbar /> -->
     <!-- <Circle8 /> -->
-    <router-view/>
+    <fade-transition origin="center" mode="out-in" :duration="250">
+        <router-view/>
+    </fade-transition>
+    <!-- <router-view/> -->
     <Footer v-if="this.$route.path != '/dashboard/messages'" />
   </div>
 </template>
 
 <script>
+import { FadeTransition } from "vue2-transitions";
 import Navbar from './components/Navbar.vue';
 import Footer from './components/Footer.vue';
 import {mapActions, mapState} from 'vuex';
@@ -16,7 +20,10 @@ import axios from 'axios';
 
 export default {
   name: 'App',
-  components: {Footer},
+  components: {
+    Footer,
+    FadeTransition
+  },
   computed: {
     ...mapState(['loadingExperience']),
     ...mapState(['auth'])

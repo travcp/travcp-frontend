@@ -27,7 +27,8 @@
                     </li>
                     <li class="nav-item" v-if="checkUser">
                       <a style="color: #fff !important;" class="nav-link" href="/dashboard/messages">
-                        <img src="../assets/envelope-2.png" style="height: 24px;" alt="">
+                        <i class="fa fa-envelope" style="font-size: 24px;color: rgb(248, 24, 148);"></i>
+                        <!-- <img src="../assets/envelope-2.png" style="height: 24px;" alt=""> -->
                       </a>
                       <!-- <a style="color: #fff !important;" class="nav-link" :href="'https://travvapi.herokuapp.com/api/dashboard/messages?userid=' + this.auth.user.id + '&nickname=' + this.auth.user.first_name + ' ' + this.auth.user.surname">
                         <img src="../assets/envelope-2.png" style="height: 24px;" alt="">
@@ -44,7 +45,7 @@
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="padding: 5px 0px 5px 1px;width: 250px;">
                         <router-link class="dropdown-item drp_pd" to="/dashboard/profile">Dashboard</router-link>
-                        <router-link class="dropdown-item drp_pd" to="/experiences">Experiences</router-link>
+                        <!-- <router-link class="dropdown-item drp_pd" to="/experiences">Experiences</router-link> -->
                         <a class="dropdown-item drp_pd" href="/dashboard/my-cart">My Cart</a>
                         <a class="dropdown-item drp_pd" href="#">Payment <span class="badge badge-info">Comming Soon</span></a>
                         <a class="dropdown-item drp_pd" href="#">Settings <span class="badge badge-info">Comming Soon</span></a>

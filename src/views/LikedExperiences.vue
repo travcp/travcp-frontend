@@ -25,8 +25,30 @@
                                     You do not have any Favorite Experience yet. <br> When you love an experience, it will appear here.
                                 </empty-result>
                             </div>
-                            <div class="col-md-4 experience" v-for="experience in FavoritesExperience" :key="experience.experience.id" style="">
-                                <router-link :to="'/experience/'+ experience.experience.id + '/' + experience.experience.title.toString().toLowerCase().replace( /\s/g, '-')">
+
+                            <div class="col-md-4 experience" v-for="experience in FavoritesExperience" :key="experience.id" style="">
+                                <router-link :to="'/experience/'+ experience.experience.id + '/' + experience.experience.slug">
+
+        <div class="featured-card card" style="margin-bottom: 20px;">
+            
+            <i class="fa fa-heart" style="position: absolute;float: right;padding: 20px;font-size: 18px;color: #FFF;color: rgb(248, 24, 148);"></i>
+
+          <img v-if="experience.experience.images.length" :src="experience.experience.images[0].image" style="width: 100%;object-fit: cover;height:300px;" class="card-img-top featured-card-img" alt="...">
+          <img v-else src="../assets/osaka.png" style="width: 100%;object-fit: cover;height:300px;" class="card-img-top featured-card-img" alt="...">
+           <div class="card-body"> 
+                <p class="card-text" style="color: #f81894">{{ experience.experience.title }} | {{ experience.experience.state }}</p>
+                <h5 class="card-title" style="text-transform: capitalize;"> {{ experience.experience.city }}
+                    </h5>
+               <star-rating :rating="parseFloat(experience.experience.rating)" :read-only="true" :increment="0.01" :star-size="18"></star-rating>
+                <p class="card-text" style="color: #f81894"><b>{{experience.experience.rating == null ? 0 : experience.experience.rating}} <i class="fa fa-star"></i></b> ({{experience.experience.rating_count == null ? 0 : experience.experience.rating_count}})</p>
+            </div>
+          </div>
+
+                                </router-link>
+                            </div>
+
+                            <!-- <div class="col-md-4 experience" v-for="experience in FavoritesExperience" :key="experience.experience.id" style="">
+                                <router-link :to="'/experience/'+ experience.experience.id + '/' + experience.experience.slug">
                                     <div class="search_items">
                                         <div class="search_items_back_img nagoya" v-if="experience.experience.images && experience.experience.images.length > 0" :style="{background: 'url(' + experience.experience.images[0].image + ')'}"></div>
                                         <div class="nagoya" v-else></div>
@@ -40,7 +62,7 @@
                                         </div>
                                     </div>
                                 </router-link>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -139,7 +161,31 @@
                         this.$router.push("Login in to add to favorites")
                     }
                 
-            }
+            },
+            postFavoriteExeperience(Id){
+                this.loading = true
+                if(this.auth && this.auth.access_token){
+                    let data = {
+                        user_id: this.auth.user.id,
+                        experience_id: Id
+                    }
+                    let requestHeaders = {
+                        headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
+                    }
+                    Axios.post(`${this.$store.state.API_BASE}/favourites`,
+                        data,
+                        requestHeaders).then(response => {
+                        console.log(response.data.data);
+                        this.loading = false
+                        this.$noty.success('Added to Favorites')
+                    }).catch(error => {
+                        console.log(error.data)
+                        this.loading = false
+                    })
+                } else {
+                    this.$noty.error('You need to Login to Have a Favourite Experience')
+                }
+            },
         },
         created: function(){
             this.getUserFavorites();

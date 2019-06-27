@@ -198,7 +198,7 @@
             </div>
           </div>
 
-          <div class="col-md-4" v-for="video in videoData.splice(0, 5)" :key="video.id">
+          <div class="col-md-4" v-for="video in videoData" :key="video.id">
 
             <div class="card">
               <img :src="'http://img.youtube.com/vi/' + getVideoParam(video.url) +'/hqdefault.jpg'"  data-toggle="modal" :data-target="'#video' + video.id" class="card-img-top cursor-pointer" alt="...">

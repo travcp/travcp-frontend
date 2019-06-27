@@ -137,11 +137,14 @@
                                 <router-link :to="'/experience/'+ experience.id + '/' + experience.title.toString().toLowerCase().replace( /\s/g, '-')">
                                     <!-- <div class="search_items"> -->
                                         <div class="featured-card card" style="margin-bottom: 20px;">
+
+            <i class="fa fa-heart" style="position: absolute;float: right;padding: 20px;font-size: 18px;color: #FFF;" @click="postFavoriteExeperience(experience.id)"></i>
+            
                                             <img v-if="experience.images.length" :src="experience.images[0].image" style="width: 100%;object-fit: cover;height:300px;" class="card-img-top featured-card-img" alt="...">
                                             <img v-else src="../assets/osaka.png" style="width: 100%;object-fit: cover;height:300px;" class="card-img-top featured-card-img" alt="...">
                                             <div class="card-body">
                                                 <p class="card-text" style="color: #f81894">{{ experience.title }} | {{ experience.state }}</p>
-                                                <h5 class="card-title" style="text-transform: capitalize;"> {{ experience.city }}</h5>
+                                                <h5 class="card-title" style="text-transform: capitalize;"> {{ experience.city }} <i class="fa fa-heart" @click="postFavoriteExeperience(experience.id)"></i></h5>
                                                 <star-rating :rating="parseFloat(experience.rating)" :read-only="true" :increment="0.01" :star-size="18"></star-rating>
                                                 <p class="card-text" style="color: #f81894"><b>{{experience.rating == null ? 0 : experience.rating}} <i class="fa fa-star"></i></b> ({{experience.rating_count == null ? 0 : experience.rating_count}})</p>
                                             </div>
@@ -152,11 +155,15 @@
                             <div class="col-md-4 experience" v-for="experience in experiences" :key="experience.id" style="">
                                 <router-link :to="'/experience/'+ experience.id + '/' + experience.title.toString().toLowerCase().replace( /\s/g, '-')">
         <div class="featured-card card" style="margin-bottom: 20px;">
+            
+            <i class="fa fa-heart" style="position: absolute;float: right;padding: 20px;font-size: 18px;color: #FFF;" @click="postFavoriteExeperience(experience.id)"></i>
+
           <img v-if="experience.images.length" :src="experience.images[0].image" style="width: 100%;object-fit: cover;height:300px;" class="card-img-top featured-card-img" alt="...">
           <img v-else src="../assets/osaka.png" style="width: 100%;object-fit: cover;height:300px;" class="card-img-top featured-card-img" alt="...">
-           <div class="card-body">
+           <div class="card-body"> 
                 <p class="card-text" style="color: #f81894">{{ experience.title }} | {{ experience.state }}</p>
-                <h5 class="card-title" style="text-transform: capitalize;"> {{ experience.city }}</h5>
+                <h5 class="card-title" style="text-transform: capitalize;"> {{ experience.city }}
+                    </h5>
                <star-rating :rating="parseFloat(experience.rating)" :read-only="true" :increment="0.01" :star-size="18"></star-rating>
                 <p class="card-text" style="color: #f81894"><b>{{experience.rating == null ? 0 : experience.rating}} <i class="fa fa-star"></i></b> ({{experience.rating_count == null ? 0 : experience.rating_count}})</p>
             </div>
@@ -180,6 +187,7 @@
     import Footer from '@/components/Footer.vue';
     import StarRating from 'vue-star-rating'
     import { Circle9 } from 'vue-loading-spinner'
+    import Axios from 'axios'
     export default {
         name: 'SearchResults',
         data: function () {
@@ -307,7 +315,31 @@
             },
             stopProp: function(e){
                 e.stopPropagation()
-            }
+            },
+            postFavoriteExeperience(Id){
+                this.loading = true
+                if(this.auth && this.auth.access_token){
+                    let data = {
+                        user_id: this.auth.user.id,
+                        experience_id: Id
+                    }
+                    let requestHeaders = {
+                        headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
+                    }
+                    Axios.post(`${this.$store.state.API_BASE}/favourites`,
+                        data,
+                        requestHeaders).then(response => {
+                        console.log(response.data.data);
+                        this.loading = false
+                        this.$noty.success('Added to Favorites')
+                    }).catch(error => {
+                        console.log(error.data)
+                        this.loading = false
+                    })
+                } else {
+                    this.$noty.error('You need to Login to Have a Favourite Experience')
+                }
+            },
         },
         created: function(){
             this.getEvents();

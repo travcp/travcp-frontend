@@ -40,10 +40,10 @@
             </div>
           </div>
         </div>
-       <div class="my-booking-title">
+       <!-- <div class="my-booking-title">
           <p>My Restuarants</p>
           <hr class="my-booking-title-horizontal">
-        </div>
+        </div> -->
         <div class="row" v-for="booking in restaurant_bookings" :key="booking.id" style="margin-bottom: 10px;">
           <div class="col-md-3 my-booking-details-image"></div>
           <div class="col-md-9">
@@ -154,7 +154,7 @@ export default {
       let requestHeaders = {
         headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
       };
-      axios.get(`${this.$store.state.API_BASE}/users/${this.$store.state.auth.user.id}/bookings?experience_id=12`, requestHeaders).then(response => {
+      axios.get(`${this.$store.state.API_BASE}/users/${this.$store.state.auth.user.id}/bookings?experience_id=12?paid=false`, requestHeaders).then(response => {
         // this.$store.state.bookings = response.data.data;
         this.restaurant_bookings = response.data.data;
         this.loading = false;
