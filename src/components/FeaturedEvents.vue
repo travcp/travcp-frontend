@@ -4,7 +4,7 @@
             <div class="col-lg-8">
                 <div class="d_feature_text">
                     <div class="main_title">
-                        <h2>Featured Events</h2>
+                        <h2>Featured Experiences</h2>
                     </div>
                 </div>
             </div>

@@ -27,10 +27,10 @@
                         <router-link class="nav-link nav-item-color" style="color: #fff !important;" to="/dashboard/favourite-experiences">Favourites</router-link>
                     </li>
                     <li class="nav-item" v-if="checkUser">
-                      <a style="color: #fff !important;" class="nav-link" to="/dashboard/profile">
+                      <router-link style="color: #fff !important;" class="nav-link" to="/dashboard/messages">
                         <i class="fa fa-envelope" style="font-size: 24px;"></i>
                         <!-- <img src="../assets/envelope-2.png" style="height: 24px;" alt=""> -->
-                      </a>
+                      </router-link>
                     </li>
                     <li class="nav-item" v-if="checkUser" style="padding-top: 5px;">
                       <router-link style="color: #fff !important;" class="nav-link" to="/notifications">
