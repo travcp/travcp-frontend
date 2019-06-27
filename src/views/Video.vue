@@ -13,7 +13,7 @@
           <hr class="my-booking-title-horizontal">
         </div>
         <div class="row" v-if="videoData.length">
-          
+    <!--       
             <div class="col-lg-12">
               <div class="row">
                 <div class="col-md-7">
@@ -59,7 +59,7 @@
                 </div>
               </div>
             </div>
-
+ -->
 
 
           <div class="modal fade" id="video_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -171,13 +171,18 @@
           </div>
 
         </div>
+        <div class="row" v-else>
+          <div class="col-md-12" style="margin: auto;text-align: center;">
+            <Circle9 />
+          </div>
+        </div>
         <div class="row">
          <!--  <div class="feature_video_lg" data-toggle="modal" data-target="#video_1">
 
                   </div> -->
 
 
-          <div v-for="video in videoData.splice(0, 5)" :key="video.id" class="modal fade" :id="'video' + video.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div v-for="video in videoData" :key="video.id" class="modal fade" :id="'video' + video.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document" style="max-width: 700px;">
               <div class="modal-content">
                 <div class="modal-body" style="padding: 0">
@@ -238,11 +243,14 @@ import Navbar from "@/components/Navbar.vue";
 import Footer from '@/components/Footer.vue';
 import { mapState } from 'vuex';
 import Axios from 'axios'
+import { Circle9 } from 'vue-loading-spinner'
+
 export default {
   name: "Video",
   components: {
     Navbar,
-    Footer
+    Footer,
+    Circle9
   },
   data(){return {
     loading: false,
@@ -286,6 +294,9 @@ export default {
 };
 </script>
 <style scoped>
+.spinner {
+  margin: auto;
+}
 .card {
   margin-bottom: 20px;
 }

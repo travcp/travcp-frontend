@@ -44,8 +44,11 @@
                                     <h3>Merchants</h3>
                                 </div>
                                 <ul class="" style="width: 100%;">
-                                    <li class="" @click="confirmUserType()">
+                                    <li v-if="checkUserType != 'merchant'" class="" @click="confirmUserType()">
                                         <a class="" href="#merchant-signup-modal" data-toggle="modal">Become a Merchant</a>
+                                    </li>
+                                    <li v-else>
+                                        <router-link to="/dashboard/profile">Your Dashboard</router-link>
                                     </li>
                                     <li><a class="" href="#affiliate-modal" data-toggle="modal">Affiliate</a></li>
                                     <li><router-link to="/requirements">Requirements</router-link></li>

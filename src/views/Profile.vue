@@ -226,10 +226,10 @@ export default {
       medalType: null,
       videoData: [],
       message: 'http://travvapp.herokuapp.com/signup?ref',
-      allExperience: 0,
-      restTotal: 0,
-      eventsTotal: 0,
-      placeTotal: 0
+      allExperience: null,
+      restTotal: null,
+      eventsTotal: null,
+      placeTotal: null
     }},
     computed: {
       ...mapState(['auth']),
