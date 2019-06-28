@@ -51,8 +51,8 @@
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="padding: 5px 0px 5px 1px;width: 250px;">
                         <router-link class="dropdown-item drp_pd" to="/dashboard/profile">Dashboard</router-link>
                         <a class="dropdown-item drp_pd" href="/dashboard/my-cart">My Cart</a>
-                        <a class="dropdown-item drp_pd" href="#">Payment <span class="badge badge-info">Comming Soon</span></a>
-                        <a class="dropdown-item drp_pd" href="#">Settings <span class="badge badge-info">Comming Soon</span></a>
+                        <!-- <a class="dropdown-item drp_pd" href="#">Payment <span class="badge badge-info">Comming Soon</span></a>
+                        <a class="dropdown-item drp_pd" href="#">Settings <span class="badge badge-info">Comming Soon</span></a> -->
                         <div class="dropdown-divider"></div>
                         <router-link class="dropdown-item drp_pd" to="/dashboard/merchant/new-experience" v-if="checkUser &&  checkUserType == 'merchant'">Add New Experience</router-link>
                         <router-link class="dropdown-item drp_pd" to="/dashboard/merchant/experiences" v-if="checkUser &&  checkUserType == 'merchant'">My Experiences</router-link>
