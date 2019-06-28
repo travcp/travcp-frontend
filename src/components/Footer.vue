@@ -66,7 +66,7 @@
         <div class="container">
         <div class="copy_right_area">
                     <div class="float-md-left">
-                        <h5>TravvApp</h5>
+                        <h5>{{ $store.state.appName }}</h5>
                     </div>
                     <div class="float-md-right">
                         <ul class="nav">
