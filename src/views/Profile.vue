@@ -146,7 +146,7 @@
                           </div>
                       </div>
                     </div>
-                       <div class="card bookings-card" v-if="bookings.length < 1 || checkUserType">
+                       <div class="card bookings-card videos-card">
                            <div class="card-body">
                                <div class="card-head">
                                    <span class="card-title">My Bookings</span> 
@@ -154,21 +154,23 @@
                                </div>
                                <br>
                                <div class="row">
-                                  <div v-if="bookings.length < 1 && !loading">
+                                  <div v-if="bookings.length < 0 && !loading">
                                     <empty-result>
                                       <template v-slot:error-header>Errm</template>
                                       You do not have any bookings yet. <br> When you book an experience, it will appear here.
                                     </empty-result>
                                   </div>
-                                   <div v-else class="col-md-4 experience" v-for="booking in bookings">
+                                   <div v-else class="col-md-4 experience" v-for="booking in bookings.slice(0, 3)">
                                     <!-- experience/2/Mikaylafurt -->
                                        <router-link :to="'../experience/' + booking.experience.id + '/' + booking.experience.title.toString().toLowerCase().replace( /\s/g, '-')">
                                             <div class="search_items">
-                                                <div class="search_items_back_img nagoya"></div>
+                                                <div class="search_items_back_img nagoya" v-if="booking.experience.images.length > 0" :style="{background: 'url(' + booking.experience.images[0].image + ')', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}"></div>
+                                                <div class="search_items_back_img nagoya" v-else></div>
+
                                                 <div class="search_items_item">
                                                     <div class="fetr_places_overlay">
-                                                        <p>DAY TRIP | {{ booking.experience.state }}</p>
-                                                        <h3>{{ booking.experience.city }}</h3>
+                                                        <p>{{ booking.experience.city }} | {{ booking.experience.state }}</p>
+                                                        <h3>{{ booking.experience.title }}</h3>
                                                         <!-- <p><b>4.75 *</b> (224)</p> -->
                                                     </div>
                                                 </div>
@@ -178,224 +180,16 @@
                                 </div>
                            </div>
                        </div>
-                       <div class="card videos-card" style="padding: 15px;">
+                      <!--  <div class="card videos-card" style="padding: 15px;">
                            <div class="card-body">
                                <div class="card-head">
-                                    <!-- <h5 class="card-title">Videos</h5> -->
+                                    <h5 class="card-title">Videos</h5>
                                 </div>
                                 <div class="row">
-
-            <div v-if="validationErrors">
-              <form-errors
-                      :errors="validationErrors"
-                      v-if="validationErrors"
-              ></form-errors>
-            </div>
-
-            <br />
-            <form @submit.prevent="formSubmit">
-              <div class="row">
-                <!-- first_name
-                    surname
-                    email
-                    company
-                    address
-                    city
-                    country
-                    postal_code -->
-                <div class="form-group col-md-4" v-if="checkUserType">
-                  <label for="">Company</label>
-                  <input
-                    v-validate="'required'"
-                    type="text"
-                    v-model="business_name"
-                    class="form-control edit-prof-input"
-                    placeholder="TravvApp Inc."
-                  />
-                </div>
-                <div class="form-group col-md-4" v-if="checkUserType">
-                  <label for="">Bussiness Email</label>
-                  <input
-                    v-validate="'required'"
-                    type="text"
-                    v-model="business_email"
-                    class="form-control edit-prof-input"
-                    placeholder="TravvApp Inc."
-                  />
-                </div>
-                <div class="form-group col-md-4" v-if="checkUserType">
-                  <label for="">Bussiness Phone Number</label>
-                  <input
-                    v-validate="'required'"
-                    type="text"
-                    v-model="phone"
-                    class="form-control edit-prof-input"
-                    placeholder="+234 800 000 00"
-                  />
-                </div>
-                <div class="form-group col-md-12" v-if="checkUserType">
-                  <label for="">Short Bio</label>
-                  <textarea
-                    v-validate="'required'"
-                    type="text"
-                    v-model="bio"
-                    class="form-control edit-prof-input" 
-                  ></textarea>
-                </div>
-                <!--<div class="form-group col-6">-->
-                  <!--<label for="">Username</label>-->
-                  <!--<input-->
-                    <!--type="text"-->
-                    <!--class="form-control edit-prof-input"-->
-                    <!--placeholder="michealjackson23"-->
-                  <!--/>-->
-                <!--</div>-->
-                <!-- <div class="form-group col-6">
-                  <label for="">Email</label>
-                  <input
-                    v-validate="'required|email'"
-                    type="text"
-                    class="form-control edit-prof-input"
-                    placeholder="Email"
-                    v-model="email"
-                  />
-                </div> -->
-              </div>
-              <div class="row">
-                
-                <div class="form-group col-md-6">
-                  <label for="">First Name</label>
-                  <input
-                    v-validate="'required'"
-                    type="text"
-                    class="form-control edit-prof-input"
-                    placeholder="Micheal"
-                    v-model="first_name"
-                  />
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="">Last Name</label>
-                  <input
-                    v-validate="'required'"
-                    v-model="surname"
-                    type="text"
-                    class="form-control edit-prof-input"
-                    placeholder="Jackson"
-                  />
-                </div>
-              </div>
-              <div class="row">
-                <div class="form-group col-md-12">
-                  <label for="">Address</label>
-                  <input
-                    v-validate="'required'"
-                    type="text"
-                    class="form-control edit-prof-input"
-                    placeholder="15, Osborne Foreshore Road, Ikoyi, Lagos"
-                    v-model="address"
-                  />
-                </div>
-              </div>
-              <div class="row">
-                <div class="form-group col-md-4">
-                  <label for="">City</label>
-                  <input
-                    v-validate="'required'"
-                    type="text"
-                    class="form-control edit-prof-input"
-                    placeholder="Lagos"
-                    v-model="city"
-                  />
-                </div>
-                <div class="form-group col-md-4">
-                  <label for="">Country</label>
-                  <input
-                    v-validate="'required'"
-                    type="text"
-                    class="form-control edit-prof-input"
-                    placeholder="Nigeria"
-                    v-model="country"
-                  />
-                </div>
-                <div class="form-group col-md-4">
-                  <label for="">Postal</label>
-                  <input
-                    v-validate="'required'"
-                    type="text"
-                    class="form-control edit-prof-input"
-                    placeholder="Zip Code"
-                    v-model="postal_code"
-                  />
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12 col-sm-8">
-                  <!-- <h5>About Me</h5>
-                  <p>
-                    Tour with me, Discover Places and experience the culture,
-                    its best when you tour with me.
-                  </p> -->
-                </div>
-                <div
-                  class="col-12 col-sm-4"
-                  style=""
-                >
-                  <button type="submit" class="btn btn-lg submit_btn float-right" :disabled="loading.updateProfile">
-                    <span v-if="loading.updateProfile">
-                      <img
-                        style="height: 20px;"
-                        src="../assets/loader_rolling.gif"
-                      />
-                    </span>
-                    <span v-else>
-                      Submit
-                    </span>
-                  </button>
-                </div>
-              </div>
-            </form>
-<!-- <div class="col-md-4" v-for="video in videoData" :key="video.id">
-
-            <div class="card">
-              <img :src="'http://img.youtube.com/vi/' + getVideoParam(video.url) +'/hqdefault.jpg'"  data-toggle="modal" :data-target="'#video' + video.id" class="card-img-top cursor-pointer" alt="...">
-
-              <div class="card-body">
-                <h5 class="card-title text-truncate"><span style="">{{ video.title }}</span></h5>
-                <p style="  display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical; overflow:hidden">
-                  {{ video.description }}
-                </p>
-                <footer class="blockquote-footer text-right" style="text-transform: capitalize;cursor: pointer;" @click="getVideoByCat(video.video_category.id)">{{ video.video_category.name }}</footer>
-              </div>
-
-
-            </div>
-
-          </div> -->
-                              <!--     <div class="col-md-12">
-                                    <div v-for="video in videoData" :key="video.id" class="modal fade" :id="'video' + video.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document" style="max-width: 700px;">
-                                      <div class="modal-content">
-                                        <div class="modal-body" style="padding: 0">
-                                          <iframe width="420" height="415" style="width: 100%" 
-                                          :src="video.url">
-                                          </iframe>
-                                        </div>
-                                        <div class="modal-footer" style="padding: 0;border-top: none;">
-                                          <div class="row" style="width: 100%;">
-                                            <div class="col-md-12" style="text-align: center">
-                                               <button type="button" class="btn modal-btn-travv" data-dismiss="modal">Close</button>
-                                            </div>
-                                          </div>
-                                         
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  </div> -->
                                 </div>
                            </div>
                            
-                       </div>
+                       </div> -->
                    </div>
                </div>
            </div>
@@ -573,65 +367,6 @@ export default {
           alert('Failed to copy texts')
         },
         formSubmit: function(event) {
-    let requestHeaders = {
-      headers: { Authorization: "Bearer " + this.$store.state.auth.access_token }
-    };
-      this.validationErrors = null;
-      this.$validator.validateAll().then(result => {
-        if (result) {
-          this.updateProfile({
-            first_name: this.first_name,
-            surname: this.surname,
-            subscribed_to_newsletter: this.subscribed_to_newsletter,
-            user_id: this.auth.user.id,
-            address: this.address,
-            city: this.city,
-            country: this.country,
-            postal_code: this.postal_code
-          }, requestHeaders)
-            .then(data => {
-              console.log(data)
-              this.$noty.success("Profile Updated Succefully");
-              if(this.checkUserType){
-                let merchantData = ""
-                axios.get(`${this.$store.state.API_BASE}/merchants/${this.$store.state.auth.merchant.id}/extras`).then(response => {
-                  console.log(response.data.data)
-                  merchantData = response.data.data
-                    axios.post(`${this.$store.state.API_BASE}/merchant/extras/${merchantData.id}`, {
-                        business_name: this.business_name,
-                        business_email: this.business_email,
-                        phone: this.phone,
-                        bio: this.bio,
-                        merchant_id: this.$store.state.auth.merchant.id,
-                        _method: 'PUT'
-                    }, requestHeaders).then(response => {
-                      let newData = JSON.parse(localStorage.getItem("auth"));
-                      
-                      newData.merchant = response.data.data;
-
-                      // console.log("new data", newData);
-                      localStorage.setItem("auth", JSON.stringify(newData));
-
-                      this.$noty.success("Merchant Profile Updated Succefully");
-                      window.location.reload(1);
-                      console.log(response.data.data)
-                    }).catch(error => {
-                      console.log(error.response.data)
-                    })
-                }).catch(error => {
-                  console.log(error.response.data);
-                })
-              }
-            })
-            .catch(err => {
-              console.log(err.response);
-              // this.validationErrors = err.response.data.errors;
-              this.$noty.error("Oops, something went wrong!");
-            });
-        } else {
-          this.$noty.error("Oops, something went wrong!");
-        }
-      });
     },
     // checkUserType() {
     //   if (this.auth.user.role == "merchant") {
@@ -640,68 +375,7 @@ export default {
     //     return false;
     //   }
     // },
-    authFirstName() {
-      this.first_name = this.auth.user.first_name;
-      return this.auth.user.first_name;
-    },
-    authSurnName() {
-      this.surname = this.auth.user.surname;
-      return this.auth.user.surname;
-    },
-    authEmail() {
-      this.email = this.auth.user.email;
-      return this.auth.user.email;
-    },
-    authCompany() {
-      if(this.$store.state.auth.merchant) {
-        this.company = this.auth.merchant.business_name;
-        return this.auth.merchant.business_name;
-      }
-    },
-    authAddress() {
-      this.address = this.auth.user.address;
-      return this.auth.user.address;
-    },
-    authCity() {
-      this.city = this.auth.user.city;
-      return this.auth.user.city;
-    },
-    authCountry() {
-      this.country = this.auth.user.country;
-      return this.auth.user.country;
-    },
-    authPostalCode() {
-      this.postal_code = this.auth.user.postal_code;
-      return this.auth.user.postal_code;
-    },
-    setImage(output){
-      this.hasImage = true;
-      this.image = output;
-    },
-    merchantCompany() {
-      if(this.$store.state.auth.merchant) {
-        this.company = this.auth.merchant.business_name;
-        return this.auth.merchant.business_name;
-      }
-    },
-    merchantEmail() {
-      if(this.$store.state.auth.merchant) {
-        this.company = this.auth.merchant.business_email;
-        return this.auth.merchant.business_email;
-      }
-    },
-    merchantPhone() {
-      if(this.$store.state.auth.merchant) {
-        this.company = this.auth.merchant.phone;
-        return this.auth.merchant.phone;
-      }
-    },
-    merchantBio() {
-      if(this.$store.state.auth.merchant) {
-        this.company = this.auth.merchant.bio;
-        return this.auth.merchant.bio;
-      }
-    },
+    
     },
     created(){
       this.message = `http://travvapp.herokuapp.com/signup?ref=${this.auth.user.referral_token}`
@@ -710,24 +384,6 @@ export default {
       this.getUserMedal()
       this.getVideos()
 
-      this.authFirstName();
-      this.authSurnName();
-      this.authEmail();
-      this.authCompany();
-      this.authAddress();
-      this.authCity();
-      this.authCountry();
-      this.authPostalCode();
-      this.merchantCompany();
-      this.merchantEmail()
-      this.merchantPhone()
-      this.merchantBio() 
-      if(this.checkUserType){
-        this.business_name = this.auth.merchant.business_name
-        this.business_email = this.auth.merchant.business_email
-        this.bio = this.auth.merchant.bio
-        this.phone = this.auth.merchant.phone  
-      }
     }
 }
 </script>
