@@ -7,18 +7,19 @@
                         <div class="col-md-12">
                             <h1 class="main_slider_text_bg">Discover Places and <br> Experience the Culture</h1> <br>
                             <button type="button" class="btn btn-travv toggle-display-sm">
-                                <img src="../assets/Icons/tours-experiences.svg" /> Tours & Experiences
+                                <!-- <img src="../assets/Icons/tours-experiences.svg" /> --> <i class="fa fa-umbrella"></i> Tours & Experiences
                             </button>
                             <button type="button" class="btn btn-travv toggle-display-sm">
                                 <img src="../assets/Icons/restaurants.svg" style="margin-top: -8px;" /> Restaurants
                             </button>
                             <button type="button" class="btn btn-travv toggle-display-sm">
-                                <img src="../assets/Icons/places.svg" style="margin-top: -8px;" /> Places / Destination
+                                <!-- <img src="../assets/Icons/places.svg" style="margin-top: -8px;" /> --> 
+                                <i class="fa fa-map-marker-alt"></i> Places / Destination
                             </button>
 
                             <div class="btn-group btn-group-toggle toggle-display">
                                 <label class="btn btn-travv" @click="toggleColor" v-bind:class="{ 'active-travv': Experiences }" data-ExpType="tours">
-                                    <img src="../assets/Icons/tours-experiences.svg" /> Tours & Experiences
+                                    <i class="fa fa-umbrella"></i> Tours & Experiences
                                 </label>
                                 <label class="btn btn-travv active-travv">
                                     |
@@ -30,7 +31,7 @@
                                     |
                                 </label>
                                 <label class="btn btn-travv" @click="toggleColor"  v-bind:class="{ 'active-travv': Destination }" data-ExpType="places">
-                                    <img src="../assets/Icons/places.svg" style="margin-top: -8px;" /> Places / Destination
+                                    <!-- <img src="../assets/Icons/places.svg" style="margin-top: -8px;" /> --> <i class="fa fa-map-marker-alt"></i> Places / Destination
                                 </label>
                             </div> <br>
                             
@@ -44,7 +45,8 @@
                                         |
                                     </label>
                                     <label class="btn btn-travv">
-                                        <img src="../assets/zoom-icon.png" style="margin-top: -10px;height: 24px;" />
+                                        <!-- <img src="../assets/zoom-icon.png" style="margin-top: -10px;height: 24px;" /> -->
+                                        <i class="fa fa-search"></i>
                                     </label>
                                 </div> <button type="submit" class="btn btn-lg cont-btn">Continue</button>    
                             </form>

@@ -17,7 +17,8 @@
               
               <div class="col-lg-4" style="text-align: center;">
                 <router-link to="/dashboard/merchant/new-experience" @click="verifyUserType()">
-                  <img src="../assets/Icons/add-listing.svg" style="height: 125px; width: 125px;" />
+                  <!-- <img src="../assets/Icons/add-listing.svg" style="height: 125px; width: 125px;" /> -->
+                  <i class="fa fa-plus-circle home-large-icon"></i>
                   <p class="title">Add Listing</p>
                 </router-link>
                 <!-- <div class="c_box_item">
@@ -27,7 +28,8 @@
               </div>
               <div class="col-lg-4" style="text-align: center;">
                 <router-link to="/experiences">
-                  <img src="../assets/Icons/compass.svg" style="height: 125px;" />
+                  <!-- <img src="../assets/Icons/compass.svg" style="height: 125px;" /> -->
+                  <i class="far fa-compass home-large-icon"></i>
                   <p class="title">Explore Places</p>  
                 </router-link>
                 
@@ -36,7 +38,8 @@
               </div>
               <div class="col-lg-4 no-pad-r" style="text-align: center;">
                 <router-link to="/videos">
-                  <img src="../assets/travv/play.png" style="height: 125px;" />
+                  <!-- <img src="../assets/travv/play.png" style="height: 125px;" /> -->
+                  <i class="far fa-play-circle home-large-icon"></i>
                   <p class="title">Videos</p>
                 </router-link>
                   <!-- <div class="c_box_item">
@@ -306,6 +309,9 @@
 </script>
 
 <style>
+  .home-large-icon{
+    font-size:125px; color: #f81894
+  }
   .creative_feature_area {
     margin-left: 89px;
     margin-right: 89px;
