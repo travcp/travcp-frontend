@@ -237,7 +237,7 @@ export default {
       console.log(reference)
       axios.post(`${this.$store.state.API_BASE}/cart/checkout`, {
                     "transaction_id": reference,
-                    "price": this.calcPrice(),
+                    "price": this.calcPrice,
                     "cart_id": this.cart.id,
                     "currency": "USD"
                   },requestHeaders).then(response => {
