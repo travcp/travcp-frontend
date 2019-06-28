@@ -198,9 +198,9 @@ export default {
     },
     payWithPaystack(){
     var _this = this
-    let dollartonaira = (this.calcPrice()) * 100
+    let dollartonaira = (this.calcPrice) * 100
     console.log(parseInt(dollartonaira))
-    console.log("price is " + this.calcPrice());
+    console.log("price is " + this.calcPrice);
     var handler = PaystackPop.setup({
       key: 'pk_test_a3c6507e7a82c63308de9c5863bbe0950492d508',
       email: this.$store.state.auth.user.email,
