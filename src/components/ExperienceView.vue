@@ -184,10 +184,6 @@
                                                         <button type="button" class="book_btn btn-block"  @click="gotoMenu">View Menu</button>
                                                     </div>
                                                 </div>
-                                                <div class="text-center">
-                                                    You won't be charged yet
-                                                    <a href="javascript:void(0)" class="dropdown-item" style="border-bottom: 1px solid #000" @click="chatWithMerchant">Chat with merchant</a>
-                                                </div>
                                             </div>
                                         </div>
                                         <!-- <date-picker v-model="time1" :first-day-of-week="1"></date-picker> -->
@@ -195,6 +191,10 @@
                                     <div class="book_btn" style="padding-top: 10px;text-align: center;" v-else>
                                         Booked
                                     </div>
+                                                <div class="text-center">
+                                                    You won't be charged yet
+                                                    <a href="javascript:void(0)" class="dropdown-item" style="border-bottom: 1px solid #000" @click="chatWithMerchant">Chat with merchant</a>
+                                                </div>
                                 </div>
                             </div>
                             

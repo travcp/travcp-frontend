@@ -2,11 +2,22 @@
   <div id="app">
     <!-- <Navbar /> -->
     <!-- <Circle8 /> -->
-    <fade-transition origin="center" mode="out-in" :duration="250">
-        <router-view/>
-    </fade-transition>
-    <!-- <router-view/> -->
-    <Footer v-if="this.$route.path != '/dashboard/messages'" />
+    <div id="mySidebar" class="sidebar-main">
+      <a href="javascript:void(0)" class="closebtn" @click="closeNav()"><i class="fa fa-cancel"></i></a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Clients</a>
+      <a href="#">Contact</a>
+    </div> 
+    <div id="main">
+        
+      <fade-transition origin="center" mode="out-in" :duration="250">
+          <router-view/>
+      </fade-transition>
+
+      <!-- <router-view/> -->
+      <Footer v-if="this.$route.path != '/dashboard/messages'" />
+    </div>
   </div>
 </template>
 
@@ -194,4 +205,72 @@ body, h6, h5, h4, h3, h2, h1, p  {
 a{
   text-decoration: none !important;
 }
+
+.sidebar-main {
+  height: 100% !important;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar-main a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar-main a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar-main .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+#main {
+  transition: margin-left .5s;
+  /*padding: 16px;*/
+}
+.featured-card.card {
+    overflow: hidden !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+}
+.featured-card-footer {
+    color: #FFF !important;
+    position: absolute !important;
+    width: 100% !important;
+    padding: .75rem 1.25rem !important;
+    /* margin-top: -50px; */
+    border-bottom-left-radius: .25rem !important;
+    border-bottom-right-radius: .25rem !important;
+    margin-top: 0 !important;
+}
+
 </style>

@@ -129,19 +129,22 @@ export default {
         },
         fetchMessages(recipient) {
             this.loading = true;
-            axios.get(`${this.$store.state.API_BASE}/messages?recipient=${recipient}`, this.requestHeaders)
-                .then(res => {
-                    this.loading = false;
-                let messages = res.data.data;
-                messages.forEach(message => {
-                    this.messages.push(message);
-                });
-                let $msgs = $("ul.messages-list");
-                
-                $msgs.animate({ scrollTop: $msgs.prop("scrollHeight") }, 500);
-                }).catch(err => {
-                    this.loading = false;
-                });
+            // setInterval(() => {
+                axios.get(`${this.$store.state.API_BASE}/messages?recipient=${recipient}`, this.requestHeaders)
+                    .then(res => {
+                        this.loading = false;
+                    let messages = res.data.data;
+                    messages.forEach(message => {
+                        this.messages.push(message);
+                    });
+                    let $msgs = $("ul.messages-list");
+                    
+                    $msgs.animate({ scrollTop: $msgs.prop("scrollHeight") }, 500);
+                    }).catch(err => {
+                        this.loading = false;
+                    });
+            // }, 1000)
+
             },
         changeConversation(receiver) {
             
@@ -150,43 +153,48 @@ export default {
             } else {
                 this.messages = [];
                 this.currentReceiver = receiver;
-                this.fetchMessages(this.currentReceiver.id);
+                // setInterval(() => { 
+                    this.fetchMessages(this.currentReceiver.id);
+                // }, 1000)
             }
         },
         fetchConversations() {
-            axios.get(`${this.$store.state.API_BASE}/conversations`, this.requestHeaders).then(res => {
-                let conversators = res.data.data;
-                this.conversations = res.data.data;
-                if (conversators.length > 0) {
-                    if (this.recipient == null || this.recipient.undefined){
-                        this.currentReceiver = conversators[0];
-                        this.fetchMessages(this.currentReceiver.id);
+            // setInterval(() => {
+                axios.get(`${this.$store.state.API_BASE}/conversations`, this.requestHeaders).then(res => {
+                    let conversators = res.data.data;
+                    this.conversations = res.data.data;
+                    if (conversators.length > 0) {
+                        if (this.recipient == null || this.recipient.undefined){
+                            this.currentReceiver = conversators[0];
+                            this.fetchMessages(this.currentReceiver.id);
+                        }
+                        
                     }
-                    
-                }
-            });
+                });
+            // }, 1000)
         },
         fetchLastMessages(recipient){
-            
-            axios.get(`${this.$store.state.API_BASE}/last-messages?recipient=${recipient}`, this.requestHeaders).then(res => {
-                let messages = res.data.data;
-                if (messages.length > 0){
+            // setInterval(() => {
+                axios.get(`${this.$store.state.API_BASE}/last-messages?recipient=${recipient}`, this.requestHeaders).then(res => {
+                    let messages = res.data.data;
+                    if (messages.length > 0){
 
-                    new Audio("/mp3/slow-spring-board.mp3").play();
-                    messages.forEach(message => {
-                        this.messages.push(message);
-                    });
-                    let $msgs = $("ul.messages-list");
+                        new Audio("/mp3/slow-spring-board.mp3").play();
+                        messages.forEach(message => {
+                            this.messages.push(message);
+                        });
+                        let $msgs = $("ul.messages-list");
+                        
+                        $msgs.animate({ scrollTop: $msgs.prop("scrollHeight") }, 500);
+                    }
+                    else{
+                        
+                    }
                     
-                    $msgs.animate({ scrollTop: $msgs.prop("scrollHeight") }, 500);
-                }
-                else{
-                    
-                }
-                
-            }).catch(err => {
-                console.log(err);
-            });
+                }).catch(err => {
+                    console.log(err);
+                });
+            // }, 1000)
         },
         fetchUser(id){
             return axios.get(`${this.$store.state.API_BASE}/users/${id}`).then(res => {

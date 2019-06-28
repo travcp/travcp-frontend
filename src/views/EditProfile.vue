@@ -239,6 +239,7 @@ import axios from "axios";
 
 import FormErrors from '@/components/FormErrors.vue';
 
+import Swal from 'sweetalert2'
 export default {
   name: "EditProfile",
   beforeRouteEnter(to, from, next) {
@@ -320,6 +321,11 @@ export default {
           }, requestHeaders)
             .then(data => {
               console.log(data)
+              Swal.fire(
+                'Profile',
+                'Profile updated successfully',
+                'success'
+              )
               this.$noty.success("Profile Updated Succefully");
               if(this.checkUserType){
                 let merchantData = ""
@@ -334,15 +340,16 @@ export default {
                         merchant_id: this.$store.state.auth.merchant.id,
                         _method: 'PUT'
                     }, requestHeaders).then(response => {
+                      console.log(response.data.data)
                       let newData = JSON.parse(localStorage.getItem("auth"));
                       
                       newData.merchant = response.data.data;
-
+                      this.$store.state.auth = newData
                       // console.log("new data", newData);
                       localStorage.setItem("auth", JSON.stringify(newData));
 
                       this.$noty.success("Merchant Profile Updated Succefully");
-                      window.location.reload(1);
+                      // window.location.reload(1);
                       console.log(response.data.data)
                     }).catch(error => {
                       console.log(error.response.data)

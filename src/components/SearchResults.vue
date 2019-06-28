@@ -138,7 +138,6 @@
                                     <!-- <div class="search_items"> -->
                                         <div class="featured-card card" style="margin-bottom: 20px;">
 
-            <i class="fa fa-heart" style="position: absolute;float: right;padding: 20px;font-size: 18px;color: #FFF;" @click="postFavoriteExeperience(experience.id)"></i>
             
                                             <img v-if="experience.images.length" :src="experience.images[0].image" style="width: 100%;object-fit: cover;height:300px;" class="card-img-top featured-card-img" alt="...">
                                             <img v-else src="../assets/osaka.png" style="width: 100%;object-fit: cover;height:300px;" class="card-img-top featured-card-img" alt="...">
@@ -147,6 +146,9 @@
                                                 <h5 class="card-title" style="text-transform: capitalize;"> {{ experience.city }} <i class="fa fa-heart" @click="postFavoriteExeperience(experience.id)"></i></h5>
                                                 <star-rating :rating="parseFloat(experience.rating)" :read-only="true" :increment="0.01" :star-size="18"></star-rating>
                                                 <p class="card-text" style="color: #f81894"><b>{{experience.rating == null ? 0 : experience.rating}} <i class="fa fa-star"></i></b> ({{experience.rating_count == null ? 0 : experience.rating_count}})</p>
+
+                <i class="far fa-heart" style="position: relative;font-size: 18px;color: rgb(248, 24, 148);z-index: 1221;left: 90%;top: -40px;" @click="postFavoriteExeperience(experience.id)"></i>
+
                                             </div>
                                         </div>
                                     <!-- </div> -->
@@ -156,7 +158,7 @@
                                 <router-link :to="'/experience/'+ experience.id + '/' + experience.title.toString().toLowerCase().replace( /\s/g, '-')">
         <div class="featured-card card" style="margin-bottom: 20px;">
             
-            <i class="fa fa-heart" style="position: absolute;float: right;padding: 20px;font-size: 18px;color: #FFF;" @click="postFavoriteExeperience(experience.id)"></i>
+            
 
           <img v-if="experience.images.length" :src="experience.images[0].image" style="width: 100%;object-fit: cover;height:300px;" class="card-img-top featured-card-img" alt="...">
           <img v-else src="../assets/osaka.png" style="width: 100%;object-fit: cover;height:300px;" class="card-img-top featured-card-img" alt="...">
@@ -166,6 +168,9 @@
                     </h5>
                <star-rating :rating="parseFloat(experience.rating)" :read-only="true" :increment="0.01" :star-size="18"></star-rating>
                 <p class="card-text" style="color: #f81894"><b>{{experience.rating == null ? 0 : experience.rating}} <i class="fa fa-star"></i></b> ({{experience.rating_count == null ? 0 : experience.rating_count}})</p>
+
+                <i class="far fa-heart" style="position: relative;font-size: 18px;color: rgb(248, 24, 148);z-index: 1221;left: 90%;top: -40px;" @click="postFavoriteExeperience(experience.id)"></i>
+
             </div>
           </div>
 

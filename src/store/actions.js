@@ -104,6 +104,7 @@ export default {
           state.loading.userLogin = false;
           commit("LOGIN_SUCCESS", res.data);
           router.push("/");
+          window.location.reload(1);
           // resolve(res.data)
         })
         .catch(err => {
@@ -435,6 +436,20 @@ export default {
 
     removeChannelUser: ({ commit, state }, user) => {
       commit('SET_CHANNEL_USERS', state.channelUsers.filter(it => it.userId !== user.userId))
+    },
+    openNav() {
+      if(document.getElementById("mySidebar").style.width == "250px"){
+        document.getElementById("mySidebar").style.width = "0";
+        document.getElementById("main").style.marginLeft= "0";
+      } else {
+        document.getElementById("mySidebar").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+
+      }
+    },
+    closeNav() {
+        document.getElementById("mySidebar").style.width = "0";
+        document.getElementById("main").style.marginLeft= "0";
     }
 
 };

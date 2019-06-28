@@ -757,6 +757,11 @@ export default {
               console.log(response.data.data);
               this.experience_response_data = response.data.data
               this.form_index = 2
+              Swal.fire(
+                'Expereince',
+                'Experience uploaded successfully',
+                'success'
+              )
               this.$noty.success("Experience is Submitted Succesfully");
               this.$store.state.loading.submitExperience = false;
               // formData.append('upload_preset', 'ao19aaag')
