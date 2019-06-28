@@ -27,8 +27,10 @@
                                <br>
                                 <h5 class="card-title" style="text-transform: capitalize">{{ userProperties.surname }} {{ userProperties.first_name }}</h5>
                                 <h6 class="card-subtitle mb-2 text-muted" style="text-transform: lowercase;">{{ userProperties.surname }}{{ userProperties.first_name }}</h6>
-                                <p class="location" v-if="userProperties.address"><img src="/img/icons/map-marker-alt-solid.svg" alt="" style="width:10px"> {{ userProperties.address }}, {{ userProperties.country }}</p>
+                                <p class="location" v-if="userProperties.address">
 
+                                  <img src="/img/icons/map-marker-alt-solid.svg" alt="" style="width:10px"> {{ userProperties.address }}, {{ userProperties.country }}</p>
+                                <br><br>
                               <button type="submit" class="btn btn-lg submit_btn float-right" style="width: 100%;">
                                 <a class="" href="#affiliate-modal" data-toggle="modal" style="color: #FFF;">Affiliate Link</a>
                               </button>
@@ -48,7 +50,7 @@
                           <div class="card-body">
                              
                             <div class="row">
-                              <div class="col-md-6  merchant-data-card" style="border: 1px solid #eee; border-left: 4px solid #d3187f; border-radius: 5px;height: 120px;padding: 15px;padding-top: 25px;position: relative; left: -10px;">
+                              <div class="col-md-6  merchant-data-card" style="border: 1px solid #eee; border-left: 4px solid #d3187f; border-radius: 5px;min-height: 120px;padding: 15px;padding-top: 25px;position: relative; left: -10px;">
                                 <div class="row">
                                   <div class="col-md-4">
                                     <i class="fa fa-plane-departure fa-5x" style="color: #e83e8c;"></i>
@@ -65,7 +67,7 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="col-md-6  merchant-data-card" style="border: 1px solid #eee; border-left: 4px solid #6610f2; border-radius: 5px;height: 120px;padding: 15px;padding-top: 25px;">
+                              <div class="col-md-6  merchant-data-card" style="border: 1px solid #eee; border-left: 4px solid #6610f2; border-radius: 5px;min-height: 120px;padding: 15px;padding-top: 25px;">
                                 <div class="row">
                                   <div class="col-md-4">
                                     <i class="fab fa-algolia fa-5x" style="color: #6610f2;"></i>
@@ -82,7 +84,7 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="col-md-6  merchant-data-card" style="border: 1px solid #eee; border-left: 4px solid #20c997; border-radius: 5px;height: 120px;padding: 15px;padding-top: 25px;position: relative; left: -10px;margin-top: 10px;">
+                              <div class="col-md-6  merchant-data-card" style="border: 1px solid #eee; border-left: 4px solid #20c997; border-radius: 5px;min-height: 120px;padding: 15px;padding-top: 25px;position: relative; left: -10px;margin-top: 10px;">
                                 <div class="row">
                                   <div class="col-md-4">
                                     <i class="fa fa-location-arrow fa-5x" style="color: #20c997;"></i>
@@ -99,7 +101,7 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="col-md-6  merchant-data-card" style="border: 1px solid #eee; border-left: 4px solid #17a2b8; border-radius: 5px;height: 120px;padding: 15px;padding-top: 25px;margin-top: 10px;">
+                              <div class="col-md-6  merchant-data-card" style="border: 1px solid #eee; border-left: 4px solid #17a2b8; border-radius: 5px;min-height: 120px;padding: 15px;padding-top: 25px;margin-top: 10px;">
                                 <div class="row">
                                   <div class="col-md-4">
                                     <i class="fas fa-utensils fa-5x" style="color: #17a2b8;"></i>
@@ -201,7 +203,7 @@
                     city
                     country
                     postal_code -->
-                <div class="form-group col-4" v-if="checkUserType">
+                <div class="form-group col-md-4" v-if="checkUserType">
                   <label for="">Company</label>
                   <input
                     v-validate="'required'"
@@ -211,7 +213,7 @@
                     placeholder="TravvApp Inc."
                   />
                 </div>
-                <div class="form-group col-4" v-if="checkUserType">
+                <div class="form-group col-md-4" v-if="checkUserType">
                   <label for="">Bussiness Email</label>
                   <input
                     v-validate="'required'"
@@ -221,7 +223,7 @@
                     placeholder="TravvApp Inc."
                   />
                 </div>
-                <div class="form-group col-4" v-if="checkUserType">
+                <div class="form-group col-md-4" v-if="checkUserType">
                   <label for="">Bussiness Phone Number</label>
                   <input
                     v-validate="'required'"
@@ -231,7 +233,7 @@
                     placeholder="+234 800 000 00"
                   />
                 </div>
-                <div class="form-group col-12" v-if="checkUserType">
+                <div class="form-group col-md-12" v-if="checkUserType">
                   <label for="">Short Bio</label>
                   <textarea
                     v-validate="'required'"
@@ -261,7 +263,7 @@
               </div>
               <div class="row">
                 
-                <div class="form-group col-6">
+                <div class="form-group col-md-6">
                   <label for="">First Name</label>
                   <input
                     v-validate="'required'"
@@ -271,7 +273,7 @@
                     v-model="first_name"
                   />
                 </div>
-                <div class="form-group col-6">
+                <div class="form-group col-md-6">
                   <label for="">Last Name</label>
                   <input
                     v-validate="'required'"
@@ -283,7 +285,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="form-group col-12">
+                <div class="form-group col-md-12">
                   <label for="">Address</label>
                   <input
                     v-validate="'required'"
@@ -295,7 +297,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="form-group col-4">
+                <div class="form-group col-md-4">
                   <label for="">City</label>
                   <input
                     v-validate="'required'"
@@ -305,7 +307,7 @@
                     v-model="city"
                   />
                 </div>
-                <div class="form-group col-4">
+                <div class="form-group col-md-4">
                   <label for="">Country</label>
                   <input
                     v-validate="'required'"
@@ -315,7 +317,7 @@
                     v-model="country"
                   />
                 </div>
-                <div class="form-group col-4">
+                <div class="form-group col-md-4">
                   <label for="">Postal</label>
                   <input
                     v-validate="'required'"

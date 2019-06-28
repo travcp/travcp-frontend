@@ -130,6 +130,46 @@
     $('#filename').val(filename);
 });
 </script> -->
+<!-- <script
+  src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+  crossorigin="anonymous"></script> -->
+<!-- <script src="https://widget.cloudinary.com/v2.0/next/global/all.js"> </script> -->
+
+  <!-- <script src="https://media-library.cloudinary.com/global/all.js"></script> -->
+<script>
+"use strict";
+
+!function() {
+  var t = window.driftt = window.drift = window.driftt || [];
+  if (!t.init) {
+    if (t.invoked) return void (window.console && console.error && console.error("Drift snippet included twice."));
+    t.invoked = !0, t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ], 
+    t.factory = function(e) {
+      return function() {
+        var n = Array.prototype.slice.call(arguments);
+        return n.unshift(e), t.push(n), t;
+      };
+    }, t.methods.forEach(function(e) {
+      t[e] = t.factory(e);
+    }), t.load = function(t) {
+      var e = 3e5, n = Math.ceil(new Date() / e) * e, o = document.createElement("script");
+      o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js";
+      var i = document.getElementsByTagName("script")[0];
+      i.parentNode.insertBefore(o, i);
+    };
+  }
+}();
+drift.SNIPPET_VERSION = '0.3.1';
+drift.load('vpxm7kmvim6m');
+</script>
+<script src="//vjs.zencdn.net/7.5.4/video.min.js"></script>
+<script src="//unpkg.com/recordrtc/RecordRTC.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/adapterjs/0.15.4/adapter.min.js"></script>
+<script src="/video/videojs-record/dist/videojs.record.min.js"></script>
+<script src="https://storage.googleapis.com/vrview/2.0/build/vrview.min.js"></script>
+<script src="/browser-workarounds.js"></script>
+
 <script>
   var options = {
                 controls: true,
@@ -182,45 +222,6 @@
             });
 </script>
 
-<!-- <script
-  src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-  integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
-  crossorigin="anonymous"></script> -->
-<!-- <script src="https://widget.cloudinary.com/v2.0/next/global/all.js"> </script> -->
-
-  <!-- <script src="https://media-library.cloudinary.com/global/all.js"></script> -->
-<script>
-"use strict";
-
-!function() {
-  var t = window.driftt = window.drift = window.driftt || [];
-  if (!t.init) {
-    if (t.invoked) return void (window.console && console.error && console.error("Drift snippet included twice."));
-    t.invoked = !0, t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ], 
-    t.factory = function(e) {
-      return function() {
-        var n = Array.prototype.slice.call(arguments);
-        return n.unshift(e), t.push(n), t;
-      };
-    }, t.methods.forEach(function(e) {
-      t[e] = t.factory(e);
-    }), t.load = function(t) {
-      var e = 3e5, n = Math.ceil(new Date() / e) * e, o = document.createElement("script");
-      o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js";
-      var i = document.getElementsByTagName("script")[0];
-      i.parentNode.insertBefore(o, i);
-    };
-  }
-}();
-drift.SNIPPET_VERSION = '0.3.1';
-drift.load('vpxm7kmvim6m');
-</script>
-<script src="//vjs.zencdn.net/7.5.4/video.min.js"></script>
-<script src="//unpkg.com/recordrtc/RecordRTC.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/adapterjs/0.15.4/adapter.min.js"></script>
-<script src="/video/videojs-record/dist/videojs.record.min.js"></script>
-<script src="https://storage.googleapis.com/vrview/2.0/build/vrview.min.js"></script>
-<script src="/browser-workarounds.js"></script>
   <!-- built files will be auto injected -->
 </body>
 

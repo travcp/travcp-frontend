@@ -189,7 +189,7 @@
                                         <!-- <date-picker v-model="time1" :first-day-of-week="1"></date-picker> -->
                                     </form>
                                     <div class="book_btn" style="padding-top: 10px;text-align: center;" v-else>
-                                        Booked
+                                        Added to Cart
                                     </div>
                                                 <div class="text-center">
                                                     You won't be charged yet
@@ -295,7 +295,7 @@
                                 <div class="col-md-8">
                                     <h2 style="text-align: left;">Reviews</h2>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4" v-if="checkBookingStatus">
                                     <button class="btn" style="border: 2px solid #000;height: 37px;"  data-toggle="modal" data-target="#writeAReviewModal"><i class="fa fa-pencil" style="color: #000;"></i> Write a Review</button>
                                 <div class="modal fade" id="writeAReviewModal" tabindex="-1" role="dialog" aria-labelledby="writeAReviewModal" aria-hidden="true">
                                   <div class="modal-dialog" role="document">
@@ -360,9 +360,9 @@
                                             </div>
                                         </form>
                                       </div>
-                                      <div class="modal-footer">
+                                     <!--  <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                      </div>
+                                      </div> -->
                                     </div>
                                   </div>
                                 </div>
@@ -399,7 +399,7 @@
                             </div>
                             <div class="col-md-3">
 
-                                <button type="button" class="btn btn-primary" style="background: #f81894;border:#f81894;"  data-toggle="modal" data-target="#ReviewVideoModal">
+                                <button type="button" v-if="checkBookingStatus" class="btn btn-primary" style="background: #f81894;border:#f81894;"  data-toggle="modal" data-target="#ReviewVideoModal">
                                   Make 5 seconds video review
                                 </button>
                             </div>

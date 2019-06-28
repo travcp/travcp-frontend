@@ -14,20 +14,22 @@
         </div>
         <div style="padding-bottom: 20px">
           <p class="my-cart-sub-title">Cart( {{ cart.items ? cart.items.length : 0 }} )</p>
-          <p class="my-cart-sub-title">Price - ${{ calcPrice() }}</p>
+          <p class="my-cart-sub-title">Price - ${{ calcPrice }}</p>
         </div>
         <div class="row my-booking-left" v-for="item in cart.items" :key="item.id">
-          <div class="col-md-3 my-booking-details-image"></div>
+          <div class="col-md-3 my-booking-details-image" v-if="item.booking.experience.images.length > 0" :style="{background: 'url(' + item.booking.experience.images[0].image + ')', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}"></div>
+          <div class="col-md-3 my-booking-details-image" v-else></div>
           <div class="col-md-6 my-booking-trip-main">
             <div class="my-booking-trip-main-head">
               <div class="my-booking-trip-details-header">
-                <p class="my-booking-trip-details-header-p1">{{ item.booking.experience.title }} | WEST SUNNYBERG</p>
+                <p class="my-booking-trip-details-header-p1">{{ item.booking.experience.title }} | {{ item.booking.experience.state }}</p>
                 <p class="my-booking-trip-details-header-p2">{{ item.booking.experience.city }}</p>
               </div>
               <div class="my-booking-trip-details">
                 <p
                   class="my-booking-trip-details-p1"
                 >{{ item.booking.experience.description.slice(0, 200) }}</p>
+                <p>$ {{item.booking.experience.dollar_price}}</p>
               </div>
             </div>
           </div>
@@ -40,6 +42,7 @@
               <p class="col-md-2" style="font-size: 17px; font-weight: bold;" @click="removeFromCart(item.id)"><i class="fa fa-bin"></i>Remove</p>
             </button>
           </div>
+          <hr>
         </div>
         <div style="text-align: center;" v-if="loading">
           <Circle9 />
@@ -54,13 +57,13 @@
         <div class="my-cart-button">
           <router-link to="/experiences"><button class="button button1">Explore</button></router-link>
           <form>
-            <button type="button" class="button button2" @click="payWithPaystack()" v-if="calcPrice() > 0"> Checkout </button> 
+            <button type="button" class="button button2" @click="payWithPaystack()" v-if="calcPrice > 0"> Checkout </button> 
           </form>
           <!-- <button class="">Checkout</button> -->
         </div>
       </div>
       <!-- booking header details right -->
-      <div class="col-lg-4">
+      <!-- <div class="col-lg-4">
         <div class="my-booking-details-right">
           <div class="feature-places-title">
             <p class="feature-places-title-p1">Featured Places</p>
@@ -90,7 +93,7 @@
 
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <!-- <Footer /> -->
   </div>
@@ -135,12 +138,10 @@ export default {
     ...mapState(['places']),
     getNoCarts() {
       return true
-    }
-  },
-  methods: {
+    },
     calcPrice(){
       let price = 0;
-      if(this.cart.items && this.cart.items.length > 1) {
+      if(this.cart.items && this.cart.items.length > 0) {
         
         for(let i = 0; i < this.cart.items.length; i++){
           price += this.cart.items[i].booking.experience.dollar_price
@@ -161,6 +162,8 @@ export default {
       }
       // return 0;
     },
+  },
+  methods: {
     getMyCarts(){
       this.loading = true;
       let requestHeaders = {
@@ -195,7 +198,7 @@ export default {
     },
     payWithPaystack(){
     var _this = this
-    let dollartonaira = (this.calcPrice() * 360.46) * 100
+    let dollartonaira = (this.calcPrice()) * 100
     console.log(parseInt(dollartonaira))
     console.log("price is " + this.calcPrice());
     var handler = PaystackPop.setup({
@@ -343,6 +346,7 @@ export default {
   background: url("../assets/nagoya.png");
   background-position: center;
   background-size: cover;
+  min-height: 120px;
   background-repeat: no-repeat;
 }
 .my-booking-header {

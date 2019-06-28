@@ -16,7 +16,7 @@
             <div class="row">
               
               <div class="col-lg-4" style="text-align: center;">
-                <router-link to="/dashboard/merchant/new-experience">
+                <router-link to="/dashboard/merchant/new-experience" @click="verifyUserType()">
                   <img src="../assets/Icons/add-listing.svg" style="height: 125px; width: 125px;" />
                   <p class="title">Add Listing</p>
                 </router-link>
@@ -212,7 +212,14 @@
         }).catch(error => {
           console.log(error.response)
         })
-      }
+      },
+      verifyUserType(){
+        if(this.$store.state.auth.length && this.$store.state.auth.user.role == 'user'){
+          return this.$noty.warning('You need to be a Merchant to Add Listing')
+        } else if(!this.$store.state.auth.length){
+          return this.$noty.warning('You need to be a Merchant to Add Listing')
+        }
+      },
       // getExp1() {
       //   this.exp1 = this.experiences[Math.floor(Math.random()*this.experiences.length)]
       // }
@@ -224,8 +231,9 @@
       ...mapState(['restaurants']),
       ...mapState(['events']),
       ...mapState(['places']),
-      ...mapState(['restaurants']),
+      ...mapState(['restaurants', 'auth']),
       ...mapGetters(['getExp1', 'getExp2', 'getExp3', 'getExp4', 'getExp5']),
+
       // getLocation() {
       //   if (navigator.geolocation) {
       //     navigator.geolocation.getCurrentPosition(this.showPosition);

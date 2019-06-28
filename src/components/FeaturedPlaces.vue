@@ -16,17 +16,23 @@
                :perPageCustom="[[480, 1], [100, 1]]">
                 <slide v-for="place in places" :key="place.id">
                    <!-- <router-link :to="'/experience/'+ restaurant.id + '/' + restaurant.title.toString().toLowerCase().replace( /\s/g, '-')"> -->
-                    <div class="featured-card card" style="margin-bottom: 20px;box-shadow:none;"  v-on:click="goToRestPage(place.id, place.title.toString().toLowerCase().replace( /\s/g, '-'))">
-                    <img v-if="place.images.length" :src="place.images[0].image" style="width: 100%;object-fit: cover;height:300px;" class="card-img-top featured-card-img" alt="...">
-                    <img v-else src="../assets/osaka.png" style="width: 100%;object-fit: cover;height:300px;" class="card-img-top featured-card-img" alt="...">
-                     <div class="card-body" style="text-align: center">
-                          <p class="card-text" style="color: #f81894;text-transform: capitalize;">{{ place.title }} | {{ place.state }}</p><br>
-                          <h5 class="card-title" style="text-transform: capitalize;color:#000"> {{ place.city }}</h5><br>
-                         <star-rating  :rating="parseFloat(place.rating)" :read-only="true" :increment="0.01" :star-size="18"></star-rating>
-                          <p class="card-text" style="color: #f81894"><b>{{place.rating == null ? 0 : place.rating}} <i class="fa fa-star"></i></b> ({{place.rating_count == null ? 0 : place.rating_count}})</p>
+                    <div class="featured-card card" v-on:click="goToRestPage(place.id, place.slug)" style="overflow: hidden;">
+                      <img v-if="place.images.length" style="width: 100%;object-fit: cover;height:380px;" :src="place.images[0].image" class="card-img-top featured-card-img" alt="...">
+                      <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" style="width: 100%;object-fit: cover;height: 380px;" alt="...">
+                      <div class="featured-card-footer featured_places_overlay_active">
+                          <div class="row" style="text-transform: capitalize;">
+                              <div class="col-12 text-left">
+                                  {{ place.city }}
+                              </div>
+                              <div class="col-6 text-left">
+                                  <p>{{ place.rating }} <i class="fa fa-star"></i></p>
+                              </div>
+                              <div class="col-6 text-left" @click="postFavoriteExeperience(place.id)">
+                                  <p><i class="fa fa-heart"></i></p>
+                              </div>
+                          </div>
                       </div>
-                    </div>
-
+                  </div>
                 </slide>
               </carousel>
             </div>
@@ -49,7 +55,7 @@
                                                 <p>{{ place.rating }} <i class="fa fa-star"></i></p>
                                             </div>
                                             <div class="col-3 text-center" @click="postFavoriteExeperience(place.id)">
-                                                <p>{{ place.number_admittable }} <i class="fa fa-heart"></i></p>
+                                                <p><i class="fa fa-heart"></i></p>
                                             </div>
                                         </div>
                                     </div>

@@ -16,16 +16,24 @@
                :perPageCustom="[[480, 1], [100, 1]]">
                 <slide v-for="event in events" :key="event.id">
                    <!-- <router-link :to="'/experience/'+ restaurant.id + '/' + restaurant.title.toString().toLowerCase().replace( /\s/g, '-')"> -->
-                    <div class="featured-card card" style="margin-bottom: 20px;box-shadow:none;"  v-on:click="goToRestPage(event.id, event.title.toString().toLowerCase().replace( /\s/g, '-'))">
-                    <img v-if="event.images.length" :src="event.images[0].image" style="width: 100%;object-fit: cover;height:300px;" class="card-img-top featured-card-img" alt="...">
-                    <img v-else src="../assets/osaka.png" style="width: 100%;object-fit: cover;height:300px;" class="card-img-top featured-card-img" alt="...">
-                     <div class="card-body" style="text-align: center">
-                          <p class="card-text" style="color: #f81894;text-transform: capitalize;">{{ event.title }} | {{ event.state }}</p><br>
-                          <h5 class="card-title" style="text-transform: capitalize;color:#000"> {{ event.city }}</h5><br>
-                         <star-rating  :rating="parseFloat(event.rating)" :read-only="true" :increment="0.01" :star-size="18"></star-rating>
-                          <p class="card-text" style="color: #f81894"><b>{{event.rating == null ? 0 : event.rating}} <i class="fa fa-star"></i></b> ({{event.rating_count == null ? 0 : event.rating_count}})</p>
-                      </div>
+
+                    <div class="featured-card card" v-on:click="goToRestPage(event.id, event.slug)" style="overflow: hidden;">
+                    <img v-if="event.images.length" style="width: 100%;object-fit: cover;height:380px;" :src="event.images[0].image" class="card-img-top featured-card-img" alt="...">
+                    <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" style="width: 100%;object-fit: cover;height: 380px;" alt="...">
+                    <div class="featured-card-footer featured_places_overlay_active">
+                        <div class="row" style="text-transform: capitalize;">
+                            <div class="col-12 text-left">
+                               {{ event.city }}
+                            </div>
+                            <div class="col-6 text-left">
+                               <p>{{ event.rating }} <i class="fa fa-star"></i></p>
+                            </div>
+                            <div class="col-6 text-left" @click="postFavoriteExeperience(event.id)">
+                                <p><i class="fa fa-heart"></i></p>
+                            </div>
+                        </div>
                     </div>
+                </div>
 
                 </slide>
               </carousel>
@@ -49,7 +57,7 @@
                                                <p>{{ event.rating }} <i class="fa fa-star"></i></p>
                                             </div>
                                             <div class="col-3 text-center" @click="postFavoriteExeperience(event.id)">
-                                                <p>{{ event.number_admittable }} <i class="fa fa-heart"></i></p>
+                                                <p><i class="fa fa-heart"></i></p>
                                             </div>
                                         </div>
                                     </div>
