@@ -120,6 +120,7 @@
                     this.bookings = response.data.data;
                     this.loading = false;
                 }).catch(err => {
+                    // this.$noty.error('There was an ');
                     console.log("There was error fetching mybookings");
                 })
 

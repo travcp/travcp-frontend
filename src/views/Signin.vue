@@ -210,6 +210,12 @@ export default {
           this.userLogin({
             email: this.email,
             password: this.password
+          }).then(data => {
+            console.log(data)
+            this.$noty.success('Login Successfull')
+          }).catch(error => {
+            this.$noty.error('Oops, There was an erro while trying to login')
+            console.log(error)
           })
             // .then(response => {
             //   console.log(response.data);

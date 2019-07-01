@@ -17,8 +17,8 @@
                 <slide v-for="place in places" :key="place.id">
                    <!-- <router-link :to="'/experience/'+ restaurant.id + '/' + restaurant.title.toString().toLowerCase().replace( /\s/g, '-')"> -->
                     <div class="featured-card card" v-on:click="goToRestPage(place.id, place.slug)" style="overflow: hidden;">
-                      <img v-if="place.images.length" style="width: 100%;object-fit: cover;height:380px;" :src="place.images[0].image" class="card-img-top featured-card-img" alt="...">
-                      <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" style="width: 100%;object-fit: cover;height: 380px;" alt="...">
+                      <img v-if="place.images.length" style="width: 100%;object-fit: cover;height:380px;" :src="place.images[0].image" class="card-img-top featured-card-img" alt="..." loading="lazy">
+                      <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" style="width: 100%;object-fit: cover;height: 380px;" alt="..." loading="lazy">
                       <div class="featured-card-footer featured_places_overlay_active">
                           <div class="row" style="text-transform: capitalize;">
                               <div class="col-12 text-left">
@@ -44,8 +44,8 @@
                           <div class="col-md-4" v-for="place in places" :key="place.id">
                             <router-link :to="'/experience/'+ place.id + '/' + place.title.toString().toLowerCase().replace( /\s/g, '-')">
                                 <div class="featured-card card" style="overflow: hidden;">
-                                    <img v-if="place.images.length" style="width: 100%;object-fit: cover;height:380px;" :src="place.images[0].image" class="card-img-top featured-card-img" alt="...">
-                                    <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" style="width: 100%;object-fit: cover;height: 380px;" alt="...">
+                                    <img v-if="place.images.length" style="width: 100%;object-fit: cover;height:380px;" :src="place.images[0].image" class="card-img-top featured-card-img" alt="..." loading="lazy">
+                                    <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" style="width: 100%;object-fit: cover;height: 380px;" alt="..." loading="lazy">
                                     <div class="featured-card-footer featured_places_overlay_active">
                                         <div class="row" style="text-transform: capitalize;">
                                             <div class="col-6">

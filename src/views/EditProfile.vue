@@ -343,9 +343,14 @@ export default {
                       console.log(response.data.data)
                       let newData = JSON.parse(localStorage.getItem("auth"));
                       
-                      newData.merchant = response.data.data;
-                      this.$store.state.auth = newData
-                      // console.log("new data", newData);
+                      newData.newMerchant = response.data.data;
+                      newData.merchant.business_name = newData.newMerchant.business_name
+                      newData.merchant.business_email = newData.newMerchant.business_email
+                      newData.merchant.phone = newData.newMerchant.phone
+                      newData.merchant.bio = newData.newMerchant.bio
+
+                      this.$store.state.auth.merchant = newData.merchant
+                      console.log("new data", newData);
                       localStorage.setItem("auth", JSON.stringify(newData));
 
                       this.$noty.success("Merchant Profile Updated Succefully");

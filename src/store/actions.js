@@ -93,28 +93,33 @@ export default {
     })
     
   },
-  async userLogin({ commit, state }, data) {
+  userLogin({ commit, state }, data) {
     // commit("LOGIN_LOADING");
     state.loading.userLogin = true;
 
-    // return new Promise((resolve, reject) => {
-     await axios
-        .post(`${API_BASE}/auth/login`, data)
-        .then(res => {
-          state.loading.userLogin = false;
-          commit("LOGIN_SUCCESS", res.data);
-          router.push("/");
-          window.location.reload(1);
-          // resolve(res.data)
-        })
-        .catch(err => {
-          // console.log(`Error ${err}`);
-          // console.log(err.response);
-          state.loading.userLogin = false;
+    return new Promise((resolve, reject) => {
+      axios
+      .post(`${API_BASE}/auth/login`, data)
+      .then(res => {
+        state.loading.userLogin = false;
+        router.push("/");
+        commit("LOGIN_SUCCESS", res.data);
+        resolve(res.data)
+        // window.location.reload(1);
+        // resolve(res.data)
+      })
+      .catch(err => {
+        // console.log(`Error ${err}`);
+        // console.log(err.response);
+        state.loading.userLogin = false;
 
-          commit("LOGIN_FAILURE", err.response.data);
-          // reject(err.response.data)
-        });
+        commit("LOGIN_FAILURE", err.response.data);
+        reject(err.response.data)
+        // reject(err.response.data)
+      });
+    })
+    // return new Promise((resolve, reject) => {
+    //  await 
     // });
   },
   userLogout: ({ commit }) => {
@@ -147,7 +152,7 @@ export default {
   },
   async getEvents({ commit, state }) {
     // commit("EVENTS_LOADING");
-    state.loading.getEvents = false;
+    state.loading.getEvents = true;
 
     await axios
       .get(`${API_BASE}/experience_types/2/experiences`)

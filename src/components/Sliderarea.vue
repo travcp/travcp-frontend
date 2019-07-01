@@ -6,33 +6,45 @@
                     <div class="row" style="margin-right: 0px;">
                         <div class="col-md-12">
                             <h1 class="main_slider_text_bg">Discover Places and <br> Experience the Culture</h1> <br>
-                            <button type="button" class="btn btn-travv toggle-display-sm">
-                                <!-- <img src="../assets/Icons/tours-experiences.svg" /> --> <i class="fa fa-umbrella"></i> Tours & Experiences
-                            </button>
-                            <button type="button" class="btn btn-travv toggle-display-sm">
-                                <img src="../assets/Icons/restaurants.svg" style="margin-top: -8px;" /> Restaurants
-                            </button>
-                            <button type="button" class="btn btn-travv toggle-display-sm">
-                                <!-- <img src="../assets/Icons/places.svg" style="margin-top: -8px;" /> --> 
-                                <i class="fa fa-map-marker-alt"></i> Places / Destination
-                            </button>
-
-                            <div class="btn-group btn-group-toggle toggle-display">
-                                <label class="btn btn-travv" @click="toggleColor" v-bind:class="{ 'active-travv': Experiences }" data-ExpType="tours">
-                                    <i class="fa fa-umbrella"></i> Tours & Experiences
-                                </label>
-                                <label class="btn btn-travv active-travv">
-                                    |
-                                </label>
-                                <label class="btn btn-travv" @click="toggleColor" v-bind:class="{ 'active-travv': Restaurants }" data-ExpType="restaurants">
+                            <router-link to="/events">
+                                <button type="button" class="btn btn-travv toggle-display-sm">
+                                    <!-- <img src="../assets/Icons/tours-experiences.svg" /> --> <i class="fa fa-umbrella"></i> Tours & Experiences
+                                </button>
+                            </router-link>
+                            <router-link to="/restaurants">
+                                <button type="button" class="btn btn-travv toggle-display-sm">
                                     <img src="../assets/Icons/restaurants.svg" style="margin-top: -8px;" /> Restaurants
-                                </label>
+                                </button>
+                            </router-link>
+                            <router-link to="/places">
+                                <button type="button" class="btn btn-travv toggle-display-sm">
+                                    <!-- <img src="../assets/Icons/places.svg" style="margin-top: -8px;" /> --> 
+                                    <i class="fa fa-map-marker-alt"></i> Places / Destination
+                                </button>
+                            </router-link>
+<!-- events places restaurants -->
+                            <div class="btn-group btn-group-toggle toggle-display">
+                                <router-link to="/events">
+                                    <label class="btn btn-travv" @click="toggleColor" v-bind:class="{ 'active-travv': Experiences }" data-ExpType="tours" style="border-bottom-right-radius: 0;border-top-right-radius: 0;">
+                                        <i class="fa fa-umbrella"></i> Tours & Experiences
+                                    </label>
+                                </router-link>
                                 <label class="btn btn-travv active-travv">
                                     |
                                 </label>
-                                <label class="btn btn-travv" @click="toggleColor"  v-bind:class="{ 'active-travv': Destination }" data-ExpType="places">
-                                    <!-- <img src="../assets/Icons/places.svg" style="margin-top: -8px;" /> --> <i class="fa fa-map-marker-alt"></i> Places / Destination
+                                <router-link to="/restaurants">
+                                    <label class="btn btn-travv" @click="toggleColor" v-bind:class="{ 'active-travv': Restaurants }" data-ExpType="restaurants" style="    border-radius: 0;">
+                                        <img src="../assets/Icons/restaurants.svg" style="margin-top: -8px;" /> Restaurants
+                                    </label>
+                                </router-link>
+                                <label class="btn btn-travv active-travv">
+                                    |
                                 </label>
+                                <router-link to="/places">
+                                    <label class="btn btn-travv" @click="toggleColor"  v-bind:class="{ 'active-travv': Destination }" data-ExpType="places" style="    border-bottom-left-radius: 0;border-top-left-radius: 0;">
+                                        <!-- <img src="../assets/Icons/places.svg" style="margin-top: -8px;" /> --> <i class="fa fa-map-marker-alt"></i> Places / Destination
+                                    </label>
+                                </router-link>
                             </div> <br>
                             
                             <form @submit.prevent="searchSubmit">

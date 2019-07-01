@@ -149,10 +149,13 @@
 
           </div>
         </div>
+         <!-- <transition v-if="!loading.getExperiences" name="fade">
+          <FeaturedEvents :events="events.slice(0, 3)" />
+        </transition> -->
         <FeaturedEvents :events="events.slice(0, 3)" />
         <FeaturedPlaces :places="places.slice(0, 3)" />
         <FeaturedRest :restaurants="restaurants.slice(0, 3)" />
-        <!-- <SuggestedExperiences :experiences="experiences_around_me.slice(0, 3)" /> -->
+        <!-- <SuggestedExperiences :experiences  v  "experiences_around_me.slice(0, 3)" /> -->
         <FeaturedVideo />
       </div>
     </section>
@@ -174,6 +177,7 @@
   import SecondNav from '@/components/SecondNav.vue';
   import Footer from '@/components/Footer.vue';
   import axios from 'axios';
+  import { transition } from "vue2-transitions";
   // import FeaturedRest from '@/components/FeaturedRest.vue'
 
   import {
@@ -228,7 +232,7 @@
       // }
     },
     computed: {
-      ...mapState(['experiences']),
+      ...mapState(['experiences', 'loading']),
       ...mapState(['experiences_around_me']),
       ...mapGetters(['allExperiences']),
       ...mapState(['restaurants']),

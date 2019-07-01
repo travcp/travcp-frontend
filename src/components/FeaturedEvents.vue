@@ -46,8 +46,8 @@
                           <div class="col-md-4" v-for="event in events" :key="event.id">
                             <router-link :to="'/experience/'+ event.id + '/' + event.title.toString().toLowerCase().replace( /\s/g, '-')">
                                 <div class="featured-card card" style="overflow: hidden;">
-                                    <img v-if="event.images.length" style="width: 100%;object-fit: cover;height:380px;" :src="event.images[0].image" class="card-img-top featured-card-img" alt="...">
-                                    <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" style="width: 100%;object-fit: cover;height: 380px;" alt="...">
+                                    <img v-if="event.images.length" style="width: 100%;object-fit: cover;height:380px;" :src="event.images[0].image" class="card-img-top featured-card-img" alt="..." loading="lazy">
+                                    <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" style="width: 100%;object-fit: cover;height: 380px;" alt="..." loading="lazy">
                                     <div class="featured-card-footer featured_places_overlay_active">
                                         <div class="row" style="text-transform: capitalize;">
                                             <div class="col-6">

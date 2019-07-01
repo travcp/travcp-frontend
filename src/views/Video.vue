@@ -218,7 +218,7 @@
         webkitallowfullscreen="webkitallowfullscreen"></iframe> -->
               <div class="card-body">
                 <h5 class="card-title text-truncate"><span style="">{{ video.title }}</span></h5>
-                <p style="  display: -webkit-box;
+                <p style="display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical; overflow:hidden">
                   {{ video.description }}
