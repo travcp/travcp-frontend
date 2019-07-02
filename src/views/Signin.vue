@@ -213,6 +213,7 @@ export default {
           }).then(data => {
             console.log(data)
             this.$noty.success('Login Successfull')
+            window.location.reload(1);
           }).catch(error => {
             this.$noty.error('Oops, There was an erro while trying to login')
             console.log(error)

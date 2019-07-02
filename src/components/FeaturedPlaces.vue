@@ -1,5 +1,5 @@
 <template>
-    <div class="digital_feature" style="margin-top: 100px">
+    <div class="digital_feature">
         <div class="row">
             <div class="col-lg-8">
                 <div class="d_feature_text">

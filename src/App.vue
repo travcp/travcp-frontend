@@ -132,11 +132,19 @@ export default {
       if(checkUserType == "merchant") {
         axios.get(`${this.$store.state.API_BASE}/merchant/extras/users/${this.$store.state.auth.user.id}`)
                 .then(response => {
-                  // console.log(response.data.data)
-                  let getUserData = JSON.parse(localStorage.getItem('auth'))
-                  getUserData.merchant = response.data.data;
-                  localStorage.setItem("auth", JSON.stringify(getUserData))
-                  this.$store.state.auth.merchant = response.data.data
+                   axios.get(`${this.$store.state.API_BASE}/merchants/${response.data.data.id}/extras`)
+                        .then(response => {
+                          console.log('New Merhcna')
+                          console.log(response.data.data)
+                          let getUserData = JSON.parse(localStorage.getItem('auth'))
+                          getUserData.merchant = response.data.data;
+                          localStorage.setItem("auth", JSON.stringify(getUserData))
+                          this.$store.state.auth.merchant = response.data.data
+                        }).catch(error => {
+                          console.log(error.response.data)
+                        })
+                  console.log('merchant')
+                  console.log(response.data.data)
                 })
                 .catch(err => {
                   console.log(err);

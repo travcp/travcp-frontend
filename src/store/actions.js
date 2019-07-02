@@ -105,7 +105,7 @@ export default {
         router.push("/");
         commit("LOGIN_SUCCESS", res.data);
         resolve(res.data)
-        // window.location.reload(1);
+        // 
         // resolve(res.data)
       })
       .catch(err => {

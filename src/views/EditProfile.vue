@@ -329,7 +329,7 @@ export default {
               this.$noty.success("Profile Updated Succefully");
               if(this.checkUserType){
                 let merchantData = ""
-                axios.get(`${this.$store.state.API_BASE}/merchants/${this.$store.state.auth.user.id}/extras`).then(response => {
+                axios.get(`${this.$store.state.API_BASE}/merchants/${this.$store.state.auth.merchant.user_id}/extras`).then(response => {
                   console.log(response.data.data)
                   merchantData = response.data.data
                     axios.post(`${this.$store.state.API_BASE}/merchant/extras/${merchantData.id}`, {

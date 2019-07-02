@@ -22,12 +22,13 @@
                     </empty-result>
                 </div>
                 <div class="row" v-for="booking in bookings" :key="booking.id" style="margin-bottom: 10px;">
-                    <div class="col-md-3 my-booking-details-image"></div>
+                    <div class="col-md-3 my-booking-details-image" v-if="booking.experience.images.length > 0" :style="{background: 'url(' + booking.experience.images[0].image + ')', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}"></div>
+                    <div class="col-md-3 my-booking-details-image" v-else></div>
                     <div class="col-md-9">
                         <div class="my-booking-trip-main">
                             <div class="my-booking-trip-details-header">
-                                <p class="my-booking-trip-details-header-p1">DAY TRIP | {{ booking.experience.state }}</p>
-                                <p class="my-booking-trip-details-header-p2">{{ booking.experience.city }}</p>
+                                <p class="my-booking-trip-details-header-p1">{{ booking.experience.city }} | {{ booking.experience.state }}</p>
+                                <p class="my-booking-trip-details-header-p2">{{ booking.experience.title }}</p>
                             </div>
                             <div class="my-booking-trip-details">
                                 <p
@@ -35,7 +36,7 @@
                                 >{{ booking.experience.title }}</p>
                                 <p
                                         class="my-booking-trip-details-p2"
-                                >{{ booking.experience.description }}</p>
+                                >{{ booking.experience.description.slice(0, 200) }}</p>
                             </div>
                         </div>
                     </div>
@@ -111,6 +112,7 @@
         },
         methods: {
             getMyBookings(){
+                console.log('Collecting Bookings')
                 this.loading = true;
                 let requestHeaders = {
                     headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}

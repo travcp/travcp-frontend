@@ -250,10 +250,10 @@
                                     class="form-group col-md-12"
                                     v-if="requiredFields.includes('vr_video')"
                                   >
-                                    <label>Meet up Location</label>
+                                    <label>VR Video</label>
                                     <input
                                       v-validate="'required'"
-                                      name="Meetup location"
+                                      name="Vr_video"
                                       type="text"
                                       class="form-control new_experience_input"
                                       placeholder

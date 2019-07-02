@@ -313,6 +313,9 @@
 </script>
 
 <style>
+  .digital_feature {
+    margin-top: 40px
+  }
   .home-large-icon{
     font-size:125px; color: #f81894
   }
@@ -431,6 +434,15 @@
   }
 
   @media only screen and (max-height: 622px) {
+    .p_100 {
+      padding: 0;
+    }
+    .carousel-item {
+      min-height: 0;
+    }
+    .digital_feature {
+      margin-top: 0px !important;
+    }
     .navbar-toggler {
       width: 45px;
     }
