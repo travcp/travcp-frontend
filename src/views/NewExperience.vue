@@ -734,6 +734,7 @@ export default {
       }
 
       // console.log(formData);
+      if(this.experience_type.id == 12 && this.opening_and_closing_hours.length) return this.$noty.warning("Please Fill in Opening and Closing hours");
 
       this.$validator.validateAll().then(result => {
         if (result) {
@@ -758,7 +759,7 @@ export default {
               this.experience_response_data = response.data.data
               this.form_index = 2
               Swal.fire(
-                'Expereince',
+                'Experience',
                 'Experience uploaded successfully',
                 'success'
               )
@@ -797,6 +798,8 @@ export default {
               this.$noty.error("Oops, something went wrong!");
               return (this.$store.state.loading.submitExperience = false);
             });
+
+
           // });
         } else {
 
