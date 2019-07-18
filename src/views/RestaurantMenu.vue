@@ -3,7 +3,7 @@
         <Navbar />
         <div class="row">
             <div class="col-md-12">
-                <div class="restaurant_heading">
+                <div class="restaurant_heading" :style="{background: 'url(' + restaurant.images[0].image + ')', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}" >
                     <h1>{{ restaurant.title }} - {{ restaurant.state }}</h1>
                 </div>
             </div>
@@ -46,6 +46,18 @@
                                         </div>
                                         </div>
                                     </div>
+                                    <ul v-if="categories && categories.length">
+                                        <li v-for="(category, index) in categories" :key="category.id">{{ category.name }}
+
+                                            <ul v-for="item in menus" :key="item.id">
+                                                <li v-if="category.id == item.category_id">
+                                                    <h6>{{ item.description }}</h6>
+                                                    <p>$ {{ item.price }}</p>
+                                                </li>        
+                                            </ul>
+                                        </li>
+                                    </ul>
+
                                     </div>
                                 </div>
                             </div>
