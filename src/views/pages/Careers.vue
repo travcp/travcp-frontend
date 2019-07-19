@@ -12,16 +12,16 @@
     </div>
     <div class="about-us-main">
       <!--first component -->
-      <div class="row about-us-details-view">
+      <!-- <div class="row about-us-details-view">
         <div class="col-md-5 about-us-image"></div>
         <div class="col-md-6 about-us-image-text-view">
           <h5>LOREM IPSUM HEADER</h5>
           <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus vero nostrum fugiat. In, modi beatae. Voluptate cumque reiciendis sunt modi sequi. Temporibus exercitationem laudantium soluta quasi odio esse. Minus, aspernatur!</p>
         </div>
-      </div>
+      </div> -->
 
       <!--second component -->
-      <div class="row about-us-details-view remove-pad">
+      <!-- <div class="row about-us-details-view remove-pad">
         <div class="col-md-6 about-us-image-text-view right-pad">
           <h5>LOREM IPSUM HEADER</h5>
           <p
@@ -29,15 +29,15 @@
           >Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus vero nostrum fugiat. In, modi beatae. Voluptate cumque reiciendis sunt modi sequi. Temporibus exercitationem laudantium soluta quasi odio esse. Minus, aspernatur!</p>
         </div>
         <div class="col-md-5 about-us-image pad"></div>
-      </div>
+      </div> -->
       <!--first component -->
-      <div class="row about-us-details-view">
+      <!-- <div class="row about-us-details-view">
         <div class="col-md-5 about-us-image"></div>
         <div class="col-md-6 about-us-image-text-view">
           <h5>LOREM IPSUM HEADER</h5>
           <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus vero nostrum fugiat. In, modi beatae. Voluptate cumque reiciendis sunt modi sequi. Temporibus exercitationem laudantium soluta quasi odio esse. Minus, aspernatur!</p>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -66,6 +66,7 @@ export default {
 .about-us-main {
   background: #fafafa;
   height: auto;
+  min-height: 500px;
 }
 .about-us-details-view {
   padding-left: 10%;

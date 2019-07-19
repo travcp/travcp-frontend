@@ -145,7 +145,7 @@ export default {
         
         for(let i = 0; i < this.cart.items.length; i++){
           price += this.cart.items[i].booking.experience.dollar_price
-          console.log("booking price", this.cart.items[i].booking.experience.dollar_price);
+          //console.log("booking price", this.cart.items[i].booking.experience.dollar_price);
           // for(let i = 1; i <= this.cart.items; i++){
           //   // price += this.cart[i].items.booking.dollar_price
             
@@ -158,7 +158,7 @@ export default {
       }
       else{
         return 0;
-        console.log("cart items is false")
+       // console.log("cart items is false")
       }
       // return 0;
     },
@@ -171,12 +171,12 @@ export default {
       }
       axios.get(`${this.$store.state.API_BASE}/users/${this.$store.state.auth.user.id}/cart`, requestHeaders).then(response => {
         this.cart = response.data.data;
-        console.log(this.cart)
+        //console.log(this.cart)
         this.loading = false;
       }).catch(err => {
         this.loading = false;
         if (err.response.status == 404) {
-          console.log(err.response.data)
+          //console.log(err.response.data)
           return this.cart = []
         }
         this.$noty.error("Oops, there was error getting carts");
@@ -189,7 +189,7 @@ export default {
         headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token }
       };
       axios.delete(`${this.$store.state.API_BASE}/cart_items/${item_id}`, requestHeaders).then(response => {
-                console.log(response.data)
+               // console.log(response.data)
                 this.getMyCarts()
                 this.loading = false;
               }).catch(err => {
@@ -199,8 +199,8 @@ export default {
     payWithPaystack(){
     var _this = this
     let dollartonaira = (this.calcPrice) * 100
-    console.log(parseInt(dollartonaira))
-    console.log("price is " + this.calcPrice);
+    // console.log(parseInt(dollartonaira))
+    // console.log("price is " + this.calcPrice);
     var handler = PaystackPop.setup({
       key: 'pk_test_a3c6507e7a82c63308de9c5863bbe0950492d508',
       email: this.$store.state.auth.user.email,
@@ -231,23 +231,23 @@ export default {
       let requestHeaders = {
         headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token }
       };
-      console.log('Got Here');
+      // console.log('Got Here');
 
       // let trasc_id = this.paystack_response.toString();
-      console.log(reference)
+      // console.log(reference)
       axios.post(`${this.$store.state.API_BASE}/cart/checkout`, {
                     "transaction_id": reference,
                     "price": this.calcPrice,
                     "cart_id": this.cart.id,
                     "currency": "USD"
                   },requestHeaders).then(response => {
-                    console.log(response.data)
+                    // console.log(response.data)
                     this.$noty.success("Payment Successfull")
                     this.getMyCarts()
                     this.$router.push("/dashboard/my-bookings");
                     // this.loading = false;
                   }).catch(err => {
-                    console.log(err)
+                    // console.log(err)
                     this.$noty.error("Oops, there was error getting carts");
                   })
 

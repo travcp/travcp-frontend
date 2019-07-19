@@ -30,10 +30,10 @@
                                     <h3>Discover</h3>
                                 </div>
                                 <ul>
-                                    <li><router-link to="/trust-and-safety">Trust & Safety</router-link></li>
+                                    <!-- <li><router-link to="/trust-and-safety">Trust & Safety</router-link></li>
                                     <li><router-link to="/travel-credit">Travel Credit</router-link></li>
                                     <li><router-link to="/group-tour">Group Tour</router-link></li>
-                                    <li><router-link to="/guidebooks">Guidebooks</router-link></li>
+                                    <li><router-link to="/guidebooks">Guidebooks</router-link></li> -->
                                     <li><a href="http://travvblog.herokuapp.com">TRAV CP Blog</a></li>
                                 </ul>
                             </aside>

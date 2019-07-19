@@ -68,7 +68,7 @@ export default {
             }
             
             this.days[index] = updatedDay;
-            console.log(updatedDay);
+            // console.log(updatedDay);
             this.$emit('input', this.days);
             
         }

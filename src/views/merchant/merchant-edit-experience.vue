@@ -1,8 +1,8 @@
 <template>
   <div>
     <vue-headful
-      title="Edit Experiene | TRAV CP"
-      description="Description from TRAV CP"
+      title="Edit Experiene | TravCP"
+      description="Description from TravCP"
     />
     <Navbar />
     <div class="new_experience">

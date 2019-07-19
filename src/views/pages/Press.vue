@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <vue-headful
-            title="Press | TRAV CP"
-            description="Description from TRAV CP"
+            title="Press | TravCP"
+            description="Description from TravCP"
         />
     <Navbar/>
     <!--About us start -->

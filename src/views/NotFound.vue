@@ -1,8 +1,8 @@
 <template>
 	<div>
 		<vue-headful
-            title="Error 404 | TRAV CP"
-            description="Description from TRAV CP"
+            title="Error 404 | TravCP"
+            description="Description from TravCP"
         />
 		<Navbar />
 		<EmptyResult />

@@ -1,7 +1,7 @@
 <template>
   <div class="home">
   	<vue-headful
-            title="Homepage | TRAVCP"
+            title="Homepage | TravCP"
             description="Find experiences, places and travel destinations"
         />
     <HomeNavbar />

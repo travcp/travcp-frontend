@@ -1,8 +1,8 @@
 <template>
        <div class="profile-container">
         <vue-headful
-            title="Merchant Profile | TRAV CP"
-            description="Description from TRAV CP"
+            title="Merchant Profile | TravCP"
+            description="Description from TravCP"
         />
            <Navbar/>
            <div class="container">

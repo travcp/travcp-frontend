@@ -1,8 +1,8 @@
 <template>
 	<div>
 		<vue-headful
-            title="Merchant Experience | TRAV CP"
-            description="Description from TRAV CP"
+            title="Merchant Experience | TravCP"
+            description="Description from TravCP"
         />
 		<Navbar />
 		<div class="merchant_experience">

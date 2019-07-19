@@ -13,55 +13,7 @@
           <hr class="my-booking-title-horizontal">
         </div>
         <div class="row" v-if="videoData.length">
-    <!--       
-            <div class="col-lg-12">
-              <div class="row">
-                <div class="col-md-7">
-                  <div class="feature_video_lg" data-toggle="modal" data-target="#video_1" :style="{background: 'url(http://img.youtube.com/vi/' + getVideoParam(videoData[0].url) + '/hqdefault.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}" >
-
-                  </div>
-                </div>
-                <div class="col-md-5">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="feature_video_sm ft_video_sm_1" data-toggle="modal" data-target="#video_2" :style="{background: 'url(http://img.youtube.com/vi/' + getVideoParam(videoData[1].url) + '/hqdefault.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}">
-                      </div>
-                      <div class="feature_video_sm_title">
-                        <h6 class="card-title text-truncate">{{ videoData[1].title }}</h6>
-                        <p>{{ videoData[1].video_category.name }}</p>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="feature_video_sm ft_video_sm_2" data-toggle="modal" data-target="#video_3" :style="{background: 'url(http://img.youtube.com/vi/' + getVideoParam(videoData[2].url) + '/hqdefault.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}">
-                      </div>
-                      <div class="feature_video_sm_title">
-                        <h6 class="card-title text-truncate">{{ videoData[2].title }}</h6>
-                        <p>{{ videoData[2].video_category.name }}</p>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="feature_video_sm ft_video_sm_3" data-toggle="modal" data-target="#video_4" :style="{background: 'url(http://img.youtube.com/vi/' + getVideoParam(videoData[3].url) + '/hqdefault.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}">
-                      </div>
-                      <div class="feature_video_sm_title">
-                        <h6 class="card-title text-truncate">{{ videoData[3].title }}</h6>
-                        <p>{{ videoData[3].video_category.name }}</p>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="feature_video_sm ft_video_sm_4" data-toggle="modal" data-target="#video_5" :style="{background: 'url(http://img.youtube.com/vi/' + getVideoParam(videoData[4].url) + '/hqdefault.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}">
-                      </div>
-                      <div class="feature_video_sm_title">
-                        <h6 class="card-title text-truncate">{{ videoData[4].title }}</h6>
-                        <p>{{ videoData[4].video_category.name }}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
- -->
-
-
+   
           <div class="modal fade" id="video_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document" style="max-width: 700px;">
               <div class="modal-content">
@@ -207,15 +159,8 @@
 
             <div class="card">
               <img :src="'http://img.youtube.com/vi/' + getVideoParam(video.url) +'/hqdefault.jpg'"  data-toggle="modal" :data-target="'#video' + video.id" class="card-img-top cursor-pointer" alt="...">
-             <!--  <iframe class="card-img-top"style="width: 100%" 
-                  :src="video.url">
-                  </iframe> -->
-                  <!-- {{ getVideoParam(video.url) }} -->
-                  <!-- <iframe :src="video.url"  allowfullscreen="allowfullscreen"
-        mozallowfullscreen="mozallowfullscreen" 
-        msallowfullscreen="msallowfullscreen" 
-        oallowfullscreen="oallowfullscreen" 
-        webkitallowfullscreen="webkitallowfullscreen"></iframe> -->
+             
+             
               <div class="card-body">
                 <h5 class="card-title text-truncate"><span style="">{{ video.title }}</span></h5>
                 <p style="display: -webkit-box;

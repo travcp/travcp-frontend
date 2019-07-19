@@ -1,8 +1,8 @@
 <template>
     <div class="messages-container">
         <vue-headful
-            title="Messages | TRAV CP"
-            description="Description from TRAV CP"
+            title="Messages | TravCP"
+            description="Description from TravCP"
         />
         <Navbar/>
         <div class="container-fluid">

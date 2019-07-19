@@ -61,7 +61,7 @@ export default {
         }
       })
       .catch(err => {
-        console.log(`Error from Experence Search ${err}`);
+        //console.log(`Error from Experence Search ${err}`);
         state.loading.filterExperiencesSearch = false;
       });
   },
@@ -85,7 +85,7 @@ export default {
           resolve(res.data);
         })
         .catch(err => {
-          console.log(err);
+          //console.log(err);
           state.loading.userRegistration = false;
           commit("REGISTRATION_ERROR", err.response.data);
           reject(err)
@@ -161,7 +161,7 @@ export default {
         commit("GET_EVENTS", res.data);
       })
       .catch(err => {
-        console.log(err);
+        //console.log(err);
         state.loading.getEvents = false;
 
       });
@@ -177,7 +177,7 @@ export default {
         commit("GET_EVENTS_BY_ID", res.data);
       })
       .catch(err => {
-        console.log(err);
+        //console.log(err);
         state.loading.getEventsById = true;
       });
   },
@@ -196,7 +196,7 @@ export default {
       })
       .catch(({ error }) => {
         state.loading.filterEventsSearch = true;
-        console.log(`Error ${error}`);
+        //console.log(`Error ${error}`);
       });
   },
   async getPlaces({ commit, state }) {
@@ -211,7 +211,7 @@ export default {
       })
       .catch(({ error }) => {
         state.loading.getPlaces = true;
-        console.log(`Error ${error}`);
+        //console.log(`Error ${error}`);
       });
   },
   async getRestaurants({ commit, state }) {
@@ -226,7 +226,7 @@ export default {
       })
       .catch(({ error }) => {
         state.loading.getPlaces = true;
-        console.log(`Error ${error}`);
+        //console.log(`Error ${error}`);
       });
   },
   async getPlacesById({ commit, state }, data) {
@@ -241,7 +241,7 @@ export default {
       })
       .catch(({ error }) => {
         state.loading.getPlacesById = false;
-        console.log(`Error ${error}`);
+        //console.log(`Error ${error}`);
       });
   },
   async filterPlacesSearch(
@@ -260,7 +260,7 @@ export default {
       })
       .catch(({ error }) => {
         state.loading.filterPlacesSearch = false;
-        console.log(`Error ${error}`);
+        //console.log(`Error ${error}`);
       });
   },
   updateProfile({ commit, state }, data) {
@@ -289,13 +289,13 @@ export default {
         )
         .then(res => {
           resolve(res.data);
-          console.log(res.data);
+          //console.log(res.data);
           state.loading.updateProfile = false;
           commit("EDIT_PROFILE_SUCESS", res.data);
         })
         .catch(error => {
           state.loading.updateProfile = false;
-          console.log(`Error ${error.data}`);
+          //console.log(`Error ${error.data}`);
           reject(error);
           commit("EDIT_PROFILE_FAIL");
         });
@@ -338,7 +338,7 @@ export default {
       )
       .then(response => {
         state.loading.rateExperience = false;
-        console.log(response.data);
+        //console.log(response.data);
         commit("REVIEW_SUCCESSFUL", response.data);
         return response;
       })
@@ -354,13 +354,13 @@ export default {
     axios
       .get(`${API_BASE}/experience_types`)
       .then(response => {
-        console.log(response.data.data);
+        //console.log(response.data.data);
         state.loading.getExperienceTypes = false;
         commit("GET_EXPERIENCE_TYPES", response.data);
       })
       .catch(error => {
         state.loading.getExperienceTypes = false;
-        console.log(error);
+        //console.log(error);
       });
   },
   async submitExperience({ commit, state }, data) {
@@ -380,12 +380,12 @@ export default {
         .post(`${API_BASE}/experiences`, data, requestHeaders)
         .then(response => {
           resolve(response.data.data);
-          console.log(response.data.data);
+          //console.log(response.data.data);
           state.loading.submitExperience = false;
           // state.isLoading = false;
         })
         .catch(err => {
-          console.log(err);
+          //console.log(err);
           state.loading.submitExperience = false;
           reject(err);
           // state.isLoading = false;
@@ -413,17 +413,17 @@ export default {
       .catch(err => {
         // state.isLoading = false;
         state.loading.getMyBookings = false;
-        console.log("There was error fetching my bookings");
+        //console.log("There was error fetching my bookings");
       });
   },
   async getVideos({ commit, state }){
       // this.loading = true
       await axios.get(`${state.API_BASE}/videos`).then((response) => {
-        console.log(response.data.data)
+        //console.log(response.data.data)
         // this.loading = false
         this.videoData = response.data.data
       }).catch(error => {
-        console.log(error.response.data)
+        //console.log(error.response.data)
         // this.loading = false
       })
     },

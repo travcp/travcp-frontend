@@ -1,8 +1,8 @@
 <template>
     <div class="ExpereinceSearchResults">
         <vue-headful
-            title="Explore Experiences | TRAVCP"
-            description="Description from TRAV CP"
+            title="Explore Experiences | TravCP"
+            description="Description from TravCP"
         />
         <SearchResults :experiences="allExperiences" />
     </div>
@@ -109,7 +109,7 @@
             ...mapActions(['filterExperiencesSearch']),
             filterExperience: function() {
                 this.emptySearchToggle = false;
-                console.log('Searching')
+                // console.log('Searching')
                 let data = {
                     search: this.search,
                     min_price: this.value_1[0],
@@ -122,7 +122,7 @@
                             if(data.search == ''){
                                 this.filterExperiencesSearch();
                             } else {
-                                console.log("Non empty search")
+                                // console.log("Non empty search")
                                 // if (this.emptySearchResult) {
                                 //     this.emptySearchToggle = true;
                                 //     console.log('Still No Search')

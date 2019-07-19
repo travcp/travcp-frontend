@@ -3,7 +3,10 @@
         <Navbar />
         <div class="row">
             <div class="col-md-12">
-                <div class="restaurant_heading" :style="{background: 'url(' + restaurant.images[0].image + ')', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}" >
+                <div class="restaurant_heading" v-if="restaurant.images.length < 1" >
+                    <h1>{{ restaurant.title }} - {{ restaurant.state }}</h1>
+                </div>
+                <div class="restaurant_heading" v-else :style="{background: 'url(' + restaurant.images[0].image + ')', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}" >
                     <h1>{{ restaurant.title }} - {{ restaurant.state }}</h1>
                 </div>
             </div>

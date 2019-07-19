@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <vue-headful
-            title="FAQs | TRAV CP"
-            description="Description from TRAV CP"
+            title="FAQs | TravCP"
+            description="Description from TravCP"
         />
     <Navbar/>
     <!--About us start -->
@@ -13,7 +13,7 @@
     <div class="about-us-main"> 
      <ul id="FAQ" class="faq">
 
-		  <li v-for="data in FAQS">
+		  <li v-for="data in FAQS" :key="data.title">
 		    <div class="faq-q">
 		      {{ data.title }}
 		      <hr style="color: #FFF">
