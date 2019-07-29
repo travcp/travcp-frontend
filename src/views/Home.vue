@@ -15,12 +15,12 @@
           <div class="container">
             <div class="row">
               
-              <div class="col-lg-4" style="text-align: center;">
-                <router-link to="/dashboard/merchant/new-experience" @click="verifyUserType()">
+              <div class="col-lg-4" style="text-align: center;" @click="verifyUserType()">
+                <!-- <router-link to="/dashboard/merchant/new-experience"> -->
                   <!-- <img src="../assets/Icons/add-listing.svg" style="height: 125px; width: 125px;" /> -->
                   <i class="fa fa-plus-circle home-large-icon"></i>
                   <p class="title">Add Listing</p>
-                </router-link>
+                <!-- </router-link> -->
                 <!-- <div class="c_box_item">
                 </div> -->
                 <div>
@@ -220,16 +220,19 @@
           console.log(error.response)
         })
       },
-      verifyUserType(){
-        if(this.$store.state.auth.length && this.$store.state.auth.user.role == 'user'){
-          return this.$noty.warning('You need to be a Merchant to Add Listing')
-        } else if(!this.$store.state.auth.length){
-          return this.$noty.warning('You need to be a Merchant to Add Listing')
+      verifyUserType() {
+        console.log('Here')
+        if(!this.$store.state.auth){
+          this.$noty.warning('You need to register and then become a Merchant to Add Listing');
+          return this.$router.push("/signin");
+          // return false;
+        } else if(this.$store.state.auth && this.$store.state.auth.length && this.$store.state.auth.user.role !== 'user'){
+          this.$noty.warning('You need to register as a Merchant to Add Listing');
+        } else {
+          return this.$router.push("/dashboard/merchant/new-experience");
         }
       },
-      // getExp1() {
-      //   this.exp1 = this.experiences[Math.floor(Math.random()*this.experiences.length)]
-      // }
+     
     },
     computed: {
       ...mapState(['experiences', 'loading']),
@@ -241,45 +244,7 @@
       ...mapState(['restaurants', 'auth']),
       ...mapGetters(['getExp1', 'getExp2', 'getExp3', 'getExp4', 'getExp5']),
 
-      // getLocation() {
-      //   if (navigator.geolocation) {
-      //     navigator.geolocation.getCurrentPosition(this.showPosition);
-      //   } else { 
-      //     x.innerHTML = "Geolocation is not supported by this browser.";
-      //   }
-      // },
-      // async showPosition(position) {
-      //   // x.innerHTML = "Latitude: " + position.coords.latitude + 
-      //   // "<br>Longitude: " + position.coords.longitude;
-      //   await axios.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + position.coords.latitude + ","+ position.coords.longitude + "&sensor=true&key=AIzaSyDgnbjMxlLW2BHBPJ4-iFsX_aB9jEHBFCg").then(response => {
-      //     console.log(response.data)
-      //     this.$store.state.current_location = response.data.results
-      //   })
-      // },
-      // experienceAroundMe(){
-      //   axios.get(`${this.$store.state.API_BASE}/experiences?location=${this.$store.state.current_location[4].formatted_address}`).then(response => {
-      //     console.log(response.data.data);
-      //     this.experiences_around_me = response.data.data
-      //     if(response.data.data.length < 1){
-      //       axios.get(`${this.$store.state.API_BASE}/experiences?location=${this.$store.state.current_location[7].formatted_address}`).then(response => {
-      //           console.log(response.data.data);
-      //           this.experiences_around_me = response.data.data
-      //           if(response.data.data.length < 1){
-      //             axios.get(`${this.$store.state.API_BASE}/experiences?location=${this.$store.state.current_location[9].formatted_address}`).then(response => {
-      //               this.experiences_around_me = response.data.data
-      //               console.log(response.data.data)
-      //             }).catch(error => {
-      //               console.log(error.response.data)
-      //             })
-      //           }
-      //       }).catch(error => {
-      //         console.log(error.response.data)
-      //       })
-      //     }
-      //   }).catch(error => {
-      //     console.log(error.response)
-      //   })
-      // },
+      
       getVideoParam(url){
         var url_string = url; //window.location.href
         var url = new URL(url_string);
@@ -300,14 +265,7 @@
     created: function () {
       // this.getLocation()
       this.getRandomExperiences()
-      // this.experienceAroundMe()
-      // console.log(this.genRandom);
-      // this.getExperiences()
-      // this.getEvents();
-      // this.getPlaces();
-    // this.getExperiences();
-      // this.experiences = this.allExperiences;
-      // console.log(this.experiences)
+      
     }
   }
 </script>

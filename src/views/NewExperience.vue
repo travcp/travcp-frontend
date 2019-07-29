@@ -339,7 +339,7 @@
                                   </div>
                               </div>
                               <div class="row">
-                                  <div class="col-md-12" v-if=" requiredFields.includes('opening_and_closing_hours')">
+                                  <div class="col-md-12" v-if="requiredFields.includes('opening_and_closing_hours')">
                                     <label>Opening and closing hours</label>
                                     <open-closing-times v-model="opening_and_closing_hours"/>
                                   </div>
@@ -463,7 +463,7 @@ export default {
   name: "NewExperience",
   beforeRouteEnter(to, from, next) {
     let checkToken = JSON.parse(localStorage.getItem("auth"));
-    if (checkToken.access_token && checkToken.user.role == "merchant") {
+    if (checkToken && checkToken.length && checkToken.access_token && checkToken.user.role == "merchant") {
       return next();
     } else {
       // this.$noty.error("Sign in to access!")
@@ -734,7 +734,10 @@ export default {
       }
 
       // console.log(formData);
-      if(this.experience_type.id == 12 && this.opening_and_closing_hours.length) return this.$noty.warning("Please Fill in Opening and Closing hours");
+      if(this.experience_type.id == 12 && (this.requiredFields.includes('opening_and_closing_hours') && this.opening_and_closing_hours.length)) {
+        this.$noty.warning("Please Fill in Opening and Closing hours, to Proceed");
+       return false;
+      }
 
       this.$validator.validateAll().then(result => {
         if (result) {

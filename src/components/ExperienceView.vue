@@ -176,12 +176,12 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <h5>Start Date</h5>
-                                                    <date-picker v-model="time" valueType="format" :lang="lang" :first-day-of-week="1">
+                                                    <date-picker v-model="time" valueType="format" :lang="lang">
                                                     </date-picker>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <h5>End Date</h5>
-                                                    <date-picker v-model="time2" valueType="format" :lang="lang" :first-day-of-week="1">
+                                                    <date-picker v-model="time2" valueType="format" :lang="lang">
                                                     </date-picker>
                                                 </div>
                                             </div>
@@ -729,7 +729,7 @@
                                         Authorization: "Bearer " + this.$store.state.auth.access_token
                                     }
                                 };
-                                console.log('Hi 0n souvernirs ')
+                                console.log('Hi on souvernirs ')
                                 console.log(this.experience.experience_type)
                                 // console.log(this.formatDate(this.time[0]));
                                 this.bookingExperience(data).then(response => {
