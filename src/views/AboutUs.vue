@@ -71,25 +71,49 @@
           </div>
         </div>
         <div class="row" style="justify-content: center">
-          <div class="col-md-6">
-              <img src="../assets/ueno.png" alt="" class="img-responsive" style="width: 100%;height:20rem;object-fit: cover;padding: 10px;">
-          </div>
-          <div class="col-md-5 about-us-image-text-view">
+          <div class="section section-team text-center">
             <div class="container">
-              
-              <h5>Our Team</h5>
-              <h6>Oluwafisayo Olayinka-Bello (Co-Founder & CEO)</h6>
-              <br>
-              <h5>PRESS</h5>
-              <h6>
-                Projections/Trends: Not ready <br>
-                Launch: Not ready (Will be sent soon) <br>
-                BOD: Not ready <br>
-                Investments: Not ready
-              </h6> 
-              
+              <h2 class="title">Here is our team</h2>
+              <div class="team">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="team-player">
+                      <img src="../assets/avatar.png" alt="Thumbnail Image" class="rounded-circle img-fluid img-raised">
+                      <h4 class="title">Romina Hadid</h4>
+                      <p class="category text-primary">Model</p>
+                      <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
+                        <a href="#">links</a> for people to be able to follow them outside the site.</p>
+                      <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-twitter"></i></a>
+                      <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-instagram"></i></a>
+                      <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-facebook-square"></i></a>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="team-player">
+                      <img src="../assets/avatar.png" alt="Thumbnail Image" class="rounded-circle img-fluid img-raised">
+                      <h4 class="title">Ryan Tompson</h4>
+                      <p class="category text-primary">Designer</p>
+                      <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
+                        <a href="#">links</a> for people to be able to follow them outside the site.</p>
+                      <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-twitter"></i></a>
+                      <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="team-player">
+                      <img src="../assets/avatar.png" alt="Thumbnail Image" class="rounded-circle img-fluid img-raised">
+                      <h4 class="title">Eva Jenner</h4>
+                      <p class="category text-primary">Fashion</p>
+                      <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
+                        <a href="#">links</a> for people to be able to follow them outside the site.</p>
+                      <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-google-plus"></i></a>
+                      <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-youtube"></i></a>
+                      <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-twitter"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-  
           </div>
         </div>        
       </div>
@@ -312,52 +336,6 @@
         </div>
       </div>
     </div>
-    <div class="section section-team text-center">
-      <div class="container">
-        <h2 class="title">Here is our team</h2>
-        <div class="team">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="team-player">
-                <img src="../assets/avatar.png" alt="Thumbnail Image" class="rounded-circle img-fluid img-raised">
-                <h4 class="title">Romina Hadid</h4>
-                <p class="category text-primary">Model</p>
-                <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
-                  <a href="#">links</a> for people to be able to follow them outside the site.</p>
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-twitter"></i></a>
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-instagram"></i></a>
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-facebook-square"></i></a>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="team-player">
-                <img src="../assets/avatar.png" alt="Thumbnail Image" class="rounded-circle img-fluid img-raised">
-                <h4 class="title">Ryan Tompson</h4>
-                <p class="category text-primary">Designer</p>
-                <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
-                  <a href="#">links</a> for people to be able to follow them outside the site.</p>
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-twitter"></i></a>
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-linkedin"></i></a>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="team-player">
-                <img src="../assets/avatar.png" alt="Thumbnail Image" class="rounded-circle img-fluid img-raised">
-                <h4 class="title">Eva Jenner</h4>
-                <p class="category text-primary">Fashion</p>
-                <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
-                  <a href="#">links</a> for people to be able to follow them outside the site.</p>
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-google-plus"></i></a>
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-youtube"></i></a>
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-twitter"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
 
 
 
