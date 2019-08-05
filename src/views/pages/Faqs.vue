@@ -51,7 +51,7 @@ export default {
   		FAQS : [
   			{
   				title: 'How do I book',
-  				description: 'Booking on TravCP very is easy! To see how it works, \n <br /> click here (Link to Youtube tutorials).YouTube Link: https://www.youtube.com/channel/ UC8IO48-__ZQm15gJfN9Pzmg?view_as=subscriber\n <br /> Enter the name of the destination or the area in which you’d like to visit, in the search field, and click on search. You can apply the available filters to narrow your search, or simply call our support for help.'
+  				description: 'Booking on TravCP very is easy! Enter the name of the destination or the area in which you’d like to visit, in the search field, and click on search. You can apply the available filters to narrow your search, or simply call our support for help. Once uou have located the Experience, Restaurant, Place or Tour you want to book, Click into its information page and select an available date. Simply click book and go to the Checkout page to pay for the booked Experience. '
   			},
   			{
   				title: 'Is booking on TravCP secure',
@@ -59,7 +59,7 @@ export default {
   			},
   			{
   				title: 'What are the modes of payment I can use',
-  				description: 'If you choose “Pay now”, you can pay online by credit card (Master Card, VISA, Paypal) depending on where these payment methods are available.'
+  				description: 'If you choose “Pay now”, you can pay online by credit/debit card (Master Card, VISA, Paypal) depending on where these payment methods are available. We advise not to pay Merchants difectly as TravCP will not be held liable for any such direct payments.'
   			},
   			{
   				title: 'How do I check the status of my refund',
@@ -83,7 +83,7 @@ export default {
   			},
   			{
   				title: 'How do I confirm my booking',
-  				description: 'As soon as you have paid, you will receive an e-mail with the details of your booking. Your bookings can also be viewed on “my bookings” section'
+  				description: 'As soon as you have paid, you will receive an e-mail with the details of your booking. Your bookings can also be viewed on “my bookings” section of your profile'
   			},
   			{
   				title: 'How do I know my booking is confirmed',
