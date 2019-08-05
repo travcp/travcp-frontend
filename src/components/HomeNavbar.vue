@@ -21,7 +21,7 @@
                     </li>
                     <li class="nav-item"><router-link style="color: #fff !important;"  to="/videos">Videos</router-link></li>
                     <li class="nav-item" v-if="checkUser"><router-link style="color: #fff !important;" class="nav-link" to="/dashboard/my-bookings">My Bookings</router-link></li>
-                    <li class="nav-item"><a style="color: #fff !important;" class="nav-link" href="#">Help</a></li>                    
+                    <li class="nav-item"><router-link class="nav-link nav-item-color" to="/faqs">FAQs</router-link></li>
                     <li class="nav-item" v-if="!checkUser"><router-link style="color: #fff !important;" class="nav-link" to="/signin">Sign in</router-link></li>
                     <li class="nav-item" v-if="checkUser">
                         <router-link class="nav-link nav-item-color" style="color: #fff !important;" to="/dashboard/favourite-experiences">Favourites</router-link>

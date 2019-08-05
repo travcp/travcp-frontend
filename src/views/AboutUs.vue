@@ -4,7 +4,7 @@
             title="About | TravCP"
             description="Description from TravCP"
         />
-    <Navbar/>
+    <HomeNavbar/>
     <!--About us start -->
     <div class="about-us-header">
       <p>About TravCP</p>
@@ -17,13 +17,14 @@
         <div class="col-md-12 about-us-image-text-view text-center">
           <!-- <h5>LOREM IPSUM HEADER</h5> -->
           
-          <h6 class="text-center"><span style="color: #f81894; font-weight: 900">OUR VISION: </span> 
-           Model Africa to be the number one tourist  destination in the world.
+          <h6 class="text-center">
+            <!-- <span style="color: #f81894; font-weight: 900">OUR VISION: </span>  -->
+           At <span style="color: #f81894; font-weight: 900"> TravCP </span> Our Vision is to Model Africa to be the number one tourist  destination in the world.
           </h6>
 
           
           <h6 class="text-center"><span style="color: #f81894; font-weight: 900">OUR MISSION: </span>
-           Our mission is to showcase the best of Africa to the world, by promoting tourist destinations,  and travel businesses
+           Our entire team and operations is dedicated to showcasing the best of Africa to the world, by promoting tourist destinations, and travel businesses
           </h6>
 
         </div>
@@ -39,8 +40,8 @@
           <div class="col-md-5 about-us-image-text-view">
             <div class="container">
               
-            <h5>SUMMARY</h5>
-            <h6>At TravCP we connect travelers to destinations, restaurants and locals in their cities of choice using the unique technology we have developed while providing security details on destinations to be visited to the travelers.
+            <h5>Here's what we are the best at!</h5>
+            <h6>We connect travelers to destinations, restaurants and locals in their cities of choice using the unique technology we have developed while providing security details on destinations to be visited to the travelers.
             </h6>
 
             <h6>TravCP was founded to promote the best of Africa to the world thereby promoting a positive African Narrative. We do this by bridging the gap in the African tourism Industry through the promotion of both known and undiscovered tourist destinationsin Africa to local and international tourists. At TravCP, we say we are a global travel marketplace, connecting the world to Africa. Our intention is to have a ripple effect where we economically empower citizens in various African countries to monetize and grow their travel skills, talents and passion
@@ -62,11 +63,22 @@
               <img src="../assets/ueno.png" alt="" class="img-responsive" style="width: 100%;height:20rem;object-fit: cover;padding: 10px;">
           </div>
           <div class="col-md-5 about-us-image-text-view">
+            <div class="container">  
+              <h5>Our Team</h5>
+              <h6>Oluwafisayo Olayinka-Bello (Co-Founder & CEO)</h6>
+              <br>              
+            </div>
+          </div>
+        </div>
+        <div class="row" style="justify-content: center">
+          <div class="col-md-6">
+              <img src="../assets/ueno.png" alt="" class="img-responsive" style="width: 100%;height:20rem;object-fit: cover;padding: 10px;">
+          </div>
+          <div class="col-md-5 about-us-image-text-view">
             <div class="container">
               
-              <h5>LEADERSHIP</h5>
+              <h5>Our Team</h5>
               <h6>Oluwafisayo Olayinka-Bello (Co-Founder & CEO)</h6>
-              <h6>Tobiloba Williams (Co-Founder & CTO)</h6>
               <br>
               <h5>PRESS</h5>
               <h6>
@@ -79,7 +91,7 @@
             </div>
   
           </div>
-        </div>
+        </div>        
       </div>
 
 
@@ -239,14 +251,124 @@
         </div>
       </div> -->
     </div>
+
+<div class="wrapper">
+    <div class="page-header page-header-small">
+      <div class="page-header-image" data-parallax="true" style="background-image: url('../assets/img/bg6.jpg');">
+      </div>
+      <div class="content-center">
+        <div class="container">
+          <h1 class="title">This is our great company.</h1>
+          <div class="text-center">
+            <a href="#pablo" class="btn btn-primary btn-icon btn-round">
+              <i class="fab fa-facebook-square"></i>
+            </a>
+            <a href="#pablo" class="btn btn-primary btn-icon btn-round">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#pablo" class="btn btn-primary btn-icon btn-round">
+              <i class="fab fa-google-plus"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section section-about-us">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 ml-auto mr-auto text-center">
+            <h2 class="title">Who we are?</h2>
+            <h5 class="description">According to the National Oceanic and Atmospheric Administration, Ted, Scambos, NSIDClead scentist, puts the potentially record low maximum sea ice extent tihs year down to low ice extent in the Pacific and a late drop in ice extent in the Barents Sea.</h5>
+          </div>
+        </div>
+        <div class="separator separator-primary"></div>
+        <div class="section-story-overview">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="image-container image-left" style="background-image: url('../assets/img/login.jpg')">
+                <!-- First image on the left side -->
+                <p class="blockquote blockquote-primary">"Over the span of the satellite record, Arctic sea ice has been declining significantly, while sea ice in the Antarctichas increased very slightly"
+                  <br>
+                  <br>
+                  <small>-NOAA</small>
+                </p>
+              </div>
+              <!-- Second image on the left side of the article -->
+              <div class="image-container" style="background-image: url('../assets/img/bg3.jpg')"></div>
+            </div>
+            <div class="col-md-5">
+              <!-- First image on the right side, above the article -->
+              <div class="image-container image-right" style="background-image: url('../assets/img/bg1.jpg')"></div>
+              <h3>So what does the new record for the lowest level of winter ice actually mean</h3>
+              <p>The Arctic Ocean freezes every winter and much of the sea-ice then thaws every summer, and that process will continue whatever happens with climate change. Even if the Arctic continues to be one of the fastest-warming regions of the world, it will always be plunged into bitterly cold polar dark every winter. And year-by-year, for all kinds of natural reasons, there’s huge variety of the state of the ice.
+              </p>
+              <p>
+                For a start, it does not automatically follow that a record amount of ice will melt this summer. More important for determining the size of the annual thaw is the state of the weather as the midnight sun approaches and temperatures rise. But over the more than 30 years of satellite records, scientists have observed a clear pattern of decline, decade-by-decade.
+              </p>
+              <p>The Arctic Ocean freezes every winter and much of the sea-ice then thaws every summer, and that process will continue whatever happens with climate change. Even if the Arctic continues to be one of the fastest-warming regions of the world, it will always be plunged into bitterly cold polar dark every winter. And year-by-year, for all kinds of natural reasons, there’s huge variety of the state of the ice.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section section-team text-center">
+      <div class="container">
+        <h2 class="title">Here is our team</h2>
+        <div class="team">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="team-player">
+                <img src="../assets/img/avatar.jpg" alt="Thumbnail Image" class="rounded-circle img-fluid img-raised">
+                <h4 class="title">Romina Hadid</h4>
+                <p class="category text-primary">Model</p>
+                <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
+                  <a href="#">links</a> for people to be able to follow them outside the site.</p>
+                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-twitter"></i></a>
+                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-instagram"></i></a>
+                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-facebook-square"></i></a>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="team-player">
+                <img src="../assets/img/ryan.jpg" alt="Thumbnail Image" class="rounded-circle img-fluid img-raised">
+                <h4 class="title">Ryan Tompson</h4>
+                <p class="category text-primary">Designer</p>
+                <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
+                  <a href="#">links</a> for people to be able to follow them outside the site.</p>
+                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-twitter"></i></a>
+                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-linkedin"></i></a>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="team-player">
+                <img src="../assets/img/eva.jpg" alt="Thumbnail Image" class="rounded-circle img-fluid img-raised">
+                <h4 class="title">Eva Jenner</h4>
+                <p class="category text-primary">Fashion</p>
+                <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
+                  <a href="#">links</a> for people to be able to follow them outside the site.</p>
+                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-google-plus"></i></a>
+                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-youtube"></i></a>
+                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-twitter"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
   </div>
 </template>
 <script>
-import Navbar from "@/components/Navbar.vue";
+import HomeNavbar from "@/components/HomeNavbar.vue";
 export default {
   name: "AboutUs",
   components: {
-    Navbar
+    HomeNavbar
   }
 };
 </script>
@@ -308,4 +430,6 @@ export default {
   font-weight: bold;
   text-align: justify;
 }
+</style>
+<style scoped src="/css/demo.css">
 </style>
