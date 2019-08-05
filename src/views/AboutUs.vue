@@ -4,7 +4,7 @@
             title="About | TravCP"
             description="Description from TravCP"
         />
-    <HomeNavbar/>
+    <Navbar/>
     <!--About us start -->
     <div class="about-us-header">
       <p>About TravCP</p>
@@ -167,7 +167,7 @@
 
 <br><br>
 
-      <div class="container-fluid"> 
+      <!-- <div class="container-fluid"> 
         <div class="row" style="justify-content: center">
           <div class="col-md-5">
             <div class="container">
@@ -183,29 +183,8 @@
             </div>
   
           </div>
-          <div class="col-md-5">
-              <h5>BENEFITS</h5> <br>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Get discovered by local and international tourist.</li>
-                <li class="list-group-item">Save time on booking processes</li>
-                <li class="list-group-item">Expand and grow your bookings and bottom line</li>
-                <li class="list-group-item">It is free to sign up and free to get bookings</li>
-                <li class="list-group-item">You control the cancellation terms, cost of each booking</li>
-                <li class="list-group-item">Easy and transparent booking managementprocess</li>
-                <li class="list-group-item">You can easily connect with your clients and respond to messages</li>
-                <li class="list-group-item">It is a platform designed to promote travel businesses in Africa and help each brand start and grow.</li>
-              </ul>
-
-          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="container">
-            <img src="../assets/ueno.png" alt="" class="img-responsive" style="width: 100%;object-fit: cover;height:380px;padding: 60px;">
-          </div>
-        </div>
-      </div>
+      </div> -->
       <!-- <div class="row about-us-details-view">
         <div class="col-md-5 about-us-image"></div>
         <div class="col-md-6 about-us-image-text-view">
@@ -275,78 +254,14 @@
         </div>
       </div> -->
     </div>
-
-<div class="wrapper">
-    <div class="page-header page-header-small">
-      <div class="page-header-image" data-parallax="true" style="background-image: url('../assets/mount_fuji.png');">
-      </div>
-      <div class="content-center">
-        <div class="container">
-          <h1 class="title">This is our great company.</h1>
-          <div class="text-center">
-            <a href="#pablo" class="btn btn-primary btn-icon btn-round">
-              <i class="fab fa-facebook-square"></i>
-            </a>
-            <a href="#pablo" class="btn btn-primary btn-icon btn-round">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#pablo" class="btn btn-primary btn-icon btn-round">
-              <i class="fab fa-google-plus"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="section section-about-us">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 ml-auto mr-auto text-center">
-            <h2 class="title">Who we are?</h2>
-            <h5 class="description">According to the National Oceanic and Atmospheric Administration, Ted, Scambos, NSIDClead scentist, puts the potentially record low maximum sea ice extent tihs year down to low ice extent in the Pacific and a late drop in ice extent in the Barents Sea.</h5>
-          </div>
-        </div>
-        <div class="separator separator-primary"></div>
-        <div class="section-story-overview">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="image-container image-left" style="background-image: url('../assets/nagoya.png')">
-                <!-- First image on the left side -->
-                <p class="blockquote blockquote-primary">"Over the span of the satellite record, Arctic sea ice has been declining significantly, while sea ice in the Antarctichas increased very slightly"
-                  <br>
-                  <br>
-                  <small>-NOAA</small>
-                </p>
-              </div>
-              <!-- Second image on the left side of the article -->
-              <div class="image-container" style="background-image: url('../assets/Niigata.png')"></div>
-            </div>
-            <div class="col-md-5">
-              <!-- First image on the right side, above the article -->
-              <div class="image-container image-right" style="background-image: url('../assets/hero_image.png')"></div>
-              <h3>So what does the new record for the lowest level of winter ice actually mean</h3>
-              <p>The Arctic Ocean freezes every winter and much of the sea-ice then thaws every summer, and that process will continue whatever happens with climate change. Even if the Arctic continues to be one of the fastest-warming regions of the world, it will always be plunged into bitterly cold polar dark every winter. And year-by-year, for all kinds of natural reasons, there’s huge variety of the state of the ice.
-              </p>
-              <p>
-                For a start, it does not automatically follow that a record amount of ice will melt this summer. More important for determining the size of the annual thaw is the state of the weather as the midnight sun approaches and temperatures rise. But over the more than 30 years of satellite records, scientists have observed a clear pattern of decline, decade-by-decade.
-              </p>
-              <p>The Arctic Ocean freezes every winter and much of the sea-ice then thaws every summer, and that process will continue whatever happens with climate change. Even if the Arctic continues to be one of the fastest-warming regions of the world, it will always be plunged into bitterly cold polar dark every winter. And year-by-year, for all kinds of natural reasons, there’s huge variety of the state of the ice.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-
   </div>
 </template>
 <script>
-import HomeNavbar from "@/components/HomeNavbar.vue";
+import Navbar from "@/components/Navbar.vue";
 export default {
   name: "AboutUs",
   components: {
-    HomeNavbar
+    Navbar
   }
 };
 </script>
