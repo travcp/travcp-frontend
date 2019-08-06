@@ -463,7 +463,7 @@ export default {
   name: "NewExperience",
   beforeRouteEnter(to, from, next) {
     let checkToken = JSON.parse(localStorage.getItem("auth"));
-    if (checkToken && checkToken.length && checkToken.access_token && checkToken.user.role == "merchant") {
+    if (checkToken && checkToken.access_token && checkToken.user.role == "merchant") {
       return next();
     } else {
       // this.$noty.error("Sign in to access!")
