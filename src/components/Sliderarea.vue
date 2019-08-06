@@ -132,9 +132,11 @@ import {mapActions, mapState} from 'vuex';
 
 <style>
     div#main_slider {
-        background: url('../assets/hero_image.png') no-repeat;
         background-size: cover;
         height: 100%;
+        background-image: linear-gradient(to right, rgba(255, 122, 122, 0.6), rgba(255, 122, 122, 0.4)), url('../assets/hero_image.png');
+        background-size: cover;
+        background-repeat: no-repeat, no-repeat;
     }
 
     .main_slider_container {

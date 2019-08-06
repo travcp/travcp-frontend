@@ -10,34 +10,49 @@
       <p>Benefits</p>
       <hr>
     </div>
-    <div class="about-us-main">
-      <!--first component -->
-      <div class="row about-us-details-view">
-        <div class="col-md-5 about-us-image"></div>
-        <div class="col-md-6 about-us-image-text-view">
-          <h5>LOREM IPSUM HEADER</h5>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus vero nostrum fugiat. In, modi beatae. Voluptate cumque reiciendis sunt modi sequi. Temporibus exercitationem laudantium soluta quasi odio esse. Minus, aspernatur!</p>
-        </div>
-      </div>
-
-      <!--second component -->
-      <div class="row about-us-details-view remove-pad">
-        <div class="col-md-6 about-us-image-text-view right-pad">
-          <h5>LOREM IPSUM HEADER</h5>
-          <p
-            class="pad-text"
-          >Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus vero nostrum fugiat. In, modi beatae. Voluptate cumque reiciendis sunt modi sequi. Temporibus exercitationem laudantium soluta quasi odio esse. Minus, aspernatur!</p>
-        </div>
-        <div class="col-md-5 about-us-image pad"></div>
-      </div>
-      <!--first component -->
-      <div class="row about-us-details-view">
-        <div class="col-md-5 about-us-image"></div>
-        <div class="col-md-6 about-us-image-text-view">
-          <h5>LOREM IPSUM HEADER</h5>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus vero nostrum fugiat. In, modi beatae. Voluptate cumque reiciendis sunt modi sequi. Temporibus exercitationem laudantium soluta quasi odio esse. Minus, aspernatur!</p>
-        </div>
-      </div>
+    <div class="about-us-main"> 
+     <ul id="FAQ" class="faq">
+		  <li>
+		    <div class="faq-q">
+		      Get discovered by local and international tourist.
+		    </div>
+		  </li>
+		  <li>
+		    <div class="faq-q">
+		     	Save time on booking processes.
+		    </div>
+		  </li>
+		  <li>
+		    <div class="faq-q">
+		     	Expand and grow your bookings and bottom line.
+		    </div>
+		  </li>
+		  <li>
+		    <div class="faq-q">
+		     	It is free to sign up and free to get bookings.
+		    </div>
+		  </li>
+		  <li>
+		    <div class="faq-q">
+		     	You control the cancellation terms, cost of each booking.
+		    </div>
+		  </li>
+		  <li>
+		    <div class="faq-q">
+		     Easy and transparent booking management process
+		    </div>
+		  </li>
+		  <li>
+		    <div class="faq-q">
+		      You can easily connect with your clients and respond to messages.
+		    </div>
+		  </li>
+		  <li>
+		    <div class="faq-q">
+		      It is a platform designed to promote travel businesses in Africa and help each brand start and grow.
+		    </div>
+		  </li>
+		</ul>
     </div>
   </div>
 </template>
@@ -100,5 +115,39 @@ export default {
   padding-top: 20px;
   font-weight: bold;
   text-align: justify;
+}
+
+.faq {
+  list-style: none;
+  width: 94%;
+  padding: 3%;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #FFF;
+}
+.faq li {
+  margin-bottom: 1em;
+  position: relative;
+}
+
+.faq-q {
+  cursor: pointer;
+  font-size: 22px;
+  font-weight: 600;
+  background: rgb(248, 24, 148);
+  padding: .5em;
+  border-radius: 5px;
+  transition: .5s ease-in;
+}
+.faq-q:hover {
+  background: #555;
+}
+
+.faq-a {
+  display: none;
+  font-size: 16px;
+  font-weight: 400;
+  position: relative;
+  margin-left: 5px;
 }
 </style>

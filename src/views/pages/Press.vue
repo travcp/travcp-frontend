@@ -5,39 +5,24 @@
             description="Description from TravCP"
         />
     <Navbar/>
+    <!-- Change image sources of the img element to change press logos -->
     <!--About us start -->
     <div class="about-us-header">
       <p>Press</p>
       <hr>
     </div>
     <div class="about-us-main">
-      <!--first component -->
-      <div class="row about-us-details-view">
-        <div class="col-md-5 about-us-image"></div>
-        <div class="col-md-6 about-us-image-text-view">
-          <h5>LOREM IPSUM HEADER</h5>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus vero nostrum fugiat. In, modi beatae. Voluptate cumque reiciendis sunt modi sequi. Temporibus exercitationem laudantium soluta quasi odio esse. Minus, aspernatur!</p>
+      <div class="d-flex">
+        <div class="container" style="padding: 0 70px 50px 70px; background: #FFF;text-align: center;">
+          <img style="height: 60px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEcAAAAhCAMAAAC8w0ZqAAAAbFBMVEX////MAADLAADKAADJAADIAADgjIzOIiLcd3fXYWHUUVHy0tL78fHqs7PilJTuw8P++vr56enWW1vabW3knJzloaH24ODZZ2forKzUTEzQNDTegoLQMDDNGBjwzMzMCgrPKSnSQ0Psu7vRPDxsaUifAAADBklEQVRIiY2WcZ+yIAzHx4Dy1NQ0zc7Msvf/Hp9tiGBXz6f9cScTvs3x2wAgWF4WTZ2SXU4yblMcz2U0AarTRe2b2zouH+mlhQctCXPK1BqNYnqgcYcalUIbTcm0c52942BQ78DQEu/pnoamLMac3I917eccrX/feI5WxNHkWhyF5VWojbFsCUBDDo2TUcrOy6SUXZOiZfb2nnM2TLGXNjvmbBVU5NEFQE//pyV9FI5pKW1G4f0t58xPNskpA/OBrM+go8m/0BccF/PIbuS6wKnluEz/hrOj38Spg6ymTLPZATJadIbJZhyYzWUjyJWAsR0Hpqs/nIzc9NtQWwx5Zs4P7PEKJ83ElYP4gB0tT/5w9qhwhBwl08jxmJXDHzBRQFngKDPTH2W7F86BAz9WjEHzHAq2cuUoLeuvEYcWHSRVW84v8vOF3pu0C5JbOQO/47yuHMr7lVzlhtPxbvIcZXZRBawcivXo8hrisblbFXN6SmPDQWENbzmYwqA5rMChN04OESchRykSy99zlC1BUhg4apFDFXHo4+1x1i/hxBw1sqoxzQJnkUNTBs5IXChofPrIoVeUV02Re84iB3Z5Ds8TYfUfOKyVSrSq1vwscpCHL+PBAXkjftz3uH0nl5ODUl/nx1acV6kpz7GV9nJQX++XrXifnhzyynF5Zzmor/VDtf6QmoriAbgjyyHmRHoePnB4CsJsIg7nXeTwdX1x70lEJg8MHM67bjmsbb1323oviruKOK6XUViBIxllOWz6j9r2HzIVc6Ql17QlgcN5p1GNL/3wGvdDZxFH8nqrTMRxvSy3/+vPzmwjIhXOjb5pDy25Vs4scthRL/94XixWdbyL0tDpA7imkgxc42FzckhEoqNzvZ5fzkoqRX9SSS/LhEdRiIkcOqhoq9Gf1C/nqTPjat0ZlbIyE5/vxld0wq6Rz2+73iY253uU63FV1OjP+1/vEa2IK7pLwC3cN1Yz11B0+dWIxB7V6jpKMJsricz095/F6mFz+YHDz35/njeuvh7vDc/6B6jYLO1vUgKiAAAAAElFTkSuQmCC" alt="" srcset="">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFIumwx1Rww5Ncgdf9ZPvpKRBfx8gI7c5Wmmp-M3AYBhQ-YoHE" alt="" srcset="">
+          <img style="height: 170px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsAXSqOZT4dYhhsketY0GuCLE8HQAgsFt-WZMUz0fEALzd41WM" alt="" srcset="">
+          <img style="height: 140px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDrXi3QUUZmtLl3Ugyu1ql8ChSt_WBfXXATJSaiK8Wiwx-jEVO" alt="" srcset="">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMSiXzrxSfxxZOIT0yQGVxe2Xb8TYagW_E0jkkxLkeigkLQ9y2" alt="" srcset="">
+          <img style="height: 120px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbxIf6kykBL6AZQGJw7Jd1DXFvEbd7ZvKaU0dKU2FGe70EYtX6" alt="" srcset="">
+      
         </div>
-      </div>
-
-      <!--second component -->
-      <div class="row about-us-details-view remove-pad">
-        <div class="col-md-6 about-us-image-text-view right-pad">
-          <h5>LOREM IPSUM HEADER</h5>
-          <p
-            class="pad-text"
-          >Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus vero nostrum fugiat. In, modi beatae. Voluptate cumque reiciendis sunt modi sequi. Temporibus exercitationem laudantium soluta quasi odio esse. Minus, aspernatur!</p>
         </div>
-        <div class="col-md-5 about-us-image pad"></div>
-      </div>
-      <!--first component -->
-      <div class="row about-us-details-view">
-        <div class="col-md-5 about-us-image"></div>
-        <div class="col-md-6 about-us-image-text-view">
-          <h5>LOREM IPSUM HEADER</h5>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus vero nostrum fugiat. In, modi beatae. Voluptate cumque reiciendis sunt modi sequi. Temporibus exercitationem laudantium soluta quasi odio esse. Minus, aspernatur!</p>
-        </div>
-      </div>
     </div>
   </div>
 </template>
