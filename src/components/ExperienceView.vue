@@ -661,7 +661,7 @@
                                 .then(response => {
                                     this.getSimilarExperienceData = response.data.data
                                 }).catch(error => {
-                                    console.log(error.response.data)
+                                    //console.log(error.response.data)
                                 })
                         }
                     }).catch(err => {
@@ -670,7 +670,7 @@
                 });
             },
             getDirection() {
-                console.log('Hi There')
+                //console.log('Hi There')
                 if (this.vm.place) {
                     document.getElementsByTagName('iframe')[0].src =
                         'https://www.google.com/maps/embed/v1/directions?origin=' + this.vm.place.formatted_address +
@@ -707,11 +707,11 @@
             bookExperience: function () {
 
                 if (this.auth) {
-                    console.log("in Booking")
+                    //console.log("in Booking")
                     this.$validator.validate().then(valid => {
                         console.log(valid + " was returned")
                         if (valid) {
-                            console.log(valid);
+                            //console.log(valid);
                             // if (this.time[0]) {
                             if (this.delivery_address) {
                                 let data = {
@@ -729,17 +729,17 @@
                                         Authorization: "Bearer " + this.$store.state.auth.access_token
                                     }
                                 };
-                                console.log('Hi on souvernirs ')
-                                console.log(this.experience.experience_type)
+                                //console.log('Hi on souvernirs ')
+                                //console.log(this.experience.experience_type)
                                 // console.log(this.formatDate(this.time[0]));
                                 this.bookingExperience(data).then(response => {
-                                    console.log(response)
+                                    //console.log(response)
                                     axios.post(`${this.$store.state.API_BASE}/cart/add`, {
                                         "booking_id": response.id
                                     }, requestHeaders).then(response => {
-                                        console.log(response.data.data);
+                                        //console.log(response.data.data);
                                     }).catch(error => {
-                                        console.log(error)
+                                        //console.log(error)
                                     })
                                     this.checkIfBooked()
                                     this.ratingInfo()
@@ -747,7 +747,7 @@
                                         "This experience has been added to your cart")
                                 });
                             } else {
-                                console.log(this.experience.experience_type)
+                                //console.log(this.experience.experience_type)
                                 if (this.time[0]) {
 
                                     let data = {
@@ -764,8 +764,8 @@
                                                 .access_token
                                         }
                                     };
-                                    console.log('Experience Type')
-                                    console.log(this.experience.experience_type)
+                                    //console.log('Experience Type')
+                                    //console.log(this.experience.experience_type)
                                     if (this.experience.experience_type == 'restaurants') {
                                         console.log("in Resturants")
                                         axios.post(`${this.$store.state.API_BASE}/bookings`, data,
@@ -774,22 +774,22 @@
                                                 this.checkIfBooked()
                                                 this.$noty.success(
                                                     "Restaurant Has been added to booking")
-                                                console.log(response.data.data)
+                                               // console.log(response.data.data)
                                             })
                                             .catch(error => {
                                                 this.$noty.error("Something Went Wrong.")
-                                                console.log(error.response.data)
+                                               // console.log(error.response.data)
                                             })
                                     } else {
                                         // console.log(this.formatDate(this.time[0]));
                                         this.bookingExperience(data).then(response => {
-                                            console.log(response)
+                                            //console.log(response)
                                             axios.post(`${this.$store.state.API_BASE}/cart/add`, {
                                                 "booking_id": response.id
                                             }, requestHeaders).then(response => {
-                                                console.log(response.data.data);
+                                                //console.log(response.data.data);
                                             }).catch(error => {
-                                                console.log(error)
+                                               // console.log(error)
                                             })
                                             this.checkIfBooked()
                                             this.$noty.success(
@@ -800,18 +800,18 @@
                                     this.$noty.error("Please enter a check in and check out date");
                                 }
                             }
-                            console.log("in Booking")
+                            //console.log("in Booking")
 
                             // } else {
                             //     this.$noty.error("Please enter a check in and check out date");
                             // }
                         }
                     }).catch(err => {
-                        console.log("A validation error occured")
+                       // console.log("A validation error occured")
                     });
 
                 } else {
-                    console.log("in Booking")
+                    //console.log("in Booking")
                     this.$noty.error("Oops, You need to Login to Book and Experience");
                 }
             },
@@ -858,7 +858,7 @@
                     this.reviews = response.data;
                 }).catch(err => {
                     this.loading2 = false;
-                    console.log(err);
+                    //console.log(err);
                 })
             },
             cofirmForFavorite() {
@@ -866,11 +866,11 @@
                     `${this.$store.state.API_BASE}/favourites?user_id=${this.$store.state.auth.user.id}?experience_id?=${this.$route.params.id}`
                     ).then(response => {
 
-                    console.log('Favorites Data')
-                    console.log(response.data.data)
+                    //console.log('Favorites Data')
+                    //console.log(response.data.data)
                 }).catch(err => {
                     // this.loading2 = false;
-                    console.log(err.response.data);
+                    //console.log(err.response.data);
                 })
             },
             postFavoriteExeperience(placeId) {
@@ -888,11 +888,11 @@
                     Axios.post(`${this.$store.state.API_BASE}/favourites`,
                         data,
                         requestHeaders).then(response => {
-                        console.log(response.data.data);
+                        //console.log(response.data.data);
                         this.loading = false
                         this.$noty.success('Experience has been added to your Favourites list')
                     }).catch(error => {
-                        console.log(error.data)
+                        //console.log(error.data)
                         this.loading = false
                     })
                 } else {
@@ -910,7 +910,7 @@
                     experience_id: this.$route.params.id,
                     user_id: this.$store.state.auth.user.id,
                 }, requestHeaders).then(response => {
-                    console.log(response.data)
+                    //console.log(response.data)
                     this.checkBookingStatus = response.data[0]
                     this.loading2 = false;
                 }).catch(err => {
@@ -934,12 +934,12 @@
                             `${this.$store.state.API_BASE}/favourites?user_id=${this.$store.state.auth.user.id}&experience_id=${this.$route.params.id}`
                             )
                         .then(response => {
-                            console.log('User Fav')
-                            console.log(response.data.data);
+                            //console.log('User Fav')
+                            //console.log(response.data.data);
                             this.FavoritesExperience = response.data.data
                             this.loading = false
                         }).catch(error => {
-                            console.log(err.data);
+                            //console.log(err.data);
                             // this.loading = false;
                         })
                 } else {
@@ -953,9 +953,9 @@
             getMerchantExtras() {
                 axios.get(`${this.$store.state.API_BASE}/merchant/extras/${this.experience.merchant_id}`)
                     .then(response => {
-                        console.log(response.data.data)
+                        //console.log(response.data.data)
                     }).catch(error => {
-                        console.log(error.response.data)
+                        //console.log(error.response.data)
                     })
             },
             chatWithMerchant() {
@@ -963,7 +963,7 @@
                 axios.get(`${this.$store.state.API_BASE}/merchants/${this.experience.merchant_id}/extras`)
                     .then(response => {
                         user_data = response.data.data.user_data
-                        console.log(response.data.data)
+                        //console.log(response.data.data)
                         this.$router.push({
                             name: "Messages",
                             params: {
@@ -992,9 +992,9 @@
         created: function () {
             this.getUserFavorites()
             this.getExperienceById(this.$route.params['id']).then(response => {
-                console.log('In here already')
-                console.log(response)
-                console.log(this.experience)
+                // console.log('In here already')
+                // console.log(response)
+                // console.log(this.experience)
                 for (let i = 0; i <= this.experience.images.length; i++) {
                     // console.log(this.experience.images[i].image)
                     if (this.experience.images.length > 1) {

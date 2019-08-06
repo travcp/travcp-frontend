@@ -22,7 +22,12 @@
                                     <div class="card-body">
                                     <ul class="nav nav-pills mb-3  nav-fill" id="pills-tab" role="tablist">
                                         <li class="nav-item" v-if="categories && categories.length" v-for="(category, index) in categories" :key="category.id">
-                                            <a class="nav-link" v-bind:class="{ active: index == 0 ? true : false }" data-toggle="pill" :href="'#category' + category.id" role="tab" :aria-controls="'#category' + category.id" aria-selected="true">{{ category.name }}</a>
+                                            <a class="nav-link" v-bind:class="{ active: index == 0 ? true : false }" data-toggle="pill" :href="'#category' + category.id" role="tab" :aria-controls="'#category' + category.id" aria-selected="true">
+                                                {{ category.name }}  
+                                                <span  v-for="item in menus" v-if="category.id == item.category_id" :key="item.id" class="badge badge-light">
+                                                    {{  }}
+                                                </span>
+                                            </a>
                                         </li>
                                     </ul>
                                     <div class="tab-content" v-if="categories && categories.length" id="pills-tabContent">
@@ -49,7 +54,7 @@
                                         </div>
                                         </div>
                                     </div>
-                                    <ul v-if="categories && categories.length">
+                                    <!-- <ul v-if="categories && categories.length">
                                         <li v-for="(category, index) in categories" :key="category.id">{{ category.name }}
 
                                             <ul v-for="item in menus" :key="item.id">
@@ -59,7 +64,7 @@
                                                 </li>        
                                             </ul>
                                         </li>
-                                    </ul>
+                                    </ul> -->
 
                                     </div>
                                 </div>
