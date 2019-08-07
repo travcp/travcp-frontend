@@ -55,7 +55,7 @@ export default {
   			},
   			{
   				title: 'Is booking on TravCP secure?',
-  				description: 'Absolutely! We DO NOT save or share any card details/information to any party whatsoever. our paymennt processor is alos PCIDSS Compliant and thus quite secure. Please refer to our privacy policy for more.'
+  				description: 'Absolutely! We DO NOT save or share any card details/information to any party whatsoever. Our paymennt processor is PCIDSS Compliant and thus quite secure. Please refer to our <router-link to="/policies">privacy policy</router-link> for more.'
   			},
   			{
   				title: 'What are the modes of payment I can use?',
@@ -63,11 +63,11 @@ export default {
   			},
   			{
   				title: 'How do I check the status of my refund?',
-  				description: 'Please check our terms and conditions for more or contact our support for all matters related to refunds.'
+  				description: 'Please check our <router-link to="/policies">terms and conditions</router-link> for more or contact our support for all matters related to refunds.'
   			},
   			{
   				title: 'How do I cancel my booking through TravCP?',
-  				description: 'Cancellation policy is peculiar/different for each experience or host as this is mostly defined by the host. Click here to see more on our terms and conditions.'
+  				description: 'Cancellation policy is peculiar/different for each experience or host as this is mostly defined by the host. Click <router-link to="/policies">here</router-link> to see more on our terms and conditions.'
   			},
   			{
   				title: 'How can I modify my booking?',
@@ -127,7 +127,7 @@ export default {
   			},
   			{
   				title: 'I forgot my password, what should I do?',
-  				description: 'You can ask for a new password to be reset on the TravCP sign-in page, under “Forgot Password?”'
+  				description: 'You can ask for a new password to be reset on the TravCP <router-link to="/signin">sign-in</router-link> page, under “Forgot Password?”'
   			},
   			{
   				title: 'How do I change my password?',
@@ -139,7 +139,7 @@ export default {
   			},
   			{
   				title: 'How do I give a star rating?',
-  				description: 'After you are done with an experience or a visit to a destination/restaurant, a mail will be sent to you to give star ratings or you would get a pop up message on your screen reminding you to give ratings. If none of this is done,kindly send an email or contact our support team'
+  				description: 'After you are done with an experience or a visit to a destination/restaurant, a mail will be sent to you to rate your experience or you would get a pop up message on your screen reminding you to give ratings. If none of this is done,kindly send an email or contact our support team'
   			},
   			{
   				title: 'What is the security rating for?',
