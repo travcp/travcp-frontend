@@ -22,7 +22,8 @@
                     <li class="nav-item"><router-link class="nav-link nav-item-color" to="/faqs">FAQs</router-link></li>
   
 
-                    <li class="nav-item" v-if="!checkUser"><router-link style="color: #000 !important;" class="nav-link" to="/signin">Sign in</router-link></li>
+                    <li class="nav-item" v-if="!checkUser"><router-link style="color: #000 !important;" class="nav-link" to="/signin">Log in</router-link></li>
+                    <li class="nav-item" v-if="!checkUser"><router-link style="color: #000 !important;" class="nav-link" to="/signup">Register</router-link></li>
                     <li class="nav-item" v-if="checkUser">
                         <router-link class="nav-link nav-item-color" to="/dashboard/favourite-experiences">Favourites</router-link>
                     </li>

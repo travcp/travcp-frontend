@@ -50,12 +50,12 @@ export default {
   	return {
   		FAQS : [
   			{
-  				title: 'How do I book',
-  				description: 'Booking on TravCP very is easy! Enter the name of the destination or the area in which you’d like to visit, in the search field, and click on search. You can apply the available filters to narrow your search, or simply call our support for help. Once uou have located the Experience, Restaurant, Place or Tour you want to book, Click into its information page and select an available date. Simply click book and go to the Checkout page to pay for the booked Experience. '
+  				title: 'How do I book?',
+  				description: 'Booking on TravCP is very easy! Enter the name of the destination or the area which you’d like to visit in the search field and click on the search button. You can apply the available filters to narrow your search, or simply call our support for help. Once uou have located the Experience, Restaurant, Place or Tour you want to book, Click into its information page and select an available date. Simply click book and go to the Checkout page to pay for the booked Experience. '
   			},
   			{
-  				title: 'Is booking on TravCP secure',
-  				description: 'Absolutely! We DO NOT share any card details/information to any party whatsoever. Please refer to our privacy policy for more. (Link to privacy policy).'
+  				title: 'Is booking on TravCP secure?',
+  				description: 'Absolutely! We DO NOT save or share any card details/information to any party whatsoever. our paymennt processor is alos PCIDSS Compliant and thus quite secure. Please refer to our privacy policy for more.'
   			},
   			{
   				title: 'What are the modes of payment I can use',

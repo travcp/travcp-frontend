@@ -714,7 +714,7 @@ export default {
         history: this.history,
         start_date: this.time ? this.formatDate(this.time[0]) : null,
         end_date: this.time ? this.formatDate(this.time[1]) : null,
-        contact_email: this.$store.state.auth.merchant.business_email,
+        contact_email: this.$store.state.auth.email,
         merchant_id: this.$store.state.auth.user.id,
         experiences_type_id: this.exp_id,
         opening_and_closing_hours: JSON.stringify(this.opening_and_closing_hours),

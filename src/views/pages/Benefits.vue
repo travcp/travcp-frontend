@@ -10,8 +10,77 @@
       <p>Benefits</p>
       <hr>
     </div>
+    <div class="row">
+      <div class="col-md-12">
+        
+        <div class="section section-team text-center">
+          <div class="container">
+            <div class="team">
+              <div class="row" style="justify-content: center;">
+                <div class="col-md-4" style="padding: 30px 15px 30px 15px !important;">
+                  <div class="team-player">
+                    <i class="fa fa-map-marker-alt fa-3x"></i>
+                    <h4 class="title">Get discovered by local and international tourist.</h4>
+                    <!-- <p class="category text-primary">Basic Information</p> -->
+                    </div>
+                </div>
+                <div class="col-md-4" style="padding: 30px 15px 30px 15px !important;">
+                  <div class="team-player">
+                    <i class="fa fa-clock fa-3x"></i>
+                    <h4 class="title">Save time on booking processes.</h4>
+                    <!-- <p class="category text-primary">Basic Information</p> -->
+                    </div>
+                </div>
+                <div class="col-md-4" style="padding: 30px 15px 30px 15px !important;">
+                  <div class="team-player">
+                    <i class="fa fa-chart-line fa-3x"></i>
+                    <h4 class="title">Expand and grow your bookings and bottom line.</h4>
+                    <!-- <p class="category text-primary">Basic Information</p> -->
+                    </div>
+                </div>
+                <div class="col-md-4" style="padding: 30px 15px 30px 15px !important;">
+                  <div class="team-player">
+                    <h2 style="font-weight: 900 !important;">ZERO</h2>
+                    <h4 class="title">It is free to sign up and free to get bookings.</h4>
+                    <!-- <p class="category text-primary">Basic Information</p> -->
+                    </div>
+                </div>
+                <div class="col-md-4" style="padding: 30px 15px 30px 15px !important;">
+                  <div class="team-player">
+                    <i class="fa fa-money-check-alt fa-3x"></i>
+                    <h4 class="title">You control the cancellation terms, cost of each booking.</h4>
+                    <!-- <p class="category text-primary">Basic Information</p> -->
+                    </div>
+                </div>
+                <div class="col-md-4" style="padding: 30px 15px 30px 15px !important;">
+                  <div class="team-player">
+                    <i class="fa fa-tasks fa-3x"></i>
+                    <h4 class="title">Easy and transparent booking management process</h4>
+                    <!-- <p class="category text-primary">Basic Information</p> -->
+                    </div>
+                </div>
+                <div class="col-md-4" style="padding: 30px 15px 30px 15px !important;">
+                  <div class="team-player">
+                    <i class="fa fa-comment-dots fa-3x"></i>
+                    <h4 class="title">You can easily connect with your clients and respond to messages</h4>
+                    <!-- <p class="category text-primary">Basic Information</p> -->
+                    </div>
+                </div>
+                <div class="col-md-4" style="padding: 30px 15px 30px 15px !important;">
+                  <div class="team-player">
+                    <i class="fa fa-business-time fa-3x"></i>
+                    <h4 class="title">It is a platform designed to promote travel businesses in Africa and help each brand start and grow.</h4>
+                    <!-- <p class="category text-primary">Basic Information</p> -->
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="about-us-main"> 
-     <ul id="FAQ" class="faq">
+     <!-- <ul id="FAQ" class="faq">
 		  <li>
 		    <div class="faq-q">
 		      Get discovered by local and international tourist.
@@ -52,7 +121,7 @@
 		      It is a platform designed to promote travel businesses in Africa and help each brand start and grow.
 		    </div>
 		  </li>
-		</ul>
+		</ul> -->
     </div>
   </div>
 </template>
@@ -66,6 +135,9 @@ export default {
 };
 </script>
 <style scoped>
+.col-md-4 .fa, h2 {
+  color: #f81894;
+}
 .about-us-header {
   padding-top: 3%;
 }
@@ -150,4 +222,11 @@ export default {
   position: relative;
   margin-left: 5px;
 }
+.navbar{
+  box-shadow: none !important;
+}
+</style>
+<style scoped src='../../assets/css/demo.css'>
+</style>
+<style scoped src='../../assets/css/now-ui-kit.css'>
 </style>

@@ -224,10 +224,11 @@
         console.log('Here')
         if(!this.$store.state.auth){
           this.$noty.warning('You need to register and then become a Merchant to Add Listing');
-          return this.$router.push("/signin");
+          return this.$router.push("/requirements");
           // return false;
         } else if(this.$store.state.auth && this.$store.state.auth.length && this.$store.state.auth.user.role !== 'user'){
           this.$noty.warning('You need to register as a Merchant to Add Listing');
+          return this.$router.push("/requirements");
         } else {
           return this.$router.push("/dashboard/merchant/new-experience");
         }

@@ -10,30 +10,33 @@
       <p>Merchant Requirements</p>
       <hr>
     </div>
-    <div class="about-us-main"> 
+    <div class="about-us-main text-center"> 
      <ul id="FAQ" class="faq">
 
 		  <li>
 		    <div class="faq-q">
-		      Basic Information
+		      Personal Information
 		    </div>
 		  </li>
 		  <li>
 		    <div class="faq-q">
-		      All the information on the google form
+		      Business Details
 		    </div>
 		  </li>
 		  <li>
 		    <div class="faq-q">
-		      National Identity Card and/or CAC form
+		      National Identity Card
 		    </div>
 		  </li>
 		  <li>
 		    <div class="faq-q">
-		      Any criminal records
+		      Details of Experience, Tour, Place or Restaurant
 		    </div>
 		  </li>
 		</ul>
+     <router-link to="/signin">
+      <button class="btn btn-primary btn-lg" style="width: 250px;background: #555;">Sign in to Become a Merchant</button>
+     </router-link>
     </div>
   </div>
 </template>
@@ -131,4 +134,11 @@ export default {
   position: relative;
   margin-left: 5px;
 }
+.navbar{
+  box-shadow: none !important;
+}
+</style>
+<style scoped src='../../assets/css/demo.css'>
+</style>
+<style scoped src='../../assets/css/now-ui-kit.css'>
 </style>

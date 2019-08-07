@@ -59,7 +59,9 @@ import Verify from '@/views/pages/Verify.vue';
 import LikedExperiences from '@/views/LikedExperiences.vue';
 import MerchantProfileView from '@/views/MerchantProfileView.vue';
 
-import ChatIndex from '@/views/Chat/ChatIndex.vue'
+import ChatIndex from '@/views/Chat/ChatIndex.vue';
+
+import TeamView from '@/views/team/TeamView.vue';
 
 Vue.use(Router);
 
@@ -291,6 +293,11 @@ export default new Router({
       path: "/reset",
       name: "Reset",
       component: Reset
+    },
+    {
+      path: "/team/:name",
+      name: "TeamView",
+      component: TeamView
     }
   ]
 });
