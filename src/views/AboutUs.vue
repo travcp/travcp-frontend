@@ -43,10 +43,10 @@
             <div class="col-md-6">
               <div class="image-container image-left">
                 
-                <p class="blockquote blockquote-primary">"Over the span of the satellite record, Arctic sea ice has been declining significantly, while sea ice in the Antarctichas increased very slightly"
+                <p class="blockquote blockquote-primary">"If I have ever seen magic, it has been in Africa"
                   <br>
                   <br>
-                  <small>-NOAA</small>
+                  <small>- John Hemminngway</small>
                 </p>
               </div>
               
@@ -71,41 +71,20 @@
         <h2 class="title">Here is our team</h2>
         <div class="team">
           <div class="row" style="justify-content: center;">
-            <div class="col-md-4">
+            <div class="col-md-4" style="padding: 0;">
               <div class="team-player">
                 <img src="../assets/landing_images/14987979565412122634.png" alt="Thumbnail Image" class="rounded-circle img-fluid img-raised">
                 <h4 class="title">Oluwafisayo Olayinka-Bello</h4>
-                <p class="category text-primary">(Co-Founder & CEO)</p>
-                <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
-                  <a href="#">links</a> for people to be able to follow them outside the site.</p>
+                <p class="category text-primary">(Founder & CEO)</p>
+                <p class="description">
+                  Fisayo is a tourism development advocate, travel writer, podcast host, producer, big dreamer and innovator who thrives at the intersection of tourism, technology and advocacy. She sets the company’s strategy and drives TravCP’s vision to model Africa to be the number one tourist destination in the world.
+                </p>
+                <router-link to="/team/fisayo"><button class="btn btn-link btn-info">Read More About Me</button></router-link>
                 <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-twitter"></i></a>
                 <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-instagram"></i></a>
                 <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-facebook-square"></i></a>
               </div>
             </div>
-            <!-- <div class="col-md-4">
-              <div class="team-player">
-                <img src="../assets/avatar.png" alt="Thumbnail Image" class="rounded-circle img-fluid img-raised">
-                <h4 class="title">Ryan Tompson</h4>
-                <p class="category text-primary">Designer</p>
-                <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
-                  <a href="#">links</a> for people to be able to follow them outside the site.</p>
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-twitter"></i></a>
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-linkedin"></i></a>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="team-player">
-                <img src="../assets/avatar.png" alt="Thumbnail Image" class="rounded-circle img-fluid img-raised">
-                <h4 class="title">Eva Jenner</h4>
-                <p class="category text-primary">Fashion</p>
-                <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
-                  <a href="#">links</a> for people to be able to follow them outside the site.</p>
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-google-plus"></i></a>
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-youtube"></i></a>
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-twitter"></i></a>
-              </div>
-            </div> -->
           </div>
         </div>
       </div>

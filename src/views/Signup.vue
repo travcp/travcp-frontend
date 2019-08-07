@@ -70,7 +70,7 @@
           <div class="col-md-12" style="padding-top: 40px;">
             <form @submit.prevent="formSubmit">
               <div class="form-header">
-                <h3>Sign up</h3>
+                <h3 style="visibility: hidden">Sign up</h3>
                   <div v-if="validationErrors.length > 0">
                     
                   <form-errors

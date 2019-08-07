@@ -202,7 +202,7 @@ export default {
     // console.log(parseInt(dollartonaira))
     // console.log("price is " + this.calcPrice);
     var handler = PaystackPop.setup({
-      key: 'pk_test_a3c6507e7a82c63308de9c5863bbe0950492d508',
+      key: 'pk_live_dd506c27d9c936bf331ae7e8c265e97045f4e9c4',
       email: this.$store.state.auth.user.email,
       amount: parseInt(dollartonaira),
       currency: "NGN",
