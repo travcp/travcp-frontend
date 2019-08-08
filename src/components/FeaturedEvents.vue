@@ -38,15 +38,17 @@
                 </slide>
               </carousel>
             </div>
+
             <div class="col-lg-12 toggleCarousel">
                 <div class="container">
                     <div class="row">
                       <div class="card-deck">
                         <div class="row">
-                          <div class="col-md-4" v-for="event in events" :key="event.id">
+                          <div class="col-md-4" v-for="event in events" v-if="!loading.getEvents" :key="event.id">
                             <router-link :to="'/experience/'+ event.id + '/' + event.title.toString().toLowerCase().replace( /\s/g, '-')">
                                 <div class="featured-card card" style="overflow: hidden;">
                                     <img v-if="event.images.length" style="width: 100%;object-fit: cover;height:380px;" :src="event.images[0].image" class="card-img-top featured-card-img" alt="..." loading="lazy">
+
                                     <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img" style="width: 100%;object-fit: cover;height: 380px;" alt="..." loading="lazy">
                                     <div class="featured-card-footer featured_places_overlay_active">
                                         <div class="row" style="text-transform: capitalize;">
@@ -63,7 +65,7 @@
                                     </div>
                                 </div>
                             </router-link>
-                          </div>
+                          </div> 
                         </div>
                       </div>
                         
@@ -79,6 +81,7 @@
 import Axios from 'axios'
 import { mapState } from 'vuex'
 import { Carousel, Slide } from 'vue-carousel';
+import { ContentLoader } from "vue-content-loader"
 
 import StarRating from 'vue-star-rating'
 
@@ -90,7 +93,8 @@ export default {
     components: {
       Carousel,
       Slide,
-      StarRating
+      StarRating,
+      ContentLoader
     },
     props: ['events'],
     // components: {
@@ -110,7 +114,7 @@ export default {
     //     }
     // },
     computed: {
-        ...mapState(['auth'])
+        ...mapState(['auth', 'loading'])
     },
     methods: {
         // next() {

@@ -202,30 +202,30 @@ export default {
   async getPlaces({ commit, state }) {
     // commit("IS_LOADING");
 
-    state.loading.getPlaces = false;
+    state.loading.getPlaces = true;
     await axios
       .get(`${API_BASE}/experience_types/22/experiences`)
       .then(response => {
-        state.loading.getPlaces = true;
+        state.loading.getPlaces = false;
         commit("GET_PLACES", response.data);
       })
       .catch(({ error }) => {
-        state.loading.getPlaces = true;
+        state.loading.getPlaces = false;
         //console.log(`Error ${error}`);
       });
   },
   async getRestaurants({ commit, state }) {
     // commit("IS_LOADING");
 
-    state.loading.getRestaurants = false;
+    state.loading.getRestaurants = true;
     await axios
       .get(`${API_BASE}/experience_types/12/experiences`)
       .then(response => {
-        state.loading.getRestaurants = true;
+        state.loading.getRestaurants = false;
         commit("ALL_RESTAURANTS", response.data);
       })
       .catch(({ error }) => {
-        state.loading.getPlaces = true;
+        state.loading.getPlaces = false;
         //console.log(`Error ${error}`);
       });
   },

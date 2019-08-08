@@ -114,6 +114,42 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="container">
+                            <div class="row" v-if="loading.filterExperiencesSearch || loading.getExperiences">
+
+                                  <div class="col-md-4">
+                                    <content-loader
+                                      :height="380"
+                                      :width="350"
+                                      :speed="2"
+                                      primaryColor="#f3f3f3"
+                                      secondaryColor="#ecebeb"
+                                    >
+
+                                    </content-loader>
+                                  </div>
+                                  <div class="col-md-4">
+                                    <content-loader
+                                      :height="380"
+                                      :width="350"
+                                      :speed="2"
+                                      primaryColor="#f3f3f3"
+                                      secondaryColor="#ecebeb"
+                                    >
+
+                                    </content-loader>
+                                  </div>
+                                  <div class="col-md-4">
+                                    <content-loader
+                                      :height="380"
+                                      :width="350"
+                                      :speed="2"
+                                      primaryColor="#f3f3f3"
+                                      secondaryColor="#ecebeb"
+                                    >
+
+                                    </content-loader>
+                                  </div>
+                            </div>
                         <div class="row">
                             <div class="col-md-12 no-search-results-cont" v-if="allExperiences && allExperiences.length < 1 && !loading.filterExperiencesSearch && !loading.getExperiences">
                                 <h3>No results</h3>
@@ -127,11 +163,6 @@
                                 <h3>
                                     Explore any of these
                                 </h3>
-                            </div>
-                            <div class="col-md-12" style="margin-bottom: 20px;">
-                                <div style="text-align: center;"  v-if="loading.filterExperiencesSearch || loading.getExperiences">
-                                  <Circle9 />           
-                                </div>
                             </div>
                             <div class="col-md-4 experience" v-if="allExperiences != null && allExperiences.length < 1" v-for="experience in experiencesPlacehodler" :key="experience.id" style="">
                                 <router-link :to="'/experience/'+ experience.id + '/' + experience.title.toString().toLowerCase().replace( /\s/g, '-')">
@@ -193,6 +224,8 @@
     import StarRating from 'vue-star-rating'
     import { Circle9 } from 'vue-loading-spinner'
     import Axios from 'axios'
+    import { ContentLoader } from "vue-content-loader"
+
     export default {
         name: 'SearchResults',
         data: function () {
@@ -267,7 +300,8 @@
             Navbar,
             Footer,
             StarRating,
-            Circle9
+            Circle9,
+            ContentLoader
         },
         computed: {
             ...mapState(['loading']),

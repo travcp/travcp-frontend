@@ -360,6 +360,21 @@
                                       v-model="dollar_price"
                                     >
                                   </div>
+                                <div
+                                  class="form-group col-md-6"
+                                  v-if="requiredFields.includes('naira_price')"
+                                >
+                                  <label>Naira Price ($)</label>
+                                    <input
+                                      v-validate="'required'"
+                                      name="Price"
+                                      type="number"
+                                      step="any"
+                                      class="form-control new_experience_input"
+                                      placeholder="in Naira"
+                                      v-model="naira_price"
+                                    >
+                                  </div>
                                   <div class="form-group col-md-6" v-if="requiredFields.includes('start_date')">
                                     <label>Dates Range</label>
                                     <br>
@@ -512,6 +527,7 @@ export default {
       opening_and_closing_hours: null,
       vr_video: null,
       files: [],
+      naira_price: null,
       time: "",
       required_fields_for_events: [
         "title",
@@ -702,6 +718,7 @@ export default {
         language: this.language,
         description: this.description,
         dollar_price: this.dollar_price,
+        naira_price: this.naira_price,
         meetup_location: this.meetup_location,
         itenary: this.itenary,
         tourist_expected_items: this.tourist_expected_items,

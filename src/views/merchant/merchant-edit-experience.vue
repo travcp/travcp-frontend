@@ -330,10 +330,10 @@
                               </div>
                               <div
                                 class="form-group col-md-6"
-                                v-if="requiredFields.includes('dollar_price')"
                               >
                                 <div class="row">
-                                  <div class="form-group col-md-4">
+                                  <div class="form-group col-md-4"
+                                v-if="requiredFields.includes('dollar_price')">
                                     <label>Price ($)</label>
                                     <input
                                       v-validate="'required'"
@@ -344,7 +344,22 @@
                                       v-model="experience.dollar_price"
                                     />
                                   </div>
-                                  <div class="form-group col-md-8">
+                                <div
+                                  class="form-group col-md-6"
+                                  v-if="requiredFields.includes('naira_price')"
+                                >
+                                  <label>Naira Price ($)</label>
+                                    <input
+                                      v-validate="'required'"
+                                      name="Price"
+                                      type="number"
+                                      step="any"
+                                      class="form-control new_experience_input"
+                                      placeholder="in Naira"
+                                      v-model="naira_price"
+                                    >
+                                  </div>
+                                  <div class="form-group col-md-8" v-if="requiredFields.includes('start_date')">
                                     <label>Dates Range</label> <br />
                                     <date-picker
                                       v-validate="'required'"
@@ -486,6 +501,7 @@ export default {
       requiredFields: [],
       experience_type_name: null,
       opening_and_closing_hours: null,
+      naira_price: null,
       files: [],
       time: "",
       experience: {},
@@ -669,6 +685,7 @@ export default {
         experiences_type_id: this.exp_id,
         opening_and_closing_hours: JSON.stringify(this.opening_and_closing_hours),
         vr_video: this.vr_video,
+        naira_price: this.naira_price,
         _method: 'PUT'
       };
       Object.entries(data).forEach(o =>
