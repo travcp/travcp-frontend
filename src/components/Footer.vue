@@ -34,7 +34,7 @@
                                     <li><router-link to="/travel-credit">Travel Credit</router-link></li>
                                     <li><router-link to="/group-tour">Group Tour</router-link></li>
                                     <li><router-link to="/guidebooks">Guidebooks</router-link></li> -->
-                                    <li><a href="http://travvblog.herokuapp.com">TRAV CP Blog</a></li>
+                                    <li><a href="https://brimatel.com/travvcp">TRAV CP Blog</a></li>
                                 </ul>
                             </aside>
                         </div>
@@ -54,7 +54,7 @@
                                     <li><router-link to="/requirements">Requirements</router-link></li>
                                     <li><router-link to="/benefits">Benefits</router-link></li>
                                     <li>
-                                        <a href="http://travvapi.herokuapp.com/forums" @click="gotoForum">Community</a>
+                                        <a href="https://brimatel.com/travvcp/forum/" @click="gotoForum">Community</a>
                                     </li>
                                 </ul>
                             </aside>
