@@ -164,7 +164,7 @@ body, h6, h5, h4, h3, h2, h1, p  {
   font-weight: 200 !important;
 }
 .featured-card.card {
-    min-width: 380px;
+    min-width: 321px;
 }
 @font-face {
     font-family: MuseoSans;
