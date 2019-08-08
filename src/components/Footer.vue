@@ -34,7 +34,7 @@
                                     <li><router-link to="/travel-credit">Travel Credit</router-link></li>
                                     <li><router-link to="/group-tour">Group Tour</router-link></li>
                                     <li><router-link to="/guidebooks">Guidebooks</router-link></li> -->
-                                    <li><a href="https://brimatel.com/travvcp">TRAV CP Blog</a></li>
+                                    <li><a href="https://brimatel.com/travvcp">TravCP Blog</a></li>
                                 </ul>
                             </aside>
                         </div>
