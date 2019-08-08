@@ -54,7 +54,7 @@
                                     <li><router-link to="/requirements">Requirements</router-link></li>
                                     <li><router-link to="/benefits">Benefits</router-link></li>
                                     <li>
-                                        <a href="https://brimatel.com/travvcp/forum/" @click="gotoForum">Community</a>
+                                        <a href="https://brimatel.com/travvcp/forum/">Community</a>
                                     </li>
                                 </ul>
                             </aside>
@@ -107,16 +107,16 @@ export default {
       checkUser() {
           return this.auth != null ? true : false
       },
-      gotoForum(e){
-          e.preventDefault();
+    //   gotoForum(e){
+    //       e.preventDefault();
           
-          if(this.$store.state.auth){
-              location.href = "http://travvapi.herokuapp.com/travvforum?token="+this.$store.state.auth.access_token
-          }
-          else{
-              location.href = "http://travvapi.herokuapp.com/travvforum"
-          }
-      },
+    //       if(this.$store.state.auth){
+    //           location.href = "http://travvapi.herokuapp.com/travvforum?token="+this.$store.state.auth.access_token
+    //       }
+    //       else{
+    //           location.href = "http://travvapi.herokuapp.com/travvforum"
+    //       }
+    //   },
       confirmUserType(){
         if (this.checkUserType == 'user'){
             return true
