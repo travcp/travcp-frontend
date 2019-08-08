@@ -43,6 +43,17 @@
                     <div class="row">
                       <div class="card-deck">
                         <div class="row">
+                          <!-- <div class="col-md-4">
+                            <content-loader
+                                :height="380"
+                                :width="350"
+                                :speed="2"
+                                primaryColor="#f3f3f3"
+                                secondaryColor="#ecebeb"
+                              >
+
+                              </content-loader>
+                          </div> -->
                           <div class="col-md-4" v-for="restaurant in restaurants" :key="restaurant.id">
                             <router-link :to="'/experience/'+ restaurant.id + '/' + restaurant.title.toString().toLowerCase().replace( /\s/g, '-')">
                                 <div class="featured-card card" style="overflow: hidden;">

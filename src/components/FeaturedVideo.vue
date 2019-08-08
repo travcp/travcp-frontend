@@ -13,6 +13,19 @@
                   <button type="button" class="btn view_all_btn">SEE ALL</button>
               </router-link>
             </div>
+            <div class="col-md-12" v-if="loading"> 
+              
+              <content-loader
+                :height="300"
+                :width="800"
+                :speed="2"
+                primaryColor="#f3f3f3"
+                secondaryColor="#ecebeb"
+              >
+
+              </content-loader>
+
+            </div>
             <div class="col-lg-12">
               <div class="row" v-if="videoData.length > 0">
                 <div class="col-md-7" v-if="videoData.length > 3">
@@ -61,113 +74,6 @@
           </div>
 
 
-          <!-- <div class="modal fade" id="video_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog" role="document" style="max-width: 700px;">
-              <div class="modal-content">
-                <div class="modal-body" style="padding: 0">
-                  <iframe width="420" height="415" style="width: 100%" 
-                  :src="videoData[4].url">
-                  </iframe>
-                </div>
-                <div class="modal-footer" style="padding: 0;border-top: none;">
-                  <div class="row" style="width: 100%;">
-                    <div class="col-md-12" style="text-align: center">
-                      
-                       <button type="button" class="btn modal-btn-travv" data-dismiss="modal">Close</button>
-                    </div>
-                  </div>
-                 
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="modal fade" id="video_2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog" role="document" style="max-width: 700px;">
-              <div class="modal-content">
-                <div class="modal-body" style="padding: 0">
-                  <iframe width="420" height="415" style="width: 100%" 
-                  :src="videoData[1].url">
-                  </iframe>
-                </div>
-                <div class="modal-footer" style="padding: 0;border-top: none;">
-                  <div class="row" style="width: 100%;">
-                    <div class="col-md-12" style="text-align: center">
-                      
-                       <button type="button" class="btn modal-btn-travv" data-dismiss="modal">Close</button>
-                    </div>
-                  </div>
-                 
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="modal fade" id="video_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog" role="document" style="max-width: 700px;">
-              <div class="modal-content">
-                <div class="modal-body" style="padding: 0">
-                  <iframe width="420" height="415" style="width: 100%" 
-                  :src="videoData[2].url">
-                  </iframe>
-                </div>
-                <div class="modal-footer" style="padding: 0;border-top: none;">
-                  <div class="row" style="width: 100%;">
-                    <div class="col-md-12" style="text-align: center">
-                      
-                       <button type="button" class="btn modal-btn-travv" data-dismiss="modal">Close</button>
-                    </div>
-                  </div>
-                 
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="modal fade" id="video_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog" role="document" style="max-width: 700px;">
-              <div class="modal-content">
-                <div class="modal-body" style="padding: 0">
-                  <iframe width="420" height="415" style="width: 100%" 
-                  :src="videoData[3].url">
-                  </iframe>
-                </div>
-                <div class="modal-footer" style="padding: 0;border-top: none;">
-                  <div class="row" style="width: 100%;">
-                    <div class="col-md-12" style="text-align: center">
-                      
-                       <button type="button" class="btn modal-btn-travv" data-dismiss="modal">Close</button>
-                    </div>
-                  </div>
-                 
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="modal fade" id="video_5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog" role="document" style="max-width: 700px;">
-              <div class="modal-content">
-                <div class="modal-body" style="padding: 0">
-                  <iframe width="420" height="415" style="width: 100%" 
-                  :src="videoData[0].url">
-                  </iframe>
-                </div>
-                <div class="modal-footer" style="padding: 0;border-top: none;">
-                  <div class="row" style="width: 100%;">
-                    <div class="col-md-12" style="text-align: center">
-                      
-                       <button type="button" class="btn modal-btn-travv" data-dismiss="modal">Close</button>
-                    </div>
-                  </div>
-                 
-                </div>
-              </div>
-            </div>
-          </div> -->
 
         <div class="modal fade" id="youtubeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
           <div class="modal-dialog" role="document" style="max-width: 700px;">
@@ -195,6 +101,7 @@
 
 <script>
 import Axios from 'axios'
+import { ContentLoader } from "vue-content-loader"
 
 export default {
   data() {
@@ -203,6 +110,9 @@ export default {
       videoUrl: "",
       loading: false
     }
+  },
+  component: {
+      ContentLoader
   },
   methods: {
     video_1(){
@@ -213,7 +123,7 @@ export default {
       $("#youtubeModal").modal("show");
     },
     getVideos(){
-      this.loading = false
+      this.loading = true
       Axios.get(`${this.$store.state.API_BASE}/videos`).then(response => {
         console.log(response.data.data)
         this.videoData = response.data.data

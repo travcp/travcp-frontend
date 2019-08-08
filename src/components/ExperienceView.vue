@@ -40,8 +40,18 @@
             <br>
             <div class="digital_feature blog_part">
                 <div class="row">
-                    <div class="col-lg-7" style="text-align: center;" v-if="loading.getExperienceById">
-                        <Circle9 />
+                    <div class="col-lg-7" v-if="loading.getExperienceById">
+                        <content-loader
+                            :height="380"
+                            :width="500"
+                            :speed="2"
+                            primaryColor="#f3f3f3"
+                            secondaryColor="#ecebeb"
+                        >
+                            <rect x="7.42" y="20.67" rx="0" ry="0" width="335.71" height="43.63" /> 
+                            <rect x="7.89" y="74.23" rx="0" ry="0" width="245.78" height="22.01" /> 
+                            <rect x="6.42" y="128.67" rx="0" ry="0" width="488.25" height="145.68" />
+                        </content-loader>
                     </div>
                     <div class="col-sm-6 col-md-7 col-lg-7 blog_content" v-else>
                         <h3 style="text-transform: capitalize;;font-size: 30px;">
@@ -568,6 +578,7 @@
     import VueGallerySlideshow from 'vue-gallery-slideshow';
     import StarRating from 'vue-star-rating'
     import Axios from 'axios'
+    import { ContentLoader } from "vue-content-loader"
     // import Datepicker from 'vuejs-datepicker';
     // import format from 'date-fns/format'
 
@@ -641,7 +652,8 @@
             DatePicker,
             Circle9,
             VueGallerySlideshow,
-            StarRating
+            StarRating,
+            ContentLoader
         },
         methods: {
             ...mapActions(['getExperienceById']),

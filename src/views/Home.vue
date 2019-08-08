@@ -102,7 +102,20 @@
             </div>
             <!-- // For Recommended Places -->
             <div class="col-lg-12 toggleCarousel">
-              <div class="row">
+              <div class="row" v-if="loading.getExperiences">
+                <div class="col-md-12">
+                  <content-loader
+                    :height="350"
+                    :width="800"
+                    :speed="2"
+                    primaryColor="#f3f3f3"
+                    secondaryColor="#ecebeb"
+                  >
+
+                  </content-loader>
+                </div>
+              </div>        
+              <div class="row" v-if="!loading.getExperiences">
                 <div class="col-md-6" style="padding-right: 5px;" v-if="getExp1">
                   <router-link :to="'/experience/'+ getExp1.id + '/' + getExp1.slug">
                     <div class="recom4uimages-up mount_fuji">
@@ -152,9 +165,48 @@
          <!-- <transition v-if="!loading.getExperiences" name="fade">
           <FeaturedEvents :events="events.slice(0, 3)" />
         </transition> -->
-        <FeaturedEvents :events="events.slice(0, 3)" />
-        <FeaturedPlaces :places="places.slice(0, 3)" />
-        <FeaturedRest :restaurants="restaurants.slice(0, 3)" />
+        <div v-if="loading.getEvents">
+          <content-loader
+            :height="350"
+            :width="800"
+            :speed="2"
+            primaryColor="#f3f3f3"
+            secondaryColor="#ecebeb"
+          >
+            <rect x="-1.38" y="46.67" rx="0" ry="0" width="800.94" height="288.69" /> 
+            <rect x="-3.38" y="11.42" rx="0" ry="0" width="305.54" height="25.38" /> 
+            <rect x="641.63" y="12.42" rx="0" ry="0" width="160.37" height="25.38" />
+          </content-loader>
+        </div>
+        <FeaturedEvents v-else :events="events.slice(0, 3)" />
+        <div v-if="loading.getPlaces">
+          <content-loader
+            :height="350"
+            :width="800"
+            :speed="2"
+            primaryColor="#f3f3f3"
+            secondaryColor="#ecebeb"
+          >
+            <rect x="-1.38" y="46.67" rx="0" ry="0" width="800.94" height="288.69" /> 
+            <rect x="-3.38" y="11.42" rx="0" ry="0" width="305.54" height="25.38" /> 
+            <rect x="641.63" y="12.42" rx="0" ry="0" width="160.37" height="25.38" />
+          </content-loader>
+        </div>
+        <FeaturedPlaces v-else :places="places.slice(0, 3)" />
+        <div v-if="loading.getRestaurants">
+          <content-loader
+            :height="350"
+            :width="800"
+            :speed="2"
+            primaryColor="#f3f3f3"
+            secondaryColor="#ecebeb"
+          >
+            <rect x="-1.38" y="46.67" rx="0" ry="0" width="800.94" height="288.69" /> 
+            <rect x="-3.38" y="11.42" rx="0" ry="0" width="305.54" height="25.38" /> 
+            <rect x="641.63" y="12.42" rx="0" ry="0" width="160.37" height="25.38" />
+          </content-loader>
+        </div>
+        <FeaturedRest v-else :restaurants="restaurants.slice(0, 3)" />
         <!-- <SuggestedExperiences :experiences  v  "experiences_around_me.slice(0, 3)" /> -->
         <FeaturedVideo />
       </div>
@@ -178,6 +230,7 @@
   import Footer from '@/components/Footer.vue';
   import axios from 'axios';
   import { transition } from "vue2-transitions";
+  import { ContentLoader } from "vue-content-loader"
   // import FeaturedRest from '@/components/FeaturedRest.vue'
 
   import {
@@ -198,7 +251,8 @@
       SecondNav,
       FeaturedEvents,
       Footer,
-      SuggestedExperiences
+      SuggestedExperiences,
+      ContentLoader
     },
     data: function () {
       return {

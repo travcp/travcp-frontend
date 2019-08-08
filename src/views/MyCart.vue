@@ -14,7 +14,7 @@
         </div>
         <div style="padding-bottom: 20px">
           <p class="my-cart-sub-title">Cart( {{ cart.items ? cart.items.length : 0 }} )</p>
-          <p class="my-cart-sub-title">Price - ${{ calcPrice }}</p>
+          <p class="my-cart-sub-title">Price - ₦ {{ calcPrice }}</p>
         </div>
         <div class="row my-booking-left" v-for="item in cart.items" :key="item.id">
           <div class="col-md-3 my-booking-details-image" v-if="item.booking.experience.images.length > 0" :style="{background: 'url(' + item.booking.experience.images[0].image + ')', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}"></div>
@@ -29,7 +29,7 @@
                 <p
                   class="my-booking-trip-details-p1"
                 >{{ item.booking.experience.description.slice(0, 200) }}</p>
-                <p>$ {{item.booking.experience.dollar_price}}</p>
+                <p>₦ {{item.booking.experience.naira_price}}</p>
               </div>
             </div>
           </div>
@@ -144,7 +144,7 @@ export default {
       if(this.cart.items && this.cart.items.length > 0) {
         
         for(let i = 0; i < this.cart.items.length; i++){
-          price += this.cart.items[i].booking.experience.dollar_price
+          price += this.cart.items[i].booking.experience.naira_price
           //console.log("booking price", this.cart.items[i].booking.experience.dollar_price);
           // for(let i = 1; i <= this.cart.items; i++){
           //   // price += this.cart[i].items.booking.dollar_price
@@ -198,13 +198,13 @@ export default {
     },
     payWithPaystack(){
     var _this = this
-    let dollartonaira = (this.calcPrice) * 100
+    let naira = (this.calcPrice) * 100
     // console.log(parseInt(dollartonaira))
     // console.log("price is " + this.calcPrice);
     var handler = PaystackPop.setup({
       key: 'pk_live_dd506c27d9c936bf331ae7e8c265e97045f4e9c4',
       email: this.$store.state.auth.user.email,
-      amount: parseInt(dollartonaira),
+      amount: parseInt(naira),
       currency: "NGN",
       ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
       metadata: {
