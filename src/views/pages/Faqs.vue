@@ -50,27 +50,27 @@ export default {
   	return {
   		FAQS : [
   			{
-  				title: 'How do I book',
-  				description: 'Booking on TravCP very is easy! Enter the name of the destination or the area in which you’d like to visit, in the search field, and click on search. You can apply the available filters to narrow your search, or simply call our support for help. Once uou have located the Experience, Restaurant, Place or Tour you want to book, Click into its information page and select an available date. Simply click book and go to the Checkout page to pay for the booked Experience. '
+  				title: 'How do I book?',
+  				description: 'Booking on TravCP is very easy! Enter the name of the destination or the area which you’d like to visit in the search field and click on the search button. You can apply the available filters to narrow your search, or simply call our support for help. Once uou have located the Experience, Restaurant, Place or Tour you want to book, Click into its information page and select an available date. Simply click book and go to the Checkout page to pay for the booked Experience. '
   			},
   			{
-  				title: 'Is booking on TravCP secure',
-  				description: 'Absolutely! We DO NOT share any card details/information to any party whatsoever. Please refer to our privacy policy for more. (Link to privacy policy).'
+  				title: 'Is booking on TravCP secure?',
+  				description: 'Absolutely! We DO NOT save or share any card details/information to any party whatsoever. Our paymennt processor is PCIDSS Compliant and thus quite secure. Please refer to our <router-link to="/policies">privacy policy</router-link> for more.'
   			},
   			{
-  				title: 'What are the modes of payment I can use',
-  				description: 'If you choose “Pay now”, you can pay online by credit/debit card (Master Card, VISA, Paypal) depending on where these payment methods are available. We advise not to pay Merchants difectly as TravCP will not be held liable for any such direct payments.'
+  				title: 'What are the modes of payment I can use?',
+  				description: 'If you choose “Pay now”, you can pay online by credit/debit card (Master Card, VISA, Paypal) depending on where these payment methods are available. We advise not to pay Merchants directly as TravCP will not be held liable for any such direct payments.'
   			},
   			{
-  				title: 'How do I check the status of my refund',
-  				description: 'Please check our terms and conditions for more or contact our support for all matters related to refunds.'
+  				title: 'How do I check the status of my refund?',
+  				description: 'Please check our <router-link to="/policies">terms and conditions</router-link> for more or contact our support for all matters related to refunds.'
   			},
   			{
-  				title: 'How do I cancel my booking through TravCP',
-  				description: 'Cancellation policy is peculiar/different for each experience or host as this is mostly defined by the host. Click here to see more on our terms and conditions.'
+  				title: 'How do I cancel my booking through TravCP?',
+  				description: 'Cancellation policy is peculiar/different for each experience or host as this is mostly defined by the host. Click <router-link to="/policies">here</router-link> to see more on our terms and conditions.'
   			},
   			{
-  				title: 'How can I modify my booking',
+  				title: 'How can I modify my booking?',
   				description: 'To modify your booking, please contact our support who will take care of this for you.'
   			},
   			{
@@ -78,75 +78,75 @@ export default {
   				description: 'This will depend on the destination or restaurant’s policy. Please refer to the cancellation policy of the destination which is displayed on the destination’s details page.'
   			},
   			{
-  				title: 'What happens if I don\'t show up and I have already paid for myreservation',
+  				title: 'What happens if I don\'t show up and I have already paid for my reservation?',
   				description: 'This depends on the cancellation policies that applies to the booking you have made. Most of our destinations/restaurants do allow you to cancel your booking before check-in, but a fee may apply depending on how much time before your check-in, you cancel your booking. Please refer to the cancellation policies of your booking or contact our support'
   			},
   			{
-  				title: 'How do I confirm my booking',
+  				title: 'How do I confirm my booking?',
   				description: 'As soon as you have paid, you will receive an e-mail with the details of your booking. Your bookings can also be viewed on “my bookings” section of your profile'
   			},
   			{
-  				title: 'How do I know my booking is confirmed',
-  				description: 'Once you have confirmed your booking, you will receive an e-mail with the details of your booking, including your booking reference. After you’ve received this e-mail, the booking is 100% confirmed'
+  				title: 'How do I know my booking is confirmed?',
+  				description: 'Once you have confirmed your booking and paid, you will receive an e-mail with the details of your booking, including your booking reference. After you’ve received this e-mail, the booking is 100% confirmed'
   			},
   			{
-  				title: 'I have not received a confirmation email after making a reservation, what should I do',
+  				title: 'I have not received a confirmation email after making a reservation, what should I do?',
   				description: 'Please contact our support'
   			},
   			{
-  				title: 'What if the destination or restaurant does not acknowledge the booking made online',
+  				title: 'What if the destination or restaurant does not acknowledge the booking made online?',
   				description: 'Please contact our support right away to handle this issue with the destination or restaurant directly. We advise you to always take a printed copy or take a screen shot of the booking confirmation received by e-mail.'
   			},
   			{
-  				title: 'How long will it take for the restaurant to have my reservation information',
+  				title: 'How long will it take for the restaurant to have my reservation information?',
   				description: 'As soon as you have made the payment online, your reservation is complete'
   			},
   			{
-  				title: 'How can I reach the customer service team',
-  				description: 'You can either call us, chat with us, or send us an e-mail anytime, anywhere! Click here (link to Contact Us page) to find more details about how to reach us.'
+  				title: 'How can I reach the customer service team?',
+  				description: 'You can either call us, chat with us, or send us an e-mail anytime, anywhere! Click here to find more details about how to reach us.'
   			},
   			{
   				title: 'How can I make a special request to a restaurant? (E.g. Marriage proposal, birthday)',
   				description: 'Make sure to indicate any special request and time of booking in the box provided for this purpose and our support will take care for it for you'
   			},
   			{
-  				title: 'Which countries do you have a presence in',
+  				title: 'Which countries do you have a presence in?',
   				description: 'We are everywhere in Nigeria, and quickly expanding to the whole of Africa!'
   			},
   			{
-  				title: 'How early do I have to book',
+  				title: 'How early do I have to book?',
   				description: 'You can book at any time. We however recommend that you book early enough to guarantee the availability of the tables at the restaurants'
   			},
   			{
-  				title: 'Do I need to have an account on TravCP to make a booking on the website',
+  				title: 'Do I need to have an account on TravCP to make a booking on the website?',
   				description: 'Yes, you need to have an account on TravCP to make a booking'
   			},
   			{
-  				title: 'Why do I need to create an account',
+  				title: 'Why do I need to create an account?',
   				description: 'To enhance your booking experience on TravCP with a faster, seamless booking process by finding all your bookings easily in one place'
   			},
   			{
-  				title: 'I forgot my password, what should I do',
-  				description: 'You can ask for a new password to be reset on the TravCP sign-in page, under “Forgot Password?”'
+  				title: 'I forgot my password, what should I do?',
+  				description: 'You can ask for a new password to be reset on the TravCP <router-link to="/signin">sign-in</router-link> page, under “Forgot Password?”'
   			},
   			{
-  				title: 'How do I change my password',
+  				title: 'How do I change my password?',
   				description: 'After signing into your account, click on the “Your Profile” in the navigation and click on “Change Password”. Alternatively, go to “Settings”. Go to “password” and click on “Edit”'
   			},
   			{
-  				title: 'What is a star rating',
+  				title: 'What is a star rating?',
   				description: 'Star ratings indicate the quality, service and facilities of the restaurant or destination'
   			},
   			{
-  				title: 'How do I give a star rating',
-  				description: 'After you are done with an experience or a visit to a destination/restaurant, a mail will be sent to you to give star ratings or you would get a pop up message on your screen reminding you to give ratings. If none of this is done,kindly send an email or contact our support team'
+  				title: 'How do I give a star rating?',
+  				description: 'After you are done with an experience or a visit to a destination/restaurant, a mail will be sent to you to rate your experience or you would get a pop up message on your screen reminding you to give ratings. If none of this is done,kindly send an email or contact our support team'
   			},
   			{
-  				title: 'What is the security rating for',
+  				title: 'What is the security rating for?',
   				description: 'We encourage that your leave a security rating for every experience, restaurant or destination visited based on how safe or secured your experience was. This is to help improve destination and experience quality assurance'
   			},
   			{
-  				title: 'How do I give a security rating',
+  				title: 'How do I give a security rating?',
   				description: 'After you are done with an experience or a visit to a destination/restaurant, a mail will be sent to you to give security ratings or you would get a pop up message up on your screen reminding you to give ratings. If none of this is done, kindly send an email or contact our support team'
   			}
   		]
