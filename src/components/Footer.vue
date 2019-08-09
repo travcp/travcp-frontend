@@ -34,7 +34,7 @@
                                     <li><router-link to="/travel-credit">Travel Credit</router-link></li>
                                     <li><router-link to="/group-tour">Group Tour</router-link></li>
                                     <li><router-link to="/guidebooks">Guidebooks</router-link></li> -->
-                                    <li><a href="http://travvblog.herokuapp.com">TRAV CP Blog</a></li>
+                                    <li><a href="https://brimatel.com/travvcp">TravCP Blog</a></li>
                                 </ul>
                             </aside>
                         </div>
@@ -54,7 +54,7 @@
                                     <li><router-link to="/requirements">Requirements</router-link></li>
                                     <li><router-link to="/benefits">Benefits</router-link></li>
                                     <li>
-                                        <a href="http://travvapi.herokuapp.com/forums" @click="gotoForum">Community</a>
+                                        <a href="https://brimatel.com/travvcp/forum/">Community</a>
                                     </li>
                                 </ul>
                             </aside>
@@ -107,16 +107,16 @@ export default {
       checkUser() {
           return this.auth != null ? true : false
       },
-      gotoForum(e){
-          e.preventDefault();
+    //   gotoForum(e){
+    //       e.preventDefault();
           
-          if(this.$store.state.auth){
-              location.href = "http://travvapi.herokuapp.com/travvforum?token="+this.$store.state.auth.access_token
-          }
-          else{
-              location.href = "http://travvapi.herokuapp.com/travvforum"
-          }
-      },
+    //       if(this.$store.state.auth){
+    //           location.href = "http://travvapi.herokuapp.com/travvforum?token="+this.$store.state.auth.access_token
+    //       }
+    //       else{
+    //           location.href = "http://travvapi.herokuapp.com/travvforum"
+    //       }
+    //   },
       confirmUserType(){
         if (this.checkUserType == 'user'){
             return true

@@ -40,7 +40,6 @@
                 <h5 class="description">Fisayo is a tourism development advocate, travel writer, podcast host, producer, big dreamer and innovator who thrives at the intersection of tourism, technology and advocacy. She sets the company’s strategy and drives TravCP’s vision to model Africa to be the number one tourist destination in the world.</h5>
                 <h5 class="description">
                 Her write-ups on her personal site <a href="https://www.thefisayo.com" target="_blank">thefisayo.com</a> and YouTube videos have brought her much acclaim, which got her featured on: PUNCH, THENET, TVC, STV, PLUSE, and more. Within 3 years of writing, she has been nominated for three awards-as the Best Tourism Innovation Using Technology, Tourism Blog of the year, & Choice Blogger Award. The Covenant University Alum and former campus ambassador for Bank of America Merrill Lynch is an innovator, and problem solver who leverages her background in marketing, human resource management, entrepreneurship and leadership. She has worked on several tourism projects with the Nigerian government to strategize the promotion of tourism in certain states. She is a doer. With her background and love for Africa, entrepreneurship and problem solving, Fisayo founded TravCP.
-                Hold on to these. I’ll come in tomorrow morning to continue as we did today
                 </h5>
             </div>
         </div>
