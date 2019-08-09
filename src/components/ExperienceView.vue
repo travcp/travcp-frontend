@@ -188,7 +188,7 @@
                                                     <date-picker v-model="time" valueType="format" :lang="lang">
                                                     </date-picker>
                                                     
-                                                    <date-picker v-model="time2" valueType="format" :lang="lang2">
+                                                    <date-picker style="margin-left: 25px;" v-model="time2" valueType="format" :lang="lang2">
                                                     </date-picker>
                                                 </div>
                                             </div>
@@ -222,8 +222,8 @@
                                             </div>
                                             <!-- <date-picker v-model="time1" :first-day-of-week="1"></date-picker> -->
                                         </form>
-                                        <a style="text-decoration: none;" href="/dashboard/my-cart">
-                                            <div class="book_btn" style="padding-top: 10px;text-align: center;" v-else>
+                                        <a style="text-decoration: none;" href="/dashboard/my-cart" v-else>
+                                            <div class="book_btn" style="padding-top: 10px;text-align: center;">
                                                 Added to Cart
                                             </div>
                                         </a>
