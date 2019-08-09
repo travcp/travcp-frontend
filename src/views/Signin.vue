@@ -112,15 +112,21 @@
 
                 <div class="row">
                   <div class="col-md-2"></div>
-                  <div class="form-group col-md-8" style="text-align: center;">
-                    <input
-                      type="email"
-                      v-validate="'required|email'"
-                      v-model="email"
-                      class="form-control signin-input"
-                      name="email"
+                  <div class="form-group col-md-8">
+                    <div class="my-custom-floating-label">
+                      <FloatingLabel :config="{label: 'Email *', name: 'wrapper', line: false, scale: false,  classes: {error: 'has-error'}}">
+                          <input 
+                            type="email"
+                            v-validate="'required|email'"
+                            v-model="email"
+                            name="email" />
+                      </FloatingLabel>
+                    </div>
+                    <div style="color: #721c24;font-weight: bolder">{{ errors.first("email") }}</div>
+
+                    <!-- <input
                       placeholder="Email"
-                    />
+                    /> -->
                   </div>
                   <div class="col-md-2"></div>
                 </div>
@@ -128,13 +134,16 @@
                 <div class="row">
                   <div class="col-md-2"></div>
                   <div class="form-group col-md-8">
-                    <input
-                      type="password"
-                      class="form-control signin-input"
-                      placeholder="Password"
-                      v-model="password"
-                      name="password"
-                    />
+                    <div class="my-custom-floating-label">
+                      <FloatingLabel :config="{label: 'Password *', name: 'wrapper', line: false, scale: false,  classes: {error: 'has-error'}}">
+                          <input 
+                          v-model="password" v-validate="'required'"
+                          name="password"
+                          type="password" />
+                      </FloatingLabel>
+                    </div>
+                  <div style="color: #721c24;font-weight: bolder">{{ errors.first("password") }}</div>
+                     
                   </div>
                   <div class="col-md-2"></div>
                 </div>
@@ -183,6 +192,7 @@
 import { mapState, mapActions, mapGetters } from "vuex";
 import Navbar from "@/components/Navbar.vue";
 import Footer from "@/components/Footer.vue";
+import FloatingLabel from "vue-simple-floating-labels";
 
 export default {
   name: "Signin",
@@ -255,7 +265,7 @@ export default {
   },
   components: {
     Navbar,
-    Footer
+    Footer, FloatingLabel
   }
 };
 </script>

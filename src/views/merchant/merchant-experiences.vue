@@ -23,8 +23,35 @@
                         <div style="text-align: center;"  v-if="loading">
                           <Circle9 />           
                         </div>
-                        <div class="row">
-                            <div class="col-md-6" v-for="merchant_experience in merchant_experiences" :key="merchant_experience.id">
+                        <div class="row" v-for="merchant_experience in merchant_experiences" :key="merchant_experience.id">
+                            <div class="col-md-6">
+                                <div class="wrapper" style="margin: 0;min-height: 0;margin-bottom: 20px;">
+                                    <div class="product-img">
+                                    <img :src="merchant_experience.images.length > 0 ? merchant_experience.images[0].image : require('../../assets/nagoya.png')" height="420" width="327">
+                                    </div>
+                                    <div class="product-info">
+                                    <div class="product-text">
+                                        <h1>{{ merchant_experience.title }}</h1>
+                                        <h2>{{ merchant_experience.experience_type }} | {{ merchant_experience.city }}</h2>
+                                        <p>{{ merchant_experience.description ?  merchant_experience.description.slice(0, 300) : '' }}</p>
+                                        <p class="card-text"><small class="text-muted">Last updated at {{ merchant_experience.updated_at }}</small></p>
+                                    </div>
+                                    <div class="product-price-btn">
+                                        <p>₦<span>{{ merchant_experience.naira_price }}</span></p>
+                                        <router-link :to="'/dashboard/merchant/experience/edit/'+ merchant_experience.experience_type + '/' + merchant_experience.id + '/' + merchant_experience.title.toString().toLowerCase().replace( /\s/g, '-')">
+                                                    <button type="button">Edit</button>
+                                        </router-link>
+                                        <router-link :to="'/experience/'+ merchant_experience.id + '/' + merchant_experience.title.toString().toLowerCase().replace( /\s/g, '-')">
+                                                    <button type="button">View</button>
+                                        </router-link>
+
+                                        
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                                <div class="col-md-4"></div>
+                            <!-- <div class="col-md-6" v-for="merchant_experience in merchant_experiences" :key="merchant_experience.id">
                                 <div class="card mb-3" style="width: 100%;">
                                     <div class="row no-gutters">
                                         <div class="col-md-5">
@@ -48,7 +75,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -406,4 +433,113 @@
             background: #555;
         }
     }
+.wrapper {
+  height: 420px;
+  width: 654px;
+  margin: 50px auto;
+  border-radius: 7px 7px 7px 7px;
+  /* VIA CSS MATIC https://goo.gl/cIbnS */
+  -webkit-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+}
+
+.product-img {
+  float: left;
+  height: 420px;
+  width: 327px;
+}
+
+.product-img img {
+  border-radius: 7px 0 0 7px;
+}
+
+.product-info {
+  float: left;
+  height: 420px;
+  width: 327px;
+  border-radius: 0 7px 10px 7px;
+  background-color: #ffffff;
+}
+
+.product-text {
+  min-height: 150px;
+  width: 327px;
+}
+
+.product-text h1 {
+  margin: 0 0 0 38px;
+  padding-top: 52px;
+  font-size: 34px;
+  color: #474747;
+}
+
+.product-text h1,
+.product-price-btn p {
+}
+
+.product-text h2 {
+  margin: 0 0 47px 38px;
+  font-size: 13px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #d2d2d2;
+  letter-spacing: 0.2em;
+}
+
+.product-text p {
+  margin: 0 0 0 38px;
+  color: #8d8d8d;
+  line-height: 1.7em;
+  font-size: 15px;
+  font-weight: lighter;
+  overflow: hidden;
+}
+
+.product-price-btn {
+  height: 103px;
+  width: 327px;
+  margin-top: 17px;
+  position: relative;
+}
+
+.product-price-btn p {
+  display: inline-block;
+  position: absolute;
+  top: -13px;
+  height: 50px;
+  margin: 0 0 0 38px;
+  font-size: 28px;
+  font-weight: lighter;
+  color: #474747;
+}
+
+span {
+  display: inline-block;
+  height: 50px;
+  font-size: 34px;
+}
+
+.product-price-btn button {
+  float: right;
+  display: inline-block;
+  height: 50px;
+  width: 176px;
+  margin: 30px 40px 0 16px;
+  box-sizing: border-box;
+  border: transparent;
+  border-radius: 60px;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #ffffff;
+  background-color: #9cebd5;
+  cursor: pointer;
+  outline: none;
+}
+
+.product-price-btn button:hover {
+  background-color: #79b0a1;
+}    
 </style>

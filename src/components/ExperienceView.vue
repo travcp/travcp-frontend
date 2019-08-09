@@ -184,14 +184,11 @@
 
 
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <h5>Start Date</h5>
+                                                <div class="col-md-12 col-sm-12">
                                                     <date-picker v-model="time" valueType="format" :lang="lang">
                                                     </date-picker>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <h5>End Date</h5>
-                                                    <date-picker v-model="time2" valueType="format" :lang="lang">
+                                                    
+                                                    <date-picker v-model="time2" valueType="format" :lang="lang2">
                                                     </date-picker>
                                                 </div>
                                             </div>
@@ -225,9 +222,11 @@
                                             </div>
                                             <!-- <date-picker v-model="time1" :first-day-of-week="1"></date-picker> -->
                                         </form>
-                                        <div class="book_btn" style="padding-top: 10px;text-align: center;" v-else>
-                                            Added to Cart
-                                        </div>
+                                        <a style="text-decoration: none;" href="/dashboard/my-cart">
+                                            <div class="book_btn" style="padding-top: 10px;text-align: center;" v-else>
+                                                Added to Cart
+                                            </div>
+                                        </a>
                                         <div class="text-center">
                                             You won't be charged yet
                                             <a href="javascript:void(0)" class="dropdown-item"
@@ -532,7 +531,7 @@
                             style="margin-bottom: 10px">
                             <a
                                 :href="'/experience/'+ data.id + '/' + data.title.toString().toLowerCase().replace( /\s/g, '-')">
-                                <div class="featured-card card" style="overflow: hidden;">
+                                <div class="featured-card card" style="min-width: 200px;overflow: hidden;">
                                     <img v-if="data.images.length" style="width: 100%;object-fit: cover;height:280px;"
                                         :src="data.images[0].image" class="card-img-top featured-card-img" alt="...">
                                     <img v-else src="../assets/osaka.png" class="card-img-top featured-card-img"
@@ -622,8 +621,17 @@
                     months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                     pickers: ['next 7 days', 'next 30 days', 'previous 7 days', 'previous 30 days'],
                     placeholder: {
-                        date: 'Select Date',
-                        dateRange: 'Select Date Range'
+                        date: 'Start Date',
+                        dateRange: 'Start Date'
+                    }
+                },
+                lang2: {
+                    days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                    months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    pickers: ['next 7 days', 'next 30 days', 'previous 7 days', 'previous 30 days'],
+                    placeholder: {
+                        date: 'End Date',
+                        dateRange: 'End Date'
                     }
                 },
                 // custom range shortcuts

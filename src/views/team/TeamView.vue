@@ -25,11 +25,14 @@
         <div class="col-md-8 section" stylw="padding-top: 0">
             <div class="container">
                 <div class="button-container">
-                    <a href="#" class="btn btn-primary btn-round btn-lg btn-icon" rel="tooltip" title="Follow me on Twitter"> <i class="fab fa-twitter"></i></a>
+                    <a href="https://twitter.com/thefisayo" target="_blank" class="btn btn-primary btn-round btn-lg btn-icon" rel="tooltip" title="Follow me on Twitter"> <i class="fab fa-twitter"></i></a>
                     <!-- <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="Follow me on Twitter">
                         
                     </a> -->
-                    <a href="#" class="btn btn-primary btn-round btn-lg btn-icon" rel="tooltip" title="Follow me on Twitter">  <i class="fab fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/thefisayo/" target="_blank" class="btn btn-primary btn-round btn-lg btn-icon" rel="tooltip" title="Follow me on Instagram">  <i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/oluwafisayo-olayinka-bello-29902081/" target="_blank" class="btn btn-primary btn-round btn-lg btn-icon" rel="tooltip" title="Follow me on Linkedin">  <i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.youtube.com/thefisayo" target="_blank" class="btn btn-primary btn-round btn-lg btn-icon" rel="tooltip" title="Follow me on Youtube">  <i class="fab fa-youtube"></i></a>
+                    <a href="https://www.facebook.com/TravCP/" target="_blank" class="btn btn-primary btn-round btn-lg btn-icon" rel="tooltip" title="Follow me on Facebook">  <i class="fab fa-facebook"></i></a>
 
                 </div>
 

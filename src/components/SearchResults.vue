@@ -5,16 +5,15 @@
             <div class="container">
                 <div class="project_inner">
                     <form @submit.prevent="filterExperience">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <button class="btn filter_btn dropdown-toggle" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="../assets/Icons/filter_(active).svg"
-                                    style="height: 25px;" />
-                                Filter
-                            </button>
-                            <div class="dropdown-menu" @click="stopProp" aria-labelledby="dropdownMenuButton">
-                                <div class="container">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <button class="btn filter_btn dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img src="../assets/Icons/filter_(active).svg" style="height: 25px;" />
+                                    Filter
+                                </button>
+                                <div class="dropdown-menu" @click="stopProp" aria-labelledby="dropdownMenuButton">
+                                    <div class="container">
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="travv_drop_filter_section">
@@ -79,32 +78,34 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-1">
-                        </div>
-                        <div class="col-md-7">
-                            <div class="filter_searchbar" style="color: #f81894;">
-                                <input v-model="search" v-validate="'required|min:3'" class="filter_search_input" type="text"
-                                    placeholder="Tour & Experiences in Tokyo " />
-                                <!-- |
-                                <img src="../assets/Icons/Calendar.svg" style="margin-top: -8px;margin-left: 31px;height: 28px;" /> -->
-                                <button type="submit" class="filter_search_icon">
-                                    <!-- <i class="material-icons">add</i> -->
-                                    <img v-if="!loading.filterExperiencesSearch" src="../assets/icons8-search.svg" style="height: 28px;" />
-                                    <img v-if="loading.filterExperiencesSearch" style="height: 20px;" src="../assets/loader_rolling.gif" />
-
-                                    <!-- <font-awesome-icon icon="user" /> -->
-                                </button>
+                            <div class="col-md-1">
                             </div>
-                        </div>
-                        <!--<div class="col-md-2" style="text-align: center;">-->
+                            <div class="col-md-7">
+                                <div class="filter_searchbar" style="color: #f81894;">
+                                    <input v-model="search" v-validate="'required|min:3'" class="filter_search_input"
+                                        type="text" placeholder="Search" />
+                                    <!-- |
+                                <img src="../assets/Icons/Calendar.svg" style="margin-top: -8px;margin-left: 31px;height: 28px;" /> -->
+                                    <button type="submit" class="filter_search_icon">
+                                        <!-- <i class="material-icons">add</i> -->
+                                        <img v-if="!loading.filterExperiencesSearch" src="../assets/icons8-search.svg"
+                                            style="height: 28px;" />
+                                        <img v-if="loading.filterExperiencesSearch" style="height: 20px;"
+                                            src="../assets/loader_rolling.gif" />
+
+                                        <!-- <font-awesome-icon icon="user" /> -->
+                                    </button>
+                                </div>
+                            </div>
+                            <!--<div class="col-md-2" style="text-align: center;">-->
                             <!--<router-link to="/dashboard/new-exp">-->
-                                <!--<button type="button" class="btn btn-lg add-new-btn">+</button>                              -->
+                            <!--<button type="button" class="btn btn-lg add-new-btn">+</button>                              -->
                             <!--</router-link>-->
-                        <!--</div>-->
-                    </div>
+                            <!--</div>-->
+                        </div>
                     </form>
                 </div>
             </div>
@@ -114,44 +115,30 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="container">
-                            <div class="row" v-if="loading.filterExperiencesSearch || loading.getExperiences">
+                        <div class="row" v-if="loading.filterExperiencesSearch || loading.getExperiences">
 
-                                  <div class="col-md-4">
-                                    <content-loader
-                                      :height="380"
-                                      :width="350"
-                                      :speed="2"
-                                      primaryColor="#f3f3f3"
-                                      secondaryColor="#ecebeb"
-                                    >
+                            <div class="col-md-4">
+                                <content-loader :height="380" :width="350" :speed="2" primaryColor="#f3f3f3"
+                                    secondaryColor="#ecebeb">
 
-                                    </content-loader>
-                                  </div>
-                                  <div class="col-md-4">
-                                    <content-loader
-                                      :height="380"
-                                      :width="350"
-                                      :speed="2"
-                                      primaryColor="#f3f3f3"
-                                      secondaryColor="#ecebeb"
-                                    >
-
-                                    </content-loader>
-                                  </div>
-                                  <div class="col-md-4">
-                                    <content-loader
-                                      :height="380"
-                                      :width="350"
-                                      :speed="2"
-                                      primaryColor="#f3f3f3"
-                                      secondaryColor="#ecebeb"
-                                    >
-
-                                    </content-loader>
-                                  </div>
+                                </content-loader>
                             </div>
+                            <div class="col-md-4">
+                                <content-loader :height="380" :width="350" :speed="2" primaryColor="#f3f3f3"
+                                    secondaryColor="#ecebeb">
+
+                                </content-loader>
+                            </div>
+                            <div class="col-md-4">
+                                <content-loader :height="380" :width="350" :speed="2" primaryColor="#f3f3f3"
+                                    secondaryColor="#ecebeb">
+
+                                </content-loader>
+                            </div>
+                        </div>
                         <div class="row">
-                            <div class="col-md-12 no-search-results-cont" v-if="allExperiences && allExperiences.length < 1 && !loading.filterExperiencesSearch && !loading.getExperiences">
+                            <div class="col-md-12 no-search-results-cont"
+                                v-if="allExperiences && allExperiences.length < 1 && !loading.filterExperiencesSearch && !loading.getExperiences">
                                 <h3>No results</h3>
                                 <h5>
                                     We couldn't find anything matching {{ search }}, Try searching other keywords
@@ -159,51 +146,82 @@
                                 <hr>
                             </div>
 
-                            <div class="col-md-12 suggestion-cont" v-if="allExperiences.length < 1 && !loading.filterExperiencesSearch && !loading.getExperiences" >
+                            <div class="col-md-12 suggestion-cont"
+                                v-if="allExperiences.length < 1 && !loading.filterExperiencesSearch && !loading.getExperiences">
                                 <h3>
                                     Explore any of these
                                 </h3>
+                                <br>
                             </div>
-                            <div class="col-md-4 experience" v-if="allExperiences != null && allExperiences.length < 1" v-for="experience in experiencesPlacehodler" :key="experience.id" style="">
-                                <router-link :to="'/experience/'+ experience.id + '/' + experience.title.toString().toLowerCase().replace( /\s/g, '-')">
+                            <div class="col-md-4 experience" v-if="allExperiences != null && allExperiences.length < 1"
+                                v-for="experience in experiencesPlacehodler" :key="experience.id" style="">
+                                <router-link
+                                    :to="'/experience/'+ experience.id + '/' + experience.title.toString().toLowerCase().replace( /\s/g, '-')">
                                     <!-- <div class="search_items"> -->
-                                        <div class="featured-card card" style="margin-bottom: 20px;">
+                                    <div class="featured-card card" style="margin-bottom: 20px;">
 
-            
-                                            <img v-if="experience.images.length" :src="experience.images[0].image" style="width: 100%;object-fit: cover;height:300px;" class="card-img-top featured-card-img" alt="...">
-                                            <img v-else src="../assets/osaka.png" style="width: 100%;object-fit: cover;height:300px;" class="card-img-top featured-card-img" alt="...">
-                                            <div class="card-body">
-                                                <p class="card-text" style="color: #f81894">{{ experience.title }} | {{ experience.state }}</p>
-                                                <h5 class="card-title" style="text-transform: capitalize;"> {{ experience.city }} <i class="fa fa-heart" @click="postFavoriteExeperience(experience.id)"></i></h5>
-                                                <star-rating :rating="parseFloat(experience.rating)" :read-only="true" :increment="0.01" :star-size="18"></star-rating>
-                                                <p class="card-text" style="color: #f81894"><b>{{experience.rating == null ? 0 : experience.rating}} <i class="fa fa-star"></i></b> ({{experience.rating_count == null ? 0 : experience.rating_count}})</p>
 
-                <i class="far fa-heart" style="position: relative;font-size: 18px;color: rgb(248, 24, 148);z-index: 1221;left: 90%;top: -40px;" @click="postFavoriteExeperience(experience.id)"></i>
+                                        <img v-if="experience.images.length" :src="experience.images[0].image"
+                                            style="width: 100%;object-fit: cover;height:300px;"
+                                            class="card-img-top featured-card-img" alt="...">
+                                        <img v-else src="../assets/osaka.png"
+                                            style="width: 100%;object-fit: cover;height:300px;"
+                                            class="card-img-top featured-card-img" alt="...">
+                                        <div class="card-body">
+                                            <p class="card-text" style="color: #f81894">{{ experience.title }} |
+                                                {{ experience.state }}</p>
+                                            <h5 class="card-title" style="text-transform: capitalize;">
+                                                {{ experience.city }} <i class="fa fa-heart"
+                                                    @click="postFavoriteExeperience(experience.id)"></i></h5>
+                                            <star-rating :rating="parseFloat(experience.rating)" :read-only="true"
+                                                :increment="0.01" :star-size="18"></star-rating>
+                                            <p class="card-text" style="color: #f81894">
+                                                <b>{{experience.rating == null ? 0 : experience.rating}} <i
+                                                        class="fa fa-star"></i></b>
+                                                ({{experience.rating_count == null ? 0 : experience.rating_count}})</p>
 
-                                            </div>
+                                            <i class="far fa-heart"
+                                                style="position: relative;font-size: 18px;color: rgb(248, 24, 148);z-index: 1221;left: 90%;top: -40px;"
+                                                @click="postFavoriteExeperience(experience.id)"></i>
+
                                         </div>
+                                    </div>
                                     <!-- </div> -->
                                 </router-link>
                             </div>
-                            <div class="col-md-4 experience" v-for="experience in experiences" :key="experience.id" style="">
-                                <router-link :to="'/experience/'+ experience.id + '/' + experience.title.toString().toLowerCase().replace( /\s/g, '-')">
-        <div class="featured-card card" style="margin-bottom: 20px;">
-            
-            
+                            <div class="col-md-4 experience" v-for="experience in experiences" :key="experience.id"
+                                style="">
+                                <router-link
+                                    :to="'/experience/'+ experience.id + '/' + experience.title.toString().toLowerCase().replace( /\s/g, '-')">
+                                    <div class="featured-card card" style="margin-bottom: 20px;">
 
-          <img v-if="experience.images.length" :src="experience.images[0].image" style="width: 100%;object-fit: cover;height:300px;" class="card-img-top featured-card-img" alt="...">
-          <img v-else src="../assets/osaka.png" style="width: 100%;object-fit: cover;height:300px;" class="card-img-top featured-card-img" alt="...">
-           <div class="card-body"> 
-                <p class="card-text" style="color: #f81894">{{ experience.title }} | {{ experience.state }}</p>
-                <h5 class="card-title" style="text-transform: capitalize;"> {{ experience.city }}
-                    </h5>
-               <star-rating :rating="parseFloat(experience.rating)" :read-only="true" :increment="0.01" :star-size="18"></star-rating>
-                <p class="card-text" style="color: #f81894"><b>{{experience.rating == null ? 0 : experience.rating}} <i class="fa fa-star"></i></b> ({{experience.rating_count == null ? 0 : experience.rating_count}})</p>
 
-                <i class="far fa-heart" style="position: relative;font-size: 18px;color: rgb(248, 24, 148);z-index: 1221;left: 90%;top: -40px;" @click="postFavoriteExeperience(experience.id)"></i>
 
-            </div>
-          </div>
+                                        <img v-if="experience.images.length" :src="experience.images[0].image"
+                                            style="width: 100%;object-fit: cover;height:300px;"
+                                            class="card-img-top featured-card-img" alt="...">
+                                        <img v-else src="../assets/osaka.png"
+                                            style="width: 100%;object-fit: cover;height:300px;"
+                                            class="card-img-top featured-card-img" alt="...">
+                                        <div class="card-body">
+                                            <p class="card-text" style="color: #f81894">{{ experience.title }} |
+                                                {{ experience.state }}</p>
+                                            <h5 class="card-title" style="text-transform: capitalize;">
+                                                {{ experience.city }}
+                                            </h5>
+                                            <star-rating :rating="parseFloat(experience.rating)" :read-only="true"
+                                                :increment="0.01" :star-size="18"></star-rating>
+                                            <p class="card-text" style="color: #f81894">
+                                                <b>{{experience.rating == null ? 0 : experience.rating}} <i
+                                                        class="fa fa-star"></i></b>
+                                                ({{experience.rating_count == null ? 0 : experience.rating_count}})</p>
+
+                                            <i class="far fa-heart"
+                                                style="position: relative;font-size: 18px;color: rgb(248, 24, 148);z-index: 1221;left: 90%;top: -40px;"
+                                                @click="postFavoriteExeperience(experience.id)"></i>
+
+                                        </div>
+                                    </div>
 
                                 </router-link>
                             </div>
@@ -218,13 +236,21 @@
 
 <script>
     import Navbar from '@/components/Navbar.vue';
-    import { mapState, mapGetters, mapActions } from 'vuex';
+    import {
+        mapState,
+        mapGetters,
+        mapActions
+    } from 'vuex';
     import DatePicker from 'vue2-datepicker'
     import Footer from '@/components/Footer.vue';
     import StarRating from 'vue-star-rating'
-    import { Circle9 } from 'vue-loading-spinner'
+    import {
+        Circle9
+    } from 'vue-loading-spinner'
     import Axios from 'axios'
-    import { ContentLoader } from "vue-content-loader"
+    import {
+        ContentLoader
+    } from "vue-content-loader"
 
     export default {
         name: 'SearchResults',
@@ -310,8 +336,8 @@
             ...mapState(['emptySearchResult']),
             ...mapState(['experiencesPlacehodler']),
             checkUserType() {
-                if(this.auth) {
-                    return this.auth.user.role;                    
+                if (this.auth) {
+                    return this.auth.user.role;
                 }
                 return null
             }
@@ -320,7 +346,7 @@
             ...mapActions(['getEvents']),
             ...mapActions(['getExperiences']),
             ...mapActions(['filterExperiencesSearch']),
-            filterExperience: function() {
+            filterExperience: function () {
                 this.emptySearchToggle = false;
                 console.log('Searching')
                 let data = {
@@ -328,42 +354,60 @@
                     min_price: this.value_1[0],
                     max_price: this.value_1[1]
                 }
-                this.$validator.validateAll().then(result => {
-                    if (result){
-                            let url = `${this.$store.state.API_BASE}/experiences?city=${data.search}&country=${data.search}&title=${data.search}&location=${data.search}&min_price=${data.min_price}&max_price=${data.max_price}`;
+                
+// restaurants
+// places_destinations
+                let experince_type_id = null;
 
-                            if(data.search == ''){
-                                this.filterExperiencesSearch();
-                            } else {
-                                console.log("Non empty search")
-                                this.filterExperiencesSearch(url);
-                                
-                            }
+                if(this.tour_and_experiences){
+                    experince_type_id = 2
+                }
+                
+                if(this.restaurants){
+                    experince_type_id = 12
+                }
+                
+                if(this.places_destinations){
+                    experince_type_id = 22
+                }
+                this.$validator.validateAll().then(result => {
+                    if (result) {
+                        let url =
+                            `${this.$store.state.API_BASE}/experiences?city=${data.search}&country=${data.search}&title=${data.search}&location=${data.search}&min_price=${data.min_price}&max_price=${data.max_price}&experiences_type_id=${experince_type_id}`;
+
+                        if (data.search == '') {
+                            this.filterExperiencesSearch();
+                        } else {
+                            console.log("Non empty search")
+                            this.filterExperiencesSearch(url);
+
+                        }
                         // this.$
-                    }
-                    else{
+                    } else {
                         this.$noty.error("Enter a minimun of 3 words in thre search")
                     }
                 });
-                
+
             },
 
-            dntTogle: function(){
+            dntTogle: function () {
                 // preventDefault()
                 return true;
             },
-            stopProp: function(e){
+            stopProp: function (e) {
                 e.stopPropagation()
             },
-            postFavoriteExeperience(Id){
+            postFavoriteExeperience(Id) {
                 this.loading = true
-                if(this.auth && this.auth.access_token){
+                if (this.auth && this.auth.access_token) {
                     let data = {
                         user_id: this.auth.user.id,
                         experience_id: Id
                     }
                     let requestHeaders = {
-                        headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
+                        headers: {
+                            'Authorization': "Bearer " + this.$store.state.auth.access_token
+                        }
                     }
                     Axios.post(`${this.$store.state.API_BASE}/favourites`,
                         data,
@@ -380,7 +424,7 @@
                 }
             },
         },
-        created: function(){
+        created: function () {
             this.getEvents();
         },
         props: ['experiences'],
@@ -388,22 +432,26 @@
 </script>
 
 <style scoped>
-.vue-star-rating-rating-text {
-    display: none;
-}
-.spinner.spinner--circle-9 {
-    margin: auto;
-}
-.vue-star-rating-star {
-    overflow: visible!important;
-    height: 20px;
-    width: 20px;
-}
-.vue-star-rating-rating-text[data-v-34cbeed1] {
-    margin-top: -5px;
-    margin-left: 7px;
-}
-.add-new-btn {
+    .vue-star-rating-rating-text {
+        display: none;
+    }
+
+    .spinner.spinner--circle-9 {
+        margin: auto;
+    }
+
+    .vue-star-rating-star {
+        overflow: visible !important;
+        height: 20px;
+        width: 20px;
+    }
+
+    .vue-star-rating-rating-text[data-v-34cbeed1] {
+        margin-top: -5px;
+        margin-left: 7px;
+    }
+
+    .add-new-btn {
         background: #F81894;
         border: none;
         font-family: MuseoSans700;
@@ -415,9 +463,11 @@
         /*margin-top: 20px;
         margin-left: 15px;*/
     }
+
     a {
         color: inherit;
     }
+
     input[type=checkbox] {
         margin-right: 10px;
     }
@@ -469,7 +519,8 @@
 
     .filter_btn {
         width: 160px;
-        height: 54px;;
+        height: 54px;
+        ;
         border-radius: 8px;
         border: solid 2px #ffffff;
         border: 2px solid #FFF;
@@ -619,30 +670,38 @@
         background: #FFF;
         color: #f81894;
     }
-    @media only screen and (max-width: 576px) { 
+
+    @media only screen and (max-width: 576px) {
         .experience {
             padding-right: 15px !important;
             padding-left: 15px !important;
         }
+
         .filter_area {
             padding: 10px 0 36px 1px !important;
         }
+
         .filter_searchbar[data-v-350f5dd6] {
             height: 60px;
         }
-        .filter_search_input, 
+
+        .filter_search_input,
         .filter_searchbar>.filter_search_input {
             width: 55%;
         }
+
         .main_menu_area .navbar .navbar-toggler span {
             background: #555;
         }
     }
-    .no-search-results-cont{
+
+    .no-search-results-cont {
         text-align: center;
         margin-bottom: 57px;
     }
-    .no-search-results-cont h3, .suggestion-cont h3{
+
+    .no-search-results-cont h3,
+    .suggestion-cont h3 {
         text-transform: initial;
     }
 </style>

@@ -15,14 +15,20 @@
         <div class="container">
           <h1 class="title" style="color: #FFF;">About TravCP</h1>
           <div class="text-center">
-            <a href="#" class="btn btn-primary btn-icon btn-round">
+            <a href="https://www.facebook.com/TravCP/" target="_blank" class="btn btn-primary btn-icon btn-round">
               <i class="fab fa-facebook-square"></i>
             </a>
-            <a href="#" class="btn btn-primary btn-icon btn-round">
+            <a href="https://twitter.com/travcp" target="_blank" class="btn btn-primary btn-icon btn-round">
               <i class="fab fa-twitter"></i>
             </a>
-            <a href="#" class="btn btn-primary btn-icon btn-round">
-              <i class="fab fa-google-plus"></i>
+            <a href=" https://www.youtube.com/channel/UC8IO48-__ZQm15gJfN9Pzmg?view_as=subscriber" target="_blank" class="btn btn-primary btn-icon btn-round">
+              <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://www.linkedin.com/feed/update/urn:li:activity:6559425179561406464" target="_blank" class="btn btn-primary btn-icon btn-round">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://www.instagram.com/travcp/" target="_blank" class="btn btn-primary btn-icon btn-round">
+              <i class="fab fa-instagram"></i>
             </a>
           </div>
         </div>

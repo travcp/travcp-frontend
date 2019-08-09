@@ -283,5 +283,20 @@ a{
     border-bottom-right-radius: .25rem !important;
     margin-top: 0 !important;
 }
-
+.my-custom-floating-label .input__container {
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px #d9d9d9;
+}
+.my-custom-floating-label .input__container .slot-container {
+  position: relative;
+}
+.my-custom-floating-label .input__container.has-error {
+  box-shadow: 0 0 0 1px #ff0000;
+}
+.my-custom-floating-label .input__container.has-error.input__container--focus {
+  box-shadow: 0 0 0 2px #ff0000;
+}
+.my-custom-floating-label .input__container.input__container--focus {
+  box-shadow: 0 0 0 2px #222;
+}
 </style>

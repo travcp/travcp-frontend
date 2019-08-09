@@ -364,7 +364,7 @@
                                   class="form-group col-md-6"
                                   v-if="requiredFields.includes('naira_price')"
                                 >
-                                  <label>Naira Price ($)</label>
+                                  <label>Naira Price (₦)</label>
                                     <input
                                       v-validate="'required'"
                                       name="Price"
@@ -456,6 +456,7 @@
 <script>
 // import vue2Dropzone from "vue2-dropzone";
 // import "vue2-dropzone/dist/vue2Dropzone.min.css";
+import FloatingLabel from 'vue-simple-floating-labels'
 import Navbar from "@/components/Navbar.vue";
 import Footer from "@/components/Footer.vue";
 import { mapActions, mapState } from "vuex";
@@ -597,7 +598,8 @@ export default {
     Footer,
     DatePicker,
     OpenClosingTimes,
-    FilePond: vueFilePond(FilePondPluginImagePreview, FilePondPluginFileValidateType, FilePondPluginImageEdit)
+    FilePond: vueFilePond(FilePondPluginImagePreview, FilePondPluginFileValidateType, FilePondPluginImageEdit),
+    FloatingLabel
   },
   methods: {
     ...mapActions(["getExperienceTypes"]),
@@ -620,23 +622,7 @@ export default {
       const url = 'https://api.cloudinary.com/v1_1/dbzyutd4o/image/upload';
       let imageFiles = this.$refs.pond.getFiles()
       if(!imageFiles.length < 1){
-        // for(let i = 0; i < imageFiles.length; i++){
-        //   let formData = new FormData()
-        //   formData.append('upload_preset', 'ultgwxm9');
-        //   formData.append('folder', `experience_${this.experience_response_data.id}`);
-        //   formData.append('file', imageFiles[i].file);
-
-        //   await axios.post(url, formData, {
-        //       headers: {
-        //           "Content-Type": "multipart/form-data"
-        //         }
-        //     }).then(response => {
-        //       this.cloudinaryUploads.push(response.data.secure_url)
-        //       console.log(response.data)
-        //     }).catch(error => {
-        //       console.log(error.response.data)
-        //     })
-        //   }
+        
 
         let requestHeaders = {
           headers: {
