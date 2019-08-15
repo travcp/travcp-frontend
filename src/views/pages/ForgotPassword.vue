@@ -36,7 +36,7 @@
                 <h2>Find a Unique Spot</h2>
                 <br />
                 <p>
-                  With TravvApp, you get to book unique <br />
+                  With TravCP, you get to book unique <br />
                   spots, Experineces and also order <br />
                   Souvernirs straight from your home.
                 </p>
@@ -49,7 +49,7 @@
                 <h2>Find a Unique Spot</h2>
                 <br />
                 <p>
-                  With TravvApp, you get to book unique <br />
+                  With TravCP, you get to book unique <br />
                   spots, Experineces and also order <br />
                   Souvernirs straight from your home.
                 </p>
@@ -62,7 +62,7 @@
                 <h2>Find a Unique Spot</h2>
                 <br />
                 <p>
-                  With TravvApp, you get to book unique <br />
+                  With TravCP, you get to book unique <br />
                   spots, Experineces and also order <br />
                   Souvernirs straight from your home.
                 </p>

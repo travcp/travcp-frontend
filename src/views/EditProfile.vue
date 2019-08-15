@@ -39,7 +39,7 @@
                     type="text"
                     v-model="business_name"
                     class="form-control edit-prof-input"
-                    placeholder="TravvApp Inc."
+                    placeholder="TravCP Inc."
                   />
                 </div>
                 <div class="form-group col-md-4" v-if="checkUserType">
@@ -49,7 +49,7 @@
                     type="text"
                     v-model="business_email"
                     class="form-control edit-prof-input"
-                    placeholder="TravvApp Inc."
+                    placeholder="TravCP Inc."
                   />
                 </div>
                 <div class="form-group col-md-4" v-if="checkUserType">

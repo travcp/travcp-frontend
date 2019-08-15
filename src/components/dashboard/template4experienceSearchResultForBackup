@@ -1,6 +1,6 @@
         <!-- <vue-headful
-            title="Experience search result | TravvApp"
-            description="Description from travvApp"
+            title="Experience search result | TravCP"
+            description="Description from TravCP"
         />
         <Navbar /> -->
         <section class="filter_area" style="">

@@ -7,7 +7,7 @@
             <!-- <img src="../assets/shibuya.png" alt="Sign up image"> -->
             <div class="image-holder-inner-text">
                 <!-- <h2>Find a Unique Spot</h2> <br>
-          <p>With TravvApp, you get to book unique <br> spots, Experineces and also order <br> Souvernirs straight from your home.</p>-->
+          <p>With TravCP, you get to book unique <br> spots, Experineces and also order <br> Souvernirs straight from your home.</p>-->
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="display: block">
                     <ol class="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -20,7 +20,7 @@
                             <h2>Find a Unique Spot</h2>
                             <br />
                             <p>
-                                With TravvApp, you get to book unique
+                                With TravCP, you get to book unique
                                 <br />spots, Experineces and also order
                                 <br />Souvernirs straight from your home.
                             </p>
@@ -33,7 +33,7 @@
                             <h2>Find a Unique Spot</h2>
                             <br />
                             <p>
-                                With TravvApp, you get to book unique
+                                With TravCP, you get to book unique
                                 <br />spots, Experineces and also order
                                 <br />Souvernirs straight from your home.
                             </p>
@@ -46,7 +46,7 @@
                             <h2>Find a Unique Spot</h2>
                             <br />
                             <p>
-                                With TravvApp, you get to book unique
+                                With TravCP, you get to book unique
                                 <br />spots, Experineces and also order
                                 <br />Souvernirs straight from your home.
                             </p>
