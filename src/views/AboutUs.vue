@@ -86,9 +86,9 @@
                   Fisayo is a tourism development advocate, travel writer, podcast host, producer, big dreamer and innovator who thrives at the intersection of tourism, technology and advocacy. She sets the company’s strategy and drives TravCP’s vision to model Africa to be the number one tourist destination in the world.
                 </p>
                 <router-link to="/team/fisayo"><button class="btn btn-link btn-info">Read More About Me</button></router-link>
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-twitter"></i></a>
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-instagram"></i></a>
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-facebook-square"></i></a>
+                <a href="https://twitter.com/thefisayo" target="_blank"  class="btn btn-primary btn-icon btn-round"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/thefisayo/" target="_blank" class="btn btn-primary btn-icon btn-round"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.instagram.com/thefisayo/" target="_blank" class="btn btn-primary btn-icon btn-round"><i class="fab fa-facebook-square"></i></a>
               </div>
             </div>
           </div>
