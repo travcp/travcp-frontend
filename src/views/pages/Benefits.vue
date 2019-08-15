@@ -80,48 +80,39 @@
       </div>
     </div>
     <div class="about-us-main"> 
-     <!-- <ul id="FAQ" class="faq">
-		  <li>
-		    <div class="faq-q">
-		      Get discovered by local and international tourist.
-		    </div>
-		  </li>
-		  <li>
-		    <div class="faq-q">
-		     	Save time on booking processes.
-		    </div>
-		  </li>
-		  <li>
-		    <div class="faq-q">
-		     	Expand and grow your bookings and bottom line.
-		    </div>
-		  </li>
-		  <li>
-		    <div class="faq-q">
-		     	It is free to sign up and free to get bookings.
-		    </div>
-		  </li>
-		  <li>
-		    <div class="faq-q">
-		     	You control the cancellation terms, cost of each booking.
-		    </div>
-		  </li>
-		  <li>
-		    <div class="faq-q">
-		     Easy and transparent booking management process
-		    </div>
-		  </li>
-		  <li>
-		    <div class="faq-q">
-		      You can easily connect with your clients and respond to messages.
-		    </div>
-		  </li>
-		  <li>
-		    <div class="faq-q">
-		      It is a platform designed to promote travel businesses in Africa and help each brand start and grow.
-		    </div>
-		  </li>
-		</ul> -->
+       
+    <div class="about-us-header">
+      <p>Merchant Requirements</p>
+      <hr>
+    </div>
+    <div class="about-us-main text-center"> 
+     <ul id="FAQ" class="faq">
+
+      <li>
+        <div class="faq-q">
+          Personal Information
+        </div>
+      </li>
+      <li>
+        <div class="faq-q">
+          Business Details
+        </div>
+      </li>
+      <li>
+        <div class="faq-q">
+          National Identity Card
+        </div>
+      </li>
+      <li>
+        <div class="faq-q">
+          Details of Experience, Tour, Place or Restaurant
+        </div>
+      </li>
+    </ul>
+     <router-link to="/signin">
+      <button class="btn btn-primary btn-lg" style="width: 250px;background: #555;">Sign in to Become a Merchant</button>
+     </router-link>
+    </div>
     </div>
   </div>
 </template>

@@ -51,7 +51,7 @@
                                         <router-link to="/dashboard/profile">Your Dashboard</router-link>
                                     </li>
                                     <li><a class="" href="#affiliate-modal" data-toggle="modal">Affiliate</a></li>
-                                    <li><router-link to="/requirements">Requirements</router-link></li>
+                                    <!-- <li><router-link to="/requirements">Requirements</router-link></li> -->
                                     <li><router-link to="/benefits">Benefits</router-link></li>
                                     <li>
                                         <a href="https://brimatel.com/travvcp/forum/">Community</a>
