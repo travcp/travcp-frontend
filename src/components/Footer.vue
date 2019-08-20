@@ -12,7 +12,7 @@
                         </div>
                         <div class="col-lg-3 col-md-6">
                             <aside class="f_widget categories_widget">
-                                <div class="f_w_title">
+                                <div class="">
                                     <h3>TravCP</h3>
                                 </div>
                                 <ul>
