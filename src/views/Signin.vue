@@ -36,9 +36,9 @@
                 <h2>Find a Unique Spot</h2>
                 <br />
                 <p>
-                  With TravCP, you get to book unique <br />
-                  spots, Experineces and also order <br />
-                  Souvernirs straight from your home.
+                  With TravCP, you get to book unique spots, 
+                  experiences and restaurants <br/>
+                  straight from your home. <br/>                  
                 </p>
                 <div class="carousel-caption d-none d-md-block">
                   <!-- <h2 class="display-4">First Slide</h2> -->

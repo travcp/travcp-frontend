@@ -19,7 +19,7 @@
                     </li>
                     <li class="nav-item"><router-link class="nav-link nav-item-color" to="/videos">Videos</router-link></li>
                     <li class="nav-item" v-if="checkUser"><router-link class="nav-link nav-item-color" to="/dashboard/my-bookings">My Bookings</router-link></li>
-                    <li class="nav-item"><router-link class="nav-link nav-item-color" to="/faqs">FAQs</router-link></li>
+                    <!-- <li class="nav-item"><router-link class="nav-link nav-item-color" to="/faqs">FAQs</router-link></li> -->
   
 
                     <li class="nav-item" v-if="!checkUser"><router-link style="color: #000 !important;" class="nav-link" to="/signin">Log in</router-link></li>

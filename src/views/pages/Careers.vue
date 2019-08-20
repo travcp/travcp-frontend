@@ -38,6 +38,13 @@
             <h2 class="title">Who we are?</h2>
             <h5 class="description">At <span style="color: #f81894; font-weight: 900"> TravCP </span> Our Vision is to Model Africa to be the number one tourist  destination in the world.</h5>
             <h5 class="description">Our entire team and operations is dedicated to showcasing the best of Africa to the world, by promoting tourist destinations, and travel businesses</h5>
+            <h2 class="title">Our Core Values</h2>
+            <h5 class="description"><span style="color: #f81894; font-weight: 900"> Creatively Hungry: </span>We ask questions, we dream big, we take actions, we collaborate, we
+grow.</h5>
+            <h5 class="description"><span style="color: #f81894; font-weight: 900"> Impact Driven: </span>We are focused on making a global impact that spans from Africa.
+</h5>
+            <h5 class="description"><span style="color: #f81894; font-weight: 900"> Excellence Driven: </span>We take ownership of our work, we strive for the best and push ourselves outside our comfort zone.</h5>
+            <h5 class="description"><span style="color: #f81894; font-weight: 900"> Accountable: </span>We look after one another, we encourage one another. We have integrity. We respect one another</h5>
           </div>
         </div> 
       </div>
@@ -123,6 +130,30 @@
                 <option>
                   Engineering
                 </option>
+                <option>
+                  Finance
+                </option>
+                <option>
+                  Creatives
+                </option>
+                <option>
+                  Business Development & Support
+                </option>
+                <option>
+                  Design & User Experience
+                </option>
+                <option>
+                  Talent Manager
+                </option>
+                <option>
+                  Data analyst
+                </option>
+                <option>
+                  Customer Service
+                </option>
+                <option>
+                  Legal
+                </option>                                                                                                                                                                                                
               </select>
             </div> 
             <div class="col-md-6"></div>

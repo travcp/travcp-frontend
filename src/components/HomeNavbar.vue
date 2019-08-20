@@ -21,7 +21,7 @@
                     </li>
                     <li class="nav-item"><router-link style="color: #fff !important;"  to="/videos">Videos</router-link></li>
                     <li class="nav-item" v-if="checkUser"><router-link style="color: #fff !important;" class="nav-link" to="/dashboard/my-bookings">My Bookings</router-link></li>
-                    <li class="nav-item"><router-link style="color: #fff !important;" class="nav-link nav-item-color" to="/faqs">FAQs</router-link></li>
+                    <!-- <li class="nav-item"><router-link style="color: #fff !important;" class="nav-link nav-item-color" to="/faqs">FAQs</router-link></li> -->
                     <li class="nav-item" v-if="!checkUser"><router-link style="color: #fff !important;" class="nav-link" to="/signin">Log in</router-link></li>
                     <li class="nav-item" v-if="!checkUser"><router-link style="color: #fff !important;" class="nav-link" to="/signup">Register</router-link></li>
                     <li class="nav-item" v-if="checkUser">
