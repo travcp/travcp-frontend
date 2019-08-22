@@ -12,7 +12,7 @@
                         </div>
                         <div class="col-lg-3 col-md-6">
                             <aside class="f_widget categories_widget">
-                                <div class="">
+                                <div class="f_w_title">
                                     <h3>TravCP</h3>
                                 </div>
                                 <ul>
@@ -67,6 +67,9 @@
         <div class="copy_right_area">
                     <div class="float-md-left">
                         <h5>{{ $store.state.appName }}</h5>
+                    </div>
+                    <div>
+                        <p> © 2019 TravCP Ltd. All rights reserved </p>
                     </div>
                     <div class="float-md-right">
                         <ul class="nav">

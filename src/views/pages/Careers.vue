@@ -62,8 +62,8 @@ grow.</h5>
                 <!-- <img src="https://i.pinimg.com/originals/e1/d0/83/e1d0836071b1ed7bdab080f25b825c5e.jpg"  alt="..."> -->
                 <div class="carousel-caption d-none d-md-block">
                   <h1>Creatively hungry</h1>
-                  <h5>We ask questions, we dream big, wetake actions, we grow.</h5>
-                  <img src="https://i.pinimg.com/originals/e1/d0/83/e1d0836071b1ed7bdab080f25b825c5e.jpg"  alt="...">
+                  <h5>We ask questions. We dream big. We take actions. We grow.</h5>
+                  <img src="../../assets/creative.jpg"  alt="...">
                 </div>
               </div>
               <div class="carousel-item">
@@ -71,23 +71,23 @@ grow.</h5>
                 <div class="carousel-caption d-none d-md-block">
                   <h1>Impact driven</h1>
                   <h5>We are focused on making a global impact that spans from Africa.</h5>
-                  <img src="https://i.pinimg.com/originals/e1/d0/83/e1d0836071b1ed7bdab080f25b825c5e.jpg"  alt="...">
+                  <img src="../../assets/impact.jpg"  alt="...">
                 </div>
               </div>
               <div class="carousel-item">
                 <!-- <img src="https://i.pinimg.com/originals/e1/d0/83/e1d0836071b1ed7bdab080f25b825c5e.jpg"  alt="..."> -->
                 <div class="carousel-caption d-none d-md-block">
                   <h1>Driven</h1>
-                  <h5>We take ownership of our work and push ourselves outside our comfort zone.</h5>
-                  <img src="https://i.pinimg.com/originals/e1/d0/83/e1d0836071b1ed7bdab080f25b825c5e.jpg"  alt="...">
+                  <h5>We take ownership of our work and push <br/> ourselves outside our comfort zone.</h5>
+                  <img src="../../assets/driven2.jpg"  alt="...">
                 </div>
               </div>
               <div class="carousel-item">
                 <!-- <img src="https://i.pinimg.com/originals/e1/d0/83/e1d0836071b1ed7bdab080f25b825c5e.jpg"  alt="..."> -->
                 <div class="carousel-caption d-none d-md-block">
                   <h1>Accountable</h1>
-                  <h5>We look after one another. We encourage one another. We respect one another.</h5>
-                  <img src="https://i.pinimg.com/originals/e1/d0/83/e1d0836071b1ed7bdab080f25b825c5e.jpg"  alt="...">
+                  <h5>We look after one another. <br/> encourage one another. <br/>We respect one another.</h5>
+                  <img src="../../assets/accoutability.jpg"  alt="...">
                 </div>
               </div>
             </div>
