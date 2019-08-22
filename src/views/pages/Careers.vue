@@ -87,7 +87,7 @@ grow.</h5>
                 <div class="carousel-caption d-none d-md-block">
                   <h1>Accountable</h1>
                   <h5>We look after one another. <br/> encourage one another. <br/>We respect one another.</h5>
-                  <img src="../../assets/accoutability.jpg"  alt="...">
+                  <img src="../../assets/accountability.jpg"  alt="...">
                 </div>
               </div>
             </div>
