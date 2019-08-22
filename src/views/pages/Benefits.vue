@@ -6,6 +6,7 @@
         />
     <Navbar/>
 
+<div class="wrapper">
     <div class="page-header page-header-small">
       <!-- <img src="../assets/landing_images/background_2.jpg" alt="Landing" srcset=""> -->
       <div class="page-header-image" data-parallax="true">
@@ -121,6 +122,7 @@
      </router-link>
     </div>
     </div>
+  </div>
   </div>
 </template>
 <script>
