@@ -1,15 +1,22 @@
 <template>
   <div class="container">
     <vue-headful
-            title="Requirements | TRAV CP"
-            description="Description from TRAV CP"
+            title="Requirements | TravCP"
+            description="Description from TravCP"
         />
     <Navbar/>
-    <!--About us start -->
-    <div class="about-us-header">
-      <p>Benefits</p>
-      <hr>
+
+    <div class="page-header page-header-small">
+      <!-- <img src="../assets/landing_images/background_2.jpg" alt="Landing" srcset=""> -->
+      <div class="page-header-image" data-parallax="true">
+      </div>
+      <div class="content-center">
+        <div class="container">
+          <h1 class="title" style="color: #FFF;">Benefits</h1>
+        </div>
+      </div>
     </div>
+
     <div class="row">
       <div class="col-md-12">
         

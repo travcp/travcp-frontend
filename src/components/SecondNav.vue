@@ -1,7 +1,7 @@
 <template>
     <div class="container toggleFirstNav">
         <div class="secondNavTitle">
-          <h3>TRAV CP</h3>
+          <h3>TravCP</h3>
         </div>
         <div class="secondNav">
           <div class="row">

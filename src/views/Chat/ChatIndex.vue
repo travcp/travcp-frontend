@@ -71,7 +71,7 @@
 
       <!-- channel empty -->
       <div class="chat-empty">
-        <div class="chat-empty chat-empty__tile">WELCOME TO TRAV CP CHAT</div>
+        <div class="chat-empty chat-empty__tile">WELCOME TO TravCP CHAT</div>
         <div class="chat-empty chat-empty__icon"></div>
         <div class="chat-empty chat-empty__desc">
           Click on Invite User to invite Merchant to your Channel.<br>
