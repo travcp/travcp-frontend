@@ -69,7 +69,7 @@
                         <h5>{{ $store.state.appName }}</h5>
                     </div>
                     <div>
-                        <p> © 2019 TravCP Ltd. All rights reserved </p>
+                        <h5> © 2019 TravCP Ltd. All rights reserved </h5>
                     </div>
                     <div class="float-md-right">
                         <ul class="nav">
