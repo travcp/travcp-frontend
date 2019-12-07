@@ -286,7 +286,6 @@ export default {
 /* .navbar{
   box-shadow: none !important;
 } */
-
 </style>
 <style scoped> 
 .navbar{

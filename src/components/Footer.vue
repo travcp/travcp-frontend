@@ -74,7 +74,7 @@
                     <div class="float-md-right">
                         <ul class="nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Terms</a>
+                                <a class="nav-link" href="/terms-and-condition">Terms</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Privacy</a>

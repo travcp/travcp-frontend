@@ -42,6 +42,7 @@ import RestaurantMenu from '@/views/RestaurantMenu.vue'
 import Careers from '@/views/pages/Careers.vue'
 import Press from '@/views/pages/Press.vue'
 import Policies from '@/views/pages/Policies.vue'
+import TermsAndCondition from '@/views/pages/TermsAndCondition.vue'
 import Faqs from '@/views/pages/Faqs.vue'
 
 import TrustAndSafety from '@/views/discover/TrustAndSafety.vue'
@@ -96,6 +97,11 @@ export default new Router({
       path: "/policies",
       name: "Policies",
       component: Policies,
+    },
+    {
+      path: "/terms-and-condition",
+      name: "TermsAndCondition",
+      component: TermsAndCondition,
     },
     {
       path: "/FAQS",
