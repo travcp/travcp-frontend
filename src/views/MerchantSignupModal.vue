@@ -203,6 +203,11 @@ export default {
                 // updateMerchantData.merchantData = response.data.data;
                 // localStorage.setItem("auth", JSON.stringify(updateMerchantData));
                 // this.$store.state.loading.merchantSignup = false;
+                if(response.data.approved !== 1) {
+                    this.$router.push("/")
+                }else{
+                  this.$router.push("/dashboard/merchant/new-experience");
+                  }
                 // this.$router.push("/dashboard/merchant/new-experience");
                 //  window.location.reload(1);
               })
