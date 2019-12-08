@@ -232,39 +232,7 @@ We welcome and encourage you to provide feedback, comments and suggestions for i
             
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-8 ml-auto mr-auto text-center">
-            <h2 class="title">Notice of Alleged Infringement ("The Notice")</h2>
-            <ol class="text-left">
-              <li>
-                <h5 class="description">
-                  Identify the copyrighted work that you claim has been infringed, or - if multiple copyrighted works are covered by this Notice - you will providea comprehensive list of the copyrighted works that you claim have been infringed.
-                </h5>
-              </li>
-              <li>
-                <h5 class="description">
-                  Identify the material that you claim is infringing (or to be the subject ofinfringing activity) and that is to be removed or access to which is to be disabled, and information reasonably sufficient to permit us to locate the material, including at a minimum, if applicable, the URL of the link shown on the Site and Application where such material may befound.
-                </h5>
-              </li>
-              <li>
-                <h5 class="description">
-                  Provide your mailing address, telephone number, and, if available, email address.
-                </h5>
-              </li>
-            </ol>
-            <br><br>
-                <h5 class="description">
-                  Deliver this Notice, with all items completed, to TravCP’s Designated Copyright Agent:
-                </h5><br>
-                <h5 class="description">
-                  Copyright Agent <br>
-                  c/o TravCP, Ltd. <br>
-                  Ikeja, Lagos, <br><br>
-                  Nigeria. <br>
-                  <a href="mailto:copyright@TravCP.com">copyright@TravCP.com</a>
-                </h5>
-          </div>
-        </div>
+        
         <div class="separator separator-primary"></div>
         <div class="section-story-overview"> 
         </div>

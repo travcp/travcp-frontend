@@ -195,16 +195,16 @@ export default {
                 requestHeaders
               )
               .then(response => {
-                this.$noty.success("Registration as a Merchant is sucessfull");
+                //this.$noty.success("Registration as a Merchant is sucessfull");
                 console.log(response.data.data);
       
-                let updateMerchantData = JSON.parse(localStorage.getItem("auth"));
-                updateMerchantData.user = response.data.data.user_data;
-                updateMerchantData.merchantData = response.data.data;
-                localStorage.setItem("auth", JSON.stringify(updateMerchantData));
-                this.$store.state.loading.merchantSignup = false;
-                this.$router.push("/dashboard/merchant/new-experience");
-                 window.location.reload(1);
+                // let updateMerchantData = JSON.parse(localStorage.getItem("auth"));
+                // updateMerchantData.user = response.data.data.user_data;
+                // updateMerchantData.merchantData = response.data.data;
+                // localStorage.setItem("auth", JSON.stringify(updateMerchantData));
+                // this.$store.state.loading.merchantSignup = false;
+                // this.$router.push("/dashboard/merchant/new-experience");
+                //  window.location.reload(1);
               })
               .catch(err => {
                 // this.$noty.error("Oops, something went wrong!")
