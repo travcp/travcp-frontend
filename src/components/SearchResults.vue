@@ -17,7 +17,12 @@
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="travv_drop_filter_section">
-                                                    <h3>Category</h3>
+                                                    <h3>Type</h3>
+                                                    <p v-for="(type, index) in experience_types" :key="index">
+                                                        <input v-model="selected_types" type="checkbox" :name="type.name" :value="type.id">
+                                                        <label :value="type.name" :for="type.name">{{type.name}}</label>
+                                                    </p>
+                                                    <!-- <h3>Category</h3>
                                                     <p>
                                                         <input v-model="tour_and_experiences" type="checkbox">Tours
                                                         and Experiences
@@ -28,32 +33,28 @@
                                                     <p>
                                                         <input v-model="places_destinations" type="checkbox">Places /
                                                         Destinations
-                                                    </p>
+                                                    </p> -->
                                                 </div>
-                                                <div class="travv_drop_filter_section" style="margin-top: 51px">
+                                                <!-- <div class="travv_drop_filter_section" style="margin-top: 51px">
                                                     <h3>Type</h3>
-                                                    <p>
-                                                        <input v-model="outdoor_activities" type="checkbox">Outdoor
-                                                        activities
+                                                    <p v-for="(type, index) in experience_types" :key="index">
+                                                        <input v-model="selected_types" type="checkbox" :name="type.name" :value="type.id">
+                                                        <label :value="type.name" :for="type.name">{{type.name}}</label>
                                                     </p>
-                                                    <p>
-                                                        <input v-model="extended_tours" type="checkbox">Extended tours
-                                                    </p>
-                                                    <p>
-                                                        <input v-model="cultural_tours" type="checkbox">Cultural tours
-                                                    </p>
-                                                </div>
+                                                </div> -->
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="travv_drop_filter_section">
                                                     <h3>Sort by</h3>
                                                     <p>
-                                                        <input v-model="popular" type="checkbox">Popular
+                                                        <input v-model="sort_option" type="radio" id="highest_ranked" value="highest_ranked">
+                                                        <label for="highest_ranked"> Highest Ranked</label>
                                                         <p>
-                                                            <input v-model="recent" type="checkbox">Recent
+                                                            <input v-model="sort_option" type="radio" id="most_recent" value="most_recent">
+                                                            <label for="most_recent"> Most Recent</label>
                                                         </p>
                                                 </div>
-                                                <div class="travv_drop_filter_section" style="margin-top: 114px">
+                                                <!-- <div class="travv_drop_filter_section" style="margin-top: 114px">
                                                     <p>
                                                         <input v-model="for_kids" type="checkbox">For kids
                                                     </p>
@@ -63,7 +64,7 @@
                                                     <p>
                                                         <input v-model="sightseeing" type="checkbox">Sightseeing
                                                     </p>
-                                                </div>
+                                                </div> -->
                                             </div>
                                             <div class="col-md-5">
                                                 <div class="price_range_section">
@@ -275,6 +276,9 @@
                 value_2_min: 1,
                 value_2_max: 30,
                 value_1: [10, 5000],
+                sort_option:"",
+                experience_types: [],
+                selected_types: [],
                 marks1: {
                     '10': {
                         label: '$10',
@@ -357,23 +361,24 @@
                 
 // restaurants
 // places_destinations
-                let experince_type_id = null;
+                // let experince_type_id = null;
 
-                if(this.tour_and_experiences){
-                    experince_type_id = 2
-                }
+                // if(this.tour_and_experiences){
+                //     experince_type_id = 2
+                // }
                 
-                if(this.restaurants){
-                    experince_type_id = 12
-                }
+                // if(this.restaurants){
+                //     experince_type_id = 12
+                // }
                 
-                if(this.places_destinations){
-                    experince_type_id = 22
-                }
+                // if(this.places_destinations){
+                //     experince_type_id = 22
+                // }
+                let experience_types = JSON.stringify(this.selected_types);
                 this.$validator.validateAll().then(result => {
                     if (result) {
                         let url =
-                            `${this.$store.state.API_BASE}/experiences?city=${data.search}&country=${data.search}&title=${data.search}&location=${data.search}&min_price=${data.min_price}&max_price=${data.max_price}&experiences_type_id=${experince_type_id}`;
+                            `${this.$store.state.API_BASE}/experiences?city=${data.search}&country=${data.search}&title=${data.search}&location=${data.search}&min_price=${data.min_price}&max_price=${data.max_price}&experience_types=${experience_types}&sort_option=${this.sort_option}`;
 
                         if (data.search == '') {
                             this.filterExperiencesSearch();
@@ -384,7 +389,7 @@
                         }
                         // this.$
                     } else {
-                        this.$noty.error("Enter a minimun of 3 words in thre search")
+                        this.$noty.error("Enter a minimum of 3 letters in the search")
                     }
                 });
 
@@ -423,9 +428,21 @@
                     this.$noty.error('You need to Login to Have a Favourite Experience')
                 }
             },
+
+            fetch_experience_types() {
+                Axios
+                .get(`${this.$store.state.API_BASE}/experience_types`)
+                .then( response => {
+                    console.log(response);
+                    this.experience_types = response.data.data
+                }).catch( error => {
+                    console.log(error.data)
+                })
+            }
         },
         created: function () {
             this.getEvents();
+            this.fetch_experience_types();
         },
         props: ['experiences'],
     }

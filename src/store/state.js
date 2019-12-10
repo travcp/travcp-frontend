@@ -1,3 +1,10 @@
+let API_BASE = '';
+if (process.env.NODE_ENV == "production") {
+  API_BASE = "https://travvapi.herokuapp.com/api";
+} else {
+  API_BASE = "http://localhost:8000/api";
+}
+
 export default {
     experiences: [],
     experiencesPlacehodler: [],
@@ -53,7 +60,7 @@ export default {
     reviews: [],
     editProfileError: null,
     reviewData: null,
-    API_BASE:'https://travvapi.herokuapp.com/api',
+    API_BASE: API_BASE,
     emptySearchResult: false,
     experience_types: [],
     homeSearch: null,

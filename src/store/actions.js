@@ -2,7 +2,13 @@ import Vue from "vue";
 import router from "@/router";
 
 import axios from "axios";
-let API_BASE = "https://travvapi.herokuapp.com/api";
+
+let API_BASE = '';
+if (process.env.NODE_ENV == "production") {
+  API_BASE = "https://travvapi.herokuapp.com/api";
+} else {
+  API_BASE = "http://localhost:8000/api";
+}
 
 Vue.use(router);
 
