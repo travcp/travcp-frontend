@@ -86,6 +86,7 @@
                           <label for="check3">
                           <div><i class="fa fa-check"></i></div>I agree to the following
                               <a href="#">Terms and Conditions</a>
+                              <router-link to="/terms-and-condition">Terms and Conditions</router-link>
                           </label>
                         </div>
                         <div class="col-md-12" style="text-align: center">

@@ -177,7 +177,8 @@
                                             <input class="form-check-input" type="checkbox" v-model="agreeToTerms" id="inlineCheckbox1" value="option1" />
                                             <label class="form-check-label" for="inlineCheckbox1">
                                                 I agree to the following
-                                                <a href="#">Terms and Conditions</a>
+                                                <!-- <a href="#">Terms and Conditions</a> -->
+                                                <router-link to="/terms-and-condition">Terms and Conditions</router-link>
                                             </label>
                                         </div>
                                     </div>
