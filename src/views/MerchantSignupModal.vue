@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Become a merchant</h5>
+          <h5 class="modal-title">Request to become a merchant</h5>
         </div>
         <div class="modal-content">
           <div class="form-inner" style="padding:15px;">
@@ -85,8 +85,8 @@
                               v-model="agree" id="check3"/>
                           <label for="check3">
                           <div><i class="fa fa-check"></i></div>I agree to the following
-                              <a href="#">Terms and Conditions</a>
-                              <router-link to="/terms-and-condition">Terms and Conditions</router-link>
+                              <!-- <a href="#">Terms and Conditions</a> -->
+                              <router-link to="/terms-and-condition" target="_blank">Terms and Conditions</router-link>
                           </label>
                         </div>
                         <div class="col-md-12" style="text-align: center">
@@ -196,18 +196,11 @@ export default {
                 requestHeaders
               )
               .then(response => {
-                //this.$noty.success("Registration as a Merchant is sucessfull");
-                console.log(response.data.data);
-      
-                // let updateMerchantData = JSON.parse(localStorage.getItem("auth"));
-                // updateMerchantData.user = response.data.data.user_data;
-                // updateMerchantData.merchantData = response.data.data;
-                // localStorage.setItem("auth", JSON.stringify(updateMerchantData));
-                // this.$store.state.loading.merchantSignup = false;
-                console.log(response.data.data.approved);
-                console.log(response.approved);
-                console.log(response.data.data['approved']);
-                console.log(response.data.approved);
+                console.log("Request to become a merchant", response.data.data);
+                if (response.status == "200") {
+                  this.$noty.success("Your request to become a merchant was successful and is pending approval");
+                  window.location.reload(1);
+                }
                 // if(response.data.dadta.approved !== 1) {
                 //     this.$router.push("/");
                 // }else{

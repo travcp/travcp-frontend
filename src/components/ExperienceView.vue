@@ -1,4 +1,4 @@
-<template lang="lang">
+<template lang="lang" v-else>
     <div class="ExperienceView">
         <vue-headful title="Experience | TravCP" description="Description of TravCP" />
         <Navbar></Navbar>
@@ -184,7 +184,10 @@
 
 
                                             <div class="row">
-                                                <div class="col-md-12 col-sm-12">
+                                                <div class="col-md-12 col-sm-12 date-picker" v-if="experience.experience_type == 'sourvenirs'">
+                                                </div>
+
+                                                <div class="col-md-12 col-sm-12 date-picker" v-else>
                                                     <date-picker v-model="time" valueType="format" :lang="lang">
                                                     </date-picker>
                                                     
@@ -192,6 +195,32 @@
                                                     </date-picker>
                                                 </div>
                                             </div>
+
+                                           <div class="row" >
+                                                <div class="col-md-12 col-sm-12" v-if="experience.experience_type == 'sourvenirs'">
+                                                    
+                                                </div>
+
+                                                <div class="col-md-12 col-sm-12" v-else>
+                                                    <p id="guests" v:model="booking_number" name="booking_number">Guests: {{ count }}</p>
+                                                    <div class="adults">
+                                                        <p class="adult"> Adults </p>
+                                                        <div class="more-buttons">
+                                                            <button class="round-button" @click.prevent="decrement" :disabled=" count == 0"> - </button>
+                                                            <button class="round-button" @click.prevent="increment"> + </button>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="kids">
+                                                        <p class="adult"> Children </p>
+                                                        <div class="kid-buttons">
+                                                            <button class="round-button" @click.prevent="decrement" :disabled=" count == 0"> - </button>
+                                                            <button class="round-button" @click.prevent="increment"> + </button>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div> 
 
 
                                             <span>{{ errors.first('date') }}</span>
@@ -205,6 +234,9 @@
                                                                 <span v-if="loading2">
                                                                     <img style="height: 20px;"
                                                                         src="../assets/loader_rolling.gif" />
+                                                                </span>
+                                                                <span v-else-if="experience.experience_type == 'sourvenirs'">
+                                                                    Add to Cart
                                                                 </span>
                                                                 <span v-else>
                                                                     Book Now
@@ -241,17 +273,46 @@
                     </div>
                 </div>
                 <br><br>
-                <div class="row">
-                    <div class="col-md-12">
+                <div class="row" v-if="experience.experience_type == 'sourvenirs'">
+                    <div class="col-md-12" v-if="experience.experience_type == 'sourvenirs'">
+                    
+                    </div>
+
+                    <div class="form-group col-md-12" v-else>
+                        <input v-model='vm.place.formatted_address' v-gmaps-searchbox=vm
+                            placeholder="Enter your current location" class="form-control"
+                            style="border: 1px solid #000; border-radius: 3px;padding: 10px;">
+                        <!-- <button class="btn btn-primary" @click="getDirection">Get Direction</button> -->
+                    </div>
+                    <div class="col-md-12" v-if="experience.experience_type == 'sourvenirs'">
+                        
+                    </div>
+                    <div class="col-md-12" v-else>
+                        <iframe v-if="vm.place.formatted_address" height="450" frameborder="0"
+                            style="border:0;width:100%;"
+                            :src="'https://www.google.com/maps/embed/v1/directions?origin=' + vm.place.formatted_address.replace(/\s+/g, '+') + '&destination=' + experience.location + '&key=AIzaSyDgnbjMxlLW2BHBPJ4-iFsX_aB9jEHBFCg'"
+                            allowfullscreen></iframe>
+
+                        <iframe v-else height="450" frameborder="0" style="border:0;width:100%;"
+                            :src="'https://www.google.com/maps/embed/v1/search?q=' + experience.location + '&key=AIzaSyDgnbjMxlLW2BHBPJ4-iFsX_aB9jEHBFCg'"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="row" v-else>
+                    <div class="col-md-12" v-if="experience.experience_type == 'sourvenirs'">
                         <h5>Get Direction</h5>
                     </div>
+
                     <div class="form-group col-md-12">
                         <input v-model='vm.place.formatted_address' v-gmaps-searchbox=vm
                             placeholder="Enter your current location" class="form-control"
                             style="border: 1px solid #000; border-radius: 3px;padding: 10px;">
                         <!-- <button class="btn btn-primary" @click="getDirection">Get Direction</button> -->
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-12" v-if="experience.experience_type == 'sourvenirs'">
+                        
+                    </div>
+                    <div class="col-md-12" v-else>
                         <iframe v-if="vm.place.formatted_address" height="450" frameborder="0"
                             style="border:0;width:100%;"
                             :src="'https://www.google.com/maps/embed/v1/directions?origin=' + vm.place.formatted_address.replace(/\s+/g, '+') + '&destination=' + experience.location + '&key=AIzaSyDgnbjMxlLW2BHBPJ4-iFsX_aB9jEHBFCg'"
@@ -562,1409 +623,1617 @@
 </template>
 
 <script>
-    import Navbar from '@/components/Navbar.vue';
-    import DatePicker from 'vue2-datepicker';
-    import Footer from '@/components/Footer.vue';
-    import axios from 'axios'
-    import {
-        Circle9
-    } from 'vue-loading-spinner'
-    import {
-        mapState,
-        mapActions,
-        mapGetters
-    } from 'vuex';
-    import VueGallerySlideshow from 'vue-gallery-slideshow';
-    import StarRating from 'vue-star-rating'
-    import Axios from 'axios'
-    import { ContentLoader } from "vue-content-loader"
-    // import Datepicker from 'vuejs-datepicker';
-    // import format from 'date-fns/format'
+import Navbar from "@/components/Navbar.vue";
+import DatePicker from "vue2-datepicker";
+import Footer from "@/components/Footer.vue";
+import axios from "axios";
+import { Circle9 } from "vue-loading-spinner";
+import { mapState, mapActions, mapGetters } from "vuex";
+import VueGallerySlideshow from "vue-gallery-slideshow";
+import StarRating from "vue-star-rating";
+import Axios from "axios";
+import { ContentLoader } from "vue-content-loader";
+// import Datepicker from 'vuejs-datepicker';
+// import format from 'date-fns/format'
 
-    export default {
-        name: 'ExperienceView',
-        data() {
-            return {
-                images: [],
-                index: null,
-                ratings: [],
-                current_location: null,
-                rate_this_exp_text: "",
-                start_date: '4/12/2019',
-                end_date: '6/12/2019',
-                dateFormat: 'D MMM',
-                dateOne: '',
-                dateTwo: '',
-                time: '',
-                time2: '',
-                FavoritesExperience: [],
-                reviewStar: null,
-                toggleRating: false,
-                loading2: false,
-                checkBookingStatus: null,
-                reviews: [],
-                securityStar: null,
-                delivery_address: null,
-                getSimilarExperienceData: [],
-                vm: {
-                    searchPlace: '',
-                    location: {},
-                    place: {
-                        formatted_address: ''
-                    }
-                },
-                // custom lang
-                //                 toggleSecurityBox
-                securityRating: false,
-                lang: {
-                    days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-                    months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                    pickers: ['next 7 days', 'next 30 days', 'previous 7 days', 'previous 30 days'],
-                    placeholder: {
-                        date: 'Start Date',
-                        dateRange: 'Start Date'
-                    }
-                },
-                lang2: {
-                    days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-                    months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                    pickers: ['next 7 days', 'next 30 days', 'previous 7 days', 'previous 30 days'],
-                    placeholder: {
-                        date: 'End Date',
-                        dateRange: 'End Date'
-                    }
-                },
-                // custom range shortcuts
-                shortcuts: [{
-                    text: 'Today',
-                    onClick: () => {
-                        this.time3 = [new Date(), new Date()]
-                    }
-                }],
-                timePickerOptions: {
-                    start: '00:00',
-                    step: '00:30',
-                    end: '23:30'
-                }
-            }
-        },
-        watch: {
-            vm: function () {
-                if (this.vm.place) {
-                    this.vm.searchPlace = this.vm.place.formatted_address
-                }
-            }
-        },
-        components: {
-            Navbar,
-            DatePicker,
-            Circle9,
-            VueGallerySlideshow,
-            StarRating,
-            ContentLoader
-        },
-        methods: {
-            ...mapActions(['getExperienceById']),
-            ...mapActions(['bookingExperience']),
-            ...mapActions(['rateExperience']),
-            ...mapActions(['getMyBookings']),
-            ...mapActions(['getExperienceTypes']),
-            getSimilarExperiences() {
-                axios.get(`${this.$store.state.API_BASE}/merchants/${this.experience.merchant_id}/experiences`).then(
-                    response => {
-                        console.log(response.data.data)
-                        this.getSimilarExperienceData = response.data.data
-                        this.getSimilarExperienceData.shift()
-                        this.loading2 = false;
-                        if (response.data.data.length < 3) {
-                            axios.get(`${this.$store.state.API_BASE}/experiences?state=${this.experience.state}`)
-                                .then(response => {
-                                    this.getSimilarExperienceData = response.data.data
-                                }).catch(error => {
-                                    //console.log(error.response.data)
-                                })
-                        }
-                    }).catch(err => {
-                    this.loading2 = false;
-                    console.log(err);
-                });
-            },
-            getDirection() {
-                //console.log('Hi There')
-                if (this.vm.place) {
-                    document.getElementsByTagName('iframe')[0].src =
-                        'https://www.google.com/maps/embed/v1/directions?origin=' + this.vm.place.formatted_address +
-                        '&destination=' + this.experience.location.replace(/\s+/g, '+') +
-                        '&key=AIzaSyDgnbjMxlLW2BHBPJ4-iFsX_aB9jEHBFCg'
-                }
-            },
-            rateExperienceSubmit() {
-                if (this.auth) {
-                    if (this.toggleRating) {
-                        // user_id
-                        // experience_id
-                        // review_body
-                        this.rateExperience({
-                            "user_id": this.auth.user.id,
-                            "experience_id": this.experience.id,
-                            "review_body": this.rate_this_exp_text,
-                            "rating": this.reviewStar,
-                            "security_rating": this.securityStar
-                        }).then(res => {
-                            this.$noty.success("Your review has been submitted");
-                            this.toggleRating = false;
-                            this.rate_this_exp_text = "";
-                            this.getExperienceById(this.$route.params['id']);
-                            window.location.reload(1);
-                        });
-
-                    }
-                } else {
-                    this.$noty.error("Oops, You need to Login to Review or Rate an Expereince");
-                }
-
-            },
-            bookExperience: function () {
-
-                if (this.auth) {
-                    //console.log("in Booking")
-                    this.$validator.validate().then(valid => {
-                        console.log(valid + " was returned")
-                        if (valid) {
-                            //console.log(valid);
-                            // if (this.time[0]) {
-                            if (this.delivery_address) {
-                                let data = {
-                                    // food_menu_ids: ["2", "3", "4"],
-                                    // price: this.experience.naira_price,
-                                    merchant_id: this.experience.merchant_id,
-                                    user_id: this.auth.user.id,
-                                    experience_id: this.$route.params.id,
-                                    // start_date: this.formatDate(this.time[0]),
-                                    // end_date: this.formatDate(this.time[1]),
-                                    address: this.delivery_address
-                                };
-                                let requestHeaders = {
-                                    headers: {
-                                        Authorization: "Bearer " + this.$store.state.auth.access_token
-                                    }
-                                };
-                                //console.log('Hi on souvernirs ')
-                                //console.log(this.experience.experience_type)
-                                // console.log(this.formatDate(this.time[0]));
-                                this.bookingExperience(data).then(response => {
-                                    //console.log(response)
-                                    axios.post(`${this.$store.state.API_BASE}/cart/add`, {
-                                        "booking_id": response.id
-                                    }, requestHeaders).then(response => {
-                                        //console.log(response.data.data);
-                                    }).catch(error => {
-                                        //console.log(error)
-                                    })
-                                    this.checkIfBooked()
-                                    this.ratingInfo()
-                                    this.$noty.success(
-                                        "This experience has been added to your cart")
-                                });
-                            } else {
-                                //console.log(this.experience.experience_type)
-                                if (this.time[0]) {
-
-                                    let data = {
-                                        price: this.experience.naira_price,
-                                        merchant_id: this.experience.merchant_id,
-                                        user_id: this.auth.user.id,
-                                        experience_id: this.$route.params.id,
-                                        start_date: this.time,
-                                        end_date: this.time2
-                                    };
-                                    let requestHeaders = {
-                                        headers: {
-                                            Authorization: "Bearer " + this.$store.state.auth
-                                                .access_token
-                                        }
-                                    };
-                                    //console.log('Experience Type')
-                                    //console.log(this.experience.experience_type)
-                                    if (this.experience.experience_type == 'restaurants') {
-                                        console.log("in Resturants")
-                                        axios.post(`${this.$store.state.API_BASE}/bookings`, data,
-                                                requestHeaders)
-                                            .then(response => {
-                                                this.checkIfBooked()
-                                                this.$noty.success(
-                                                    "Restaurant Has been added to booking")
-                                               // console.log(response.data.data)
-                                            })
-                                            .catch(error => {
-                                                this.$noty.error("Something Went Wrong.")
-                                               // console.log(error.response.data)
-                                            })
-                                    } else {
-                                        // console.log(this.formatDate(this.time[0]));
-                                        this.bookingExperience(data).then(response => {
-                                            //console.log(response)
-                                            axios.post(`${this.$store.state.API_BASE}/cart/add`, {
-                                                "booking_id": response.id
-                                            }, requestHeaders).then(response => {
-                                                //console.log(response.data.data);
-                                            }).catch(error => {
-                                               // console.log(error)
-                                            })
-                                            this.checkIfBooked()
-                                            this.$noty.success(
-                                                "This experience has been added to your cart")
-                                        });
-                                    }
-                                } else {
-                                    this.$noty.error("Please enter a check in and check out date");
-                                }
-                            }
-                            //console.log("in Booking")
-
-                            // } else {
-                            //     this.$noty.error("Please enter a check in and check out date");
-                            // }
-                        }
-                    }).catch(err => {
-                       // console.log("A validation error occured")
-                    });
-
-                } else {
-                    //console.log("in Booking")
-                    this.$noty.error("Oops, You need to Login to Book and Experience");
-                }
-            },
-            formatDate(date) {
-                var d = new Date(date),
-                    month = '' + (d.getMonth() + 1),
-                    day = '' + d.getDate(),
-                    year = d.getFullYear();
-
-                if (month.length < 2) month = '0' + month;
-                if (day.length < 2) day = '0' + day;
-
-                return [year, month, day].join('-');
-            },
-            toggleRatingBox() {
-                if (this.auth) {
-                    this.toggleRating = true;
-                } else {
-                    this.$noty.error("Oops, You need to Login to Review or Rate an Expereince");
-                }
-            },
-            toggleSecurityBox() {
-                if (this.auth) {
-                    // if (this.checkBookingStatus) {
-                    this.toggleRating = true
-                    this.securityRating = true
-                    // } else {
-                    // this.$noty.warning("You need to book this Expereince to rate");
-                    // }
-                } else {
-                    this.$noty.error("Oops, You need to Login to Review or Rate an Expereince");
-                }
-            },
-            ratingInfo() {
-                this.loading2 = true;
-                // let requestHeaders = {
-                //     headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
-                // };1
-                axios.get(`${this.$store.state.API_BASE}/experiences/${this.$route.params.id}/reviews`).then(
-                response => {
-
-                    this.ratings = response.data.rating_info
-                    this.loading2 = false;
-                    this.reviews = response.data;
-                }).catch(err => {
-                    this.loading2 = false;
-                    //console.log(err);
-                })
-            },
-            cofirmForFavorite() {
-                axios.get(
-                    `${this.$store.state.API_BASE}/favourites?user_id=${this.$store.state.auth.user.id}?experience_id?=${this.$route.params.id}`
-                    ).then(response => {
-
-                    //console.log('Favorites Data')
-                    //console.log(response.data.data)
-                }).catch(err => {
-                    // this.loading2 = false;
-                    //console.log(err.response.data);
-                })
-            },
-            postFavoriteExeperience(placeId) {
-                this.loading = true
-                if (this.auth && this.auth.access_token) {
-                    let data = {
-                        user_id: this.auth.user.id,
-                        experience_id: placeId
-                    }
-                    let requestHeaders = {
-                        headers: {
-                            'Authorization': "Bearer " + this.$store.state.auth.access_token
-                        }
-                    }
-                    Axios.post(`${this.$store.state.API_BASE}/favourites`,
-                        data,
-                        requestHeaders).then(response => {
-                        //console.log(response.data.data);
-                        this.loading = false
-                        this.$noty.success('Experience has been added to your Favourites list')
-                    }).catch(error => {
-                        //console.log(error.data)
-                        this.loading = false
-                    })
-                } else {
-                    this.$noty.error('You need to Login to Have a Favourite Experience')
-                }
-            },
-            checkIfBooked() {
-                this.loading2 = true;
-                let requestHeaders = {
-                    headers: {
-                        'Authorization': "Bearer " + this.$store.state.auth.access_token
-                    }
-                };
-                axios.post(`${this.$store.state.API_BASE}/bookings/exists`, {
-                    experience_id: this.$route.params.id,
-                    user_id: this.$store.state.auth.user.id,
-                }, requestHeaders).then(response => {
-                    //console.log(response.data)
-                    this.checkBookingStatus = response.data[0]
-                    this.loading2 = false;
-                }).catch(err => {
-                    this.$noty.error("Oops, You need to Login to Review or Rate an Expereince");
-                })
-            },
-            gotoMenu() {
-                this.$router.push({
-                    name: "RestaurantMenu",
-                    params: {
-                        id: this.experience.id,
-                        name: this.experience.title.toString().toLowerCase().replace(/\s/g, '-')
-                    }
-                });
-                window.location.reload(1);
-            },
-            getUserFavorites() {
-                if (this.$store.state.auth) {
-                    // this.loading = true;
-                    Axios.get(
-                            `${this.$store.state.API_BASE}/favourites?user_id=${this.$store.state.auth.user.id}&experience_id=${this.$route.params.id}`
-                            )
-                        .then(response => {
-                            //console.log('User Fav')
-                            //console.log(response.data.data);
-                            this.FavoritesExperience = response.data.data
-                            this.loading = false
-                        }).catch(error => {
-                            //console.log(err.data);
-                            // this.loading = false;
-                        })
-                } else {
-                    this.$noty.error("Need to Login to Add Favorites")
-                    this.$router.push("Login in to add to favorites")
-                }
-            },
-            cancelUserFavorites() {
-                // axios.delete(`${this.$store.state.API_BASE}/`)
-            },
-            getMerchantExtras() {
-                axios.get(`${this.$store.state.API_BASE}/merchant/extras/${this.experience.merchant_id}`)
-                    .then(response => {
-                        //console.log(response.data.data)
-                    }).catch(error => {
-                        //console.log(error.response.data)
-                    })
-            },
-            chatWithMerchant() {
-                let user_data = null
-                axios.get(`${this.$store.state.API_BASE}/merchants/${this.experience.merchant_id}/extras`)
-                    .then(response => {
-                        user_data = response.data.data.user_data
-                        //console.log(response.data.data)
-                        this.$router.push({
-                            name: "Messages",
-                            params: {
-                                recipient: user_data.id
-                            }
-                        });
-                    }).catch(error => {
-                        console.log(error.response.data)
-                    })
-            }
-        },
-        computed: {
-            ...mapState(["experience_types"]),
-            ...mapState(['experience']),
-            ...mapState(['loading']),
-            ...mapState(['auth']),
-            ...mapState(['bookings']),
-            totalRatingCount() {
-                // if (this.ratings != null && this.ratings.length > 0){
-                return this.ratings[5] + this.ratings[4] + this.ratings[3] + this.ratings[2] + this.ratings[1]
-                // }
-                // return 0;
-            }
-
-        },
-        created: function () {
-            this.getUserFavorites()
-            this.getExperienceById(this.$route.params['id']).then(response => {
-                // console.log('In here already')
-                // console.log(response)
-                // console.log(this.experience)
-                for (let i = 0; i <= this.experience.images.length; i++) {
-                    // console.log(this.experience.images[i].image)
-                    if (this.experience.images.length > 1) {
-                        this.images.push(this.experience.images[i].image)
-                    }
-                }
-            });
-            // if(this.experience){
-
-            // }
-            // this.getMyBookings();
-            this.bookings.forEach(book => {
-                // console.log(book);
-            })
-
-            this.ratingInfo()
-            this.getExperienceTypes();
-            if (this.$store.state.auth) {
-                this.checkIfBooked()
-            }
-            this.getSimilarExperiences()
-            this.loading2 = false;
-            this.getUserFavorites()
-            player.on('finishRecord', function () {
-                // the blob object contains the recorded data that
-                // can be downloaded by the user, stored on server etc.
-                //console.log('finished recording:', player.recordedData);
-                // upload recorded data
-                upload(player.recordedData);
-            });
-            let data = JSON.parse(localStorage.getItem('auth'))
-            let exp_id = this.$route.params.id
-            let _this = this
-
-            function upload(blob) {
-                let serverUrl = 'https://travvapi.herokuapp.com/api/reviews';
-                let formData = new FormData();
-                formData.append('video', blob, blob.name);
-                formData.append('user_id', data.user.id);
-                formData.append('experience_id', _this.$route.params.id);
-                formData.append('rating', '0');
-                console.log('upload recording ' + blob.name + ' to ' + serverUrl);
-                // start upload
-                axios.post(serverUrl, formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                        'Authorization': `Bearer ${data.access_token}`
-                    }
-                }).then(
-                    (response) => {
-                        //console.log(response.data.data)
-                        window.location.reload(1);
-                    }
-                ).catch(
-                    error => console.error(error.response.data)
-                );
-            }
-        },
-        mounted: function () {}
+export default {
+  name: "ExperienceView",
+  data() {
+    return {
+      images: [],
+      index: null,
+      ratings: [],
+      current_location: null,
+      rate_this_exp_text: "",
+      start_date: "4/12/2019",
+      end_date: "6/12/2019",
+      dateFormat: "D MMM",
+      dateOne: "",
+      dateTwo: "",
+      time: "",
+      time2: "",
+      FavoritesExperience: [],
+      reviewStar: null,
+      toggleRating: false,
+      loading2: false,
+      checkBookingStatus: null,
+      reviews: [],
+      securityStar: null,
+      delivery_address: null,
+      getSimilarExperienceData: [],
+      count: 0,
+      booking_number: this.booking_number,
+      vm: {
+        searchPlace: "",
+        location: {},
+        place: {
+          formatted_address: ""
+        }
+      },
+      // custom lang
+      //                 toggleSecurityBox
+      securityRating: false,
+      lang: {
+        days: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+        months: [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec"
+        ],
+        pickers: [
+          "next 7 days",
+          "next 30 days",
+          "previous 7 days",
+          "previous 30 days"
+        ],
+        placeholder: {
+          date: "Start Date",
+          dateRange: "Start Date"
+        }
+      },
+      lang2: {
+        days: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+        months: [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec"
+        ],
+        pickers: [
+          "next 7 days",
+          "next 30 days",
+          "previous 7 days",
+          "previous 30 days"
+        ],
+        placeholder: {
+          date: "End Date",
+          dateRange: "End Date"
+        }
+      },
+      // custom range shortcuts
+      shortcuts: [
+        {
+          text: "Today",
+          onClick: () => {
+            this.time3 = [new Date(), new Date()];
+          }
+        }
+      ],
+      timePickerOptions: {
+        start: "00:00",
+        step: "00:30",
+        end: "23:30"
+      }
+    };
+  },
+  watch: {
+    vm: function() {
+      if (this.vm.place) {
+        this.vm.searchPlace = this.vm.place.formatted_address;
+      }
     }
+  },
+  components: {
+    Navbar,
+    DatePicker,
+    Circle9,
+    VueGallerySlideshow,
+    StarRating,
+    ContentLoader
+  },
+  methods: {
+    ...mapActions(["getExperienceById"]),
+    ...mapActions(["bookingExperience"]),
+    ...mapActions(["rateExperience"]),
+    ...mapActions(["getMyBookings"]),
+    ...mapActions(["getExperienceTypes"]),
+    getSimilarExperiences() {
+      axios
+        .get(
+          `${this.$store.state.API_BASE}/merchants/${this.experience.merchant_id}/experiences`
+        )
+        .then(response => {
+          console.log(response.data.data);
+          this.getSimilarExperienceData = response.data.data;
+          this.getSimilarExperienceData.shift();
+          this.loading2 = false;
+          if (response.data.data.length < 3) {
+            axios
+              .get(
+                `${this.$store.state.API_BASE}/experiences?state=${this.experience.state}`
+              )
+              .then(response => {
+                this.getSimilarExperienceData = response.data.data;
+              })
+              .catch(error => {
+                //console.log(error.response.data)
+              });
+          }
+        })
+        .catch(err => {
+          this.loading2 = false;
+          console.log(err);
+        });
+    },
+    increment() {
+      let totalNumber = this.experience.number_admittable;
+      let currentNumber = 0;
+
+      if (currentNumber < totalNumber) {
+        currentNumber++;
+        this.count += currentNumber;
+        this.booking_number = this.count;
+        this.experience.number_admittable = totalNumber - currentNumber;
+      }
+    },
+    decrement() {
+      let totalNumber = this.experience.number_admittable;
+      let current = this.count;
+      if (this.count > 0 && this.count <= totalNumber) {
+        //current -- ;
+        this.count--;
+        totalNumber++;
+        this.booking_number = this.count;
+        this.experience.number_admittable = totalNumber;
+      }
+    },
+    getDirection() {
+      //console.log('Hi There')
+      if (this.vm.place) {
+        document.getElementsByTagName("iframe")[0].src =
+          "https://www.google.com/maps/embed/v1/directions?origin=" +
+          this.vm.place.formatted_address +
+          "&destination=" +
+          this.experience.location.replace(/\s+/g, "+") +
+          "&key=AIzaSyDgnbjMxlLW2BHBPJ4-iFsX_aB9jEHBFCg";
+      }
+    },
+    rateExperienceSubmit() {
+      if (this.auth) {
+        if (this.toggleRating) {
+          // user_id
+          // experience_id
+          // review_body
+          this.rateExperience({
+            user_id: this.auth.user.id,
+            experience_id: this.experience.id,
+            review_body: this.rate_this_exp_text,
+            rating: this.reviewStar,
+            security_rating: this.securityStar
+          }).then(res => {
+            this.$noty.success("Your review has been submitted");
+            this.toggleRating = false;
+            this.rate_this_exp_text = "";
+            this.getExperienceById(this.$route.params["id"]);
+            window.location.reload(1);
+          });
+        }
+      } else {
+        this.$noty.error(
+          "Oops, You need to Login to Review or Rate an Expereince"
+        );
+      }
+    },
+    bookExperience: function() {
+      if (this.auth) {
+        //console.log("in Booking")
+
+        this.$validator
+          .validate("deliveryAddress", this.deliveryAddress)
+          .then(valid => {
+            console.log(valid + " was returned");
+            if (valid) {
+              //console.log(valid);
+              // if (this.time[0]) {
+              if (this.delivery_address) {
+                let data = {
+                  // food_menu_ids: ["2", "3", "4"],
+                  // price: this.experience.naira_price,
+                  merchant_id: this.experience.merchant_id,
+                  user_id: this.auth.user.id,
+                  experience_id: this.$route.params.id,
+                  // start_date: this.formatDate(this.time[0]),
+                  // end_date: this.formatDate(this.time[1]),
+                  address: this.delivery_address,
+                  booking_number: this.booking_number
+                };
+                let requestHeaders = {
+                  headers: {
+                    Authorization:
+                      "Bearer " + this.$store.state.auth.access_token
+                  }
+                };
+                //console.log('Hi on souvernirs ')
+                //console.log(this.experience.experience_type)
+                // console.log(this.formatDate(this.time[0]));
+                this.bookingExperience(data).then(response => {
+                  //console.log(response)
+                  axios
+                    .post(
+                      `${this.$store.state.API_BASE}/cart/add`,
+                      {
+                        booking_id: response.id
+                      },
+                      requestHeaders
+                    )
+                    .then(response => {
+                      //console.log(response.data.data);
+                    })
+                    .catch(error => {
+                      //console.log(error)
+                    });
+                  this.checkIfBooked();
+                  this.ratingInfo();
+                  this.$noty.success(
+                    "This experience has been added to your cart"
+                  );
+                });
+              } else {
+                //console.log(this.experience.experience_type)
+                if (this.time[0]) {
+                  let data = {
+                    price: this.experience.naira_price,
+                    merchant_id: this.experience.merchant_id,
+                    user_id: this.auth.user.id,
+                    experience_id: this.$route.params.id,
+                    //start_date: this.time,
+                    //end_date: this.time2,
+                    booking_number: this.booking_number
+                  };
+                  if (this.experienceIsFullyBookedForStartDate(data)) {
+                    this.$noty.warning(
+                      "Sorry, this experience is fully booked."
+                    );
+                    return;
+                  }
+                  let requestHeaders = {
+                    headers: {
+                      Authorization:
+                        "Bearer " + this.$store.state.auth.access_token
+                    }
+                  };
+                  //console.log('Experience Type')
+                  //console.log(this.experience.experience_type)
+                  if (this.experience.experience_type == "restaurants") {
+                    console.log("in Resturants");
+                    axios
+                      .post(
+                        `${this.$store.state.API_BASE}/bookings`,
+                        data,
+                        requestHeaders
+                      )
+                      .then(response => {
+                        this.checkIfBooked();
+                        this.$noty.success(
+                          "Restaurant Has been added to booking"
+                        );
+                        // console.log(response.data.data)
+                      })
+                      .catch(error => {
+                        this.$noty.error("Something Went Wrong.");
+                        // console.log(error.response.data)
+                      });
+                  } else {
+                    // console.log(this.formatDate(this.time[0]));
+                    this.bookingExperience(data).then(response => {
+                      //console.log(response)
+                      axios
+                        .post(
+                          `${this.$store.state.API_BASE}/cart/add`,
+                          {
+                            booking_id: response.id
+                          },
+                          requestHeaders
+                        )
+                        .then(response => {
+                          //console.log(response.data.data);
+                        })
+                        .catch(error => {
+                          // console.log(error)
+                        });
+                      this.checkIfBooked();
+                      this.$noty.success(
+                        "This experience has been added to your cart"
+                      );
+                    });
+                  }
+                } else {
+                  this.$noty.error("Please enter the field");
+                }
+              }
+              //console.log("in Booking")
+
+              // } else {
+              //     this.$noty.error("Please enter a check in and check out date");
+              // }
+            }
+          })
+          .catch(err => {
+            // console.log("A validation error occured")
+          });
+      } else {
+        //console.log("in Booking")
+        this.$noty.error("Oops, You need to Login to Book and Experience");
+      }
+    },
+    formatDate(date) {
+      var d = new Date(date),
+        month = "" + (d.getMonth() + 1),
+        day = "" + d.getDate(),
+        year = d.getFullYear();
+
+      if (month.length < 2) month = "0" + month;
+      if (day.length < 2) day = "0" + day;
+
+      return [year, month, day].join("-");
+    },
+    toggleRatingBox() {
+      if (this.auth) {
+        this.toggleRating = true;
+      } else {
+        this.$noty.error(
+          "Oops, You need to Login to Review or Rate an Expereince"
+        );
+      }
+    },
+    toggleSecurityBox() {
+      if (this.auth) {
+        // if (this.checkBookingStatus) {
+        this.toggleRating = true;
+        this.securityRating = true;
+        // } else {
+        // this.$noty.warning("You need to book this Expereince to rate");
+        // }
+      } else {
+        this.$noty.error(
+          "Oops, You need to Login to Review or Rate an Expereince"
+        );
+      }
+    },
+    ratingInfo() {
+      this.loading2 = true;
+      // let requestHeaders = {
+      //     headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
+      // };1
+      axios
+        .get(
+          `${this.$store.state.API_BASE}/experiences/${this.$route.params.id}/reviews`
+        )
+        .then(response => {
+          this.ratings = response.data.rating_info;
+          this.loading2 = false;
+          this.reviews = response.data;
+        })
+        .catch(err => {
+          this.loading2 = false;
+          //console.log(err);
+        });
+    },
+    cofirmForFavorite() {
+      axios
+        .get(
+          `${this.$store.state.API_BASE}/favourites?user_id=${this.$store.state.auth.user.id}?experience_id?=${this.$route.params.id}`
+        )
+        .then(response => {
+          //console.log('Favorites Data')
+          //console.log(response.data.data)
+        })
+        .catch(err => {
+          // this.loading2 = false;
+          //console.log(err.response.data);
+        });
+    },
+    postFavoriteExeperience(placeId) {
+      this.loading = true;
+      if (this.auth && this.auth.access_token) {
+        let data = {
+          user_id: this.auth.user.id,
+          experience_id: placeId
+        };
+        let requestHeaders = {
+          headers: {
+            Authorization: "Bearer " + this.$store.state.auth.access_token
+          }
+        };
+        Axios.post(
+          `${this.$store.state.API_BASE}/favourites`,
+          data,
+          requestHeaders
+        )
+          .then(response => {
+            //console.log(response.data.data);
+            this.loading = false;
+            this.$noty.success(
+              "Experience has been added to your Favourites list"
+            );
+          })
+          .catch(error => {
+            //console.log(error.data)
+            this.loading = false;
+          });
+      } else {
+        this.$noty.error("You need to Login to Have a Favourite Experience");
+      }
+    },
+
+    experienceIsFullyBookedForStartDate(data) {
+      axios
+        .get(
+          `${this.$store.state.API_BASE}/experiences/fully_booked/${data.experience_id}?merchant_id=${data.merchant_id}&start_date=${data.start_date}`
+        )
+        .then(response => {
+          console.log("experience fully booked", response);
+          return response.data.is_experience_fully_booked;
+        })
+        .catch(error => {
+          console.log(error);
+          throw error;
+        });
+    },
+    checkIfBooked() {
+      this.loading2 = true;
+      let requestHeaders = {
+        headers: {
+          Authorization: "Bearer " + this.$store.state.auth.access_token
+        }
+      };
+      axios
+        .post(
+          `${this.$store.state.API_BASE}/bookings/exists`,
+          {
+            experience_id: this.$route.params.id,
+            user_id: this.$store.state.auth.user.id
+          },
+          requestHeaders
+        )
+        .then(response => {
+          //console.log(response.data)
+          this.checkBookingStatus = response.data[0];
+          this.loading2 = false;
+        })
+        .catch(err => {
+          this.$noty.error(
+            "Oops, You need to Login to Review or Rate an Experience"
+          );
+        });
+    },
+    gotoMenu() {
+      this.$router.push({
+        name: "RestaurantMenu",
+        params: {
+          id: this.experience.id,
+          name: this.experience.title
+            .toString()
+            .toLowerCase()
+            .replace(/\s/g, "-")
+        }
+      });
+      window.location.reload(1);
+    },
+    getUserFavorites() {
+      if (this.$store.state.auth) {
+        // this.loading = true;
+        Axios.get(
+          `${this.$store.state.API_BASE}/favourites?user_id=${this.$store.state.auth.user.id}&experience_id=${this.$route.params.id}`
+        )
+          .then(response => {
+            //console.log('User Fav')
+            //console.log(response.data.data);
+            this.FavoritesExperience = response.data.data;
+            this.loading = false;
+          })
+          .catch(error => {
+            //console.log(err.data);
+            // this.loading = false;
+          });
+      } else {
+        this.$noty.error("Need to Login to Add Favorites");
+        this.$router.push("Login in to add to favorites");
+      }
+    },
+    cancelUserFavorites() {
+      // axios.delete(`${this.$store.state.API_BASE}/`)
+    },
+    getMerchantExtras() {
+      axios
+        .get(
+          `${this.$store.state.API_BASE}/merchant/extras/${this.experience.merchant_id}`
+        )
+        .then(response => {
+          //console.log(response.data.data)
+        })
+        .catch(error => {
+          //console.log(error.response.data)
+        });
+    },
+    chatWithMerchant() {
+      let user_data = null;
+      axios
+        .get(
+          `${this.$store.state.API_BASE}/merchants/${this.experience.merchant_id}/extras`
+        )
+        .then(response => {
+          user_data = response.data.data.user_data;
+          //console.log(response.data.data)
+          this.$router.push({
+            name: "Messages",
+            params: {
+              recipient: user_data.id
+            }
+          });
+        })
+        .catch(error => {
+          console.log(error.response.data);
+        });
+    }
+  },
+  computed: {
+    ...mapState(["experience_types"]),
+    ...mapState(["experience"]),
+    ...mapState(["loading"]),
+    ...mapState(["auth"]),
+    ...mapState(["bookings"]),
+    totalRatingCount() {
+      // if (this.ratings != null && this.ratings.length > 0){
+      return (
+        this.ratings[5] +
+        this.ratings[4] +
+        this.ratings[3] +
+        this.ratings[2] +
+        this.ratings[1]
+      );
+      // }
+      // return 0;
+    }
+  },
+  created: function() {
+    this.getUserFavorites();
+    this.getExperienceById(this.$route.params["id"]).then(response => {
+      // console.log('In here already')
+      // console.log(response)
+      // console.log(this.experience)
+      for (let i = 0; i <= this.experience.images.length; i++) {
+        // console.log(this.experience.images[i].image)
+        if (this.experience.images.length > 1) {
+          this.images.push(this.experience.images[i].image);
+        }
+      }
+    });
+    // if(this.experience){
+
+    // }
+    // this.getMyBookings();
+    this.bookings.forEach(book => {
+      // console.log(book);
+    });
+
+    this.ratingInfo();
+    this.getExperienceTypes();
+    if (this.$store.state.auth) {
+      this.checkIfBooked();
+    }
+    this.getSimilarExperiences();
+    this.loading2 = false;
+    this.getUserFavorites();
+    player.on("finishRecord", function() {
+      // the blob object contains the recorded data that
+      // can be downloaded by the user, stored on server etc.
+      //console.log('finished recording:', player.recordedData);
+      // upload recorded data
+      upload(player.recordedData);
+    });
+    let data = JSON.parse(localStorage.getItem("auth"));
+    let exp_id = this.$route.params.id;
+    let _this = this;
+
+    function upload(blob) {
+      let serverUrl = "https://travvapi.herokuapp.com/api/reviews";
+      let formData = new FormData();
+      formData.append("video", blob, blob.name);
+      formData.append("user_id", data.user.id);
+      formData.append("experience_id", _this.$route.params.id);
+      formData.append("rating", "0");
+      console.log("upload recording " + blob.name + " to " + serverUrl);
+      // start upload
+      axios
+        .post(serverUrl, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${data.access_token}`
+          }
+        })
+        .then(response => {
+          //console.log(response.data.data)
+          window.location.reload(1);
+        })
+        .catch(error => console.error(error.response.data));
+    }
+  },
+  mounted: function() {}
+};
 </script>
 
 <style scoped>
-    .rounded-circle {
-        border-radius: 50% !important;
-        height: 50px;
-        width: 50px;
-    }
+.rounded-circle {
+  border-radius: 50% !important;
+  height: 50px;
+  width: 50px;
+}
 
-    .vue-star-rating-star {
-        overflow: visible !important;
-        height: 40px;
-        width: 40px;
-    }
-    .mx-datepicker {
-        width: 150px;
-    }
+.vue-star-rating-star {
+  overflow: visible !important;
+  height: 40px;
+  width: 40px;
+}
+.mx-datepicker {
+  width: 150px;
+}
 </style>
 <style>
-    .vue-star-rating-rating-text {
-        display: none;
-    }
+.vue-star-rating-rating-text {
+  display: none;
+}
 
-    .image {
-        width: 100px;
-        height: 100px;
-        background-size: cover;
-        cursor: pointer;
-        margin: 5px;
-        border-radius: 3px;
-        border: 1px solid lightgray;
-        object-fit: contain;
-    }
+.image {
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  cursor: pointer;
+  margin: 5px;
+  border-radius: 3px;
+  border: 1px solid lightgray;
+  object-fit: contain;
+}
 
-    @media only screen and (max-width: 576px) {
-        .project_area {
-            margin: 10px 10px 42px 10px !important;
-        }
+@media only screen and (max-width: 576px) {
+  .project_area {
+    margin: 10px 10px 42px 10px !important;
+  }
 
-        .digital_feature.blog_part {
-            margin: 0px 10px 42px 10px !important;
-            color: #555 !important;
-        }
+  .digital_feature.blog_part {
+    margin: 0px 10px 42px 10px !important;
+    color: #555 !important;
+  }
 
-        .sidebar-pd {
-            /* padding-left: 0 !important; */
-        }
+  .sidebar-pd {
+    /* padding-left: 0 !important; */
+  }
 
-        .guest_review {
-            display: none;
-        }
+  .guest_review {
+    display: none;
+  }
 
-        .guest_review_for_mobile {
-            display: block !important;
-            border-top: 2px solid #eee;
-            height: 150px;
-            padding-top: 20px;
-        }
+  .guest_review_for_mobile {
+    display: block !important;
+    border-top: 2px solid #eee;
+    height: 150px;
+    padding-top: 20px;
+  }
 
-        .average_review_section h2 {
-            font-weight: bolder;
-            font-size: 1.2rem;
-        }
+  .average_review_section h2 {
+    font-weight: bolder;
+    font-size: 1.2rem;
+  }
 
-        .average_review_section h5 {
-            color: #776d6d;
-            font-weight: bolder;
-            font-size: 1rem
-        }
+  .average_review_section h5 {
+    color: #776d6d;
+    font-weight: bolder;
+    font-size: 1rem;
+  }
 
-        .gst_review_content h2 {
-            font-weight: bolder;
-            font-size: 1.5rem;
-        }
+  .gst_review_content h2 {
+    font-weight: bolder;
+    font-size: 1.5rem;
+  }
 
-        .star_range {
-            font-size: 1.1rem;
-            font-weight: bolder;
-            margin-bottom: 5px;
-        }
+  .star_range {
+    font-size: 1.1rem;
+    font-weight: bolder;
+    margin-bottom: 5px;
+  }
 
-        .progress {
-            height: 2rem;
-        }
+  .progress {
+    height: 2rem;
+  }
 
-        .guest_review_for_mobile {
-            display: none;
-        }
+  .guest_review_for_mobile {
+    display: none;
+  }
 
-        /* .sidebar-pd{
+  /* .sidebar-pd{
         padding-left: 80px;
     } */
-        .nagoya {
-            max-height: 200px;
-            /* background-size:100% 100%; */
-            height: 200px;
-        }
-    }
+  .nagoya {
+    max-height: 200px;
+    /* background-size:100% 100%; */
+    height: 200px;
+  }
+}
 
-    @media only screen and (max-width: 800px) {
-        .booking-action {
-            position: fixed;
-            bottom: 0;
-            background: white;
-            z-index: 1000;
-            width: 100%;
-            margin: unset;
-            padding-top: 15px;
-            padding-bottom: 15px;
-            padding-right: 10px;
-            padding-left: 10px;
-            left: 0;
-            right: 0;
-            border-top: 2px solid rgb(235, 235, 235);
-        }
+@media only screen and (max-width: 800px) {
+  .booking-action {
+    position: fixed;
+    bottom: 0;
+    background: white;
+    z-index: 1000;
+    width: 100%;
+    margin: unset;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-right: 10px;
+    padding-left: 10px;
+    left: 0;
+    right: 0;
+    border-top: 2px solid rgb(235, 235, 235);
+  }
 
-        .booking-action button.book_btn,
-        a.book_btn {
-            padding: 10px 15px;
-            /* width: auto; */
-            font-size: 14px;
-        }
+  .booking-action button.book_btn,
+  a.book_btn {
+    padding: 10px 15px;
+    /* width: auto; */
+    font-size: 14px;
+  }
 
-        .booking-action .mx-datepicker.mx-datepicker-range {
-            width: 100%;
-        }
-    }
+  .booking-action .mx-datepicker.mx-datepicker-range {
+    width: 100%;
+  }
+}
 
-    .average_review_section h2 {
-        font-weight: bolder;
-        font-size: 1.2rem;
-    }
+.average_review_section h2 {
+  font-weight: bolder;
+  font-size: 1.2rem;
+}
 
-    .average_review_section h5 {
-        color: #776d6d;
-        font-weight: bolder;
-        font-size: 1rem
-    }
+.average_review_section h5 {
+  color: #776d6d;
+  font-weight: bolder;
+  font-size: 1rem;
+}
 
-    .gst_review_content h2 {
-        font-weight: bolder;
-        font-size: 1.5rem;
-    }
+.gst_review_content h2 {
+  font-weight: bolder;
+  font-size: 1.5rem;
+}
 
-    .star_range {
-        font-size: 1.1rem;
-        font-weight: bolder;
-        margin-bottom: 5px;
-    }
+.star_range {
+  font-size: 1.1rem;
+  font-weight: bolder;
+  margin-bottom: 5px;
+}
 
-    .progress {
-        height: 2.5rem;
-    }
+.progress {
+  height: 2.5rem;
+}
 
-    .guest_review_for_mobile {
-        display: none;
-    }
+.guest_review_for_mobile {
+  display: none;
+}
 
-    /* .sidebar-pd{
+/* .sidebar-pd{
     padding-left: 80px;
 } */
-    .navbar-brand {
-        color: #555 !important;
-    }
+.navbar-brand {
+  color: #555 !important;
+}
 
-    .main_menu_area .navbar .navbar-nav li a {
-        color: #555 !important;
-    }
+.main_menu_area .navbar .navbar-nav li a {
+  color: #555 !important;
+}
 
-    .navbar-brand {
-        color: #555 !important;
-    }
+.navbar-brand {
+  color: #555 !important;
+}
 
-    .main_menu_area .navbar .navbar-nav li a {
-        color: #555 !important;
-    }
+.main_menu_area .navbar .navbar-nav li a {
+  color: #555 !important;
+}
 
-    .project_area {
-        height: 400px !important;
-        margin: 10px 88px 42px 88px;
-        margin-bottom: 57px;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-    }
+.project_area {
+  height: 400px !important;
+  margin: 10px 88px 42px 88px;
+  margin-bottom: 57px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
 
-    .cover_image {
-        width: 100%;
-    }
+.cover_image {
+  width: 100%;
+}
 
-    .default_background {
-        background: url('../assets/travvap_img_default.jpg');
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-    }
+.default_background {
+  background: url("../assets/travvap_img_default.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 
-    .project_area:before {
-        background: none;
-    }
+.project_area:before {
+  background: none;
+}
 
-    .digital_feature.blog_part {
-        margin: 0px 88px 42px 88px;
-        color: #555 !important;
-    }
+.digital_feature.blog_part {
+  margin: 0px 88px 42px 88px;
+  color: #555 !important;
+}
 
-    .blog_content h1 {
-        font-family: MuseoSans700 !important;
-        font-size: 40px;
-        /* font-weight: bold; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.09;
-        letter-spacing: normal;
-        color: #555555;
-        margin-top: 5px;
-        margin-bottom: 47px;
-    }
+.blog_content h1 {
+  font-family: MuseoSans700 !important;
+  font-size: 40px;
+  /* font-weight: bold; */
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.09;
+  letter-spacing: normal;
+  color: #555555;
+  margin-top: 5px;
+  margin-bottom: 47px;
+}
 
-    .blog_content h3 {
-        font-family: MuseoSans700 !important;
-        font-size: 18px;
-        /* font-weight: bold; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.09;
-        letter-spacing: normal;
-        color: #555555;
-    }
+.blog_content h3 {
+  font-family: MuseoSans700 !important;
+  font-size: 18px;
+  /* font-weight: bold; */
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.09;
+  letter-spacing: normal;
+  color: #555555;
+}
 
-    .blog_content h5 {
-        font-family: MuseoSans500 !important;
-        font-size: 22px;
-        /* font-weight: 500; */
-        /* font-weight: bold; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #555555;
-        margin-bottom: 10px;
-    }
+.blog_content h5 {
+  font-family: MuseoSans500 !important;
+  font-size: 22px;
+  /* font-weight: 500; */
+  /* font-weight: bold; */
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #555555;
+  margin-bottom: 10px;
+}
 
-    .blog_content p {
-        /* font-family: MuseoSans700 !important; */
-        font-size: 16px !important;
-        /* font-weight: 500; */
-        font-style: normal !important;
-        font-stretch: normal !important;
-        line-height: normal !important;
-        letter-spacing: normal !important;
-        color: #555555 !important;
-        margin-bottom: 10px !important;
+.blog_content p {
+  /* font-family: MuseoSans700 !important; */
+  font-size: 16px !important;
+  /* font-weight: 500; */
+  font-style: normal !important;
+  font-stretch: normal !important;
+  line-height: normal !important;
+  letter-spacing: normal !important;
+  color: #555555 !important;
+  margin-bottom: 10px !important;
 
-        line-height: 1.5em !important;
-        text-align: justify !important;
-    }
+  line-height: 1.5em !important;
+  text-align: justify !important;
+}
 
-    .travv-sidebar {
-        border: 1px solid rgb(238, 230, 230);
-        background: #FFF !important;
-        width: 100%;
-        height: 475px;
-        padding: 30px 0 30px 25px !important;
-        box-shadow: 0 0 3px rgba(0, 0, 0, .2);
-        -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .2);
-    }
+.travv-sidebar {
+  border: 1px solid rgb(238, 230, 230);
+  background: #fff !important;
+  width: 100%;
+  height: 475px;
+  padding: 30px 0 30px 25px !important;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+}
 
-    .travv-sidebar_text h3 {
-        font-family: MuseoSans500 !important;
-        font-size: 18px;
-        /* font-weight: bolder; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.2;
-        letter-spacing: normal;
-        color: #f81894;
-    }
+.travv-sidebar_text h3 {
+  font-family: MuseoSans500 !important;
+  font-size: 18px;
+  /* font-weight: bolder; */
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.2;
+  letter-spacing: normal;
+  color: #f81894;
+}
 
-    .travv-sidebar_text h5 {
-        font-family: MuseoSans500 !important;
-        font-size: 16px;
-        /* font-weight: bolder; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.2;
-        letter-spacing: normal;
-        color: #555 !important;
-        margin-bottom: 24px;
-    }
+.travv-sidebar_text h5 {
+  font-family: MuseoSans500 !important;
+  font-size: 16px;
+  /* font-weight: bolder; */
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.2;
+  letter-spacing: normal;
+  color: #555 !important;
+  margin-bottom: 24px;
+}
 
-    .searchbar {
-        height: 100%;
-        border-radius: 8px;
-        background-color: #ffffff;
-    }
+.searchbar {
+  height: 100%;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
 
-    .search_input,
-    .searchbar>.search_input {
-        width: 255px;
-        height: 100%;
-        color: #000;
-        padding: 11px 0 11px 29px;
-        transition: width .4s linear;
-        font-size: 20px;
-        margin-left: 25px;
-        border-radius: 8px;
-        border: solid 1px #979797;
-        border-radius: 8px 0 0 8px;
-    }
+.search_input,
+.searchbar > .search_input {
+  width: 255px;
+  height: 100%;
+  color: #000;
+  padding: 11px 0 11px 29px;
+  transition: width 0.4s linear;
+  font-size: 20px;
+  margin-left: 25px;
+  border-radius: 8px;
+  border: solid 1px #979797;
+  border-radius: 8px 0 0 8px;
+}
 
-    .search_input {
-        color: #fff;
-        border: 0;
-        outline: 0;
-        background: 0 0;
-        caret-color: #000;
-    }
+.search_input {
+  color: #fff;
+  border: 0;
+  outline: 0;
+  background: 0 0;
+  caret-color: #000;
+}
 
-    /* .searchbar>.search_input {
+/* .searchbar>.search_input {
     caret-color: red
 } */
 
-    input.search_input::placeholder {
-        color: #555;
-    }
-
-    input::-webkit-calendar-picker-indicator {
-        display: none
-    }
-
-    .searchbar>.search_icon {
-        background: #f81894;
-        width: 59px;
-        height: 47px;
-        border-radius: 0 8px 8px 0;
-    }
-
-    .search_icon {
-        height: 100%;
-        width: 78px;
-        float: right;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 8px;
-        text-decoration: none
-    }
-
-    .review_content h4 {
-        font-family: MuseoSans500 !important;
-        font-size: 35px;
-        font-weight: 500;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #555555;
-        margin-bottom: 49px;
-    }
-
-    .guest_review {
-        border-top: 2px solid #eee;
-        height: 150px;
-        padding-top: 20px;
-    }
-
-    .guest_review_cont h4 {
-        font-family: MuseoSans500 !important;
-        font-size: 18px;
-        /* font-weight: bolder; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #555555;
-        margin-bottom: 30px;
-    }
-
-    .guest_review_cont p {
-        font-family: MuseoSans !important;
-        font-size: 13px;
-        font-weight: 200;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #555555;
-    }
-
-    .review_name {
-        font-family: MuseoSans !important;
-        font-size: 16px !important;
-        font-weight: 100;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        margin-bottom: 15px;
-    }
-
-    .review_date {
-        font-family: MuseoSans500 !important;
-        font-size: 12px;
-        /* font-weight: bolder; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #555;
-        margin-bottom: 15px;
-    }
-
-    .review_rev {
-        font-family: MuseoSans500 !important;
-        font-size: 12px;
-        /* font-weight: bolder; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #555;
-    }
-
-    .guest_review_pic {
-        width: 100%;
-        height: 120px;
-        background: url('../assets/avatar.png');
-        background-position: center;
-        background-size: contain;
-        background-repeat: no-repeat;
-    }
-
-    @media only screen and (max-width: 576px) {
-        .project_area {
-            margin: 121px 10px 42px 10px;
-        }
-
-        .digital_feature.blog_part {
-            margin: 0px 10px 42px 10px;
-            color: #555 !important;
-        }
-    }
-
-    .mx-datepicker.mx-datepicker-range {
-        /* width: 250px; */
-        width: 100%;
-    }
-
-    .book_btn {
-        margin-top: 14px;
-        background: #F81894;
-        border: none;
-        font-family: MuseoSans700;
-        font-size: 16px;
-        /* width: 130px; */
-        height: 45px;
-        border-radius: 5px;
-        background-color: #f81894;
-        color: #FFF;
-        cursor: pointer;
-    }
-
-    #reviewStars-input input:checked~label,
-    #reviewStars-input label,
-    #reviewStars-input label:hover,
-    #reviewStars-input label:hover~label {
-        background: url('http://positivecrash.com/wp-content/uploads/ico-s71a7fdede6.png') no-repeat;
-    }
-
-    #reviewStars-input {
-
-        /*fix floating problems*/
-        overflow: hidden;
-        *zoom: 1;
-        /*end of fix floating problems*/
-
-        position: relative;
-        float: left;
-    }
-
-    #reviewStars-input input {
-        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-        opacity: 0;
-
-        width: 43px;
-        height: 40px;
-
-        position: absolute;
-        top: 0;
-        z-index: 0;
-    }
-
-    #reviewStars-input input:checked~label {
-        background-position: 0 -40px;
-        height: 40px;
-        width: 43px;
-    }
-
-    #reviewStars-input label {
-        background-position: 0 0;
-        height: 40px;
-        width: 43px;
-        float: right;
-        cursor: pointer;
-        margin-right: 10px;
-
-        position: relative;
-        z-index: 1;
-    }
-
-    #reviewStars-input label:hover,
-    #reviewStars-input label:hover~label {
-        background-position: 0 -40px;
-        height: 40px;
-        width: 43px;
-    }
-
-    #reviewStars-input #star-0 {
-        left: 0px;
-    }
-
-    #reviewStars-input #star-1 {
-        left: 53px;
-    }
-
-    #reviewStars-input #star-2 {
-        left: 106px;
-    }
-
-    #reviewStars-input #star-3 {
-        left: 159px;
-    }
-
-    #reviewStars-input #star-4 {
-        left: 212px;
-    }
-
-    #reviewStars-input #star-5 {
-        left: 265px;
-    }
-
-    #securityStars-input input:checked~label,
-    #securityStars-input label,
-    #securityStars-input label:hover,
-    #securityStars-input label:hover~label {
-        background: url('http://positivecrash.com/wp-content/uploads/ico-s71a7fdede6.png') no-repeat;
-    }
-
-    #securityStars-input {
-
-        /*fix floating problems*/
-        overflow: hidden;
-        *zoom: 1;
-        /*end of fix floating problems*/
-
-        position: relative;
-        float: left;
-    }
-
-    #securityStars-input input {
-        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-        opacity: 0;
-
-        width: 43px;
-        height: 40px;
-
-        position: absolute;
-        top: 0;
-        z-index: 0;
-    }
-
-    #securityStars-input input:checked~label {
-        background-position: 0 -40px;
-        height: 40px;
-        width: 43px;
-    }
-
-    #securityStars-input label {
-        background-position: 0 0;
-        height: 40px;
-        width: 43px;
-        float: right;
-        cursor: pointer;
-        margin-right: 10px;
-
-        position: relative;
-        z-index: 1;
-    }
-
-    #securityStars-input label:hover,
-    #securityStars-input label:hover~label {
-        background-position: 0 -40px;
-        height: 40px;
-        width: 43px;
-    }
-
-    #securityStars-input #star-2-0 {
-        left: 0px;
-    }
-
-    #securityStars-input #star-2-1 {
-        left: 53px;
-    }
-
-    #securityStars-input #star-2-2 {
-        left: 106px;
-    }
-
-    #securityStars-input #star-2-3 {
-        left: 159px;
-    }
-
-    #securityStars-input #star-2-4 {
-        left: 212px;
-    }
-
-    #securityStars-input #star-2-5 {
-        left: 265px;
-    }
-
-    .sidebar_text h5 {
-        color: #555 !important;
-    }
-
-    .sidebar_text h5 {
-        /*font-family: MuseoSans500 !important;*/
-        font-size: 16px !important;
-    }
-
-    .navbar-brand {
-        color: #555 !important;
-    }
-
-    .main_menu_area .navbar .navbar-nav li a {
-        color: #555 !important;
-    }
-
-    .navbar-brand {
-        color: #555 !important;
-    }
-
-    .main_menu_area .navbar .navbar-nav li a {
-        color: #555 !important;
-    }
-
-    .project_area {
-        height: 400px !important;
-        margin: 20px 88px 42px 88px;
-        margin-bottom: 57px;
-    }
-
-    .cover_image {
-        width: 100%;
-    }
-
-    .nagoya {
-        background: url('../assets/nagoya.png');
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-    }
-
-    .project_area:before {
-        background: none;
-    }
-
-    .digital_feature.blog_part {
-        margin: 0px 88px 42px 88px;
-        color: #555 !important;
-    }
-
-    .blog_content h1 {
-        font-family: MuseoSans700 !important;
-        /* font-weight: bold; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.09;
-        letter-spacing: normal;
-        color: #555555;
-        margin-top: 5px;
-        margin-bottom: 47px;
-    }
-
-    .blog_content h3 {
-        font-family: MuseoSans700 !important;
-        font-size: 22px;
-        /* font-weight: bold; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.09;
-        letter-spacing: normal;
-        color: #555555;
-    }
-
-    .blog_content h5 {
-        font-family: MuseoSans500 !important;
-        font-size: 25px;
-        /* font-weight: 500; */
-        /* font-weight: bold; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #555555;
-        margin-bottom: 10px;
-    }
-
-    .blog_content p {
-        /* font-family: MuseoSans700 !important; */
-        font-size: 20px;
-        /* font-weight: 500; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #555555;
-        margin-bottom: 10px;
-    }
-
-    .sidebar {
-        background: #000;
-        widows: 100%;
-        width: 100%;
-        height: 475px;
-        padding: 61px 0 0 50px;
-    }
-
-    .sidebar_text h3 {
-        font-family: MuseoSans500 !important;
-        font-size: 20px;
-        /* font-weight: bolder; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.2;
-        letter-spacing: normal;
-        color: #f81894;
-    }
-
-    .sidebar_text h5 {
-        font-family: MuseoSans500 !important;
-        font-size: 20px;
-        /* font-weight: bolder; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.2;
-        letter-spacing: normal;
-        color: #ffffff;
-        margin-bottom: 24px;
-    }
-
-    .searchbar {
-        height: 100%;
-        border-radius: 8px;
-        background-color: #ffffff;
-    }
-
-    .search_input,
-    .searchbar>.search_input {
-        width: 300px;
-        height: 100%;
-        color: #000;
-        padding: 11px 0 11px 29px;
-        transition: width .4s linear;
-        font-size: 20px;
-        margin-left: 25px;
-        border-radius: 8px;
-        border: solid 1px #979797;
-        border-radius: 8px 0 0 8px;
-    }
-
-    .search_input {
-        color: #fff;
-        border: 0;
-        outline: 0;
-        background: 0 0;
-        caret-color: #000;
-    }
-
-    /* .searchbar>.search_input {
+input.search_input::placeholder {
+  color: #555;
+}
+
+input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+.searchbar > .search_icon {
+  background: #f81894;
+  width: 59px;
+  height: 47px;
+  border-radius: 0 8px 8px 0;
+}
+
+.search_icon {
+  height: 100%;
+  width: 78px;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.review_content h4 {
+  font-family: MuseoSans500 !important;
+  font-size: 35px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #555555;
+  margin-bottom: 49px;
+}
+
+.guest_review {
+  border-top: 2px solid #eee;
+  height: 150px;
+  padding-top: 20px;
+}
+
+.guest_review_cont h4 {
+  font-family: MuseoSans500 !important;
+  font-size: 18px;
+  /* font-weight: bolder; */
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #555555;
+  margin-bottom: 30px;
+}
+
+.guest_review_cont p {
+  font-family: MuseoSans !important;
+  font-size: 13px;
+  font-weight: 200;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #555555;
+}
+
+.review_name {
+  font-family: MuseoSans !important;
+  font-size: 16px !important;
+  font-weight: 100;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  margin-bottom: 15px;
+}
+
+.review_date {
+  font-family: MuseoSans500 !important;
+  font-size: 12px;
+  /* font-weight: bolder; */
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.review_rev {
+  font-family: MuseoSans500 !important;
+  font-size: 12px;
+  /* font-weight: bolder; */
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #555;
+}
+
+.guest_review_pic {
+  width: 100%;
+  height: 120px;
+  background: url("../assets/avatar.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+@media only screen and (max-width: 576px) {
+  .project_area {
+    margin: 121px 10px 42px 10px;
+  }
+
+  .digital_feature.blog_part {
+    margin: 0px 10px 42px 10px;
+    color: #555 !important;
+  }
+}
+
+.mx-datepicker.mx-datepicker-range {
+  /* width: 250px; */
+  width: 100%;
+}
+
+.book_btn {
+  margin-top: 14px;
+  background: #f81894;
+  border: none;
+  font-family: MuseoSans700;
+  font-size: 16px;
+  /* width: 130px; */
+  height: 45px;
+  border-radius: 5px;
+  background-color: #f81894;
+  color: #fff;
+  cursor: pointer;
+}
+
+#reviewStars-input input:checked ~ label,
+#reviewStars-input label,
+#reviewStars-input label:hover,
+#reviewStars-input label:hover ~ label {
+  background: url("http://positivecrash.com/wp-content/uploads/ico-s71a7fdede6.png")
+    no-repeat;
+}
+
+#reviewStars-input {
+  /*fix floating problems*/
+  overflow: hidden;
+  *zoom: 1;
+  /*end of fix floating problems*/
+
+  position: relative;
+  float: left;
+}
+
+#reviewStars-input input {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+
+  width: 43px;
+  height: 40px;
+
+  position: absolute;
+  top: 0;
+  z-index: 0;
+}
+
+#reviewStars-input input:checked ~ label {
+  background-position: 0 -40px;
+  height: 40px;
+  width: 43px;
+}
+
+#reviewStars-input label {
+  background-position: 0 0;
+  height: 40px;
+  width: 43px;
+  float: right;
+  cursor: pointer;
+  margin-right: 10px;
+
+  position: relative;
+  z-index: 1;
+}
+
+#reviewStars-input label:hover,
+#reviewStars-input label:hover ~ label {
+  background-position: 0 -40px;
+  height: 40px;
+  width: 43px;
+}
+
+#reviewStars-input #star-0 {
+  left: 0px;
+}
+
+#reviewStars-input #star-1 {
+  left: 53px;
+}
+
+#reviewStars-input #star-2 {
+  left: 106px;
+}
+
+#reviewStars-input #star-3 {
+  left: 159px;
+}
+
+#reviewStars-input #star-4 {
+  left: 212px;
+}
+
+#reviewStars-input #star-5 {
+  left: 265px;
+}
+
+#securityStars-input input:checked ~ label,
+#securityStars-input label,
+#securityStars-input label:hover,
+#securityStars-input label:hover ~ label {
+  background: url("http://positivecrash.com/wp-content/uploads/ico-s71a7fdede6.png")
+    no-repeat;
+}
+
+#securityStars-input {
+  /*fix floating problems*/
+  overflow: hidden;
+  *zoom: 1;
+  /*end of fix floating problems*/
+
+  position: relative;
+  float: left;
+}
+
+#securityStars-input input {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+
+  width: 43px;
+  height: 40px;
+
+  position: absolute;
+  top: 0;
+  z-index: 0;
+}
+
+#securityStars-input input:checked ~ label {
+  background-position: 0 -40px;
+  height: 40px;
+  width: 43px;
+}
+
+#securityStars-input label {
+  background-position: 0 0;
+  height: 40px;
+  width: 43px;
+  float: right;
+  cursor: pointer;
+  margin-right: 10px;
+
+  position: relative;
+  z-index: 1;
+}
+
+#securityStars-input label:hover,
+#securityStars-input label:hover ~ label {
+  background-position: 0 -40px;
+  height: 40px;
+  width: 43px;
+}
+
+#securityStars-input #star-2-0 {
+  left: 0px;
+}
+
+#securityStars-input #star-2-1 {
+  left: 53px;
+}
+
+#securityStars-input #star-2-2 {
+  left: 106px;
+}
+
+#securityStars-input #star-2-3 {
+  left: 159px;
+}
+
+#securityStars-input #star-2-4 {
+  left: 212px;
+}
+
+#securityStars-input #star-2-5 {
+  left: 265px;
+}
+
+.sidebar_text h5 {
+  color: #555 !important;
+}
+
+.sidebar_text h5 {
+  /*font-family: MuseoSans500 !important;*/
+  font-size: 16px !important;
+}
+
+.navbar-brand {
+  color: #555 !important;
+}
+
+.main_menu_area .navbar .navbar-nav li a {
+  color: #555 !important;
+}
+
+.navbar-brand {
+  color: #555 !important;
+}
+
+.main_menu_area .navbar .navbar-nav li a {
+  color: #555 !important;
+}
+
+.project_area {
+  height: 400px !important;
+  margin: 20px 88px 42px 88px;
+  margin-bottom: 57px;
+}
+
+.cover_image {
+  width: 100%;
+}
+
+.nagoya {
+  background: url("../assets/nagoya.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.project_area:before {
+  background: none;
+}
+
+.digital_feature.blog_part {
+  margin: 0px 88px 42px 88px;
+  color: #555 !important;
+}
+
+.blog_content h1 {
+  font-family: MuseoSans700 !important;
+  /* font-weight: bold; */
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.09;
+  letter-spacing: normal;
+  color: #555555;
+  margin-top: 5px;
+  margin-bottom: 47px;
+}
+
+.blog_content h3 {
+  font-family: MuseoSans700 !important;
+  font-size: 22px;
+  /* font-weight: bold; */
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.09;
+  letter-spacing: normal;
+  color: #555555;
+}
+
+.blog_content h5 {
+  font-family: MuseoSans500 !important;
+  font-size: 25px;
+  /* font-weight: 500; */
+  /* font-weight: bold; */
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #555555;
+  margin-bottom: 10px;
+}
+
+.blog_content p {
+  /* font-family: MuseoSans700 !important; */
+  font-size: 20px;
+  /* font-weight: 500; */
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #555555;
+  margin-bottom: 10px;
+}
+
+.sidebar {
+  background: #000;
+  widows: 100%;
+  width: 100%;
+  height: 475px;
+  padding: 61px 0 0 50px;
+}
+
+.sidebar_text h3 {
+  font-family: MuseoSans500 !important;
+  font-size: 20px;
+  /* font-weight: bolder; */
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.2;
+  letter-spacing: normal;
+  color: #f81894;
+}
+
+.sidebar_text h5 {
+  font-family: MuseoSans500 !important;
+  font-size: 20px;
+  /* font-weight: bolder; */
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.2;
+  letter-spacing: normal;
+  color: #ffffff;
+  margin-bottom: 24px;
+}
+
+.searchbar {
+  height: 100%;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.search_input,
+.searchbar > .search_input {
+  width: 300px;
+  height: 100%;
+  color: #000;
+  padding: 11px 0 11px 29px;
+  transition: width 0.4s linear;
+  font-size: 20px;
+  margin-left: 25px;
+  border-radius: 8px;
+  border: solid 1px #979797;
+  border-radius: 8px 0 0 8px;
+}
+
+.search_input {
+  color: #fff;
+  border: 0;
+  outline: 0;
+  background: 0 0;
+  caret-color: #000;
+}
+
+/* .searchbar>.search_input {
     caret-color: red
 } */
 
-    input.search_input::placeholder {
-        color: #555;
-    }
+input.search_input::placeholder {
+  color: #555;
+}
 
-    input::-webkit-calendar-picker-indicator {
-        display: none
-    }
+input::-webkit-calendar-picker-indicator {
+  display: none;
+}
 
-    .searchbar>.search_icon {
-        background: #f81894;
-        width: 59px;
-        height: 47px;
-        border-radius: 0 8px 8px 0;
-    }
+.searchbar > .search_icon {
+  background: #f81894;
+  width: 59px;
+  height: 47px;
+  border-radius: 0 8px 8px 0;
+}
 
-    .search_icon {
-        height: 100%;
-        width: 78px;
-        float: right;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 8px;
-        text-decoration: none
-    }
+.search_icon {
+  height: 100%;
+  width: 78px;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  text-decoration: none;
+}
 
-    .review_content h4 {
-        font-family: MuseoSans500 !important;
-        font-size: 45px;
-        font-weight: 500;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #555555;
-        margin-bottom: 49px;
-    }
+.review_content h4 {
+  font-family: MuseoSans500 !important;
+  font-size: 45px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #555555;
+  margin-bottom: 49px;
+}
 
-    .guest_review {
-        border-top: 2px solid #eee;
-        height: 150px;
-        padding-top: 20px;
-    }
+.guest_review {
+  border-top: 2px solid #eee;
+  height: 150px;
+  padding-top: 20px;
+}
 
-    .guest_review_cont h4 {
-        font-family: MuseoSans500 !important;
-        font-size: 18px;
-        /* font-weight: bolder; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #555555;
-        margin-bottom: 30px;
-    }
+.guest_review_cont h4 {
+  font-family: MuseoSans500 !important;
+  font-size: 18px;
+  /* font-weight: bolder; */
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #555555;
+  margin-bottom: 30px;
+}
 
-    .guest_review_cont p {
-        font-family: MuseoSans !important;
-        font-size: 13px;
-        font-weight: 200;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #555555;
-    }
+.guest_review_cont p {
+  font-family: MuseoSans !important;
+  font-size: 13px;
+  font-weight: 200;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #555555;
+}
 
-    .review_name {
-        font-family: MuseoSans900 !important;
-        font-size: 12px;
-        font-weight: bolder;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        margin-bottom: 15px;
-    }
+.review_name {
+  font-family: MuseoSans900 !important;
+  font-size: 12px;
+  font-weight: bolder;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  margin-bottom: 15px;
+}
 
-    .review_date {
-        font-family: MuseoSans500 !important;
-        font-size: 12px;
-        /* font-weight: bolder; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #555;
-        margin-bottom: 15px;
-    }
+.review_date {
+  font-family: MuseoSans500 !important;
+  font-size: 12px;
+  /* font-weight: bolder; */
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #555;
+  margin-bottom: 15px;
+}
 
-    .review_rev {
-        font-family: MuseoSans500 !important;
-        font-size: 12px;
-        /* font-weight: bolder; */
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #555;
-    }
+.review_rev {
+  font-family: MuseoSans500 !important;
+  font-size: 12px;
+  /* font-weight: bolder; */
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #555;
+}
 
-    .guest_review_pic {
-        width: 100%;
-        height: 120px;
-        background: url('../assets/avatar.png');
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-    }
+.guest_review_pic {
+  width: 100%;
+  height: 120px;
+  background: url("../assets/avatar.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.date-picker {
+  margin: 5% 0;
+  margin-top: 15%;
+}
+
+.round-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  border: 2px solid green;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  color: green;
+  outline: none;
+  margin-right: 50px;
+}
+
+.adults,
+.kids {
+  display: flex;
+  position: relative;
+  align-items: center;
+  margin: 5% 0;
+}
+
+.adult {
+  display: flex;
+  font-size: 20px;
+  margin: 5% 0;
+  font-family: "Muli-SemiBold";
+}
+
+#guests {
+  font-size: 25px;
+  font-family: "Muli-SemiBold";
+  margin-top: 5%;
+  margin-bottom: 2%;
+}
+
+.more-buttons,
+.kid-buttons {
+  display: flex;
+  justify-content: flex-end;
+  ailgn-items: flex-end;
+}
+
+.more-buttons {
+  margin-left: 45%;
+}
+
+.kid-buttons {
+  margin-left: 40%;
+}
 </style>

@@ -222,10 +222,10 @@ export default {
             password: this.password
           }).then(data => {
             console.log(data)
-            this.$noty.success('Login Successfull')
+            this.$noty.success('Login Successful')
             window.location.reload(1);
           }).catch(error => {
-            this.$noty.error('Oops, There was an erro while trying to login')
+            this.$noty.error('Oops, There was an error while trying to login')
             console.log(error)
           })
             // .then(response => {

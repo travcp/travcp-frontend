@@ -70,6 +70,7 @@ export default {
   },
   created(){
     if(this.auth){
+      console.log(this.auth);
          this.message = `http://travvapp.herokuapp.com/signup?ref=${this.auth.user.referral_token}`
        }
   },

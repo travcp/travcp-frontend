@@ -28,7 +28,7 @@
                 <div class="col-md-4" style="padding: 30px 15px 30px 15px !important;">
                   <div class="team-player">
                     <i class="fa fa-map-marker-alt fa-3x"></i>
-                    <h4 class="title">Get discovered by local and international tourist.</h4>
+                    <h4 class="title">Get discovered by local and international tourists.</h4>
                     <!-- <p class="category text-primary">Basic Information</p> -->
                     </div>
                 </div>
@@ -117,9 +117,15 @@
         </div>
       </li>
     </ul>
-     <router-link to="/signin">
+     <router-link to="/signin" v-if="!userLoggedIn()">
       <button class="btn btn-primary btn-lg" style="width: 250px;background: #555;">Sign in to Become a Merchant</button>
      </router-link>
+     <!-- <router-link to="/#merchant-signup-modal" v-if="userLoggedIn">
+      <button class="btn btn-primary btn-lg" style="width: 250px;background: #555;">Become a Merchant</button>
+     </router-link> -->
+     <a href="#merchant-signup-modal" v-if="userLoggedIn()" data-toggle="modal">
+      <button class="btn btn-primary btn-lg" style="width: 250px;background: #555;">Become a Merchant</button>
+     </a>
     </div>
     </div>
   </div>
@@ -127,10 +133,18 @@
 </template>
 <script>
 import Navbar from "@/components/Navbar.vue";
+import state from "@/store/state";
 export default {
   name: "Benefits",
   components: {
     Navbar
+  },
+
+  methods: {
+    userLoggedIn() {
+      // console.log(localStorage.getItem("auth"), state.success);
+      return localStorage.getItem("auth") != null ? true : false;
+    }
   }
 };
 </script>
