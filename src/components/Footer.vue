@@ -13,7 +13,7 @@
                         <div class="col-lg-3 col-md-6">
                             <aside class="f_widget categories_widget">
                                 <div class="f_w_title">
-                                    <h3>TravCP</h3>
+                                    <h3 style="text-transform:none;">TravCP</h3>
                                 </div>
                                 <ul>
                                     <li><router-link to="/about-us">About us</router-link></li>

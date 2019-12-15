@@ -133,6 +133,17 @@ export default {
         this.loading = false
       })
     },
+    getHomepageFeaturedVideos(){
+      this.loading = true
+      Axios.get(`${this.$store.state.API_BASE}/videos/featured`).then(response => {
+        console.log("Featured videos", response);
+        this.videoData = response.data
+        this.loading = false
+      }).catch(error => {
+        console.log(error.response.data)
+        this.loading = false
+      })
+    },
     getVideoParam(url){
       var url_string = url; //window.location.href
       var url = new URL(url_string);
@@ -141,7 +152,8 @@ export default {
     },
   },
   created(){
-    this.getVideos()
+    // this.getVideos()
+    this.getHomepageFeaturedVideos();
   }
 }
 </script>

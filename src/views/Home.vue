@@ -148,7 +148,7 @@
         <!-- <transition v-if="!loading.getExperiences" name="fade">
           <FeaturedEvents :events="events.slice(0, 3)" />
         </transition>-->
-        <div v-if="loading.getEvents">
+        <!-- <div v-if="loading.getEvents">
           <content-loader
             :height="350"
             :width="800"
@@ -161,8 +161,10 @@
             <rect x="641.63" y="12.42" rx="0" ry="0" width="160.37" height="25.38" />
           </content-loader>
         </div>
-        <FeaturedEvents v-else :events="events.slice(0, 3)" />
-        <div v-if="loading.getPlaces">
+        <FeaturedEvents v-else :events="events.slice(0, 3)" /> -->
+        <FeaturedEvents :events="events.slice(0, 3)" />
+
+        <!-- <div v-if="loading.getPlaces">
           <content-loader
             :height="350"
             :width="800"
@@ -175,8 +177,10 @@
             <rect x="641.63" y="12.42" rx="0" ry="0" width="160.37" height="25.38" />
           </content-loader>
         </div>
-        <FeaturedPlaces v-else :places="places.slice(0, 3)" />
-        <div v-if="loading.getRestaurants">
+        <FeaturedPlaces v-else :places="places.slice(0, 3)" /> -->
+        <FeaturedPlaces :places="places.slice(0, 3)" />
+
+        <!-- <div v-if="loading.getRestaurants">
           <content-loader
             :height="350"
             :width="800"
@@ -189,7 +193,9 @@
             <rect x="641.63" y="12.42" rx="0" ry="0" width="160.37" height="25.38" />
           </content-loader>
         </div>
-        <FeaturedRest v-else :restaurants="restaurants.slice(0, 3)" />
+        <FeaturedRest v-else :restaurants="restaurants.slice(0, 3)" /> -->
+        <FeaturedRest :restaurants="restaurants.slice(0, 3)" />
+
         <!-- <SuggestedExperiences :experiences  v  "experiences_around_me.slice(0, 3)" /> -->
         <FeaturedVideo />
       </div>
@@ -237,7 +243,10 @@ export default {
     return {
       // experiences: []
       random_experiences: [],
-      merchantIsApproved: false
+      merchantIsApproved: false,
+      events: [],
+      places: [],
+      restaurants: [],
       // experiences_around_me: []
     };
   },
@@ -299,19 +308,37 @@ export default {
             }
           })
           .catch(error => {
-            console.log(error.response);
+            console.log(error);
           });
       }
     },
+
+    getAllHomepageFeaturedExperiences() {
+      this.events = this.getHomepageFeaturedExperiences('Event');
+      this.restaurants = this.getHomepageFeaturedExperiences('restaurants');
+      this.places = this.getHomepageFeaturedExperiences('places');
+    },
+
+    getHomepageFeaturedExperiences(experience_type) {
+      axios
+        .get(`${this.$store.state.API_BASE}/experiences/featured?experience_type=${experience_type}`)
+        .then( response => {
+          console.log('Featured ' + experience_type, response);
+          return response.data;
+        }).catch( error => {
+          console.log(error);
+        })
+    }
   },
   computed: {
     ...mapState(["experiences", "loading"]),
     ...mapState(["experiences_around_me"]),
     ...mapGetters(["allExperiences"]),
-    ...mapState(["restaurants"]),
-    ...mapState(["events"]),
-    ...mapState(["places"]),
-    ...mapState(["restaurants", "auth"]),
+    // ...mapState(["restaurants"]),
+    // ...mapState(["events"]),
+    // ...mapState(["places"]),
+    // ...mapState(["restaurants", "auth"]),
+     ...mapState(["auth"]),
     ...mapGetters(["getExp1", "getExp2", "getExp3", "getExp4", "getExp5"]),
 
     getVideoParam(url) {
@@ -329,12 +356,13 @@ export default {
     }
     // genRandomExperience: function(){
     //   return this.experiences[Math.floor(Math.random()*this.experiences.length)];
-    // }
+    // } 
   },
   created: function() {
     // this.getLocation()
     this.getRandomExperiences();
     this.checkIfMerchantIsApproved();
+    this.getAllHomepageFeaturedExperiences();
   }
 };
 </script>
