@@ -319,6 +319,39 @@ export default {
       this.places = this.getHomepageFeaturedExperiences('places');
     },
 
+    getHomepageFeaturedEvents() {
+axios
+        .get(`${this.$store.state.API_BASE}/experiences/featured?experience_type=Event`)
+        .then( response => {
+          console.log('Featured events', response);
+          this.events = response.data;
+        }).catch( error => {
+          console.log(error);
+        })
+    },
+
+    getHomepageFeaturedRestaurants() {
+axios
+        .get(`${this.$store.state.API_BASE}/experiences/featured?experience_type=restaurants`)
+        .then( response => {
+          console.log('Featured restaurants', response);
+          this.restaurants = response.data;
+        }).catch( error => {
+          console.log(error);
+        })
+    },
+    
+    getHomepageFeaturedPlaces() {
+axios
+        .get(`${this.$store.state.API_BASE}/experiences/featured?experience_type=places`)
+        .then( response => {
+          console.log('Featured places', response);
+          this.places = response.data;
+        }).catch( error => {
+          console.log(error);
+        })
+    },
+
     getHomepageFeaturedExperiences(experience_type) {
       axios
         .get(`${this.$store.state.API_BASE}/experiences/featured?experience_type=${experience_type}`)
@@ -362,7 +395,9 @@ export default {
     // this.getLocation()
     this.getRandomExperiences();
     this.checkIfMerchantIsApproved();
-    this.getAllHomepageFeaturedExperiences();
+    this.getHomepageFeaturedEvents();
+    this.getHomepageFeaturedRestaurants();
+    this.getHomepageFeaturedPlaces();
   }
 };
 </script>
