@@ -148,7 +148,7 @@
         <!-- <transition v-if="!loading.getExperiences" name="fade">
           <FeaturedEvents :events="events.slice(0, 3)" />
         </transition>-->
-        <!-- <div v-if="loading.getEvents">
+        <div v-if="loading.getEvents">
           <content-loader
             :height="350"
             :width="800"
@@ -161,10 +161,10 @@
             <rect x="641.63" y="12.42" rx="0" ry="0" width="160.37" height="25.38" />
           </content-loader>
         </div>
-        <FeaturedEvents v-else :events="events.slice(0, 3)" /> -->
-        <FeaturedEvents :events="events.slice(0, 3)" />
+        <FeaturedEvents v-else :events="events.slice(0, 3)" />
+        <!-- <FeaturedEvents :events="events.slice(0, 3)" /> -->
 
-        <!-- <div v-if="loading.getPlaces">
+        <div v-if="loading.getPlaces">
           <content-loader
             :height="350"
             :width="800"
@@ -177,10 +177,10 @@
             <rect x="641.63" y="12.42" rx="0" ry="0" width="160.37" height="25.38" />
           </content-loader>
         </div>
-        <FeaturedPlaces v-else :places="places.slice(0, 3)" /> -->
-        <FeaturedPlaces :places="places.slice(0, 3)" />
+        <FeaturedPlaces v-else :places="places.slice(0, 3)" />
+        <!-- <FeaturedPlaces :places="places.slice(0, 3)" /> -->
 
-        <!-- <div v-if="loading.getRestaurants">
+        <div v-if="loading.getRestaurants">
           <content-loader
             :height="350"
             :width="800"
@@ -193,8 +193,8 @@
             <rect x="641.63" y="12.42" rx="0" ry="0" width="160.37" height="25.38" />
           </content-loader>
         </div>
-        <FeaturedRest v-else :restaurants="restaurants.slice(0, 3)" /> -->
-        <FeaturedRest :restaurants="restaurants.slice(0, 3)" />
+        <FeaturedRest v-else :restaurants="restaurants.slice(0, 3)" />
+        <!-- <FeaturedRest :restaurants="restaurants.slice(0, 3)" /> -->
 
         <!-- <SuggestedExperiences :experiences  v  "experiences_around_me.slice(0, 3)" /> -->
         <FeaturedVideo />
