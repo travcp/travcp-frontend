@@ -334,11 +334,11 @@ export default {
     ...mapState(["experiences", "loading"]),
     ...mapState(["experiences_around_me"]),
     ...mapGetters(["allExperiences"]),
-    // ...mapState(["restaurants"]),
-    // ...mapState(["events"]),
-    // ...mapState(["places"]),
-    // ...mapState(["restaurants", "auth"]),
-     ...mapState(["auth"]),
+    ...mapState(["restaurants"]),
+    ...mapState(["events"]),
+    ...mapState(["places"]),
+    ...mapState(["restaurants", "auth"]),
+    //  ...mapState(["auth"]),
     ...mapGetters(["getExp1", "getExp2", "getExp3", "getExp4", "getExp5"]),
 
     getVideoParam(url) {
