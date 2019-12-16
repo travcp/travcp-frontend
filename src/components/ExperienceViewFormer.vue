@@ -188,11 +188,11 @@
                                                 </div>
 
                                                 <div class="col-md-12 col-sm-12 date-picker" v-else>
-                                                    <date-picker v-model="time" valueType="format" :lang="lang" @change="experienceIsFullyBookedForStartDate(experience)">
+                                                    <date-picker v-model="time" valueType="format" :lang="lang">
                                                     </date-picker>
                                                     
-                                                    <!-- <date-picker style="margin-left: 25px;" v-model="time2" valueType="format" :lang="lang2">
-                                                    </date-picker> -->
+                                                    <date-picker style="margin-left: 25px;" v-model="time2" valueType="format" :lang="lang2">
+                                                    </date-picker>
                                                 </div>
                                             </div>
 
@@ -670,7 +670,6 @@ export default {
           formatted_address: ""
         }
       },
-      experience_fully_booked: false,
       // custom lang
       //                 toggleSecurityBox
       securityRating: false,
@@ -697,7 +696,7 @@ export default {
           "previous 30 days"
         ],
         placeholder: {
-          date: "Choose Date",
+          date: "Start Date",
           dateRange: "Start Date"
         }
       },
@@ -857,7 +856,7 @@ export default {
         //console.log("in Booking")
 
         this.$validator
-          .validate(this.delivery_address)
+          .validate("deliveryAddress", this.deliveryAddress)
           .then(valid => {
             console.log(valid + " was returned");
             if (valid) {
@@ -914,10 +913,16 @@ export default {
                     merchant_id: this.experience.merchant_id,
                     user_id: this.auth.user.id,
                     experience_id: this.$route.params.id,
-                    start_date: this.time,
-                    end_date: this.time2,
+                    //start_date: this.time,
+                    //end_date: this.time2,
                     booking_number: this.booking_number
                   };
+                  if (this.experienceIsFullyBookedForStartDate(data)) {
+                    this.$noty.warning(
+                      "Sorry, this experience is fully booked."
+                    );
+                    return;
+                  }
                   let requestHeaders = {
                     headers: {
                       Authorization:
@@ -970,7 +975,7 @@ export default {
                     });
                   }
                 } else {
-                  this.$noty.error("Please enter all fields");
+                  this.$noty.error("Please enter the field");
                 }
               }
               //console.log("in Booking")
@@ -988,22 +993,6 @@ export default {
         this.$noty.error("Oops, You need to Login to Book and Experience");
       }
     },
-
-    experienceIsFullyBookedForStartDate(experience) {
-      axios
-        .get(
-          `${this.$store.state.API_BASE}/experiences/fully_booked/${experience.id}?merchant_id=${experience.merchant_id}&start_date=${this.time}`
-        )
-        .then(response => {
-          console.log("experience fully booked", response);
-          this.experience_fully_booked = response.data.is_experience_fully_booked;
-        })
-        .catch(error => {
-          console.log(error);
-          throw error;
-        });
-    },
-
     formatDate(date) {
       var d = new Date(date),
         month = "" + (d.getMonth() + 1),
@@ -1103,6 +1092,21 @@ export default {
         this.$noty.error("You need to Login to Have a Favourite Experience");
       }
     },
+
+    experienceIsFullyBookedForStartDate(data) {
+      axios
+        .get(
+          `${this.$store.state.API_BASE}/experiences/fully_booked/${data.experience_id}?merchant_id=${data.merchant_id}&start_date=${data.start_date}`
+        )
+        .then(response => {
+          console.log("experience fully booked", response);
+          return response.data.is_experience_fully_booked;
+        })
+        .catch(error => {
+          console.log(error);
+          throw error;
+        });
+    },
     checkIfBooked() {
       this.loading2 = true;
       let requestHeaders = {
@@ -1126,7 +1130,7 @@ export default {
         })
         .catch(err => {
           this.$noty.error(
-            "Oops, You need to Login to Review or Rate an Expereince"
+            "Oops, You need to Login to Review or Rate an Experience"
           );
         });
     },

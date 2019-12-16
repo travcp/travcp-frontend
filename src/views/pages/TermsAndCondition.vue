@@ -40,8 +40,8 @@
             </h5>
             <ul>
               <li>If your country of residence or establishment is in Nigeria, you are contracting with TravCP, Ltd., 11 Debo Close, Omole Phase 1, Nigeria.</li>
-              <li>If your country of residence or establishment is outside of Nigeria, <span class="highlight">you are contracting with TravCP Ireland UC (“TravCP Ireland”), The Watermarque Building, South Lotts Road, Ringsend, Dublin 4, Ireland.</span>
-            </li>
+              <!-- <li>If your country of residence or establishment is outside of Nigeria, <span class="highlight">you are contracting with TravCP Ireland UC (“TravCP Ireland”), The Watermarque Building, South Lotts Road, Ringsend, Dublin 4, Ireland.</span>
+            </li> -->
             </ul>
           </div>
           <h5 class="description">
@@ -94,7 +94,7 @@
 <h2 class="title">6. Service Fees</h2>
 
 <h5 class="description">6.1 TravCP may charge fees to Tour Operator ("Tour Fees") , Restaurant ("Restaurant Fees"), Destination ("Destination Fees") and/or Security ("Security Fees")(collectively, "Service Fees") in consideration for the use of the TravCP Platform. </h5>
-<h5 class="description">6.2 We charge  hosts 12% for experiences/tours, while the fees for restaurants, destinations and security are 18%. Any applicable Service Fees (including any applicable Taxes) will be displayed to a Host or Guest prior to publishing or booking a Listing. TravCP reserves the right to change the Service Fees at any time, and will provide Members adequate notice of any fee changes before they become effective. Such fee changes will not affect any bookings made prior to the effective date of the fee change. </h5>
+<h5 class="description">6.2 We charge  hosts 10% for experiences/tours, while the fees for restaurants, destinations and security are 10%. Any applicable Service Fees (including any applicable Taxes) will be displayed to a Host or Guest prior to publishing or booking a Listing. TravCP reserves the right to change the Service Fees at any time, and will provide Members adequate notice of any fee changes before they become effective. Such fee changes will not affect any bookings made prior to the effective date of the fee change. </h5>
 
 <h5 class="description">6.3 TravCP Payments will deduct any Service Fees from the Listing Fee before remitting the payout to the Service Provider. Any Guest Fees are included in the Total Fees collected by TravCP Payments. Except as otherwise provided on the TravCP Platform, Service Fees are non-refundable.</h5>
 <h2 class="title">7. Terms specific for Hosts</h2>
@@ -202,8 +202,8 @@ Arbitrators must be neutral and no party may unilaterally select an arbitrator;
 Arbitrators must disclose any bias, interest in the result of the arbitration, or relationship with any party;
 Parties retain the right to seek relief in small claims court for certain claims, at their option;
 The initial filing fee for the consumer is capped at $200;
-The consumer gets to elect the hearing location and can elect to participate live, by phone, video conference, or, for claims under $25,000, by the submission of documents;</h5>
-The arbitrator can grant any remedy that the parties could have received in court to resolve the party’s individual claim.</h5>
+The consumer gets to elect the hearing location and can elect to participate live, by phone, video conference, or, for claims under $25,000, by the submission of documents;
+The arbitrator can grant any remedy that the parties could have received in court to resolve the party’s individual claim.
 <h5 class="description">18.3 Pre-Arbitration Dispute Resolution and Notification. Prior to initiating an arbitration, you and TravCP each agree to notify the other party of the dispute and attempt to negotiate an informal resolution to it first. We will contact you at the email address you have provided to us; you can contact TravCP’s customer service team by emailing us. If after a good faith effort to negotiate one of us feels the dispute has not and cannot be resolved informally, the party intending to pursue arbitration agrees to notify the other party via email prior to initiating the arbitration. In order to initiate arbitration, a claim must be filed with the AAA and the written Demand for Arbitration (available at www.adr.org) provided to the other party, as specified in the AAA Rules.</h5>
 <h5 class="description">18.4 Agreement to Arbitrate. You and TravCP mutually agree that any dispute, claim or controversy arising out of or relating to these Terms or the applicability, breach, termination, validity, enforcement or interpretation thereof, or to the use of the TravCP Platform, the Host Services, the Group Payment Service, or the Collective Content (collectively, “Disputes”) will be settled by binding individual arbitration (the “Arbitration Agreement”). If there is a dispute about whether this Arbitration Agreement can be enforced or applies to our Dispute, you and TravCP agree that the arbitrator will decide that issue.</h5>
 <h5 class="description">18.5 Exceptions to Arbitration Agreement. You and TravCP each agree that the following claims are exceptions to the Arbitration Agreement and will be brought in a judicial proceeding in a court of competent jurisdiction: (i) Any claim related to actual or threatened infringement, misappropriation or violation of a party’s copyrights, trademarks, trade secrets, patents, or other intellectual property rights; (ii) Any claim seeking emergency injunctive relief based on exigent circumstances (e.g., imminent danger or commission of a crime, hacking, cyber-attack).</h5>

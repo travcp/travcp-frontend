@@ -15,7 +15,7 @@
             </div>
             <div class="col-md-12" v-if="loading"> 
               
-              <content-loader
+              <!-- <content-loader
                 :height="300"
                 :width="800"
                 :speed="2"
@@ -23,7 +23,7 @@
                 secondaryColor="#ecebeb"
               >
 
-              </content-loader>
+              </content-loader> -->
 
             </div>
             <div class="col-lg-12">

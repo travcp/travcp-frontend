@@ -44,7 +44,8 @@
                     <div class="row">
                       <div class="card-deck">
                         <div class="row">
-                          <div class="col-md-4" v-for="event in events" v-if="!loading.getEvents" :key="event.id">
+                          <!-- <div class="col-md-4" v-for="event in events" v-if="!loading.getEvents" :key="event.id"> -->
+                            <div class="col-md-4" v-for="event in events" :key="event.id" style="margin-right:1.2rem">
                             <router-link :to="'/experience/'+ event.id + '/' + event.title.toString().toLowerCase().replace( /\s/g, '-')">
                                 <div class="featured-card card" style="overflow: hidden;">
                                     <img v-if="event.images.length" style="width: 100%;object-fit: cover;height:380px;" :src="event.images[0].image" class="card-img-top featured-card-img" alt="..." loading="lazy">
@@ -114,7 +115,8 @@ export default {
     //     }
     // },
     computed: {
-        ...mapState(['auth', 'loading'])
+        // ...mapState(['auth', 'loading'])
+        ...mapState(['auth'])
     },
     methods: {
         // next() {
