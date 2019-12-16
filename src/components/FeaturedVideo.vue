@@ -137,7 +137,7 @@ export default {
       this.loading = true
       Axios.get(`${this.$store.state.API_BASE}/videos/featured`).then(response => {
         console.log("Featured videos", response);
-        this.videoData = response.data
+        this.videoData = response.data.data
         this.loading = false
       }).catch(error => {
         console.log(error.response.data)
