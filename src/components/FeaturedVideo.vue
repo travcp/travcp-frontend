@@ -29,34 +29,34 @@
             <div class="col-lg-12">
               <div class="row" v-if="videoData.length > 0">
                 <div class="col-md-7" v-if="videoData.length > 3">
-                  <div class="feature_video_lg" data-toggle="modal" data-target="#video_1" :style="{background: 'url(http://img.youtube.com/vi/' + getVideoParam(videoData[4].url) + '/mqdefault.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}" @click="openVideoModal(videoData[4].url)">
+                  <div class="feature_video_lg" data-toggle="modal" data-target="#video_1" :style="{background: 'url(http://img.youtube.com/vi/' + getVideoParam(videoData[3].url) + '/mqdefault.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}" @click="openVideoModal(videoData[3].url)">
 
                   </div>
                 </div>
                 <div class="col-md-5">
                   <div class="row">
                     <div class="col-md-6" v-if="videoData.length > 0">
-                      <div class="feature_video_sm ft_video_sm_1" data-toggle="modal" data-target="#video_2" :style="{background: 'url(http://img.youtube.com/vi/' + getVideoParam(videoData[1].url) + '/hqdefault.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}" @click="openVideoModal(videoData[1].url)">
+                      <div class="feature_video_sm ft_video_sm_1" data-toggle="modal" data-target="#video_2" :style="{background: 'url(http://img.youtube.com/vi/' + getVideoParam(videoData[0].url) + '/hqdefault.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}" @click="openVideoModal(videoData[0].url)">
+                      </div>
+                      <div class="feature_video_sm_title">
+                        <h6 class="card-title text-truncate">{{ videoData[0].title }}</h6>
+                        <p>{{ videoData[0].video_category.name }}</p>
+                      </div>
+                    </div>
+                    <div class="col-md-6"  v-if="videoData.length > 1">
+                      <div class="feature_video_sm ft_video_sm_2" data-toggle="modal" data-target="#video_3" :style="{background: 'url(http://img.youtube.com/vi/' + getVideoParam(videoData[1].url) + '/hqdefault.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}" @click="openVideoModal(videoData[1].url)">
                       </div>
                       <div class="feature_video_sm_title">
                         <h6 class="card-title text-truncate">{{ videoData[1].title }}</h6>
                         <p>{{ videoData[1].video_category.name }}</p>
                       </div>
                     </div>
-                    <div class="col-md-6"  v-if="videoData.length > 1">
-                      <div class="feature_video_sm ft_video_sm_2" data-toggle="modal" data-target="#video_3" :style="{background: 'url(http://img.youtube.com/vi/' + getVideoParam(videoData[2].url) + '/hqdefault.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}" @click="openVideoModal(videoData[2].url)">
+                    <div class="col-md-6"  v-if="videoData.length > 2">
+                      <div class="feature_video_sm ft_video_sm_3" data-toggle="modal" data-target="#video_4" :style="{background: 'url(http://img.youtube.com/vi/' + getVideoParam(videoData[2].url) + '/hqdefault.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}" @click="openVideoModal(videoData[2].url)">
                       </div>
                       <div class="feature_video_sm_title">
                         <h6 class="card-title text-truncate">{{ videoData[2].title }}</h6>
                         <p>{{ videoData[2].video_category.name }}</p>
-                      </div>
-                    </div>
-                    <div class="col-md-6"  v-if="videoData.length > 2">
-                      <div class="feature_video_sm ft_video_sm_3" data-toggle="modal" data-target="#video_4" :style="{background: 'url(http://img.youtube.com/vi/' + getVideoParam(videoData[3].url) + '/hqdefault.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}" @click="openVideoModal(videoData[3].url)">
-                      </div>
-                      <div class="feature_video_sm_title">
-                        <h6 class="card-title text-truncate">{{ videoData[3].title }}</h6>
-                        <p>{{ videoData[3].video_category.name }}</p>
                       </div>
                     </div>
                     <div class="col-md-6">
