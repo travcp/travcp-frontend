@@ -323,7 +323,7 @@ export default {
     getHomepageFeaturedEvents() {
       axios
         .get(
-          `${this.$store.state.API_BASE}/experiences/featured?experience_type=Event`
+          `${this.$store.state.API_BASE}/experiences/featured?experience_type=Geovanny`
         )
         .then(response => {
           console.log("Featured events", response);
@@ -337,7 +337,7 @@ export default {
     getHomepageFeaturedRestaurants() {
       axios
         .get(
-          `${this.$store.state.API_BASE}/experiences/featured?experience_type=restaurants`
+          `${this.$store.state.API_BASE}/experiences/featured?experience_type=Lexus`
         )
         .then(response => {
           console.log("Featured restaurants", response);
@@ -351,7 +351,7 @@ export default {
     getHomepageFeaturedPlaces() {
       axios
         .get(
-          `${this.$store.state.API_BASE}/experiences/featured?experience_type=places`
+          `${this.$store.state.API_BASE}/experiences/featured?experience_type=Amaya`
         )
         .then(response => {
           console.log("Featured places", response);

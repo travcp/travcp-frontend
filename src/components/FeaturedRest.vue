@@ -84,7 +84,7 @@
 
                               </content-loader>
                 </div>-->
-                <div class="col-md-4" v-for="restaurant in restaurants" :key="restaurant.id" style="margin-right:1.2rem">
+                <div class="col-md-4" v-for="restaurant in restaurants" :key="restaurant.id">
                   <router-link
                     :to="'/experience/'+ restaurant.id + '/' + restaurant.title.toString().toLowerCase().replace( /\s/g, '-')"
                   >

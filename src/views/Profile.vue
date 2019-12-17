@@ -542,7 +542,7 @@ export default {
           let returned = response.data;
           if (returned && returned.is_approved == 1) {
             this.userApprovedForAffiliate = true;
-          } else if (returned) {
+          } else if (returned && returned.is_approved == 0) {
             this.userAppliedForAffiliate = true;
           }
         })
