@@ -35,8 +35,7 @@
                 </div>
                 <div class="col-md-5">
                   <div class="row" v-if="videoData.length > 1">
-                    <div v-for="(video,index) in videoData" :key="index">
-                      <div class="col-md-6" v-if="index != 0">
+                      <div class="col-md-6" v-for="(video,index) in loopVideos" :key="index">
                           <div class="feature_video_sm ft_video_sm_1" data-toggle="modal" data-target="#video_2" :style="{background: 'url(http://img.youtube.com/vi/' + getVideoParam(videoData[index].url) + '/hqdefault.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}" @click="openVideoModal(videoData[index].url)">
                           </div>
                           <div class="feature_video_sm_title">
@@ -44,7 +43,6 @@
                             <p>{{ videoData[index].video_category.name }}</p>
                           </div>
                       </div>
-                    </div>
                     <!-- <div class="col-md-6"  v-if="videoData.length > 1">
                       <div class="feature_video_sm ft_video_sm_2" data-toggle="modal" data-target="#video_3" :style="{background: 'url(http://img.youtube.com/vi/' + getVideoParam(videoData[1].url) + '/hqdefault.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}" @click="openVideoModal(videoData[1].url)">
                       </div>
@@ -115,6 +113,11 @@ export default {
   },
   component: {
       ContentLoader
+  },
+  computed: {
+    loopVideos() {
+      return this.videoData.splice(1,this.videoData.length);
+    }
   },
   methods: {
     video_1(){
