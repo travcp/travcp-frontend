@@ -35,14 +35,14 @@
                 </div>
                 <div class="col-md-5">
                   <div class="row" v-if="videoData.length > 1">
-                    <div class="col-md-6" v-for="(video,index) in videoData" :key="index">
-                      <div v-if="index != 0">
-                        <div class="feature_video_sm ft_video_sm_1" data-toggle="modal" data-target="#video_2" :style="{background: 'url(http://img.youtube.com/vi/' + getVideoParam(videoData[index].url) + '/hqdefault.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}" @click="openVideoModal(videoData[index].url)">
-                        </div>
-                        <div class="feature_video_sm_title">
-                          <h6 class="card-title text-truncate">{{ videoData[index].title }}</h6>
-                          <p>{{ videoData[index].video_category.name }}</p>
-                        </div>
+                    <div v-for="(video,index) in videoData" :key="index">
+                      <div class="col-md-6" v-if="index != 0">
+                          <div class="feature_video_sm ft_video_sm_1" data-toggle="modal" data-target="#video_2" :style="{background: 'url(http://img.youtube.com/vi/' + getVideoParam(videoData[index].url) + '/hqdefault.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}" @click="openVideoModal(videoData[index].url)">
+                          </div>
+                          <div class="feature_video_sm_title">
+                            <h6 class="card-title text-truncate">{{ videoData[index].title }}</h6>
+                            <p>{{ videoData[index].video_category.name }}</p>
+                          </div>
                       </div>
                     </div>
                     <!-- <div class="col-md-6"  v-if="videoData.length > 1">
