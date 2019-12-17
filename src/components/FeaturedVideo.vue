@@ -116,7 +116,7 @@ export default {
   },
   computed: {
     loopVideos() {
-      return this.videoData.splice(1,this.videoData.length);
+      return this.videoData.slice(1,this.videoData.length);
     }
   },
   methods: {
