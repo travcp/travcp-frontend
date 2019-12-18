@@ -528,11 +528,11 @@ button#dropdownMenuButton:focus {
   overflow: hidden;
 }
 
-.btn-success {
+/* .btn-success {
   color: #fff;
   background-color:#f81894;
   border-color:#f81894;
-}
+} */
 
 .product-price-btn {
   height: 100%;
@@ -560,25 +560,25 @@ span {
 }
 
 .product-price-btn button {
-  float: right;
+  /* float: right; */
   display: inline-block;
-  height: 50px;
+  /* height: 50px;
   width: 176px;
-  margin: 30px 40px 0 16px;
+  margin: 30px 40px 0 16px; */
   box-sizing: border-box;
-  border: transparent;
+  /* border: transparent; */
   border-radius: 60px;
   font-size: 14px;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.2em;
   color: #ffffff;
-  background-color: #9cebd5;
+  /* background-color: #9cebd5; */
   cursor: pointer;
   outline: none;
 }
 
 .product-price-btn button:hover {
-  background-color: #79b0a1;
+  background-color: #f81894;
 }
 </style>
