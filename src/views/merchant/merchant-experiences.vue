@@ -42,10 +42,12 @@
                       <p class="card-text">
                         <small
                           class="text-muted"
-                        >Last updated at {{ merchant_experience.updated_at }}</small>
+                        >Last updated at <strong>{{ merchant_experience.updated_at }}</strong></small>
+                      </p>
+                      <p class="card-text">
                         <small
                           class="text-muted"
-                        >Status: {{ merchant_experience.approved == 1 ? 'Approved' : 'Currently Pending Approval' }}</small>
+                        >Status: <strong>{{ merchant_experience.approved == 1 ? 'Approved' : 'Currently Pending Approval' }}</strong></small>
                       </p>
                     </div>
                     <div class="product-price-btn">
@@ -54,14 +56,14 @@
                         <span>{{ merchant_experience.naira_price }}</span>
                       </p>
                       <router-link
-                        :to="'/dashboard/merchant/experience/edit/'+ merchant_experience.experience_type + '/' + merchant_experience.id + '/' + merchant_experience.title.toString().toLowerCase().replace( /\s/g, '-')"
+                        :to="'/dashboard/merchant/experience/edit/'+ merchant_experience.experience_type + '/' + merchant_experience.id + '/' + merchant_experience.title.toString().toLowerCase().replace( /\s/g, '-')" class="link-margin"
                       >
-                        <button type="button">Edit</button>
+                        <button type="button" class="btn btn-md btn-primary">Edit</button>
                       </router-link>
                       <router-link
-                        :to="'/experience/'+ merchant_experience.id + '/' + merchant_experience.title.toString().toLowerCase().replace( /\s/g, '-')"
+                        :to="'/experience/'+ merchant_experience.id + '/' + merchant_experience.title.toString().toLowerCase().replace( /\s/g, '-')" class="link-margin"
                       >
-                        <button type="button">View</button>
+                        <button type="button" class="btn btn-md btn-success">View</button>
                       </router-link>
                     </div>
                   </div>
@@ -514,6 +516,9 @@ button#dropdownMenuButton:focus {
   letter-spacing: 0.2em;
 }
 
+.link-margin {
+  margin: 2rem 0 0 2rem !important;
+}
 .product-text p {
   margin: 0 0 0 38px;
   color: #8d8d8d;
@@ -523,11 +528,18 @@ button#dropdownMenuButton:focus {
   overflow: hidden;
 }
 
+.btn-success {
+  color: #fff;
+  background-color:#f81894;
+  border-color:#f81894;
+}
+
 .product-price-btn {
-  height: 103px;
-  width: 327px;
-  margin-top: 17px;
+  height: 100%;
+  width: 100%;
+  margin-top: 1.2rem;
   position: relative;
+  display: flex;
 }
 
 .product-price-btn p {
