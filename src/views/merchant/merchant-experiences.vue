@@ -580,5 +580,6 @@ span {
 
 .product-price-btn button:hover {
   background-color: #f81894;
+  border-color: #f81894;
 }
 </style>
