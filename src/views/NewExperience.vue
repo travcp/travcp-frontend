@@ -474,6 +474,7 @@ import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
 import FilePondPluginImageEdit from 'filepond-plugin-image-edit';
 
 import 'filepond-plugin-image-edit/dist/filepond-plugin-image-edit.css';
+import Swal from 'sweetalert2';
 
 export default {
   name: "NewExperience",
