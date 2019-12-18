@@ -1,40 +1,45 @@
 <template>
   <div class="container main">
     <vue-headful
-            :title="'My Bookings | ' + $store.state.appName"
-            :description="$store.state.appDescription"
-        />
-    <Navbar/>
+      :title="'My Bookings | ' + $store.state.appName"
+      :description="$store.state.appDescription"
+    />
+    <Navbar />
     <!-- booking header details left -->
     <div class="row my-booking-left">
       <div class="col-lg-8 my-booking-header">
         <div class="my-booking-title">
           <p>My Bookings</p>
-          <hr class="my-booking-title-horizontal">
+          <hr class="my-booking-title-horizontal" />
         </div>
         <div style="text-align: center;" v-if="loading">
-          <Circle9 />           
+          <Circle9 />
         </div>
         <div v-if="bookings.length < 1 && !loading && restaurant_bookings.length < 1">
           <empty-result>
             <template v-slot:error-header>Errm</template>
-            You do not have any bookings yet. <br> When you book an experience, it will appear here.
+            You do not have any bookings yet.
+            <br />When you book an experience, it will appear here.
           </empty-result>
         </div>
         <div class="row" v-for="booking in bookings" :key="booking.id" style="margin-bottom: 10px;">
-          <div class="col-md-3 my-booking-details-image" v-if="booking.experience.images.length > 0" :style="{background: 'url(' + booking.experience.images[0].image + ')', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}"></div>
+          <div
+            class="col-md-3 my-booking-details-image"
+            v-if="booking.experience.images.length > 0"
+            :style="{background: 'url(' + booking.experience.images[0].image + ')', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}"
+          ></div>
 
           <div class="col-md-3 my-booking-details-image" v-else></div>
           <div class="col-md-9">
             <div class="my-booking-trip-main">
               <div class="my-booking-trip-details-header">
-                <p class="my-booking-trip-details-header-p1">{{ booking.experience.title }} | {{ booking.experience.state }}</p>
+                <p
+                  class="my-booking-trip-details-header-p1"
+                >{{ booking.experience.title }} | {{ booking.experience.state }}</p>
                 <p class="my-booking-trip-details-header-p2">{{ booking.experience.city }}</p>
               </div>
               <div class="my-booking-trip-details">
-                <p
-                  class="my-booking-trip-details-p1"
-                >{{ booking.experience.title }}</p>
+                <p class="my-booking-trip-details-p1">{{ booking.experience.title }}</p>
                 <p
                   class="my-booking-trip-details-p2"
                 >{{ booking.experience.description.slice(0, 200) }}</p>
@@ -42,25 +47,34 @@
             </div>
           </div>
         </div>
-       <!-- <div class="my-booking-title">
+        <!-- <div class="my-booking-title">
           <p>My Restuarants</p>
           <hr class="my-booking-title-horizontal">
-        </div> -->
-        <div class="row" v-for="booking in restaurant_bookings" :key="booking.id" style="margin-bottom: 10px;">
-          <div class="col-md-3 my-booking-details-image" v-if="booking.experience.images.length > 0" :style="{background: 'url(' + booking.experience.images[0].image + ')', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}"></div>
+        </div>-->
+        <div
+          class="row"
+          v-for="booking in restaurant_bookings"
+          :key="booking.id"
+          style="margin-bottom: 10px;"
+        >
+          <div
+            class="col-md-3 my-booking-details-image"
+            v-if="booking.experience.images.length > 0"
+            :style="{background: 'url(' + booking.experience.images[0].image + ')', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center'}"
+          ></div>
 
           <div class="col-md-3 my-booking-details-image" v-else></div>
 
           <div class="col-md-9">
             <div class="my-booking-trip-main">
               <div class="my-booking-trip-details-header">
-                <p class="my-booking-trip-details-header-p1">{{ booking.experience.title }} | {{ booking.experience.state }}</p>
+                <p
+                  class="my-booking-trip-details-header-p1"
+                >{{ booking.experience.title }} | {{ booking.experience.state }}</p>
                 <p class="my-booking-trip-details-header-p2">{{ booking.experience.city }}</p>
               </div>
               <div class="my-booking-trip-details">
-                <p
-                  class="my-booking-trip-details-p1"
-                >{{ booking.experience.title }}</p>
+                <p class="my-booking-trip-details-p1">{{ booking.experience.title }}</p>
                 <p
                   class="my-booking-trip-details-p2"
                 >{{ booking.experience.description.slice(0, 200) }}</p>
@@ -68,7 +82,6 @@
             </div>
           </div>
         </div>
-
       </div>
       <!-- booking header details right -->
       <!-- <div class="col-lg-4">
@@ -101,79 +114,100 @@
 
           </div>
         </div>
-      </div> -->
+      </div>-->
     </div>
-  <!-- <Footer /> -->
+    <!-- <Footer /> -->
   </div>
 </template>
 <script>
 import Navbar from "@/components/Navbar.vue";
 import EmptyResult from "@/components/EmptyResult.vue";
-import { mapActions, mapState } from 'vuex';
-import axios from 'axios';
-import Footer from '@/components/Footer.vue';
-import { Circle9 } from 'vue-loading-spinner'
+import { mapActions, mapState } from "vuex";
+import axios from "axios";
+import Footer from "@/components/Footer.vue";
+import { Circle9 } from "vue-loading-spinner";
 // events.slice(0, 3)
 export default {
   name: "MyBooking",
   beforeRouteEnter(to, from, next) {
-    let checkToken = JSON.parse(localStorage.getItem('auth'))
-      if(checkToken && checkToken.access_token) {
-          return next()
-      } else {
-        // this.$noty.error("Sign in to access!")
-        return next({ path: '/signin' })
-      }
-      next();
+    let checkToken = JSON.parse(localStorage.getItem("auth"));
+    if (checkToken && checkToken.access_token) {
+      return next();
+    } else {
+      // this.$noty.error("Sign in to access!")
+      return next({ path: "/signin" });
+    }
+    next();
   },
   components: {
-    Navbar, EmptyResult, Footer, Circle9
+    Navbar,
+    EmptyResult,
+    Footer,
+    Circle9
   },
-  data(){
+  data() {
     return {
       bookings: [],
       loading: false,
       restaurant_bookings: []
-    }
+    };
   },
   computed: {
-    ...mapState(['places'])
+    ...mapState(["places"])
   },
   methods: {
-    getMyBookings(){
+    getMyBookings() {
       this.loading = true;
       let requestHeaders = {
-        headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
+        headers: {
+          Authorization: "Bearer " + this.$store.state.auth.access_token
+        }
       };
-      axios.get(`${this.$store.state.API_BASE}/users/${this.$store.state.auth.user.id}/bookings?paid=true`, requestHeaders).then(response => {
-        this.$store.state.bookings = response.data.data;
-        this.bookings = response.data.data;
-        this.loading = false;
-      }).catch(err => {
-        this.$noty.error("Oops, There was an error Trying to get bookings, Please reload the page");
-      })
-      
+      axios
+        .get(
+          `${this.$store.state.API_BASE}/users/${this.$store.state.auth.user.id}/bookings?paid=true`,
+          requestHeaders
+        )
+        .then(response => {
+          this.$store.state.bookings = response.data.data;
+          this.bookings = response.data.data;
+          this.loading = false;
+        })
+        .catch(err => {
+          this.$noty.error(
+            "Oops, There was an error Trying to get bookings, Please reload the page"
+          );
+        });
     },
-    getMyRestBookings(){
+    getMyRestBookings() {
       this.loading = true;
       let requestHeaders = {
-        headers: {'Authorization' : "Bearer " + this.$store.state.auth.access_token}
+        headers: {
+          Authorization: "Bearer " + this.$store.state.auth.access_token
+        }
       };
-      axios.get(`${this.$store.state.API_BASE}/users/${this.$store.state.auth.user.id}/bookings?experiences_type_id=12?paid=false`, requestHeaders).then(response => {
-        // this.$store.state.bookings = response.data.data;
-        this.restaurant_bookings = response.data.data;
-        this.loading = false;
-        console.log('restaunrant bookings')
-        console.log(response.data.data)
-      }).catch(err => {
-        this.$noty.error("Oops, There was an error Trying to get bookings, Please reload the page");
-      })
-      
+      axios
+        .get(
+          `${this.$store.state.API_BASE}/users/${this.$store.state.auth.user.id}/bookings?experiences_type_id=12?paid=false`,
+          requestHeaders
+        )
+        .then(response => {
+          // this.$store.state.bookings = response.data.data;
+          this.restaurant_bookings = response.data.data;
+          this.loading = false;
+          console.log("restaunrant bookings");
+          console.log(response.data.data);
+        })
+        .catch(err => {
+          this.$noty.error(
+            "Oops, There was an error Trying to get bookings, Please reload the page"
+          );
+        });
     }
   },
-  created(){
-    this.getMyBookings()
-    this.getMyRestBookings()
+  created() {
+    this.getMyBookings();
+    this.getMyRestBookings();
   }
 };
 </script>

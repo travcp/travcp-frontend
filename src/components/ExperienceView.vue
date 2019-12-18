@@ -188,7 +188,7 @@
                                                 </div>
 
                                                 <div class="col-md-12 col-sm-12 date-picker" v-else>
-                                                    <date-picker v-model="time" valueType="format" :lang="lang" @change="experienceIsFullyBookedForStartDate(experience)">
+                                                    <date-picker v-model="time" valueType="format" :lang="lang" @change="experienceIsFullyBookedForStartDate(experience)" style="width: 100%;">
                                                     </date-picker>
                                                     
                                                     <!-- <date-picker style="margin-left: 25px;" v-model="time2" valueType="format" :lang="lang2">
@@ -996,7 +996,8 @@ export default {
         )
         .then(response => {
           console.log("experience fully booked", response);
-          this.experience_fully_booked = response.data.is_experience_fully_booked;
+          this.experience_fully_booked =
+            response.data.is_experience_fully_booked;
         })
         .catch(error => {
           console.log(error);
@@ -1072,7 +1073,7 @@ export default {
         });
     },
     postFavoriteExeperience(placeId) {
-      this.loading = true;
+      this.loading2 = true;
       if (this.auth && this.auth.access_token) {
         let data = {
           user_id: this.auth.user.id,
@@ -1090,14 +1091,14 @@ export default {
         )
           .then(response => {
             //console.log(response.data.data);
-            this.loading = false;
+            this.loading2 = false;
             this.$noty.success(
               "Experience has been added to your Favourites list"
             );
           })
           .catch(error => {
             //console.log(error.data)
-            this.loading = false;
+            this.loading2 = false;
           });
       } else {
         this.$noty.error("You need to Login to Have a Favourite Experience");
